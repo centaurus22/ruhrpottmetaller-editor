@@ -1,0 +1,312 @@
+body {
+	margin: 0px;
+}
+
+h1 {
+	font-size:15pt;
+}
+
+div#inhalt {
+	margin-left: 10px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+div.inhalt_small {
+	padding: 80px 0px 35px 0px;
+}
+
+div.inhalt_large {
+	padding: 45px 0px 35px 0px;
+}
+
+div.leiste_top {
+	top: 0px;
+    background-color: gray;
+    min-width: 600px;
+    width: 100%;
+    position: fixed;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 25px;
+}
+
+div#navigation a
+{
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-top: 10px;
+	font-weight: bold;
+	color: black;
+}
+
+div#leiste_buttons {
+	height: 30px;
+	top: 35px;
+	padding: 5px 0px 5px 5px;
+	position: fixed;
+	min-width: 400px;
+	width: 100%;
+	margin: 0px;
+	background-color: lightgrey;
+}
+
+div#leiste_buttons button, #button {
+	float: left;
+	margin-right: 5px;
+}
+
+.month {
+	border: 1px;
+	margin: 1px;
+	padding: 2px;
+	border-style: dotted;
+	background-color: lightgrey;
+	font-weight: bold;
+	padding-top: 3px;
+	font-style: italic;
+	color: black;
+	float: left;
+}
+
+div.leiste_bottom {
+	background-color: gray;
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	padding: 5px 0px 6px 5px;
+}
+
+div.leiste_bottom a {
+	color: black;
+}
+
+table#data {
+	border-collapse: collapse;
+}
+
+table#data .checkbox {
+	text-align: center;
+}
+
+th
+{
+	border-bottom: 2px solid gray;
+}
+
+a.published
+{
+	color:black;
+	text-decoration: none;
+}
+
+tr.published_oben
+{
+	border-bottom: 1px dashed gray;
+}
+
+tr.published_unten
+{
+	border-bottom: 2px solid gray;
+}
+
+tr.unpublished
+{
+	color:blue;
+}
+
+a.unpublished
+{
+	color:blue;
+	text-decoration: none;
+}
+
+tr.unpublished_oben
+{
+	color:blue;
+	border-bottom: 1px dashed gray;
+}
+
+tr.unpublished_unten
+{
+	color:blue;
+	border-bottom: 2px solid gray;
+}
+
+tr.urgent
+{
+	color:red;
+}
+
+a.urgent
+{
+	color:red;
+	text-decoration: none;
+}
+
+tr.urgent_oben
+{
+	color: red;
+	border-bottom: 1px dashed gray;
+}
+
+tr.urgent_unten
+{
+	color:red;
+	border-bottom: 2px solid gray;
+}
+
+.nazi
+{
+	color: peru;
+}
+
+.show_name {
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.show_url {
+text-align: center;
+padding-left: 10px;
+padding-right: 10px;
+}
+.table_buttons {
+	width: 175px;
+}
+
+.table_buttons button, select {
+	float: left;
+	display: block;
+	height: 30px;
+}
+
+.image_message_gen
+{
+	margin-right:3px;
+}
+
+.message_twitter {
+	float:left;
+	margin-right: 5px;
+}
+
+.message_facebook {
+	padding-top: 10px;
+	padding-bottom: 5px;
+}
+
+#kreator_formular {
+	padding-top: 10px;
+}
+
+.kreator_label
+{
+	padding-top: 10px;
+	width: 110px;
+	display: inline-block;
+	float: left;
+}
+
+#kreator_formular div
+{
+	clear: left;
+}
+
+table#lineup {
+	border-collapse: collapse;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+}
+
+#lineup button {
+	padding-top:3px;
+}
+
+.lineup_zusatz {
+	width: 130px;
+}
+
+.option_highlight {
+	font-weight: bold;
+}
+
+#fehler
+{
+	font-weight: bold;
+	color: red;
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	/*border: 1px;
+	border-style: solid;*/
+}
+
+.aenderungen_todo
+{
+	margin-bottom: 25px;
+}
+
+.todo_diff {
+	color: blue;
+}
+
+.todo_diff a {
+	text-decoration: none;	
+	color: blue;
+}
+
+.todo_data
+{
+	float: left;
+	border: dotted 1px;
+	margin: 10px 10px 10px 10px;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+.klickbar
+{
+	cursor: pointer;
+}
+
+.event_new button
+{
+	margin-top: 10px
+}
+
+
+.datum
+{
+	font-style: italic;
+	padding-bottom: 10px;
+}
+
+h1.blog_ueberschrift
+{
+	font-size: 1.5em;
+	margin-bottom: 1px;
+}
+
+.blog_text
+{
+	margin-bottom: 8px;
+	border-style: dotted;
+	border-width: 1px;
+	margin: 5px;
+	overflow: hidden;
+}
+
+.blog_text_edit
+{
+	width: 97%;
+	height: 100px;
+	margin: 5px;
+}
+
+.blog_beitrag
+{
+	margin-bottom: 20px;
+}
