@@ -24,7 +24,7 @@ To install the software the following steps are necessary:
 * Import the database from the file “databases_rpm.sql” into your database management software.
 * Adjust the file “connect.php” from the php folder.
 ## How to contribute
-To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact adress below.
+To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below.
 
 If you want to support the development, you can send money via paypal also to the contact address or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
