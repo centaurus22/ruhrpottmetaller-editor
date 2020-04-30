@@ -1,9 +1,9 @@
 # rpmetaller-editor
-A web-based tool to store, manage and publish information about concerts.
+A web-based tool to store, manage and export information about concerts and festivals.
 
 I used this project to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project will be rewritten later. Bug fixes will continue to be implemented.
 ## Features
-* Save and edit data about concerts and festivals (bands, date, venue).
+* Save and edit data about concerts and festivals, including bands, date and venue.
 * Edit the names of bands, cities, venues.
 * Export concerts and festivals in human readable form.
 * Mark bands, whose concerts should not be exported.
