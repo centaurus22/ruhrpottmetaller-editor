@@ -5,4 +5,4 @@ layout: default
 
 <br>
 
-{ 02-logo.md %}
+{% 02-logo.md %}
