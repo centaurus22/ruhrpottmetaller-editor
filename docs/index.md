@@ -6,3 +6,5 @@ layout: default
 <br>
 
 {% 02-logo.md %}
+
+{% 03-fetures.md %}
