@@ -7,4 +7,6 @@ layout: default
 
 {% 02-logo.md %}
 
-{% 03-fetures.md %}
+<br>
+
+{% 03-features.md %}
