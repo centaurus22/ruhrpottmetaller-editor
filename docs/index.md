@@ -10,3 +10,7 @@ layout: default
 <br>
 
 {% 03-features.md %}
+
+<br>
+
+{% 04-installation.md %}
