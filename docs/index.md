@@ -14,3 +14,7 @@ layout: default
 <br>
 
 {% 04-installation.md %}
+
+<br>
+
+{% 05-using.md %}
