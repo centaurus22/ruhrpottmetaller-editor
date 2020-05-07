@@ -23,7 +23,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ## Export
 
 ## Einstellungen
-Using the site “Einstellungen” a few preferences can be made.
+Using this site a few preferences can be made.
 
 The checkboxes are control the generation of concert exports on the [Termine](#termine) site.
 * The first checkbox determines whether an @ symbol is generated before every Facebook export.
