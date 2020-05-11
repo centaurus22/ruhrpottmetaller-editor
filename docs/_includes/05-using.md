@@ -13,7 +13,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ### del
 
 ### sold out
-Marks the concert (or festival) as sold out. As a result, the corresponding concert export is generated with this information on this site and on the [Export] (#export) site.
+Marks the concert (or festival) as sold out. As a result, the corresponding concert export is generated with this information on this site and on the [Export](#export) site.
 ## Bands
 
 ## Städte
