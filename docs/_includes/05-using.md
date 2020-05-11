@@ -9,7 +9,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ### edit
 
 ### publiziert
-
+Marks the concert as published. So on this site the concert will be shown in black letters instead of red or blue ones.
 ### del
 Deletes the concert from the database. It is therefore irrevocably deleted from the system.
 ### sold out
