@@ -11,7 +11,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ### publiziert
 
 ### del
-Deletes the concert from the database. It is therefore irrevocably deleted.
+Deletes the concert from the database. It is therefore irrevocably deleted from the system.
 ### sold out
 Marks the concert as sold out. As a result, the corresponding concert exports are generated with the information that the concert is sold out. This affects this site and the [Export](#export) site.
 ## Bands
