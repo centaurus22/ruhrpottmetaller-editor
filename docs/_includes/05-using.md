@@ -7,7 +7,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 #### add
 Opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which you start the add command, is the preset for the date of the new concert.
 #### edit
-
+Opens the [concert editor](#concert-editor) to edit the concert data.
 #### publiziert
 Marks the concert as published. So on this site the concert will be shown in black letters instead of red or blue ones.
 #### del
