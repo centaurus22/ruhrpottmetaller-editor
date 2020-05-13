@@ -12,7 +12,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ### Concert editor
 
 ## Bands
-
+On this site you can edit the names of the bands in the database. Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the [Termine](#termine) site. Also concerts with the corresponding band are not be included in the export on the [Export](#export) site. 
 ## Städte
 
 ## Locations
