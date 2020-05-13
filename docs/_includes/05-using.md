@@ -4,16 +4,11 @@ This section describes, how to use the software. Every link at the top has its o
 On some sites it is possible to narrow down the displayed items by month or first letter. In this case, a second row with form elements is displayed.
 ## Termine
 
-#### add
-Opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which you start the add command, is the preset for the date of the new concert.
-#### edit
-Opens the [concert editor](#concert-editor) to edit the concert data.
-#### publiziert
-Marks the concert as published. So on this site the concert will be shown in black letters instead of red or blue ones.
-#### del
-Deletes the concert from the database. It is therefore irrevocably deleted from the system.
-#### sold out
-Marks the concert as sold out. As a result, the corresponding concert exports are generated with the information that the concert is sold out. This affects this site and the [Export](#export) site.
+* `add` opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which you start the add command, is the preset for the date of the new concert.
+* `edit` opens the [concert editor](#concert-editor) to edit the concert data.
+* `publiziert` marks the concert as published. So on this site the concert will be shown in black letters instead of red or blue ones.
+* `del` deletes the concert from the database. It is therefore irrevocably deleted from the system.
+* `sold out` marks the concert as sold out. As a result, the corresponding concert exports are generated with the information that the concert is sold out. This affects this site and the [Export](#export) site.
 ### Concert editor
 
 ## Bands
