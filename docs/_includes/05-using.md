@@ -12,9 +12,13 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ### Concert editor
 
 ## Bands
-On this site you can edit the names of the bands in the database. Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the [Termine](#termine) site. Also concerts with the corresponding band are not be included in the export on the [Export](#export) site. 
-## Städte
+On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change.
 
+Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the [Termine](#termine) site. Also concerts with the corresponding band are not be included in the export on the [Export](#export) site. 
+## Städte
+On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
+
+The checkbox right of the city name is intended for an external functionalaty and does not have any affect on the rpmetaller-editor. 
 ## Locations
 
 ## Export
