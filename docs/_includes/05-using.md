@@ -5,7 +5,7 @@ On some sites it is possible to narrow down the displayed items by month or firs
 ## Termine
 
 #### add
-
+Opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which you start the add command, is the preset for the date of the new concert.
 #### edit
 
 #### publiziert
