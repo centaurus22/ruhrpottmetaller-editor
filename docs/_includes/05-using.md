@@ -18,7 +18,7 @@ Also you can mark them as not exportable. In this case, the band is written in l
 ## Städte
 On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
 
-The checkbox right of the city name is intended for an external functionalaty and does not have any affect on the rpmetaller-editor. 
+The checkbox right of the city name is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
 ## Locations
 
 ## Export
