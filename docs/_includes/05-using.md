@@ -25,7 +25,9 @@ After changing one of the input fields, you need to click anywhere outside the t
 
 The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
 ## Export
-
+A human readable list of the concerts of the currently selected month is created on the export page.
+The header and the footer can be configured on the [Einstellungen](#einstellungen) site.
+You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
 ## Einstellungen
 Using this site a few preferences can be made.
 
