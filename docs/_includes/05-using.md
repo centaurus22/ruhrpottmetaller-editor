@@ -21,8 +21,8 @@ On this site you can edit the names of the cities in the database. After changin
 The checkbox right of the city name is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
 ## Locations
 On this site you can edit the names of the venues in the database. The system can contain multiple venues with the same name as long as they are in different cities. A URL for each venue can also be added to the database. If you select the venue in the [concert editor](#concert-editor) and the URL field is still empty, this URL will be filled in there.
-After changing one of the input fields, you need to click anywhere outside the text field to save the change.
 
+After changing one of the input fields, you need to click anywhere outside the text field to save the change.
 The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
 ## Export
 A human readable list of the concerts of the currently selected month is created on the export page.
