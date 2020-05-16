@@ -20,7 +20,27 @@ A concert can be displayed in different colors:
 * blue: The concert has not yet been marked as published. 
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
 ### Concert editor
+This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the location.
 
+#### In the first part of the editor general information of the concert are entered.
+If the name of the first band is included in the concert name, it will not be shown again in the lineup section of the concert export. Instead, a plus sign is displayed.
+
+The date of the concert has to be added in the form “YYYY-MM-DD”.
+
+If a city is not yet in the database, it is possible to add it by selecting the option “Neue Stadt” from the bottom of the drop down menu, which is opened by clicking on the city name.  If a city menu option is already selected, a new location can be added to the database. In this case you have to select the option "Neue Location" in the second dropdown menu.
+
+#### The second part of the editor is the lineup editor.
+
+Each row represents a band in the lineup.
+
+If you choose a character in the first dropdown menu, bands with those initial letter are loaded in the second one. Also you can add a new band to the database and the lineup by choosing the last option of the menu. The hash symbol stands for special characters. If you do not select a character in the first dropdown menu, you can choose between also adding a new band to the database and the lineup or an entry with “TBA“ (To be anounced) or “Support”.
+
+The input field labeled with “Zusatz” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
+
+Clicking the four buttons at the end of the line have the following effect:
+* Minus sign: Deletes the band from the lineup
+* Plus sign: Adds a band under the current line
+* Arrow signs: Moves the band in the lineup up or down
 ## Bands
 On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change. You can filter the band by the first letter of its name using the dropdown menu at the top.
 
