@@ -2,8 +2,8 @@
 A web-based tool to store, manage and export information about concerts and festivals.
 
 I used this project to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project will be rewritten later. Bug fixes will continue to be implemented.
-## Licence
-This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
+## License
+This work is provided unter the terms of the MIT license. Please take a look at the LICENSE file for the full text.
 ## Features
 * Save and edit data about concerts and festivals, including bands, date and venue.
 * Edit the names of bands, cities, venues.
