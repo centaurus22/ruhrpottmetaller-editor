@@ -3,12 +3,21 @@ This section describes, how to use the software. Every link at the top has its o
 
 On some sites it is possible to narrow down the displayed items by month or first letter. In this case, a second row with form elements is displayed.
 ## Termine
+You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
 
+Clicking at the plus image at the left of a concert opens a human readable export. Export settings can be made on the [Einstellungen](#einstellungen) site.
+
+Several commands can be applied to a concert using the drop down menu at the right:
 * `add` opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which you start the add command, is the preset for the date of the new concert.
 * `edit` opens the [concert editor](#concert-editor) to edit the concert data.
-* `publiziert` marks the concert as published. So on this site the concert will be shown in black letters instead of red or blue ones.
+* `publiziert` marks the concert as published.
 * `del` deletes the concert from the database. It is therefore irrevocably deleted from the system.
 * `sold out` marks the concert as sold out. As a result, the corresponding concert exports are generated with the information that the concert is sold out. This affects this site and the [Export](#export) site.
+
+Every concert can be displayed in different colors:
+* black: The concert is already marked as published.
+* blue: The concert has not yet been marked as published. 
+* red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
 ### Concert editor
 
 ## Bands
