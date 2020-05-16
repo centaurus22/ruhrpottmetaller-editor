@@ -1,11 +1,8 @@
 ---
 layout: default
 ---
-{% 01-short-description.md %}
-
-<br>
-
 {% 02-logo.md %}
+{% 00-toc.md %}
 
 <br>
 
@@ -18,3 +15,7 @@ layout: default
 <br>
 
 {% 05-using.md %}
+
+<br>
+
+{% 06-contribute.md %}
