@@ -3,7 +3,7 @@ This section describes, how to use the software. Every link at the top has its o
 
 On some sites it is possible to narrow down the displayed items by month or first letter. In this case, a second row with form elements is displayed.
 ## Termine
-This is the main site of the rpmetaller-editor.
+This is the main site of the *rpmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
 
 Clicking at the plus image at the left of a concert opens a human readable export. Export settings can be made on the [Einstellungen](#einstellungen) site.
@@ -28,12 +28,12 @@ Also you can mark them as not exportable. In this case, the band is written in l
 ## Städte
 On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
 
-The checkbox right of the city name is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
+The checkbox right of the city name is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
 ## Locations
 On this site you can edit the names of the venues in the database. The system can contain multiple venues with the same name as long as they are in different cities. A URL for each venue can also be added to the database. If you select the venue in the [concert editor](#concert-editor) and the URL field is still empty, this URL will be filled in there.
 
 After changing one of the input fields, you need to click anywhere outside the text field to save the change.
-The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the rpmetaller-editor. 
+The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
 ## Export
 A human readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the [Einstellungen](#einstellungen) site.
