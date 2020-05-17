@@ -80,4 +80,6 @@ The checkboxes are control the generation of concert exports on the [Termine](#t
 * The second checkbox determines wether a twitter export is generated.
 * The third checkbox determines if a facebook export is displayed.
 
+The difference between the Facebook and Twitter export is that shorter terms are used for the Twitter export and the number of bands can be limited to meet the 280 character limit.
+
 The two text areas allow to change the header and the footer of the export generated on the [Export](#export) site. After making changes to the text areas you have to click outside it to save the adjustments.
