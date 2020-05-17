@@ -1,1 +1,1 @@
-<img src="https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/ruhrpottmetaller_logo.jpeg" align="left" width="150" hight="150">
+<img src="../_images/ruhrpottmetaller_logo.jpeg" align="right" width="150" hight="150" alt="Ruhrpottmetaller logo">
