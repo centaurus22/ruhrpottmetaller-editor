@@ -1,21 +1,24 @@
 ---
 layout: default
 ---
-{% 02-logo.md %}
-{% 00-toc.md %}
+{% include 02-logo.md %}
 
 <br>
 
-{% 03-features.md %}
+{% include 00-toc.md %}
 
 <br>
 
-{% 04-installation.md %}
+{% include 03-features.md %}
 
 <br>
 
-{% 05-using.md %}
+{% include 04-installation.md %}
 
 <br>
 
-{% 06-contribute.md %}
+{% include 05-using.md %}
+
+<br>
+
+{% include 06-contribute.md %}
