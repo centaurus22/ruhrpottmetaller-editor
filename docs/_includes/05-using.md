@@ -42,9 +42,9 @@ If you choose a character in the first dropdown menu, bands with those initial l
 The input field labeled with “Zusatz” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
 
 Clicking the four buttons at the end of the line have the following effect:
-* Minus sign: Deletes the band from the lineup
-* Plus sign: Adds a band under the current line
-* Arrow signs: Moves the band in the lineup up or down
+* Minus sign: Deletes the band from the lineup.
+* Plus sign: Adds a band under the current line.
+* Arrow signs: Moves the band in the lineup up or down.
 ## Bands
 ![Screenshot of the bands site](../_images/02-bands.jpeg)
 
