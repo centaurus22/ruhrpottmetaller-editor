@@ -1,6 +1,7 @@
 ---
 layout: default
 ---
+
 {% include 02-logo.md %}
 
 <br>
