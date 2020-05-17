@@ -2,6 +2,9 @@
 layout: default
 ---
 {% 02-logo.md %}
+
+<br>
+
 {% 00-toc.md %}
 
 <br>
