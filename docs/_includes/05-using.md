@@ -21,6 +21,7 @@ A concert is displayed in one of the following colors:
 * black: The concert is already marked as published.
 * blue: The concert has not yet been marked as published. 
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
+
 ### Concert editor
 ![Screenshot of the concert editor](../_images/07-concert-editor.jpeg)
 
@@ -46,6 +47,7 @@ Clicking the four buttons at the end of the line have the following effect:
 * Minus sign: Deletes the band from the lineup.
 * Plus sign: Adds a band under the current line.
 * Arrow signs: Moves the band in the lineup up or down.
+
 ## Bands
 ![Screenshot of the bands site](../_images/02-bands.jpeg)
 
