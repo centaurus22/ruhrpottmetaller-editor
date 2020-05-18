@@ -3,7 +3,7 @@ This section describes, how to use the software. Every link at the top has its o
 
 On some sites it is possible to narrow down the displayed items by month or first letter. In this case, a second row with form elements is displayed.
 ## Termine
-![Screenshot of the Termine site](../_images/01-termine.jpeg)
+![Screenshot of the Termine site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs/_images/01-termine.jpeg)
 
 This is the main site of the *rpmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
@@ -23,7 +23,7 @@ A concert is displayed in one of the following colors:
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
 
 ### Concert editor
-![Screenshot of the concert editor](../_images/07-concert-editor.jpeg)
+![Screenshot of the concert editor](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs/_images/07-concert-editor.jpeg)
 
 This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the location.
 
@@ -49,32 +49,32 @@ Clicking the four buttons at the end of the line have the following effect:
 * Arrow signs: Moves the band in the lineup up or down.
 
 ## Bands
-![Screenshot of the bands site](../_images/02-bands.jpeg)
+![Screenshot of the bands site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs/_images/02-bands.jpeg)
 
 On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change. You can filter the band by the first letter of its name using the dropdown menu at the top.
 
 Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the [Termine](#termine) site. Also concerts with the corresponding band are not included in the export on the [Export](#export) site. 
 ## Städte
-![Screenshot of the Städte site](../_images/03-staedte.jpeg)
+![Screenshot of the Städte site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs//_images/03-staedte.jpeg)
 
 On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
 
 The checkbox right of the city name is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
 ## Locations
-![Screenshot of the Locations site](../_images/04-locations.jpeg)
+![Screenshot of the Locations site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs//_images/04-locations.jpeg)
 
 On this site you can edit the names of the venues in the database. The system can contain multiple venues with the same name as long as they are in different cities. A URL for each venue can also be added to the database. If you select the venue in the [concert editor](#concert-editor) and the URL field is still empty, this URL will be filled in there.
 
 After changing one of the input fields, you need to click anywhere outside the text field to save the change.
 The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
 ## Export
-![Screenshot of the Export site](../_images/05-export.jpeg)
+![Screenshot of the Export site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs//_images/05-export.jpeg)
 
 A human readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the [Einstellungen](#einstellungen) site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
 ## Einstellungen
-![Screenshot of the Einstellungen site](../_images/06-einstellungen.jpeg)
+![Screenshot of the Einstellungen site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/create-page/docs//_images/06-einstellungen.jpeg)
 
 Using this site a few preferences can be made.
 
