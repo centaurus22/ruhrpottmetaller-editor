@@ -1,25 +1,20 @@
 ---
 layout: default
 ---
-
 {% include 02-logo.md %}
-
-<br>
 
 {% include 00-toc.md %}
 
-<br>
+{% include 07-license.md %}
 
 {% include 03-features.md %}
 
-<br>
+{% include 08-technologie.md %}
 
 {% include 04-installation.md %}
 
-<br>
-
 {% include 05-using.md %}
 
-<br>
-
 {% include 06-contribute.md %}
+
+{% include 09-contact.md %}
