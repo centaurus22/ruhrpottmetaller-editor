@@ -16,3 +16,5 @@ layout: default
 {% include 05-using.md %}
 
 {% include 06-contribute.md %}
+
+{% include 09-contact.md %}
