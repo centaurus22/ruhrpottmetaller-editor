@@ -47,16 +47,13 @@ A concert can be displayed in different colors:
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
 #### Concert editor
 This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the location.
-
 ##### In the first part of the editor general information of the concert are entered.
 If the name of the first band is included in the concert name, it will not be shown again in the lineup section of the concert export. Instead, a plus sign is displayed.
 
 The date of the concert has to be added in the form “YYYY-MM-DD”.
 
 If a city is not yet in the database, it is possible to add it by selecting the option “Neue Stadt” from the bottom of the drop down menu, which is opened by clicking on the city name.  If a city menu option is already selected, a new location can be added to the database. In this case you have to select the option "Neue Location" in the second dropdown menu.
-
 ##### The second part of the editor is the lineup editor.
-
 Each row represents a band in the lineup.
 
 If you choose a character in the first dropdown menu, bands with those initial letter are loaded in the second one. Also you can add a new band to the database and the lineup by choosing the last option of the menu. The hash symbol stands for special characters. If you do not select a character in the first dropdown menu, you can choose between also adding a new band to the database and the lineup or an entry with “TBA“ (To be anounced) or “Support”.
@@ -96,6 +93,6 @@ The two text areas allow to change the header and the footer of the export gener
 ## How to contribute
 To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below.
 
-If you want to support the development, you can send money via paypal also to the contact address or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
+If you want to support the development, you can send money via paypal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
 If you have any question, just drop a message at thorres [at] brothersofgrey [dot] net.
