@@ -1,7 +1,7 @@
 # rpmetaller-editor
 A web-based tool to store, manage and export information about concerts and festivals.
 
-I used this project to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project will be rewritten later. Bug fixes will continue to be implemented.
+I used this project to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project is currently being rewritten. Bug fixes will continue to be implemented in version 1.0.x.
 ## Licence
 This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
 ## Features
@@ -93,7 +93,7 @@ The checkboxes are control the generation of concert exports on the Termine site
 
 The two text areas allow to change the header and the footer of the export generated on the Export site. After making changes to the text areas you have to click outside it to save the adjustments.
 ## How to contribute
-To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below.
+To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below. Development tages place in the `development` branch. 
 
 If you want to support the development, you can send money via paypal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
