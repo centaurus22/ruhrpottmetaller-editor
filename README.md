@@ -20,7 +20,7 @@ or newer.
 ## Installation hints
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
-* Download or clone the project:
+* Download the project by cloning it or fetching one of this files:
   * zip: https://github.com/klaus-thorres/rpmetaller-editor/zipball/master
   * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/master
 * Make the content of the folder “php” accessible for the web server.
