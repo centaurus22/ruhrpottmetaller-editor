@@ -97,4 +97,4 @@ To make a contribution, please clone the project, make your changes and then ope
 
 If you want to support the development, you can send money via paypal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
-If you have any question, just drop a message at thorres [at] brothersofgrey [dot] net.
+If you have any question, just drop a message at thorres [at] brothersofgrey [dot] net. You can also write to my Facebook project page: https://www.facebook.com/Ruhrpottmetaller.
