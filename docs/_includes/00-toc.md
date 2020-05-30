@@ -1,8 +1,9 @@
 # Table of Contents
-* [License](#license)
+* [References](#references)
 * [Features](#features)
 * [Technologie](#technologie)
 * [Installation](#installation)
 * [Using](#using)
 * [How to contribute](#how-to-contribute)
 * [Contact](#contact)
+* [License](#license)

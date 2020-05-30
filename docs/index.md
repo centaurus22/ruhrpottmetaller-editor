@@ -5,7 +5,7 @@ layout: default
 
 {% include 00-toc.md %}
 
-{% include 07-license.md %}
+{% include 01-references.md %}
 
 {% include 03-features.md %}
 
@@ -18,3 +18,5 @@ layout: default
 {% include 06-contribute.md %}
 
 {% include 09-contact.md %}
+
+{% include 07-license.md %}
