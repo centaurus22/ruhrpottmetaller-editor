@@ -1,9 +1,9 @@
 # rpmetaller-editor
 A web-based tool to store, manage and export information about concerts and festivals.
 
-I used this project to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project will be rewritten later. Bug fixes will continue to be implemented.
-## License
-This work is provided unter the terms of the MIT license. Please take a look at the LICENSE file for the full text.
+I created this software to support the Ruhrpottmetaller project (https://www.facebook.com/Ruhrpottmetaller/) and to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project is currently being rewritten. Bug fixes will continue to be implemented in version 1.0.x.
+## Licence
+This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
 ## Features
 * Save and edit data about concerts and festivals, including bands, date and venue.
 * Edit the names of bands, cities, venues.
@@ -20,7 +20,7 @@ or newer.
 ## Installation hints
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
-* Download or clone the project:
+* Download the project by cloning it or fetching one of this files:
   * zip: https://github.com/klaus-thorres/rpmetaller-editor/zipball/master
   * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/master
 * Make the content of the folder “php” accessible for the web server.
@@ -93,7 +93,7 @@ The checkboxes are control the generation of concert exports on the Termine site
 
 The two text areas allow to change the header and the footer of the export generated on the Export site. After making changes to the text areas you have to click outside it to save the adjustments.
 ## How to contribute
-To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below.
+To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below. Development tages place in the `development` branch. 
 
 If you want to support the development, you can send money via paypal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
