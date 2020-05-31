@@ -19,7 +19,7 @@ The `display_type` option let the *rpmetaller-editor* shows an overwiev of saved
 ##### display_id
 If this option is provided *without* the `special=sub` option only the dataset with the submitted id is displayed. This behaviour is currently implemented for the `display_type=concert` option. 
 ##### special=sub
-The `special=sub` option is for the purpose of Ajax calls. If this option is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display_type=citie` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the dropdown menue options including venues in this city.
+The `special=sub` option is for the purpose of Ajax calls. If this option is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display_type=citie` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the dropdown menue options with venues in this city.
 #### edit_type
 ##### edit_id
 #### save_type
