@@ -12,6 +12,7 @@ Only one of the two options `display_type` and `edit_type` can be provided. If b
 #### display_type
 The `display_type` option let the *rpmetaller-editor* shows an overwiev of saved data. The following values are possible:
 * display_type=concert
+* display_type=band
 * display_type=city
 * display_type=venue
 * display_type=export
