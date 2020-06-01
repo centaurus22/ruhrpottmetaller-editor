@@ -21,7 +21,15 @@ If this option is provided *without* the `special=sub` option only the dataset w
 ##### special=sub
 The `special=sub` option is for the purpose of Ajax calls. If this option is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display_type=city` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the dropdown menue options with venues in this city.
 #### edit_type
+The `èdit_type` option overwrites the `display_type` option. It opens an edit-page for handling and saving data of the specified type. The following values are possible:
+* edit_type=concert
+* edit_type=band
+* edit_type=city
+* edit_type=venue
+
+Data can also be provided by SPECIFIC_INFORMATION. In this case, the corresponding input fields are pre filled with that information.
 ##### edit_id
+If a value is provided via the `edit_id` option, the *rpmetaller-editor* loads the data from the database into the edit-page. Data from the SPECIFIC_INFORMATION override the information from the database.
 #### save_type
 ##### save_id
 #### month
