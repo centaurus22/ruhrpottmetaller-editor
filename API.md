@@ -42,4 +42,5 @@ If the saving of the data fails, the corresponding editor page is opened with th
 ##### save_id
 The `save_id` option makes the difference between creating a new dataset in the database and updating an existing dataset. If an id is specified and the corresponding data record is available, the data record is updated. If no id is given, a new record is created. Otherwise the system will issue an error.
 #### month
+The `month` option in the format YYYY.MM is relevant for sites displaying a concert overview. In combination with `display_type=concert` or `display_type=export` the `month` option changes the output from the current month to a specific month.
 ### SPECIFIC_INFORMATION
