@@ -31,6 +31,15 @@ Data can also be provided by SPECIFIC_INFORMATION. In this case, the correspondi
 ##### edit_id
 If a value is provided via the `edit_id` option, the *rpmetaller-editor* loads the data from the database into the edit-page. Data from the SPECIFIC_INFORMATION override the information from the database.
 #### save_type
+With the `save_type` option, the * rpmetaller-editor * can save the data transferred with the SPECIFIC_INFORMATION in the database table that corresponds to the transmitted value. The following values are possible:
+* save_type=concert
+* save_type=band
+* save_type=city
+* save_type=venue
+* save_type=pref
+
+If the saving of the data fails, the corresponding editor page is opened with the data that could not be saved. If it could be saved, the page specified with the option `display_type` is displayed. If this option is not activated. The *rpmetaller-editor* only prints out a success report.
 ##### save_id
+The `save_id` option makes the difference between creating a new dataset in the database and updating an existing dataset. If an id is specified and the corresponding data record is available, the data record is updated. If no id is given, a new record is created. Otherwise the system will issue an error.
 #### month
 ### SPECIFIC_INFORMATION
