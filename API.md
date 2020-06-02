@@ -44,13 +44,16 @@ The `save_id` option makes the difference between creating a new dataset in the 
 #### month
 The `month` option in the format YYYY.MM is relevant for sites displaying a concert overview. In combination with `display_type=concert` or `display_type=export` the `month` option changes the output from the current month to a specific month.
 ### SPECIFIC_INFORMATION
-#### name
-#### date
-#### length
-#### city_id
-#### city_name
-#### location_id
-#### location_name
-#### url
-#### band_id\[\]
-#### zusatz\[\]
+* `save_type=concert`
+  * `name`
+  * `date`
+  * `length`
+  * `city_id`
+  * `city_name`
+  * `venue_id`
+  * `venue_name`
+  * `url`
+  * `band_id\[\]`
+  * `addition\[\]`
+  * `published`
+  * `sold_out`
