@@ -56,6 +56,15 @@ The `month` option in the format YYYY.MM is relevant for sites displaying a conc
     * `url`
     * `band_id\[\]`
     * `addition\[\]`
+  * *`band`*
+    * `name`
+    * `nazi`
+  * *`city`*
+    * `name`
+  * *`venue`*
+    * `name`
+    * `city_id`
+    * `url`
 * `save_type`
   * *`concert`*
     * `name`
@@ -70,3 +79,16 @@ The `month` option in the format YYYY.MM is relevant for sites displaying a conc
     * `addition\[\]`
     * `published`
     * `sold_out`
+  * *`band`*
+    * `name`
+    * `nazi`
+  * *`city`*
+    * `name`
+  * *`venue`*
+    * `name`
+    * `city_id`
+    * `url`
+  * *`pref`*
+    * display_at
+    * header
+    * footer
