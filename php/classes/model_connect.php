@@ -1,7 +1,7 @@
 <?php
 
 class ConnectModel {
-	public static function db_connect() {
+	public function db_connect() {
 		$dbhost = '';
 		$dbuser = '';
 		$dbuserpass = '';
