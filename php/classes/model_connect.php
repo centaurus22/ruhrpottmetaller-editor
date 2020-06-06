@@ -1,6 +1,6 @@
 <?php
 
-class connectModel {
+class ConnectModel {
 	public static function db_connect() {
 		$dbhost = '';
 		$dbuser = '';
