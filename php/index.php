@@ -2,6 +2,7 @@
 
 // Include the classes.
 include('classes/controller.php');
+include('classes/model_connect.php');
 include('classes/model_concert.php');
 include('classes/model_band.php');
 include('classes/model_city.php');

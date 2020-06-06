@@ -1,0 +1,12 @@
+<?php
+
+//hostname
+$dbhost = '';
+//database
+$db = '';
+//username
+$dbuser = '';
+//password
+$dbuserpass = '';
+
+?>
