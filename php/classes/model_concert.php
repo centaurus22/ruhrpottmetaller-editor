@@ -27,11 +27,15 @@ class ConcertModel extends ConnectModel {
 		$result = this->mysqli->query($query);
 		return $result;
 	}
-
-	public static function getBands($id) {
-		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band LEFT JOIN band ON event_band.band_id = band.id
-			WHERE event_band.event_id LIKE %1$u;', $id);
-		$result = this->mysqli->query($query);
+	
+	public static function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url) {
+		$name = $this->mysqli->real_escape_string($name);
+		$date_start = $this->mysqli->real_escape_string($date_start);
+		$date_end = $this->mysqli->real_escape_string($date_end);
+		$url = $this->mysqli->real_escape_string($url);
+		$query = sprintf('UPDATE event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s", location_id=%4$u, url="%5$s"
+			WHERE id=%6$u;', $name, $date_start, $date_end, $venue_id, $url, $id);
+		$result = $this->mysqli->query($query);
 		return $result;
 	}
 	
@@ -45,6 +49,20 @@ class ConcertModel extends ConnectModel {
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
+	
+	public static function delConcert($id) {
+		$query = sprintf('DELETE event, event_band FROM EVENT LEFT JOIN event_band ON event.id=event_band.event_id
+			WHERE event.id=%1$u;', $id);
+		$result = $this->mysqli->query($query);
+		return $result;
+	}
+
+	public static function getBands($id) {
+		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band LEFT JOIN band ON event_band.band_id = band.id
+			WHERE event_band.event_id LIKE %1$u;', $id);
+		$result = this->mysqli->query($query);
+		return $result;
+	}
 
 	public static function setBands($id, $band_id, $addition) {
 		$addition = $this->mysqli->real_escape_string($addition);
@@ -52,24 +70,6 @@ class ConcertModel extends ConnectModel {
 		$result = $this->mysqli->query($query);
 		return $result;
 		}
-	}
-	
-	public static function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url) {
-		$name = $this->mysqli->real_escape_string($name);
-		$date_start = $this->mysqli->real_escape_string($date_start);
-		$date_end = $this->mysqli->real_escape_string($date_end);
-		$url = $this->mysqli->real_escape_string($url);
-		$query = sprintf('UPDATE event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s", location_id=%4$u, url="%5$s"
-			WHERE id=%6$u;', $name, $date_start, $date_end, $venue_id, $url, $id);
-		$result = $this->mysqli->query($query);
-		return $result;
-	}
-	
-	public static function delConcert($id) {
-		$query = sprintf('DELETE event, event_band FROM EVENT LEFT JOIN event_band ON event.id=event_band.event_id
-			WHERE event.id=%1$u;', $id);
-		$result = $this->mysqli->query($query);
-		return $result;
 	}
 
 	public function setSoldOut ($id) {
