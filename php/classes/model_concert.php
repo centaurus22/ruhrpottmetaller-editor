@@ -3,7 +3,7 @@
 class ConcertModel {
 	//Class to acces and maintain concerts and festivals
 
-	$mysqli = NULL;
+	private $mysqli = NULL;
 
 	private function __construct($mysqli) {
 		$this->mysqli = $mysqli;
