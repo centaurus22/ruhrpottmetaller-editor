@@ -1,9 +1,9 @@
 <?php
 
-class BandModel extends ConnectModel {
+class BandModel {
 	//Class to acces and maintain concerts and festivals
 
-	$mysqli = NULL;
+	private $mysqli = NULL;
 
 	private function __construct($mysqli) {
 		$this->mysqli = $mysqli;
@@ -16,10 +16,12 @@ class BandModel extends ConnectModel {
 			$query = 'SELECT id, name, nazi FROM band ORDER BY name';
 			break;
 		case 's':
-			$query = sprintf('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
+			$query = sprintf('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]"
+				ORDER BY name;');
 			break;
 		default:
-			$query = sprintf('SELECT id, name, nazi FROM band WHERE name LIKE "%s%%" ORDER BY name', $initial);
+			$query = sprintf('SELECT id, name, nazi FROM band WHERE name LIKE "%s%%"
+				ORDER BY name', $initial);
 		}
 		$result = $this->mysqli->query($query);
 		return ($result);
