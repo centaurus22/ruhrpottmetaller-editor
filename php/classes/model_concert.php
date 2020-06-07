@@ -1,12 +1,12 @@
 <?php
 
-class ConcertModel extends ConnectModel {
+class ConcertModel {
 	//Class to acces and maintain concerts and festivals
 
 	$mysqli = NULL;
 
-	private function __construct() {
-		$this->mysqli = db_connect()
+	private function __construct($mysqli) {
+		$this->mysqli = $mysqli;
 	}
 
 	public static function getConcerts($month) {
