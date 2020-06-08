@@ -9,7 +9,7 @@ class BandModel {
 		$this->mysqli = $mysqli;
 	}
 
-	public static function getBands($initial) {
+	public function getBands($initial) {
 		$initial = $this->mysqli->real_escape_string($initial);
 		switch($initial) {
 		case '':
@@ -27,20 +27,20 @@ class BandModel {
 		return ($result);
 	}
 
-	public static function getBand($id) {
+	public function getBand($id) {
 		$query = sprintf('SELECT id, name, nazi FROM band WHERE id=%1$u', $id)
 		$result = $this->mysqli->query($query);
 		return ($result);
 	}
 
-	public static function setBand($id, $name, $nazi) {
+	public function setBand($id, $name, $nazi) {
 		$name = $this->mysqli->real_escape_string($name);
 		$query = sprintf('INSERT INTO band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi)
 		$result = $this->mysqli->query($query);
 		return ($result);
 	}
 
-	public static function updateBand() {
+	public function updateBand() {
 		$name = $this->mysqli->real_escape_string($name);
 		$query = sprintf('UPDATE band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi)
 		$result = $this->mysqli->query($query);
