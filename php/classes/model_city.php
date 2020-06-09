@@ -1,6 +1,6 @@
 <?php
 
-class ModelCity {
+class CityModel {
 	//Class to acces and maintain city data.
 
 	private $mysqli = NULL;
