@@ -4,9 +4,15 @@ class ConcertModel {
 	//Class to acces and maintain concerts and festivals
 
 	private $mysqli = NULL;
+	private $lineup = NULL;
 
 	private function __construct($mysqli) {
 		$this->mysqli = $mysqli;
+		session_start();
+		if(!isset($_SESSION['lineup'])) {
+			$_SESSION['lineup'] = array();
+		}
+		$this->lineup = $_SESSION['lineup'];
 	}
 
 	public function getConcerts($month) {
@@ -83,5 +89,39 @@ class ConcertModel {
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
+
+	public function setBandLineup($row){
+		$band = array('first' => 0, 'band_id' => 0, 'addition' => $addition);
+		array_splice($this->item, $row, 0, $band);
+	}
+
+	public function updateBandLineup($row, $first, $band_id, $addition){
+		$this->lineup[$row] = array('first' => $first, 'band_id' => $band_id, 'addition' => $addition);
+	}
+
+	public function delBandLineup($row) {
+		array_splice($this->lineup, $row, 1);
+	}
+
+	public function shiftBandLineup($row, $direction) {
+		$lenght_lineup = count($this->lineup);
+		if ($lenght_lineup > 1) {
+			$band_tmp = $this->lineup[$row];
+			if ($direction == "up" AND $row > 0) {
+				$this->lineup[$row] = $this->lineup[$row - 1]
+				$this->lineup[$row - 1] = $band_tmp;
+			}
+			elseif ($direction == "down" AND $row < $lenght_lineup - 1) {
+				$this->lineup[$row] = $this->lineup[$row + 1]
+				$this->lineup[$row + 1] = $band_tmp;
+
+			}
+		}
+	}
+
+	public function setBandsSession() {
+		$_SESSION['lineup'] = $this->lineup;
+	}
+
 }
 ?>
