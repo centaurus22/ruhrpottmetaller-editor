@@ -74,6 +74,7 @@ div.leiste_bottom {
 	width: 100%;
 	position: fixed;
 	bottom: 0px;
+	font-weight: bold;
 	padding: 5px 0px 6px 5px;
 }
 
