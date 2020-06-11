@@ -28,21 +28,21 @@ class BandModel {
 	}
 
 	public function getBand($id) {
-		$query = sprintf('SELECT id, name, nazi FROM band WHERE id=%1$u', $id)
+		$query = sprintf('SELECT id, name, nazi FROM band WHERE id=%1$u', $id);
 		$result = $this->mysqli->query($query);
 		return ($result);
 	}
 
 	public function setBand($id, $name, $nazi) {
 		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('INSERT INTO band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi)
+		$query = sprintf('INSERT INTO band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi);
 		$result = $this->mysqli->query($query);
 		return ($result);
 	}
 
 	public function updateBand() {
 		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('UPDATE band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi)
+		$query = sprintf('UPDATE band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi);
 		$result = $this->mysqli->query($query);
 		return ($result);
 

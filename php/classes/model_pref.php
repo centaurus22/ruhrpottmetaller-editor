@@ -11,26 +11,29 @@ class PrefModel {
 
 	public function getPref() {
 		$query = sprintf('SELECT at, header, footer FROM preferences');
-		$this->mysqli->query($query);
-		result $query;
+		$result = $this->mysqli->query($query);
+		return $result;
 	}
 	
 	public function getPrefAt() {
-		$query = sprintf('SELECT at FROM preferences');
-		$this->mysqli->query($query);
-		result $query;
+		$query = 'SELECT at FROM preferences';
+		$result = $this->mysqli->query($query);
+		return $result;
 	}
 
 	public function getPrefExport() {
-		$query = sprintf('SELECT header, footer FROM preferences');
-		$this->mysqli->query($query);
-		result $query;
+		$query = 'SELECT header, footer FROM preferences';
+		$result = $this->mysqli->query($query);
+		return $result;
 	}
 
 	public function updatePref($at, $header, $footer) {
 		$header = $this->mysqli->real_escape_string($header);
 		$footer = $this->mysqli->real_escape_string($footer);
 		$query = sprintf('UPDATE preferences SET at=%1$u, header="%2$s", footer="%3$s');
-		$this->mysqli->query($query);
-		result $query;
+		$result = $this->mysqli->query($query);
+		return $result;
 	}
+}
+
+?>

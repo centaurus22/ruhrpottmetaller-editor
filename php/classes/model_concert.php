@@ -17,20 +17,23 @@ class ConcertModel {
 
 	public function getConcerts($month) {
 		$month = $this->mysqli->real_escape_string($month);
-		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende, event.name AS kname, event.url, event.publiziert,
-			location.name AS lname, stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
+		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende,
+			event.name AS kname, event.url, event.publiziert,
+			location.name AS lname, stadt.name AS sname FROM event
+			LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE "%1$s%%"
 			ORDER BY event.datum_beginn ASC;', $month);
-		$result = this->mysqli->query($query);
+		$result = $this->mysqli->query($query);
 		return $result;
 	}
 
 	public function getConcert($id) {
-		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende, event.name AS kname, event.url, event.publiziert,
-			location.name AS lname, stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
+		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende, event.name AS kname,
+			event.url, event.publiziert, location.name AS lname,
+			stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = %1$u
 			ORDER BY event.datum_beginn ASC;', $id);
-		$result = this->mysqli->query($query);
+		$result = $this->mysqli->query($query);
 		return $result;
 	}
 	
@@ -66,7 +69,7 @@ class ConcertModel {
 	public function getBands($id) {
 		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band LEFT JOIN band ON event_band.band_id = band.id
 			WHERE event_band.event_id LIKE %1$u;', $id);
-		$result = this->mysqli->query($query);
+		$result = $this->mysqli->query($query);
 		return $result;
 	}
 
@@ -76,16 +79,15 @@ class ConcertModel {
 		$result = $this->mysqli->query($query);
 		return $result;
 		}
-	}
 
 	public function setSoldOut ($id) {
-		$query = sprintf('UPDATE event SET ausverkauft=1 WHERE id=%1$u;' $id);
+		$query = sprintf('UPDATE event SET ausverkauft=1 WHERE id=%1$u;', $id);
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
 
 	public function setPublished ($id) {
-		$query = sprintf('UPDATE event SET publiziert=1 WHERE id=%1$u;' $id);
+		$query = sprintf('UPDATE event SET publiziert=1 WHERE id=%1$u;', $id);
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
@@ -108,11 +110,11 @@ class ConcertModel {
 		if ($lenght_lineup > 1) {
 			$band_tmp = $this->lineup[$row];
 			if ($direction == "up" AND $row > 0) {
-				$this->lineup[$row] = $this->lineup[$row - 1]
+				$this->lineup[$row] = $this->lineup[$row - 1];
 				$this->lineup[$row - 1] = $band_tmp;
 			}
 			elseif ($direction == "down" AND $row < $lenght_lineup - 1) {
-				$this->lineup[$row] = $this->lineup[$row + 1]
+				$this->lineup[$row] = $this->lineup[$row + 1];
 				$this->lineup[$row + 1] = $band_tmp;
 
 			}
