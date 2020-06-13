@@ -32,6 +32,12 @@ class Controller {
 			array('Export', 'export'), 
 			array('Preferences','pref')
 		));
+		if (isset($this->request['month'])) {
+			$this->view->assign('month', $this->request['month']);
+		}
+		else {
+			$this->view->assign('month', date('Y.m')); 
+		}
 		$this->view->assign('content', $innerView->loadTemplate());
 		return $this->view->loadTemplate();
 	}

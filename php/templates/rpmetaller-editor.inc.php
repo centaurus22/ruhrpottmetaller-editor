@@ -12,7 +12,7 @@
 			<div id="navigation">
 <?php
 	foreach ($this->_['menu_entrys'] as $menu_entry) {
-		printf("\t\t\t\t<a href='?display_type=%s'>%s</a>\n", $menu_entry[1], $menu_entry[0]);
+		printf("\t\t\t\t<a href='?display_type=%s&month=%s'>%s</a>\n", $menu_entry[1], $this->_['month'], $menu_entry[0]);
 	}
 ?>
 			</div>
