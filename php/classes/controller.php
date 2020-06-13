@@ -15,6 +15,7 @@ class Controller {
 			switch($request['display_type']) {
 			case 'license':
 				$this->template = 'license';
+				break;
 			case 'concert':
 			default:
 					if (!isset($display_id)) {
@@ -30,10 +31,14 @@ class Controller {
 	public function display() {
 		$innerView = new View();
 		switch($this->template) {
+			case 'license':
+				$innerView->setTemplate('license');
+				$this->view->assign('subtitle', 'License');
+				break;
 			case 'default':
 			default:
-			$innerView->setTemplate('default');
-			$this->view->assign('subtitle', 'Concerts');
+				$innerView->setTemplate('default');
+				$this->view->assign('subtitle', 'Concerts');
 
 		}
 		$this->view->setTemplate('rpmetaller-editor');

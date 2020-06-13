@@ -1,5 +1,5 @@
-<?php
+<div id="inhalt" class="inhalt_large">
 
-include 'LICENSE';
+<?= nl2br(file_get_contents('LICENSE')); ?>
 
-?>
+</div>
