@@ -12,14 +12,14 @@
 			<div id="navigation">
 <?php
 	foreach ($this->_['menu_entrys'] as $menu_entry) {
-		printf("\t\t\t\t<a href='?display_type=%s&amp;month=%s'>%s</a>\n", $menu_entry[1], $this->_['month'], $menu_entry[0]);
+		printf("\t\t\t\t<a href='?display=%s&amp;month=%s'>%s</a>\n", $menu_entry[1], $this->_['month'], $menu_entry[0]);
 	}
 ?>
 			</div>
 		</div>
 <?= $this->_['content']; ?>
 		<div class="leiste_bottom"> 
-			(c) Klaus Thorres 2020. This Software is provided under the <a href="?display_type=license">MIT License</a>.
+			(c) Klaus Thorres 2020. This Software is provided under the <a href="?display=license">MIT License</a>.
 		</div>
 	</body>
 </html>

@@ -11,8 +11,8 @@ class Controller {
 		/*translation of request parameters to the name of the
 		 * corresponding template.
 		 */
-		if (isset($request['display_type'])) {
-			switch($request['display_type']) {
+		if (isset($request['display'])) {
+			switch($request['display']) {
 			case 'license':
 				$this->template = 'license';
 				break;
@@ -23,7 +23,7 @@ class Controller {
 					}
 			}
 		}
-		elseif (isset($request['edit_type'])) {
+		elseif (isset($request['edit'])) {
 
 		}
 	}
