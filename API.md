@@ -16,6 +16,7 @@ The `display_type` option let the *rpmetaller-editor* shows an overwiev of saved
 * display_type=venue
 * display_type=export
 * display_type=pref
+* display_type=license
 ##### display_id
 If this option is provided *without* the `special=sub` option only the dataset with the submitted id is displayed. This behaviour is currently implemented for the `display_type=concert` option. 
 ##### special=sub

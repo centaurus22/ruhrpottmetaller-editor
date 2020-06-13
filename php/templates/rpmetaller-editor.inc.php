@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<div class="leiste_bottom"> 
-			(c) Klaus Thorres 2020. This Software is provided under the <a href="LICENSE">MIT License</a>.
+			(c) Klaus Thorres 2020. This Software is provided under the <a href="?display_type=license">MIT License</a>.
 		</div>
 	</body>
 </html>

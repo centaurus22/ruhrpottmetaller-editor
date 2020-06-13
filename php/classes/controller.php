@@ -11,6 +11,20 @@ class Controller {
 		/*translation of request parameters to the name of the
 		 * corresponding template.
 		 */
+		if (isset($request['display_type'])) {
+			switch($request['display_type']) {
+			case 'license':
+				$this->template = 'license';
+			case 'concert':
+			default:
+					if (!isset($display_id)) {
+						$this->template = 'default';
+					}
+			}
+		}
+		elseif (isset($request['edit_type'])) {
+
+		}
 	}
 
 	public function display() {
@@ -43,5 +57,4 @@ class Controller {
 	}
 
 }
-
 ?>
