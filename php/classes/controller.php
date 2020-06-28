@@ -57,8 +57,6 @@ class Controller {
 			case 'default':
 			default:
 				$monthChanger = $this->displayMonthChanger();
-				//Add the month value to the request parameter. So it can
-				//be passed  to the displayMonthChanger function.
 				$innerView->assign('month_changer', $monthChanger->loadTemplate());
 				$mysqli = ConnectModel::db_connect();
 				//Load the models.
@@ -82,6 +80,7 @@ class Controller {
 				}
 				elseif (!($concerts->num_rows)) {
 					//No concerts in the chosen month.
+					$innerView->assign('month', $month);
 					$innerView->setTemplate('default_no_data');
 				}
 				elseif ($this->template == "concert" AND 
