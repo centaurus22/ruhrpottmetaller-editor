@@ -1,8 +1,3 @@
-function init()
-{
-	window.editurl=0;
-}
-
 function get_locations_1()
 {
 var stadt_id = document.getElementById("stadt_id").value;
@@ -164,17 +159,17 @@ function save(feld, zeile)
 	xmlhttp.send();
 }
 
-function show_message(event_id)
+function display_concert(concert_id)
 {
 	xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
     	{
-    	document.getElementById("event_" + event_id).innerHTML=xmlhttp.responseText;
-    	}
+		document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
+		}
   	}
-	var datei = "show_message.php?event_id=" + event_id;
+	var datei = "index.php?display=concert&display_id=" + concert_id;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }
