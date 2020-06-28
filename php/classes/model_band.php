@@ -1,7 +1,7 @@
 <?php
 
 class BandModel {
-	//Class to acces and maintain concerts and festivals
+	//Class to acces and maintain bands.
 
 	private $mysqli = NULL;
 

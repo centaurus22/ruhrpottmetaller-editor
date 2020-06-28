@@ -6,13 +6,8 @@ class ConcertModel {
 	private $mysqli = NULL;
 	private $lineup = NULL;
 
-	private function __construct($mysqli) {
+	public function __construct($mysqli) {
 		$this->mysqli = $mysqli;
-		session_start();
-		if(!isset($_SESSION['lineup'])) {
-			$_SESSION['lineup'] = array();
-		}
-		$this->lineup = $_SESSION['lineup'];
 	}
 
 	public function getConcerts($month) {
@@ -42,7 +37,8 @@ class ConcertModel {
 		$date_start = $this->mysqli->real_escape_string($date_start);
 		$date_end = $this->mysqli->real_escape_string($date_end);
 		$url = $this->mysqli->real_escape_string($url);
-		$query = sprintf('UPDATE event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s", location_id=%4$u, url="%5$s"
+		$query = sprintf('UPDATE event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s",
+			location_id=%4$u, url="%5$s"
 			WHERE id=%6$u;', $name, $date_start, $date_end, $venue_id, $url, $id);
 		$result = $this->mysqli->query($query);
 		return $result;
@@ -53,29 +49,31 @@ class ConcertModel {
 		$date_start = $this->mysqli->real_escape_string($date_start);
 		$date_end = $this->mysqli->real_escape_string($date_end);
 		$url = $this->mysqli->real_escape_string($url);
-		$query = sprintf('INSERT INTO event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s", location_id=%4$u, url="%5$s";',
-			$name, $date_start, $date_end, $venue_id, $url);
+		$query = sprintf('INSERT INTO event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s",
+			location_id=%4$u, url="%5$s";', $name, $date_start, $date_end, $venue_id, $url);
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
 	
 	public function delConcert($id) {
-		$query = sprintf('DELETE event, event_band FROM EVENT LEFT JOIN event_band ON event.id=event_band.event_id
+		$query = sprintf('DELETE event, event_band FROM EVENT
+			LEFT JOIN event_band ON event.id=event_band.event_id
 			WHERE event.id=%1$u;', $id);
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
 
 	public function getBands($id) {
-		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band LEFT JOIN band ON event_band.band_id = band.id
-			WHERE event_band.event_id LIKE %1$u;', $id);
+		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
+			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE %1$u;', $id);
 		$result = $this->mysqli->query($query);
 		return $result;
 	}
 
 	public function setBands($id, $band_id, $addition) {
 		$addition = $this->mysqli->real_escape_string($addition);
-		$query = sprintf('INSERT INTO event_band SET event_id=%1$u, band_id=%2$u, zusatz="%3$s";', $id, $band_id, $addition);
+		$query = sprintf('INSERT INTO event_band SET event_id=%1$u, band_id=%2$u, zusatz="%3$s";',
+			$id, $band_id, $addition);
 		$result = $this->mysqli->query($query);
 		return $result;
 		}
@@ -90,6 +88,40 @@ class ConcertModel {
 		$query = sprintf('UPDATE event SET publiziert=1 WHERE id=%1$u;', $id);
 		$result = $this->mysqli->query($query);
 		return $result;
+	}
+
+	public function getConcertDisplayStatus ($id) {
+		if  (isset($_SESSION['concert_display_status']["$id"]) 
+			AND $_SESSION['concert_display_status']["$id"]) {
+			return 1;
+		} 
+		else {
+			return 0;
+
+		}
+	}
+
+	public function changeConcertDisplayStatus ($id) {
+		if ($this->getConcertDisplayStatus ($id)) {
+			$_SESSION['concert_display_status']["$id"] = 0;
+		}
+		else {
+			$_SESSION['concert_display_status']["$id"] = 1;
+		}
+
+	}
+
+	public static function startConcertDisplaySession() {
+		session_start();
+		if(!isset($_SESSION['concert_display_status'])) {
+			$_SESSION['concert_display_status'] = array();
+		}
+	}
+	
+	public function delConcertDisplayStatus () {
+		if (isset($_SESSION['concert_display_status'])) {
+			unset($_SESSION['concert_display_status']);
+		}
 	}
 
 	public function setBandLineup($row){
@@ -119,6 +151,15 @@ class ConcertModel {
 
 			}
 		}
+	}
+
+
+	public function startBandsSession() {
+		session_start();
+		if(!isset($_SESSION['lineup'])) {
+			$_SESSION['lineup'] = array();
+		}
+		$this->lineup = $_SESSION['lineup'];
 	}
 
 	public function setBandsSession() {

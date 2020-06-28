@@ -1,12 +1,12 @@
 <?php
 
 class ConnectModel {
-	public function db_connect() {
+	public static function db_connect() {
 		$dbhost = '';
 		$dbuser = '';
 		$dbuserpass = '';
 		$db="";
-		include('../db_preferences.inc.php');
+		include('db_preferences.inc.php');
 		$mysqli = new mysqli($dbhost, $dbuser, $dbuserpass, $db);
 		if ($mysqli->connect_error) {
 			die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
