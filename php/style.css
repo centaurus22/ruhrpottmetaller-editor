@@ -13,11 +13,11 @@ div#inhalt {
 }
 
 div.inhalt_small {
-	padding: 80px 0px 35px 0px;
+	padding: 75px 0px 35px 0px;
 }
 
 div.inhalt_large {
-	padding: 45px 0px 35px 0px;
+	padding: 50px 0px 35px 0px;
 }
 
 div.leiste_top {
@@ -41,7 +41,7 @@ div#navigation a
 }
 
 div#leiste_buttons {
-	height: 30px;
+	height: 25px;
 	top: 35px;
 	padding: 5px 0px 5px 5px;
 	position: fixed;
@@ -53,20 +53,25 @@ div#leiste_buttons {
 
 div#leiste_buttons button, #button {
 	float: left;
+	height: 25px;
+	width: 40px;
+	padding: 0px 13px 0px 0px;
+	font-size: 12px;
+	font-weight: bold;
 	margin-right: 5px;
 }
 
 .month {
 	border: 1px;
 	margin: 1px;
-	padding: 2px;
+	padding: 2px 5px 2px 5px;
 	border-style: dotted;
 	background-color: lightgrey;
 	font-weight: bold;
-	padding-top: 3px;
 	font-style: italic;
 	color: black;
 	float: left;
+	font-size: 14px;
 }
 
 div.leiste_bottom {
@@ -83,16 +88,23 @@ div.leiste_bottom a {
 }
 
 table#data {
+	width: 99.5%;
 	border-collapse: collapse;
 }
 
-table#data .checkbox {
-	text-align: center;
-}
 
 th
 {
 	border-bottom: 2px solid gray;
+}
+
+td
+{
+	padding: 0px 3px 0px 3px;
+}
+
+.concerts_table_date {
+	min-width: 54px;
 }
 
 a.published
@@ -103,12 +115,22 @@ a.published
 
 tr.published_oben
 {
-	border-bottom: 1px dashed gray;
+	border-bottom: 1px dotted gray;
 }
 
 tr.published_unten
 {
-	border-bottom: 2px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+tr.published_unten td
+{
+	padding: 0px 0px 0px 0px;
+}
+
+tr.unpublished_unten td
+{
+	padding: 0px 0px 0px 0px;
 }
 
 tr.unpublished
@@ -125,13 +147,13 @@ a.unpublished
 tr.unpublished_oben
 {
 	color:blue;
-	border-bottom: 1px dashed gray;
+	border-bottom: 1px dotted gray;
 }
 
 tr.unpublished_unten
 {
 	color:blue;
-	border-bottom: 2px solid gray;
+	border-bottom: 1px solid gray;
 }
 
 tr.urgent
@@ -148,13 +170,19 @@ a.urgent
 tr.urgent_oben
 {
 	color: red;
-	border-bottom: 1px dashed gray;
+	border-bottom: 1px dotted gray;
 }
 
 tr.urgent_unten
 {
 	color:red;
-	border-bottom: 2px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+
+tr.urgent_unten td
+{
+	padding: 0px 0px 0px 0px;
 }
 
 .nazi
@@ -162,39 +190,29 @@ tr.urgent_unten
 	color: peru;
 }
 
-.show_name {
-padding-left: 10px;
-padding-right: 10px;
-}
-
-.show_url {
-text-align: center;
-padding-left: 10px;
-padding-right: 10px;
-}
 .table_buttons {
-	width: 175px;
+	width: 120px;
 }
 
 .table_buttons button, select {
 	float: left;
 	display: block;
-	height: 30px;
+	height: 25px;
+	font-size: 12px;
+}
+
+.table_buttons button {
+	width: 45px;
+	padding-left: 0px;
+}
+
+.table_buttons select {
+	width: 70px;
 }
 
 .image_message_gen
 {
 	margin-right:3px;
-}
-
-.message_twitter {
-	float:left;
-	margin-right: 5px;
-}
-
-.message_facebook {
-	padding-top: 10px;
-	padding-bottom: 5px;
 }
 
 #kreator_formular {
