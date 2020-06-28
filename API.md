@@ -2,8 +2,8 @@
 This file describes the parameter to controll the *ruhrpottmetaller-editor*.
 ## SYNOPSIS
 * \[\?display=*\<display_type\>*\[&display_id=*\<display_id\>*\]\[&special=sub\]\]
-  \[&save=*\<save_type\>*&save_id=*\<save_id\>*&SPECIFIC_INFORMATION\]\[\&month=*\<month\>*\]
-* \[?edit=*<edit_type>*\[&edit_id=*<edit_id>*]\[&SPECIFIC_INFORMATION\]\]
+  \[&save=*\<save_type\>*&save_id=*\<save_id\>*&SPECIFIC_INFORMATION\]\[\&month=*\<month\>*\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
+* \[?edit=*<edit_type>*\[&edit_id=*<edit_id>*]\[&SPECIFIC_INFORMATION\]\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
 ## OPTIONS
 If none of the options are specified, the *rpmetaller-editor* only shows the concert overview of the current month.
 
@@ -42,6 +42,11 @@ With the `save` option, the * rpmetaller-editor * can save the data transferred 
 If the saving of the data fails, the corresponding editor page is opened with the data that could not be saved. If it could be saved, the page specified with the option `display` is displayed. If this option is not activated. The *rpmetaller-editor* only prints out a success report.
 ##### save_id
 The `save_id` option makes the difference between creating a new dataset in the database and updating an existing dataset. If an id is specified and the corresponding data record is available, the data record is updated. If no id is given, a new record is created. Otherwise the system will issue an error.
+##### del
+It is possible to delete an entry from the database with the `del` option. The following values are possible:
+* del=concert
+##### del_id
+The `del_id`specifies which database entry of the indicated type is deleted.
 #### month
 The `month` option in the format YYYY.MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` option changes the output from the current month to a specific month.
 ### SPECIFIC_INFORMATION
