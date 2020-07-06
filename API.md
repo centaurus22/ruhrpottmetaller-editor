@@ -1,5 +1,5 @@
 # API
-This file describes the parameter to controll the *ruhrpottmetaller-editor*.
+This file describes the parameter to controll the *rpmetaller-editor*.
 ## SYNOPSIS
 * \[\?display=*\<display_type\>*\[&display_id=*\<display_id\>*\]\[&special=sub\]\]
   \[&save=*\<save_type\>*&save_id=*\<save_id\>*&SPECIFIC_INFORMATION\]\[\&month=*\<month\>*\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
