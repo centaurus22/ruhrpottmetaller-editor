@@ -19,8 +19,6 @@ The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved 
 * display=license
 ##### display_id
 If this parameter is provided *without* the `special=sub` parameter only the dataset with the submitted id is displayed. This behaviour is currently implemented only for the `display=concert` option. 
-##### special=sub
-The `special=sub` parameter is for the purpose of Ajax calls. If this parameter is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display=city` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the dropdown menue options with venues in this city.
 #### edit
 The `èdit` parameter overwrites the `display` parameter. It opens an edit-page for handling and saving data of the specified type. The following values are possible:
 * edit=concert
@@ -47,6 +45,26 @@ It is possible to delete an entry from the database with the `del` option. The f
 * del=concert
 ##### del_id
 The `del_id`specifies which database entry of the indicated type is deleted.
+#### special
+* `&special=sub`: The `sub` value is for the purpose of Ajax calls. If this parameter is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display=city` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the drop down menue options with venues in this city.
+##### replacements
+Other values of `special` are automatically replaced by ordinary non-speciall parameters. This allows to choose those parameters from a drop down menu within the software. The following replacements are implemented in the *rpmetaller-editor*. Sometimes have to be combined with a correponding data id.
+* *`concert`*
+  * `&special=add_concert` is replaced with `&edit=concert` and the `concert_id` parameter is deleted from the request string.
+  * `&special=edit_concert` is replaced with `&edit=concert`.
+  * `&special=publish_concert` is replaced with `&save=concert&published=1`.
+  * `&special=del_concert` is replaced with `&del=concert`.
+  * `&special=publish_concert` is replaced with `&save=concert&sold_out=1`.
+* *`band`*
+  * `&special=add_band` is replaced with `&edit=band` and the `band_id` parameter is deleted from the request string.
+  * `&special=edit_band` is replaced with `&edit=band`.
+* *`city`*
+  * `&special=add_city` is replaced with `&edit=city` and the `city_id` parameter is deleted from the request string.
+  * `&special=edit_city` is replaced with `&edit=city`.
+* *`venue`*
+  * `&special=add_venue` is replaced with `&edit=venue` and the `venue_id` parameter is deleted from the request string.
+  * `&special=edit_venue` is replaced with `&edit=venue`.
+
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
 ### SPECIFIC_INFORMATION
