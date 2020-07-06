@@ -18,7 +18,7 @@ The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved 
 * `display=pref`
 * `display=license`
 ##### display_id
-If this parameter is provided *without* the `special=sub` parameter only the dataset with the submitted id is displayed. This behaviour is currently implemented only for the `display=concert` option. 
+If this parameter is provided *without* the `special=sub` parameter only the dataset with the submitted id is displayed. This behaviour is currently implemented only for the `display=concert` parameter. 
 #### edit
 The `èdit` parameter overwrites the `display` parameter. It opens an edit-page for handling and saving data of the specified type. The following values are possible:
 * `edit=concert`
@@ -37,12 +37,12 @@ With the `save` parameter, the * rpmetaller-editor * can save the data transferr
 * `save=venue`
 * `save=pref`
 
-If the saving of the data fails, the corresponding editor page is opened with the data that could not be saved. If it could be saved, the page specified with the option `display` is displayed. If this parameter is not activated. The *rpmetaller-editor* only prints out a success report.
+If the saving of the data fails, the corresponding editor page is opened with the data that could not be saved. If it could be saved, the page specified with the option `display` is displayed. If this parameter is not submitted, the *rpmetaller-editor* only prints out a success report.
 ##### save_id
 The `save_id` parameter makes the difference between creating a new dataset in the database and updating an existing dataset. If an id is specified and the corresponding data record is available, the data record is updated. If no id is given, a new record is created. Otherwise the system will issue an error.
 ##### del
-It is possible to delete an entry from the database with the `del` option. The following values are possible:
-* `del=concert
+It is possible to delete an entry from the database with the `del` parameter. The following values are possible:
+* `del=concert`
 ##### del_id
 The `del_id`specifies which database entry of the indicated type is deleted.
 #### special
