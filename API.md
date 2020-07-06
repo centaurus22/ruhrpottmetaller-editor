@@ -1,10 +1,10 @@
 # API
-This file describes the parameter to controll the *rpmetaller-editor*.
+This file describes the parameters to controll the *rpmetaller-editor*.
 ## SYNOPSIS
 * \[\?display=*\<display_type\>*\[&display_id=*\<display_id\>*\]\[&special=sub\]\]
   \[&save=*\<save_type\>*&save_id=*\<save_id\>*&SPECIFIC_INFORMATION\]\[\&month=*\<month\>*\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
 * \[?edit=*<edit_type>*\[&edit_id=*<edit_id>*]\[&SPECIFIC_INFORMATION\]\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
-## PARAMETER
+## PARAMETERS
 If none of the parameters are specified, the *rpmetaller-editor* only shows the concert overview of the current month.
 
 Only one of the two parameters `display` and `edit` can be provided. If both are sent, the `èdit` parameter overwrites the `display` option.
