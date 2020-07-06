@@ -50,7 +50,7 @@ The `del_id`specifies which database entry of the indicated type is deleted.
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
 ### SPECIFIC_INFORMATION
-* `edit
+* `edit`
   * *`concert`*
     * `name`
     * `date`
@@ -60,8 +60,8 @@ The `month` parameter in the format YYYY-MM is relevant for sites displaying a c
     * `venue_id`
     * `venue_name`
     * `url`
-    * `band_id\[\]`
-    * `addition\[\]`
+    * `band_id[]`
+    * `addition[]`
   * *`band`*
     * `name`
     * `nazi`
@@ -81,8 +81,8 @@ The `month` parameter in the format YYYY-MM is relevant for sites displaying a c
     * `venue_id`
     * `venue_name`
     * `url`
-    * `band_id\[\]`
-    * `addition\[\]`
+    * `band_id[]`
+    * `addition[]`
     * `published`
     * `sold_out`
   * *`band`*
