@@ -5,7 +5,7 @@ class PrefModel {
 
 	private $mysqli = NULL;
 
-	private function __construct($mysqli) {
+	public function __construct($mysqli) {
 		$this->mysqli = $mysqli;
 	}
 
