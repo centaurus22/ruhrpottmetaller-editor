@@ -27,6 +27,12 @@ class PrefModel {
 		return $result;
 	}
 
+	public function getPrefExportLang() {
+		$query = 'SELECT export_lang FROM preferences';
+		$result = $this->mysqli->query($query);
+		return $result;
+	}
+
 	public function updatePref($at, $header, $footer) {
 		$header = $this->mysqli->real_escape_string($header);
 		$footer = $this->mysqli->real_escape_string($footer);
