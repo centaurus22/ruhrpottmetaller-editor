@@ -52,9 +52,9 @@ Other values of `special` are automatically replaced by ordinary non-speciall pa
 * *`concert`*
   * `&special=add_concert` is replaced with `&edit=concert` and the `concert_id` parameter is deleted from the request string.
   * `&special=edit_concert` is replaced with `&edit=concert`.
-  * `&special=publish_concert` is replaced with `&save=concert&published=1`.
+  * `&special=published_concert` is replaced with `&save=concert&published=1`.
   * `&special=del_concert` is replaced with `&del=concert`.
-  * `&special=publish_concert` is replaced with `&save=concert&sold_out=1`.
+  * `&special=sold_out_concert` is replaced with `&save=concert&sold_out=1`.
 * *`band`*
   * `&special=add_band` is replaced with `&edit=band` and the `band_id` parameter is deleted from the request string.
   * `&special=edit_band` is replaced with `&edit=band`.
