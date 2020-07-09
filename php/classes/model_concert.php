@@ -76,7 +76,13 @@ class ConcertModel {
 			$id, $band_id, $addition);
 		$result = $this->mysqli->query($query);
 		return $result;
-		}
+	}
+	
+	public function delBands($id) {
+		$query = sprintf('DELETE FROM event_band WHERE event_band.event_id LIKE %1$u;', $id);
+		$result = $this->mysqli->query($query);
+		return $result;
+	}
 
 	public function setSoldOut ($id) {
 		$query = sprintf('UPDATE event SET ausverkauft=1 WHERE id=%1$u;', $id);
