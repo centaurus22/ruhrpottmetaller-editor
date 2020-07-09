@@ -98,8 +98,13 @@ class Controller {
 					switch($pref_export['export_lang']) {
 					case 'de_DE':
 						setlocale(LC_TIME, "de_DE", "de_DE.utf8");
+						$timeformat_without_month = '%a, %d.';
+						$timeformat_with_month = '%a, %d. %b';
+
 						break;
 					default:
+						$timeformat_without_month = '%a, %d';
+						$timeformat_with_month = '%a, %d %b';
 					}
 					$concerts_array = array();
 					while($concert = $concerts->fetch_assoc()) {
@@ -119,21 +124,21 @@ class Controller {
 						//Determine the human readable date for the concert table.
 						if ($this->template == 'concert') {
 							//Output for a concert export should include the month.
-							$date_human = strftime('%a, %d. %b', $time_start);
+							$date_human = strftime($timeformat_with_month, $time_start);
 							//Switch the display status
 							$Concert_Model->changeConcertDisplayStatus($this->request['display_id']);
 						}
 						else {
-							$date_human = strftime('%a, %d.', $time_start);
+							$date_human = strftime($timeformat_without_month, $time_start);
 						}
 						$date = date('Y-m-d', $time_start);
 						if ($concert['datum_ende']) {
 							$time_end = strtotime($concert['datum_ende']);
 							if ($this->template == 'concert') {
-								$date_end_human = strftime('%a, %d. %b', $time_end);
+								$date_end_human = strftime($timeformat_with_month, $time_end);
 							}
 							else {
-								$date_end_human = strftime('%a, %d.', $time_end);
+								$date_end_human = strftime($timeformat_without_month, $time_end);
 							}
 							$date_human = $date_human . ' – ' . $date_end_human;
 						}	
