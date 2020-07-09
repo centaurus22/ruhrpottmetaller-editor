@@ -50,20 +50,11 @@ The `del_id`specifies which database entry of the indicated type is deleted.
 ##### replacements
 Other values of `special` are automatically replaced by ordinary non-speciall parameters. This allows to choose those parameters from a drop down menu within the software. The following replacements are implemented in the *rpmetaller-editor*. Sometimes have to be combined with a correponding data id.
 * *`concert`*
-  * `&special=add_concert` is replaced with `&edit=concert` and the `concert_id` parameter is deleted from the request string.
-  * `&special=edit_concert` is replaced with `&edit=concert`.
-  * `&special=published_concert` is replaced with `&save=concert&published=1`.
-  * `&special=del_concert` is replaced with `&del=concert`.
-  * `&special=sold_out_concert` is replaced with `&save=concert&sold_out=1`.
-* *`band`*
-  * `&special=add_band` is replaced with `&edit=band` and the `band_id` parameter is deleted from the request string.
-  * `&special=edit_band` is replaced with `&edit=band`.
-* *`city`*
-  * `&special=add_city` is replaced with `&edit=city` and the `city_id` parameter is deleted from the request string.
-  * `&special=edit_city` is replaced with `&edit=city`.
-* *`venue`*
-  * `&special=add_venue` is replaced with `&edit=venue` and the `venue_id` parameter is deleted from the request string.
-  * `&special=edit_venue` is replaced with `&edit=venue`.
+  * `special=add_concert` is replaced with `edit=concert` and the `concert_id` parameter is deleted from the request string.
+  * `special=edit_concert` is replaced with `edit=concert`.
+  * `special=published_concert` is replaced with `save=concert&published=1`.
+  * `special=del_concert` is replaced with `del=concert`.
+  * `special=sold_out_concert` is replaced with `save=concert&sold_out=1`.
 
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
