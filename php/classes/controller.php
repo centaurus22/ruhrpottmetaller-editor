@@ -59,19 +59,20 @@ class Controller {
 				$monthChanger = $this->displayMonthChanger();
 				$innerView->assign('month_changer', $monthChanger->loadTemplate());
 				$mysqli = ConnectModel::db_connect();
-				//Load the models.
-				$Model = new ConcertModel($mysqli);
-				$Model->startConcertDisplaySession();
+				//Load the models for accessing the concert table
+				$Concert_Model = new ConcertModel($mysqli);
+				$Concert_Model->startConcertDisplaySession();
 				if ($this->template == 'concert') {
 					//Output of just one concert
 					$innerView->setTemplate('concert');
-					$concerts = $Model->getConcert($this->request['display_id']);
+					$concerts = $Concert_Model->getConcert($this->request['display_id']);
 				} 
 				else {
 					//Normal output of data of all concerts from one month.
 					$innerView->setTemplate('default');
-					$concerts = $Model->getConcerts($month);
-					$Model->delConcertDisplayStatus();
+					$concerts = $Concert_Model->getConcerts($month);
+					//By reloading the default page the status of the individual concert exports must be resetet.
+					$Concert_Model->delConcertDisplayStatus();
 				}
 				
 				if (!$concerts) {
@@ -84,11 +85,22 @@ class Controller {
 					$innerView->setTemplate('default_no_data');
 				}
 				elseif ($this->template == "concert" AND 
-					$Model->getConcertDisplayStatus($this->request['display_id'])) {
+					$Concert_Model->getConcertDisplayStatus($this->request['display_id'])) {
 					$innerView->setTemplate('empty_output');
-					$Model->changeConcertDisplayStatus($this->request['display_id']);
+					$Concert_Model->changeConcertDisplayStatus($this->request['display_id']);
 				}
 				else {
+					//Load Model to access the preference table
+					$Pref_Model = new PrefModel($mysqli);
+					//Access database entry with the export language setting
+					$pref_export_result = $Pref_Model->getPrefExportLang();
+					$pref_export = $pref_export_result->fetch_assoc();
+					switch($pref_export['export_lang']) {
+					case 'de_DE':
+						setlocale(LC_TIME, "de_DE", "de_DE.utf8");
+						break;
+					default:
+					}
 					$concerts_array = array();
 					while($concert = $concerts->fetch_assoc()) {
 						$time_start = strtotime($concert['datum_beginn']);
@@ -107,25 +119,25 @@ class Controller {
 						//Determine the human readable date for the concert table.
 						if ($this->template == 'concert') {
 							//Output for a concert export should include the month.
-							$date_human = date('D, d M', $time_start);
+							$date_human = strftime('%a, %d. %b', $time_start);
 							//Switch the display status
-							$Model->changeConcertDisplayStatus($this->request['display_id']);
+							$Concert_Model->changeConcertDisplayStatus($this->request['display_id']);
 						}
 						else {
-							$date_human = date('D, d', $time_start);
+							$date_human = strftime('%a, %d.', $time_start);
 						}
 						$date = date('Y-m-d', $time_start);
 						if ($concert['datum_ende']) {
 							$time_end = strtotime($concert['datum_ende']);
 							if ($this->template == 'concert') {
-								$date_end_human = date('D, d M', $time_end);
+								$date_end_human = strftime('%a, %d. %b', $time_end);
 							}
 							else {
-								$date_end_human = date('D, d', $time_end);
+								$date_end_human = strftime('%a, %d.', $time_end);
 							}
 							$date_human = $date_human . ' – ' . $date_end_human;
 						}	
-						$bands = $Model->getBands($concert['id']);
+						$bands = $Concert_Model->getBands($concert['id']);
 						$bands_array = array();
 						if (!$bands) {
 							//Database query failure
