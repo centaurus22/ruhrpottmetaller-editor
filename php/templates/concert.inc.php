@@ -16,13 +16,13 @@ foreach($this->_['concerts'] as $concert) {
 		}
 	}
 	$bands = substr($bands, 0, -2);
-	echo '* '. $concert['date_human'] . ' ';
+	echo '* '. $concert['date_human'] . ': ';
 	if ($concert['kname']) {
-		echo htmlspecialchars($concert['kname'], ENT_QUOTES) . ' im';
+		echo htmlspecialchars($concert['kname'], ENT_QUOTES) . ', ';
 	}
-	echo ' ' . htmlspecialchars($concert['lname'], ENT_QUOTES) . ', ' . 
-		htmlspecialchars($concert['sname'], ENT_QUOTES) . ": ";
-	echo $bands . '. ';	
+	echo ' ' . htmlspecialchars($concert['lname'], ENT_QUOTES) . ' in  ' . 
+		htmlspecialchars($concert['sname'], ENT_QUOTES) . ".<br/>";
+	echo $bands . '.<br/>';	
 	echo htmlspecialchars($concert['url'], ENT_QUOTES);
 }
 
