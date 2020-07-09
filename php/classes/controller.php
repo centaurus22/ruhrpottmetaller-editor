@@ -9,10 +9,43 @@ class Controller {
 
 	public function __construct($request) {
 		$this->view = new View();
+		//translate actions induced by the special parameter
+		if (isset($request['special'])) {
+			switch($request['special']) {
+				case 'edit_concert':
+					if (isset($request['id'])) {
+						$request['edit_id'] = $request['id'];
+					}
+				case 'add_concert':
+					$request['edit'] = 'concert';
+					break;
+				case 'published_concert':
+						if (isset($request['id'])) {
+							$request['save_id'] = $request['id'];
+						}
+						$request['save'] = 'concert';
+						$request['published'] = 1;
+						break;
+				case 'del_concert':
+						if (isset($request['id'])) {
+							$request['del_id'] = $request['id'];
+						}
+						$request['del'] = 'concert';
+						break;
+				case 'sold_out_concert':
+						if (isset($request['id'])) {
+							$request['save_id'] = $request['id'];
+						}
+						$request['save'] = 'concert';
+						$request['sold_out'] = 1;
+						break;
+				}
+		}
 		$this->request = $request;
 		/*translation of request parameters to the name of the
 		 * corresponding template.
 		 */
+
 		if (isset($request['display'])) {
 			switch($request['display']) {
 			case 'license':
