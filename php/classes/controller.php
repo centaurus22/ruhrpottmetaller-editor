@@ -306,7 +306,7 @@ class Controller {
 			if (count($request['band']) == count($request['addition'])) {
 				$result = $Concert_Model->delBands($request['save_id']);
 				for ( $n = 1; $n < count($request['band']) - 1; $n++ ) {
-					$result = Concert_Model->setBand($request['save_id', request['band'][$n], $request['addition'][$n]);
+					$result = $Concert_Model->setBand($request['save_id'], request['band'][$n], $request['addition'][$n]);
 				}
 			}
 			else {
