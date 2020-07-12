@@ -6,8 +6,13 @@ class ModelVenue {
 
 	private $mysqli = NULL;
 
-	private function __construct($mysqli) {
+	public function __construct() {
+		$mysqli = ConnectModel::db_conncect();
 		$this->mysqli = $mysqli;
+	}
+
+	public function __destruct() {
+		$this->mysqli->close;
 	}
 
 	private function getVenues() {

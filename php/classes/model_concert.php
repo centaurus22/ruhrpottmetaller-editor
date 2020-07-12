@@ -6,8 +6,13 @@ class ConcertModel {
 	private $mysqli = NULL;
 	private $lineup = NULL;
 
-	public function __construct($mysqli) {
+	public function __construct() {
+		$mysqli = ConnectModel::db_conncect();
 		$this->mysqli = $mysqli;
+	}
+
+	public function __destruct() {
+		$this->mysqli->close;
 	}
 
 	public function getConcerts($month) {

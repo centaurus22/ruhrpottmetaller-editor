@@ -5,8 +5,14 @@ class PrefModel {
 
 	private $mysqli = NULL;
 
-	public function __construct($mysqli) {
+
+	public function __construct() {
+		$mysqli = ConnectModel::db_conncect();
 		$this->mysqli = $mysqli;
+	}
+
+	public function __destruct() {
+		$this->mysqli->close;
 	}
 
 	public function getPref() {

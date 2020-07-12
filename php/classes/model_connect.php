@@ -18,11 +18,6 @@ class ConnectModel {
 		}
 		return $mysqli;
 	}
-	
-	public static function db_disconnect($mysqli) {
-		$mysqli->close();
-	}
-	
-}
+}	
 
 ?>
