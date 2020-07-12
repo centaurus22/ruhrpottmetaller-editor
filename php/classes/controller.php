@@ -42,6 +42,26 @@ class Controller {
 				}
 		}
 		$this->request = $request;
+		//Execution of save or del actions
+		//Open database connection
+		$mysqli = ConnectModel::db_connect();
+		if (isset($request['del']) AND isset($request['del_id'])) {
+			switch($request['del']) {
+				case 'concert':
+					$Concert_Model = new ConcertModel($mysqli);
+					$Concert_Model->delConcert($request['del_id']);
+					break;
+			}
+		}
+		if (isset($request['save']) AND isset($request['save_id'])) {
+			switch($request['save']) {
+			case 'concert':
+				$result = save_concert($mysqli);
+				break;
+			}
+
+		}
+		ConnectModel::db_disconnect($mysqli);
 		/*translation of request parameters to the name of the
 		 * corresponding template.
 		 */
@@ -245,6 +265,63 @@ class Controller {
 		$monthChanger->assign('request_prev_month', $request_prev_month);
 		$monthChanger->assign('month_human', $month_human);
 		return $monthChanger;
+	}
+
+	public function save_concert($mysqli) {
+		$request = $this->request;
+		$Concert_Model = new ConcertModel($mysqli);
+		/*The starting date is the only value is that must be provided.
+		 * So if it is present, a concert should be inserted oder updated*/
+		if (isset($request['date_start'])) {
+			if (!isset($request['name'])) {
+				$request['name'] = NULL;
+			}
+			if (!isset($request['url'])) {
+				$request['url'] = NULL;
+			}
+			if (!isset($request['date_end'])) {
+				$request['date_end'] = NULL;
+			}
+			if (!isset($request['venue_id'])) {
+				$request['venue_id'] = NULL;
+			}
+			if (!isset($request['band'])) {
+				$request['band'] = array();
+			}
+			if (!isset($request['addition'])) {
+				$request['addition'] = array();
+			}
+			if (isset($request['save_id'])) {
+				//If the save id is set -> Update of exisiting concert
+				$result = $Concert_Model->updateConcert($request['save_id'], $request['name'],
+					$request['date_start'], $request['date_end'], $request['venue_id'],
+					$request['url']);
+			}
+			else {
+				//No save id -> Insert a new concert
+				$result = $Concert_Model->setConcert($request['name'], $request['date_start'],
+					$request['date_end'], $request['venue_id'], $request['url']);
+			}
+			//Update Bands if the lenght of the bands array and the addition array is the same
+			if (count($request['band']) == count($request['addition'])) {
+				$result = $Concert_Model->delBands($request['save_id']);
+				for ( $n = 1; $n < count($request['band']) - 1; $n++ ) {
+					$result = Concert_Model->setBand($request['save_id', request['band'][$n], $request['addition'][$n]);
+				}
+			}
+			else {
+				$result = 0;
+			}
+		}
+		if (isset($this->request['save_id'])) {
+			if (isset($this->request['published']) AND $this->request['published']) {
+				$result = setPublished($this->request['save_id']);
+			}
+			if (isset($this->request['sold_out']) AND $this->request['sold_out']) {
+				$result = setSoldOut($this->request['save_id']);
+			}
+		}
+		return $result;
 	}
 }
 ?>

@@ -70,7 +70,7 @@ class ConcertModel {
 		return $result;
 	}
 
-	public function setBands($id, $band_id, $addition) {
+	public function setBand($id, $band_id, $addition) {
 		$addition = $this->mysqli->real_escape_string($addition);
 		$query = sprintf('INSERT INTO event_band SET event_id=%1$u, band_id=%2$u, zusatz="%3$s";',
 			$id, $band_id, $addition);
