@@ -15,28 +15,37 @@ class CityModel {
 	}
 
 	public function getCities() {
-		$query = 'SELECT id, name FROM stadt;';
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt');
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
 		return $result;
 	}
 
 	public function getCity($id) {
-		$query = sprintf('SELECT id, name FROM stadt WHERE id=%1$u;', $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
 		return $result;
 	}
 
 	public function setCity($name) {
-		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('INSERT INTO stadt SET name="%1$s;', $name);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('INSERT INTO stadt SET name=?');
+		$stmt->bind_param('s', $name);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close;
 		return $result;
 	}
 
 	public function updateCity($id, $name) {
-		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('UPDATE stadt SET name="%1$s" WHERE id=%2$u;', $name, $id);
-		$result = $this->mysqli->query($query);
+		$this->mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
+		$stmt->bind_param('si', $name, $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close;
 		return $result;
 	}	
 

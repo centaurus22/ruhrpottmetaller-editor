@@ -16,34 +16,27 @@ class PrefModel {
 	}
 
 	public function getPref() {
-		$query = sprintf('SELECT at, header, footer FROM preferences');
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences');
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
 		return $result;
 	}
 	
-	public function getPrefAt() {
-		$query = 'SELECT at FROM preferences';
-		$result = $this->mysqli->query($query);
-		return $result;
-	}
-
-	public function getPrefExport() {
-		$query = 'SELECT header, footer FROM preferences';
-		$result = $this->mysqli->query($query);
-		return $result;
-	}
-
 	public function getPrefExportLang() {
-		$query = 'SELECT export_lang FROM preferences';
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('SELECT export_lang FROM preferences');
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
 		return $result;
 	}
 
-	public function updatePref($at, $header, $footer) {
-		$header = $this->mysqli->real_escape_string($header);
-		$footer = $this->mysqli->real_escape_string($footer);
-		$query = sprintf('UPDATE preferences SET at=%1$u, header="%2$s", footer="%3$s');
-		$result = $this->mysqli->query($query);
+	public function updatePref($export_lang, $header, $footer) {
+		$stmt = $this->mysqli->prepare('UPDATE preferences SET export_lang=?, heade=?, footer=?');
+		$stmt->bind_param('sss', $export_lang, $header, $footer);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close;
 		return $result;
 	}
 }

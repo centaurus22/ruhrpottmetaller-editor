@@ -15,42 +15,50 @@ class BandModel {
 	}
 
 	public function getBands($initial) {
-		$initial = $this->mysqli->real_escape_string($initial);
 		switch($initial) {
 		case '':
-			$query = 'SELECT id, name, nazi FROM band ORDER BY name';
+			$this->mysqli->prepare('SELECT id, name, nazi FROM band ORDER BY name');
 			break;
 		case 's':
-			$query = sprintf('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]"
+			$this->mysqli->prepare('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]"
 				ORDER BY name;');
 			break;
 		default:
-			$query = sprintf('SELECT id, name, nazi FROM band WHERE name LIKE "%s%%"
-				ORDER BY name', $initial);
+			$this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE name LIKE ? ORDER BY name');
+			$stmt->bind_param('i', $initial . '%');
+
 		}
-		$result = $this->mysqli->query($query);
-		return ($result);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
+		return $result;
 	}
 
 	public function getBand($id) {
-		$query = sprintf('SELECT id, name, nazi FROM band WHERE id=%1$u', $id);
-		$result = $this->mysqli->query($query);
-		return ($result);
+		$stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE id=?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close;
+		return $result;
 	}
 
 	public function setBand($id, $name, $nazi) {
-		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('INSERT INTO band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('INSERT INTO band SET name=?, nazi=? WHERE id=?');
+		$stmt->bind_param('sii', $name, $nazi, $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close;
 		return ($result);
 	}
 
 	public function updateBand() {
-		$name = $this->mysqli->real_escape_string($name);
-		$query = sprintf('UPDATE band SET name="%1$s", nazi="%2$u" WHERE id=%3$u;', $name, $nazi);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('UPDATE band SET name=?, nazi=? WHERE id=?');
+		$stmt->bind_param('sii', $name, $nazi, $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close;
 		return ($result);
-
 	}
 
 }
