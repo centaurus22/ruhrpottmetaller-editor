@@ -67,11 +67,11 @@ class BandModel {
 	}
 
 	/**
-	 * Insert a band into the database
+	 * Insert data about a band into the database
 	 *
 	 * @param string name Name of the band. 
 	 * @param integer nazi Export status of the band. 0 -> exportable 1-> non-exportable
-	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
+	 * @return integer Returns 1 for successful operation, -1 for an error.
 	 */
 	public function setBand($name, $nazi) {
 		$stmt = $this->mysqli->prepare('INSERT INTO band SET name=?, nazi=?');
@@ -83,7 +83,7 @@ class BandModel {
 	}
 
 	/**
-	 * Update band date in the database
+	 * Update band data in the database
 	 *
 	 * @param integer Id of the band which is updated.
 	 * @param string name Name of the band. 
