@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class to acces and manipulate the data in the event table and the event_band table
+ * Class to access and manipulate the data in the event table and the event_band table
  * Version 1.0.0
  */
 class ConcertModel {
