@@ -52,13 +52,3 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-
-queries:
- - uses: security-and-quality
-   
-paths-ignore:
- - database
- - docs
- - php/classes
- - php/images
- - php/templates 
