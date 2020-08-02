@@ -1,0 +1,9 @@
+queries:
+ - uses: security-and-quality
+   
+paths-ignore:
+ - database
+ - docs
+ - php/classes
+ - php/images
+ - php/templates 
