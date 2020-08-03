@@ -1,18 +1,35 @@
 <?php
 
+/**
+ * View class which is in charge of displaying the data.
+ * Version 1.0.0
+ */
 class View {
+	// string Template path
 	private $path = 'templates';
+	// string Template that is loaded
 	private $template = 'default';
+	// array Two dimensional array which contains the data which is passed to the view.
 	private $_ = array();
-
+	
+	//Function which assigns the date to the two dimensional array.
+	//
+	//@param string key Key name
+	//@param string|integer value Related value
 	public function assign($key, $value) {
 		$this->_[$key] = $value;
 	}
 	
+	//Function sets the template name.
+	//
+	//@param string template Name of the template
 	public function setTemplate($template = 'default'){
 		$this->template = $template;
 	}
 
+	//Check if the template file exist, load it and return the output if possible.
+	//
+	//@return string Output of the template or an error message.
 	public function loadTemplate() {
 		$tpl = $this->template;
 		$file = $this->path . DIRECTORY_SEPARATOR . $tpl . '.inc.php';
