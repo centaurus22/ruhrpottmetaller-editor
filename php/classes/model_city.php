@@ -28,7 +28,7 @@ class CityModel {
 	/**
 	 * Get city data from the database
 	 *
-	 * @return array  Array with city data.
+	 * @return array Array with city data.
 	 */
 	public function getCities() {
 		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt');
@@ -39,10 +39,10 @@ class CityModel {
 	}
 
 	/**
-	 * Get city data from one city with the submitted id.
+	 * Get city data from one city which is linked to the submitted id.
 	 *
-	 * @param id integer Id of the city.
-	 * @return array  Array with city data.
+	 * @param integer $id Id of the city.
+	 * @return array Array with city data.
 	 */
 	public function getCity($id) {
 		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
@@ -56,7 +56,7 @@ class CityModel {
 	/**
 	 * Insert data about a city into the database
 	 *
-	 * @param string name Name of the city. 
+	 * @param string $name Name of the city. 
 	 * @return integer Returns 1 for successful operation, -1 for an error.
 	 */
 	public function setCity($name) {
@@ -71,9 +71,9 @@ class CityModel {
 	/**
 	 * Update city data in the database
 	 *
-	 * @param integer Id of the band which is updated.
-	 * @param string name Name of the city. 
-	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
+	 * @param integer $id Id of the band which is updated.
+	 * @param string $name Name of the city. 
+	 * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an error.
 	 */
 	public function updateCity($id, $name) {
 		$this->mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');

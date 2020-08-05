@@ -27,9 +27,9 @@ class BandModel {
 	/**
 	 * Get band data from the database
 	 *
-	 * @param initial string Initial letter of the band name in capital letters or an empty string for 
+	 * @param initial $string Initial letter of the band name in capital letters or an empty string for 
 	 * 	all bands or a lowecase s for bands witch names start with a special character.
-	 * @return array  Array with band data.
+	 * @return array Array with band data.
 	 */
 	public function getBands($initial) {
 		switch($initial) {
@@ -54,8 +54,8 @@ class BandModel {
 	/**
 	 * Get band data from one band with the submitted id.
 	 *
-	 * @param id integer Id of the band.
-	 * @return array  Array with band data.
+	 * @param integer $id Id of the band.
+	 * @return array Array with band data.
 	 */
 	public function getBand($id) {
 		$stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE id=?');
@@ -69,8 +69,8 @@ class BandModel {
 	/**
 	 * Insert data about a band into the database
 	 *
-	 * @param string name Name of the band. 
-	 * @param integer nazi Export status of the band. 0 -> exportable 1-> non-exportable
+	 * @param string $name Name of the band. 
+	 * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
 	 * @return integer Returns 1 for successful operation, -1 for an error.
 	 */
 	public function setBand($name, $nazi) {
@@ -85,9 +85,9 @@ class BandModel {
 	/**
 	 * Update band data in the database
 	 *
-	 * @param integer Id of the band which is updated.
-	 * @param string name Name of the band. 
-	 * @param integer nazi Export status of the band. 0 -> exportable 1-> non-exportable
+	 * @param integer $id Id of the band which is updated.
+	 * @param string $name Name of the band. 
+	 * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
 	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
 	 */
 	public function updateBand($id, $name, $nazi) {

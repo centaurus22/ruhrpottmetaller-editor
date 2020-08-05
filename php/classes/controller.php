@@ -15,7 +15,7 @@ class Controller {
 	/**
 	 * Initialize the controller.
 	 *
-	 * @param array request Array from  $_GET and $_POST
+	 * @param array $request Array from  $_GET and $_POST
 	 */
 	public function __construct($request) {
 		$this->view = new View();
@@ -100,7 +100,7 @@ class Controller {
 	/**
 	 * Function to display the content
 	 *
-	 * @return stringt Content of the application
+	 * @return string Content of the application
 	 */
 	public function display() {
 		$innerView = new View();
@@ -126,7 +126,7 @@ class Controller {
 			case 'default':
 			default:
 				//Initialize a View object for the second line of the web application, load the
-				//template and pass the output to the inner View
+				//template and pass the output to the inner View.
 				$monthChanger = $this->displayMonthChanger();
 				$innerView->assign('month_changer', $monthChanger);
 				$mysqli = ConnectModel::db_connect();
@@ -296,7 +296,7 @@ class Controller {
 	/**
 	 * This function has the purpose of interacting withe the Concert Model.
 	 *
-	 * @param link identifier mysqli Link identifier of the database connection.
+	 * @param link identifier $mysqli Link identifier of the database connection.
 	 * @return integer Value of 0 or greater -> Succes, -1 -> Error.
 	 */
 	public function save_concert($mysqli) {

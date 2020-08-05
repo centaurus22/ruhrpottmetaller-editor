@@ -14,15 +14,15 @@ class View {
 	
 	//Function which assigns the date to the two dimensional array.
 	//
-	//@param string key Key name
-	//@param string|integer value Related value
+	//@param string $key Key name
+	//@param string|integer $value Related value
 	public function assign($key, $value) {
 		$this->_[$key] = $value;
 	}
 	
 	//Writes the template name into the corresponding class variable
 	//
-	//@param string template Name of the template
+	//@param string $template Name of the template
 	public function setTemplate($template = 'default'){
 		$this->template = $template;
 	}

@@ -6,9 +6,9 @@
  */
 class SessionModel {
 	/**
-	 * Initializes the session if it is not already initialized.
+	 * Initialize the session if it is not already initialized.
 	 *
-	 * @return integer 1 if a session is activated or was already activ, -1 if PHP sessions are disabled.
+	 * @return integer 1 if a session is activated or was already active, -1 if PHP sessions are disabled.
 	 */
 	public function __construct() {
 		switch(session_status()) {
@@ -53,8 +53,8 @@ class SessionModel {
 	/**
 	 * Check the export status of a concert.
 	 *
-	 * @param integer id Id of the concert which export status should be checked.
-	 * @return integer 1: Export status is open, 0: Export status is closed, -1 id is no integer.
+	 * @param integer $id Id of the concert which export status should be checked.
+	 * @return integer 1-> Export status is open, 0-> Export status is closed, -1-> id is no integer.
 	 */
 	public function getConcertDisplayStatusEntry ($id) {
 		if (is_int($id)) {
@@ -76,8 +76,8 @@ class SessionModel {
 	/**
 	 * Change the export status of a concert.
 	 *
-	 * @param integer id Id of the concert.
-	 * @return integer 1: The Id is an integer, -1: the id is no ingeger.
+	 * @param integer $id Id of the concert.
+	 * @return integer 1-> The Id is an integer, -1-> the id is no ingeger.
 	 */
 	public function changeConcertDisplayStatusEntry ($id) {
 		if (is_int($id)) {
@@ -110,8 +110,8 @@ class SessionModel {
 	/**
 	 * Add a new band to the lineup array.
 	 *
-	 * @param integer row Number of the row under which the new band is added.
-	 * @return integer 1: parameter is an integer, -1: parameter is no integer.
+	 * @param integer $row Number of the row under which the new band is added.
+	 * @return integer 1-> parameter is an integer, -1-> parameter is no integer.
 	 */
 	public function setBandLineup($row){
 		if (is_int($row)) {
@@ -128,11 +128,11 @@ class SessionModel {
 	/**
 	 * Change information in a specific row of the lineup-.
 	 *
-	 * @param integer row Number of the row.
-	 * @param string first First charakter of the band name or '#' for a special charakter
-	 * @param integer band_id Band id.
-	 * @param string addition Additional information about this special appearance
-	 * @return integer 1: row and band_id parameter are integers, -1: one of those parameters are no integer.
+	 * @param integer $row Number of the row.
+	 * @param string $first First charakter of the band name or '#' for a special charakter
+	 * @param integer $band_id Band id.
+	 * @param string $addition Additional information about this special appearance
+	 * @return integer 1-> row and band_id parameter are integers, -1-> one of those parameters are no integer.
 	 */
 	public function updateBandLineup($row, $first, $band_id, $addition){
 		if (is_int($row) AND is_int($band_id)) {
@@ -149,8 +149,8 @@ class SessionModel {
 	/**
 	 * Delete a band to the lineup array.
 	 *
-	 * @param integer row Number of the row which is deleted.
-	 * @return integer 1: parameter is an integer, -1: parameter is no integer.
+	 * @param integer $row Number of the row which is deleted.
+	 * @return integer 1-> parameter is an integer, -1-> parameter is no integer.
 	 */
 	public function delBandLineup($row) {
 		if (is_int($row)) {
@@ -166,9 +166,9 @@ class SessionModel {
 	/**
 	 * Shift a band up or down in the lineup.
 	 *
-	 * @param integer row Number of the row which is deleted.
-	 * @param string direction Direction in which the band is shifted.
-	 * @return integer 1: correct parameters, -1: wrong parameters.
+	 * @param integer $row Number of the row which is deleted.
+	 * @param string $direction Direction in which the band is shifted.
+	 * @return integer 1-> correct parameters, -1-> wrong parameters.
 	 */
 	public function shiftBandLineup($row, $direction) {
 		if (is_int($row) OR ($direction != "up" AND $direction != "down")) {

@@ -53,9 +53,9 @@ class PrefModel {
 	/**
 	 * Set the preferences in the database.
 	 *
-	 * @param string export_lang Language in which the concerts should be exported.
-	 * @param string header	Header of the monthly overview of concerts.
-	 * @param string footer	Footer of the monthly overview of concerts.
+	 * @param string $export_lang Language in which the concerts should be exported.
+	 * @param string $header Header of the monthly overview of concerts.
+	 * @param string $footer Footer of the monthly overview of concerts.
 	 * @return integer Integer with a value greater 1 for a succesfully write of preferences, 0 for no changes, -1 for an error.
 	 */
 	public function updatePref($export_lang, $header, $footer) {
