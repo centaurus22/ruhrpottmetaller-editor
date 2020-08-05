@@ -7,7 +7,7 @@
 class View {
 	// string Template path
 	private $path = 'templates';
-	// string Template that is loaded
+	// string Template name
 	private $template = 'default';
 	// array Two dimensional array which contains the data which is passed to the view.
 	private $_ = array();
@@ -20,14 +20,14 @@ class View {
 		$this->_[$key] = $value;
 	}
 	
-	//Function sets the template name.
+	//Writes the template name into the corresponding class variable
 	//
 	//@param string template Name of the template
 	public function setTemplate($template = 'default'){
 		$this->template = $template;
 	}
 
-	//Check if the template file exist, load it and return the output if possible.
+	//Check if the template file exist, load the template  and return the output.
 	//
 	//@return string Output of the template or an error message.
 	public function loadTemplate() {
