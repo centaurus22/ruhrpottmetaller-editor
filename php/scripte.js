@@ -1,7 +1,7 @@
 function get_locations_1()
 {
 var stadt_id = document.getElementById("stadt_id").value;
-xmlhttp=new XMLHttpRequest();
+var xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -18,7 +18,7 @@ function get_locations_2()
 {
 	var location_id = document.getElementById("location_id").value;
 	var stadt_id = document.getElementById("stadt_id").value;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
 	{
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -53,7 +53,7 @@ function get_locations_2()
 function get_band_1(zeile)
 {
 var anfang = document.getElementById("anfang_" + zeile).value;
-xmlhttp=new XMLHttpRequest();
+var xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -77,7 +77,7 @@ function get_band_2(zeile)
 	{
 		document.getElementById("band_" + zeile).innerHTML="";
 	}
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	var datei = "save.php?zeile=" + zeile + "&feld=band_id&wert=" + band_id;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
@@ -90,7 +90,7 @@ function edit_url()
 
 function add_band(zeile)
 {
-xmlhttp=new XMLHttpRequest();
+var xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -105,7 +105,7 @@ xmlhttp.send();
 
 function del_band(zeile)
 {
-xmlhttp=new XMLHttpRequest();
+var xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -121,7 +121,7 @@ xmlhttp.send();
 
 function shiftup_band(zeile)
 {
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -136,7 +136,7 @@ function shiftup_band(zeile)
 
 function shiftdown_band(zeile)
 {
-xmlhttp=new XMLHttpRequest();
+var xmlhttp=new XMLHttpRequest();
 xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -153,7 +153,7 @@ function save(feld, zeile)
 {
 	var wert = document.getElementById(feld + "_" + zeile).value;
 	wert=encodeURIComponent(wert);
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	var datei = "save.php?zeile=" + zeile + "&feld=" + feld + "&wert=" + wert;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
@@ -161,7 +161,7 @@ function save(feld, zeile)
 
 function display_concert(concert_id)
 {
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -177,7 +177,7 @@ function display_concert(concert_id)
 function get_band_table()
 {
 	var anfang = document.getElementById("band_anfang").value;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 		document.getElementById("data").innerHTML=xmlhttp.responseText;
@@ -191,7 +191,7 @@ function get_band_table()
 function datenuebernahme(pos, edit_id)
 {
 	var feld_id = pos + "_" + edit_id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -207,7 +207,7 @@ function datenuebernahme(pos, edit_id)
 function band_uebernahme(pos, band_id, edit_id)
 {
 	var feld_id = "band_" + pos + "_" + edit_id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -223,7 +223,7 @@ function band_uebernahme(pos, band_id, edit_id)
 function reset_aenderung(edit_id)
 {
 	var feld_id = "todo_" + edit_id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -239,7 +239,7 @@ function reset_aenderung(edit_id)
 function loeschen_aenderung(edit_id)
 {
 	var feld_id = "todo_" + edit_id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -255,7 +255,7 @@ function loeschen_aenderung(edit_id)
 function speichern_aenderung(edit_id)
 {
 	var feld_id = "todo_" + edit_id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -271,7 +271,7 @@ function speichern_aenderung(edit_id)
 function edit_blog_entry(id)
 {
 	var nachricht_id = "nachricht_" + id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -288,7 +288,7 @@ function edit_blog_entry(id)
 function close_blog_entry(id)
 {
 	var nachricht_id = "nachricht_" + id;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -305,7 +305,7 @@ function save_blog_entry(id)
 {
 	var ueberschrift = document.getElementById('ueberschrift_' + id).value;
 	var text = document.getElementById('text_' + id).value;
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function()
   	{
   		if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -320,7 +320,7 @@ function save_blog_entry(id)
 
 function change_binary(table, field)
 {
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	var datei = "change_binary.php?table=" + table + "&field=" + field;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
@@ -328,7 +328,7 @@ function change_binary(table, field)
 
 function change_binary_row(table, field, id)
 {
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	var datei = "change_binary_row.php?table=" + table + "&field=" + field + "&id=" +id;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
@@ -336,7 +336,7 @@ function change_binary_row(table, field, id)
 
 function change_value(table, field)
 {
-        xmlhttp=new XMLHttpRequest();
+        var xmlhttp=new XMLHttpRequest();
         const data = new FormData();
         data.append("table", table);
         data.append("field", field);
@@ -347,7 +347,7 @@ function change_value(table, field)
 
 function change_value_row(table, field, id)
 {
-	xmlhttp=new XMLHttpRequest();
+	var xmlhttp=new XMLHttpRequest();
 	var value_new = document.getElementById(field + "_" +  id).value;
 	var datei = "change_value_row.php?table=" + table + "&field=" + field + "&id=" + id + "&value_new=" + value_new;
 	xmlhttp.open("GET",datei,true);
