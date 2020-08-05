@@ -1,15 +1,25 @@
 <?php
-
+//
 class Controller {
+	//NULL Array from $_GET and $_POST.
 	private $request = NULL;
+	//string Name of the template.
 	private $template = '';
+	//string folder in which images are stored.
 	private $image_path = 'images';
+	//object Object of the (outer) view.
 	private $view = NULL;
+	//integer Defines if the call is an ajax call.
 	private $ajax = 0;
 
+	/**
+	 * Initialize the controller.
+	 *
+	 * @param array request Array from  $_GET and $_POST
+	 */
 	public function __construct($request) {
 		$this->view = new View();
-		//translate actions induced by the special parameter
+		//translate actions induced by the special parameters
 		if (isset($request['special'])) {
 			switch($request['special']) {
 				case 'edit_concert':
@@ -62,7 +72,8 @@ class Controller {
 
 		}
 		ConnectModel::db_disconnect($mysqli);
-		/*translation of request parameters to the name of the
+		/**
+		 * translation of request parameters to the name of the
 		 * corresponding template.
 		 */
 
@@ -86,6 +97,11 @@ class Controller {
 		}
 	}
 
+	/**
+	 * Function to display the content
+	 *
+	 * @return stringt Content of the application
+	 */
 	public function display() {
 		$innerView = new View();
 		if (isset($this->request['month'])) {
@@ -109,8 +125,10 @@ class Controller {
 				$ajax = 1;
 			case 'default':
 			default:
+				//Initialize a View object for the second line of the web application, load the
+				//template and pass the output to the inner View
 				$monthChanger = $this->displayMonthChanger();
-				$innerView->assign('month_changer', $monthChanger->loadTemplate());
+				$innerView->assign('month_changer', $monthChanger);
 				$mysqli = ConnectModel::db_connect();
 				//Load the models for accessing the concert table
 				$Concert_Model = new ConcertModel($mysqli);
@@ -124,7 +142,8 @@ class Controller {
 					//Normal output of data of all concerts from one month.
 					$innerView->setTemplate('default');
 					$concerts = $Concert_Model->getConcerts($month);
-					//By reloading the default page the status of the individual concert exports must be resetet.
+					//By reloading the default page the status of the individual concert exports
+					//must be reseted.
 					$Concert_Model->delConcertDisplayStatus();
 				}
 				
@@ -245,16 +264,24 @@ class Controller {
 		return $this->view->loadTemplate();
 	}
 	
+	/**
+	 * Initialize a view for the second line of the web application if necessary, set the template,
+	 * assign the data to the view, and load the template.
+	 *
+	 * @return string Output of the corresponding template.
+	 */
 	public function displayMonthChanger() {
-		//Controll the second line to choose the month
+		//Initialize a new View class for the second line of the web application
 		$monthChanger = new View();
+		//Set the corresponding template
 		$monthChanger->setTemplate('month_changer');
+		//If the display parameter is set, it is passend to all links on the second line
 		if(isset($this->request['display'])) {
 			$request['display'] = $this->request['display'];
 			$request_next_month['display'] = $this->request['display'];
 			$request_prev_month['display'] = $this->request['display'];
 		}
-		//Generate parameter for the current month, the next month and the previous month
+		//Generate parameters for the current month, the next month and the previous month
 		$request_now['month'] = date('Y-m');
 		$request_next_month['month'] = date('Y-m', strtotime($this->request['month'] . '-01 + 1 month'));
 		$request_prev_month['month'] = date('Y-m', strtotime($this->request['month'] . '-01 - 1 month'));
@@ -264,14 +291,19 @@ class Controller {
 		$monthChanger->assign('request_next_month', $request_next_month);
 		$monthChanger->assign('request_prev_month', $request_prev_month);
 		$monthChanger->assign('month_human', $month_human);
-		return $monthChanger;
+		return $monthChanger->loadTemplate();
 	}
-
+	/**
+	 * This function has the purpose of interacting withe the Concert Model.
+	 *
+	 * @param link identifier mysqli Link identifier of the database connection.
+	 * @return integer Value of 0 or greater -> Succes, -1 -> Error.
+	 */
 	public function save_concert($mysqli) {
 		$request = $this->request;
 		$Concert_Model = new ConcertModel($mysqli);
-		/*The starting date is the only value is that must be provided.
-		 * So if it is present, a concert should be inserted oder updated*/
+		/*The starting date is the only value that must be provided.
+		 * So if it is present, a concert should be inserted or updated*/
 		if (isset($request['date_start'])) {
 			if (!isset($request['name'])) {
 				$request['name'] = NULL;
@@ -306,7 +338,8 @@ class Controller {
 			if (count($request['band']) == count($request['addition'])) {
 				$result = $Concert_Model->delBands($request['save_id']);
 				for ( $n = 1; $n < count($request['band']) - 1; $n++ ) {
-					$result = $Concert_Model->setBand($request['save_id'], request['band'][$n], $request['addition'][$n]);
+					$result = $Concert_Model->setBand($request['save_id'], request['band'][$n],
+						$request['addition'][$n]);
 				}
 			}
 			else {
@@ -315,10 +348,10 @@ class Controller {
 		}
 		if (isset($this->request['save_id'])) {
 			if (isset($this->request['published']) AND $this->request['published']) {
-				$result = setPublished($this->request['save_id']);
+				$result = $Concert_Model->setPublished($this->request['save_id']);
 			}
 			if (isset($this->request['sold_out']) AND $this->request['sold_out']) {
-				$result = setSoldOut($this->request['save_id']);
+				$result = $Concert_Model->setSoldOut($this->request['save_id']);
 			}
 		}
 		return $result;
