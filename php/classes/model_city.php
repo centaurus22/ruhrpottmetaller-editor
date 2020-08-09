@@ -13,6 +13,7 @@ class CityModel {
 	 * identifier into the class variable.
 	 */
 	public function __construct() {
+		include_once('class/model_connect.php');
 		$mysqli = ConnectModel::db_conncect();
 		$this->mysqli = $mysqli;
 	}
