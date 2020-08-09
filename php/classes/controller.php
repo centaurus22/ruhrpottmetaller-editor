@@ -52,26 +52,27 @@ class Controller {
 				}
 		}
 		$this->request = $request;
-		//Execution of save or del actions
-		//Open database connection
-		$mysqli = ConnectModel::db_connect();
 		if (isset($request['del']) AND isset($request['del_id'])) {
 			switch($request['del']) {
-				case 'concert':
-					$Concert_Model = new ConcertModel($mysqli);
-					$Concert_Model->delConcert($request['del_id']);
-					break;
+			case 'concert':
+				include_once('classes/model_connect.php');
+				include_once('classes/model_concert.php');
+				$Concert_Model = new ConcertModel();
+				$Concert_Model->delConcert($request['del_id']);
+				break;
 			}
 		}
 		if (isset($request['save']) AND isset($request['save_id'])) {
 			switch($request['save']) {
 			case 'concert':
-				$result = save_concert($mysqli);
+				include_once('classes/model_connect.php');
+				include_once('classes/model_concert.php');
+				$Concert_Model = new ConcertModel();
+				$result = save_concert();
 				break;
 			}
 
 		}
-		ConnectModel::db_disconnect($mysqli);
 		/**
 		 * translation of request parameters to the name of the
 		 * corresponding template.
@@ -129,10 +130,13 @@ class Controller {
 				//template and pass the output to the inner View.
 				$monthChanger = $this->displayMonthChanger();
 				$innerView->assign('month_changer', $monthChanger);
-				$mysqli = ConnectModel::db_connect();
 				//Load the models for accessing the concert table
-				$Concert_Model = new ConcertModel($mysqli);
-				$Concert_Model->startConcertDisplaySession();
+				include_once('classes/model_concert.php');
+				$Concert_Model = new ConcertModel();
+				//And for session variables
+				include_once('classes/model_session.php');
+				$Session_Model = new SessionModel();
+				$Session_Model->initConcertDisplayStatus();
 				if ($this->template == 'concert') {
 					//Output of just one concert
 					$innerView->setTemplate('concert');
@@ -144,7 +148,7 @@ class Controller {
 					$concerts = $Concert_Model->getConcerts($month);
 					//By reloading the default page the status of the individual concert exports
 					//must be reseted.
-					$Concert_Model->delConcertDisplayStatus();
+					$Session_Model->delConcertDisplayStatus();
 				}
 				
 				if (!$concerts) {
@@ -157,13 +161,14 @@ class Controller {
 					$innerView->setTemplate('default_no_data');
 				}
 				elseif ($this->template == "concert" AND 
-					$Concert_Model->getConcertDisplayStatus($this->request['display_id'])) {
+					$Session_Model->getConcertDisplayStatus($this->request['display_id'])) {
 					$innerView->setTemplate('empty_output');
-					$Concert_Model->changeConcertDisplayStatus($this->request['display_id']);
+					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
 				}
 				else {
 					//Load Model to access the preference table
-					$Pref_Model = new PrefModel($mysqli);
+					include_once('classes/model_pref.php');
+					$Pref_Model = new PrefModel();
 					//Access database entry with the export language setting
 					$pref_export_result = $Pref_Model->getPrefExportLang();
 					$pref_export = $pref_export_result->fetch_assoc();
@@ -296,12 +301,12 @@ class Controller {
 	/**
 	 * This function has the purpose of interacting withe the Concert Model.
 	 *
-	 * @param link identifier $mysqli Link identifier of the database connection.
 	 * @return integer Value of 0 or greater -> Succes, -1 -> Error.
 	 */
-	public function save_concert($mysqli) {
+	public function save_concert() {
 		$request = $this->request;
-		$Concert_Model = new ConcertModel($mysqli);
+		include_once('classes/model_concert.php');
+		$Concert_Model = new ConcertModel();
 		/*The starting date is the only value that must be provided.
 		 * So if it is present, a concert should be inserted or updated*/
 		if (isset($request['date_start'])) {
