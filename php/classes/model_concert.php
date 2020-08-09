@@ -43,6 +43,16 @@ class ConcertModel {
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close;
+		//Connect an event with the bands which are playing there.
+		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
+			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
+		for($i = 0; $i < count($result); $i++) {
+			$stmt->bind_param('i', $id)
+			$stmt->execute();
+			$bands = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+			$result[$i]['bands'] = $bands;
+		}
+		$stmt->close;
 		return $result;
 	}
 
