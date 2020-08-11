@@ -55,7 +55,6 @@ class Controller {
 		if (isset($request['del']) AND isset($request['del_id'])) {
 			switch($request['del']) {
 			case 'concert':
-				include_once('classes/model_connect.php');
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
 				$Concert_Model->delConcert($request['del_id']);
@@ -65,7 +64,6 @@ class Controller {
 		if (isset($request['save']) AND isset($request['save_id'])) {
 			switch($request['save']) {
 			case 'concert':
-				include_once('classes/model_connect.php');
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
 				$result = save_concert();
@@ -183,65 +181,54 @@ class Controller {
 						$timeformat_without_month = '%a, %d';
 						$timeformat_with_month = '%a, %d %b';
 					}
-					$concerts_array = array();
-					while($concert = $concerts->fetch_assoc()) {
-						$time_start = strtotime($concert['datum_beginn']);
+					for($j = 0; $j < count($concerts); $j++) {
+						$time_start = strtotime($concerts[$j]['datum_beginn']);
 						//Determine the status of the concert.
-						if ((($time_start - time() < 1209600 AND is_null($concert['datum_ende'])) 
-							OR ($time_start - time() < 5184000 AND !is_null($concert['datum_ende'])))
-							AND !$concert['publiziert']) {
-							$status='urgent';
+						if ((($time_start - time() < 1209600 AND is_null($concerts[$j]['datum_ende'])) 
+							OR ($time_start - time() < 5184000 AND !is_null($concerts[$j]['datum_ende'])))
+							AND $concerts[$j]['publiziert'] == 0) {
+							$concerts[$j]['status'] = 'urgent';
 						}
-						elseif ($concert['publiziert']) {
-							$status='published';
+						elseif ($concert[$j]['publiziert'] == 1) {
+							$concerts[$j]['status'] = 'published';
 						}
 						else { 
-							$status='unpublished';
+							$concerts[$j]['status'] = 'unpublished';
 						}
 						//Determine the human readable date for the concert table.
 						if ($this->template == 'concert') {
 							//Output for a concert export should include the month.
-							$date_human = strftime($timeformat_with_month, $time_start);
+							$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
 							//Switch the display status
-							$Concert_Model->changeConcertDisplayStatus($this->request['display_id']);
+							$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
 						}
 						else {
-							$date_human = strftime($timeformat_without_month, $time_start);
+							$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
 						}
 						$date = date('Y-m-d', $time_start);
-						if ($concert['datum_ende']) {
-							$time_end = strtotime($concert['datum_ende']);
+						if ($concerts[$j]['datum_ende'] != "") {
+							$time_end = strtotime($concerts[$j]['datum_ende']);
 							if ($this->template == 'concert') {
 								$date_end_human = strftime($timeformat_with_month, $time_end);
 							}
 							else {
 								$date_end_human = strftime($timeformat_without_month, $time_end);
 							}
-							$date_human = $date_human . ' – ' . $date_end_human;
+							$concerts[$j]['date_human'] = $concerts[$j]['date_human'] . ' – ' . $date_end_human;
 						}	
-						$bands = $Concert_Model->getBands($concert['id']);
-						$bands_array = array();
-						if (!$bands) {
+						if ($bands == false) {
 							//Database query failure
 							$innerView->setTemplate('query_failure');
 							break;
 						}
-						while($band = $bands->fetch_assoc()) {
-							if ($band['nazi']) {
-								$nazi = 'nazi';
+						for($i = 0; $i < count($concert['bands']); $i++) {
+							if ($concert['bands'][$i]['nazi'] == 1) {
+								$concert['bands'][$i]['nazi'] == 'nazi';
 							}
 							else {
-								$nazi = 'nonazi';
+								$concert['bands'][$i]['nazi'] == 'nonazi';
 							}
-							//Additions to the band names in the Lineup should be in brackets.
-							array_push($bands_array, array($band['name'], $band['zusatz'], $nazi));
 						}
-						//Attach the concert status and the bands to the data array.
-						$concert ['date_human'] = $date_human;
-						$concert ['date'] = $date;
-						$concert ['status'] = $status;
-						$concert ['bands'] = $bands_array;
-						array_push($concerts_array, $concert);
 					}
 					$innerView->assign('month', $month);
 					$innerView->assign('concerts', $concerts_array);
