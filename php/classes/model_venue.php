@@ -6,20 +6,16 @@ class ModelVenue {
 	private $mysqli = NULL;
 
 	public function __construct() {
-		include_once('class/model_connect.php');
-		$mysqli = ConnectModel::db_conncect();
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
-	}
-
-	public function __destruct() {
-		$this->mysqli->close;
 	}
 
 	private function getVenues() {
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -29,7 +25,7 @@ class ModelVenue {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -38,7 +34,7 @@ class ModelVenue {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -47,7 +43,7 @@ class ModelVenue {
 		$stmt->bind_param('sis', $name, $city_id, $url);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -56,7 +52,7 @@ class ModelVenue {
 		$stmt->bind_param('sisi', $name, $city_id, $url, $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 }

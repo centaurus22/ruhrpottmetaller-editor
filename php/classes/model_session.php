@@ -56,9 +56,9 @@ class SessionModel {
 	 * @param integer $id Id of the concert which export status should be checked.
 	 * @return integer 1-> Export status is open, 0-> Export status is closed, -1-> id is no integer.
 	 */
-	public function getConcertDisplayStatusEntry ($id) {
-		if (is_int($id)) {
-			initConcertDisplayStatus();
+	public function getConcertDisplayStatus($id) {
+		if (is_numeric($id)) {
+			$this->initConcertDisplayStatus();
 			if  (isset($_SESSION['concert_display_status']["$id"]) 
 				AND $_SESSION['concert_display_status']["$id"]) {
 				return 1;
@@ -79,10 +79,10 @@ class SessionModel {
 	 * @param integer $id Id of the concert.
 	 * @return integer 1-> The Id is an integer, -1-> the id is no ingeger.
 	 */
-	public function changeConcertDisplayStatusEntry ($id) {
-		if (is_int($id)) {
-			initConcertDisplayStatus();
-			if ($this->getConcertDisplayStatus ($id)) {
+	public function changeConcertDisplayStatus ($id) {
+		if (is_numeric($id)) {
+			$this->initConcertDisplayStatus();
+			if ($this->getConcertDisplayStatus ($id) == 1) {
 				$_SESSION['concert_display_status']["$id"] = 0;
 			}
 			else {
@@ -100,7 +100,7 @@ class SessionModel {
 	 *
 	 * @return integer Always 1.
 	 */
-	public function delConcertDisplayStatusEntry () {
+	public function delConcertDisplayStatus () {
 		if (isset($_SESSION['concert_display_status'])) {
 			unset($_SESSION['concert_display_status']);
 		}
@@ -115,7 +115,7 @@ class SessionModel {
 	 */
 	public function setBandLineup($row){
 		if (is_int($row)) {
-			initLineUp();
+			$this->initLineUp();
 			$band = array('first' => 0, 'band_id' => 0, 'addition' => '');
 			array_splice($_SESSION['lineup'], $row, 0, $band);
 			return 1;
@@ -136,7 +136,7 @@ class SessionModel {
 	 */
 	public function updateBandLineup($row, $first, $band_id, $addition){
 		if (is_int($row) AND is_int($band_id)) {
-			initLineUp();
+			$this->initLineUp();
 			$_SESSION['lineup'][$row] = array('first' => $first,
 				'band_id' => $band_id, 'addition' => $addition);
 			return 1;
@@ -154,12 +154,12 @@ class SessionModel {
 	 */
 	public function delBandLineup($row) {
 		if (is_int($row)) {
-			initLineUp();
+			$this->initLineUp();
 			array_splice($_SESSION['lineup'], $row, 1);
 			return 1;
 		}
 		else {
-			return -1
+			return -1;
 		}
 	}
 
@@ -172,7 +172,7 @@ class SessionModel {
 	 */
 	public function shiftBandLineup($row, $direction) {
 		if (is_int($row) OR ($direction != "up" AND $direction != "down")) {
-			initLineUp();
+			$this->initLineUp();
 			array_splice($_SESSION['lineup'], $row, 1);
 			$lenght_lineup = count($_SESSION['lineup']);
 			if ($lenght_lineup > 1) {

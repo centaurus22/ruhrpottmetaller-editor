@@ -13,17 +13,9 @@ class CityModel {
 	 * identifier into the class variable.
 	 */
 	public function __construct() {
-		include_once('class/model_connect.php');
-		$mysqli = ConnectModel::db_conncect();
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
-	}
-
-	/**
-	 * Call the function which initialize the database connection and write the link
-	 * identifier into the class variable.
-	 */
-	public function __destruct() {
-		$this->mysqli->close;
 	}
 
 	/**
@@ -35,7 +27,7 @@ class CityModel {
 		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -50,7 +42,7 @@ class CityModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -65,7 +57,7 @@ class CityModel {
 		$stmt->bind_param('s', $name);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -81,7 +73,7 @@ class CityModel {
 		$stmt->bind_param('si', $name, $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}	
 

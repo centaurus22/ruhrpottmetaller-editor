@@ -13,18 +13,11 @@ class ConcertModel {
 	 * identifier into the class variable.
 	 */
 	public function __construct() {
-		include_once('class/model_connect.php');
-		$mysqli = ConnectModel::db_conncect();
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
 	}
 	
-	/**
-	 * Close the database connection.
-	 */
-	public function __destruct() {
-		$this->mysqli->close;
-	}
-
 	/**
 	 * Read data about concerts in a specified month from the database and deliver it as a 
 	 * three dimensional array.
@@ -40,20 +33,21 @@ class ConcertModel {
 			LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE ?
 			ORDER BY event.datum_beginn ASC');
-		$stmt->bind_param('s', $month . '%');
+		$month = $month . '%';
+		$stmt->bind_param('s', $month);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		//Connect an event with the bands which are playing there.
 		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
-			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
+			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id = ?');
 		for($i = 0; $i < count($result); $i++) {
-			$stmt->bind_param('i', $id)
+			$stmt->bind_param('i', $result[$i]['id']);
 			$stmt->execute();
 			$bands = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 			$result[$i]['bands'] = $bands;
 		}
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -65,6 +59,7 @@ class ConcertModel {
 	 * 		an empty array. 
 	 */
 	public function getConcert($id) {
+		//get the concert data
 		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
 			event.name AS kname,
 			event.url, event.publiziert, location.name AS lname,
@@ -74,7 +69,10 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
+		//get the corresponding bands.
+		$bands = $this->getBands($id);
+		$result[0]['bands'] = $bands;
 		return $result;
 	}
 	
@@ -98,7 +96,7 @@ class ConcertModel {
 		$stmt->execute();
 		//Check if the query was successfull
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 	
@@ -120,7 +118,7 @@ class ConcertModel {
 		$stmt->bind_param('sssis', $name, $date_start, $date_end, $venue_id, $url);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 	
@@ -137,7 +135,7 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -154,7 +152,7 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -171,7 +169,7 @@ class ConcertModel {
 		$stmt->bind_param('iis', $id, $band_id, $addition);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 	
@@ -187,7 +185,7 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -202,7 +200,7 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -217,7 +215,7 @@ class ConcertModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 

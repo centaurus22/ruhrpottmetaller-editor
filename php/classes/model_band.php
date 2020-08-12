@@ -13,16 +13,9 @@ class BandModel {
 	 * identifier into the class variable.
 	 */
 	public function __construct() {
-		include_once('class/model_connect.php');
-		$mysqli = ConnectModel::db_conncect();
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
-	}
-
-	/**
-	 * Close the database connection.
-	 */
-	public function __destruct() {
-		$this->mysqli->close;
 	}
 
 	/**
@@ -48,7 +41,7 @@ class BandModel {
 		}
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -63,7 +56,7 @@ class BandModel {
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -79,7 +72,7 @@ class BandModel {
 		$stmt->bind_param('sii', $name, $nazi, $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return ($result);
 	}
 
@@ -96,7 +89,7 @@ class BandModel {
 		$stmt->bind_param('sii', $name, $nazi, $id);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return ($result);
 	}
 

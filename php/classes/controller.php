@@ -119,120 +119,31 @@ class Controller {
 				$this->view->assign('subtitle', 'License');
 				break;
 			case 'concert':
-				//To determine if the ajax concert output should be empty or not, the access of the 
-				//session is necessary
 				$ajax = 1;
+				//Output of just one concert
+				$innerView->setTemplate('concert');
+				include_once('classes/model_concert.php');
+				$Concert_Model = new ConcertModel;
+				$concerts = $Concert_Model->getConcert($this->request['display_id']);
+				$this->process_concert_data($concerts, $innerView, $month);
+				break;
 			case 'default':
 			default:
 				//Initialize a View object for the second line of the web application, load the
 				//template and pass the output to the inner View.
 				$monthChanger = $this->displayMonthChanger();
+				$innerView->setTemplate('default');
 				$innerView->assign('month_changer', $monthChanger);
-				//Load the models for accessing the concert table
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
-				//And for session variables
-				include_once('classes/model_session.php');
-				$Session_Model = new SessionModel();
-				$Session_Model->initConcertDisplayStatus();
-				if ($this->template == 'concert') {
-					//Output of just one concert
-					$innerView->setTemplate('concert');
-					$concerts = $Concert_Model->getConcert($this->request['display_id']);
-				} 
-				else {
-					//Normal output of data of all concerts from one month.
-					$innerView->setTemplate('default');
-					$concerts = $Concert_Model->getConcerts($month);
-					//By reloading the default page the status of the individual concert exports
-					//must be reseted.
-					$Session_Model->delConcertDisplayStatus();
-				}
+				$concerts = $Concert_Model->getConcerts($month);
+				$this->process_concert_data($concerts, $innerView, $month);
+				//By reloading the default page the status of the individual concert exports
+				//must be reseted.
+				include_once('model_session.php');
+				$Session_Model = new SessionModel;
+				$Session_Model->delConcertDisplayStatus();
 				
-				if (!$concerts) {
-					//Database query failure
-					$innerView->setTemplate('query_failure');
-				}
-				elseif (!($concerts->num_rows)) {
-					//No concerts in the chosen month.
-					$innerView->assign('month', $month);
-					$innerView->setTemplate('default_no_data');
-				}
-				elseif ($this->template == "concert" AND 
-					$Session_Model->getConcertDisplayStatus($this->request['display_id'])) {
-					$innerView->setTemplate('empty_output');
-					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
-				}
-				else {
-					//Load Model to access the preference table
-					include_once('classes/model_pref.php');
-					$Pref_Model = new PrefModel();
-					//Access database entry with the export language setting
-					$pref_export_result = $Pref_Model->getPrefExportLang();
-					$pref_export = $pref_export_result->fetch_assoc();
-					switch($pref_export['export_lang']) {
-					case 'de_DE':
-						setlocale(LC_TIME, "de_DE", "de_DE.utf8");
-						$timeformat_without_month = '%a, %d.';
-						$timeformat_with_month = '%a, %d. %b';
-
-						break;
-					default:
-						$timeformat_without_month = '%a, %d';
-						$timeformat_with_month = '%a, %d %b';
-					}
-					for($j = 0; $j < count($concerts); $j++) {
-						$time_start = strtotime($concerts[$j]['datum_beginn']);
-						//Determine the status of the concert.
-						if ((($time_start - time() < 1209600 AND is_null($concerts[$j]['datum_ende'])) 
-							OR ($time_start - time() < 5184000 AND !is_null($concerts[$j]['datum_ende'])))
-							AND $concerts[$j]['publiziert'] == 0) {
-							$concerts[$j]['status'] = 'urgent';
-						}
-						elseif ($concert[$j]['publiziert'] == 1) {
-							$concerts[$j]['status'] = 'published';
-						}
-						else { 
-							$concerts[$j]['status'] = 'unpublished';
-						}
-						//Determine the human readable date for the concert table.
-						if ($this->template == 'concert') {
-							//Output for a concert export should include the month.
-							$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
-							//Switch the display status
-							$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
-						}
-						else {
-							$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
-						}
-						$date = date('Y-m-d', $time_start);
-						if ($concerts[$j]['datum_ende'] != "") {
-							$time_end = strtotime($concerts[$j]['datum_ende']);
-							if ($this->template == 'concert') {
-								$date_end_human = strftime($timeformat_with_month, $time_end);
-							}
-							else {
-								$date_end_human = strftime($timeformat_without_month, $time_end);
-							}
-							$concerts[$j]['date_human'] = $concerts[$j]['date_human'] . ' – ' . $date_end_human;
-						}	
-						if ($bands == false) {
-							//Database query failure
-							$innerView->setTemplate('query_failure');
-							break;
-						}
-						for($i = 0; $i < count($concert['bands']); $i++) {
-							if ($concert['bands'][$i]['nazi'] == 1) {
-								$concert['bands'][$i]['nazi'] == 'nazi';
-							}
-							else {
-								$concert['bands'][$i]['nazi'] == 'nonazi';
-							}
-						}
-					}
-					$innerView->assign('month', $month);
-					$innerView->assign('concerts', $concerts_array);
-				}
 				$this->view->assign('subtitle', 'Concerts');
 		}
 		if (isset($ajax) AND $ajax = 1) {
@@ -347,6 +258,100 @@ class Controller {
 			}
 		}
 		return $result;
+	}
+
+	/**
+	 * checks for errors, if the dataset is empty or if the concert data should be displayed or not
+	 * and than processes the concert data, if necessary.
+	 *
+	 * @param array $concert Array with concert data.
+	 * @param object $view Object which is in charge of displaying the data.
+	 * @param string $month Month from which the data is processed.
+	 */
+	private function process_concert_data($concerts, $view, $month) {
+		//Load the session model to access the session
+		include_once('classes/model_session.php');
+		$Session_Model = new SessionModel;
+		if ($concerts == "aa") {
+			//Database query failure
+			$view->setTemplate('query_failure');
+		}
+		elseif (count($concerts) == 0) {
+			//No concerts in the chosen month.
+			$view->assign('month', $month);
+			$view->setTemplate('default_no_data');
+		}
+		//If the concert template is set and the display status of the concert is 1,
+		//the display status ist changed to 0 and no other information are displayed-
+		elseif ($this->template == "concert" AND 
+			$Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1) {
+			$view->setTemplate('empty_output');
+			$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
+		}
+		else {
+			//Load Model to access the preference table
+			include_once('classes/model_pref.php');
+			$Pref_Model = new PrefModel();
+			//Access database entry with the export language setting
+			$pref_export = $Pref_Model->getPrefExportLang();
+			switch($pref_export[0]['export_lang']) {
+			case 'de_DE':
+				setlocale(LC_TIME, "de_DE", "de_DE.utf8");
+				$timeformat_without_month = '%a, %d.';
+				$timeformat_with_month = '%a, %d. %b';
+
+				break;
+			default:
+				$timeformat_without_month = '%a, %d';
+				$timeformat_with_month = '%a, %d %b';
+			}
+			for($j = 0; $j < count($concerts); $j++) {
+				$time_start = strtotime($concerts[$j]['datum_beginn']);
+				//Determine the status of the concert.
+				if ((($time_start - time() < 1209600 AND is_null($concerts[$j]['datum_ende'])) 
+					OR ($time_start - time() < 5184000 AND !is_null($concerts[$j]['datum_ende'])))
+					AND $concerts[$j]['publiziert'] == 0) {
+					$concerts[$j]['status'] = 'urgent';
+				}
+				elseif ($concerts[$j]['publiziert'] == 1) {
+					$concerts[$j]['status'] = 'published';
+				}
+				else { 
+					$concerts[$j]['status'] = 'unpublished';
+				}
+				//Determine the human readable date for the concert table.
+				if ($this->template == 'concert') {
+					//Output for a concert export should include the month.
+					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
+					//Switch the display status
+					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
+				}
+				else {
+					$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
+				}
+				$date = date('Y-m-d', $time_start);
+				if ($concerts[$j]['datum_ende'] != "") {
+					$time_end = strtotime($concerts[$j]['datum_ende']);
+					if ($this->template == 'concert') {
+						$date_end_human = strftime($timeformat_with_month, $time_end);
+					}
+					else {
+						$date_end_human = strftime($timeformat_without_month, $time_end);
+					}
+					$concerts[$j]['date_human'] = $concerts[$j]['date_human'] . ' – ' . $date_end_human;
+				}	
+				for($i = 0; $i < count($concerts[$j]['bands']); $i++) {
+					if ($concerts[$j]['bands'][$i]['nazi'] == 1) {
+						$concerts[$j]['bands'][$i]['nazi'] = 'nazi';
+					}
+					else {
+						$concerts[$j]['bands'][$i]['nazi'] = 'nonazi';
+					}
+				}
+			}
+			$view->assign('month', $month);
+			$view->assign('concerts', $concerts);
+		}
 	}
 }
 ?>

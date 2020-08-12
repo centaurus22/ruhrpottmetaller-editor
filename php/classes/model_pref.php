@@ -13,16 +13,9 @@ class PrefModel {
 	 * identifier into the class variable.
 	 */
 	public function __construct() {
-		include_once('class/model_connect.php');
-		$mysqli = ConnectModel::db_conncect();
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
-	}
-
-	/**
-	 * Close the database connection.
-	 */
-	public function __destruct() {
-		$this->mysqli->close;
 	}
 
 	/**
@@ -34,7 +27,7 @@ class PrefModel {
 		$stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences WHERE id = 1');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 	
@@ -47,7 +40,7 @@ class PrefModel {
 		$stmt = $this->mysqli->prepare('SELECT export_lang FROM preferences WHERE id = 1');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 
@@ -64,7 +57,7 @@ class PrefModel {
 		$stmt->bind_param('sss', $export_lang, $header, $footer);
 		$stmt->execute();
 		$result = $stmt->affected_rows;
-		$stmt->close;
+		$stmt->close();
 		return $result;
 	}
 }

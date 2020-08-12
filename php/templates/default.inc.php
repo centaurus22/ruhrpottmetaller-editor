@@ -11,19 +11,21 @@
 			<th>Admin</th>
 		</tr>
 <?php
+
 foreach($this->_['concerts'] as $concert) {
 	//Build the list of bands
 	$bands = '';
 	foreach($concert['bands'] as $band) {
-		if ($band[1]) {
+		if ($band['zusatz']) {
 			$bands = $bands . sprintf(', <span class="%3$s">%1$s (%2$s)</span>', 
-				htmlspecialchars($band[0], ENT_QUOTES), htmlspecialchars($band[1], ENT_QUOTES),
-				htmlspecialchars($band[2], ENT_QUOTES));
+				htmlspecialchars($band['name'], ENT_QUOTES),
+				htmlspecialchars($band['zusatz'], ENT_QUOTES),
+				htmlspecialchars($band['nazi'], ENT_QUOTES));
 		}
 		else {
 			$bands = $bands . sprintf(', <span class="%2$s">%1$s</span>', 
-				htmlspecialchars($band[0], ENT_QUOTES),
-				htmlspecialchars($band[2], ENT_QUOTES));
+				htmlspecialchars($band['name'], ENT_QUOTES),
+				htmlspecialchars($band['nazi'], ENT_QUOTES));
 		}
 	}
 	$bands = substr($bands, 2);
@@ -59,7 +61,7 @@ foreach($this->_['concerts'] as $concert) {
 			htmlspecialchars($concert['kname'], ENT_QUOTES), 
 			htmlspecialchars($concert['lname'], ENT_QUOTES),
 			htmlspecialchars($concert['sname'], ENT_QUOTES), 
-			htmlspecialchars($concert['url'], ENT_QUOTES), $bands, $concert['date'], $this->_['month'],
+			htmlspecialchars($concert['url'], ENT_QUOTES), $bands, $concert['datum_beginn'], $this->_['month'],
 			$concert['id'], $this->_['image_path'] . DIRECTORY_SEPARATOR . 'plus_small.png');
 }
 ?>
