@@ -272,11 +272,7 @@ class Controller {
 		//Load the session model to access the session
 		include_once('classes/model_session.php');
 		$Session_Model = new SessionModel;
-		if ($concerts == "aa") {
-			//Database query failure
-			$view->setTemplate('query_failure');
-		}
-		elseif (count($concerts) == 0) {
+		if (count($concerts) == 0) {
 			//No concerts in the chosen month.
 			$view->assign('month', $month);
 			$view->setTemplate('default_no_data');
