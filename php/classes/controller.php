@@ -81,10 +81,18 @@ class Controller {
 			case 'license':
 				$this->template = 'license';
 				break;
+			case 'export':
+					if (isset($request['display_id'])) {
+						$this->template = 'concert_export';
+					}
+					else {
+						$this->template = 'export';
+					}
+
 			case 'concert':
 			default:
 					if (isset($request['display_id'])) {
-						$this->template = 'concert';
+						$this->template = 'concert_export';
 					}
 					else {
 						$this->template = 'default';
@@ -118,7 +126,7 @@ class Controller {
 				$innerView->setTemplate('license');
 				$this->view->assign('subtitle', 'License');
 				break;
-			case 'concert':
+			case 'concert_export':
 				$ajax = 1;
 				//Output of just one concert
 				$innerView->setTemplate('concert');
