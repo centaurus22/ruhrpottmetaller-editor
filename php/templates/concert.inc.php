@@ -5,14 +5,14 @@ foreach($this->_['concerts'] as $concert) {
 	//Build the list of bands
 	$bands = '';
 	foreach($concert['bands'] as $band) {
-		if ($band[1]) {
+		if ($band['zusatz'] != '') {
 			$bands = $bands . sprintf('%1$s (%2$s), ', 
-				htmlspecialchars($band[0], ENT_QUOTES),
-				htmlspecialchars($band[2], ENT_QUOTES));
+				htmlspecialchars($band['name'], ENT_QUOTES),
+				htmlspecialchars($band['zusatz'], ENT_QUOTES));
 		}
 		else {
 			$bands = $bands . sprintf('%1$s, ', 
-				htmlspecialchars($band[0], ENT_QUOTES));
+				htmlspecialchars($band['name'], ENT_QUOTES));
 		}
 	}
 	$bands = substr($bands, 0, -2);

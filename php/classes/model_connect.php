@@ -1,6 +1,15 @@
 <?php
 
+/**
+ * Class to make a database connection
+ * Version 1.0.0
+ */
 class ConnectModel {
+	/**
+	 * Make the database connection.
+	 *
+	 * @return link identifier
+	 */
 	public static function db_connect() {
 		$dbhost = '';
 		$dbuser = '';
@@ -18,11 +27,6 @@ class ConnectModel {
 		}
 		return $mysqli;
 	}
-	
-	public static function db_disconnect($mysqli) {
-		$mysqli->close();
-	}
-	
-}
+}	
 
 ?>

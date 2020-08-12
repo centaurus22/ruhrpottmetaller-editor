@@ -1,175 +1,222 @@
 <?php
 
+/**
+ * Class to access and manipulate the data in the event table and the event_band table
+ * Version 1.0.0
+ */
 class ConcertModel {
-	//Class to acces and maintain concerts and festivals
-
+	//Link identifier for the connection to the database
 	private $mysqli = NULL;
-	private $lineup = NULL;
 
-	public function __construct($mysqli) {
+	/**
+	 * Call the function which initialize the database connection and write the link
+	 * identifier into the class variable.
+	 */
+	public function __construct() {
+		include_once('model_connect.php');
+		$mysqli = ConnectModel::db_connect();
 		$this->mysqli = $mysqli;
 	}
-
+	
+	/**
+	 * Read data about concerts in a specified month from the database and deliver it as a 
+	 * three dimensional array.
+	 *
+	 * @param string $month Month from which the concert is read.
+	 * @return array Array with the concert data. If no concerts are present in this month it
+	 * 		returns an empty array. 
+	 */
 	public function getConcerts($month) {
-		$month = $this->mysqli->real_escape_string($month);
-		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende,
+		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
 			event.name AS kname, event.url, event.publiziert,
 			location.name AS lname, stadt.name AS sname FROM event
 			LEFT JOIN location ON event.location_id = location.id
-			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE "%1$s%%"
-			ORDER BY event.datum_beginn ASC;', $month);
-		$result = $this->mysqli->query($query);
+			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE ?
+			ORDER BY event.datum_beginn ASC');
+		$month = $month . '%';
+		$stmt->bind_param('s', $month);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close();
+		//Connect an event with the bands which are playing there.
+		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
+			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id = ?');
+		for($i = 0; $i < count($result); $i++) {
+			$stmt->bind_param('i', $result[$i]['id']);
+			$stmt->execute();
+			$bands = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+			$result[$i]['bands'] = $bands;
+		}
+		$stmt->close();
 		return $result;
 	}
 
+	/**
+	 * Read the data of one concert from the database and deliver it as a two dimensional array.
+	 *
+	 * @param integer $id Id of the concert which data is read.
+	 * @return array Array with the concert data. If no concert with this id exist it returns 
+	 * 		an empty array. 
+	 */
 	public function getConcert($id) {
-		$query =sprintf('SELECT event.id, event.datum_beginn, event.datum_ende, event.name AS kname,
+		//get the concert data
+		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
+			event.name AS kname,
 			event.url, event.publiziert, location.name AS lname,
 			stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
-			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = %1$u
-			ORDER BY event.datum_beginn ASC;', $id);
-		$result = $this->mysqli->query($query);
+			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = ?
+			ORDER BY event.datum_beginn ASC');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close();
+		//get the corresponding bands.
+		$bands = $this->getBands($id);
+		$result[0]['bands'] = $bands;
 		return $result;
 	}
 	
+	/**
+	 * Update the data of one concert in the database.
+	 *
+	 * @param integer $id Id of the concert which data is updated.
+	 * @param string $name The name of the concert.
+	 * @param string $date_start It contains the date on which the concert takes place. If the concert is a 
+	 * 	multi-day festival it contains the date of the first day.
+	 * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day 
+	 * 	in the format YYYY-MM-DD. If it is just on one day, the string is empty.
+	 * @param integer $venue_id The id of the venue where the concert takes place
+	 * @param string $url URL which links to information about a concert
+	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
+	 */
 	public function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url) {
-		$name = $this->mysqli->real_escape_string($name);
-		$date_start = $this->mysqli->real_escape_string($date_start);
-		$date_end = $this->mysqli->real_escape_string($date_end);
-		$url = $this->mysqli->real_escape_string($url);
-		$query = sprintf('UPDATE event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s",
-			location_id=%4$u, url="%5$s"
-			WHERE id=%6$u;', $name, $date_start, $date_end, $venue_id, $url, $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('UPDATE event SET name = ?, datum_beginn = ?, datum_ende = ?,
+			location_id = ?, url = ? WHERE id = ?');
+		$stmt->bind_param('sssisi', $name, $date_start, $date_end, $venue_id, $url, $id);
+		$stmt->execute();
+		//Check if the query was successfull
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 	
+	/**
+	 * Insert a concert into the database.
+	 *
+	 * @param string $name The name of the concert.
+	 * @param string $date_start It contains the date on which the concert takes place. If the concert is a 
+	 * 	multi-day festival it contains the date of the first day.
+	 * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day 
+	 * 	in the format YYYY-MM-DD. If it is just on one day, the string is empty.
+	 * @param integer $venue_id The id of the venue where the concert takes place
+	 * @param string $url URL which links to information about a concert
+	 * @return integer Returns 1 for successful operation or -1 for an error.
+	 */
 	public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
-		$name = $this->mysqli->real_escape_string($name);
-		$date_start = $this->mysqli->real_escape_string($date_start);
-		$date_end = $this->mysqli->real_escape_string($date_end);
-		$url = $this->mysqli->real_escape_string($url);
-		$query = sprintf('INSERT INTO event SET name="%1$s", datum_beginn="%2$s", datum_ende="%3$s",
-			location_id=%4$u, url="%5$s";', $name, $date_start, $date_end, $venue_id, $url);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('INSERT INTO event SET name = ?, datum_beginn = ?, datum_ende = ?,
+			location_id = ?, url = ?');
+		$stmt->bind_param('sssis', $name, $date_start, $date_end, $venue_id, $url);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 	
+	/**
+	 * Delete one concert in the database.
+	 *
+	 * @param integer $id Id of the concert which is deleted.
+	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
+	 */
 	public function delConcert($id) {
-		$query = sprintf('DELETE event, event_band FROM EVENT
+		$stmt = $this->mysqli->prepare('DELETE event, event_band FROM EVENT
 			LEFT JOIN event_band ON event.id=event_band.event_id
-			WHERE event.id=%1$u;', $id);
-		$result = $this->mysqli->query($query);
+			WHERE event.id= ?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 
+	/**
+	 * Retrieve band data of bands which are playing on a concert.
+	 *
+	 * @param integer $id Id of the concert from which the band data is retrieved.
+	 * @return array|integer Array with band id, export bit and additional information about the appearance 
+	 * 	of a band, or an integer with -1 in case of an error.
+	 */
 	public function getBands($id) {
-		$query = sprintf('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
-			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE %1$u;', $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
+			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+		$stmt->close();
 		return $result;
 	}
 
+	/**
+	 * Insert band data of a band which is playing at a concert.
+	 *
+	 * @param integer id Id of the concert on which the band is playing.
+	 * @param integer $band_id Band id of the band which is playing.
+	 * @param addition $string Additional information about the appearance.
+	 * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
+	 */
 	public function setBand($id, $band_id, $addition) {
-		$addition = $this->mysqli->real_escape_string($addition);
-		$query = sprintf('INSERT INTO event_band SET event_id=%1$u, band_id=%2$u, zusatz="%3$s";',
-			$id, $band_id, $addition);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, zusatz = ?');
+		$stmt->bind_param('iis', $id, $band_id, $addition);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 	
+	/**
+	 * Retrieve band data of band which are playing on a concert.
+	 *
+	 * @param integer $id Id of the concert from which the band data is retrieved.
+	 * @return array|integer Array with band id, export bit and additional information about the appearance 
+	 * 	of a band, or an integer with -1 in case of an error.
+	 */
 	public function delBands($id) {
-		$query = sprintf('DELETE FROM event_band WHERE event_band.event_id LIKE %1$u;', $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('DELETE FROM event_band WHERE event_band.event_id = ?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 
+	/**
+	 * Set a concert as sold out.
+	 *
+	 * @param integer $id Id of the concert which should be set sold out.
+	 * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
+	 */
 	public function setSoldOut ($id) {
-		$query = sprintf('UPDATE event SET ausverkauft=1 WHERE id=%1$u;', $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('UPDATE event SET ausverkauft=1 WHERE id = ?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
 	}
 
+	/**
+	 * Set a concert as published.
+	 *
+	 * @param integer $id Id of the concert which should be set published.
+	 * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
+	 */
 	public function setPublished ($id) {
-		$query = sprintf('UPDATE event SET publiziert=1 WHERE id=%1$u;', $id);
-		$result = $this->mysqli->query($query);
+		$stmt = $this->mysqli->prepare('UPDATE event SET publiziert=1 WHERE id= ?');
+		$stmt->bind_param('i', $id);
+		$stmt->execute();
+		$result = $stmt->affected_rows;
+		$stmt->close();
 		return $result;
-	}
-
-	public function getConcertDisplayStatus ($id) {
-		if  (isset($_SESSION['concert_display_status']["$id"]) 
-			AND $_SESSION['concert_display_status']["$id"]) {
-			return 1;
-		} 
-		else {
-			return 0;
-
-		}
-	}
-
-	public function changeConcertDisplayStatus ($id) {
-		if ($this->getConcertDisplayStatus ($id)) {
-			$_SESSION['concert_display_status']["$id"] = 0;
-		}
-		else {
-			$_SESSION['concert_display_status']["$id"] = 1;
-		}
-
-	}
-
-	public static function startConcertDisplaySession() {
-		session_start();
-		if(!isset($_SESSION['concert_display_status'])) {
-			$_SESSION['concert_display_status'] = array();
-		}
-	}
-	
-	public function delConcertDisplayStatus () {
-		if (isset($_SESSION['concert_display_status'])) {
-			unset($_SESSION['concert_display_status']);
-		}
-	}
-
-	public function setBandLineup($row){
-		$band = array('first' => 0, 'band_id' => 0, 'addition' => $addition);
-		array_splice($this->item, $row, 0, $band);
-	}
-
-	public function updateBandLineup($row, $first, $band_id, $addition){
-		$this->lineup[$row] = array('first' => $first, 'band_id' => $band_id, 'addition' => $addition);
-	}
-
-	public function delBandLineup($row) {
-		array_splice($this->lineup, $row, 1);
-	}
-
-	public function shiftBandLineup($row, $direction) {
-		$lenght_lineup = count($this->lineup);
-		if ($lenght_lineup > 1) {
-			$band_tmp = $this->lineup[$row];
-			if ($direction == "up" AND $row > 0) {
-				$this->lineup[$row] = $this->lineup[$row - 1];
-				$this->lineup[$row - 1] = $band_tmp;
-			}
-			elseif ($direction == "down" AND $row < $lenght_lineup - 1) {
-				$this->lineup[$row] = $this->lineup[$row + 1];
-				$this->lineup[$row + 1] = $band_tmp;
-
-			}
-		}
-	}
-
-
-	public function startBandsSession() {
-		session_start();
-		if(!isset($_SESSION['lineup'])) {
-			$_SESSION['lineup'] = array();
-		}
-		$this->lineup = $_SESSION['lineup'];
-	}
-
-	public function setBandsSession() {
-		$_SESSION['lineup'] = $this->lineup;
 	}
 
 }
