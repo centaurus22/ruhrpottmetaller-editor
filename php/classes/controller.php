@@ -306,7 +306,7 @@ class Controller {
 			$template = 'default_no_data';
 		}
 		//If the concert_export template is set and the display status of the concert is 1,
-		//the display status ist changed to 0 and no other information are displayed-
+		//the display status ist changed to 0 and no information are displayed-
 		elseif ($this->template == "concert_export" AND
 			$Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1) {
 			$template = 'empty_output';
@@ -342,19 +342,21 @@ class Controller {
 				else { 
 					$concerts[$j]['status'] = 'unpublished';
 				}
-				//Determine the human readable date for the concert table.
 				if ($this->template == 'concert_export') {
-					//Output for a concert export should include the month.
+					//Determine the human readable date for the concert table.
+					//Output for a concert export should also include the name of the month.
 					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
 					//Switch the display status
 					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
 					$template = 'concert_export';
 				}
 				elseif ($this->template == 'export') {
+					//Export of many concerts
 					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
 					$template = 'concert_export';
 				}
 				else {
+					//Normal display of concerts in a table.
 					$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
 					$template = 'default';
 				}
