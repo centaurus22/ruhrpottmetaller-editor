@@ -374,6 +374,8 @@ class Controller {
 				for($i = 0; $i < count($concerts[$j]['bands']); $i++) {
 					if ($concerts[$j]['bands'][$i]['nazi'] == 1) {
 						$concerts[$j]['bands'][$i]['nazi'] = 'nazi';
+						//Write a non-export indicator to the concert-array.
+						$concerts[$j]['nazi'] = 1;
 					}
 					else {
 						$concerts[$j]['bands'][$i]['nazi'] = 'nonazi';
