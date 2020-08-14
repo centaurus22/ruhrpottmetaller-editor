@@ -100,7 +100,11 @@ class Controller {
 			}
 		}
 		elseif (isset($request['edit'])) {
-
+			switch($request['edit']) {
+			case 'concert':
+			case 'default':
+				$this->template = 'concert_edit';
+				break;
 		}
 	}
 
@@ -125,6 +129,10 @@ class Controller {
 			case 'license':
 				$innerView->setTemplate('license');
 				$this->view->assign('subtitle', 'License');
+				break;
+			case 'concert_edit':
+				$innerView->setTemplate('concert_edit');
+				$this->view->assign('subtitle', 'Concert editor');
 				break;
 			case 'export':
 				//Get header and footer from the database and pass it to the inner view
