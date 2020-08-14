@@ -81,10 +81,18 @@ class Controller {
 			case 'license':
 				$this->template = 'license';
 				break;
+			case 'export':
+					if (isset($request['display_id'])) {
+						$this->template = 'concert_export';
+					}
+					else {
+						$this->template = 'export';
+					}
+			break;
 			case 'concert':
 			default:
 					if (isset($request['display_id'])) {
-						$this->template = 'concert';
+						$this->template = 'concert_export';
 					}
 					else {
 						$this->template = 'default';
@@ -118,32 +126,51 @@ class Controller {
 				$innerView->setTemplate('license');
 				$this->view->assign('subtitle', 'License');
 				break;
-			case 'concert':
+			case 'export':
+				//Get header and footer from the database and pass it to the inner view
+				include_once('classes/model_pref.php');
+				$Pref_Model = new PrefModel();
+				$prefs = $Pref_Model->getPref();
+				include_once('classes/model_concert.php');
+				$Concert_Model = new ConcertModel();
+				$concerts = $Concert_Model->getConcerts($month);
+				$result = $this->process_concert_data($concerts, $month);
+				//Assign header and footer to the inner view
+				$innerView->assign('header', $prefs[0]['header']);
+				$innerView->assign('footer', $prefs[0]['footer']);
+				$innerView->assign('concerts', $result['concerts']);
+				$innerView->assign('month_changer', $this->displayMonthChanger());
+				$innerView->setTemplate('concert_export');
+				$this->view->assign('subtitle', 'Export');
+				break;
+			case 'concert_export':
 				$ajax = 1;
 				//Output of just one concert
-				$innerView->setTemplate('concert');
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel;
 				$concerts = $Concert_Model->getConcert($this->request['display_id']);
-				$this->process_concert_data($concerts, $innerView, $month);
+				$result = $this->process_concert_data($concerts, $month);
+				$innerView->assign('concerts', $result['concerts']);
+				$innerView->setTemplate($result['template']);
 				break;
 			case 'default':
 			default:
 				//Initialize a View object for the second line of the web application, load the
 				//template and pass the output to the inner View.
 				$monthChanger = $this->displayMonthChanger();
-				$innerView->setTemplate('default');
-				$innerView->assign('month_changer', $monthChanger);
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
 				$concerts = $Concert_Model->getConcerts($month);
-				$this->process_concert_data($concerts, $innerView, $month);
+				$result = $this->process_concert_data($concerts, $month);
 				//By reloading the default page the status of the individual concert exports
 				//must be reseted.
 				include_once('model_session.php');
 				$Session_Model = new SessionModel;
 				$Session_Model->delConcertDisplayStatus();
-				
+				$innerView->assign('concerts', $result['concerts']);
+				$innerView->assign('month', $month);
+				$innerView->assign('month_changer', $monthChanger);
+				$innerView->setTemplate($result['template']);
 				$this->view->assign('subtitle', 'Concerts');
 		}
 		if (isset($ajax) AND $ajax = 1) {
@@ -261,27 +288,28 @@ class Controller {
 	}
 
 	/**
-	 * checks for errors, if the dataset is empty or if the concert data should be displayed or not
+	 * Checks for errors, if the dataset is empty or if the concert data should be displayed or not
 	 * and than processes the concert data, if necessary.
 	 *
 	 * @param array $concert Array with concert data.
-	 * @param object $view Object which is in charge of displaying the data.
 	 * @param string $month Month from which the data is processed.
+	 * @return array $result Array witch processed data and template
 	 */
-	private function process_concert_data($concerts, $view, $month) {
-		//Load the session model to access the session
-		include_once('classes/model_session.php');
-		$Session_Model = new SessionModel;
+	private function process_concert_data($concerts, $month) {
+		//Load the session model to access the session if the output contains the export of just one concert
+		if ($this->template == "concert_export") {
+			include_once('classes/model_session.php');
+			$Session_Model = new SessionModel;
+		}
 		if (count($concerts) == 0) {
 			//No concerts in the chosen month.
-			$view->assign('month', $month);
-			$view->setTemplate('default_no_data');
+			$template = 'default_no_data';
 		}
-		//If the concert template is set and the display status of the concert is 1,
-		//the display status ist changed to 0 and no other information are displayed-
-		elseif ($this->template == "concert" AND 
+		//If the concert_export template is set and the display status of the concert is 1,
+		//the display status ist changed to 0 and no information are displayed-
+		elseif ($this->template == "concert_export" AND
 			$Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1) {
-			$view->setTemplate('empty_output');
+			$template = 'empty_output';
 			$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
 		}
 		else {
@@ -295,7 +323,6 @@ class Controller {
 				setlocale(LC_TIME, "de_DE", "de_DE.utf8");
 				$timeformat_without_month = '%a, %d.';
 				$timeformat_with_month = '%a, %d. %b';
-
 				break;
 			default:
 				$timeformat_without_month = '%a, %d';
@@ -315,15 +342,23 @@ class Controller {
 				else { 
 					$concerts[$j]['status'] = 'unpublished';
 				}
-				//Determine the human readable date for the concert table.
-				if ($this->template == 'concert') {
-					//Output for a concert export should include the month.
+				if ($this->template == 'concert_export') {
+					//Determine the human readable date for the concert table.
+					//Output for a concert export should also include the name of the month.
 					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
 					//Switch the display status
 					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
+					$template = 'concert_export';
+				}
+				elseif ($this->template == 'export') {
+					//Export of many concerts
+					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
+					$template = 'concert_export';
 				}
 				else {
+					//Normal display of concerts in a table.
 					$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
+					$template = 'default';
 				}
 				$date = date('Y-m-d', $time_start);
 				if ($concerts[$j]['datum_ende'] != "") {
@@ -345,9 +380,10 @@ class Controller {
 					}
 				}
 			}
-			$view->assign('month', $month);
-			$view->assign('concerts', $concerts);
 		}
+		$result['concerts'] = $concerts;
+		$result['template'] = $template;
+		return $result;
 	}
 }
 ?>

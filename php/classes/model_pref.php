@@ -24,7 +24,8 @@ class PrefModel {
 	 * @return array Array with preferences. If no preferences are set it returns an empty array. 
 	 */
 	public function getPref() {
-		$stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences WHERE id = 1');
+		$stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences
+			WHERE id = 1');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close();
