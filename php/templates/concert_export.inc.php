@@ -21,7 +21,11 @@ foreach($this->_['concerts'] as $concert) {
 		}
 	}
 	$bands = substr($bands, 0, -2);
-	echo '<p>* '. $concert['date_human'] . ': ';
+	echo '<p>* ';
+	if ($concert['ausverkauft'] == 1) {
+		echo '(ausverkauft) ';
+	}	
+	$concert['date_human'] . ': ';
 	if ($concert['kname']) {
 		echo htmlspecialchars($concert['kname'], ENT_QUOTES) . ', ';
 	}
