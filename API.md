@@ -49,12 +49,17 @@ The `del_id`specifies which database entry of the indicated type is deleted.
 * `special=sub`: The `sub` value is for the purpose of Ajax calls. If this parameter is provided, the logically following menu items are limited by higher-level objects with this id. For example, if `display=city` in combination with `display_id=<city_id>` and `special=sub` is provided the *rpmetaller-editor* provides the drop down menue options with venues in this city.
 ##### replacements
 Other values of `special` are automatically replaced by ordinary non-speciall parameters. This allows to choose those parameters from a drop down menu within the software. The following replacements are implemented in the *rpmetaller-editor*. Sometimes have to be combined with a correponding data id.
-* *`concert`*
-  * `special=add_concert` is replaced with `edit=concert` and the `concert_id` parameter is deleted from the request string.
-  * `special=edit_concert` is replaced with `edit=concert`.
-  * `special=published_concert` is replaced with `save=concert&published=1`.
-  * `special=del_concert` is replaced with `del=concert`.
-  * `special=sold_out_concert` is replaced with `save=concert&sold_out=1`.
+* `special=concert`
+  * `&type=add` is replaced with `edit=concert` and the `concert_id` parameter is deleted from the request string.
+  * `&type=edit` is replaced with `edit=concert`.
+  * `&type=published` is replaced with `save=concert&published=1`.
+  * `&type=del` is replaced with `del=concert`.
+  * `&type=sold_out` is replaced with `save=concert&sold_out=1`.
+* `special=lineup`
+  * `&type=add`
+  * `&type=add`
+  * `&type=add`
+  * `&type=add`
 
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
