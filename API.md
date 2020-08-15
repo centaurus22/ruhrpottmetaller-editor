@@ -57,9 +57,9 @@ Other values of `special` are automatically replaced by ordinary non-speciall pa
   * `&type=sold_out` is replaced with `save=concert&sold_out=1`.
 * `special=lineup`
   * `&type=add`
-  * `&type=add`
-  * `&type=add`
-  * `&type=add`
+  * `&type=del`
+  * `&type=up`
+  * `&type=down`
 
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
