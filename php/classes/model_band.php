@@ -28,15 +28,16 @@ class BandModel {
 	public function getBands($initial) {
 		switch($initial) {
 		case '':
-			$this->mysqli->prepare('SELECT id, name, nazi FROM band ORDER BY name');
+			$stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band ORDER BY name');
 			break;
-		case 's':
-			$this->mysqli->prepare('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]"
+		case '%':
+			$stmt = $this->mysqli->prepare('SELECT id, name, nazi from band WHERE name NOT REGEXP "^[A-Z,a-z]"
 				ORDER BY name;');
 			break;
 		default:
-			$this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE name LIKE ? ORDER BY name');
-			$stmt->bind_param('i', $initial . '%');
+			$stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE name LIKE ? ORDER BY name');
+			$initial = $initial . '%';
+			$stmt->bind_param('s', $initial);
 
 		}
 		$stmt->execute();

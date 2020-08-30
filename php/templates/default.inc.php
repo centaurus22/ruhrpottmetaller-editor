@@ -38,13 +38,14 @@ foreach($this->_['concerts'] as $concert) {
 			<td>%4\$s, %5\$s</td>
 			<td>%7\$s</td>
 			<td><a class='%1\$s' href='%6\$s'>%6\$s</a></td>
-			<td class=\"table_buttons\">
+			<td class=\"table_elements\">
 				<form action=\"\" method=\"GET\" id=\"%10\$u\">
-					<select name=\"special\">
-						<option value=\"add_concert\">Add</option>
-						<option value=\"edit_concert\">Edit</option>
+					<input type=\"hidden\" name=\"special\" value=\"concert\">
+					<select name=\"type\">
+						<option value=\"add\">Add</option>
+						<option value=\"edit\">Edit</option>
 						<option value=\"published\">Published</option>
-						<option value=\"del_concert\">Del</option>
+						<option value=\"del\">Del</option>
 						<option value=\"sold_out\">Sold Out</option>
 					</select>
 					<input type=\"hidden\" name=\"month\" value=\"%9\$s\">
@@ -55,14 +56,13 @@ foreach($this->_['concerts'] as $concert) {
 			</td>
 		</tr>
 		<tr class='%1\$s_unten'>
-			<td></td>
-			<td id=\"concert_%10\$s\" colspan=\"7\"></td>
+			<td id=\"concert_%10\$s\" colspan=\"8\"></td>
 		</tr>\n", htmlspecialchars($concert['status'], ENT_QUOTES), $concert['date_human'],
 			htmlspecialchars($concert['kname'], ENT_QUOTES), 
 			htmlspecialchars($concert['lname'], ENT_QUOTES),
 			htmlspecialchars($concert['sname'], ENT_QUOTES), 
 			htmlspecialchars($concert['url'], ENT_QUOTES), $bands, $concert['datum_beginn'], $this->_['month'],
-			$concert['id'], $this->_['image_path'] . DIRECTORY_SEPARATOR . 'plus_small.png');
+			$concert['id'], $this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
 }
 ?>
 	</table>

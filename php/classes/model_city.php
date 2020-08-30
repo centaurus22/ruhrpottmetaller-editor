@@ -24,7 +24,7 @@ class CityModel {
 	 * @return array Array with city data.
 	 */
 	public function getCities() {
-		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt');
+		$stmt = $this->mysqli->prepare('SELECT id, name FROM stadt ORDER BY name');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close();

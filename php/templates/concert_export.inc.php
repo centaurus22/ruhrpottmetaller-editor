@@ -22,18 +22,18 @@ foreach($this->_['concerts'] as $concert) {
 			}
 		}
 		$bands = substr($bands, 0, -2);
-		echo '<p>* ';
+		echo "<p ondblclick=\"selectElmCnt(this)\">* ";
 		if ($concert['ausverkauft'] == 1) {
 			echo '(ausverkauft) ';
 		}	
-		$concert['date_human'] . ': ';
+		echo $concert['date_human'] . ' ';
 		if ($concert['kname']) {
 			echo htmlspecialchars($concert['kname'], ENT_QUOTES) . ', ';
 		}
 		echo ' ' . htmlspecialchars($concert['lname'], ENT_QUOTES) . ' in  ' . 
-			htmlspecialchars($concert['sname'], ENT_QUOTES) . ".<br/>";
-		echo $bands . '.<br/>';	
-		echo htmlspecialchars($concert['url'], ENT_QUOTES) . "</p>\n";
+			htmlspecialchars($concert['sname'], ENT_QUOTES) . ":<br>";
+		echo '&nbsp;&nbsp;' . $bands . '.<br/>';	
+		echo '&nbsp;&nbsp;' . htmlspecialchars($concert['url'], ENT_QUOTES) . "</p>\n";
 	}
 }
 if (isset($this->_['header'])) {

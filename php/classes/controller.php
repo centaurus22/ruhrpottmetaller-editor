@@ -1,16 +1,12 @@
 <?php
-//
+//The controller
 class Controller {
 	//NULL Array from $_GET and $_POST.
 	private $request = NULL;
 	//string Name of the template.
 	private $template = '';
-	//string folder in which images are stored.
-	private $image_path = 'images';
 	//object Object of the (outer) view.
 	private $view = NULL;
-	//integer Defines if the call is an ajax call.
-	private $ajax = 0;
 
 	/**
 	 * Initialize the controller.
@@ -20,38 +16,39 @@ class Controller {
 	public function __construct($request) {
 		$this->view = new View();
 		//translate actions induced by the special parameters
-		if (isset($request['special'])) {
-			switch($request['special']) {
-				case 'edit_concert':
+		if (isset($request['special']) AND $request['special'] == 'concert' AND isset($request['type'])){
+			switch($request['type']) {
+				case 'edit':
 					if (isset($request['id'])) {
 						$request['edit_id'] = $request['id'];
 					}
-				case 'add_concert':
+				case 'add':
 					$request['edit'] = 'concert';
 					break;
-				case 'published_concert':
-						if (isset($request['id'])) {
-							$request['save_id'] = $request['id'];
-						}
-						$request['save'] = 'concert';
-						$request['published'] = 1;
-						break;
-				case 'del_concert':
-						if (isset($request['id'])) {
-							$request['del_id'] = $request['id'];
-						}
-						$request['del'] = 'concert';
-						break;
-				case 'sold_out_concert':
-						if (isset($request['id'])) {
-							$request['save_id'] = $request['id'];
-						}
-						$request['save'] = 'concert';
-						$request['sold_out'] = 1;
-						break;
-				}
+				case 'published':
+					if (isset($request['id'])) {
+						$request['save_id'] = $request['id'];
+					}
+					$request['save'] = 'concert';
+					$request['published'] = 1;
+					break;
+				case 'del':
+					if (isset($request['id'])) {
+						$request['del_id'] = $request['id'];
+					}
+					$request['del'] = 'concert';
+					break;
+				case 'sold_out':
+					if (isset($request['id'])) {
+						$request['save_id'] = $request['id'];
+					}
+					$request['save'] = 'concert';
+					$request['sold_out'] = 1;
+					break;
+			}
 		}
 		$this->request = $request;
+		//Deleting and saving concerts
 		if (isset($request['del']) AND isset($request['del_id'])) {
 			switch($request['del']) {
 			case 'concert':
@@ -66,7 +63,7 @@ class Controller {
 			case 'concert':
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
-				$result = save_concert();
+				$result = $this->save_concert();
 				break;
 			}
 
@@ -75,36 +72,44 @@ class Controller {
 		 * translation of request parameters to the name of the
 		 * corresponding template.
 		 */
-
 		if (isset($request['display'])) {
 			switch($request['display']) {
-			case 'license':
-				$this->template = 'license';
-				break;
-			case 'export':
+				case 'license':
+					$this->template = 'license';
+					break;
+				case 'export':
 					if (isset($request['display_id'])) {
 						$this->template = 'concert_export';
-					}
-					else {
+					} else {
 						$this->template = 'export';
 					}
-			break;
-			case 'concert':
-			default:
+					break;
+				case 'concert':
+				default:
 					if (isset($request['display_id'])) {
 						$this->template = 'concert_export';
-					}
-					else {
+					} else {
 						$this->template = 'default';
 					}
+					break;
 			}
-		}
-		elseif (isset($request['edit'])) {
+		} elseif (isset($request['edit'])) {
 			switch($request['edit']) {
 			case 'concert':
 			case 'default':
 				$this->template = 'concert_edit';
 				break;
+			}
+		} elseif (isset($request['special'])) {
+			switch ($request['special']) {
+				case 'lineup':
+					$this->template = 'lineup';
+					break;
+				case 'lineup_sub':
+					$this->template = 'lineup_sub';
+				case 'edit_sub':
+					$this->template = 'edit_sub';
+			}
 		}
 	}
 
@@ -116,23 +121,104 @@ class Controller {
 	public function display() {
 		$innerView = new View();
 		if (isset($this->request['month'])) {
-			$month =  $this->request['month'];
+			$month = $this->request['month'];
 		}
-		else {
+		else{
 			//Create the month value containing the current month
 			$month = date('Y-m'); 
 			$this->request['month'] = $month;
 		}
+		$request = $this->request;
 		$this->view->assign('month', $month);
-		$innerView->assign('image_path', $this->image_path);
 		switch($this->template) {
 			case 'license':
 				$innerView->setTemplate('license');
 				$this->view->assign('subtitle', 'License');
 				break;
 			case 'concert_edit':
+				//Open a session
+				include_once('model_session.php');
+				$Session_Model = new SessionModel();
+				include_once('model_city.php');
+				$City_Model = new CityModel();
+				$cities = $City_Model->getCities();
+				array_splice($cities, 0, 0, array(array('id' => 0, 'name' => '')));
+				$cities[] = array('id' => 1, 'name' => 'New city');
+				$innerView->assign('city_venue_form', $this->displayCityVenueForm(0, 0));
+				$innerView->assign('venue_new_form', $this->displayVenueNewForm(0));
 				$innerView->setTemplate('concert_edit');
-				$this->view->assign('subtitle', 'Concert editor');
+				$innerView->assign('cities', $cities);
+				$innerView->assign('month', $month);
+				$innerView->assign('lineup', $this->displayLineUp($Session_Model));
+				$this->view->assign('subtitle', 'concert editor');
+				break;
+			case 'edit_sub':
+				$ajax = 1;
+				if (isset($request['city_id']) AND isset($request['venue_id'])) {
+					$innerView->assign('content', $this->displayCityVenueForm($request['city_id'], $request['venue_id']));
+				} elseif (isset($request['venue_id'])) {
+					$innerView->assign('content', $this->displayVenueNewForm($request['venue_id']));
+
+				} else {
+					$innerView->assign('content', '<strong>Something weird happened!</strong>');
+				}
+				$innerView->setTemplate('ajax');
+				break;
+			case 'lineup':
+				$ajax = 1;
+				$error = 0;
+				include_once('model_session.php');
+				$Session_Model = new SessionModel();
+				if (isset($request['type']) AND isset($request['row'])) {
+					switch($request['type']) {
+						case 'add':
+							$Session_Model->setBandLineUp($request['row']);
+							break;
+						case 'del':
+							$Session_Model->delBandLineUp($request['row']);
+							break;
+						case 'shift':
+							if (isset($request['direction'])) {
+								$Session_Model->shiftBandLineUp($request['row'], $request['direction']);
+							} else {
+								$error = 1;
+							}
+							break;
+						case 'save':
+							if (isset($request['field']) AND isset($request['value'])) {
+								$Session_Model->updateBandLineUp($request['row'], $request['field'], $request['value']);
+								exit;
+							} else {
+								$error = 1;
+							}
+					}
+				} 
+				else {
+					$error = 1;
+				}
+				$innerView->setTemplate('ajax');
+				$innerView->assign('content', $this->displayLineUp($Session_Model, $error));
+				break;
+			case 'lineup_sub':
+				$ajax = 1;
+				switch($request['type']) {
+					case 'band_select_options':
+						if (isset($request['first_sign']) AND isset($request['band_id'])) {
+							$innerView->assign('content', $this->displayBandSelectOptions($request['first_sign'], $request['band_id']));
+						} else {
+							$innerView->assign('content', '<option value="0">Something weird happened!</option>');
+						}
+						break;
+					case 'band_new_form':
+						if (isset($request['row']) AND isset($request['band_id']))
+						{
+							$innerView->assign('content', $this->displayBandNewForm($request['row'], $request['band_id']));
+						} else {
+							$innerView->assign('content', '<strong>Something weird happened!</strong>');
+						}	
+						break;
+				}
+				$innerView->setTemplate('ajax');
 				break;
 			case 'export':
 				//Get header and footer from the database and pass it to the inner view
@@ -149,14 +235,14 @@ class Controller {
 				$innerView->assign('concerts', $result['concerts']);
 				$innerView->assign('month_changer', $this->displayMonthChanger());
 				$innerView->setTemplate('concert_export');
-				$this->view->assign('subtitle', 'Export');
+				$this->view->assign('subtitle', 'export');
 				break;
 			case 'concert_export':
 				$ajax = 1;
 				//Output of just one concert
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel;
-				$concerts = $Concert_Model->getConcert($this->request['display_id']);
+				$concerts = $Concert_Model->getConcert($request['display_id']);
 				$result = $this->process_concert_data($concerts, $month);
 				$innerView->assign('concerts', $result['concerts']);
 				$innerView->setTemplate($result['template']);
@@ -179,7 +265,7 @@ class Controller {
 				$innerView->assign('month', $month);
 				$innerView->assign('month_changer', $monthChanger);
 				$innerView->setTemplate($result['template']);
-				$this->view->assign('subtitle', 'Concerts');
+				$this->view->assign('subtitle', 'concerts');
 		}
 		if (isset($ajax) AND $ajax = 1) {
 			//On ajax calls the template of the outer view should be empty
@@ -231,6 +317,129 @@ class Controller {
 		$monthChanger->assign('month_human', $month_human);
 		return $monthChanger->loadTemplate();
 	}
+
+
+	/**
+	 * Generete a view for the concert lineup
+	 *
+	 * @param object $Session_Model Object to access data in the session
+	 * @return string Output of the lineup template.
+	 */
+	public function displayLineUp($Session_Model, $error = 0) {
+		//Initialize a new view for displaying the lineup
+		$lineUp = new View();
+		//Set the corresponding template
+		$lineUp->setTemplate('lineup');
+		//Get the actual lineup
+		$bands = $Session_Model->GetBandsLineUp();
+		//Add a initial lineup to the session if the lineup is empty
+		if (count($bands) == 0) {
+			$Session_Model->setBandLineUp(0);
+			$bands = $Session_Model->GetBandsLineUp();
+		}
+		$band_select_options = array();
+		$band_new_form = array();
+		for ($lineup_index = 0; $lineup_index < count($bands); $lineup_index++) {
+			$band_select_options[$lineup_index] = $this->displayBandSelectOptions($bands[$lineup_index]['first_sign'], $bands[$lineup_index]['band_id']);
+			$band_new_form[$lineup_index] = $this->displayBandNewForm($lineup_index, $bands[$lineup_index]['band_id']);
+		}
+	//Set variables and arrays for the view
+	//
+		$lineUp->assign('band_select_options', $band_select_options);
+		$lineUp->assign('band_new_form', $band_new_form);
+		$lineUp->assign('error', $error);
+		$lineUp->assign('lineup', $bands);
+		return $lineUp->loadTemplate();
+	}
+
+	/**
+	 * Display the option tags for the select element to choose a band.
+	 *
+	 * @param integer  $city_id The id of the choosen city. 
+	 * @param integer  $venue_id Band id The id of the choosen venue.
+	 * @return string Output of the template.
+	 */
+	public function displayCityVenueForm ($city_id, $venue_id) {
+		$City_Venue_Form = new View();
+		require_once('model_venue.php');
+		$Venue_Model = new VenueModel();
+		if ($city_id == 0) {
+			$venues = $Venue_Model->getVenues();
+		} elseif ($city_id == 1) {
+			$venues = array();
+		} else {
+			$venues = $Venue_Model->getVenuesByCity($city_id);
+		}
+		array_splice($venues, 0, 0, array(array('id' => 0, 'name' => '')));
+		//Test, if the band id is in the array with the choosen bands
+		$City_Venue_Form->assign('city_id', $city_id);
+		$City_Venue_Form->assign('venues', $venues);
+		$City_Venue_Form->assign('venue_id', $venue_id);
+		$City_Venue_Form->setTemplate('city_venue_form');
+		return $City_Venue_Form->loadTemplate();
+	}
+
+	/**
+	 * 	Display the form to enter the name of a new venue and to enter a standard URL for that venue if
+	 * 	needed.
+	 *
+	 * @param integer $venue_id Band id of the band.
+	 * @return string Output of the template.
+	 */
+	public function displayVenueNewForm($venue_id) {
+		$Venue_New_Form = new View();
+		$Venue_New_Form->assign('venue_id', $venue_id);
+		$Venue_New_Form->setTemplate('venue_new_form');
+		return $Venue_New_Form->loadTemplate();
+	}
+
+	/**
+	 * Display the option tags for the select element to choose a band.
+	 *
+	 * @param integer|string $first_sign First (capital) letter of the band or '%' for a special symbol
+	 * @param integer  $band_id Band id 
+	 * @return string Output of the template.
+	 */
+	public function displayBandSelectOptions ($first_sign, $band_id) {
+		$Band_Select_Options = new View();
+		if ($first_sign == '') {
+			$bands = array(
+				array('id' => 1, 'name' => 'TBA'), 
+				array('id' => 2, 'name' => 'Support')
+			);
+		} else {
+			require_once('model_band.php');
+			$Band_Model = new BandModel();
+			$bands = $Band_Model->getBands($first_sign);
+		}
+		array_splice($bands, 0, 0, array(array('id' => 0, 'name' => '')));
+		$bands[] = array('id' => 3, 'name' => 'New band');
+		//Test, if the band id is in the array with the choosen bands
+		$Band_Select_Options->assign('bands', $bands);
+		$Band_Select_Options->assign('band_id', $band_id);
+		$Band_Select_Options->setTemplate('band_select_options');
+		return $Band_Select_Options->loadTemplate();
+	}
+	
+	/**
+	 * 	Display the form to enter the name of a new band. Either with type="text" or type="hidden.
+	 *
+	 * @param integer $row Row of the lineup
+	 * @param integer $band_id Band id of the band.
+	 * @return string Output of the template.
+	 */
+	public function displayBandNewForm($row, $band_id) {
+		include_once('classes/model_session.php');
+		$Session_Model = new SessionModel();
+		$lineup = $Session_Model->getBandsLineup();
+		$Band_New_Form = new View();
+		$Band_New_Form->assign('band_new_name', $lineup[$row]['band_new_name']);
+		$Band_New_Form->assign('row', $row);
+		$Band_New_Form->assign('band_id', $band_id);
+		$Band_New_Form->setTemplate('band_new_form');
+		return $Band_New_Form->loadTemplate();
+	}
+
 	/**
 	 * This function has the purpose of interacting withe the Concert Model.
 	 *
@@ -275,21 +484,21 @@ class Controller {
 			//Update Bands if the lenght of the bands array and the addition array is the same
 			if (count($request['band']) == count($request['addition'])) {
 				$result = $Concert_Model->delBands($request['save_id']);
-				for ( $n = 1; $n < count($request['band']) - 1; $n++ ) {
-					$result = $Concert_Model->setBand($request['save_id'], request['band'][$n],
-						$request['addition'][$n]);
+				for ( $lineup_index = 0; $lineup_index < count($request['band']); $lineup_index++ ) {
+					$result = $Concert_Model->setBand($request['save_id'], request['band'][$lineup_index],
+						$request['addition'][$lineup_index]);
 				}
 			}
 			else {
 				$result = 0;
 			}
 		}
-		if (isset($this->request['save_id'])) {
-			if (isset($this->request['published']) AND $this->request['published']) {
-				$result = $Concert_Model->setPublished($this->request['save_id']);
+		if (isset($request['save_id'])) {
+			if (isset($request['published']) AND $request['published'] == 1) {
+				$result = $Concert_Model->setPublished($request['save_id']);
 			}
-			if (isset($this->request['sold_out']) AND $this->request['sold_out']) {
-				$result = $Concert_Model->setSoldOut($this->request['save_id']);
+			if (isset($request['sold_out']) AND $request['sold_out'] == 1) {
+				$result = $Concert_Model->setSoldOut($request['save_id']);
 			}
 		}
 		return $result;
@@ -336,57 +545,61 @@ class Controller {
 				$timeformat_without_month = '%a, %d';
 				$timeformat_with_month = '%a, %d %b';
 			}
-			for($j = 0; $j < count($concerts); $j++) {
-				$time_start = strtotime($concerts[$j]['datum_beginn']);
+			for($concert_index = 0; $concert_index < count($concerts); $concert_index++) {
+				$time_start = strtotime($concerts[$concert_index]['datum_beginn']);
 				//Determine the status of the concert.
-				if ((($time_start - time() < 1209600 AND is_null($concerts[$j]['datum_ende'])) 
-					OR ($time_start - time() < 5184000 AND !is_null($concerts[$j]['datum_ende'])))
-					AND $concerts[$j]['publiziert'] == 0) {
-					$concerts[$j]['status'] = 'urgent';
+				$two_weeks = 1209600;
+				$two_months = 5184000;
+				if ((($time_start - time() < $two_weeks 
+					AND is_null($concerts[$concert_index]['datum_ende'])) 
+					OR ($time_start - time() < $two_months 
+					AND !is_null($concerts[$concert_index]['datum_ende'])))
+					AND $concerts[$concert_index]['publiziert'] == 0) {
+					$concerts[$concert_index]['status'] = 'urgent';
 				}
-				elseif ($concerts[$j]['publiziert'] == 1) {
-					$concerts[$j]['status'] = 'published';
+				elseif ($concerts[$concert_index]['publiziert'] == 1) {
+					$concerts[$concert_index]['status'] = 'published';
 				}
 				else { 
-					$concerts[$j]['status'] = 'unpublished';
+					$concerts[$concert_index]['status'] = 'unpublished';
 				}
 				if ($this->template == 'concert_export') {
 					//Determine the human readable date for the concert table.
 					//Output for a concert export should also include the name of the month.
-					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
+					$concerts[$concert_index]['date_human'] = strftime($timeformat_with_month, $time_start);
 					//Switch the display status
 					$Session_Model->changeConcertDisplayStatus($this->request['display_id']);
 					$template = 'concert_export';
 				}
 				elseif ($this->template == 'export') {
 					//Export of many concerts
-					$concerts[$j]['date_human'] = strftime($timeformat_with_month, $time_start);
+					$concerts[$concert_index]['date_human'] = strftime($timeformat_with_month, $time_start);
 					$template = 'concert_export';
 				}
 				else {
 					//Normal display of concerts in a table.
-					$concerts[$j]['date_human'] = strftime($timeformat_without_month, $time_start);
+					$concerts[$concert_index]['date_human'] = strftime($timeformat_without_month, $time_start);
 					$template = 'default';
 				}
 				$date = date('Y-m-d', $time_start);
-				if ($concerts[$j]['datum_ende'] != "") {
-					$time_end = strtotime($concerts[$j]['datum_ende']);
+				if ($concerts[$concert_index]['datum_ende'] != "") {
+					$time_end = strtotime($concerts[$concert_index]['datum_ende']);
 					if ($this->template == 'concert') {
 						$date_end_human = strftime($timeformat_with_month, $time_end);
 					}
 					else {
 						$date_end_human = strftime($timeformat_without_month, $time_end);
 					}
-					$concerts[$j]['date_human'] = $concerts[$j]['date_human'] . ' – ' . $date_end_human;
+					$concerts[$concert_index]['date_human'] = $concerts[$concert_index]['date_human'] . ' – ' . $date_end_human;
 				}	
-				for($i = 0; $i < count($concerts[$j]['bands']); $i++) {
-					if ($concerts[$j]['bands'][$i]['nazi'] == 1) {
-						$concerts[$j]['bands'][$i]['nazi'] = 'nazi';
+				for($lineup_index = 0; $lineup_index < count($concerts[$concert_index]['bands']); $lineup_index++) {
+					if ($concerts[$concert_index]['bands'][$lineup_index]['nazi'] == 1) {
+						$concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nazi';
 						//Write a non-export indicator to the concert-array.
-						$concerts[$j]['nazi'] = 1;
+						$concerts[$concert_index]['nazi'] = 1;
 					}
 					else {
-						$concerts[$j]['bands'][$i]['nazi'] = 'nonazi';
+						$concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nonazi';
 					}
 				}
 			}

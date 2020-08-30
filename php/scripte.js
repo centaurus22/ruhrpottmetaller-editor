@@ -1,31 +1,66 @@
-function get_locations_1() {
-	var stadt_id = document.getElementById("stadt_id").value;
+// selects the content of an element. Receives the object with that element
+function selectElmCnt(elm) {
+  // for Internet Explorer
+  if(document.body.createTextRange) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(elm);
+    range.select();
+  }
+  else if(window.getSelection) {
+    // other browsers
+    var selection = window.getSelection();
+    var range = document.createRange();
+    range.selectNodeContents(elm);
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+}
+
+function display_city_venue_form() {
+	var city_id = document.getElementById("city_id").value;
+	if (city_id !== 1) {
+		var venue_id_element = document.getElementById("venue_id");
+		if (venue_id_element != null) {
+			var venue_id = document.getElementById("venue_id").value;
+		}
+	} else {
+		var venue_id = 1;
+	}
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
-	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-		document.getElementById("locationwahl1").innerHTML=xmlhttp.responseText;
+		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("city_venue_form").innerHTML=xmlhttp.responseText;
 		}
-	  }
-	var datei = "get_location1.php?stadt_id=" + stadt_id;
-	xmlhttp.open("GET",datei,true);
+	}
+	var file = "index.php?special=edit_sub&city_id=" + city_id + "&venue_id=" + venue_id;
+	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
 }
 
-function get_locations_2() {
-	var location_id = document.getElementById("location_id").value;
-	var stadt_id = document.getElementById("stadt_id").value;
+function display_venue_new_form() {
+	var city_id = document.getElementById("city_id").value;
+	if (city_id == 1) {
+		var venue_id = 1;
+	} else {
+		var venue_id_element = document.getElementById("venue_id");
+		if (venue_id_element == null) {
+			var venue_id = 0;
+		} else {
+			var venue_id = document.getElementById("venue_id").value;
+		}
+	}
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-		 document.getElementById("locationwahl2").innerHTML=xmlhttp.responseText;
+		 document.getElementById("venue_new_form").innerHTML=xmlhttp.responseText;
 	  }
 	}
-	var datei = "get_location2.php?stadt_id=" + stadt_id + "&location_id=" + location_id;
-	xmlhttp.open("GET",datei,true);
+	var file = "index.php?special=edit_sub&venue_id=" + venue_id;
+	xmlhttp.open("GET",file,true);
 	xmlhttp.send();
 
 	/*Wenn noch keine URL angegeben ist, soll die Standard-URL einer Location eingesetzt werden,
-	insofern diese Vorhangen ist*/
+	insofern diese Vorhangen ist
 	var url = document.getElementById("url").value;
 	if ((url == '' || window.editurl == 0) && location_id != "n") {
 		xmlhttp_url=new XMLHttpRequest();
@@ -38,94 +73,79 @@ function get_locations_2() {
 		xmlhttp_url.open("GET",datei,true);
 		xmlhttp_url.send();
 	}
+*/
 }
 
-
-function get_band_1(zeile) {
-	var anfang = document.getElementById("anfang_" + zeile).value;
+function get_band_select_options(row) {
+	var first_sign = document.getElementById("first_sign_" + row).value;
+	var band_id = document.getElementById("band_id_" + row).value;
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-		document.getElementById("band_id_" + zeile).innerHTML=xmlhttp.responseText;
+		document.getElementById("band_id_" + row).innerHTML=xmlhttp.responseText;
 		}
 	  }
-	var datei = "get_band.php?anfang=" + anfang + "&zeile=" + zeile;
+	var datei = "index.php?special=lineup_sub&type=band_select_options&first_sign=" + first_sign + "&band_id=" +band_id;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }
 
-function get_band_2(zeile) {
-	var band_id  = document.getElementById("band_id_" + zeile).value;
-	if (band_id == "n") {
-		document.getElementById("band_" + zeile).innerHTML="<input class='inputbox' type='text' id='neue_band_" + zeile + "' name='band_" + zeile + "' onchange='save(\"neue_band\",\"" + zeile + "\")' />";
-	} else {
-		document.getElementById("band_" + zeile).innerHTML="";
-	}
+function get_band_new_form(row) {
+	var band_id = document.getElementById("band_id_" + row).value;
 	var xmlhttp=new XMLHttpRequest();
-	var datei = "save.php?zeile=" + zeile + "&feld=band_id&wert=" + band_id;
-	xmlhttp.open("GET",datei,true);
+	xmlhttp.onreadystatechange=function() {
+	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+		document.getElementById("band_new_form_" + row).innerHTML=xmlhttp.responseText;
+		}
+	  }
+	var file = "index.php?special=lineup_sub&type=band_new_form&band_id=" + band_id + "&row=" + row;
+	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
 }
 
-function edit_url() {
-	window.editurl = 1;
-}
-
-function add_band(zeile) {
+function set_band_lineup(row) {
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 			document.getElementById("lineup").innerHTML=xmlhttp.responseText;
 		}
 	}
-	var datei = "add_band.php?zeile=" + zeile;
+	var datei = "index.php?special=lineup&type=add&row=" + row;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }
 
-function del_band(zeile) {
+function del_band_lineup(row) {
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 	  if (xmlhttp.readyState==4 && xmlhttp.status==200) {
 		document.getElementById("lineup").innerHTML=xmlhttp.responseText;
 		}
 	  }
-	var datei = "del_band.php?zeile=" + zeile;
+	var datei = "index.php?special=lineup&type=del&row=" + row;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }
 
 
-function shiftup_band(zeile) {
+function shift_band_lineup(row, direction) {
 	var xmlhttp=new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
   		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
     		document.getElementById("lineup").innerHTML=xmlhttp.responseText;
     	}
   	}
-	var datei = "shift_band.php?zeile=" + zeile + "&direction=up";
+	var datei = "index.php?special=lineup&type=shift&row=" + row + "&direction=" + direction;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }
 
-function shiftdown_band(zeile) {
-	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function() {
-		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			document.getElementById("lineup").innerHTML=xmlhttp.responseText;
-		}
-	}
-	var datei = "shift_band.php?zeile=" + zeile + "&direction=down";
-	xmlhttp.open("GET",datei,true);
-	xmlhttp.send();
-}
-
-function save(feld, zeile)
+function save_band_lineup(row, field)
 {
-	var wert = document.getElementById(feld + "_" + zeile).value;
-	wert=encodeURIComponent(wert);
+	var value = document.getElementById(field + "_" + row).value;
+	value=encodeURIComponent(value);
 	var xmlhttp=new XMLHttpRequest();
-	var datei = "save.php?zeile=" + zeile + "&feld=" + feld + "&wert=" + wert;
+	var datei = "index.php?special=lineup&type=save&row=" + row + "&field=" + field + "&value=" + value;
 	xmlhttp.open("GET",datei,true);
 	xmlhttp.send();
 }

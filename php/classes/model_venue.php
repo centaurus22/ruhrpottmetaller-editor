@@ -1,6 +1,6 @@
 <?php
 
-class ModelVenue {
+class VenueModel {
 	//Class to acces and maintain venue data.
 
 	private $mysqli = NULL;
@@ -11,7 +11,7 @@ class ModelVenue {
 		$this->mysqli = $mysqli;
 	}
 
-	private function getVenues() {
+	public function getVenues() {
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -19,10 +19,10 @@ class ModelVenue {
 		return $result;
 	}
 
-	private function getVenuesByCity($city_id) {
+	public function getVenuesByCity($city_id) {
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location
 			WHERE stadt_id=?');
-		$stmt->bind_param('i', $id);
+		$stmt->bind_param('i', $city_id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close();

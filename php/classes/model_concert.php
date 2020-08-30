@@ -129,7 +129,7 @@ class ConcertModel {
 	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
 	 */
 	public function delConcert($id) {
-		$stmt = $this->mysqli->prepare('DELETE event, event_band FROM EVENT
+		$stmt = $this->mysqli->prepare('DELETE event, event_band FROM event
 			LEFT JOIN event_band ON event.id=event_band.event_id
 			WHERE event.id= ?');
 		$stmt->bind_param('i', $id);

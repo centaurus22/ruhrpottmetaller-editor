@@ -6,7 +6,9 @@
  */
 class View {
 	// string Template path
-	private $path = 'templates';
+	private $template_path = 'templates';
+	//string folder in which images are stored.
+	private $image_path = 'images';
 	// string Template name
 	private $template = 'default';
 	// array Two dimensional array which contains the data which is passed to the view.
@@ -32,7 +34,7 @@ class View {
 	//@return string Output of the template or an error message.
 	public function loadTemplate() {
 		$tpl = $this->template;
-		$file = $this->path . DIRECTORY_SEPARATOR . $tpl . '.inc.php';
+		$file = $this->template_path . DIRECTORY_SEPARATOR . $tpl . '.inc.php';
 		$exists = file_exists($file);
 
 		if ($exists) {
