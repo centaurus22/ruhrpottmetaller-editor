@@ -28,8 +28,8 @@ class ConcertModel {
 	 */
 	public function getConcerts($month) {
 		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
-			event.name AS kname, event.url, event.publiziert, event.ausverkauft,
-			location.name AS lname, stadt.name AS sname FROM event
+			event.name AS concert_name, event.url, event.publiziert, event.ausverkauft,
+			location.name AS venue_name, stadt.name AS city_name FROM event
 			LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE ?
 			ORDER BY event.datum_beginn ASC');
@@ -61,9 +61,10 @@ class ConcertModel {
 	public function getConcert($id) {
 		//get the concert data
 		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
-			event.name AS kname,
-			event.url, event.publiziert, event.ausverkauft, location.name AS lname,
-			stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
+			event.name AS concert_name,
+			event.url, event.publiziert, event.ausverkauft, location.id as venue_id,
+			location.name AS venue_name, stadt.id as  city_id,
+			stadt.name AS city_name FROM event LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = ?
 			ORDER BY event.datum_beginn ASC');
 		$stmt->bind_param('i', $id);
