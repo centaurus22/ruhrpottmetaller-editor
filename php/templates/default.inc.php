@@ -58,10 +58,11 @@ foreach($this->_['concerts'] as $concert) {
 		<tr class='%1\$s_unten'>
 			<td id=\"concert_%10\$s\" colspan=\"8\"></td>
 		</tr>\n", htmlspecialchars($concert['status'], ENT_QUOTES), $concert['date_human'],
-			htmlspecialchars($concert['kname'], ENT_QUOTES), 
-			htmlspecialchars($concert['lname'], ENT_QUOTES),
-			htmlspecialchars($concert['sname'], ENT_QUOTES), 
-			htmlspecialchars($concert['url'], ENT_QUOTES), $bands, $concert['datum_beginn'], $this->_['month'],
+			htmlspecialchars($concert['concert_name'], ENT_QUOTES), 
+			htmlspecialchars($concert['venue_name'], ENT_QUOTES),
+			htmlspecialchars($concert['city_name'], ENT_QUOTES), 
+			htmlspecialchars($concert['url'], ENT_QUOTES), $bands, $concert['datum_beginn'],
+			$this->_['month'],
 			$concert['id'], $this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
 }
 ?>
