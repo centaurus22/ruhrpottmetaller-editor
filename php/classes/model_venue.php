@@ -21,7 +21,7 @@ class VenueModel {
 
 	public function getVenuesByCity($city_id) {
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location
-			WHERE stadt_id=?');
+			WHERE stadt_id=? ORDER BY name');
 		$stmt->bind_param('i', $city_id);
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

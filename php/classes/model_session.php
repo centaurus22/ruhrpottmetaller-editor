@@ -143,7 +143,7 @@ class SessionModel {
 	 * @param integer $value Value which is written in the session variable.
 	 * @return integer 1-> row and band_id parameter are integers, -1-> one of those parameters are no integer.
 	 */
-	public function updateBandLineUp($row, $field, $value){
+	public function updateBandLineUp($row, $field, $value) {
 		if (is_numeric($row)) {
 			$this->initLineUp();
 			$_SESSION['lineup'][$row][$field] = $value; 
@@ -155,7 +155,7 @@ class SessionModel {
 	}
 
 	/**
-	 * Delete a band to the lineup array.
+	 * Delete a band from the lineup array.
 	 *
 	 * @param integer $row Number of the row which is deleted.
 	 * @return integer 1-> parameter is an integer, -1-> parameter is no integer.
@@ -170,6 +170,7 @@ class SessionModel {
 			return -1;
 		}
 	}
+
 	/**
 	 * Shift a band up or down in the lineup.
 	 *
@@ -197,5 +198,15 @@ class SessionModel {
 		else {
 			return -1;
 		}
+	}
+	
+	/**
+	 * Delete the complete lineup array.
+	 *
+	 * @return integer Always 1.
+	 */
+	public function delLineUp() {
+		unset($_SESSION['lineup']);
+		return 1;
 	}
 }

@@ -61,9 +61,11 @@ class ConcertModel {
 	public function getConcert($id) {
 		//get the concert data
 		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
-			event.name AS kname,
-			event.url, event.publiziert, event.ausverkauft, location.name AS lname,
-			stadt.name AS sname FROM event LEFT JOIN location ON event.location_id = location.id
+			event.name AS concert_name,
+			event.url, event.publiziert, event.ausverkauft,
+			location.name AS venue_name, location.id as venue_id,
+			stadt.name AS city_name, stadt.id AS city_id
+			FROM event LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = ?
 			ORDER BY event.datum_beginn ASC');
 		$stmt->bind_param('i', $id);
@@ -143,11 +145,13 @@ class ConcertModel {
 	 * Retrieve band data of bands which are playing on a concert.
 	 *
 	 * @param integer $id Id of the concert from which the band data is retrieved.
-	 * @return array|integer Array with band id, export bit and additional information about the appearance 
-	 * 	of a band, or an integer with -1 in case of an error.
+	 * @return array|integer Array with band id, export bit and additional
+	 * information about the appearance	of a band, or an integer with -1 in case
+	 * of an error.
 	 */
 	public function getBands($id) {
-		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
+		$stmt = $this->mysqli->prepare('SELECT band.id, band.name, band.nazi, event_band.zusatz 
+			FROM event_band
 			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
 		$stmt->bind_param('i', $id);
 		$stmt->execute();

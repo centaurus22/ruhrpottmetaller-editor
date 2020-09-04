@@ -1,7 +1,7 @@
 <legend>Concert lineup</legend>
 <?php
-if (isset($this->_['error']) AND $this->_['error'] == 1) {
-	echo '<p class="error">Something weird happened. The request could not be processed!</p>';
+if (isset($this->_['error']) AND $this->_['error'] != '') {
+	echo '<p class="error">' . $this->_['error'] . '</p>';
 }
 $alphabet = range('A', 'Z');
 array_splice($alphabet, 0, 0, '');
@@ -9,7 +9,7 @@ $alphabet[] = '%';
 for ($lineup_index = 0; $lineup_index < count($this->_['lineup']); $lineup_index++) {
 		printf("\t\t<fieldset>\n\t\t" . '<legend>Band %1$s</legend>
 		<label for="first_sign_%1$u" hidden>First letter the of the band name</label>
-		<select  id="first_sign_%1$u" onchange="save_band_lineup(%1$u, \'first_sign\'); get_band_select_options(%1$u)" autocomplete="off">' . "\n", $lineup_index);
+		<select  id="first_sign_%1$u" name="first_sign[]" onchange="save_band_lineup(%1$u, \'first_sign\'); get_band_select_options(%1$u)" autocomplete="off">' . "\n", $lineup_index);
 	foreach ($alphabet as $first_sign) {
 		if ($this->_['lineup'][$lineup_index]['first_sign'] == $first_sign) {
 			printf("\t\t\t<option selected value=\"%1\$s\">%1\$s</option>\n", $first_sign);

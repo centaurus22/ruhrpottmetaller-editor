@@ -107,8 +107,10 @@ class Controller {
 					break;
 				case 'lineup_sub':
 					$this->template = 'lineup_sub';
+					break;
 				case 'edit_sub':
 					$this->template = 'edit_sub';
+					break;
 			}
 		}
 	}
@@ -136,7 +138,6 @@ class Controller {
 				$this->view->assign('subtitle', 'License');
 				break;
 			case 'concert_edit':
-				//Open a session
 				include_once('model_session.php');
 				$Session_Model = new SessionModel();
 				include_once('model_city.php');
@@ -144,12 +145,142 @@ class Controller {
 				$cities = $City_Model->getCities();
 				array_splice($cities, 0, 0, array(array('id' => 0, 'name' => '')));
 				$cities[] = array('id' => 1, 'name' => 'New city');
-				$innerView->assign('city_venue_form', $this->displayCityVenueForm(0, 0));
-				$innerView->assign('venue_new_form', $this->displayVenueNewForm(0));
+				$model_involved = isset($request['edit_id']) AND is_int($request['edit_id']);
+				if ($model_involved == true) {
+					include_once('model_concert.php');
+					$Concert_Model = new ConcertModel();
+					$concert = $Concert_Model->getConcert($request['edit_id']);
+				}
+				if (!isset($request['name'])) {
+					if ($model_involved == true) {
+						$request['name'] = $concert[0]['concert_name'];
+					} else {
+						$request['name'] = NULL;
+					}
+				}
+				if (!isset($request['date_start'])) {
+					if ($model_involved == true) {
+						$request['date_start'] = $concert[0]['datum_beginn'];
+					} else {
+						$request['date_start'] = NULL;
+					}
+				}
+				if (!isset($request['length'])) {
+					if ($model_involved == true and !is_null($concert[0]['datum_ende'])) {
+						$date_start = strtotime($concert[0]['datum_beginn']);
+						$date_end = strtotime($concert[0]['datum_ende']);
+						$seconds_per_day = 3600 * 24;
+						$request['length'] = ($date_end - $date_start) / $seconds_per_day;
+					} else {
+						$request['length'] = 1;
+					}
+				}
+				if (!isset($request['city_id'])) {
+					if ($model_involved == true) {
+						$request['city_id'] = $concert[0]['city_id'];
+					} else {
+						$request['city_id'] = NULL;
+					}
+				}
+				if ($request['city_id'] == 1) {
+					$request['venue_id'] = 1;	
+				} else {
+					if (!isset($request['venue_id'])) {
+						if ($model_involved == true) {
+							$request['venue_id'] = $concert[0]['venue_id'];
+						} else {
+							$request['venue_id'] = NULL;
+						}
+					}
+				}
+				if (!isset($request['url'])) {
+					if ($model_involved == true) {
+						$request['url'] = $concert[0]['url'];
+					} else {
+						$request['url'] = NULL;
+					}
+				}
+
+				/**
+				 * The important array with lineup information is the array with
+				 * the band_ids. Other information are added also to the lineup
+				 * if the corresponding arrays have the same size.
+				 */
+				if (isset($request['band_id'])) {
+					$lenght_lineup = count($request['band_id']);
+					$new_band_id = 3;
+					
+					if (in_array($new_band_id, $request['band_id']) and isset($request['band_new_name']) and count($request['band_new_name']) == $lenght_lineup) {
+						$include_band_new_name = true;
+					} elseif (in_array($new_band_id, $request['band_id']) and isset($request['band_new_name']) and count($request['band_new_name']) != $lenght_lineup) {
+						$include_band_new_name = false;
+						$error = true;
+					} else {
+						$include_band_new_name = false;
+					}
+
+					if (isset($request['addition']) and count($request['addition']) == $lenght_lineup) {
+						$include_addition = true;
+					} elseif (isset($request['addition']) and count($request['addition']) != $lenght_lineup) {
+						$error = true;
+						$include_addition = false;
+					} else {
+						$include_addition = false;
+					}
+
+					if (isset($request['first_sign']) and count($request['first_sign']) == $lenght_lineup) {
+						$include_first_sign = true;
+					} elseif (isset($request['first_sign']) and count($request['first_sign']) == $lenght_lineup) {
+						$error = true;
+						$include_first_sign = false;
+					} else {
+						$include_first_sign = false;
+					}
+					
+					$Session_Model->delLineUp();					
+					for($band_index = 0; $band_index < count($request['band_id']); $band_index++) {
+						$Session_Model->setBandLineUp($band_index);
+						$Session_Model->updateBandLineUp($band_index, 'band_id', $request['band_id'][$band_index]);
+						if ($include_band_new_name == true) {
+							$Session_Model->updateBandLineUp($band_index, 'band_new_name', $request['band_new_name'][$band_index]);
+						}
+						if ($include_addition == true) {
+							$Session_Model->updateBandLineUp($band_index, 'addition', $request['addition'][$band_index]);
+						}
+						if ($include_first_sign == true) {
+							$Session_Model->updateBandLineUp($band_index, 'first_sign', $request['first_sign'][$band_index]);
+						} else {
+							include_once('model_band.php');
+							$Band_Model = new BandModel;
+							$band = $Band_Model->getBand($request['band_id'][$band_index]);
+							$first_sign = $this->getFirstSign($band[0]['name']);
+							$Session_Model->updateBandLineUp($band_index, 'first_sign', $first_sign);
+						}
+					}
+				} elseif ($model_involved == true) {
+					$Session_Model->delLineUp();					
+					for ($band_index = 0; $band_index < count($concert[0]['bands']); $band_index++) {
+						$Session_Model->setBandLineUp($band_index);
+						$first_sign = $this->getFirstSign($concert[0]['bands'][$band_index]['name'], 0, 1);
+						$Session_Model->updateBandLineUp($band_index, 'first_sign', $first_sign);
+						$Session_Model->updateBandLineUp($band_index, 'band_id', $concert[0]['bands'][$band_index]['id']);
+						$Session_Model->updateBandLineUp($band_index, 'addition', $concert[0]['bands'][$band_index]['zusatz']);
+					}
+
+				}
+				if (isset($error)) {
+					$error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
+				}
+				else {
+					$error_text = '';
+				}
+				$innerView->assign('request', $request);
+				$innerView->assign('city_venue_form', $this->displayCityVenueForm($request['city_id'], $request['venue_id']));
+				$innerView->assign('venue_new_form', $this->displayVenueNewForm($request['venue_id']));
 				$innerView->setTemplate('concert_edit');
 				$innerView->assign('cities', $cities);
 				$innerView->assign('month', $month);
-				$innerView->assign('lineup', $this->displayLineUp($Session_Model));
+				$innerView->assign('lineup', $this->displayLineUp($Session_Model, $error_text));
 				$this->view->assign('subtitle', 'concert editor');
 				break;
 			case 'edit_sub':
@@ -166,7 +297,7 @@ class Controller {
 				break;
 			case 'lineup':
 				$ajax = 1;
-				$error = 0;
+				$error = false;
 				include_once('model_session.php');
 				$Session_Model = new SessionModel();
 				if (isset($request['type']) AND isset($request['row'])) {
@@ -181,7 +312,7 @@ class Controller {
 							if (isset($request['direction'])) {
 								$Session_Model->shiftBandLineUp($request['row'], $request['direction']);
 							} else {
-								$error = 1;
+								$error = true;
 							}
 							break;
 						case 'save':
@@ -189,15 +320,21 @@ class Controller {
 								$Session_Model->updateBandLineUp($request['row'], $request['field'], $request['value']);
 								exit;
 							} else {
-								$error = 1;
+								$error = true;
 							}
 					}
 				} 
 				else {
-					$error = 1;
+					$error = true;
+				}
+
+				if ($error == true) {
+					$error_text = 'Something weird happened. The request could not be processed!';
+				} else {
+					$error_text = '';
 				}
 				$innerView->setTemplate('ajax');
-				$innerView->assign('content', $this->displayLineUp($Session_Model, $error));
+				$innerView->assign('content', $this->displayLineUp($Session_Model, $error_text));
 				break;
 			case 'lineup_sub':
 				$ajax = 1;
@@ -325,7 +462,7 @@ class Controller {
 	 * @param object $Session_Model Object to access data in the session
 	 * @return string Output of the lineup template.
 	 */
-	public function displayLineUp($Session_Model, $error = 0) {
+	public function displayLineUp($Session_Model, $error = '') {
 		//Initialize a new view for displaying the lineup
 		$lineUp = new View();
 		//Set the corresponding template
@@ -344,12 +481,26 @@ class Controller {
 			$band_new_form[$lineup_index] = $this->displayBandNewForm($lineup_index, $bands[$lineup_index]['band_id']);
 		}
 	//Set variables and arrays for the view
-	//
 		$lineUp->assign('band_select_options', $band_select_options);
 		$lineUp->assign('band_new_form', $band_new_form);
 		$lineUp->assign('error', $error);
 		$lineUp->assign('lineup', $bands);
 		return $lineUp->loadTemplate();
+	}
+	/**
+	 * Returns the first char in capital letters or '%' for a special symbol
+	 *
+	 * @param string $band_name Name of the Band.
+	 * @return string Capital letter or '%'.
+	 */
+	private function getFirstSign($band_name) {
+		$first_char = mb_substr($band_name, 0, 1);
+		$first_char = mb_strtoupper($first_char);
+		if (in_array($first_char, range('A','Z'))) {
+			return $first_char;
+		} else {
+			return '%';
+		}
 	}
 
 	/**
@@ -367,6 +518,11 @@ class Controller {
 			$venues = $Venue_Model->getVenues();
 		} elseif ($city_id == 1) {
 			$venues = array();
+			if (isset($this->request['city_new_name'])) {
+				$City_Venue_Form->assign('city_new_name', $this->request['city_new_name']);
+			} else {
+				$City_Venue_Form->assign('city_new_name', NULL);
+			}
 		} else {
 			$venues = $Venue_Model->getVenuesByCity($city_id);
 		}
@@ -388,6 +544,18 @@ class Controller {
 	 */
 	public function displayVenueNewForm($venue_id) {
 		$Venue_New_Form = new View();
+		if ($venue_id == 1) {
+			if (isset($this->request['venue_new_name'])) {
+				$Venue_New_Form->assign('venue_new_name', $this->request['venue_new_name']);
+			} else {
+				$Venue_New_Form->assign('venue_new_name', NULL);
+			}
+			if (isset($this->request['venue_url'])) {
+				$Venue_New_Form->assign('venue_url', $this->request['venue_url']);
+			} else {
+				$Venue_New_Form->assign('venue_url', NULL);
+			}
+		}
 		$Venue_New_Form->assign('venue_id', $venue_id);
 		$Venue_New_Form->setTemplate('venue_new_form');
 		return $Venue_New_Form->loadTemplate();
