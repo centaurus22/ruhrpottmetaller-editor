@@ -5,8 +5,10 @@ class Controller {
 	private $request = NULL;
 	//string Name of the template.
 	private $template = '';
-	//object Object of the (outer) view.
+	//object Object representing the (outer) view.
 	private $view = NULL;
+	//string String containing error messages
+	private $error_text = '';
 
 	/**
 	 * Initialize the controller.
@@ -58,21 +60,27 @@ class Controller {
 				break;
 			}
 		}
-		if (isset($request['save']) AND isset($request['save_id'])) {
+		if (isset($request['save'])) {
 			switch($request['save']) {
 			case 'concert':
-				include_once('classes/model_concert.php');
-				$Concert_Model = new ConcertModel();
-				$result = $this->save_concert();
+				$this->error_text = $this->saveConcert();
 				break;
 			}
 
 		}
+		$request = $this->request;
 		/**
 		 * translation of request parameters to the name of the
 		 * corresponding template.
 		 */
-		if (isset($request['display'])) {
+		if (isset($request['edit'])) {
+			switch($request['edit']) {
+			case 'concert':
+			case 'default':
+				$this->template = 'concert_edit';
+				break;
+			}
+		} elseif (isset($request['display'])) {
 			switch($request['display']) {
 				case 'license':
 					$this->template = 'license';
@@ -92,13 +100,6 @@ class Controller {
 						$this->template = 'default';
 					}
 					break;
-			}
-		} elseif (isset($request['edit'])) {
-			switch($request['edit']) {
-			case 'concert':
-			case 'default':
-				$this->template = 'concert_edit';
-				break;
 			}
 		} elseif (isset($request['special'])) {
 			switch ($request['special']) {
@@ -127,7 +128,7 @@ class Controller {
 		}
 		else{
 			//Create the month value containing the current month
-			$month = date('Y-m'); 
+			$month = $this->getMonth(); 
 			$this->request['month'] = $month;
 		}
 		$request = $this->request;
@@ -140,7 +141,7 @@ class Controller {
 			case 'concert_edit':
 				include_once('model_session.php');
 				$Session_Model = new SessionModel();
-				$error_text = $this->prefillConcertEditor($Session_Model);
+				$this->prefillConcertEditor($Session_Model);
 				$request = $this->request;
 				include_once('model_city.php');
 				$City_Model = new CityModel();
@@ -148,12 +149,13 @@ class Controller {
 				array_splice($cities, 0, 0, array(array('id' => 0, 'name' => '')));
 				$cities[] = array('id' => 1, 'name' => 'New city');
 				$innerView->assign('request', $request);
+				$innerView->assign('error_text', $this->error_text);
 				$innerView->assign('city_venue_form', $this->displayCityVenueForm($request['city_id'], $request['venue_id']));
 				$innerView->assign('venue_new_form', $this->displayVenueNewForm($request['venue_id']));
-				$innerView->setTemplate('concert_edit');
 				$innerView->assign('cities', $cities);
 				$innerView->assign('month', $month);
-				$innerView->assign('lineup', $this->displayLineUp($Session_Model, $error_text));
+				$innerView->assign('lineup', $this->displayLineUp($Session_Model));
+				$innerView->setTemplate('concert_edit');
 				$this->view->assign('subtitle', 'concert editor');
 				break;
 			case 'edit_sub':
@@ -316,9 +318,9 @@ class Controller {
 			$request_prev_month['display'] = $this->request['display'];
 		}
 		//Generate parameters for the current month, the next month and the previous month
-		$request_now['month'] = date('Y-m');
-		$request_next_month['month'] = date('Y-m', strtotime($this->request['month'] . '-01 + 1 month'));
-		$request_prev_month['month'] = date('Y-m', strtotime($this->request['month'] . '-01 - 1 month'));
+		$request_now['month'] = $this->getMonth();
+		$request_next_month['month'] = $this->getMonth($this->request['month'] . '-01 + 1 month');
+		$request_prev_month['month'] = $this->getMonth($this->request['month'] . '-01 - 1 month');
 		$month_human = date('M Y', strtotime($this->request['month'] . '-01'));
 		//Assign the variables to the MonthChanger template
 		$monthChanger->assign('request_now', $request_now);
@@ -335,7 +337,7 @@ class Controller {
 	 * @param object $Session_Model Object to access data in the session
 	 * @return string Output of the lineup template.
 	 */
-	public function displayLineUp($Session_Model, $error = '') {
+	public function displayLineUp($Session_Model, $error_text_lineup = '') {
 		//Initialize a new view for displaying the lineup
 		$lineUp = new View();
 		//Set the corresponding template
@@ -356,7 +358,7 @@ class Controller {
 	//Set variables and arrays for the view
 		$lineUp->assign('band_select_options', $band_select_options);
 		$lineUp->assign('band_new_form', $band_new_form);
-		$lineUp->assign('error', $error);
+		$lineUp->assign('error_text', $error_text_lineup);
 		$lineUp->assign('lineup', $bands);
 		return $lineUp->loadTemplate();
 	}
@@ -481,62 +483,42 @@ class Controller {
 		return $Band_New_Form->loadTemplate();
 	}
 
+	/**
+	 * Includes the data from various sources to prefill the the concert formula.
+	 *
+	 * @param object $Session_Model Model to access the PHP Session
+	 */
 	private function prefillConcertEditor($Session_Model) {
-		$request = $this->request;
-		$model_involved = isset($request['edit_id']) AND is_int($request['edit_id']);
+		$model_involved = isset($this->request['edit_id']) AND is_int($this->request['edit_id']);
 		if ($model_involved == true) {
 			include_once('model_concert.php');
 			$Concert_Model = new ConcertModel();
-			$concert = $Concert_Model->getConcert($request['edit_id']);
+			$concert = $Concert_Model->getConcert($this->request['edit_id']);
 		}
-		if (!isset($request['name'])) {
-			if ($model_involved == true) {
-				$request['name'] = $concert[0]['concert_name'];
-			} else {
-				$request['name'] = NULL;
-			}
+		else {
+			$concert = array();
 		}
-		if (!isset($request['date_start'])) {
-			if ($model_involved == true) {
-				$request['date_start'] = $concert[0]['datum_beginn'];
-			} else {
-				$request['date_start'] = NULL;
-			}
-		}
+
+		$this->editor_set_request_parameters($concert, 'name', $model_involved);
+		$this->editor_set_request_parameters($concert, 'date_start', $model_involved);
+		$this->editor_set_request_parameters($concert, 'city_id', $model_involved);
+		$this->editor_set_request_parameters($concert, 'url', $model_involved);
+		
 		if (!isset($request['length'])) {
-			if ($model_involved == true and !is_null($concert[0]['datum_ende'])) {
-				$date_start = strtotime($concert[0]['datum_beginn']);
-				$date_end = strtotime($concert[0]['datum_ende']);
+			if ($model_involved == true and !is_null($concert[0]['date_end'])) {
+				$date_start = strtotime($concert[0]['date_start']);
+				$date_end = strtotime($concert[0]['date_end']);
 				$seconds_per_day = 3600 * 24;
-				$request['length'] = ($date_end - $date_start) / $seconds_per_day;
+				$this->request['length'] = ($date_end - $date_start) / $seconds_per_day;
 			} else {
-				$request['length'] = 1;
+				$this->request['length'] = 1;
 			}
 		}
-		if (!isset($request['city_id'])) {
-			if ($model_involved == true) {
-				$request['city_id'] = $concert[0]['city_id'];
-			} else {
-				$request['city_id'] = NULL;
-			}
-		}
-		if ($request['city_id'] == 1) {
-			$request['venue_id'] = 1;	
+		
+		if ($this->request['city_id'] == 1) {
+			$this->request['venue_id'] = 1;	
 		} else {
-			if (!isset($request['venue_id'])) {
-				if ($model_involved == true) {
-					$request['venue_id'] = $concert[0]['venue_id'];
-				} else {
-					$request['venue_id'] = NULL;
-				}
-			}
-		}
-		if (!isset($request['url'])) {
-			if ($model_involved == true) {
-				$request['url'] = $concert[0]['url'];
-			} else {
-				$request['url'] = NULL;
-			}
+			$this->editor_set_request_parameters($concert, 'venue_id', $model_involved);
 		}
 
 		/**
@@ -544,48 +526,30 @@ class Controller {
 		 * the band_ids. Other information are added also to the lineup
 		 * if the corresponding arrays have the same size.
 		 */
-		if (isset($request['band_id'])) {
-			$lenght_lineup = count($request['band_id']);
+		if (isset($this->request['band_id'])) {
+			$request = $this->request;
+			$length_lineup = count($request['band_id']);
 			$new_band_id = 3;
-			
-			if (in_array($new_band_id, $request['band_id']) and isset($request['band_new_name']) and count($request['band_new_name']) == $lenght_lineup) {
-				$include_band_new_name = true;
-			} elseif (in_array($new_band_id, $request['band_id']) and isset($request['band_new_name']) and count($request['band_new_name']) != $lenght_lineup) {
-				$include_band_new_name = false;
-				$error = true;
+			$result_first_sign_check = $this->check_lineup_array('first_sign', $length_lineup);
+			$result_addition_check  = $this->check_lineup_array('addition', $length_lineup);
+			if (in_array($this->request['band_id'])) {
+				$result_band_new_name_check = $this->check_lineup_array('band_new_name', $length_lineup);
 			} else {
-				$include_band_new_name = false;
+				$result_band_new_name_check = array('include_array' -> false, 'error' -> false);
 			}
-
-			if (isset($request['addition']) and count($request['addition']) == $lenght_lineup) {
-				$include_addition = true;
-			} elseif (isset($request['addition']) and count($request['addition']) != $lenght_lineup) {
-				$error = true;
-				$include_addition = false;
-			} else {
-				$include_addition = false;
-			}
-
-			if (isset($request['first_sign']) and count($request['first_sign']) == $lenght_lineup) {
-				$include_first_sign = true;
-			} elseif (isset($request['first_sign']) and count($request['first_sign']) == $lenght_lineup) {
-				$error = true;
-				$include_first_sign = false;
-			} else {
-				$include_first_sign = false;
-			}
-			
+				
+			$request = $this->request;
 			$Session_Model->delLineUp();					
 			for($band_index = 0; $band_index < count($request['band_id']); $band_index++) {
 				$Session_Model->setBandLineUp($band_index);
 				$Session_Model->updateBandLineUp($band_index, 'band_id', $request['band_id'][$band_index]);
-				if ($include_band_new_name == true) {
+				if ($result_band_new_name_check['include_array'] == true) {
 					$Session_Model->updateBandLineUp($band_index, 'band_new_name', $request['band_new_name'][$band_index]);
 				}
-				if ($include_addition == true) {
+				if ($result_addition_check['include_array'] == true) {
 					$Session_Model->updateBandLineUp($band_index, 'addition', $request['addition'][$band_index]);
 				}
-				if ($include_first_sign == true) {
+				if ($result_first_sign_check['include_array'] == true) {
 					$Session_Model->updateBandLineUp($band_index, 'first_sign', $request['first_sign'][$band_index]);
 				} else {
 					include_once('model_band.php');
@@ -594,6 +558,16 @@ class Controller {
 					$first_sign = $this->getFirstSign($band[0]['name']);
 					$Session_Model->updateBandLineUp($band_index, 'first_sign', $first_sign);
 				}
+			}
+			$this->request = $request;
+			/**
+		 	* This defines the error text which is displayed directly above the lineup.
+		 	*/
+			if (($result_band_new_name_check['error'] == true 
+				or $result_addition_check['error'] == true 
+				or $result_first_sign_check['error'] == true)
+				and !isset($this->request['save_id'])) {
+				$this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
 			}
 		} elseif ($model_involved == true) {
 			$Session_Model->delLineUp();					
@@ -606,45 +580,128 @@ class Controller {
 			}
 
 		}
-		$this->request = $request;
-		if (isset($error)) {
-			return 'Array lengths in URL parameters does not match! Some data is ignored.';
-		}
-		else {
-			return '';
+	}
+
+	/**
+	 * Set a parameter which is loaded into an editor formula if it does not
+	 * exist.
+	 *
+	 * @param array $data_array Contain the data from the model.
+	 * @param integer $parameter Define the parameter name.
+	 * @param boolean $model_involved Define if data from the model is available.
+	 */
+	private function editor_set_request_parameters($data_array, $parameter, $model_involved) {
+		if (!isset($this->request[$parameter])) {
+			if ($model_involved == true) {
+				$this->request[$parameter] = $data_array[0][$parameter];
+			} else {
+				$this->request[$parameter] = NULL;
+			}
 		}
 	}
+	
+	/**
+	 * Check if parameter arrays with additional information exist and if they
+	 * have the right length.
+	 *
+	 * @param string $array_name The name of the parameter array which is
+	 * 	checked.
+	 * @param integer $length_lineup The length of the reference array.
+	 * @return array Associative array with to keys: 
+	 * 	boolean error true: error, false: no error
+	 * 	boolean include_array true: parameter array must be included, false:
+	 * 		array must not be included
+	 */
+	private function check_lineup_array($array_name, $length_lineup) {
+		if (isset($this->request[$array_name]) and count($this->request[$array_name]) == $length_lineup) {
+			$include_array = true;
+			$error = false;
+		} elseif (isset($this->request[$array_name]) and count($this->request[$array_name]) != $length_lineup) {
+			$include_array = false;
+			$error = true;
+		} else {
+			$include_array = false;
+			$error = false;
+		}
+		return array('include_array' => $include_array, 'error' => $error);
+	}
+
 	/**
 	 * This function has the purpose of interacting withe the Concert Model.
 	 *
 	 * @return integer Value of 0 or greater -> Succes, -1 -> Error.
 	 */
-	public function save_concert() {
+	public function saveConcert() {
 		$request = $this->request;
 		include_once('classes/model_concert.php');
 		$Concert_Model = new ConcertModel();
-		/*The starting date is the only value that must be provided.
-		 * So if it is present, a concert should be inserted or updated*/
-		if (isset($request['date_start'])) {
+		/**
+		 * The starting date is the only value that must be provided.
+		 * So if it is present, a concert should be inserted or updated
+		 */
+
+		$error_text = '';
+		$error = false;
+		if (isset($request['url'])) {
+
+			$year = substr($request['date_start'], 0, 4);
+			$month = substr($request['date_start'], 5, 2);
+			$day = substr($request['date_start'], 8, 2);
+			if (!is_numeric($year) or !is_numeric($month) or !is_numeric($day) or checkdate($month, $day, $year) == false) {
+				$error_text = "The provided date is not correct.<br>\n";
+			}
 			if (!isset($request['name'])) {
 				$request['name'] = NULL;
 			}
-			if (!isset($request['url'])) {
-				$request['url'] = NULL;
+			if ($request['url'] == '' ) {
+				$error_text .= "The URL is empty.<br>\n";
 			}
-			if (!isset($request['date_end'])) {
-				$request['date_end'] = NULL;
+			if (!isset($request['lenght'])) {
+				$request['length'] = 1;
 			}
 			if (!isset($request['venue_id'])) {
 				$request['venue_id'] = NULL;
 			}
-			if (!isset($request['band'])) {
-				$request['band'] = array();
+			if (!isset($request['band_id'])) {
+				$request['band_id'] = array();
 			}
 			if (!isset($request['addition'])) {
 				$request['addition'] = array();
 			}
-			if (isset($request['save_id'])) {
+			if (!isset($request['band_new_name'])) {
+				$request['band_new_name'] = array();
+			}
+			if (count($request['band_new_name']) != count($request['band_id']) or count($request['addition']) != count($request['band_id'])) {
+				$error_text .="Array lengths in the URL parameters does not match! Some data is ignored.<br>\n";
+			}
+			
+			if ($error_text != '') {
+				$this->rewriteSaveEdit();
+				return $error_text;
+			}
+
+			//The concert overview should jump to the month in which the concert
+			//happens.
+			$request['month'] = $this->getMonth($request['date_start']);
+
+			if ($request['length'] == 1) {
+				$request['date_end'] = null;
+			} else {
+				$request['date_end'] = strtotime($request['date_start'] . '+' . ($request['length'] - 1) . 'day');
+				$request['date_end'] = date('Y-m-d', $request['date_end']);
+			}
+
+			$this->request = $request;
+			$error_text .= $this->setNewProperty('city', $this->request);
+			$error_text .= $this->setNewProperty('venue', $this->request);
+			$request = $this->request;
+			
+			if ($error_text != '') {
+				$this->rewriteSaveEdit();
+				return $error_text;
+			}
+
+			if (isset($request['save_id']) and $request['save_id'] != '') {
 				//If the save id is set -> Update of exisiting concert
 				$result = $Concert_Model->updateConcert($request['save_id'], $request['name'],
 					$request['date_start'], $request['date_end'], $request['venue_id'],
@@ -654,28 +711,96 @@ class Controller {
 				//No save id -> Insert a new concert
 				$result = $Concert_Model->setConcert($request['name'], $request['date_start'],
 					$request['date_end'], $request['venue_id'], $request['url']);
+				$request['save_id'] = $result;
 			}
-			//Update Bands if the lenght of the bands array and the addition array is the same
-			if (count($request['band']) == count($request['addition'])) {
+			
+			if (is_numeric($request['save_id']) and $request['save_id'] > 0) {
 				$result = $Concert_Model->delBands($request['save_id']);
-				for ( $lineup_index = 0; $lineup_index < count($request['band']); $lineup_index++ ) {
-					$result = $Concert_Model->setBand($request['save_id'], request['band'][$lineup_index],
+				require_once('classes/model_band.php');
+				$Band_Model = new BandModel;
+				for ( $lineup_index = 0; $lineup_index < count($request['band_id']); $lineup_index++ ) {
+					if ($request['band_id'][$lineup_index] == 3 and $request['band_new_name'][$lineup_index] != '') {
+						$result = $Band_Model->setBand($request['band_new_name'][$lineup_index]);
+						if ($result > 3) {
+							$request['band_id'][$lineup_index] = $result;
+						} else {
+							$error_text = 'Adding a new band have gone wrong. ';
+							$error = true;
+						}
+					}
+					$result = $Concert_Model->setBand($request['save_id'], $request['band_id'][$lineup_index],
 						$request['addition'][$lineup_index]);
+					if ($result == -1) {
+						$error = true;
+					}
 				}
 			}
 			else {
-				$result = 0;
+				$error = true;
 			}
 		}
-		if (isset($request['save_id'])) {
-			if (isset($request['published']) AND $request['published'] == 1) {
-				$result = $Concert_Model->setPublished($request['save_id']);
+
+		if (isset($request['published']) AND $request['published'] == 1) {
+			$result = $Concert_Model->setPublished($request['save_id']);
+		}
+		if (isset($request['sold_out']) AND $request['sold_out'] == 1) {
+			$result = $Concert_Model->setSoldOut($request['save_id']);
+		}
+
+		if ($result < 1 or $error == true) {
+			$error_text .= 'Saving of concert data has gone wrong! ';
+			$this->rewriteSaveEdit();
+		} else {
+			include_once('model_session.php');
+			$Session_Model = new SessionModel();
+			$Session_Model->delLineUp();
+		}
+		return $error_text;
+	}
+
+	/**
+	 * Rewrites parameters to reopen the editor.
+	 */
+	private function rewriteSaveEdit() {
+		if (isset($this->request['save_id'])) {
+			$this->request['edit_id'] = $this->request['save_id'];
+		}
+		$this->request['edit'] = $this->request['save'];
+	}
+
+	/**
+	 * Insert a new property into the database and write the new id into the
+	 * request array.
+	 *
+	 * @param string $type Property which is checked.
+	 * @param array $request Combined array containing GET and POST data.
+	 * @return string String witch contains possible error messages.
+	 */
+	private function setNewProperty($type, $request) {
+		$error_text = '';
+		if (isset($request[$type . '_id']) and $request[$type . '_id'] == 1
+			and isset($request[$type . '_new_name']) and $request[$type . '_new_name'] != '') {
+			require_once('classes/model_' . $type . '.php');
+			$type_uc = ucfirst($type);
+			$classname = $type_uc . 'Model';
+			$Property_Model = new $classname;
+			if ($type == 'city') {
+				$result = $Property_Model->setCity($request['city_new_name']);
+				$request['venue_id'] = 1;
+			} elseif ($type == 'venue' and isset($request['city_id']) and isset($request['venue_url'])) {
+				$result = $Property_Model->setVenue($request['venue_new_name'], $request['city_id'], $request['venue_url']);
+			} else {
+				$result = -1;
 			}
-			if (isset($request['sold_out']) AND $request['sold_out'] == 1) {
-				$result = $Concert_Model->setSoldOut($request['save_id']);
+
+			if ($result > 1) {
+				$request[$type . '_id'] = $result;
+			} else {
+				$error_text = sprintf('Adding the new %1$s has gone wrong. ', $type);
 			}
 		}
-		return $result;
+		$this->request = $request;
+		return $error_text;
 	}
 
 	/**
@@ -720,14 +845,14 @@ class Controller {
 				$timeformat_with_month = '%a, %d %b';
 			}
 			for($concert_index = 0; $concert_index < count($concerts); $concert_index++) {
-				$time_start = strtotime($concerts[$concert_index]['datum_beginn']);
+				$time_start = strtotime($concerts[$concert_index]['date_start']);
 				//Determine the status of the concert.
 				$two_weeks = 1209600;
 				$two_months = 5184000;
 				if ((($time_start - time() < $two_weeks 
-					AND is_null($concerts[$concert_index]['datum_ende'])) 
+					AND is_null($concerts[$concert_index]['date_end'])) 
 					OR ($time_start - time() < $two_months 
-					AND !is_null($concerts[$concert_index]['datum_ende'])))
+					AND !is_null($concerts[$concert_index]['date_end'])))
 					AND $concerts[$concert_index]['publiziert'] == 0) {
 					$concerts[$concert_index]['status'] = 'urgent';
 				}
@@ -756,8 +881,8 @@ class Controller {
 					$template = 'default';
 				}
 				$date = date('Y-m-d', $time_start);
-				if ($concerts[$concert_index]['datum_ende'] != "") {
-					$time_end = strtotime($concerts[$concert_index]['datum_ende']);
+				if ($concerts[$concert_index]['date_end'] != '') {
+					$time_end = strtotime($concerts[$concert_index]['date_end']);
 					if ($this->template == 'concert') {
 						$date_end_human = strftime($timeformat_with_month, $time_end);
 					}
@@ -765,7 +890,14 @@ class Controller {
 						$date_end_human = strftime($timeformat_without_month, $time_end);
 					}
 					$concerts[$concert_index]['date_human'] = $concerts[$concert_index]['date_human'] . ' – ' . $date_end_human;
-				}	
+				}
+
+				if ($concerts[$concert_index]['venue_name'] == '') {
+					$concerts[$concert_index]['venue_city'] = '';
+				} else {
+					$concerts[$concert_index]['venue_city'] = $concerts[$concert_index]['venue_name'] . ', ' . $concerts[$concert_index]['city_name'];
+				}
+
 				for($lineup_index = 0; $lineup_index < count($concerts[$concert_index]['bands']); $lineup_index++) {
 					if ($concerts[$concert_index]['bands'][$lineup_index]['nazi'] == 1) {
 						$concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nazi';
@@ -781,6 +913,21 @@ class Controller {
 		$result['concerts'] = $concerts;
 		$result['template'] = $template;
 		return $result;
+	}
+	
+	/**
+	 * Get the month from the current date or a submitted string.
+	 *
+	 * @param string $date Optional date from which the month is generated 
+	 * @return string Generated date
+	 */
+
+	private function getMonth($date = null) {
+		if (is_null($date)) {
+			return date('Y-m');
+		} else {
+			return date('Y-m', strtotime($date));
+		}
 	}
 }
 ?>

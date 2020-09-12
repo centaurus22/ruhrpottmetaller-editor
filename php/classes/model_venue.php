@@ -38,11 +38,11 @@ class VenueModel {
 		return $result;
 	}
 
-	private function setVenue($name, $city_id, $url) {
+	public function setVenue($name, $city_id, $url) {
 		$stmt = $this->mysqli->prepare('INSERT INTO location SET name=?, stadt_id=?, url=?');
 		$stmt->bind_param('sis', $name, $city_id, $url);
 		$stmt->execute();
-		$result = $stmt->affected_rows;
+		$result = $this->mysqli->insert_id;
 		$stmt->close();
 		return $result;
 	}

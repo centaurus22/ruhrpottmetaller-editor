@@ -27,9 +27,11 @@ class ConcertModel {
 	 * 		returns an empty array. 
 	 */
 	public function getConcerts($month) {
-		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
-			event.name AS kname, event.url, event.publiziert, event.ausverkauft,
-			location.name AS lname, stadt.name AS sname FROM event
+		$stmt = $this->mysqli->prepare('SELECT event.id,
+			event.datum_beginn AS date_start, event.datum_ende AS date_end,
+			event.name AS name, event.url, event.publiziert,
+			event.ausverkauft,
+			location.name AS venue_name, stadt.name AS city_name FROM event
 			LEFT JOIN location ON event.location_id = location.id
 			LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE datum_beginn LIKE ?
 			ORDER BY event.datum_beginn ASC');
@@ -38,7 +40,6 @@ class ConcertModel {
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close();
-		//Connect an event with the bands which are playing there.
 		$stmt = $this->mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz FROM event_band
 			LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id = ?');
 		for($i = 0; $i < count($result); $i++) {
@@ -59,9 +60,10 @@ class ConcertModel {
 	 * 		an empty array. 
 	 */
 	public function getConcert($id) {
-		//get the concert data
-		$stmt = $this->mysqli->prepare('SELECT event.id, event.datum_beginn, event.datum_ende,
-			event.name AS concert_name,
+		$stmt = $this->mysqli->prepare('SELECT event.id,
+			event.datum_beginn AS date_start,
+		   	event.datum_ende as date_end,
+			event.name,
 			event.url, event.publiziert, event.ausverkauft,
 			location.name AS venue_name, location.id as venue_id,
 			stadt.name AS city_name, stadt.id AS city_id
@@ -89,14 +91,13 @@ class ConcertModel {
 	 * 	in the format YYYY-MM-DD. If it is just on one day, the string is empty.
 	 * @param integer $venue_id The id of the venue where the concert takes place
 	 * @param string $url URL which links to information about a concert
-	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
+	 * @return integer The id of the last updated concert.
 	 */
 	public function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url) {
 		$stmt = $this->mysqli->prepare('UPDATE event SET name = ?, datum_beginn = ?, datum_ende = ?,
 			location_id = ?, url = ? WHERE id = ?');
 		$stmt->bind_param('sssisi', $name, $date_start, $date_end, $venue_id, $url, $id);
 		$stmt->execute();
-		//Check if the query was successfull
 		$result = $stmt->affected_rows;
 		$stmt->close();
 		return $result;
@@ -112,14 +113,14 @@ class ConcertModel {
 	 * 	in the format YYYY-MM-DD. If it is just on one day, the string is empty.
 	 * @param integer $venue_id The id of the venue where the concert takes place
 	 * @param string $url URL which links to information about a concert
-	 * @return integer Returns 1 for successful operation or -1 for an error.
+	 * @return integer The id of the last inserted concert.
 	 */
-	public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
+public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
 		$stmt = $this->mysqli->prepare('INSERT INTO event SET name = ?, datum_beginn = ?, datum_ende = ?,
 			location_id = ?, url = ?');
 		$stmt->bind_param('sssis', $name, $date_start, $date_end, $venue_id, $url);
 		$stmt->execute();
-		$result = $stmt->affected_rows;
+		$result = $this->mysqli->insert_id;
 		$stmt->close();
 		return $result;
 	}

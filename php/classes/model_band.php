@@ -66,13 +66,13 @@ class BandModel {
 	 *
 	 * @param string $name Name of the band. 
 	 * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
-	 * @return integer Returns 1 for successful operation, -1 for an error.
+	 * @return integer Returns id of the new band, -1 for an error.
 	 */
-	public function setBand($name, $nazi) {
-		$stmt = $this->mysqli->prepare('INSERT INTO band SET name=?, nazi=?');
-		$stmt->bind_param('sii', $name, $nazi, $id);
+	public function setBand($name) {
+		$stmt = $this->mysqli->prepare('INSERT INTO band SET name=?');
+		$stmt->bind_param('s', $name);
 		$stmt->execute();
-		$result = $stmt->affected_rows;
+		$result = $this->mysqli->insert_id;
 		$stmt->close();
 		return ($result);
 	}

@@ -56,7 +56,7 @@ class CityModel {
 		$stmt = $this->mysqli->prepare('INSERT INTO stadt SET name=?');
 		$stmt->bind_param('s', $name);
 		$stmt->execute();
-		$result = $stmt->affected_rows;
+		$result = $this->mysqli->insert_id;
 		$stmt->close();
 		return $result;
 	}

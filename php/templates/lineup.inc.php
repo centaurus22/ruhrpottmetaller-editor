@@ -1,7 +1,7 @@
 <legend>Concert lineup</legend>
 <?php
 if (isset($this->_['error']) AND $this->_['error'] != '') {
-	echo '<p class="error">' . $this->_['error'] . '</p>';
+	echo '<p class="error">' . $this->_['error_text'] . '</p>';
 }
 $alphabet = range('A', 'Z');
 array_splice($alphabet, 0, 0, '');

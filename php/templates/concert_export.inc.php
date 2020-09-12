@@ -26,13 +26,19 @@ foreach($this->_['concerts'] as $concert) {
 		if ($concert['ausverkauft'] == 1) {
 			echo '(ausverkauft) ';
 		}	
-		echo $concert['date_human'] . ' ';
-		if ($concert['kname']) {
-			echo htmlspecialchars($concert['kname'], ENT_QUOTES) . ', ';
+		echo $concert['date_human'] . ':';
+		if ($concert['name']) {
+			echo ' ' . htmlspecialchars($concert['name'], ENT_QUOTES) . ', ';
 		}
-		echo ' ' . htmlspecialchars($concert['lname'], ENT_QUOTES) . ' in  ' . 
-			htmlspecialchars($concert['sname'], ENT_QUOTES) . ":<br>";
-		echo '&nbsp;&nbsp;' . $bands . '.<br/>';	
+		if ($concert['venue_name'] == '') {
+			echo '<br>';
+		} else {
+			echo ' ' . htmlspecialchars($concert['venue_name'], ENT_QUOTES) . ' in  ' . 
+			htmlspecialchars($concert['city_name'], ENT_QUOTES) . "<br>";
+		}
+		if ($bands != '') {
+			echo '&nbsp;&nbsp;' . $bands . '.<br>';
+		}
 		echo '&nbsp;&nbsp;' . htmlspecialchars($concert['url'], ENT_QUOTES) . "</p>\n";
 	}
 }

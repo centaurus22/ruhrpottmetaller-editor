@@ -1,7 +1,6 @@
 <div id="inhalt" class="inhalt_large">
 	<form action="" method="get">
 		<input type="hidden" name="display" value="concert">
-		<input type="hidden" name="month" value="<?= $this->_['month']?>">
 		<input type="hidden" name="save" value="concert">
 <?php
 if (isset($this->_['request']['edit_id'])) {
@@ -11,11 +10,17 @@ if (isset($this->_['request']['edit_id'])) {
 ?>
 		<fieldset>
 			<legend>General concert data</legend>
+<?php
+if ($this->_['error_text'] != '') {
+	echo "\t\t\t<p class=\"error\">" . $this->_['error_text'] . "</p>\n";
+}
+?>
+
 			<label for="name" class="edit_text">Name</label>
 			<input type="text" name="name" id="name" value="<?=$this->_['request']['name']?>" class="edit_field" placeholder="Name of the concert">
 			<br>
 			<label for="date_start" class="edit_text">Date*</label>
-			<input type="date" name="date_start" id="date_start" value="<?=$this->_['request']['date_start']?>" class="edit_field">
+			<input type="date" name="date_start" id="date_start" value="<?=$this->_['request']['date_start']?>" required class="edit_field">
 			<label for="length">for</label>
 			<input type="number" name="length" id="length" value="<?=$this->_['request']['length']?>" class="edit_field" min="1">day(s)<br>
 			<label for="city_id" class="edit_text">City</label>
@@ -37,7 +42,7 @@ foreach ($this->_['cities'] AS $city) {
 			<?=$this->_['venue_new_form'] ?>
 			</span>
 			<label for="url" class="edit_text">URL*</label>
-			<input type="url" name="url" id="url" class="edit_field" value="<?=$this->_['request']['url']?>" placeholder="Link to more information"/><br>
+			<input type="url" name="url" id="url" class="edit_field" value="<?=$this->_['request']['url']?>" placeholder="Link to more information" required/><br>
 		</fieldset>
 		<fieldset id="lineup">
 			<?= $this->_['lineup'] ?>
