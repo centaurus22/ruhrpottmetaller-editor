@@ -255,7 +255,7 @@ class Controller {
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
 				$concerts = $Concert_Model->getConcerts($month);
-				$result = $this->process_concert_data($concerts, $month);
+				$result = $this->processConcertData($concerts, $month);
 				//Assign header and footer to the inner view
 				$innerView->assign('header', $prefs[0]['header']);
 				$innerView->assign('footer', $prefs[0]['footer']);
@@ -270,7 +270,7 @@ class Controller {
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel;
 				$concerts = $Concert_Model->getConcert($request['display_id']);
-				$result = $this->process_concert_data($concerts, $month);
+				$result = $this->processConcertData($concerts, $month);
 				$innerView->assign('concerts', $result['concerts']);
 				$innerView->setTemplate($result['template']);
 				break;
@@ -282,7 +282,7 @@ class Controller {
 				include_once('classes/model_concert.php');
 				$Concert_Model = new ConcertModel();
 				$concerts = $Concert_Model->getConcerts($month);
-				$result = $this->process_concert_data($concerts, $month);
+				$result = $this->processConcertData($concerts, $month);
 				//By reloading the default page the status of the individual concert exports
 				//must be reseted.
 				include_once('model_session.php');
@@ -514,10 +514,10 @@ class Controller {
 			$concert = array();
 		}
 
-		$this->editor_set_request_parameters($concert, 'name', $model_involved);
-		$this->editor_set_request_parameters($concert, 'date_start', $model_involved);
-		$this->editor_set_request_parameters($concert, 'city_id', $model_involved);
-		$this->editor_set_request_parameters($concert, 'url', $model_involved);
+		$this->editorSetRequestParameters($concert, 'name', $model_involved);
+		$this->editorSetRequestParameters($concert, 'date_start', $model_involved);
+		$this->editorSetRequestParameters($concert, 'city_id', $model_involved);
+		$this->editorSetRequestParameters($concert, 'url', $model_involved);
 		
 		if (!isset($request['length'])) {
 			if ($model_involved == true and !is_null($concert[0]['date_end'])) {
@@ -533,7 +533,7 @@ class Controller {
 		if ($this->request['city_id'] == 1) {
 			$this->request['venue_id'] = 1;	
 		} else {
-			$this->editor_set_request_parameters($concert, 'venue_id', $model_involved);
+			$this->editorSetRequestParameters($concert, 'venue_id', $model_involved);
 		}
 
 		/**
@@ -545,10 +545,10 @@ class Controller {
 			$request = $this->request;
 			$length_lineup = count($request['band_id']);
 			$new_band_id = 3;
-			$result_first_sign_check = $this->check_lineup_array('first_sign', $length_lineup);
-			$result_addition_check  = $this->check_lineup_array('addition', $length_lineup);
+			$result_first_sign_check = $this->checkLineupArrays('first_sign', $length_lineup);
+			$result_addition_check  = $this->checkLineupArrays('addition', $length_lineup);
 			if (in_array($this->request['band_id'])) {
-				$result_band_new_name_check = $this->check_lineup_array('band_new_name', $length_lineup);
+				$result_band_new_name_check = $this->checkLineupArrays('band_new_name', $length_lineup);
 			} else {
 				$result_band_new_name_check = array('include_array' -> false, 'error' -> false);
 			}
@@ -605,7 +605,7 @@ class Controller {
 	 * @param integer $parameter Define the parameter name.
 	 * @param boolean $model_involved Define if data from the model is available.
 	 */
-	private function editor_set_request_parameters($data_array, $parameter, $model_involved) {
+	private function editorSetRequestParameters($data_array, $parameter, $model_involved) {
 		if (!isset($this->request[$parameter])) {
 			if ($model_involved == true) {
 				$this->request[$parameter] = $data_array[0][$parameter];
@@ -627,7 +627,7 @@ class Controller {
 	 * 	boolean include_array true: parameter array must be included, false:
 	 * 		array must not be included
 	 */
-	private function check_lineup_array($array_name, $length_lineup) {
+	private function checkLineupArrays($array_name, $length_lineup) {
 		if (isset($this->request[$array_name]) and count($this->request[$array_name]) == $length_lineup) {
 			$include_array = true;
 			$error = false;
@@ -826,7 +826,7 @@ class Controller {
 	 * @param string $month Month from which the data is processed.
 	 * @return array $result Array witch processed data and template
 	 */
-	private function process_concert_data($concerts, $month) {
+	private function processConcertData($concerts, $month) {
 		//Load the session model to access the session if the output contains the export of just one concert
 		if ($this->template == "concert_export") {
 			include_once('classes/model_session.php');
