@@ -112,6 +112,9 @@ class Controller {
 				case 'edit_sub':
 					$this->template = 'edit_sub';
 					break;
+				case 'set_url':
+					$this->template = 'set_url';
+					break;
 			}
 		}
 	}
@@ -167,6 +170,18 @@ class Controller {
 
 				} else {
 					$innerView->assign('content', '<strong>Something weird happened!</strong>');
+				}
+				$innerView->setTemplate('ajax');
+				break;
+			case 'set_url':
+				$ajax = 1;
+				if (isset($request['venue_id'])) {
+					include_once('classes/model_venue.php');
+					$VenueModel = new VenueModel;
+					$venue = $VenueModel->getVenueById($request['venue_id']);
+					$innerView->assign('content', $venue[0]['url']);
+				} else {
+					$innerView->assign('content', '');
 				}
 				$innerView->setTemplate('ajax');
 				break;

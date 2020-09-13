@@ -59,21 +59,20 @@ function display_venue_new_form() {
 	xmlhttp.open("GET",file,true);
 	xmlhttp.send();
 
-	/*Wenn noch keine URL angegeben ist, soll die Standard-URL einer Location eingesetzt werden,
-	insofern diese Vorhangen ist
+	//Wenn noch keine URL angegeben ist, soll die Standard-URL einer Location eingesetzt werden,
+	//insofern diese Vorhangen ist
 	var url = document.getElementById("url").value;
-	if ((url == '' || window.editurl == 0) && location_id != "n") {
+	if ((url == '' || window.editurl == 0) && venue_id != 1 && venue_id != 0) {
 		xmlhttp_url=new XMLHttpRequest();
 		xmlhttp_url.onreadystatechange=function() {
 		  if (xmlhttp_url.readyState==4 && xmlhttp_url.status==200) {
 			 document.getElementById("url").value=xmlhttp_url.responseText;
 		  }
 		}
-		var datei = "get_url.php?location_id=" + location_id;
+		var datei = "index.php?special=set_url&venue_id=" + venue_id;
 		xmlhttp_url.open("GET",datei,true);
 		xmlhttp_url.send();
 	}
-*/
 }
 
 function get_band_select_options(row) {

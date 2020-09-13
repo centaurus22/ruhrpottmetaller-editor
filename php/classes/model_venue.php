@@ -12,7 +12,7 @@ class VenueModel {
 	}
 
 	public function getVenues() {
-		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location');
+		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location order by name');
 		$stmt->execute();
 		$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 		$stmt->close();
@@ -29,7 +29,7 @@ class VenueModel {
 		return $result;
 	}
 
-	private function getVenueById($id) {	
+	public function getVenueById($id) {	
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location WHERE id=?');
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
