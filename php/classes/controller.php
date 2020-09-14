@@ -547,7 +547,7 @@ class Controller {
 			$new_band_id = 3;
 			$result_first_sign_check = $this->check_lineup_array('first_sign', $length_lineup);
 			$result_addition_check  = $this->check_lineup_array('addition', $length_lineup);
-			if (in_array($this->request['band_id'])) {
+			if (in_array($new_band_id, $this->request['band_id'])) {
 				$result_band_new_name_check = $this->check_lineup_array('band_new_name', $length_lineup);
 			} else {
 				$result_band_new_name_check = array('include_array' -> false, 'error' -> false);
