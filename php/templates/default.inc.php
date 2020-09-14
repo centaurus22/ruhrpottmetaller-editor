@@ -1,4 +1,7 @@
-<?= $this->_['month_changer'] ?>
+<?php
+
+echo  $this->_['month_changer'];
+?>
 <div id="inhalt" class="inhalt_small">
     <table id="data">
         <tr>

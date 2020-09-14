@@ -1,4 +1,5 @@
 <?php
+
 if ($this->_['venue_id'] == 1):
 ?>
     <label for="venue_new_name" class="edit_text">New venue</label>

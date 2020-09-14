@@ -1,4 +1,5 @@
 <?php
+
 printf("\t\t\t" . '<label for="band_new_name_%1$u" hidden>New band</label>' . "\n", $this->_['row']);
 
 if ($this->_['band_id'] == 3) {

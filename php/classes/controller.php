@@ -1,4 +1,5 @@
 <?php
+
 //The controller
 class Controller {
     //NULL Array from $_GET and $_POST.

@@ -1,4 +1,5 @@
 <?php
+
 if ($this->_['city_id'] == 1):
 ?>
     <label for="city_new_name" class="edit_text">New city</label>
