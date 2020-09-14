@@ -6,7 +6,7 @@
  */
 class CityModel {
     //Link identifier for the connection to the database
-    private $mysqli = NULL;
+    private $mysqli = null;
 
     /**
      * Call the function which initialize the database connection and write the link

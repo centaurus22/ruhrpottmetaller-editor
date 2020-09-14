@@ -1,6 +1,6 @@
 <legend>Concert lineup</legend>
 <?php
-if (isset($this->_['error']) AND $this->_['error'] != '') {
+if (isset($this->_['error']) and $this->_['error'] != '') {
     echo '<p class="error">' . $this->_['error_text'] . '</p>';
 }
 $alphabet = range('A', 'Z');

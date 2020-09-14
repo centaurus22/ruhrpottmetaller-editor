@@ -7,7 +7,7 @@ if (isset($this->_['header'])) {
 }
 
 foreach($this->_['concerts'] as $concert) {
-    if (!isset($this->_['header']) OR (isset($this->_['header']) AND !isset($concert['nazi']))) {
+    if (!isset($this->_['header']) or (isset($this->_['header']) and !isset($concert['nazi']))) {
         //Build the list of bands
         $bands = '';
         foreach($concert['bands'] as $band) {

@@ -2,11 +2,11 @@
 //The controller
 class Controller {
     //NULL Array from $_GET and $_POST.
-    private $request = NULL;
+    private $request = null;
     //string Name of the template.
     private $template = '';
     //object Object representing the (outer) view.
-    private $view = NULL;
+    private $view = null;
     //string String containing error messages
     private $error_text = '';
 
@@ -18,7 +18,7 @@ class Controller {
     public function __construct($request) {
         $this->view = new View();
         //translate actions induced by the special parameters
-        if (isset($request['special']) AND $request['special'] == 'concert' AND isset($request['type'])){
+        if (isset($request['special']) and $request['special'] == 'concert' and isset($request['type'])){
             switch($request['type']) {
                 case 'edit':
                     if (isset($request['id'])) {
@@ -51,7 +51,7 @@ class Controller {
         }
         $this->request = $request;
         //Deleting and saving concerts
-        if (isset($request['del']) AND isset($request['del_id'])) {
+        if (isset($request['del']) and isset($request['del_id'])) {
             switch($request['del']) {
             case 'concert':
                 include_once('classes/model_concert.php');
@@ -128,8 +128,7 @@ class Controller {
         $innerView = new View();
         if (isset($this->request['month'])) {
             $month = $this->request['month'];
-        }
-        else{
+        } else {
             //Create the month value containing the current month
             $month = $this->getMonth();
             $this->request['month'] = $month;
@@ -163,7 +162,7 @@ class Controller {
                 break;
             case 'edit_sub':
                 $ajax = 1;
-                if (isset($request['city_id']) AND isset($request['venue_id'])) {
+                if (isset($request['city_id']) and isset($request['venue_id'])) {
                     $innerView->assign('content', $this->displayCityVenueForm($request['city_id'], $request['venue_id']));
                 } elseif (isset($request['venue_id'])) {
                     $innerView->assign('content', $this->displayVenueNewForm($request['venue_id']));
@@ -190,7 +189,7 @@ class Controller {
                 $error = false;
                 include_once('model_session.php');
                 $Session_Model = new SessionModel();
-                if (isset($request['type']) AND isset($request['row'])) {
+                if (isset($request['type']) and isset($request['row'])) {
                     switch($request['type']) {
                         case 'add':
                             $Session_Model->setBandLineUp($request['row']);
@@ -206,7 +205,7 @@ class Controller {
                             }
                             break;
                         case 'save':
-                            if (isset($request['field']) AND isset($request['value'])) {
+                            if (isset($request['field']) and isset($request['value'])) {
                                 $Session_Model->updateBandLineUp($request['row'], $request['field'], $request['value']);
                                 exit;
                             } else {
@@ -230,14 +229,14 @@ class Controller {
                 $ajax = 1;
                 switch($request['type']) {
                     case 'band_select_options':
-                        if (isset($request['first_sign']) AND isset($request['band_id'])) {
+                        if (isset($request['first_sign']) and isset($request['band_id'])) {
                             $innerView->assign('content', $this->displayBandSelectOptions($request['first_sign'], $request['band_id']));
                         } else {
                             $innerView->assign('content', '<option value="0">Something weird happened!</option>');
                         }
                         break;
                     case 'band_new_form':
-                        if (isset($request['row']) AND isset($request['band_id']))
+                        if (isset($request['row']) and isset($request['band_id']))
                         {
                             $innerView->assign('content', $this->displayBandNewForm($request['row'], $request['band_id']));
                         } else {
@@ -294,11 +293,10 @@ class Controller {
                 $innerView->setTemplate($result['template']);
                 $this->view->assign('subtitle', 'concerts');
         }
-        if (isset($ajax) AND $ajax = 1) {
+        if (isset($ajax) and $ajax = 1) {
             //On ajax calls the template of the outer view should be empty
             $this->view->setTemplate('ajax');
-        }
-        else {
+        } else {
             //No ajax call -> load the outer template
             $this->view->setTemplate('rpmetaller-editor');
         }
@@ -344,7 +342,6 @@ class Controller {
         $monthChanger->assign('month_human', $month_human);
         return $monthChanger->loadTemplate();
     }
-
 
     /**
      * Generete a view for the concert lineup
@@ -438,12 +435,12 @@ class Controller {
             if (isset($this->request['venue_new_name'])) {
                 $Venue_New_Form->assign('venue_new_name', $this->request['venue_new_name']);
             } else {
-                $Venue_New_Form->assign('venue_new_name', NULL);
+                $Venue_New_Form->assign('venue_new_name', null);
             }
             if (isset($this->request['venue_url'])) {
                 $Venue_New_Form->assign('venue_url', $this->request['venue_url']);
             } else {
-                $Venue_New_Form->assign('venue_url', NULL);
+                $Venue_New_Form->assign('venue_url', null);
             }
         }
         $Venue_New_Form->assign('venue_id', $venue_id);
@@ -504,7 +501,7 @@ class Controller {
      * @param object $Session_Model Model to access the PHP Session
      */
     private function prefillConcertEditor($Session_Model) {
-        $model_involved = isset($this->request['edit_id']) AND is_int($this->request['edit_id']);
+        $model_involved = isset($this->request['edit_id']) and is_int($this->request['edit_id']);
         if ($model_involved == true) {
             include_once('model_concert.php');
             $Concert_Model = new ConcertModel();
@@ -579,7 +576,7 @@ class Controller {
             * This defines the error text which is displayed directly above the lineup.
             */
             if (($result_band_new_name_check['error'] == true
-                or $result_addition_check['error'] == true 
+                or $result_addition_check['error'] == true
                 or $result_first_sign_check['error'] == true)
                 and !isset($this->request['save_id'])) {
                 $this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
@@ -610,7 +607,7 @@ class Controller {
             if ($model_involved == true) {
                 $this->request[$parameter] = $data_array[0][$parameter];
             } else {
-                $this->request[$parameter] = NULL;
+                $this->request[$parameter] = null;
             }
         }
     }
@@ -666,7 +663,7 @@ class Controller {
                 $error_text = "The provided date is not correct.<br>\n";
             }
             if (!isset($request['name'])) {
-                $request['name'] = NULL;
+                $request['name'] = null;
             }
             if ($request['url'] == '' ) {
                 $error_text .= "The URL is empty.<br>\n";
@@ -675,7 +672,7 @@ class Controller {
                 $request['length'] = 1;
             }
             if (!isset($request['venue_id'])) {
-                $request['venue_id'] = NULL;
+                $request['venue_id'] = null;
             }
             if (!isset($request['band_id'])) {
                 $request['band_id'] = array();
@@ -755,10 +752,10 @@ class Controller {
             }
         }
 
-        if (isset($request['published']) AND $request['published'] == 1) {
+        if (isset($request['published']) and $request['published'] == 1) {
             $result = $Concert_Model->setPublished($request['save_id']);
         }
-        if (isset($request['sold_out']) AND $request['sold_out'] == 1) {
+        if (isset($request['sold_out']) and $request['sold_out'] == 1) {
             $result = $Concert_Model->setSoldOut($request['save_id']);
         }
 
@@ -838,12 +835,11 @@ class Controller {
         }
         //If the concert_export template is set and the display status of the concert is 1,
         //the display status ist changed to 0 and no information are displayed-
-        elseif ($this->template == "concert_export" AND
+        elseif ($this->template == "concert_export" and
             $Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1) {
             $template = 'empty_output';
             $Session_Model->changeConcertDisplayStatus($this->request['display_id']);
-        }
-        else {
+        } else {
             //Load Model to access the preference table
             include_once('classes/model_pref.php');
             $Pref_Model = new PrefModel();
@@ -865,10 +861,10 @@ class Controller {
                 $two_weeks = 1209600;
                 $two_months = 5184000;
                 if ((($time_start - time() < $two_weeks
-                    AND is_null($concerts[$concert_index]['date_end']))
-                    OR ($time_start - time() < $two_months
-                    AND !is_null($concerts[$concert_index]['date_end'])))
-                    AND $concerts[$concert_index]['publiziert'] == 0) {
+                    and is_null($concerts[$concert_index]['date_end']))
+                    or ($time_start - time() < $two_months
+                    and !is_null($concerts[$concert_index]['date_end'])))
+                    and $concerts[$concert_index]['publiziert'] == 0) {
                     $concerts[$concert_index]['status'] = 'urgent';
                 }
                 elseif ($concerts[$concert_index]['publiziert'] == 1) {

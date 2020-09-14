@@ -3,7 +3,7 @@
 class VenueModel {
     //Class to acces and maintain venue data.
 
-    private $mysqli = NULL;
+    private $mysqli = null;
 
     public function __construct() {
         include_once('model_connect.php');

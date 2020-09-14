@@ -60,7 +60,7 @@ class SessionModel {
         if (is_numeric($id)) {
             $this->initConcertDisplayStatus();
             if  (isset($_SESSION['concert_display_status']["$id"])
-                AND $_SESSION['concert_display_status']["$id"]) {
+                and $_SESSION['concert_display_status']["$id"]) {
                 return 1;
             }
             else {
@@ -179,16 +179,16 @@ class SessionModel {
      * @return integer 1-> correct parameters, -1-> wrong parameters.
      */
     public function shiftBandLineup($row, $direction) {
-        if (is_numeric($row) AND ($direction == "up" OR $direction == "down")) {
+        if (is_numeric($row) and ($direction == "up" or $direction == "down")) {
             $this->initLineUp();
             $lenght_lineup = count($_SESSION['lineup']);
             if ($lenght_lineup > 1) {
                 $band_tmp = $_SESSION['lineup'][$row];
-                if ($direction == "up" AND $row > 0) {
+                if ($direction == "up" and $row > 0) {
                     $_SESSION['lineup'][$row] = $_SESSION['lineup'][$row - 1];
                     $_SESSION['lineup'][$row - 1] = $band_tmp;
                 }
-                elseif ($direction == "down" AND $row < $lenght_lineup - 1) {
+                elseif ($direction == "down" and $row < $lenght_lineup - 1) {
                     $_SESSION['lineup'][$row] = $_SESSION['lineup'][$row + 1];
                     $_SESSION['lineup'][$row + 1] = $band_tmp;
 

@@ -26,7 +26,7 @@ if ($this->_['error_text'] != '') {
             <label for="city_id" class="edit_text">City</label>
             <select name="city_id" id="city_id" value="<?=$this->_['request']['city_id']?>" onchange="display_city_venue_form(); display_venue_new_form();">
 <?php
-foreach ($this->_['cities'] AS $city) {
+foreach ($this->_['cities'] as $city) {
     if ($this->_['request']['city_id'] == $city['id'] ) {
         printf("\t\t\t\t" . '<option value="%1$u" selected>%2$s</option>' . "\n", $city['id'], $city['name']);
     } else {

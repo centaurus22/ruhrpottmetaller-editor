@@ -6,7 +6,7 @@
  */
 class ConcertModel {
     //Link identifier for the connection to the database
-    private $mysqli = NULL;
+    private $mysqli = null;
 
     /**
      * Call the function which initialize the database connection and write the link
@@ -17,14 +17,14 @@ class ConcertModel {
         $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
     }
-    
+
     /**
-     * Read data about concerts in a specified month from the database and deliver it as a 
+     * Read data about concerts in a specified month from the database and deliver it as a
      * three dimensional array.
      *
      * @param string $month Month from which the concert is read.
      * @return array Array with the concert data. If no concerts are present in this month it
-     *      returns an empty array. 
+     *      returns an empty array.
      */
     public function getConcerts($month) {
         $stmt = $this->mysqli->prepare('SELECT event.id,
@@ -56,8 +56,8 @@ class ConcertModel {
      * Read the data of one concert from the database and deliver it as a two dimensional array.
      *
      * @param integer $id Id of the concert which data is read.
-     * @return array Array with the concert data. If no concert with this id exist it returns 
-     *      an empty array. 
+     * @return array Array with the concert data. If no concert with this id exist it returns
+     *      an empty array.
      */
     public function getConcert($id) {
         $stmt = $this->mysqli->prepare('SELECT event.id,
@@ -79,15 +79,15 @@ class ConcertModel {
         $result[0]['bands'] = $bands;
         return $result;
     }
-    
+
     /**
      * Update the data of one concert in the database.
      *
      * @param integer $id Id of the concert which data is updated.
      * @param string $name The name of the concert.
-     * @param string $date_start It contains the date on which the concert takes place. If the concert is a 
+     * @param string $date_start It contains the date on which the concert takes place. If the concert is a
      *  multi-day festival it contains the date of the first day.
-     * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day 
+     * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day
      *  in the format YYYY-MM-DD. If it is just on one day, the string is empty.
      * @param integer $venue_id The id of the venue where the concert takes place
      * @param string $url URL which links to information about a concert
@@ -102,14 +102,14 @@ class ConcertModel {
         $stmt->close();
         return $result;
     }
-    
+
     /**
      * Insert a concert into the database.
      *
      * @param string $name The name of the concert.
-     * @param string $date_start It contains the date on which the concert takes place. If the concert is a 
+     * @param string $date_start It contains the date on which the concert takes place. If the concert is a
      *  multi-day festival it contains the date of the first day.
-     * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day 
+     * @param string $date_end If the concert is a multi-day festival this string contains the date of the last day
      *  in the format YYYY-MM-DD. If it is just on one day, the string is empty.
      * @param integer $venue_id The id of the venue where the concert takes place
      * @param string $url URL which links to information about a concert
@@ -124,7 +124,7 @@ public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
         $stmt->close();
         return $result;
     }
-    
+
     /**
      * Delete one concert in the database.
      *
@@ -151,7 +151,7 @@ public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
      * of an error.
      */
     public function getBands($id) {
-        $stmt = $this->mysqli->prepare('SELECT band.id, band.name, band.nazi, event_band.zusatz 
+        $stmt = $this->mysqli->prepare('SELECT band.id, band.name, band.nazi, event_band.zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
         $stmt->bind_param('i', $id);
