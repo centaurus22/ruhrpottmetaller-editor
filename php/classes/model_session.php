@@ -35,7 +35,7 @@ class SessionModel {
 		}
 		return 1;
 
-	}	
+	}
 
 	/**
 	 * Add an empty array to the PHP Session to save the lineup in the concert editor if it is not
@@ -59,10 +59,10 @@ class SessionModel {
 	public function getConcertDisplayStatus($id) {
 		if (is_numeric($id)) {
 			$this->initConcertDisplayStatus();
-			if  (isset($_SESSION['concert_display_status']["$id"]) 
+			if  (isset($_SESSION['concert_display_status']["$id"])
 				AND $_SESSION['concert_display_status']["$id"]) {
 				return 1;
-			} 
+			}
 			else {
 				return 0;
 
@@ -70,9 +70,9 @@ class SessionModel {
 		}
 		else {
 			return -1;
-		}	
+		}
 	}
-	
+
 	/**
 	 * Change the export status of a concert.
 	 *
@@ -146,7 +146,7 @@ class SessionModel {
 	public function updateBandLineUp($row, $field, $value) {
 		if (is_numeric($row)) {
 			$this->initLineUp();
-			$_SESSION['lineup'][$row][$field] = $value; 
+			$_SESSION['lineup'][$row][$field] = $value;
 			return 1;
 		}
 		else {
@@ -199,7 +199,7 @@ class SessionModel {
 			return -1;
 		}
 	}
-	
+
 	/**
 	 * Delete the complete lineup array.
 	 *

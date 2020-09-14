@@ -4,7 +4,7 @@ if ($this->_['city_id'] == 1):
 	<label for="city_new_name" class="edit_text">New city</label>
 	<input type="text" name="city_new_name" id="city_new_name" value="<?=$this->_['city_new_name']?>" class="edit_field" placeholder="Name of the new city">
 	<br>
-<?php	
+<?php
 else:
 	if ($this->_['city_id'] > 1) {
 		$this->_['venues'][] = array('id' => 1, 'name' => 'New venue');

@@ -13,7 +13,7 @@ class View {
 	private $template = 'default';
 	// array Two dimensional array which contains the data which is passed to the view.
 	private $_ = array();
-	
+
 	//Function which assigns the date to the two dimensional array.
 	//
 	//@param string $key Key name
@@ -21,7 +21,7 @@ class View {
 	public function assign($key, $value) {
 		$this->_[$key] = $value;
 	}
-	
+
 	//Writes the template name into the corresponding class variable
 	//
 	//@param string $template Name of the template

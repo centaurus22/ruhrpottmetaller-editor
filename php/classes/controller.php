@@ -131,7 +131,7 @@ class Controller {
 		}
 		else{
 			//Create the month value containing the current month
-			$month = $this->getMonth(); 
+			$month = $this->getMonth();
 			$this->request['month'] = $month;
 		}
 		$request = $this->request;
@@ -213,7 +213,7 @@ class Controller {
 								$error = true;
 							}
 					}
-				} 
+				}
 				else {
 					$error = true;
 				}
@@ -242,7 +242,7 @@ class Controller {
 							$innerView->assign('content', $this->displayBandNewForm($request['row'], $request['band_id']));
 						} else {
 							$innerView->assign('content', '<strong>Something weird happened!</strong>');
-						}	
+						}
 						break;
 				}
 				$innerView->setTemplate('ajax');
@@ -308,13 +308,13 @@ class Controller {
 			array('Bands', 'band'),
 			array('Cities','city'),
 			array('Venues', 'venue'),
-			array('Export', 'export'), 
+			array('Export', 'export'),
 			array('Preferences','pref')
 		));
 		$this->view->assign('content', $innerView->loadTemplate());
 		return $this->view->loadTemplate();
 	}
-	
+
 	/**
 	 * Initialize a view for the second line of the web application if necessary, set the template,
 	 * assign the data to the view, and load the template.
@@ -396,7 +396,7 @@ class Controller {
 	/**
 	 * Display the option tags for the select element to choose a band.
 	 *
-	 * @param integer  $city_id The id of the choosen city. 
+	 * @param integer  $city_id The id of the choosen city.
 	 * @param integer  $venue_id Band id The id of the choosen venue.
 	 * @return string Output of the template.
 	 */
@@ -455,14 +455,14 @@ class Controller {
 	 * Display the option tags for the select element to choose a band.
 	 *
 	 * @param integer|string $first_sign First (capital) letter of the band or '%' for a special symbol
-	 * @param integer  $band_id Band id 
+	 * @param integer  $band_id Band id
 	 * @return string Output of the template.
 	 */
 	public function displayBandSelectOptions ($first_sign, $band_id) {
 		$Band_Select_Options = new View();
 		if ($first_sign == '') {
 			$bands = array(
-				array('id' => 1, 'name' => 'TBA'), 
+				array('id' => 1, 'name' => 'TBA'),
 				array('id' => 2, 'name' => 'Support')
 			);
 		} else {
@@ -478,7 +478,7 @@ class Controller {
 		$Band_Select_Options->setTemplate('band_select_options');
 		return $Band_Select_Options->loadTemplate();
 	}
-	
+
 	/**
 	 * 	Display the form to enter the name of a new band. Either with type="text" or type="hidden.
 	 *
@@ -518,7 +518,7 @@ class Controller {
 		$this->editorSetRequestParameters($concert, 'date_start', $model_involved);
 		$this->editorSetRequestParameters($concert, 'city_id', $model_involved);
 		$this->editorSetRequestParameters($concert, 'url', $model_involved);
-		
+
 		if (!isset($request['length'])) {
 			if ($model_involved == true and !is_null($concert[0]['date_end'])) {
 				$date_start = strtotime($concert[0]['date_start']);
@@ -529,9 +529,9 @@ class Controller {
 				$this->request['length'] = 1;
 			}
 		}
-		
+
 		if ($this->request['city_id'] == 1) {
-			$this->request['venue_id'] = 1;	
+			$this->request['venue_id'] = 1;
 		} else {
 			$this->editorSetRequestParameters($concert, 'venue_id', $model_involved);
 		}
@@ -552,9 +552,9 @@ class Controller {
 			} else {
 				$result_band_new_name_check = array('include_array' -> false, 'error' -> false);
 			}
-				
+
 			$request = $this->request;
-			$Session_Model->delLineUp();					
+			$Session_Model->delLineUp();
 			for($band_index = 0; $band_index < count($request['band_id']); $band_index++) {
 				$Session_Model->setBandLineUp($band_index);
 				$Session_Model->updateBandLineUp($band_index, 'band_id', $request['band_id'][$band_index]);
@@ -578,14 +578,14 @@ class Controller {
 			/**
 		 	* This defines the error text which is displayed directly above the lineup.
 		 	*/
-			if (($result_band_new_name_check['error'] == true 
+			if (($result_band_new_name_check['error'] == true
 				or $result_addition_check['error'] == true 
 				or $result_first_sign_check['error'] == true)
 				and !isset($this->request['save_id'])) {
 				$this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
 			}
 		} elseif ($model_involved == true) {
-			$Session_Model->delLineUp();					
+			$Session_Model->delLineUp();
 			for ($band_index = 0; $band_index < count($concert[0]['bands']); $band_index++) {
 				$Session_Model->setBandLineUp($band_index);
 				$first_sign = $this->getFirstSign($concert[0]['bands'][$band_index]['name'], 0, 1);
@@ -614,7 +614,7 @@ class Controller {
 			}
 		}
 	}
-	
+
 	/**
 	 * Check if parameter arrays with additional information exist and if they
 	 * have the right length.
@@ -622,7 +622,7 @@ class Controller {
 	 * @param string $array_name The name of the parameter array which is
 	 * 	checked.
 	 * @param integer $length_lineup The length of the reference array.
-	 * @return array Associative array with to keys: 
+	 * @return array Associative array with to keys:
 	 * 	boolean error true: error, false: no error
 	 * 	boolean include_array true: parameter array must be included, false:
 	 * 		array must not be included
@@ -689,7 +689,7 @@ class Controller {
 			if (count($request['band_new_name']) != count($request['band_id']) or count($request['addition']) != count($request['band_id'])) {
 				$error_text .="Array lengths in the URL parameters does not match! Some data is ignored.<br>\n";
 			}
-			
+
 			if ($error_text != '') {
 				$this->rewriteSaveEdit();
 				return $error_text;
@@ -710,7 +710,7 @@ class Controller {
 			$error_text .= $this->setNewProperty('city', $this->request);
 			$error_text .= $this->setNewProperty('venue', $this->request);
 			$request = $this->request;
-			
+
 			if ($error_text != '') {
 				$this->rewriteSaveEdit();
 				return $error_text;
@@ -728,7 +728,7 @@ class Controller {
 					$request['date_end'], $request['venue_id'], $request['url']);
 				$request['save_id'] = $result;
 			}
-			
+
 			if (is_numeric($request['save_id']) and $request['save_id'] > 0) {
 				$result = $Concert_Model->delBands($request['save_id']);
 				require_once('classes/model_band.php');
@@ -864,9 +864,9 @@ class Controller {
 				//Determine the status of the concert.
 				$two_weeks = 1209600;
 				$two_months = 5184000;
-				if ((($time_start - time() < $two_weeks 
-					AND is_null($concerts[$concert_index]['date_end'])) 
-					OR ($time_start - time() < $two_months 
+				if ((($time_start - time() < $two_weeks
+					AND is_null($concerts[$concert_index]['date_end']))
+					OR ($time_start - time() < $two_months
 					AND !is_null($concerts[$concert_index]['date_end'])))
 					AND $concerts[$concert_index]['publiziert'] == 0) {
 					$concerts[$concert_index]['status'] = 'urgent';
@@ -874,7 +874,7 @@ class Controller {
 				elseif ($concerts[$concert_index]['publiziert'] == 1) {
 					$concerts[$concert_index]['status'] = 'published';
 				}
-				else { 
+				else {
 					$concerts[$concert_index]['status'] = 'unpublished';
 				}
 				if ($this->template == 'concert_export') {
@@ -929,11 +929,10 @@ class Controller {
 		$result['template'] = $template;
 		return $result;
 	}
-	
 	/**
 	 * Get the month from the current date or a submitted string.
 	 *
-	 * @param string $date Optional date from which the month is generated 
+	 * @param string $date Optional date from which the month is generated
 	 * @return string Generated date
 	 */
 

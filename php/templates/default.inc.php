@@ -17,13 +17,13 @@ foreach($this->_['concerts'] as $concert) {
 	$bands = '';
 	foreach($concert['bands'] as $band) {
 		if ($band['zusatz']) {
-			$bands = $bands . sprintf(', <span class="%3$s">%1$s (%2$s)</span>', 
+			$bands = $bands . sprintf(', <span class="%3$s">%1$s (%2$s)</span>',
 				htmlspecialchars($band['name'], ENT_QUOTES),
 				htmlspecialchars($band['zusatz'], ENT_QUOTES),
 				htmlspecialchars($band['nazi'], ENT_QUOTES));
 		}
 		else {
-			$bands = $bands . sprintf(', <span class="%2$s">%1$s</span>', 
+			$bands = $bands . sprintf(', <span class="%2$s">%1$s</span>',
 				htmlspecialchars($band['name'], ENT_QUOTES),
 				htmlspecialchars($band['nazi'], ENT_QUOTES));
 		}
@@ -59,7 +59,7 @@ foreach($this->_['concerts'] as $concert) {
 			<td id=\"concert_%9\$s\" colspan=\"7\"></td>
 		</tr>\n", htmlspecialchars($concert['status'], ENT_QUOTES),
 			$concert['date_human'],
-			htmlspecialchars($concert['name'], ENT_QUOTES), 
+			htmlspecialchars($concert['name'], ENT_QUOTES),
 			htmlspecialchars($concert['venue_city'], ENT_QUOTES),
 			htmlspecialchars($concert['url'], ENT_QUOTES), $bands,
 			$concert['date_start'], $this->_['month'],

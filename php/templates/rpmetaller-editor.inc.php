@@ -18,7 +18,7 @@
 			</div>
 		</div>
 <?= $this->_['content']; ?>
-		<div class="leiste_bottom"> 
+		<div class="leiste_bottom">
 			(c) Klaus Thorres 2020. This Software is provided under the <a href="?display=license">MIT License</a>.
 		</div>
 	</body>

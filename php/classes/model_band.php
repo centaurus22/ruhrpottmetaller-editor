@@ -21,7 +21,7 @@ class BandModel {
 	/**
 	 * Get band data from the database
 	 *
-	 * @param initial $string Initial letter of the band name in capital letters or an empty string for 
+	 * @param initial $string Initial letter of the band name in capital letters or an empty string for
 	 * 	all bands or a lowecase s for bands witch names start with a special character.
 	 * @return array Array with band data.
 	 */
@@ -64,7 +64,7 @@ class BandModel {
 	/**
 	 * Insert data about a band into the database
 	 *
-	 * @param string $name Name of the band. 
+	 * @param string $name Name of the band.
 	 * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
 	 * @return integer Returns id of the new band, -1 for an error.
 	 */
@@ -81,7 +81,7 @@ class BandModel {
 	 * Update band data in the database
 	 *
 	 * @param integer $id Id of the band which is updated.
-	 * @param string $name Name of the band. 
+	 * @param string $name Name of the band.
 	 * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
 	 * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
 	 */

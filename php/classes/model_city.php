@@ -49,7 +49,7 @@ class CityModel {
 	/**
 	 * Insert data about a city into the database
 	 *
-	 * @param string $name Name of the city. 
+	 * @param string $name Name of the city.
 	 * @return integer Returns 1 for successful operation, -1 for an error.
 	 */
 	public function setCity($name) {
@@ -65,7 +65,7 @@ class CityModel {
 	 * Update city data in the database
 	 *
 	 * @param integer $id Id of the band which is updated.
-	 * @param string $name Name of the city. 
+	 * @param string $name Name of the city.
 	 * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an error.
 	 */
 	public function updateCity($id, $name) {
@@ -75,5 +75,5 @@ class CityModel {
 		$result = $stmt->affected_rows;
 		$stmt->close();
 		return $result;
-	}	
+	}
 }

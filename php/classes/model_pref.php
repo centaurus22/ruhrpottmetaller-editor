@@ -21,7 +21,7 @@ class PrefModel {
 	/**
 	 * Read the preferences from the database.
 	 *
-	 * @return array Array with preferences. If no preferences are set it returns an empty array. 
+	 * @return array Array with preferences. If no preferences are set it returns an empty array.
 	 */
 	public function getPref() {
 		$stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences
@@ -31,11 +31,11 @@ class PrefModel {
 		$stmt->close();
 		return $result;
 	}
-	
+
 	/**
 	 * Read preferences about the export language from the database.
 	 *
-	 * @return array Array with language preferences. If no preferences are set it returns an empty array. 
+	 * @return array Array with language preferences. If no preferences are set it returns an empty array.
 	 */
 	public function getPrefExportLang() {
 		$stmt = $this->mysqli->prepare('SELECT export_lang FROM preferences WHERE id = 1');

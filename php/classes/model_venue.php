@@ -29,7 +29,7 @@ class VenueModel {
 		return $result;
 	}
 
-	public function getVenueById($id) {	
+	public function getVenueById($id) {
 		$stmt = $this->mysqli->prepare('SELECT id, name, stadt_id, url FROM location WHERE id=?');
 		$stmt->bind_param('i', $id);
 		$stmt->execute();

@@ -7,17 +7,17 @@ if (isset($this->_['header'])) {
 }
 
 foreach($this->_['concerts'] as $concert) {
-	if (!isset($this->_['header']) OR (isset($this->_['header']) AND !isset($concert['nazi']))) { 
+	if (!isset($this->_['header']) OR (isset($this->_['header']) AND !isset($concert['nazi']))) {
 		//Build the list of bands
 		$bands = '';
 		foreach($concert['bands'] as $band) {
 			if ($band['zusatz'] != '') {
-				$bands = $bands . sprintf('%1$s (%2$s), ', 
+				$bands = $bands . sprintf('%1$s (%2$s), ',
 					htmlspecialchars($band['name'], ENT_QUOTES),
 					htmlspecialchars($band['zusatz'], ENT_QUOTES));
 			}
 			else {
-				$bands = $bands . sprintf('%1$s, ', 
+				$bands = $bands . sprintf('%1$s, ',
 					htmlspecialchars($band['name'], ENT_QUOTES));
 			}
 		}
@@ -25,7 +25,7 @@ foreach($this->_['concerts'] as $concert) {
 		echo "<p ondblclick=\"selectElmCnt(this)\">* ";
 		if ($concert['ausverkauft'] == 1) {
 			echo '(ausverkauft) ';
-		}	
+		}
 		echo $concert['date_human'] . ':';
 		if ($concert['name']) {
 			echo ' ' . htmlspecialchars($concert['name'], ENT_QUOTES) . ', ';
@@ -33,7 +33,7 @@ foreach($this->_['concerts'] as $concert) {
 		if ($concert['venue_name'] == '') {
 			echo '<br>';
 		} else {
-			echo ' ' . htmlspecialchars($concert['venue_name'], ENT_QUOTES) . ' in  ' . 
+			echo ' ' . htmlspecialchars($concert['venue_name'], ENT_QUOTES) . ' in  ' .
 			htmlspecialchars($concert['city_name'], ENT_QUOTES) . "<br>";
 		}
 		if ($bands != '') {
