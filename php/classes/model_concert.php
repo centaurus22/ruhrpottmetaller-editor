@@ -223,6 +223,4 @@ public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
 		$stmt->close();
 		return $result;
 	}
-
 }
-?>

@@ -1,1 +1,1 @@
-<?= $this->_['content']; ?>
+<?= $this->_['content'];

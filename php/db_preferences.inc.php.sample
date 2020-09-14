@@ -8,5 +8,3 @@ $db = '';
 $dbuser = '';
 //password
 $dbuserpass = '';
-
-?>

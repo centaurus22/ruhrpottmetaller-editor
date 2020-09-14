@@ -62,5 +62,3 @@ class PrefModel {
 		return $result;
 	}
 }
-
-?>

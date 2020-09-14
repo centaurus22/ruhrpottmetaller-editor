@@ -9,4 +9,3 @@ foreach ($this->_['bands'] AS $band) {
 			$band['id'], htmlspecialchars($band['name'], ENT_QUOTES));
 	}
 }
-?>

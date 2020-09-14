@@ -49,5 +49,4 @@ class View {
 			return 'Could not found template' . $tpl . '.';
 		}
 	}
-
 }

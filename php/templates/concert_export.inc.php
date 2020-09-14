@@ -46,4 +46,3 @@ if (isset($this->_['header'])) {
 	echo nl2br(htmlspecialchars($this->_['footer'], ENT_QUOTES));
 	echo '</div>';
 }
-?>

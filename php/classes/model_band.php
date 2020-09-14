@@ -93,5 +93,4 @@ class BandModel {
 		$stmt->close();
 		return ($result);
 	}
-
 }

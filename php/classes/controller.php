@@ -945,4 +945,3 @@ class Controller {
 		}
 	}
 }
-?>

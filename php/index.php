@@ -12,4 +12,3 @@ $request = array_merge($_GET, $_POST);
 $controller = new Controller($request);
 // Display the output of web application.
 echo $controller->display();
-?>

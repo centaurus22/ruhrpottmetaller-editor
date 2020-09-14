@@ -76,5 +76,4 @@ class CityModel {
 		$stmt->close();
 		return $result;
 	}	
-
 }
