@@ -321,7 +321,7 @@ class Controller
      *
      * @return string Output of the corresponding template.
      */
-    public function displayMonthChanger() {
+    private function displayMonthChanger() {
         //Initialize a new View class for the second line of the web application
         $monthChanger = new View();
         //Set the corresponding template
@@ -351,7 +351,7 @@ class Controller
      * @param object $Session_Model Object to access data in the session
      * @return string Output of the lineup template.
      */
-    public function displayLineUp($Session_Model, $error_text_lineup = '') {
+    private function displayLineUp($Session_Model, $error_text_lineup = '') {
         //Initialize a new view for displaying the lineup
         $lineUp = new View();
         //Set the corresponding template
@@ -399,7 +399,7 @@ class Controller
      * @param integer  $venue_id Band id The id of the choosen venue.
      * @return string Output of the template.
      */
-    public function displayCityVenueForm ($city_id, $venue_id) {
+    private function displayCityVenueForm ($city_id, $venue_id) {
         $City_Venue_Form = new View();
         require_once('model_venue.php');
         $Venue_Model = new VenueModel();
@@ -431,7 +431,7 @@ class Controller
      * @param integer $venue_id Band id of the band.
      * @return string Output of the template.
      */
-    public function displayVenueNewForm($venue_id) {
+    private function displayVenueNewForm($venue_id) {
         $Venue_New_Form = new View();
         if ($venue_id == 1) {
             if (isset($this->request['venue_new_name'])) {
@@ -457,7 +457,7 @@ class Controller
      * @param integer  $band_id Band id
      * @return string Output of the template.
      */
-    public function displayBandSelectOptions ($first_sign, $band_id) {
+    private function displayBandSelectOptions ($first_sign, $band_id) {
         $Band_Select_Options = new View();
         if ($first_sign == '') {
             $bands = array(
@@ -485,7 +485,7 @@ class Controller
      * @param integer $band_id Band id of the band.
      * @return string Output of the template.
      */
-    public function displayBandNewForm($row, $band_id) {
+    private function displayBandNewForm($row, $band_id) {
         include_once('classes/model_session.php');
         $Session_Model = new SessionModel();
         $lineup = $Session_Model->getBandsLineup();
@@ -645,7 +645,7 @@ class Controller
      *
      * @return integer Value of 0 or greater -> Succes, -1 -> Error.
      */
-    public function saveConcert() {
+    private function saveConcert() {
         $request = $this->request;
         include_once('classes/model_concert.php');
         $Concert_Model = new ConcertModel();

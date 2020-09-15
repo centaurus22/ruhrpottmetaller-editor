@@ -48,7 +48,7 @@ class VenueModel
         return $result;
     }
 
-    private function updateVenue($id, $name, $city_id, $url) {
+    public function updateVenue($id, $name, $city_id, $url) {
         $stmt = $this->mysqli->prepare('UPDATE location SET name=?, stadt_id=?, url=? WHERE id=?');
         $stmt->bind_param('sisi', $name, $city_id, $url, $id);
         $stmt->execute();

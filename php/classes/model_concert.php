@@ -116,7 +116,7 @@ class ConcertModel
      * @param string $url URL which links to information about a concert
      * @return integer The id of the last inserted concert.
      */
-public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
+    public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
         $stmt = $this->mysqli->prepare('INSERT INTO event SET name = ?, datum_beginn = ?, datum_ende = ?,
             location_id = ?, url = ?');
         $stmt->bind_param('sssis', $name, $date_start, $date_end, $venue_id, $url);
