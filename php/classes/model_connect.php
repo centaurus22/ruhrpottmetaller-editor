@@ -4,7 +4,8 @@
  * Class to make a database connection
  * Version 1.0.0
  */
-class ConnectModel {
+class ConnectModel
+{
     /**
      * Make the database connection.
      *

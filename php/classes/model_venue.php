@@ -1,8 +1,9 @@
 <?php
-
-class VenueModel {
-    //Class to acces and maintain venue data.
-
+/**
+ * Class to acces and maintain venue data.
+ */
+class VenueModel
+{
     private $mysqli = null;
 
     public function __construct() {

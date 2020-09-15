@@ -4,7 +4,8 @@
  * View class which is in charge of displaying the data.
  * Version 1.0.0
  */
-class View {
+class View
+{
     // string Template path
     private $template_path = 'templates';
     //string folder in which images are stored.

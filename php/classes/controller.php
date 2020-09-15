@@ -1,7 +1,8 @@
 <?php
 
 //The controller
-class Controller {
+class Controller
+{
     //NULL Array from $_GET and $_POST.
     private $request = null;
     //string Name of the template.

@@ -4,7 +4,8 @@
  * Class to access and manipulate the data in the preferences table.
  * Version 1.0.0
  */
-class PrefModel {
+class PrefModel
+{
     //Link identifier for the connection to the database
     private $mysqli = null;
 
