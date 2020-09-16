@@ -13,7 +13,8 @@ class PrefModel
      * Call the function which initialize the database connection and write the link
      * identifier into the class variable.
      */
-    public function __construct() {
+    public function __construct()
+    {
         include_once('model_connect.php');
         $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
@@ -24,7 +25,8 @@ class PrefModel
      *
      * @return array Array with preferences. If no preferences are set it returns an empty array.
      */
-    public function getPref() {
+    public function getPref()
+    {
         $stmt = $this->mysqli->prepare('SELECT export_lang, header, footer FROM preferences
             WHERE id = 1');
         $stmt->execute();
@@ -38,7 +40,8 @@ class PrefModel
      *
      * @return array Array with language preferences. If no preferences are set it returns an empty array.
      */
-    public function getPrefExportLang() {
+    public function getPrefExportLang()
+    {
         $stmt = $this->mysqli->prepare('SELECT export_lang FROM preferences WHERE id = 1');
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -54,7 +57,8 @@ class PrefModel
      * @param string $footer Footer of the monthly overview of concerts.
      * @return integer Integer with a value greater 1 for a succesfully write of preferences, 0 for no changes, -1 for an error.
      */
-    public function updatePref($export_lang, $header, $footer) {
+    public function updatePref($export_lang, $header, $footer)
+    {
         $stmt = $this->mysqli->prepare('UPDATE preferences SET export_lang=?, heade=?, footer=?');
         $stmt->bind_param('sss', $export_lang, $header, $footer);
         $stmt->execute();

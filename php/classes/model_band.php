@@ -13,7 +13,8 @@ class BandModel
      * Call the function which initialize the database connection and write the link
      * identifier into the class variable.
      */
-    public function __construct() {
+    public function __construct()
+    {
         include_once('model_connect.php');
         $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
@@ -26,7 +27,8 @@ class BandModel
      *  all bands or a lowecase s for bands witch names start with a special character.
      * @return array Array with band data.
      */
-    public function getBands($initial) {
+    public function getBands($initial)
+    {
         switch($initial) {
         case '':
             $stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band ORDER BY name');
@@ -53,7 +55,8 @@ class BandModel
      * @param integer $id Id of the band.
      * @return array Array with band data.
      */
-    public function getBand($id) {
+    public function getBand($id)
+    {
         $stmt = $this->mysqli->prepare('SELECT id, name, nazi FROM band WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -69,7 +72,8 @@ class BandModel
      * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
      * @return integer Returns id of the new band, -1 for an error.
      */
-    public function setBand($name) {
+    public function setBand($name)
+    {
         $stmt = $this->mysqli->prepare('INSERT INTO band SET name=?');
         $stmt->bind_param('s', $name);
         $stmt->execute();
@@ -86,7 +90,8 @@ class BandModel
      * @param integer $nazi Export status of the band. 0 -> exportable 1-> non-exportable
      * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
      */
-    public function updateBand($id, $name, $nazi) {
+    public function updateBand($id, $name, $nazi)
+    {
         $stmt = $this->mysqli->prepare('UPDATE band SET name=?, nazi=? WHERE id=?');
         $stmt->bind_param('sii', $name, $nazi, $id);
         $stmt->execute();

@@ -13,7 +13,8 @@ class CityModel
      * Call the function which initialize the database connection and write the link
      * identifier into the class variable.
      */
-    public function __construct() {
+    public function __construct()
+    {
         include_once('model_connect.php');
         $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
@@ -24,7 +25,8 @@ class CityModel
      *
      * @return array Array with city data.
      */
-    public function getCities() {
+    public function getCities()
+    {
         $stmt = $this->mysqli->prepare('SELECT id, name FROM stadt ORDER BY name');
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -38,7 +40,8 @@ class CityModel
      * @param integer $id Id of the city.
      * @return array Array with city data.
      */
-    public function getCity($id) {
+    public function getCity($id)
+    {
         $stmt = $this->mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -53,7 +56,8 @@ class CityModel
      * @param string $name Name of the city.
      * @return integer Returns 1 for successful operation, -1 for an error.
      */
-    public function setCity($name) {
+    public function setCity($name)
+    {
         $stmt = $this->mysqli->prepare('INSERT INTO stadt SET name=?');
         $stmt->bind_param('s', $name);
         $stmt->execute();
@@ -69,7 +73,8 @@ class CityModel
      * @param string $name Name of the city.
      * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an error.
      */
-    public function updateCity($id, $name) {
+    public function updateCity($id, $name)
+    {
         $this->mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
         $stmt->bind_param('si', $name, $id);
         $stmt->execute();

@@ -13,7 +13,8 @@ class ConcertModel
      * Call the function which initialize the database connection and write the link
      * identifier into the class variable.
      */
-    public function __construct() {
+    public function __construct()
+    {
         include_once('model_connect.php');
         $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
@@ -27,7 +28,8 @@ class ConcertModel
      * @return array Array with the concert data. If no concerts are present in this month it
      *      returns an empty array.
      */
-    public function getConcerts($month) {
+    public function getConcerts($month)
+    {
         $stmt = $this->mysqli->prepare('SELECT event.id,
             event.datum_beginn AS date_start, event.datum_ende AS date_end,
             event.name AS name, event.url, event.publiziert,
@@ -60,7 +62,8 @@ class ConcertModel
      * @return array Array with the concert data. If no concert with this id exist it returns
      *      an empty array.
      */
-    public function getConcert($id) {
+    public function getConcert($id)
+    {
         $stmt = $this->mysqli->prepare('SELECT event.id,
             event.datum_beginn AS date_start,
             event.datum_ende as date_end,
@@ -94,7 +97,8 @@ class ConcertModel
      * @param string $url URL which links to information about a concert
      * @return integer The id of the last updated concert.
      */
-    public function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url) {
+    public function updateConcert($id, $name, $date_start, $date_end, $venue_id, $url)
+    {
         $stmt = $this->mysqli->prepare('UPDATE event SET name = ?, datum_beginn = ?, datum_ende = ?,
             location_id = ?, url = ? WHERE id = ?');
         $stmt->bind_param('sssisi', $name, $date_start, $date_end, $venue_id, $url, $id);
@@ -116,7 +120,8 @@ class ConcertModel
      * @param string $url URL which links to information about a concert
      * @return integer The id of the last inserted concert.
      */
-    public function setConcert($name, $date_start, $date_end, $venue_id, $url) {
+    public function setConcert($name, $date_start, $date_end, $venue_id, $url)
+    {
         $stmt = $this->mysqli->prepare('INSERT INTO event SET name = ?, datum_beginn = ?, datum_ende = ?,
             location_id = ?, url = ?');
         $stmt->bind_param('sssis', $name, $date_start, $date_end, $venue_id, $url);
@@ -132,7 +137,8 @@ class ConcertModel
      * @param integer $id Id of the concert which is deleted.
      * @return integer Returns 1 for successful operation, 0 for a non-existent id, -1 for an error.
      */
-    public function delConcert($id) {
+    public function delConcert($id)
+    {
         $stmt = $this->mysqli->prepare('DELETE event, event_band FROM event
             LEFT JOIN event_band ON event.id=event_band.event_id
             WHERE event.id= ?');
@@ -151,7 +157,8 @@ class ConcertModel
      * information about the appearance of a band, or an integer with -1 in case
      * of an error.
      */
-    public function getBands($id) {
+    public function getBands($id)
+    {
         $stmt = $this->mysqli->prepare('SELECT band.id, band.name, band.nazi, event_band.zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id WHERE event_band.event_id LIKE ?');
@@ -170,7 +177,8 @@ class ConcertModel
      * @param addition $string Additional information about the appearance.
      * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
      */
-    public function setBand($id, $band_id, $addition) {
+    public function setBand($id, $band_id, $addition)
+    {
         $stmt = $this->mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, zusatz = ?');
         $stmt->bind_param('iis', $id, $band_id, $addition);
         $stmt->execute();
@@ -186,7 +194,8 @@ class ConcertModel
      * @return array|integer Array with band id, export bit and additional information about the appearance
      *  of a band, or an integer with -1 in case of an error.
      */
-    public function delBands($id) {
+    public function delBands($id)
+    {
         $stmt = $this->mysqli->prepare('DELETE FROM event_band WHERE event_band.event_id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -201,7 +210,8 @@ class ConcertModel
      * @param integer $id Id of the concert which should be set sold out.
      * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
      */
-    public function setSoldOut ($id) {
+    public function setSoldOut ($id)
+    {
         $stmt = $this->mysqli->prepare('UPDATE event SET ausverkauft=1 WHERE id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
@@ -216,7 +226,8 @@ class ConcertModel
      * @param integer $id Id of the concert which should be set published.
      * @return integer Returns 1 for a successful operation, 0 for a non-existent id, -1 for an error.
      */
-    public function setPublished ($id) {
+    public function setPublished ($id)
+    {
         $stmt = $this->mysqli->prepare('UPDATE event SET publiziert=1 WHERE id= ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();

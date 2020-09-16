@@ -11,7 +11,8 @@ class ConnectModel
      *
      * @return link identifier
      */
-    public static function db_connect() {
+    public static function db_connect()
+    {
         $dbhost = '';
         $dbuser = '';
         $dbuserpass = '';

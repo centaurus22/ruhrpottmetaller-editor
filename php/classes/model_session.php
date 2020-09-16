@@ -11,7 +11,8 @@ class SessionModel
      *
      * @return integer 1 if a session is activated or was already active, -1 if PHP sessions are disabled.
      */
-    public function __construct() {
+    public function __construct()
+    {
         switch(session_status()) {
         case PHP_SESSION_DISABLED:
             return -1;
@@ -30,7 +31,8 @@ class SessionModel
      *
      * @return integer Always 1.
      */
-    private function initConcertDisplayStatus() {
+    private function initConcertDisplayStatus()
+    {
         if(!isset($_SESSION['concert_display_status'])) {
             $_SESSION['concert_display_status'] = array();
         }
@@ -44,7 +46,8 @@ class SessionModel
      *
      * @return integer Always 1.
      */
-    private function initLineUp() {
+    private function initLineUp()
+    {
         if(!isset($_SESSION['lineup'])) {
             $_SESSION['lineup'] = array();
         }
@@ -57,7 +60,8 @@ class SessionModel
      * @param integer $id Id of the concert which export status should be checked.
      * @return integer 1-> Export status is open, 0-> Export status is closed, -1-> id is no integer.
      */
-    public function getConcertDisplayStatus($id) {
+    public function getConcertDisplayStatus($id)
+    {
         if (is_numeric($id)) {
             $this->initConcertDisplayStatus();
             if  (isset($_SESSION['concert_display_status']["$id"])
@@ -80,7 +84,8 @@ class SessionModel
      * @param integer $id Id of the concert.
      * @return integer 1-> The Id is an integer, -1-> the id is no ingeger.
      */
-    public function changeConcertDisplayStatus ($id) {
+    public function changeConcertDisplayStatus ($id)
+    {
         if (is_numeric($id)) {
             $this->initConcertDisplayStatus();
             if ($this->getConcertDisplayStatus ($id) == 1) {
@@ -101,7 +106,8 @@ class SessionModel
      *
      * @return array Array with the lineup data.
      */
-    public function getBandsLineUp(){
+    public function getBandsLineUp()
+    {
         $this->initLineUp();
         return $_SESSION['lineup'];;
     }
@@ -111,7 +117,8 @@ class SessionModel
      *
      * @return integer Always 1.
      */
-    public function delConcertDisplayStatus () {
+    public function delConcertDisplayStatus()
+    {
         if (isset($_SESSION['concert_display_status'])) {
             unset($_SESSION['concert_display_status']);
         }
@@ -124,7 +131,8 @@ class SessionModel
      * @param integer $row Number of the row under which the new band is added.
      * @return integer 1-> parameter is an integer, -1-> parameter is no integer.
      */
-    public function setBandLineUp($row){
+    public function setBandLineUp($row)
+    {
         if (is_numeric($row)) {
             $this->initLineUp();
             $band[] = array('first_sign' => '', 'band_id' => 0, 'band_new_name' => null, 'addition' => null);
@@ -144,7 +152,8 @@ class SessionModel
      * @param integer $value Value which is written in the session variable.
      * @return integer 1-> row and band_id parameter are integers, -1-> one of those parameters are no integer.
      */
-    public function updateBandLineUp($row, $field, $value) {
+    public function updateBandLineUp($row, $field, $value)
+    {
         if (is_numeric($row)) {
             $this->initLineUp();
             $_SESSION['lineup'][$row][$field] = $value;
@@ -161,7 +170,8 @@ class SessionModel
      * @param integer $row Number of the row which is deleted.
      * @return integer 1-> parameter is an integer, -1-> parameter is no integer.
      */
-    public function delBandLineUp($row) {
+    public function delBandLineUp($row)
+    {
         if (is_numeric($row)) {
             $this->initLineUp();
             array_splice($_SESSION['lineup'], $row, 1);
@@ -179,7 +189,8 @@ class SessionModel
      * @param string $direction Direction in which the band is shifted.
      * @return integer 1-> correct parameters, -1-> wrong parameters.
      */
-    public function shiftBandLineup($row, $direction) {
+    public function shiftBandLineup($row, $direction)
+    {
         if (is_numeric($row) and ($direction == "up" or $direction == "down")) {
             $this->initLineUp();
             $lenght_lineup = count($_SESSION['lineup']);
@@ -206,7 +217,8 @@ class SessionModel
      *
      * @return integer Always 1.
      */
-    public function delLineUp() {
+    public function delLineUp()
+    {
         unset($_SESSION['lineup']);
         return 1;
     }

@@ -17,7 +17,8 @@ class Controller
      *
      * @param array $request Array from  $_GET and $_POST
      */
-    public function __construct($request) {
+    public function __construct($request)
+    {
         $this->view = new View();
         //translate actions induced by the special parameters
         if (isset($request['special']) and $request['special'] == 'concert' and isset($request['type'])){
@@ -126,7 +127,8 @@ class Controller
      *
      * @return string Content of the application
      */
-    public function display() {
+    public function display()
+    {
         $innerView = new View();
         if (isset($this->request['month'])) {
             $month = $this->request['month'];
@@ -321,7 +323,8 @@ class Controller
      *
      * @return string Output of the corresponding template.
      */
-    private function displayMonthChanger() {
+    private function displayMonthChanger()
+    {
         //Initialize a new View class for the second line of the web application
         $monthChanger = new View();
         //Set the corresponding template
@@ -351,7 +354,8 @@ class Controller
      * @param object $Session_Model Object to access data in the session
      * @return string Output of the lineup template.
      */
-    private function displayLineUp($Session_Model, $error_text_lineup = '') {
+    private function displayLineUp($Session_Model, $error_text_lineup = '')
+    {
         //Initialize a new view for displaying the lineup
         $lineUp = new View();
         //Set the corresponding template
@@ -382,7 +386,8 @@ class Controller
      * @param string $band_name Name of the Band.
      * @return string Capital letter or '%'.
      */
-    private function getFirstSign($band_name) {
+    private function getFirstSign($band_name)
+    {
         $first_char = mb_substr($band_name, 0, 1);
         $first_char = mb_strtoupper($first_char);
         if (in_array($first_char, range('A','Z'))) {
@@ -399,7 +404,8 @@ class Controller
      * @param integer  $venue_id Band id The id of the choosen venue.
      * @return string Output of the template.
      */
-    private function displayCityVenueForm ($city_id, $venue_id) {
+    private function displayCityVenueForm ($city_id, $venue_id)
+    {
         $City_Venue_Form = new View();
         require_once('model_venue.php');
         $Venue_Model = new VenueModel();
@@ -431,7 +437,8 @@ class Controller
      * @param integer $venue_id Band id of the band.
      * @return string Output of the template.
      */
-    private function displayVenueNewForm($venue_id) {
+    private function displayVenueNewForm($venue_id)
+    {
         $Venue_New_Form = new View();
         if ($venue_id == 1) {
             if (isset($this->request['venue_new_name'])) {
@@ -457,7 +464,8 @@ class Controller
      * @param integer  $band_id Band id
      * @return string Output of the template.
      */
-    private function displayBandSelectOptions ($first_sign, $band_id) {
+    private function displayBandSelectOptions ($first_sign, $band_id)
+    {
         $Band_Select_Options = new View();
         if ($first_sign == '') {
             $bands = array(
@@ -485,7 +493,8 @@ class Controller
      * @param integer $band_id Band id of the band.
      * @return string Output of the template.
      */
-    private function displayBandNewForm($row, $band_id) {
+    private function displayBandNewForm($row, $band_id)
+    {
         include_once('classes/model_session.php');
         $Session_Model = new SessionModel();
         $lineup = $Session_Model->getBandsLineup();
@@ -502,7 +511,8 @@ class Controller
      *
      * @param object $Session_Model Model to access the PHP Session
      */
-    private function prefillConcertEditor($Session_Model) {
+    private function prefillConcertEditor($Session_Model)
+    {
         $model_involved = isset($this->request['edit_id']) and is_int($this->request['edit_id']);
         if ($model_involved == true) {
             include_once('model_concert.php');
@@ -604,7 +614,8 @@ class Controller
      * @param integer $parameter Define the parameter name.
      * @param boolean $model_involved Define if data from the model is available.
      */
-    private function editorSetRequestParameters($data_array, $parameter, $model_involved) {
+    private function editorSetRequestParameters($data_array, $parameter, $model_involved)
+    {
         if (!isset($this->request[$parameter])) {
             if ($model_involved == true) {
                 $this->request[$parameter] = $data_array[0][$parameter];
@@ -626,7 +637,8 @@ class Controller
      *  boolean include_array true: parameter array must be included, false:
      *      array must not be included
      */
-    private function checkLineupArrays($array_name, $length_lineup) {
+    private function checkLineupArrays($array_name, $length_lineup)
+    {
         if (isset($this->request[$array_name]) and count($this->request[$array_name]) == $length_lineup) {
             $include_array = true;
             $error = false;
@@ -645,7 +657,8 @@ class Controller
      *
      * @return integer Value of 0 or greater -> Succes, -1 -> Error.
      */
-    private function saveConcert() {
+    private function saveConcert()
+    {
         $request = $this->request;
         include_once('classes/model_concert.php');
         $Concert_Model = new ConcertModel();
@@ -775,7 +788,8 @@ class Controller
     /**
      * Rewrites parameters to reopen the editor.
      */
-    private function rewriteSaveEdit() {
+    private function rewriteSaveEdit()
+    {
         if (isset($this->request['save_id'])) {
             $this->request['edit_id'] = $this->request['save_id'];
         }
@@ -790,7 +804,8 @@ class Controller
      * @param array $request Combined array containing GET and POST data.
      * @return string String witch contains possible error messages.
      */
-    private function setNewProperty($type, $request) {
+    private function setNewProperty($type, $request)
+    {
         $error_text = '';
         if (isset($request[$type . '_id']) and $request[$type . '_id'] == 1
             and isset($request[$type . '_new_name']) and $request[$type . '_new_name'] != '') {
@@ -825,7 +840,8 @@ class Controller
      * @param string $month Month from which the data is processed.
      * @return array $result Array witch processed data and template
      */
-    private function processConcertData($concerts, $month) {
+    private function processConcertData($concerts, $month)
+    {
         //Load the session model to access the session if the output contains the export of just one concert
         if ($this->template == "concert_export") {
             include_once('classes/model_session.php');
@@ -927,14 +943,15 @@ class Controller
         $result['template'] = $template;
         return $result;
     }
+
     /**
      * Get the month from the current date or a submitted string.
      *
      * @param string $date Optional date from which the month is generated
      * @return string Generated date
      */
-
-    private function getMonth($date = null) {
+    private function getMonth($date = null)
+    {
         if (is_null($date)) {
             return date('Y-m');
         } else {
