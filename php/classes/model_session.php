@@ -9,7 +9,8 @@ class SessionModel
     /**
      * Initialize the session if it is not already initialized.
      *
-     * @return integer 1 if a session is activated or was already active, -1 if PHP sessions are disabled.
+     * @return integer 1 if a session is activated or was already active,
+     *  -1 if PHP sessions are disabled.
      */
     public function __construct()
     {
@@ -26,8 +27,9 @@ class SessionModel
     }
 
     /**
-     * Add an empty array to the PHP Session to save the status of the concert exports on the
-     * default site (opened / closed) if it is not already available.
+     * Add an empty array to the PHP Session to save the status of the concert
+     *  exports on the default site (opened / closed) if it is not already
+     *  available.
      *
      * @return integer Always 1.
      */
@@ -41,8 +43,8 @@ class SessionModel
     }
 
     /**
-     * Add an empty array to the PHP Session to save the lineup in the concert editor if it is not
-     * already available.
+     * Add an empty array to the PHP Session to save the lineup in the concert
+     * editor if it is not already available.
      *
      * @return integer Always 1.
      */
@@ -57,23 +59,24 @@ class SessionModel
     /**
      * Check the export status of a concert.
      *
-     * @param integer $id Id of the concert which export status should be checked.
-     * @return integer 1-> Export status is open, 0-> Export status is closed, -1-> id is no integer.
+     * @param integer $id Id of the concert which export status should be
+     *  checked.
+     * @return integer 1-> Export status is open, 0-> Export status is closed,
+     *  -1-> id is no integer.
      */
     public function getConcertDisplayStatus($id)
     {
         if (is_numeric($id)) {
             $this->initConcertDisplayStatus();
-            if  (isset($_SESSION['concert_display_status']["$id"])
-                and $_SESSION['concert_display_status']["$id"]) {
+            if (
+                isset($_SESSION['concert_display_status']["$id"])
+                and $_SESSION['concert_display_status']["$id"]
+            ) {
                 return 1;
-            }
-            else {
+            } else {
                 return 0;
-
             }
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -90,13 +93,11 @@ class SessionModel
             $this->initConcertDisplayStatus();
             if ($this->getConcertDisplayStatus ($id) == 1) {
                 $_SESSION['concert_display_status']["$id"] = 0;
-            }
-            else {
+            } else {
                 $_SESSION['concert_display_status']["$id"] = 1;
             }
             return 1;
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -135,7 +136,12 @@ class SessionModel
     {
         if (is_numeric($row)) {
             $this->initLineUp();
-            $band[] = array('first_sign' => '', 'band_id' => 0, 'band_new_name' => null, 'addition' => null);
+            $band[] = array(
+                'first_sign' => '',
+                'band_id' => 0,
+                'band_new_name' => null,
+                'addition' => null
+            );
             array_splice($_SESSION['lineup'], $row, 0, $band);
             return 1;
         }
@@ -150,7 +156,8 @@ class SessionModel
      * @param integer $row Number of the row.
      * @param string $field Session variable which is filled.
      * @param integer $value Value which is written in the session variable.
-     * @return integer 1-> row and band_id parameter are integers, -1-> one of those parameters are no integer.
+     * @return integer 1-> row and band_id parameter are integers, -1-> one of
+     *  those parameters are no integer.
      */
     public function updateBandLineUp($row, $field, $value)
     {
@@ -158,8 +165,7 @@ class SessionModel
             $this->initLineUp();
             $_SESSION['lineup'][$row][$field] = $value;
             return 1;
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -176,8 +182,7 @@ class SessionModel
             $this->initLineUp();
             array_splice($_SESSION['lineup'], $row, 1);
             return 1;
-        }
-        else {
+        } else {
             return -1;
         }
     }
@@ -199,15 +204,12 @@ class SessionModel
                 if ($direction == "up" and $row > 0) {
                     $_SESSION['lineup'][$row] = $_SESSION['lineup'][$row - 1];
                     $_SESSION['lineup'][$row - 1] = $band_tmp;
-                }
-                elseif ($direction == "down" and $row < $lenght_lineup - 1) {
+                } elseif ($direction == "down" and $row < $lenght_lineup - 1) {
                     $_SESSION['lineup'][$row] = $_SESSION['lineup'][$row + 1];
                     $_SESSION['lineup'][$row + 1] = $band_tmp;
-
                 }
             }
-        }
-        else {
+        } else {
             return -1;
         }
     }

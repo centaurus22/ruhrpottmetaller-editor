@@ -12,7 +12,10 @@ class View
     private $image_path = 'images';
     // string Template name
     private $template = 'default';
-    // array Two dimensional array which contains the data which is passed to the view.
+    /**
+     * array Two dimensional array which contains the data which is passed to
+     * the view.
+     */
     private $_ = array();
 
     /**

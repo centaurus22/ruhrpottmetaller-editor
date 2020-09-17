@@ -10,8 +10,8 @@ class CityModel
     private $mysqli = null;
 
     /**
-     * Call the function which initialize the database connection and write the link
-     * identifier into the class variable.
+     * Call the function which initialize the database connection and write the
+     * link identifier into the class variable.
      */
     public function __construct()
     {
@@ -27,7 +27,8 @@ class CityModel
      */
     public function getCities()
     {
-        $stmt = $this->mysqli->prepare('SELECT id, name FROM stadt ORDER BY name');
+        $mysqli = $this->mysqli;
+        $stmt = $mysqli->prepare('SELECT id, name FROM stadt ORDER BY name');
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
@@ -42,7 +43,8 @@ class CityModel
      */
     public function getCity($id)
     {
-        $stmt = $this->mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
+        $mysqli = $this->mysqli;
+        $stmt = $mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -58,10 +60,11 @@ class CityModel
      */
     public function setCity($name)
     {
-        $stmt = $this->mysqli->prepare('INSERT INTO stadt SET name=?');
+        $mysqli = $this->mysqli;
+        $stmt = $mysqli->prepare('INSERT INTO stadt SET name=?');
         $stmt->bind_param('s', $name);
         $stmt->execute();
-        $result = $this->mysqli->insert_id;
+        $result = $mysqli->insert_id;
         $stmt->close();
         return $result;
     }
@@ -71,11 +74,13 @@ class CityModel
      *
      * @param integer $id Id of the band which is updated.
      * @param string $name Name of the city.
-     * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an error.
+     * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an
+     *  error.
      */
     public function updateCity($id, $name)
     {
-        $this->mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
+        $mysqli = $this->mysqli;
+        $mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
         $stmt->bind_param('si', $name, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
