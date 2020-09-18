@@ -7,7 +7,11 @@ if (isset($this->_['header'])) {
 }
 
 foreach($this->_['concerts'] as $concert) {
-    if (!isset($this->_['header']) or (isset($this->_['header']) and !isset($concert['nazi']))) {
+    if (
+        !isset($this->_['header'])
+        or (isset($this->_['header'])
+        and !isset($concert['nazi']))
+    ) {
         //Build the list of bands
         $bands = '';
         foreach($concert['bands'] as $band) {
@@ -39,7 +43,8 @@ foreach($this->_['concerts'] as $concert) {
         if ($bands != '') {
             echo '&nbsp;&nbsp;' . $bands . '.<br>';
         }
-        echo '&nbsp;&nbsp;' . htmlspecialchars($concert['url'], ENT_QUOTES) . "</p>\n";
+        $url = htmlspecialchars($concert['url'], ENT_QUOTES);
+        echo '&nbsp;&nbsp;' . $url . "</p>\n";
     }
 }
 if (isset($this->_['header'])) {

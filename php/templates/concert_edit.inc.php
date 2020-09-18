@@ -28,9 +28,17 @@ if ($this->_['error_text'] != '') {
 <?php
 foreach ($this->_['cities'] as $city) {
     if ($this->_['request']['city_id'] == $city['id'] ) {
-        printf("\t\t\t\t" . '<option value="%1$u" selected>%2$s</option>' . "\n", $city['id'], $city['name']);
+        printf(
+            "\t\t\t\t" . '<option value="%1$u" selected>%2$s</option>' . "\n",
+            $city['id'],
+            $city['name']
+        );
     } else {
-        printf("\t\t\t\t" . '<option value="%1$u">%2$s</option>' . "\n", $city['id'], $city['name']);
+        printf(
+            "\t\t\t\t" . '<option value="%1$u">%2$s</option>' . "\n",
+            $city['id'],
+            $city['name']
+        );
     }
 }
 ?>

@@ -13,13 +13,19 @@ else:
     echo "\t\t\t\t" . '<label for="venue_id" class="edit_text">Venue</label>
                 <select name="venue_id" id="venue_id" onchange="display_venue_new_form()">' . "\n";
     foreach ($this->_['venues'] as $venue) {
-        if( $venue['id'] == $this->_['venue_id'] ) {
-            printf("\t\t\t\t\t" . '<option value="%1$s" selected>%2$s</option>' . "\n",
-                $venue['id'], htmlspecialchars($venue['name'], ENT_QUOTES));
-        } else {
-            printf("\t\t\t\t\t" . '<option value="%1$s">%2$s</option>' . "\n",
-                $venue['id'], htmlspecialchars($venue['name'], ENT_QUOTES));
-        }
+        if ($venue['id'] == $this->_['venue_id']):
+            printf(
+                "\t\t\t\t\t" . '<option value="%1$s" selected>%2$s</option>' . "\n",
+                $venue['id'],
+                htmlspecialchars($venue['name'], ENT_QUOTES)
+            );
+        else:
+            printf(
+                "\t\t\t\t\t" . '<option value="%1$s">%2$s</option>' . "\n",
+                $venue['id'],
+                htmlspecialchars($venue['name'], ENT_QUOTES)
+            );
+        endif;
     }
     echo "\t\t\t\t</select><br>\n";
 endif;
