@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
-        <script  type="text/javascript" src="scripte.js" ></script>
+        <script  type="text/javascript" src="script.js" ></script>
     </head>
     <body>
         <div class="leiste_top">
