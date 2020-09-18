@@ -639,16 +639,17 @@ class Controller
         if (isset($this->request['band_id'])):
             $length_lineup = count($this->request['band_id']);
             $new_band_id = 3;
-            $first_sign_check_result = $this->checkLineupArrays(
+            $first_sign_check_result = $this->checkLineupArray(
                 'first_sign',
                 $length_lineup
             );
-            $addition_check_result  = $this->checkLineupArrays(
+            $addition_check_result  = $this->checkLineupArray(
                 'addition',
                 $length_lineup
             );
+
             if (in_array($this->request['band_id'])) {
-                $band_new_name_check_result = $this->checkLineupArrays(
+                $band_new_name_check_result = $this->checkLineupArray(
                     'band_new_name',
                     $length_lineup
                 );
@@ -671,27 +672,29 @@ class Controller
                     'band_id',
                     $this->request['band_id'][$band_index]
                 );
-                if ($band_new_name_check_result['include_array'] == true) {
+                if ($band_new_name_check_result['include_array'] == true):
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'band_new_name',
                         $this->request['band_new_name'][$band_index]
                     );
-                }
-                if ($addition_check_result['include_array'] == true) {
+                endif;
+
+                if ($addition_check_result['include_array'] == true):
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'addition',
                         $this->request['addition'][$band_index]
                     );
-                }
-                if ($first_sign_check_result['include_array'] == true) {
+                endif;
+
+                if ($first_sign_check_result['include_array'] == true):
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'first_sign',
                         $this->request['first_sign'][$band_index]
                     );
-                } else {
+                else:
                     include_once('model_band.php');
                     $Band_Model = new BandModel;
                     $band_id = $request['band_id'][$band_index];
@@ -702,22 +705,21 @@ class Controller
                         'first_sign',
                         $first_sign
                     );
-                }
+                endif;
             endfor;
-        endif;
-
-        /**
-         * This defines the error text which is displayed directly above the
-         * lineup.
-         */
-         if (
-             ($result_band_new_name_check['error'] == true
-             or $result_addition_check['error'] == true
-             or $result_first_sign_check['error'] == true)
-             and !isset($this->request['save_id'])
-         ) {
-            $this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
-        } elseif ($model_involved == true) {
+            /**
+             * This defines the error text which is displayed directly above the
+             * lineup.
+             */
+             if (
+                 ($band_new_name_check_result['error'] == true
+                 or $addition_check_result['error'] == true
+                 or $first_sign_check_result['error'] == true)
+                 and !isset($this->request['save_id'])
+             ):
+                 $this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
+             endif;
+        elseif ($model_involved == true):
             $Session_Model->delLineUp();
             for (
                 $band_index = 0;
@@ -743,8 +745,7 @@ class Controller
                     $band['zusatz']
                 );
             endfor;
-
-        }
+        endif;
     }
 
     /**
@@ -778,7 +779,7 @@ class Controller
      *  boolean include_array true: parameter array must be included, false:
      *      array must not be included
      */
-    private function checkLineupArrays($array_name, $length_lineup)
+    private function checkLineupArray($array_name, $length_lineup)
     {
         if (
             isset($this->request[$array_name])
@@ -815,7 +816,7 @@ class Controller
 
         $error_text = '';
         $error = false;
-        if (isset($this->request['url'])) {
+        if (isset($this->request['url'])):
             $year = substr($this->request['date_start'], 0, 4);
             $month = substr($this->request['date_start'], 5, 2);
             $day = substr($this->request['date_start'], 8, 2);
@@ -925,11 +926,11 @@ class Controller
                 ) {
                     $band_new_id = 3;
                     $band_new_name_array = $this->request['band_new_name'];
-                    $band_new_name = $band_new_name[$lineup_index];
+                    $band_new_name = $band_new_name_array[$lineup_index];
                     if (
                         $request['band_id'][$lineup_index] == $band_new_id
                         and $band_new_name != ''
-                    ) {
+                    ):
                         $result = $Band_Model->setBand($band_new_name);
                         if ($result > $band_new_id) {
                             $this->request['band_id'][$lineup_index] = $result;
@@ -937,7 +938,7 @@ class Controller
                             $error_text = 'Adding a new band have gone wrong. ';
                             $error = true;
                         }
-                    }
+                    endif;
                     $result = $Concert_Model->setBand(
                         $save_id,
                         $this->request['band_id'][$lineup_index],
@@ -951,7 +952,7 @@ class Controller
             else {
                 $error = true;
             }
-        }
+        endif;
 
         if (
             isset($this->request['published'])
@@ -1000,7 +1001,8 @@ class Controller
     {
         $request = $this->request;
         $error_text = '';
-        if (isset($request[$type . '_id'])
+        if (
+            isset($request[$type . '_id'])
             and $request[$type . '_id'] == 1
             and isset($request[$type . '_new_name'])
             and $request[$type . '_new_name'] != ''
@@ -1057,16 +1059,16 @@ class Controller
             include_once('classes/model_session.php');
             $Session_Model = new SessionModel;
         }
-        if (count($concerts) == 0) {
+        if (count($concerts) == 0):
             //No concerts in the chosen month.
             $template = 'default_no_data';
-        } elseif (
+        elseif (
             $this->template == 'concert_export'
             and $Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1
-        ) {
+        ):
             $template = 'empty_output';
             $Session_Model->changeConcertDisplayStatus($this->request['display_id']);
-        } else {
+        else:
             //Load Model to access the preference table
             include_once('classes/model_pref.php');
             $Pref_Model = new PrefModel();
@@ -1115,10 +1117,10 @@ class Controller
                         $time_start
                     );
                     //Switch the display status
+                    $display_id = $this->request['display_id'];
                     $Session_Model->changeConcertDisplayStatus($display_id);
                     $template = 'concert_export';
-                }
-                elseif ($this->template == 'export') {
+                } elseif ($this->template == 'export') {
                     //Export of many concerts
                     $concerts[$concert_index]['date_human'] = strftime(
                         $timeformat_with_month,
@@ -1178,7 +1180,7 @@ class Controller
                     }
                 }
             endfor;
-        }
+        endif;
         $result['concerts'] = $concerts;
         $result['template'] = $template;
         return $result;
