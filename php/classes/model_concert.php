@@ -10,7 +10,6 @@ class ConcertModel
     //Link identifier for the connection to the database
     private $mysqli = null;
 
-<<<<<<< HEAD
     /**
      * Call the function which initialize the database connection and write the
      * link identifier into the class variable.
