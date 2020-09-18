@@ -294,7 +294,7 @@ class Controller
                         if (isset($request['row']) and isset($request['band_id']))
                         {
                             $band_new_form = $this->getBandNewForm(
-                                $request['row']
+                                $request['row'],
                                 $request['band_id']
                             );
                             $innerView->assign('content', $band_new_form);
@@ -342,7 +342,7 @@ class Controller
                  * application, load the template and pass the output to the
                  * inner View.
                  */
-                $monthChanger = $this->displayMonthChanger();
+                $monthChanger = $this->getMonthChanger();
                 include_once('classes/model_concert.php');
                 $Concert_Model = new ConcertModel();
                 $concerts = $Concert_Model->getConcerts($month);
@@ -397,24 +397,23 @@ class Controller
          * second line
          */
         if(isset($this->request['display'])) {
-            $request['display'] = $this->request['display'];
-            $request_next_month['display'] = $this->request['display'];
-            $request_prev_month['display'] = $this->request['display'];
+            $request_month_prev['display'] = $this->request['display'];
+            $request_month_next['display'] = $this->request['display'];
         }
         /**
          * Generate parameters for the current month, the next month and the
          * previous month.
          */
-        $month_now['month'] = $this->getMonth();
+        $request_month_now['month'] = $this->getMonth();
         $month_next = $this->request['month'] . '-01 + 1 month';
         $month_prev = $this->request['month'] . '-01 - 1 month';
-        $month_next['month'] = $this->getMonth($month_next);
-        $month_prev['month'] = $this->getMonth($month_prev);
+        $request_month_next['month'] = $this->getMonth($month_next);
+        $request_month_prev['month'] = $this->getMonth($month_prev);
         $month_human = date('M Y', strtotime($this->request['month'] . '-01'));
         //Assign the variables to the MonthChanger template
-        $monthChanger->assign('request_now', $month_now);
-        $monthChanger->assign('request_next_month', $month_next);
-        $monthChanger->assign('request_prev_month', $month_prev);
+        $monthChanger->assign('request_now', $request_month_now);
+        $monthChanger->assign('request_next_month', $request_month_next);
+        $monthChanger->assign('request_prev_month', $request_month_prev);
         $monthChanger->assign('month_human', $month_human);
         return $monthChanger->loadTemplate();
     }
@@ -695,7 +694,7 @@ class Controller
                 } else {
                     include_once('model_band.php');
                     $Band_Model = new BandModel;
-                    $band_id = $request['band_id'][$band_index]);
+                    $band_id = $request['band_id'][$band_index];
                     $band = $Band_Model->getBand($band_id);
                     $first_sign = $this->getFirstSign($band[0]['name']);
                     $Session_Model->updateBandLineUp(
@@ -824,7 +823,7 @@ class Controller
                 !is_numeric($year)
                 or !is_numeric($month)
                 or !is_numeric($day)
-                or !checkdate($month, $day, $year
+                or !checkdate($month, $day, $year)
             ) {
                 $error_text = "The provided date is not correct.<br>\n";
             }
@@ -850,9 +849,9 @@ class Controller
                 $this->request['band_new_name'] = array();
             }
 
-            $band_id_length = count($this->request['band_id'])
-            $band_new_name_length = count($this->request['band_new_name'])
-            $addition_length = count($this->request['addition'])
+            $band_id_length = count($this->request['band_id']);
+            $band_new_name_length = count($this->request['band_new_name']);
+            $addition_length = count($this->request['addition']);
             if (
                 $band_new_name_length != $band_id_length
                 or $addition_length != $band_id_length
@@ -1050,7 +1049,6 @@ class Controller
      */
     private function processConcertData($concerts, $month)
     {
-        $display_id = $this->request['display_id'];
         /**
          * Load the session model to access the session if the output contains
          * the export of just one concert
@@ -1064,10 +1062,10 @@ class Controller
             $template = 'default_no_data';
         } elseif (
             $this->template == 'concert_export'
-            and $Session_Model->getConcertDisplayStatus($display_id) == 1
+            and $Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1
         ) {
             $template = 'empty_output';
-            $Session_Model->changeConcertDisplayStatus($display_id);
+            $Session_Model->changeConcertDisplayStatus($this->request['display_id']);
         } else {
             //Load Model to access the preference table
             include_once('classes/model_pref.php');
@@ -1075,14 +1073,14 @@ class Controller
             //Access database entry with the export language setting
             $pref_export = $Pref_Model->getPrefExportLang();
             switch($pref_export[0]['export_lang']) {
-            case 'de_DE':
-                setlocale(LC_TIME, "de_DE", "de_DE.utf8");
-                $timeformat_without_month = '%a, %d.';
-                $timeformat_with_month = '%a, %d. %b';
-                break;
-            default:
-                $timeformat_without_month = '%a, %d';
-                $timeformat_with_month = '%a, %d %b';
+                case 'de_DE':
+                    setlocale(LC_TIME, "de_DE", "de_DE.utf8");
+                    $timeformat_without_month = '%a, %d.';
+                    $timeformat_with_month = '%a, %d. %b';
+                    break;
+                default:
+                    $timeformat_without_month = '%a, %d';
+                    $timeformat_with_month = '%a, %d %b';
             }
             for(
                 $concert_index = 0;
@@ -1097,15 +1095,15 @@ class Controller
                     and is_null($concerts[$concert_index]['date_end']))
                     or ($time_start - time() < $two_months
                     and !is_null($concerts[$concert_index]['date_end'])))
-                    and $concerts[$concert_index]['publiziert'] == 0) {
+                    and $concerts[$concert_index]['publiziert'] == 0
+                ) {
                     $concerts[$concert_index]['status'] = 'urgent';
-                }
-                elseif ($concerts[$concert_index]['publiziert'] == 1) {
+                } elseif ($concerts[$concert_index]['publiziert'] == 1) {
                     $concerts[$concert_index]['status'] = 'published';
-                }
-                else {
+                } else {
                     $concerts[$concert_index]['status'] = 'unpublished';
                 }
+
                 if ($this->template == 'concert_export') {
                     /**
                      * Determine the human readable date for the concert table.
@@ -1113,7 +1111,7 @@ class Controller
                      * of the month.
                      */
                     $concerts[$concert_index]['date_human'] = strftime(
-                        $timeformat_with_month
+                        $timeformat_with_month,
                         $time_start
                     );
                     //Switch the display status
@@ -1127,8 +1125,7 @@ class Controller
                         $time_start
                     );
                     $template = 'concert_export';
-                }
-                else {
+                } else {
                     //Normal display of concerts in a table.
                     $concerts[$concert_index]['date_human'] = strftime(
                         $timeformat_without_month,
@@ -1148,7 +1145,8 @@ class Controller
                     else {
                         $date_end_human = strftime(
                             $timeformat_without_month,
-                            $time_end);
+                            $time_end
+                        );
                     }
                     $date_human = $concerts[$concert_index]['date_human'];
                     $date_human = $date_human . ' – ' . $date_end_human;
@@ -1164,12 +1162,12 @@ class Controller
                     $concerts[$concert_index]['venue_city'] = $venue_city;
                 }
 
-                for(
+                for (
                     $lineup_index = 0;
                     $lineup_index < count($concerts[$concert_index]['bands']);
                     $lineup_index++
                 ) {
-                    $band = $concerts[$concert_index]['bands'][$lineup_index]
+                    $band = $concerts[$concert_index]['bands'][$lineup_index];
                     if ($band['nazi'] == 1) {
                         $concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nazi';
                         //Write a non-export indicator to the concert-array.
