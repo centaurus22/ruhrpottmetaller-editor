@@ -213,7 +213,7 @@ class Controller
             case 'set_url':
                 $ajax = 1;
                 if (isset($request['venue_id'])) {
-                    $VenueModel = new ModelVenue($this->mysli);
+                    $VenueModel = new ModelVenue($this->mysqli);
                     $venue = $VenueModel->getVenueById($request['venue_id']);
                     $innerView->assign('content', $venue[0]['url']);
                 } else {
@@ -269,7 +269,7 @@ class Controller
                     $error_text = '';
                 }
                 $innerView->setTemplate('ajax');
-                $lineup = $this->getLineUp($_Session_Model, $error_text);
+                $lineup = $this->getLineUp($Session_Model, $error_text);
                 $innerView->assign('content', $lineup);
                 break;
             case 'lineup_sub':
@@ -549,7 +549,7 @@ class Controller
                 array('id' => 2, 'name' => 'Support')
             );
         } else {
-            $Band_Model = new BandModel($this->mysqli);
+            $Band_Model = new ModelBand($this->mysqli);
             $bands = $Band_Model->getBands($first_sign);
         }
         array_splice($bands, 0, 0, array(array('id' => 0, 'name' => '')));
@@ -612,7 +612,7 @@ class Controller
                 $date_end = strtotime($concert[0]['date_end']);
                 $seconds_per_day = 3600 * 24;
                 $length = ($date_end - $date_start) / $seconds_per_day;
-                $this->request['length'] = length;
+                $this->request['length'] = $length;
             } else {
                 $this->request['length'] = 1;
             }

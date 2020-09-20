@@ -1,5 +1,7 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to acces and manipulate the data in the band table.
  * Version 1.0.0
@@ -13,7 +15,7 @@ class ModelBand
      * Call the function which initialize the database connection and write the
      * link identifier into the class variable.
      */
-    public function __construct$($mysqli)
+    public function __construct($mysqli)
     {
         $this->mysqli = $mysqli;
     }
