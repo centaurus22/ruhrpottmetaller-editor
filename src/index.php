@@ -3,8 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include('classes/controller.php');
-include('classes/view.php');
+include('include/autoloader.php');
 
 // Merge $_GET und $_POST
 $request = array_merge($_GET, $_POST);
