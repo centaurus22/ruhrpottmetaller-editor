@@ -12,7 +12,7 @@ class Controller
     //object Object representing the (outer) view.
     private $view = null;
     //Mysql link identifier
-    private mysqli = null;
+    private $mysqli = null;
     //string String containing error messages
     private $error_text = '';
 
@@ -137,7 +137,7 @@ class Controller
      *
      * @return string Content of the application
      */
-    public function display()
+    public function getOutput()
     {
         $innerView = new View();
         if (isset($this->request['month'])) {
