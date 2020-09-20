@@ -8,6 +8,6 @@ include 'vendor/autoload.php';
 // Merge $_GET und $_POST
 $request = array_merge($_GET, $_POST);
 // Create controller object
-$controller = new rpmetaller\Controller($request);
+$Controller = new rpmetaller\Controller($request);
 // Display the output of web application.
-echo $controller->getOutput();
+echo $Controller->getOutput();

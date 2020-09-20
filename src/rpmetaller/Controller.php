@@ -13,6 +13,8 @@ class Controller
     private $view = null;
     //Mysql link identifier
     private $mysqli = null;
+    //bool Determine if ajax call or not.
+    private $ajax = false;
     //string String containing error messages
     private $error_text = '';
 
@@ -357,15 +359,19 @@ class Controller
                 $innerView->setTemplate($result['template']);
                 $this->view->assign('subtitle', 'concerts');
         }
-        if (isset($ajax) and $ajax = 1) {
+    }
+
+    public function getOutput()
+    {
+        if ($this->$ajax = true) {
             //On ajax calls the template of the outer view should be empty
-            $this->view->setTemplate('ajax');
+            $this->View->setTemplate('ajax');
         } else {
             //No ajax call -> load the outer template
-            $this->view->setTemplate('rpmetaller-editor');
+            $this->View->setTemplate('rpmetaller-editor');
         }
-        $this->view->assign('pagetitle', 'rpmetaller-editor – ');
-        $this->view->assign('menu_entrys', array(
+        $this->View->assign('pagetitle', 'rpmetaller-editor – ');
+        $this->View->assign('menu_entrys', array(
             array('Concerts', 'concert'),
             array('Bands', 'band'),
             array('Cities','city'),
@@ -373,8 +379,9 @@ class Controller
             array('Export', 'export'),
             array('Preferences','pref')
         ));
-        $this->view->assign('content', $innerView->loadTemplate());
-        return $this->view->loadTemplate();
+        $this->View->assign('content', $Inner_View->getOutput());
+        return $this->View->getOutput();
+
     }
 
     /**
