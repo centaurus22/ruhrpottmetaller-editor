@@ -9,10 +9,8 @@ class ModelVenue
 {
     private $mysqli = null;
 
-    public function __construct()
+    public function __construct($mysqli)
     {
-        include_once('model_connect.php');
-        $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
     }
 

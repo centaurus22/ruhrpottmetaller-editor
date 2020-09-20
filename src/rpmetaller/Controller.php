@@ -23,7 +23,8 @@ class Controller
      */
     public function __construct($request)
     {
-        $this->mysqli = new UtilityConnect;
+        $Utility_Connect = new UtilityConnect;
+        $this->mysqli = $Utility_Connect->db_connect();
 
         $this->view = new View();
         //translate actions induced by the special parameters
@@ -67,7 +68,7 @@ class Controller
         if (isset($request['del']) and isset($request['del_id'])) {
             switch($request['del']) {
             case 'concert':
-                $Concert_Model = new ConcertModel($this->mysqli);
+                $Concert_Model = new ModelConcert($this->mysqli);
                 $Concert_Model->delConcert($request['del_id']);
                 break;
             }
@@ -157,7 +158,7 @@ class Controller
                 $Session_Model = new ModelSession();
                 $this->prefillConcertEditor($Session_Model);
                 $request = $this->request;
-                $City_Model = new ModelCity();
+                $City_Model = new ModelCity($this->mysqli);
                 $cities = $City_Model->getCities();
                 array_splice(
                     $cities,
@@ -212,7 +213,7 @@ class Controller
             case 'set_url':
                 $ajax = 1;
                 if (isset($request['venue_id'])) {
-                    $VenueModel = new ModelVenue();
+                    $VenueModel = new ModelVenue($this->mysli);
                     $venue = $VenueModel->getVenueById($request['venue_id']);
                     $innerView->assign('content', $venue[0]['url']);
                 } else {
@@ -223,7 +224,7 @@ class Controller
             case 'lineup':
                 $ajax = 1;
                 $error = false;
-                $Session_Model = new ModeSession();
+                $Session_Model = new ModelSession();
                 if (isset($request['type']) and isset($request['row'])) {
                     switch($request['type']) {
                         case 'add':
@@ -311,9 +312,9 @@ class Controller
                  * Get header and footer from the database and pass it to the
                  * inner view
                  */
-                $Pref_Model = new ModelPref();
+                $Pref_Model = new ModelPref($this->mysqli);
                 $prefs = $Pref_Model->getPref();
-                $Concert_Model = new ModelConcert();
+                $Concert_Model = new ModelConcert($this->mysqli);
                 $concerts = $Concert_Model->getConcerts($month);
                 $result = $this->processConcertData($concerts, $month);
                 //Assign header and footer to the inner view
@@ -327,7 +328,7 @@ class Controller
             case 'concert_export':
                 $ajax = 1;
                 //Output of just one concert
-                $Concert_Model = new ModelConcert();
+                $Concert_Model = new ModelConcert($this->mysqli);
                 $concerts = $Concert_Model->getConcert($request['display_id']);
                 $result = $this->processConcertData($concerts, $month);
                 $innerView->assign('concerts', $result['concerts']);
@@ -341,7 +342,7 @@ class Controller
                  * inner View.
                  */
                 $monthChanger = $this->getMonthChanger();
-                $Concert_Model = new ModelConcert();
+                $Concert_Model = new ModelConcert($this->mysqli);
                 $concerts = $Concert_Model->getConcerts($month);
                 $result = $this->processConcertData($concerts, $month);
                 /**
@@ -479,7 +480,7 @@ class Controller
     private function getCityVenueForm ($city_id, $venue_id)
     {
         $City_Venue_Form = new View();
-        $Venue_Model = new VenueModel($this->mysqli);
+        $Venue_Model = new ModelVenue($this->mysqli);
         if ($city_id == 0) {
             $venues = $Venue_Model->getVenues();
         } elseif ($city_id == 1) {
@@ -593,7 +594,7 @@ class Controller
             $this->request['edit_id']
         );
         if ($model_involved == true) {
-            $Concert_Model = new ModelConcert();
+            $Concert_Model = new ModelConcert($this->mysqli);
             $concert = $Concert_Model->getConcert($this->request['edit_id']);
         }
         else {
@@ -687,7 +688,7 @@ class Controller
                         $this->request['first_sign'][$band_index]
                     );
                 else:
-                    $Band_Model = new ModelBand();
+                    $Band_Model = new ModelBand($this->mysqli);
                     $band_id = $request['band_id'][$band_index];
                     $band = $Band_Model->getBand($band_id);
                     $first_sign = $this->getFirstSign($band[0]['name']);
@@ -798,7 +799,7 @@ class Controller
      */
     private function saveConcert()
     {
-        $Concert_Model = new ModelConcert();
+        $Concert_Model = new ModelConcert($this->mysqli);
         /**
          * The starting date is the only value that must be provided.
          * So if it is present, a concert should be inserted or updated
@@ -1056,7 +1057,7 @@ class Controller
             $Session_Model->changeConcertDisplayStatus($this->request['display_id']);
         else:
             //Load Model to access the preference table
-            $Pref_Model = new ModelPref();
+            $Pref_Model = new ModelPref($this->mysqli);
             //Access database entry with the export language setting
             $pref_export = $Pref_Model->getPrefExportLang();
             switch($pref_export[0]['export_lang']) {

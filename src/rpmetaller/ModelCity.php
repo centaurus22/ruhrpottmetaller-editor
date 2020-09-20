@@ -15,10 +15,8 @@ class ModelCity
      * Call the function which initialize the database connection and write the
      * link identifier into the class variable.
      */
-    public function __construct()
+    public function __construct($mysqli)
     {
-        include_once('model_connect.php');
-        $mysqli = ConnectModel::db_connect();
         $this->mysqli = $mysqli;
     }
 
