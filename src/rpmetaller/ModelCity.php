@@ -1,10 +1,12 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to acces and manipulate the data in the band table.
  * Version 1.0.0
  */
-class CityModel
+class ModelCity
 {
     //Link identifier for the connection to the database
     private $mysqli = null;

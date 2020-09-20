@@ -1,11 +1,13 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to access and manipulate the data in the event table and the event_band
  * table
  * Version 1.0.0
  */
-class ConcertModel
+class ModelConcert
 {
     //Link identifier for the connection to the database
     private $mysqli = null;

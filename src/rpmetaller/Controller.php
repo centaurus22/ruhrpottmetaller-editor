@@ -1,5 +1,7 @@
 <?php
 
+namespace rpmetaller;
+
 //The controller
 class Controller
 {

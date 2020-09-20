@@ -1,10 +1,12 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to access and manipulate data saved in the session
  * Version 1.0.0
  */
-class SessionModel
+class ModelSession
 {
     /**
      * Initialize the session if it is not already initialized.

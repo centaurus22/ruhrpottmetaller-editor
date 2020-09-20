@@ -1,5 +1,7 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * View class which is in charge of displaying the data.
  * Version 1.0.0

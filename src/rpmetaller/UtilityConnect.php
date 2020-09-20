@@ -1,10 +1,12 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to make a database connection
  * Version 1.0.0
  */
-class ConnectModel
+class UtilityConnect
 {
     /**
      * Make the database connection.

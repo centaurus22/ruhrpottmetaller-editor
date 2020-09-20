@@ -1,9 +1,11 @@
 <?php
 
+namespace rpmetaller;
+
 /**
  * Class to acces and maintain venue data.
  */
-class VenueModel
+class ModelVenue
 {
     private $mysqli = null;
 
