@@ -93,10 +93,7 @@ class Controller
             and $this->request['del'] == 'concert'
             and isset($this->request['del_id'])
         ) {
-            //$Concert_Model = new ModelConcert($this->mysqli);
-            //$Concert_Model->delConcert($request['del_id']);
-            $this->error_text=$this->delConcert();
-            break;
+            $this->error_text = $this->delConcert();
         }
 
         if (isset($request['save'])) {
@@ -804,6 +801,16 @@ class Controller
         return array('include_array' => $include_array, 'error' => $error);
     }
 
+    private function delConcert()
+    {
+        $Concert_Model = new ModelConcert($this->mysqli);
+        $result = Concert_Model->delConcert($request['del_id']);
+        if ($result < 1) {
+            return 'Concert could not be deleted';
+        } else
+            return '';
+
+    }
     /**
      * This function has the purpose of interacting withe the Concert Model.
      *
@@ -860,7 +867,7 @@ class Controller
                 $band_new_name_length != $band_id_length
                 or $addition_length != $band_id_length
             ) {
-                $error_text .="Array lengths in the URL parameters does not match! Some data is ignored.<br>\n";
+                $error_text .= "Array lengths in the URL parameters does not match! Some data is ignored.<br>\n";
             }
 
             if ($error_text != '') {
@@ -956,6 +963,14 @@ class Controller
             }
         endif;
 
+        if ($error == true) {
+            $error_text .= 'Saving of concert data has gone wrong! ';
+            $this->rewriteSaveEdit();
+        } else {
+            $Session_Model = new ModelSession();
+            $Session_Model->delLineUp();
+        }
+
         if (
             isset($this->request['published'])
             and $this->request['published'] == 1
@@ -969,13 +984,9 @@ class Controller
             $result = $Concert_Model->setSoldOut($this->request['save_id']);
         }
 
-        if ((isset($result) and $result < 1) or $error == true) {
-            $error_text .= 'Saving of concert data has gone wrong! ';
-            $this->rewriteSaveEdit();
-        } else {
-            $Session_Model = new ModelSession();
-            $Session_Model->delLineUp();
-        }
+        if ($isset($result) and $result == -1) {
+            $error_text .= 'Property change could not be saved. '
+
         return $error_text;
     }
 
