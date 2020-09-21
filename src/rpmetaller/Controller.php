@@ -34,13 +34,16 @@ class Controller
         $this->Inner_View = new View();
         $this->request = $request;
 
-        $this->processRequestParameters();
+        $this->setRequestParameters();
         $this->updateData();
         $this->requestToOutputType();
     }
 
-   //translate actions induced by the special parameters
-    private function processRequestParameters()
+    /**
+     * Rewrite special parameters induced by select-menus to ordinary parameters.
+     * Also create a month parameter if it is not set.
+     */
+    private function setRequestParameters()
     {
         if (
             isset($this->request['special'])
@@ -86,6 +89,9 @@ class Controller
 
     }
 
+    /**
+     * Delete a concert from the database or save information to it.
+     */
     private function updateData()
     {
         if (
@@ -98,15 +104,19 @@ class Controller
 
         if (isset($request['save'])) {
             switch($request['save']) {
-            case 'concert':
-                $this->error_text = $this->saveConcert();
-                break;
+                case 'concert':
+                    $this->error_text = $this->saveConcert();
+                    break;
             }
 
         }
 
     }
 
+    /**
+     * Interpret the request parameters to display the right information and
+     * call the right function to pass needed data to the inner view.
+     */
     private function requestToOutputType()
     {
         if (isset($this->request['edit'])):
@@ -161,6 +171,12 @@ class Controller
 
     }
 
+    /**
+     * Assembles the output of the application and return it.
+     *
+     * @output string Complete output of the application respecting the request
+     *  parameters.
+     */
     public function getOutput()
     {
         if ($this->ajax == true) {
@@ -185,6 +201,9 @@ class Controller
 
     }
 
+    /**
+     * Get data for the concert editor and pass it to the inner view.
+     */
     private function passDataToConcertEditor()
     {
         $Session_Model = new ModelSession();
@@ -220,12 +239,18 @@ class Controller
         $this->view->assign('subtitle', 'concert editor');
     }
 
+    /**
+     * Get data to display the license and pass it to the inner view.
+     */
     private function passDataToLicenseDisplay()
     {
         $this->Inner_View->setTemplate('license');
         $this->View->assign('subtitle', 'License');
     }
 
+    /**
+     * Get data for exporting one concert and pass it to the inner view.
+     */
     private function passDataToConcertExport()
     {
         $Concert_Model = new ModelConcert($this->mysqli);
@@ -239,6 +264,9 @@ class Controller
         $this->Inner_View->setTemplate($result['template']);
     }
 
+    /**
+     * Get data for the monthly concert export and pass it to the inner view.
+     */
     private function passDataToConcertsExport()
     {
         $Pref_Model = new ModelPref($this->mysqli);
@@ -258,6 +286,9 @@ class Controller
         $this->View->assign('subtitle', 'export');
     }
 
+    /**
+     * Get data for displaying concerts and pass it to the inner view.
+     */
     private function passDataToConcertsDisplay()
     {
         $monthChanger = $this->getMonthChanger();
@@ -277,6 +308,10 @@ class Controller
         $this->View->assign('subtitle', 'concerts');
     }
 
+    /**
+     * Get data for lineup part of the concert editor  and pass it to the inner
+     * view.
+     */
     private function passDataToLineup()
     {
         $error = false;
@@ -329,7 +364,11 @@ class Controller
         $this->Inner_View->assign('content', $lineup);
     }
 
-    private function PassDataToSubLineup()
+    /**
+     * Get data for sub parts of the lineup part of the concert editor and pass
+     * it to the view.
+     */
+    private function passDataToSubLineup()
     {
         $request = $this->request;
         switch($request['type']) {
@@ -367,6 +406,10 @@ class Controller
         $this->Inner_View->setTemplate('ajax');
     }
 
+    /**
+     * Get data for sub parts of the main part of the concert editor and pass
+     * it to the view.
+     */
     private function passDataToSubEditor()
     {
         $request = $this->request;
@@ -386,6 +429,10 @@ class Controller
         $this->Inner_View->setTemplate('ajax');
     }
 
+    /**
+     * Get the standard url of a venue in the concert editor and pass it to the
+     * view.
+     */
     private function passDataToUrlField()
     {
         if (isset($this->request['venue_id'])) {
@@ -813,6 +860,11 @@ class Controller
         return array('include_array' => $include_array, 'error' => $error);
     }
 
+    /**
+     * Delete a concert from the database.
+     *
+     * @return string Empty string -> no error, otherwise -> error
+     */
     private function delConcert()
     {
         $Concert_Model = new ModelConcert($this->mysqli);
@@ -823,10 +875,11 @@ class Controller
             return '';
 
     }
+
     /**
-     * This function has the purpose of interacting withe the Concert Model.
+     * Save concert data by inserting or updating.
      *
-     * @return integer Value of 0 or greater -> Succes, -1 -> Error.
+     * @return string Empty string -> no error, otherwise -> error
      */
     private function saveConcert()
     {
