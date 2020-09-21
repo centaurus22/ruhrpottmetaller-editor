@@ -10,7 +10,9 @@ class Controller
     //string Name of the template.
     private $template = '';
     //object Object representing the (outer) view.
-    private $view = null;
+    private $View = null;
+    //object Object representing the inner view.
+    private $InnerView = null;
     //Mysql link identifier
     private $mysqli = null;
     //bool Determine if ajax call or not.
@@ -28,53 +30,75 @@ class Controller
         $Utility_Connect = new UtilityConnect;
         $this->mysqli = $Utility_Connect->db_connect();
 
-        $this->view = new View();
-        //translate actions induced by the special parameters
+        $this->View = new View();
+        $this->Inner_View = new View();
+        $this->request = $request;
+
+        $this->processRequestParameters();
+        $this->updateData();
+        $this->determineOutputType();
+    }
+
+   //translate actions induced by the special parameters
+    private function processRequestParameters()
+    {
         if (
-            isset($request['special'])
-            and $request['special'] == 'concert'
-            and isset($request['type'])
+            isset($this->request['special'])
+            and $this->request['special'] == 'concert'
+            and isset($this->request['type'])
         ) {
-            switch($request['type']) {
+            switch($this->request['type']) {
                 case 'edit':
-                    if (isset($request['id'])) {
-                        $request['edit_id'] = $request['id'];
+                    if (isset($this->request['id'])) {
+                        $this->request['edit_id'] = $this->request['id'];
                     }
                 case 'add':
-                    $request['edit'] = 'concert';
+                    $this->request['edit'] = 'concert';
                     break;
                 case 'published':
-                    if (isset($request['id'])) {
-                        $request['save_id'] = $request['id'];
+                    if (isset($this->request['id'])) {
+                        $this->request['save_id'] = $this->request['id'];
                     }
-                    $request['save'] = 'concert';
-                    $request['published'] = 1;
+                    $this->request['save'] = 'concert';
+                    $this->request['published'] = 1;
                     break;
                 case 'del':
-                    if (isset($request['id'])) {
-                        $request['del_id'] = $request['id'];
+                    if (isset($this->request['id'])) {
+                        $this->request['del_id'] = $this->request['id'];
                     }
-                    $request['del'] = 'concert';
+                    $this->request['del'] = 'concert';
                     break;
                 case 'sold_out':
-                    if (isset($request['id'])) {
-                        $request['save_id'] = $request['id'];
+                    if (isset($this->request['id'])) {
+                        $this->request['save_id'] = $this->request['id'];
                     }
-                    $request['save'] = 'concert';
-                    $request['sold_out'] = 1;
+                    $this->request['save'] = 'concert';
+                    $this->request['sold_out'] = 1;
                     break;
             }
         }
-        $this->request = $request;
-        //Deleting and saving concerts
-        if (isset($request['del']) and isset($request['del_id'])) {
-            switch($request['del']) {
-            case 'concert':
-                $Concert_Model = new ModelConcert($this->mysqli);
-                $Concert_Model->delConcert($request['del_id']);
-                break;
-            }
+
+        if (!isset($this->request['month'])) {
+            //Create the month value containing the current month
+            $month = $this->getMonth();
+            $this->request['month'] = $month;
         }
+
+    }
+
+    private function updateData()
+    {
+        if (
+            isset($this->request['del'])
+            and $this->request['del'] == 'concert'
+            and isset($this->request['del_id'])
+        ) {
+            //$Concert_Model = new ModelConcert($this->mysqli);
+            //$Concert_Model->delConcert($request['del_id']);
+            $this->error_text=$this->delConcert();
+            break;
+        }
+
         if (isset($request['save'])) {
             switch($request['save']) {
             case 'concert':
@@ -83,282 +107,57 @@ class Controller
             }
 
         }
-        $request = $this->request;
-        /**
-         * translation of request parameters to the name of the
-         * corresponding template.
-         */
+
+    }
+
+    private function requestToOutputType()
+    {
         if (isset($request['edit'])) {
             switch($request['edit']) {
             case 'concert':
             case 'default':
-                $this->template = 'concert_edit';
+                $this->passDataToConcertEditor();
                 break;
             }
         } elseif (isset($request['display'])) {
             switch($request['display']) {
                 case 'license':
-                    $this->template = 'license';
+                    $this->passDataToLicenseDisplay();
                     break;
                 case 'export':
                     if (isset($request['display_id'])) {
-                        $this->template = 'concert_export';
+                        $this->passDataToConcertExport();
                     } else {
-                        $this->template = 'export';
+                        $this->passDataToConcertsExport();
                     }
                     break;
                 case 'concert':
                 default:
                     if (isset($request['display_id'])) {
-                        $this->template = 'concert_export';
+                        $this->passDataToConcertsExport();
                     } else {
-                        $this->template = 'default';
+                        $this->passDataToConcertsDisplay();
                     }
                     break;
             }
         } elseif (isset($request['special'])) {
+            $this->ajax = true;
             switch ($request['special']) {
                 case 'lineup':
-                    $this->template = 'lineup';
+                    $this->passDataToLineup();
                     break;
                 case 'lineup_sub':
-                    $this->template = 'lineup_sub';
+                    $this->passDataToSubLineup();
                     break;
                 case 'edit_sub':
-                    $this->template = 'edit_sub';
+                    $this->passDataToSubEditor();
                     break;
                 case 'set_url':
-                    $this->template = 'set_url';
+                    $this->passDataToUrlField();
                     break;
             }
         }
-    }
 
-    /**
-     * Function to display the content
-     *
-     * @return string Content of the application
-     */
-    public function getOutput()
-    {
-        $innerView = new View();
-        if (isset($this->request['month'])) {
-            $month = $this->request['month'];
-        } else {
-            //Create the month value containing the current month
-            $month = $this->getMonth();
-            $this->request['month'] = $month;
-        }
-        $request = $this->request;
-        $this->view->assign('month', $month);
-        switch($this->template) {
-            case 'license':
-                $innerView->setTemplate('license');
-                $this->view->assign('subtitle', 'License');
-                break;
-            case 'concert_edit':
-                $Session_Model = new ModelSession();
-                $this->prefillConcertEditor($Session_Model);
-                $request = $this->request;
-                $City_Model = new ModelCity($this->mysqli);
-                $cities = $City_Model->getCities();
-                array_splice(
-                    $cities,
-                    0,
-                    0,
-                    array(array('id' => 0, 'name' => ''))
-                );
-                $cities[] = array('id' => 1, 'name' => 'New city');
-                $innerView->assign('request', $request);
-                $innerView->assign('error_text', $this->error_text);
-
-                $city_venue_form = $this->getCityVenueForm(
-                    $request['city_id'],
-                    $request['venue_id']
-                );
-                $innerView->assign('city_venue_form', $city_venue_form);
-
-                $venue_new_form = $this->getVenueNewForm(
-                    $request['venue_id']
-                );
-                $innerView->assign('venue_new_form', $venue_new_form);
-
-                $innerView->assign('cities', $cities);
-                $innerView->assign('month', $month);
-
-                $lineup = $this->getLineUp($Session_Model);
-                $innerView->assign('lineup', $lineup);
-
-                $innerView->setTemplate('concert_edit');
-                $this->view->assign('subtitle', 'concert editor');
-                break;
-            case 'edit_sub':
-                $ajax = 1;
-                if (isset($request['city_id']) and isset($request['venue_id'])) {
-                    $city_venue_form = $this->getCityVenueForm(
-                        $request['city_id'],
-                        $request['venue_id']
-                    );
-                    $innerView->assign('content', $city_venue_form);
-                } elseif (isset($request['venue_id'])) {
-                    $venue_new_form = $this->getVenueNewForm(
-                        $request['venue_id']
-                    );
-                    $innerView->assign('content', $venue_new_form);
-
-                } else {
-                    $error_text = '<strong>Something weird happened!</strong>';
-                    $innerView->assign('content', $error_text);
-                }
-                $innerView->setTemplate('ajax');
-                break;
-            case 'set_url':
-                $ajax = 1;
-                if (isset($request['venue_id'])) {
-                    $VenueModel = new ModelVenue($this->mysli);
-                    $venue = $VenueModel->getVenueById($request['venue_id']);
-                    $innerView->assign('content', $venue[0]['url']);
-                } else {
-                    $innerView->assign('content', '');
-                }
-                $innerView->setTemplate('ajax');
-                break;
-            case 'lineup':
-                $ajax = 1;
-                $error = false;
-                $Session_Model = new ModelSession();
-                if (isset($request['type']) and isset($request['row'])) {
-                    switch($request['type']) {
-                        case 'add':
-                            $Session_Model->setBandLineUp($request['row']);
-                            break;
-                        case 'del':
-                            $Session_Model->delBandLineUp($request['row']);
-                            break;
-                        case 'shift':
-                            if (isset($request['direction'])) {
-                                $Session_Model->shiftBandLineUp(
-                                    $request['row'],
-                                    $request['direction']
-                                );
-                            } else {
-                                $error = true;
-                            }
-                            break;
-                        case 'save':
-                            if (
-                                isset($request['field'])
-                                and isset($request['value'])
-                            ) {
-                                $Session_Model->updateBandLineUp(
-                                    $request['row'],
-                                    $request['field'],
-                                    $request['value']
-                                );
-                                exit;
-                            } else {
-                                $error = true;
-                            }
-                    }
-                }
-                else {
-                    $error = true;
-                }
-
-                if ($error == true) {
-                    $error_text = 'Something weird happened. The request could not be processed!';
-                } else {
-                    $error_text = '';
-                }
-                $innerView->setTemplate('ajax');
-                $lineup = $this->getLineUp($_Session_Model, $error_text);
-                $innerView->assign('content', $lineup);
-                break;
-            case 'lineup_sub':
-                $ajax = 1;
-                switch($request['type']) {
-                    case 'band_select_options':
-                        if (
-                            isset($request['first_sign'])
-                            and isset($request['band_id'])
-                        ) {
-                            $band_select_options = $this->getBandSelectOptions(
-                                $request['first_sign'],
-                                $request['band_id']
-                            );
-                            $innerView->assign('content', $band_select_options);
-                        } else {
-                            $innerView->assign(
-                                'content',
-                                '<option value="0">Something weird happened!</option>'
-                            );
-                        }
-                        break;
-                    case 'band_new_form':
-                        if (isset($request['row']) and isset($request['band_id']))
-                        {
-                            $band_new_form = $this->getBandNewForm(
-                                $request['row'],
-                                $request['band_id']
-                            );
-                            $innerView->assign('content', $band_new_form);
-                        } else {
-                            $innerView->assign('content', '<strong>Something weird happened!</strong>');
-                        }
-                        break;
-                }
-                $innerView->setTemplate('ajax');
-                break;
-            case 'export':
-                /**
-                 * Get header and footer from the database and pass it to the
-                 * inner view
-                 */
-                $Pref_Model = new ModelPref($this->mysqli);
-                $prefs = $Pref_Model->getPref();
-                $Concert_Model = new ModelConcert($this->mysqli);
-                $concerts = $Concert_Model->getConcerts($month);
-                $result = $this->processConcertData($concerts, $month);
-                //Assign header and footer to the inner view
-                $innerView->assign('header', $prefs[0]['header']);
-                $innerView->assign('footer', $prefs[0]['footer']);
-                $innerView->assign('concerts', $result['concerts']);
-                $innerView->assign('month_changer', $this->getMonthChanger());
-                $innerView->setTemplate('concert_export');
-                $this->view->assign('subtitle', 'export');
-                break;
-            case 'concert_export':
-                $ajax = 1;
-                //Output of just one concert
-                $Concert_Model = new ModelConcert($this->mysqli);
-                $concerts = $Concert_Model->getConcert($request['display_id']);
-                $result = $this->processConcertData($concerts, $month);
-                $innerView->assign('concerts', $result['concerts']);
-                $innerView->setTemplate($result['template']);
-                break;
-            case 'default':
-            default:
-                /**
-                 * Initialize a View object for the second line of the web
-                 * application, load the template and pass the output to the
-                 * inner View.
-                 */
-                $monthChanger = $this->getMonthChanger();
-                $Concert_Model = new ModelConcert($this->mysqli);
-                $concerts = $Concert_Model->getConcerts($month);
-                $result = $this->processConcertData($concerts, $month);
-                /**
-                 * By reloading the default page the status of the individual
-                 * concert exports must be reseted.
-                 */
-                $Session_Model = new ModelSession();
-                $Session_Model->delConcertDisplayStatus();
-                $innerView->assign('concerts', $result['concerts']);
-                $innerView->assign('month', $month);
-                $innerView->assign('month_changer', $monthChanger);
-                $innerView->setTemplate($result['template']);
-                $this->view->assign('subtitle', 'concerts');
-        }
     }
 
     public function getOutput()
@@ -371,6 +170,7 @@ class Controller
             $this->View->setTemplate('rpmetaller-editor');
         }
         $this->View->assign('pagetitle', 'rpmetaller-editor – ');
+        $this->View->assign('month', $this->request['month']);
         $this->View->assign('menu_entrys', array(
             array('Concerts', 'concert'),
             array('Bands', 'band'),
@@ -379,9 +179,214 @@ class Controller
             array('Export', 'export'),
             array('Preferences','pref')
         ));
-        $this->View->assign('content', $Inner_View->getOutput());
+        $this->View->assign('content', $this->Inner_View->getOutput());
         return $this->View->getOutput();
 
+    }
+
+    private function passDataToConcertEditor()
+    {
+        $Session_Model = new ModelSession();
+        $this->prefillConcertEditor($Session_Model);
+        $City_Model = new ModelCity($this->mysqli);
+        $cities = $City_Model->getCities();
+        array_splice(
+            $cities,
+            0,
+            0,
+            array(array('id' => 0, 'name' => ''))
+        );
+        $cities[] = array('id' => 1, 'name' => 'New city');
+        $this->Inner_View->assign('request', $this->request);
+        $this->Inner_View->assign('error_text', $this->error_text);
+
+        $city_venue_form = $this->getCityVenueForm(
+            $this->request['city_id'],
+            $this->request['venue_id']
+        );
+        $this->Inner_View->assign('city_venue_form', $city_venue_form);
+
+        $venue_new_form = $this->getVenueNewForm($this->request['venue_id']);
+        $this->Inner_View->assign('venue_new_form', $venue_new_form);
+
+        $this->Inner_View->assign('cities', $cities);
+        $this->Inner_View->assign('month', $this->request['month']);
+
+        $lineup = $this->getLineUp($Session_Model);
+        $this->Inner_View->assign('lineup', $lineup);
+
+        $this->Inner_View->setTemplate('concert_edit');
+        $this->view->assign('subtitle', 'concert editor');
+    }
+
+    private function passDataToLicenseDisplay()
+    {
+        $this->Inner_View->setTemplate('license');
+        $this->View->assign('subtitle', 'License');
+    }
+
+    private function passDataToConcertExport()
+    {
+        $Concert_Model = new ModelConcert($this->mysqli);
+        $concerts = $Concert_Model->getConcert($request['display_id']);
+        $result = $this->processConcertData($concerts, $this->request['month']);
+        $this->Inner_View->assign('concerts', $result['concerts']);
+        $this->Inner_View->setTemplate($result['template']);
+    }
+
+    private function passDataToConcertsExport()
+    {
+        $Pref_Model = new ModelPref($this->mysqli);
+        $prefs = $Pref_Model->getPref();
+        $Concert_Model = new ModelConcert($this->mysqli);
+        $concerts = $Concert_Model->getConcerts($this->request['month']);
+        $result = $this->processConcertData($concerts, $this->request['month']);
+        $this->Inner_View->assign('header', $prefs[0]['header']);
+        $this->Inner_View->assign('footer', $prefs[0]['footer']);
+        $this->Inner_View->assign('concerts', $result['concerts']);
+        $this->Inner_View->assign('month_changer', $this->getMonthChanger());
+        $this->Inner_View->setTemplate('concert_export');
+        $this->View->assign('subtitle', 'export');
+    }
+
+    private function passDataToConcertsDisplay()
+    {
+        $monthChanger = $this->getMonthChanger();
+        $Concert_Model = new ModelConcert($this->mysqli);
+        $concerts = $Concert_Model->getConcerts($this->request['month']);
+        $result = $this->processConcertData($concerts, $this->request['month']);
+        /**
+         * By reloading the default page the status of the individual
+         * concert exports must be reseted.
+         */
+        $Session_Model = new ModelSession();
+        $Session_Model->delConcertDisplayStatus();
+        $this->Inner_View->assign('concerts', $result['concerts']);
+        $this->Inner_View->assign('month', $this->request['month']);
+        $this->Inner_View->assign('month_changer', $monthChanger);
+        $this->Inner_View->setTemplate($result['template']);
+        $this->View->assign('subtitle', 'concerts');
+    }
+
+    private function passDataToLineup()
+    {
+        $error = false;
+        $Session_Model = new ModelSession();
+        if (isset($this->request['type']) and isset($this->request['row'])) {
+            switch($this->request['type']) {
+                case 'add':
+                    $Session_Model->setBandLineUp($this->request['row']);
+                    break;
+                case 'del':
+                    $Session_Model->delBandLineUp($this->request['row']);
+                    break;
+                case 'shift':
+                    if (isset($this->request['direction'])) {
+                        $Session_Model->shiftBandLineUp(
+                            $this->request['row'],
+                            $this->request['direction']
+                        );
+                    } else {
+                        $error = true;
+                    }
+                    break;
+                case 'save':
+                    if (
+                        isset($this->request['field'])
+                        and isset($this->request['value'])
+                    ) {
+                        $Session_Model->updateBandLineUp(
+                            $this->request['row'],
+                            $this->request['field'],
+                            $this->request['value']
+                        );
+                        exit;
+                    } else {
+                        $error = true;
+                    }
+            }
+        }
+        else {
+            $error = true;
+        }
+
+        if ($error == true) {
+            $error_text = 'Something weird happened. The request could not be processed!';
+        } else {
+            $error_text = '';
+        }
+        $this->Inner_View->setTemplate('ajax');
+        $lineup = $this->getLineUp($Session_Model, $error_text);
+        $this->Inner_View->assign('content', $lineup);
+    }
+
+    private function PassDataToSubLineup()
+    {
+        $request = $this->request;
+        switch($request['type']) {
+            case 'band_select_options':
+                if (isset($request['first_sign']) and isset($request['band_id']))
+                {
+                    $band_select_options = $this->getBandSelectOptions(
+                        $request['first_sign'],
+                        $request['band_id']
+                    );
+                    $this->Inner_View->assign('content', $band_select_options);
+                } else {
+                    $this->Inner_View->assign(
+                        'content',
+                        '<option value="0">Something weird happened!</option>'
+                    );
+                }
+                break;
+            case 'band_new_form':
+                if (isset($request['row']) and isset($request['band_id']))
+                {
+                    $band_new_form = $this->getBandNewForm(
+                        $request['row'],
+                        $request['band_id']
+                    );
+                    $this->Inner_View->assign('content', $band_new_form);
+                } else {
+                    $this->Inner_View->assign(
+                        'content',
+                        '<strong>Something weird happened!</strong>'
+                    );
+                }
+                break;
+        }
+        $this->Inner_View->setTemplate('ajax');
+    }
+
+    private function passDataToSubEditor()
+    {
+        $request = $this->request;
+        if (isset($request['city_id']) and isset($request['venue_id'])) {
+            $city_venue_form = $this->getCityVenueForm(
+                $request['city_id'],
+                $request['venue_id']
+            );
+            $this->Inner_View->assign('content', $city_venue_form);
+        } elseif (isset($request['venue_id'])) {
+            $venue_new_form = $this->getVenueNewForm($request['venue_id']);
+            $this->Inner_View->assign('content', $venue_new_form);
+        } else {
+            $error_text = '<strong>Something weird happened!</strong>';
+            $this->Inner_View->assign('content', $error_text);
+        }
+        $this->Inner_View->setTemplate('ajax');
+    }
+
+    private function passDataToUrlField()
+    {
+        if (isset($this->request['venue_id'])) {
+            $VenueModel = new ModelVenue($this->mysli);
+            $venue = $VenueModel->getVenueById($this->request['venue_id']);
+            $this->Inner_View->assign('content', $venue[0]['url']);
+        } else {
+            $this->Inner_View->assign('content', '');
+        }
+        $this->Inner_View->setTemplate('ajax');
     }
 
     /**
