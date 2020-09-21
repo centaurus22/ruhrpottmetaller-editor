@@ -44,7 +44,7 @@ class View
      *
      * @return string Output of the template or an error message.
      */
-    public function loadTemplate()
+    public function getOutput()
     {
         $tpl = $this->template;
         $file = $this->template_path . DIRECTORY_SEPARATOR . $tpl . '.inc.php';
