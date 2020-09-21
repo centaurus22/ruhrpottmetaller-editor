@@ -12,7 +12,7 @@ class Controller
     //object Object representing the (outer) view.
     private $View = null;
     //object Object representing the inner view.
-    private $InnerView = null;
+    private $Inner_View = null;
     //Mysql link identifier
     private $mysqli = null;
     //bool Determine if ajax call or not.
@@ -36,7 +36,7 @@ class Controller
 
         $this->processRequestParameters();
         $this->updateData();
-        $this->determineOutputType();
+        $this->requestToOutputType();
     }
 
    //translate actions induced by the special parameters
@@ -109,37 +109,16 @@ class Controller
 
     private function requestToOutputType()
     {
-        if (isset($request['edit'])) {
-            switch($request['edit']) {
+        if (isset($this->request['edit'])):
+            switch($this->request['edit']) {
             case 'concert':
             case 'default':
                 $this->passDataToConcertEditor();
                 break;
             }
-        } elseif (isset($request['display'])) {
-            switch($request['display']) {
-                case 'license':
-                    $this->passDataToLicenseDisplay();
-                    break;
-                case 'export':
-                    if (isset($request['display_id'])) {
-                        $this->passDataToConcertExport();
-                    } else {
-                        $this->passDataToConcertsExport();
-                    }
-                    break;
-                case 'concert':
-                default:
-                    if (isset($request['display_id'])) {
-                        $this->passDataToConcertsExport();
-                    } else {
-                        $this->passDataToConcertsDisplay();
-                    }
-                    break;
-            }
-        } elseif (isset($request['special'])) {
+        elseif (isset($this->request['special'])):
             $this->ajax = true;
-            switch ($request['special']) {
+            switch ($this->request['special']) {
                 case 'lineup':
                     $this->passDataToLineup();
                     break;
@@ -153,13 +132,38 @@ class Controller
                     $this->passDataToUrlField();
                     break;
             }
-        }
+        else:
+            if (!isset($this->request['display'])) {
+                $this->request['display'] = 'concert';
+            }
+
+            switch($this->request['display']) {
+                case 'license':
+                    $this->passDataToLicenseDisplay();
+                    break;
+                case 'export':
+                    if (isset($this->request['display_id'])) {
+                        $this->passDataToConcertExport();
+                    } else {
+                        $this->passDataToConcertsExport();
+                    }
+                    break;
+                case 'concert':
+                default:
+                    if (isset($this->request['display_id'])) {
+                        $this->passDataToConcertExport();
+                    } else {
+                        $this->passDataToConcertsDisplay();
+                    }
+                    break;
+            }
+        endif;
 
     }
 
     public function getOutput()
     {
-        if ($this->$ajax = true) {
+        if ($this->ajax == true) {
             //On ajax calls the template of the outer view should be empty
             $this->View->setTemplate('ajax');
         } else {
@@ -225,8 +229,12 @@ class Controller
     private function passDataToConcertExport()
     {
         $Concert_Model = new ModelConcert($this->mysqli);
-        $concerts = $Concert_Model->getConcert($request['display_id']);
-        $result = $this->processConcertData($concerts, $this->request['month']);
+        $concerts = $Concert_Model->getConcert($this->request['display_id']);
+        $result = $this->processConcertData(
+            $concerts,
+            $this->request['month'],
+            'concert_export'
+        );
         $this->Inner_View->assign('concerts', $result['concerts']);
         $this->Inner_View->setTemplate($result['template']);
     }
@@ -237,7 +245,11 @@ class Controller
         $prefs = $Pref_Model->getPref();
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
-        $result = $this->processConcertData($concerts, $this->request['month']);
+        $result = $this->processConcertData(
+            $concerts,
+            $this->request['month'],
+            'export'
+        );
         $this->Inner_View->assign('header', $prefs[0]['header']);
         $this->Inner_View->assign('footer', $prefs[0]['footer']);
         $this->Inner_View->assign('concerts', $result['concerts']);
@@ -421,7 +433,7 @@ class Controller
         $monthChanger->assign('request_next_month', $request_month_next);
         $monthChanger->assign('request_prev_month', $request_month_prev);
         $monthChanger->assign('month_human', $month_human);
-        return $monthChanger->loadTemplate();
+        return $monthChanger->getOutput();
     }
 
     /**
@@ -804,7 +816,7 @@ class Controller
     private function delConcert()
     {
         $Concert_Model = new ModelConcert($this->mysqli);
-        $result = Concert_Model->delConcert($request['del_id']);
+        $result = $Concert_Model->delConcert($request['del_id']);
         if ($result < 1) {
             return 'Concert could not be deleted';
         } else
@@ -985,8 +997,8 @@ class Controller
         }
 
         if ($isset($result) and $result == -1) {
-            $error_text .= 'Property change could not be saved. '
-
+            $error_text .= 'Property change could not be saved. ';
+        }
         return $error_text;
     }
 
@@ -1060,20 +1072,21 @@ class Controller
      * @param string $month Month from which the data is processed.
      * @return array $result Array witch processed data and template
      */
-    private function processConcertData($concerts, $month)
+    private function processConcertData($concerts, $month, $type = 'concert')
     {
         /**
          * Load the session model to access the session if the output contains
          * the export of just one concert
          */
-        if ($this->template == 'concert_export') {
+        if ($type == 'concert_export') {
             $Session_Model = new ModelSession();
         }
+
         if (count($concerts) == 0):
             //No concerts in the chosen month.
             $template = 'default_no_data';
         elseif (
-            $this->template == 'concert_export'
+            $type == 'concert_export'
             and $Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1
         ):
             $template = 'empty_output';
@@ -1115,7 +1128,7 @@ class Controller
                     $concerts[$concert_index]['status'] = 'unpublished';
                 }
 
-                if ($this->template == 'concert_export') {
+                if ($type == 'concert_export') {
                     /**
                      * Determine the human readable date for the concert table.
                      * Output for a concert export should also include the name
@@ -1129,7 +1142,7 @@ class Controller
                     $display_id = $this->request['display_id'];
                     $Session_Model->changeConcertDisplayStatus($display_id);
                     $template = 'concert_export';
-                } elseif ($this->template == 'export') {
+                } elseif ($type == 'export') {
                     //Export of many concerts
                     $concerts[$concert_index]['date_human'] = strftime(
                         $timeformat_with_month,
@@ -1147,7 +1160,7 @@ class Controller
                 $date = date('Y-m-d', $time_start);
                 if ($concerts[$concert_index]['date_end'] != '') {
                     $time_end = strtotime($concerts[$concert_index]['date_end']);
-                    if ($this->template == 'concert') {
+                    if ($type == 'concert') {
                         $date_end_human = strftime(
                             $timeformat_with_month,
                             $time_end
