@@ -61,9 +61,9 @@ class Controller
                 case 'published':
                     if (isset($this->request['id'])) {
                         $this->request['save_id'] = $this->request['id'];
+                        $this->request['save'] = 'concert';
+                        $this->request['published'] = 1;
                     }
-                    $this->request['save'] = 'concert';
-                    $this->request['published'] = 1;
                     break;
                 case 'del':
                     if (isset($this->request['id'])) {
@@ -79,6 +79,7 @@ class Controller
                     $this->request['sold_out'] = 1;
                     break;
             }
+            unset($this->request['special']);
         }
 
         if (!isset($this->request['month'])) {
@@ -102,8 +103,8 @@ class Controller
             $this->error_text = $this->delConcert();
         }
 
-        if (isset($request['save'])) {
-            switch($request['save']) {
+        if (isset($this->request['save'])) {
+            switch($this->request['save']) {
                 case 'concert':
                     $this->error_text = $this->saveConcert();
                     break;
@@ -161,6 +162,7 @@ class Controller
                 case 'concert':
                 default:
                     if (isset($this->request['display_id'])) {
+                        $this->ajax = true;
                         $this->passDataToConcertExport();
                     } else {
                         $this->passDataToConcertsDisplay();
@@ -236,7 +238,7 @@ class Controller
         $this->Inner_View->assign('lineup', $lineup);
 
         $this->Inner_View->setTemplate('concert_edit');
-        $this->view->assign('subtitle', 'concert editor');
+        $this->View->assign('subtitle', 'concert editor');
     }
 
     /**
@@ -439,7 +441,7 @@ class Controller
     private function passDataToUrlField()
     {
         if (isset($this->request['venue_id'])) {
-            $VenueModel = new ModelVenue($this->mysli);
+            $VenueModel = new ModelVenue($this->mysqli);
             $venue = $VenueModel->getVenueById($this->request['venue_id']);
             $this->Inner_View->assign('content', $venue[0]['url']);
         } else {
@@ -522,7 +524,7 @@ class Controller
         $lineUp->assign('band_new_form', $band_new_form);
         $lineUp->assign('error_text', $error_text_lineup);
         $lineUp->assign('lineup', $bands);
-        return $lineUp->loadTemplate();
+        return $lineUp->getOutput();
     }
     /**
      * Returns the first char in capital letters or '%' for a special symbol
@@ -571,7 +573,7 @@ class Controller
         $City_Venue_Form->assign('venues', $venues);
         $City_Venue_Form->assign('venue_id', $venue_id);
         $City_Venue_Form->setTemplate('city_venue_form');
-        return $City_Venue_Form->loadTemplate();
+        return $City_Venue_Form->getOutput();
     }
 
     /**
@@ -600,7 +602,7 @@ class Controller
         }
         $Venue_New_Form->assign('venue_id', $venue_id);
         $Venue_New_Form->setTemplate('venue_new_form');
-        return $Venue_New_Form->loadTemplate();
+        return $Venue_New_Form->getOutput();
     }
 
     /**
@@ -611,7 +613,7 @@ class Controller
      * @param integer  $band_id Band id
      * @return string Output of the template.
      */
-    private function getBandSelectOptions ($first_sign, $band_id)
+    private function getBandSelectOptions($first_sign, $band_id)
     {
         $Band_Select_Options = new View();
         if ($first_sign == '') {
@@ -629,7 +631,7 @@ class Controller
         $Band_Select_Options->assign('bands', $bands);
         $Band_Select_Options->assign('band_id', $band_id);
         $Band_Select_Options->setTemplate('band_select_options');
-        return $Band_Select_Options->loadTemplate();
+        return $Band_Select_Options->getOutput();
     }
 
     /**
@@ -649,7 +651,7 @@ class Controller
         $Band_New_Form->assign('row', $row);
         $Band_New_Form->assign('band_id', $band_id);
         $Band_New_Form->setTemplate('band_new_form');
-        return $Band_New_Form->loadTemplate();
+        return $Band_New_Form->getOutput();
     }
 
     /**
@@ -1052,7 +1054,7 @@ class Controller
             $result = $Concert_Model->setSoldOut($this->request['save_id']);
         }
 
-        if ($isset($result) and $result == -1) {
+        if (isset($result) and $result == -1) {
             $error_text .= 'Property change could not be saved. ';
         }
         return $error_text;
