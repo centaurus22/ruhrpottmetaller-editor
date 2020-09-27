@@ -152,6 +152,15 @@ class Controller
                 case 'license':
                     $this->passDataToLicenseDisplay();
                     break;
+                case 'band':
+                    $this->passDataToBandssDisplay();
+                    break;
+                case 'city':
+                    $this->passDataToCitiesDisplay();
+                    break;
+                case 'venue':
+                    $this->passDataToVenuesDisplay();
+                    break;
                 case 'export':
                     if (isset($this->request['display_id'])) {
                         $this->passDataToConcertExport();
