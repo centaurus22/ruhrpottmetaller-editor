@@ -1,5 +1,6 @@
 body {
 	margin: 0px;
+    background-color: WhiteSmoke;
 }
 
 h1 {
@@ -197,30 +198,63 @@ tr.urgent_unten td {
 	margin-right:3px;
 }
 
-.edit_text {
+.edit_label {
 	width: 95px;
-	display: inline-block;
+    display: inline-block;
 }
 
 
-table#lineup {
-	border-collapse: collapse;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
+.edit_text {
+    width: 200px;
+    margin: 5px 0 5px 0;
+}
+
+.edit_select {
+    width: 235px;
+    margin: 5px 0 5px 0;
+}
+
+.edit_date {
+    padding: 2px 0 0 0;
+    height: 20px;
+    margin: 5px 0 5px 0;
+}
+
+.edit_length {
+    padding: 0 0 0 0;
+    width: 47px;
+    height: 20px;
+    margin: 5px 0 5px 0;
+}
+
+#lineup {
+    max-width: 1080px;
+    margin: 10px 0 15px 0;
+}
+
+
+.fieldset_general {
+    max-width: 1080px;
+    padding: 15px 10px 15px 10px;
+}
+
+.fieldset_band {
+    color: Navy;
+    border: 0px;
+    margin: 10px 0 10px 0;
+    padding: 5px 10px 5px 10px;
 }
 
 #lineup button {
 	padding-top:3px;
 }
 
-.lineup_zusatz {
-	width: 130px;
+.edit_band_id {
+    width: 235px;
 }
 
-.option_highlight {
-	font-weight: bold;
+.button_save {
+    margin-right: 10px;
 }
 
 .error {
@@ -243,7 +277,7 @@ table#lineup {
 }
 
 .todo_diff a {
-	text-decoration: none;	
+	text-decoration: none;
 	color: blue;
 }
 
@@ -267,27 +301,4 @@ table#lineup {
 .datum {
 	font-style: italic;
 	padding-bottom: 10px;
-}
-
-h1.blog_ueberschrift {
-	font-size: 1.5em;
-	margin-bottom: 1px;
-}
-
-.blog_text {
-	margin-bottom: 8px;
-	border-style: dotted;
-	border-width: 1px;
-	margin: 5px;
-	overflow: hidden;
-}
-
-.blog_text_edit {
-	width: 97%;
-	height: 100px;
-	margin: 5px;
-}
-
-.blog_beitrag {
-	margin-bottom: 20px;
 }

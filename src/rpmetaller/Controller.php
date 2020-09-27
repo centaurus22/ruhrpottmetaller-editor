@@ -388,9 +388,6 @@ class Controller
                         '<option value="0">Something weird happened!</option>'
                     );
                 }
-                $innerView->setTemplate('ajax');
-                $lineup = $this->getLineUp($Session_Model, $error_text);
-                $innerView->assign('content', $lineup);
                 break;
             case 'band_new_form':
                 if (isset($request['row']) and isset($request['band_id']))
@@ -615,7 +612,6 @@ class Controller
      */
     private function getBandSelectOptions($first_sign, $band_id)
     {
-        $Band_Select_Options = new View();
         if ($first_sign == '') {
             $bands = array(
                 array('id' => 1, 'name' => 'TBA'),
@@ -627,7 +623,7 @@ class Controller
         }
         array_splice($bands, 0, 0, array(array('id' => 0, 'name' => '')));
         $bands[] = array('id' => 3, 'name' => 'New band');
-        //Test, if the band id is in the array with the choosen bands
+        $Band_Select_Options = new View();
         $Band_Select_Options->assign('bands', $bands);
         $Band_Select_Options->assign('band_id', $band_id);
         $Band_Select_Options->setTemplate('band_select_options');

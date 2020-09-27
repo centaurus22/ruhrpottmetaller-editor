@@ -12,7 +12,7 @@ for (
     $lineup_index++
 ) {
     printf(
-        "\t\t<fieldset>\n\t\t" . '<legend>Band %1$s</legend>
+        "\t\t<fieldset class=\"fieldset_band\">\n\t\t" . '<legend>Band %1$s</legend>
         <label for="first_sign_%1$u" hidden>First letter the of the band name</label>
         <select  id="first_sign_%1$u" name="first_sign[]" onchange="save_band_lineup(%1$u, \'first_sign\'); get_band_select_options(%1$u)" autocomplete="off">' . "\n",
         $lineup_index
@@ -33,7 +33,7 @@ for (
     printf(
         "\t\t" . '</select>
         <label for="band_id_%1$u" hidden>Band Id</label>
-        <select name="band_id[]" id="band_id_%1$u" onchange="save_band_lineup(%1$u, \'band_id\'); get_band_new_form(%1$u)" autocomplete="off">' . "\n",
+        <select name="band_id[]" id="band_id_%1$u" onchange="save_band_lineup(%1$u, \'band_id\'); get_band_new_form(%1$u)" autocomplete="off" class="edit_band_id">' . "\n",
         $lineup_index
     );
     echo $this->_['band_select_options'][$lineup_index];
