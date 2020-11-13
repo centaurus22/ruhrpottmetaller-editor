@@ -1,6 +1,6 @@
 <?php
 
-switch($this->_['data_type']) {
+switch($this->_['display']) {
     case 'city':
         $data = array (
             1 => array('name' => 'Name', 'db_ref' => 'name', 'type' => 'string'),

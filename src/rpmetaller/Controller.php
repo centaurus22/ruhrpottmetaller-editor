@@ -266,7 +266,7 @@ class Controller
             'property_changer',
             $this->getPropertyChanger('first_char')
         );
-        $this->View->assign('display', 'band');
+        $this->Inner_View->assign('display', 'band');
         $this->View->assign('subtitle', 'bands');
         $this->Inner_View->setTemplate('general_display_edit');
     }
@@ -278,7 +278,7 @@ class Controller
             'property_changer',
             $this->getPropertyChanger('first_char')
         );
-        $this->View->assign('display', 'city');
+        $this->Inner_View->assign('display', 'city');
         $this->View->assign('subtitle', 'cities');
         $this->Inner_View->setTemplate('general_display_edit');
     }
@@ -290,7 +290,7 @@ class Controller
             'property_changer',
             $this->getPropertyChanger('city')
         );
-        $this->View->assign('display', 'venue');
+        $this->Inner_View->assign('display', 'venue');
         $this->View->assign('subtitle', 'venues');
         $this->Inner_View->setTemplate('general_display_edit');
     }
