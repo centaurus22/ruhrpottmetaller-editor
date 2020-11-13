@@ -250,7 +250,7 @@ class Controller
         $this->View->assign('subtitle', 'License');
     }
 
-    /**
+     /*
      * Get data for exporting one concert and pass it to the inner view.
      */
     private function passDataToConcertExport()
