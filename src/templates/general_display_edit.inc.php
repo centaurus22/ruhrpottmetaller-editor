@@ -37,3 +37,5 @@ switch($this->_['display']) {
         );
         break;
 }
+
+echo $this->_['property_changer'];
