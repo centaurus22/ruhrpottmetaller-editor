@@ -262,10 +262,14 @@ class Controller
     private function passDataToBandsDisplay()
     {
         $Band_Model = new ModelBand();
+        $property_selector = $this->getPropertySelector('first_char');
+        $result = $Band_Model->getBands($first_char);
         $this->Inner_View->assign(
             'property_changer',
-            $this->getPropertyChanger('first_char')
+            $this->getPropertyChanger('first_char', $property_selector)
         );
+        $result = $Band_Model->getBands($property_selector);
+        $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'band');
         $this->View->assign('subtitle', 'bands');
         $this->Inner_View->setTemplate('general_display_edit');
@@ -273,11 +277,14 @@ class Controller
 
     private function passDataToCitiesDisplay()
     {
-        $Band_Model = new ModelCity($this->mysqli);
+        $City_Model = new ModelCity($this->mysqli);
+        $property_selector = $this->getPropertySelector('first_char');
         $this->Inner_View->assign(
             'property_changer',
-            $this->getPropertyChanger('first_char')
+            $this->getPropertyChanger('first_char', $property_selector)
         );
+        $result = $City_Model->getCities($property_selector);
+        $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'city');
         $this->View->assign('subtitle', 'cities');
         $this->Inner_View->setTemplate('general_display_edit');
@@ -285,19 +292,21 @@ class Controller
 
     private function passDataToVenuesDisplay()
     {
-        $Band_Model = new ModelVenue($this->mysqli);
+        $Venue_Model = new ModelVenue($this->mysqli);
+        $property_selector = $this->getPropertySelector('city');
         $this->Inner_View->assign(
             'property_changer',
-            $this->getPropertyChanger('city')
+            $this->getPropertyChanger('city', $property_selector)
         );
+        $result = $Venue_Model->getVenuesByCity($property_selector);
+        $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'venue');
         $this->View->assign('subtitle', 'venues');
         $this->Inner_View->setTemplate('general_display_edit');
     }
 
-    private function getPropertyChanger($property_type)
+    private function getPropertySelector($property_type)
     {
-        $PropertyChanger = new View();
         $property_selector = '';
         switch($property_type) {
             case 'first_char':
@@ -305,16 +314,29 @@ class Controller
                     $property_selector = $this->request['display_first_char'];
                     unset($this->request['display_first_char']);
                 }
-                $alphabet = range('A', 'Z');
-                $result = array_combine($alphabet, $alphabet);
                 break;
             case 'city':
                 if (isset($this->request['display_city_id'])) {
                     $property_selector = $this->request['display_city_id'];
                     unset($this->request['display_city_id']);
                 }
+                break;
+        }
+        return $property_selector;
+    }
+
+    private function getPropertyChanger($property_type, $property_selector)
+    {
+        $PropertyChanger = new View();
+        switch($property_type) {
+            case 'first_char':
+                $alphabet = range('A', 'Z');
+                $alphabet[] = '%';
+                $result = array_combine($alphabet, $alphabet);
+                break;
+            case 'city':
                 $City_Model = new ModelCity($this->mysqli);
-                $result = $City_Model->getCities();
+                $result = $City_Model->getCities('');
                 $city_ids = array_column($result, 'id');
                 $city_names = array_column($result, 'name');
                 $result = array_combine($city_ids, $city_names);
