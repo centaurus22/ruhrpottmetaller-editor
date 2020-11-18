@@ -50,11 +50,11 @@ div#leiste_buttons {
 	background-color: lightgrey;
 }
 
-div#leiste_buttons button, #button {
+div#leiste_buttons button, #button, #leiste_buttons select {
 	float: left;
 	height: 25px;
-	width: 40px;
-	padding: 0px 13px 0px 0px;
+	/*width: 40px;*/
+	padding: 0px 0px 0px 0px;
 	font-size: 12px;
 	font-weight: bold;
 	margin-right: 5px;
@@ -305,13 +305,31 @@ tr.urgent_unten td {
 
 .table {
     display: table;
+    border-collapse: collapse;
+    width: 99.5%;
+}
+
+.thead {
+    display: table-header-group;
+    border-bottom: 2px solid gray;
+    font-weight: bold;
+}
+
+.tbody {
+    display: table-row-group;
 }
 
 .tr {
     display: table-row;
+    border-bottom: 1px dotted gray;
 }
 
 .td {
     display: table-cell;
+    padding: 0 3px 0 3px;
 }
 
+.tinputtext {
+    font-size: 13px;
+    width: 250px;
+}

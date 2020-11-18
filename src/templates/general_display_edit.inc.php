@@ -73,15 +73,18 @@ switch($this->_['display']) {
 
 echo $this->_['property_changer'];
 
-echo '<div class="inhalt_small">
+echo '<div id="inhalt" class="inhalt_small">
     <div class="table">
-        <div class="tr">';
+        <div class="thead">
+            <div class="tr">';
 
 foreach ($data as $field) {
    printf('<span class="td">%1$s</span>', $field['name']);
 }
 
-echo "</div>\n";
+echo "\t</div>
+    </div>
+    <div class=\"tbody\">\n";
 
 foreach($this->_['result'] as $datum) {
     echo "\t\t<form class=\"tr\">\n";
@@ -110,9 +113,10 @@ foreach($this->_['result'] as $datum) {
                 echo htmlspecialchars($datum[$field['ref']], ENT_QUOTES);
                 break;
             case 'string_edit':
+                //nobreak
             default:
                 printf(
-                    '<input type="text" id="%2$s" value="%1$s" name="%2$s" placeholder="%3$s">',
+                    '<input class="tinputtext" type="text" id="%2$s" value="%1$s" name="%2$s" placeholder="%3$s">',
                     htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
                     $field['ref'],
                     $field['description']
@@ -124,5 +128,6 @@ foreach($this->_['result'] as $datum) {
     echo "\t\t</form>\n";
 }
 
-echo "</div>
+echo "\t\t</div>
+    </div>
     </div>\n";
