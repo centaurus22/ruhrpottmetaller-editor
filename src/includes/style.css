@@ -302,3 +302,16 @@ tr.urgent_unten td {
 	font-style: italic;
 	padding-bottom: 10px;
 }
+
+.table {
+    display: table;
+}
+
+.tr {
+    display: table-row;
+}
+
+.td {
+    display: table-cell;
+}
+

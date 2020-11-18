@@ -45,9 +45,20 @@ class ModelVenue
     public function getVenuesByCity($city_id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name, stadt_id, url FROM location
-            WHERE stadt_id=? ORDER BY name');
-        $stmt->bind_param('i', $city_id);
+        if ($city_id == '') {
+            $stmt = $mysqli->prepare('SELECT location.id, location.name,
+                stadt.name AS city_name,
+                location.stadt_id, location.url, location.anzeigen FROM location
+                JOIN stadt ON location.stadt_id = stadt.id
+                ORDER BY stadt.name, location.name');
+        } else {
+            $stmt = $mysqli->prepare('SELECT location.id, location.name,
+                stadt.name AS city_name,
+                location.stadt_id, location.url, location.anzeigen FROM location
+                JOIN stadt ON location.stadt_id = stadt.id
+                WHERE stadt_id=? ORDER BY name');
+            $stmt->bind_param('i', $city_id);
+        }
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();

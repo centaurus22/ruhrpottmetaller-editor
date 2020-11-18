@@ -220,7 +220,7 @@ class Controller
         $Session_Model = new ModelSession();
         $this->prefillConcertEditor($Session_Model);
         $City_Model = new ModelCity($this->mysqli);
-        $cities = $City_Model->getCities();
+        $cities = $City_Model->getCities('');
         array_splice(
             $cities,
             0,
@@ -261,9 +261,9 @@ class Controller
 
     private function passDataToBandsDisplay()
     {
-        $Band_Model = new ModelBand();
+        $Band_Model = new ModelBand($this->mysqli);
         $property_selector = $this->getPropertySelector('first_char');
-        $result = $Band_Model->getBands($first_char);
+        $result = $Band_Model->getBands($property_selector);
         $this->Inner_View->assign(
             'property_changer',
             $this->getPropertyChanger('first_char', $property_selector)
