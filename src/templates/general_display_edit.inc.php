@@ -105,7 +105,7 @@ foreach($this->_['result'] as $datum) {
                 break;
             case 'button':
                 printf(
-                    '<button type="submit">%1$s</button>',
+                    '<button class="tbutton" type="submit">%1$s</button>',
                     $field['description']
                 );
                 break;

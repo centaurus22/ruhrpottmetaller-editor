@@ -339,3 +339,7 @@ tr.urgent_unten td {
     z-index: -1;
     top: 3px;
 }
+
+.tbutton {
+    font-size: 12px;
+}
