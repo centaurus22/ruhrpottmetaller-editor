@@ -331,6 +331,7 @@ class Controller
         switch($property_type) {
             case 'first_char':
                 $alphabet = range('A', 'Z');
+                array_unshift($alphabet, '');
                 $alphabet[] = '%';
                 $result = array_combine($alphabet, $alphabet);
                 break;
@@ -340,6 +341,7 @@ class Controller
                 $city_ids = array_column($result, 'id');
                 $city_names = array_column($result, 'name');
                 $result = array_combine($city_ids, $city_names);
+                $result = array('' => '') + $result;
                 break;
         }
         $PropertyChanger->assign('request', $this->request);
