@@ -98,7 +98,7 @@ foreach($this->_['result'] as $datum) {
                     $checked = '';
                 }
                 printf(
-                    '<input type="checkbox" id="%1$s" name="%1$s" %2$s>',
+                    '<input class="tinputcheckbox" type="checkbox" id="%1$s" name="%1$s" %2$s>',
                     $field['ref'],
                     $checked
                 );

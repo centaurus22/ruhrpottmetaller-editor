@@ -333,3 +333,9 @@ tr.urgent_unten td {
     font-size: 13px;
     width: 250px;
 }
+
+.tinputcheckbox {
+    position: relative;
+    z-index: -1;
+    top: 3px;
+}
