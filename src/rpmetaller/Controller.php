@@ -152,6 +152,15 @@ class Controller
                 case 'license':
                     $this->passDataToLicenseDisplay();
                     break;
+                case 'band':
+                    $this->passDataToBandsDisplay();
+                    break;
+                case 'city':
+                    $this->passDataToCitiesDisplay();
+                    break;
+                case 'venue':
+                    $this->passDataToVenuesDisplay();
+                    break;
                 case 'export':
                     if (isset($this->request['display_id'])) {
                         $this->passDataToConcertExport();
@@ -211,7 +220,7 @@ class Controller
         $Session_Model = new ModelSession();
         $this->prefillConcertEditor($Session_Model);
         $City_Model = new ModelCity($this->mysqli);
-        $cities = $City_Model->getCities();
+        $cities = $City_Model->getCities('');
         array_splice(
             $cities,
             0,
@@ -250,7 +259,100 @@ class Controller
         $this->View->assign('subtitle', 'License');
     }
 
-     /*
+    private function passDataToBandsDisplay()
+    {
+        $Band_Model = new ModelBand($this->mysqli);
+        $property_selector = $this->getPropertySelector('first_char');
+        $result = $Band_Model->getBands($property_selector);
+        $this->Inner_View->assign(
+            'property_changer',
+            $this->getPropertyChanger('first_char', $property_selector)
+        );
+        $result = $Band_Model->getBands($property_selector);
+        $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('display', 'band');
+        $this->View->assign('subtitle', 'bands');
+        $this->Inner_View->setTemplate('general_display_edit');
+    }
+
+    private function passDataToCitiesDisplay()
+    {
+        $City_Model = new ModelCity($this->mysqli);
+        $property_selector = $this->getPropertySelector('first_char');
+        $this->Inner_View->assign(
+            'property_changer',
+            $this->getPropertyChanger('first_char', $property_selector)
+        );
+        $result = $City_Model->getCities($property_selector);
+        $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('display', 'city');
+        $this->View->assign('subtitle', 'cities');
+        $this->Inner_View->setTemplate('general_display_edit');
+    }
+
+    private function passDataToVenuesDisplay()
+    {
+        $Venue_Model = new ModelVenue($this->mysqli);
+        $property_selector = $this->getPropertySelector('city');
+        $this->Inner_View->assign(
+            'property_changer',
+            $this->getPropertyChanger('city', $property_selector)
+        );
+        $result = $Venue_Model->getVenuesByCity($property_selector);
+        $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('display', 'venue');
+        $this->View->assign('subtitle', 'venues');
+        $this->Inner_View->setTemplate('general_display_edit');
+    }
+
+    private function getPropertySelector($property_type)
+    {
+        $property_selector = '';
+        switch($property_type) {
+            case 'first_char':
+                if (isset($this->request['display_first_char'])) {
+                    $property_selector = $this->request['display_first_char'];
+                    unset($this->request['display_first_char']);
+                }
+                break;
+            case 'city':
+                if (isset($this->request['display_city_id'])) {
+                    $property_selector = $this->request['display_city_id'];
+                    unset($this->request['display_city_id']);
+                }
+                break;
+        }
+        return $property_selector;
+    }
+
+    private function getPropertyChanger($property_type, $property_selector)
+    {
+        $PropertyChanger = new View();
+        switch($property_type) {
+            case 'first_char':
+                $alphabet = range('A', 'Z');
+                array_unshift($alphabet, '');
+                $alphabet[] = '%';
+                $result = array_combine($alphabet, $alphabet);
+                break;
+            case 'city':
+                $City_Model = new ModelCity($this->mysqli);
+                $result = $City_Model->getCities('');
+                $city_ids = array_column($result, 'id');
+                $city_names = array_column($result, 'name');
+                $result = array_combine($city_ids, $city_names);
+                $result = array('' => '') + $result;
+                break;
+        }
+        $PropertyChanger->assign('request', $this->request);
+        $PropertyChanger->assign('property_selector_list', $result);
+        $PropertyChanger->assign('property_selector', $property_selector);
+        $PropertyChanger->assign('property_type', $property_type);
+        $PropertyChanger->setTemplate('property_changer');
+        return $PropertyChanger->getOutput();
+    }
+
+     /**
      * Get data for exporting one concert and pass it to the inner view.
      */
     private function passDataToConcertExport()
@@ -296,7 +398,11 @@ class Controller
         $monthChanger = $this->getMonthChanger();
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
-        $result = $this->processConcertData($concerts, $this->request['month']);
+        $result = $this->processConcertData(
+            $concerts,
+            $this->request['month'],
+            'concert'
+        );
         /**
          * By reloading the default page the status of the individual
          * concert exports must be reseted.
@@ -364,6 +470,45 @@ class Controller
         $this->Inner_View->setTemplate('ajax');
         $lineup = $this->getLineUp($Session_Model, $error_text);
         $this->Inner_View->assign('content', $lineup);
+    }
+
+    /**
+     * Generete a view for the concert lineup
+     *
+     * @param object $Session_Model Object to access data in the session
+     * @return string Output of the lineup template.
+     */
+    private function getLineUp($Session_Model, $error_text_lineup = '')
+    {
+        //Initialize a new view for displaying the lineup
+        $lineUp = new View();
+        //Set the corresponding template
+        $lineUp->setTemplate('lineup');
+        //Get the actual lineup
+        $bands = $Session_Model->GetBandsLineUp();
+        //Add a initial lineup to the session if the lineup is empty
+        if (count($bands) == 0) {
+            $Session_Model->setBandLineUp(0);
+            $bands = $Session_Model->GetBandsLineUp();
+        }
+        $band_select_options = array();
+        $band_new_form = array();
+        for ($lineup_index = 0; $lineup_index < count($bands); $lineup_index++) {
+            $band_select_options[$lineup_index] = $this->getBandSelectOptions(
+                $bands[$lineup_index]['first_sign'],
+                $bands[$lineup_index]['band_id']
+            );
+            $band_new_form[$lineup_index] = $this->getBandNewForm(
+                $lineup_index,
+                $bands[$lineup_index]['band_id']
+            );
+        }
+    //Set variables and arrays for the view
+        $lineUp->assign('band_select_options', $band_select_options);
+        $lineUp->assign('band_new_form', $band_new_form);
+        $lineUp->assign('error_text', $error_text_lineup);
+        $lineUp->assign('lineup', $bands);
+        return $lineUp->getOutput();
     }
 
     /**
@@ -485,44 +630,6 @@ class Controller
         return $monthChanger->getOutput();
     }
 
-    /**
-     * Generete a view for the concert lineup
-     *
-     * @param object $Session_Model Object to access data in the session
-     * @return string Output of the lineup template.
-     */
-    private function getLineUp($Session_Model, $error_text_lineup = '')
-    {
-        //Initialize a new view for displaying the lineup
-        $lineUp = new View();
-        //Set the corresponding template
-        $lineUp->setTemplate('lineup');
-        //Get the actual lineup
-        $bands = $Session_Model->GetBandsLineUp();
-        //Add a initial lineup to the session if the lineup is empty
-        if (count($bands) == 0) {
-            $Session_Model->setBandLineUp(0);
-            $bands = $Session_Model->GetBandsLineUp();
-        }
-        $band_select_options = array();
-        $band_new_form = array();
-        for ($lineup_index = 0; $lineup_index < count($bands); $lineup_index++) {
-            $band_select_options[$lineup_index] = $this->getBandSelectOptions(
-                $bands[$lineup_index]['first_sign'],
-                $bands[$lineup_index]['band_id']
-            );
-            $band_new_form[$lineup_index] = $this->getBandNewForm(
-                $lineup_index,
-                $bands[$lineup_index]['band_id']
-            );
-        }
-    //Set variables and arrays for the view
-        $lineUp->assign('band_select_options', $band_select_options);
-        $lineUp->assign('band_new_form', $band_new_form);
-        $lineUp->assign('error_text', $error_text_lineup);
-        $lineUp->assign('lineup', $bands);
-        return $lineUp->getOutput();
-    }
     /**
      * Returns the first char in capital letters or '%' for a special symbol
      *
@@ -869,7 +976,7 @@ class Controller
     private function delConcert()
     {
         $Concert_Model = new ModelConcert($this->mysqli);
-        $result = $Concert_Model->delConcert($request['del_id']);
+        $result = $Concert_Model->delConcert($this->request['del_id']);
         if ($result < 1) {
             return 'Concert could not be deleted';
         } else

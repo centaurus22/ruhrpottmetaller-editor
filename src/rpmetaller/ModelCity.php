@@ -25,10 +25,24 @@ class ModelCity
      *
      * @return array Array with city data.
      */
-    public function getCities()
+    public function getCities($initial)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name FROM stadt ORDER BY name');
+        switch($initial) {
+            case '':
+                $stmt = $mysqli->prepare('SELECT id, name FROM stadt
+                    ORDER BY name');
+                break;
+            case '%':
+                $stmt = $mysqli->prepare('SELECT id, name  from stadt
+                    WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
+                break;
+            default:
+                $stmt = $mysqli->prepare('SELECT id, name FROM stadt
+                    WHERE name LIKE ? ORDER BY name');
+                $initial = $initial . '%';
+                $stmt->bind_param('s', $initial);
+        }
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
