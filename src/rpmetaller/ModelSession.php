@@ -29,22 +29,6 @@ class ModelSession
     }
 
     /**
-     * Add an empty array to the PHP Session to save the status of the concert
-     *  exports on the default site (opened / closed) if it is not already
-     *  available.
-     *
-     * @return integer Always 1.
-     */
-    private function initConcertDisplayStatus()
-    {
-        if(!isset($_SESSION['concert_display_status'])) {
-            $_SESSION['concert_display_status'] = array();
-        }
-        return 1;
-
-    }
-
-    /**
      * Add an empty array to the PHP Session to save the lineup in the concert
      * editor if it is not already available.
      *
@@ -56,52 +40,6 @@ class ModelSession
             $_SESSION['lineup'] = array();
         }
         return 1;
-    }
-
-    /**
-     * Check the export status of a concert.
-     *
-     * @param integer $id Id of the concert which export status should be
-     *  checked.
-     * @return integer 1-> Export status is open, 0-> Export status is closed,
-     *  -1-> id is no integer.
-     */
-    public function getConcertDisplayStatus($id)
-    {
-        if (is_numeric($id)) {
-            $this->initConcertDisplayStatus();
-            if (
-                isset($_SESSION['concert_display_status']["$id"])
-                and $_SESSION['concert_display_status']["$id"]
-            ) {
-                return 1;
-            } else {
-                return 0;
-            }
-        } else {
-            return -1;
-        }
-    }
-
-    /**
-     * Change the export status of a concert.
-     *
-     * @param integer $id Id of the concert.
-     * @return integer 1-> The Id is an integer, -1-> the id is no ingeger.
-     */
-    public function changeConcertDisplayStatus ($id)
-    {
-        if (is_numeric($id)) {
-            $this->initConcertDisplayStatus();
-            if ($this->getConcertDisplayStatus ($id) == 1) {
-                $_SESSION['concert_display_status']["$id"] = 0;
-            } else {
-                $_SESSION['concert_display_status']["$id"] = 1;
-            }
-            return 1;
-        } else {
-            return -1;
-        }
     }
 
     /**

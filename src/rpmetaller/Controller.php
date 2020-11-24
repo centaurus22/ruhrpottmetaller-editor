@@ -1239,19 +1239,9 @@ class Controller
          * Load the session model to access the session if the output contains
          * the export of just one concert
          */
-        if ($type == 'concert_export') {
-            $Session_Model = new ModelSession();
-        }
-
         if (count($concerts) == 0):
             //No concerts in the chosen month.
             $template = 'default_no_data';
-        elseif (
-            $type == 'concert_export'
-            and $Session_Model->getConcertDisplayStatus($this->request['display_id']) == 1
-        ):
-            $template = 'empty_output';
-            $Session_Model->changeConcertDisplayStatus($this->request['display_id']);
         else:
             //Load Model to access the preference table
             $Pref_Model = new ModelPref($this->mysqli);
@@ -1301,7 +1291,6 @@ class Controller
                     );
                     //Switch the display status
                     $display_id = $this->request['display_id'];
-                    $Session_Model->changeConcertDisplayStatus($display_id);
                     $template = 'concert_export';
                 } elseif ($type == 'export') {
                     //Export of many concerts
