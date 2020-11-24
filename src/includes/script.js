@@ -149,10 +149,12 @@ function save_band_lineup(row, field)
 	xmlhttp.send();
 }
 
+//Displays a window containing a concert export.
 function display_concert(concert_id) {
 	var xmlhttp=new XMLHttpRequest();
     var window = document.createElement("div");
     window.className = "window";
+    window.id = "window_" + concert_id;
     var body = document.getElementById("body");
 	xmlhttp.onreadystatechange=function() {
   		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
@@ -163,6 +165,13 @@ function display_concert(concert_id) {
 	var file = "index.php?display=concert&display_id=" + concert_id;
 	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
+}
+
+//Remove a window containing a concert export
+function remove_concert(concert_id) {
+    var window = document.getElementById("window_" + concert_id);
+    var body = document.getElementById("body");
+    body.removeChild(window);
 }
 
 function get_band_table() {

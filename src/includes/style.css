@@ -36,6 +36,8 @@ div#inhalt {
 .window .close_button {
     padding: 0 5px 0 0;
     font-size: 16pt;
+    color: black;
+    text-decoration: none;
 }
 
 .window .content {

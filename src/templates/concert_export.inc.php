@@ -5,8 +5,14 @@ if (isset($this->_['header'])) {
     echo '<div id="inhalt" class="inhalt_small">';
     echo nl2br(htmlspecialchars($this->_['header'], ENT_QUOTES));
 } else {
-    echo '<div class="titlebar"><span class="close_button">×</span></div>
-        <div class="content">';
+    printf(
+        '<div class="titlebar">
+            <a href="#" class="close_button" onclick="remove_concert(%1$u)">×</a>
+        </div>
+        <div class="content">',
+        $this->_['concerts'][0]['id']
+    );
+
 }
 
 foreach($this->_['concerts'] as $concert) {
