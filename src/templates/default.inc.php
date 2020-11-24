@@ -73,3 +73,4 @@ foreach($this->_['concerts'] as $concert) {
 ?>
     </table>
 </div>
+<div id="window_stack"></div>

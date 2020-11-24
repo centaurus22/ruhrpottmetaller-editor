@@ -7,7 +7,7 @@ if (isset($this->_['header'])) {
 } else {
     printf(
         '<div class="titlebar">
-            <a href="#" class="close_button" onclick="remove_concert(%1$u)">×</a>
+            <a href="#" class="close_button" onclick="remove_concert_mouse(%1$u)">×</a>
         </div>
         <div class="content">',
         $this->_['concerts'][0]['id']
