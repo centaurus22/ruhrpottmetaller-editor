@@ -12,6 +12,36 @@ div#inhalt {
 	font-size: 13px;
 }
 
+.window {
+    position: absolute;
+    border: solid 2px black;
+    top: 20%;
+    left: 20%;
+    right: 20%;
+    background-color: whiteSmoke;
+    border-radius: 12px;
+    padding: 0;
+}
+
+.window .titlebar {
+    border-radius: 10px 10px 0 0;
+    text-align: right;
+    background-color: gray;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.window .close_button {
+    padding: 0 5px 0 0;
+    font-size: 16pt;
+}
+
+.window .content {
+    padding: 0 10px 0 10px;
+}
+
 div.inhalt_small {
 	padding: 75px 0px 35px 0px;
 }
@@ -114,18 +144,6 @@ tr.published_oben {
 	border-bottom: 1px dotted gray;
 }
 
-tr.published_unten {
-	border-bottom: 1px solid gray;
-}
-
-tr.published_unten td {
-	padding: 0px 0px 0px 0px;
-}
-
-tr.unpublished_unten td {
-	padding: 0px 0px 0px 0px;
-}
-
 tr.unpublished {
 	color:blue;
 }
@@ -140,11 +158,6 @@ tr.unpublished_oben {
 	border-bottom: 1px dotted gray;
 }
 
-tr.unpublished_unten {
-	color:blue;
-	border-bottom: 1px solid gray;
-}
-
 tr.urgent {
 	color:red;
 }
@@ -157,16 +170,6 @@ a.urgent {
 tr.urgent_oben {
 	color: red;
 	border-bottom: 1px dotted gray;
-}
-
-tr.urgent_unten {
-	color:red;
-	border-bottom: 1px solid gray;
-}
-
-
-tr.urgent_unten td {
-	padding: 0px 0px 0px 0px;
 }
 
 .nazi {

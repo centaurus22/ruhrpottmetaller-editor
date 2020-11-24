@@ -151,13 +151,17 @@ function save_band_lineup(row, field)
 
 function display_concert(concert_id) {
 	var xmlhttp=new XMLHttpRequest();
+    var window = document.createElement("div");
+    window.className = "window";
+    var body = document.getElementById("body");
 	xmlhttp.onreadystatechange=function() {
   		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
+			window.innerHTML=xmlhttp.responseText;
+            body.appendChild(window);
 		}
   	}
-	var datei = "index.php?display=concert&display_id=" + concert_id;
-	xmlhttp.open("GET",datei,true);
+	var file = "index.php?display=concert&display_id=" + concert_id;
+	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
 }
 

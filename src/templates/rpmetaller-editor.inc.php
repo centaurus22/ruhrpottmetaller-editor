@@ -7,7 +7,7 @@
         <link rel="icon" type="image/vnd.microsoft.icon" href="includes/favicon.ico" />
         <script  type="text/javascript" src="includes/script.js" ></script>
     </head>
-    <body>
+    <body id="body">
         <div class="leiste_top">
             <div id="navigation">
 <?php

@@ -59,19 +59,16 @@ foreach($this->_['concerts'] as $concert) {
 					<button type=\"submit\" form=\"%9\$u\">Ok</button>
 				</form>
 			</td>
-		</tr>
-		<tr class='%1\$s_unten'>
-			<td id=\"concert_%9\$s\" colspan=\"7\"></td>
-        </tr>\n",
-            htmlspecialchars($concert['status'], ENT_QUOTES),
-			$concert['date_human'],
-			htmlspecialchars($concert['name'], ENT_QUOTES),
-			htmlspecialchars($concert['venue_city'], ENT_QUOTES),
-            htmlspecialchars($concert['url'], ENT_QUOTES),
-            $bands,
-			$concert['date_start'], $this->_['month'],
-			$concert['id'],
-			$this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
+		</tr>\n",
+        htmlspecialchars($concert['status'], ENT_QUOTES),
+	    $concert['date_human'],
+		htmlspecialchars($concert['name'], ENT_QUOTES),
+		htmlspecialchars($concert['venue_city'], ENT_QUOTES),
+        htmlspecialchars($concert['url'], ENT_QUOTES),
+        $bands,
+		$concert['date_start'], $this->_['month'],
+		$concert['id'],
+		$this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
 }
 ?>
     </table>
