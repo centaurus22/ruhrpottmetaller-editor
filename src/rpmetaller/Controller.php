@@ -272,7 +272,7 @@ class Controller
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'band');
         $this->View->assign('subtitle', 'bands');
-        $this->Inner_View->setTemplate('general_display_edit');
+        $this->Inner_View->setTemplate('general_display');
     }
 
     private function passDataToCitiesDisplay()
@@ -287,7 +287,7 @@ class Controller
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'city');
         $this->View->assign('subtitle', 'cities');
-        $this->Inner_View->setTemplate('general_display_edit');
+        $this->Inner_View->setTemplate('general_display');
     }
 
     private function passDataToVenuesDisplay()
@@ -302,7 +302,7 @@ class Controller
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('display', 'venue');
         $this->View->assign('subtitle', 'venues');
-        $this->Inner_View->setTemplate('general_display_edit');
+        $this->Inner_View->setTemplate('general_display');
     }
 
     private function getPropertySelector($property_type)
