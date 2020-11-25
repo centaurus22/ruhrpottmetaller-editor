@@ -10,6 +10,14 @@ switch($this->_['display']) {
                 'description' => 'Name of the city'
             ),
             2 => array(
+                'ref' => 'save',
+                'type' => 'hidden',
+            ),
+            3 => array(
+                'ref' => 'save_id',
+                'type' => 'hidden',
+            );
+            4 => array(
                 'name' => 'Admin',
                 'type' => 'button',
                 'description' => 'Save'
@@ -42,6 +50,14 @@ switch($this->_['display']) {
                 'description' => 'Export'
             ),
             5 => array(
+                'ref' => 'save',
+                'type' => 'hidden',
+            ),
+            6 => array(
+                'ref' => 'save_id',
+                'type' => 'hidden',
+            );
+            7 => array(
                 'name' => 'Admin',
                 'type' => 'button',
                 'description' => 'Save'
@@ -63,6 +79,14 @@ switch($this->_['display']) {
                 'description' => 'Nazi band'
             ),
             3 => array(
+                'ref' => 'save',
+                'type' => 'hidden',
+            ),
+            4 => array(
+                'ref' => 'save_id',
+                'type' => 'hidden',
+            );
+            5 => array(
                 'name' => 'Admin',
                 'type' => 'button',
                 'description' => 'Save'
@@ -89,7 +113,6 @@ echo "\t</div>
 foreach($this->_['result'] as $datum) {
     echo "\t\t<form class=\"tr\">\n";
     foreach($data as $field) {
-        echo '<span class="td">';
         switch($field['type']) {
             case 'bool':
                 if ($datum[$field['ref']]) {
@@ -98,32 +121,43 @@ foreach($this->_['result'] as $datum) {
                     $checked = '';
                 }
                 printf(
-                    '<input class="tinputcheckbox" type="checkbox" id="%1$s" name="%1$s" %2$s>',
+                    "\t\t\t" . '<span class="td">
+                    <label for="%1$s" hidden>%3$s</label>
+                        <input class="tinputcheckbox" type="checkbox" id="%1$s" name="%1$s" %2$s>
+                    </span>' . "\n",
                     $field['ref'],
-                    $checked
+                    $checked,
+                    $field['description']
                 );
                 break;
             case 'button':
                 printf(
-                    '<button class="tbutton" type="submit">%1$s</button>',
+                    "\t\t\t" . '<span class="td">
+                    <button class="tbutton" type="submit">%1$s</button>
+                    </span>' . "\n",
                     $field['description']
                 );
                 break;
             case 'string_display':
-                echo htmlspecialchars($datum[$field['ref']], ENT_QUOTES);
+                printf(
+                    "\t\t\t" . '<span class="td">%1$s</span>' . "\n",
+                    htmlspecialchars($datum[$field['ref']], ENT_QUOTES)
+                );
                 break;
             case 'string_edit':
                 //nobreak
             default:
                 printf(
-                    '<input class="tinputtext" type="text" id="%2$s" value="%1$s" name="%2$s" placeholder="%3$s">',
+                    "\t\t\t" . '<span class="td">
+                    <label for="%2$s" hidden>%3$s</label>
+                    <input class="tinputtext" type="text" id="%2$s" value="%1$s" name="%2$s" placeholder="%3$s">
+                    </span>' . "\n",
                     htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
                     $field['ref'],
                     $field['description']
                 );
                 break;
         }
-        echo "</span>\n";
     }
     echo "\t\t</form>\n";
 }
