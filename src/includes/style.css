@@ -27,7 +27,7 @@ div#inhalt {
 
 .window {
     border: solid 2px black;
-    background-color: whiteSmoke;
+    background-color: lightBlue;
     border-radius: 12px;
     padding: 0;
     margin-bottom: 10px;
@@ -53,6 +53,7 @@ div#inhalt {
 
 .window .content {
     padding: 0 10px 0 10px;
+    font-size: 16pt;
 }
 
 div.inhalt_small {
