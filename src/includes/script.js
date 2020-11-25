@@ -151,20 +151,25 @@ function save_band_lineup(row, field)
 
 //Displays a window containing a concert export.
 function display_concert(concert_id) {
-	var xmlhttp=new XMLHttpRequest();
-    var window = document.createElement("div");
-    window.className = "window";
-    window.id = "window_" + concert_id;
+    var window = document.getElementById("window_" + concert_id);
     var window_stack = document.getElementById("window_stack");
-	xmlhttp.onreadystatechange=function() {
-  		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			window.innerHTML=xmlhttp.responseText;
-            window_stack.appendChild(window);
-		}
-  	}
-	var file = "index.php?display=concert&display_id=" + concert_id;
-	xmlhttp.open("GET", file, true);
-	xmlhttp.send();
+    if (window === null) {
+        var xmlhttp=new XMLHttpRequest();
+        window = document.createElement("div");
+        window.className = "window";
+        window.id = "window_" + concert_id;
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                window.innerHTML=xmlhttp.responseText;
+                window_stack.appendChild(window);
+            }
+        }
+        var file = "index.php?display=concert&display_id=" + concert_id;
+        xmlhttp.open("GET", file, true);
+        xmlhttp.send();
+    } else {
+        window_stack.removeChild(window);
+    }
 }
 
 //Remove a window containing a concert export by using the mouse
