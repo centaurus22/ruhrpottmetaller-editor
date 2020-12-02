@@ -269,10 +269,8 @@ class Controller
             $this->getPropertyChanger('first_char', $property_selector)
         );
         $result = $Band_Model->getBands($property_selector);
-        $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign('display', 'band');
+        $this->passGeneralDataToDisplay($result);
         $this->View->assign('subtitle', 'bands');
-        $this->Inner_View->setTemplate('general_display');
     }
 
     private function passDataToCitiesDisplay()
@@ -284,10 +282,8 @@ class Controller
             $this->getPropertyChanger('first_char', $property_selector)
         );
         $result = $City_Model->getCities($property_selector);
-        $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign('display', 'city');
+        $this->passGeneralDataToDisplay($result);
         $this->View->assign('subtitle', 'cities');
-        $this->Inner_View->setTemplate('general_display');
     }
 
     private function passDataToVenuesDisplay()
@@ -299,9 +295,15 @@ class Controller
             $this->getPropertyChanger('city', $property_selector)
         );
         $result = $Venue_Model->getVenuesByCity($property_selector);
-        $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign('display', 'venue');
+        $this->passGeneralDataToDisplay($result);
         $this->View->assign('subtitle', 'venues');
+    }
+
+    private function passGeneralDataToDisplay($result)
+    {
+        $this->Inner_View->assign('display', $this->request['display']);
+        $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('month', $this->request['month']);
         $this->Inner_View->setTemplate('general_display');
     }
 

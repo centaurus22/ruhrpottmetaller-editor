@@ -1,99 +1,61 @@
 <?php
 
+//Define the array, which describes the page.
+
 switch($this->_['display']) {
     case 'city':
-        $data = array (
-            1 => array(
-                'name' => 'Name',
-                'ref' => 'name',
-                'type' => 'string',
-                'description' => 'Name of the city'
-            ),
-            2 => array(
-                'ref' => 'save',
-                'type' => 'hidden',
-            ),
-            3 => array(
-                'ref' => 'save_id',
-                'type' => 'hidden',
-            );
-            4 => array(
-                'name' => 'Admin',
-                'type' => 'button',
-                'description' => 'Save'
-            )
+        $data[] = array(
+            'name' => 'Name',
+            'ref' => 'name',
+            'type' => 'string',
+            'description' => 'Name of the city'
         );
         break;
     case 'venue':
-        $data = array (
-            1 => array(
-                'name' => 'Name',
-                'ref' => 'name',
-                'type' => 'string_edit',
-                'description' => 'Name of the venue'
-            ),
-            2 => array(
-                'name' => 'City',
-                'ref' => 'city_name',
-                'type' => 'string_display'
-            ),
-            3 => array(
-                'name' => 'Standard URL',
-                'ref' => 'url',
-                'type' => 'string_edit',
-                'description' => 'Standard URL of the venue'
-            ),
-            4 => array(
-                'name' => 'Export',
-                'ref' => 'anzeigen',
-                'type' => 'bool',
-                'description' => 'Export'
-            ),
-            5 => array(
-                'ref' => 'save',
-                'type' => 'hidden',
-            ),
-            6 => array(
-                'ref' => 'save_id',
-                'type' => 'hidden',
-            );
-            7 => array(
-                'name' => 'Admin',
-                'type' => 'button',
-                'description' => 'Save'
-            )
+        $data[] = array(
+            'name' => 'Name',
+            'ref' => 'name',
+            'type' => 'string_edit',
+            'description' => 'Name of the venue'
+        );
+        $data[] = array(
+            'name' => 'City',
+            'ref' => 'city_name',
+            'type' => 'string_display'
+        );
+        $data[] = array(
+            'name' => 'Standard URL',
+            'ref' => 'url',
+            'type' => 'string_edit',
+            'description' => 'Standard URL of the venue'
+        );
+        $data[] = array(
+            'name' => 'Export',
+            'ref' => 'anzeigen',
+            'type' => 'bool',
+            'description' => 'Export'
         );
         break;
     case 'band':
-        $data = array (
-            1 => array(
-                'name' => 'Name',
-                'ref' => 'name',
-                'type' => 'string',
-                'description' => 'Name of the Band'
-            ),
-            2 => array(
-                'name' => 'Nazi',
-                'ref' => 'nazi',
-                'type' => 'bool',
-                'description' => 'Nazi band'
-            ),
-            3 => array(
-                'ref' => 'save',
-                'type' => 'hidden',
-            ),
-            4 => array(
-                'ref' => 'save_id',
-                'type' => 'hidden',
-            );
-            5 => array(
-                'name' => 'Admin',
-                'type' => 'button',
-                'description' => 'Save'
-            )
+        $data[] = array(
+            'name' => 'Name',
+            'ref' => 'name',
+            'type' => 'string',
+            'description' => 'Name of the Band'
+        );
+        $data[] = array(
+            'name' => 'Nazi',
+            'ref' => 'nazi',
+            'type' => 'bool',
+            'description' => 'Nazi band'
         );
         break;
 }
+
+$data[] = array('ref' => 'month', 'type' => 'hidden');
+$data[] = array('ref' => 'save', 'type' => 'hidden');
+$data[] = array('ref' => 'save_id', 'type' => 'hidden');
+$data[] = array('name' => 'Admin', 'type' => 'button', 'description' => 'Save');
 
 echo $this->_['property_changer'];
 
@@ -103,7 +65,9 @@ echo '<div id="inhalt" class="inhalt_small">
             <div class="tr">';
 
 foreach ($data as $field) {
-   printf('<span class="td">%1$s</span>', $field['name']);
+    if ($field['type'] != 'hidden') {
+        printf('<span class="td">%1$s</span>', $field['name']);
+    }
 }
 
 echo "\t</div>
@@ -136,6 +100,23 @@ foreach($this->_['result'] as $datum) {
                     <button class="tbutton" type="submit">%1$s</button>
                     </span>' . "\n",
                     $field['description']
+                );
+                break;
+            case 'hidden':
+                switch($field['ref']){
+                    case 'month':
+                        $datum['month'] = $this->_['month'];
+                    case 'save':
+                        $datum['save'] = $this->_['display'];
+                        break;
+                    case 'save_id':
+                        $datum['save_id'] = $datum['id'];
+                        break;
+                }
+                printf(
+                    "\t\t\t<input type=\"hidden\" id=\"%2\$s\" value=\"%1\$s\" name=\"%2\$s\">\n",
+                    htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
+                    $field['ref']
                 );
                 break;
             case 'string_display':
