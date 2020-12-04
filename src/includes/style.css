@@ -12,50 +12,6 @@ div#inhalt {
 	font-size: 13px;
 }
 
-#window_stack {
-    position: absolute;
-    top: 10%;
-    height: 90%;
-    left: 5%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-}
-
-.window {
-    border: solid 2px black;
-    background-color: lightBlue;
-    border-radius: 12px;
-    padding: 0;
-    margin-bottom: 10px;
-    z-index: 1;
-}
-
-.window .titlebar {
-    border-radius: 10px 10px 0 0;
-    text-align: right;
-    background-color: gray;
-    width: 100%;
-    margin: 0;
-    border: 0;
-    padding: 0;
-}
-
-.window .close_button {
-    padding: 0 5px 0 0;
-    font-size: 16pt;
-    color: black;
-    text-decoration: none;
-}
-
-.window .content {
-    padding: 0 10px 0 10px;
-    font-size: 16pt;
-}
-
 div.inhalt_small {
 	padding: 75px 0px 35px 0px;
 }
@@ -158,6 +114,18 @@ tr.published_oben {
 	border-bottom: 1px dotted gray;
 }
 
+tr.published_unten {
+	border-bottom: 1px solid gray;
+}
+
+tr.published_unten td {
+	padding: 0px 0px 0px 0px;
+}
+
+tr.unpublished_unten td {
+	padding: 0px 0px 0px 0px;
+}
+
 tr.unpublished {
 	color:blue;
 }
@@ -172,6 +140,11 @@ tr.unpublished_oben {
 	border-bottom: 1px dotted gray;
 }
 
+tr.unpublished_unten {
+	color:blue;
+	border-bottom: 1px solid gray;
+}
+
 tr.urgent {
 	color:red;
 }
@@ -184,6 +157,16 @@ a.urgent {
 tr.urgent_oben {
 	color: red;
 	border-bottom: 1px dotted gray;
+}
+
+tr.urgent_unten {
+	color:red;
+	border-bottom: 1px solid gray;
+}
+
+
+tr.urgent_unten td {
+	padding: 0px 0px 0px 0px;
 }
 
 .nazi {

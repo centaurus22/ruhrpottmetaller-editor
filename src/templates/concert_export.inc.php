@@ -4,15 +4,6 @@ if (isset($this->_['header'])) {
     echo $this->_['month_changer'];
     echo '<div id="inhalt" class="inhalt_small">';
     echo nl2br(htmlspecialchars($this->_['header'], ENT_QUOTES));
-} else {
-    printf(
-        '<div class="titlebar">
-            <a href="#" class="close_button" onclick="remove_concert_mouse(%1$u)">×</a>
-        </div>
-        <div class="content">',
-        $this->_['concerts'][0]['id']
-    );
-
 }
 
 foreach($this->_['concerts'] as $concert) {
@@ -59,5 +50,5 @@ foreach($this->_['concerts'] as $concert) {
 
 if (isset($this->_['header'])) {
     echo nl2br(htmlspecialchars($this->_['footer'], ENT_QUOTES));
+    echo '</div>';
 }
-echo '</div>';

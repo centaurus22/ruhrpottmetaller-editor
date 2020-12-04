@@ -151,48 +151,15 @@ function save_band_lineup(row, field)
 
 //Displays a window containing a concert export.
 function display_concert(concert_id) {
-    var window = document.getElementById("window_" + concert_id);
-    var window_stack = document.getElementById("window_stack");
-    if (window === null) {
-        var xmlhttp=new XMLHttpRequest();
-        window = document.createElement("div");
-        window.className = "window";
-        window.id = "window_" + concert_id;
-        xmlhttp.onreadystatechange=function() {
-            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                window.innerHTML=xmlhttp.responseText;
-                window_stack.appendChild(window);
-            }
-        }
-        var file = "index.php?display=concert&display_id=" + concert_id;
-        xmlhttp.open("GET", file, true);
-        xmlhttp.send();
-    } else {
-        window_stack.removeChild(window);
-    }
-}
-
-//Remove a window containing a concert export by using the mouse
-function remove_concert_mouse(concert_id) {
-    var window = document.getElementById("window_" + concert_id);
-    var window_stack = document.getElementById("window_stack");
-    window_stack.removeChild(window);
-}
-
-//Remove a window containing a concert export by using the keyboard
-function remove_concert_keyboard() {
-    var keyCode = ('which' in event) ? event.which : event.keyCode;
-    if (keyCode !== 27) {
-        return;
-    }
-    var window_stack = document.getElementById("window_stack");
-    if (window_stack === null) {
-        return;
-    }
-    var window = window_stack.lastElementChild;
-    if (window !== null) {
-        window_stack.removeChild(window);
-    }
+	var xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function() {
+  		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
+		}
+  	}
+	var datei = "index.php?display=concert&display_id=" + concert_id;
+	xmlhttp.open("GET",datei,true);
+	xmlhttp.send();
 }
 
 function get_band_table() {
