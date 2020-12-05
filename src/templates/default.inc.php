@@ -36,7 +36,7 @@ foreach($this->_['concerts'] as $concert) {
     printf(
         "\t\t<tr class='%1\$s_oben'>
 			<td><a href=\"#\" onclick=\"display_concert(%9\$u)\" >
-				<img src=\"%10\$s\" alt=\"open export\" />
+				<img src=\"%10\$s\" alt=\"open export\" id=\"image_%9\$s\">
 			</a></td>
 			<td>%2\$s</td>
 			<td>%3\$s</td>

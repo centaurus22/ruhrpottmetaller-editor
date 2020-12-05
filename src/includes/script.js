@@ -139,8 +139,7 @@ function shift_band_lineup(row, direction) {
 	xmlhttp.send();
 }
 
-function save_band_lineup(row, field)
-{
+function save_band_lineup(row, field) {
 	var value = document.getElementById(field + "_" + row).value;
 	value=encodeURIComponent(value);
 	var xmlhttp=new XMLHttpRequest();
@@ -149,17 +148,24 @@ function save_band_lineup(row, field)
 	xmlhttp.send();
 }
 
-//Displays a window containing a concert export.
 function display_concert(concert_id) {
 	var xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function() {
-  		if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
-		}
-  	}
-	var datei = "index.php?display=concert&display_id=" + concert_id;
-	xmlhttp.open("GET",datei,true);
-	xmlhttp.send();
+    var concert_container = document.getElementById("concert_" + concert_id);
+    var image = document.getElementById("image_" + concert_id);
+    if (concert_container.innerHTML === "") {
+        xmlhttp.onreadystatechange=function() {
+            if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
+            }
+        }
+        var datei = "index.php?display=concert&display_id=" + concert_id;
+        xmlhttp.open("GET",datei,true);
+        xmlhttp.send();
+        image.src = "images/minus_small.png";
+    } else {
+        concert_container.innerHTML = "";
+        image.src = "images/plus_small.png";
+    }
 }
 
 function get_band_table() {
