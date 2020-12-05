@@ -148,23 +148,28 @@ function save_band_lineup(row, field) {
 	xmlhttp.send();
 }
 
-function display_concert(concert_id) {
+function display_concert(concert_id, concert_status) {
 	var xmlhttp=new XMLHttpRequest();
-    var concert_container = document.getElementById("concert_" + concert_id);
+    var concert_low = document.getElementById("concert_low_" + concert_id);
+    var concert_high = document.getElementById("concert_high_" + concert_id);
     var image = document.getElementById("image_" + concert_id);
-    if (concert_container.innerHTML === "") {
+    if (concert_low.innerHTML === "") {
         xmlhttp.onreadystatechange=function() {
             if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                document.getElementById("concert_" + concert_id).innerHTML=xmlhttp.responseText;
+                document.getElementById("concert_low_" + concert_id).innerHTML=xmlhttp.responseText;
             }
         }
         var datei = "index.php?display=concert&display_id=" + concert_id;
         xmlhttp.open("GET",datei,true);
         xmlhttp.send();
         image.src = "images/minus_small.png";
+        concert_high.className = "concert_high_opened concert_" + concert_status;
+        concert_low.className = "concert_low_opened concert_" + concert_status;
     } else {
-        concert_container.innerHTML = "";
+        concert_low.innerHTML = "";
         image.src = "images/plus_small.png";
+        concert_high.className = "concert_high_closed concert_" + concert_status;
+        concert_low.className = "concert_low_closed concert_" + concert_status;
     }
 }
 

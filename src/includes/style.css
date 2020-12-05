@@ -105,29 +105,37 @@ td {
 	min-width: 54px;
 }
 
-a.published {
-	color: black;
-	text-decoration: none;
-}
-
-tr.published_oben {
-	border-bottom: 1px dotted gray;
-}
-
-tr.published_unten {
+.concert_high_closed {
 	border-bottom: 1px solid gray;
 }
 
-tr.published_unten td {
+.concert_high_opened {
+	border-bottom: 1px dotted gray;
+}
+
+.concert_low_closed {
+	border-bottom: 1px none gray;
+}
+
+.concert_low_opened {
+	border-bottom: 1px solid gray;
+}
+
+.concert_low td {
 	padding: 0px 0px 0px 0px;
 }
 
-tr.unpublished_unten td {
-	padding: 0px 0px 0px 0px;
-}
-
-tr.unpublished {
+.concert_unpublished {
 	color:blue;
+}
+
+.concert_urgent {
+	color:red;
+}
+
+a.published {
+	color: black;
+	text-decoration: none;
 }
 
 a.unpublished {
@@ -135,38 +143,10 @@ a.unpublished {
 	text-decoration: none;
 }
 
-tr.unpublished_oben {
-	color:blue;
-	border-bottom: 1px dotted gray;
-}
-
-tr.unpublished_unten {
-	color:blue;
-	border-bottom: 1px solid gray;
-}
-
-tr.urgent {
-	color:red;
-}
 
 a.urgent {
 	color:red;
 	text-decoration: none;
-}
-
-tr.urgent_oben {
-	color: red;
-	border-bottom: 1px dotted gray;
-}
-
-tr.urgent_unten {
-	color:red;
-	border-bottom: 1px solid gray;
-}
-
-
-tr.urgent_unten td {
-	padding: 0px 0px 0px 0px;
 }
 
 .nazi {
@@ -321,7 +301,7 @@ tr.urgent_unten td {
 
 .tr {
     display: table-row;
-    border-bottom: 1px dotted gray;
+    border-bottom: 1px solid gray;
 }
 
 .td {
