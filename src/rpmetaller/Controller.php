@@ -123,6 +123,7 @@ class Controller
         if (isset($this->request['edit'])):
             switch($this->request['edit']) {
             case 'concert':
+                //nobreak
             case 'default':
                 $this->passDataToConcertEditor();
                 break;
@@ -161,6 +162,9 @@ class Controller
                 case 'venue':
                     $this->passDataToVenuesDisplay();
                     break;
+                case 'pref':
+                    $this->passDataToPrefEdit();
+                    break;
                 case 'export':
                     if (isset($this->request['display_id'])) {
                         $this->passDataToConcertExport();
@@ -169,6 +173,7 @@ class Controller
                     }
                     break;
                 case 'concert':
+                    //nobreak
                 default:
                     if (isset($this->request['display_id'])) {
                         $this->ajax = true;
@@ -305,6 +310,15 @@ class Controller
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('month', $this->request['month']);
         $this->Inner_View->setTemplate('general_display');
+    }
+
+    private function passDataToPrefEdit()
+    {
+        $Pref_Model = new ModelPref($this->mysqli);
+        $result = $Pref_Model->getPref();
+        $this->Inner_View->assign('result', $result);
+        $this->Inner_View->setTemplate('pref_display');
+        $this->View->assign('subtitle', 'preferences');
     }
 
     private function getPropertySelector($property_type)
