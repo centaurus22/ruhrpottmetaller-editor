@@ -317,7 +317,7 @@ class Controller
         $Pref_Model = new ModelPref($this->mysqli);
         $result = $Pref_Model->getPref();
         $this->Inner_View->assign('result', $result);
-        $this->Inner_View->setTemplate('pref_display');
+        $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
     }
 
