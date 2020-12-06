@@ -25,7 +25,7 @@ if ($this->_['error_text'] != '') {
             <input type="number" name="length" id="length" value="<?=$this->_['request']['length']?>" class="edit_length" min="1" /> day(s)
             <br>
             <label for="city_id" class="edit_label">City</label>
-            <select name="city_id" id="city_id" value="<?=$this->_['request']['city_id']?>" class="edit_select" onchange="display_city_venue_form(); display_venue_new_form();">
+            <select name="city_id" id="city_id" class="edit_select" onchange="display_city_venue_form(); display_venue_new_form();">
 <?php
 foreach ($this->_['cities'] as $city) {
     if ($this->_['request']['city_id'] == $city['id'] ) {
