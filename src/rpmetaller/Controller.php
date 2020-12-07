@@ -326,11 +326,17 @@ class Controller
         }
         $Pref_Model = new ModelPreferences($this->mysqli);
         $result = $Pref_Model->getPreferences();
+        $data = $this->getDisplayArray('preferences');
+
+        //Replace information from database by ones from the request string
+        foreach ($data as $field) {
+            if (isset($this->request[$field['ref']])) {
+                $result[0][$field['ref']] = $this->request[$field['ref']];
+            }
+        }
+
         $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign(
-            'display_array',
-            $this->getDisplayArray('preferences')
-        );
+        $this->Inner_View->assign('display_array', $data);
         $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
     }
