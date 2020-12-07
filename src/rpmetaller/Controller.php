@@ -319,6 +319,11 @@ class Controller
 
     private function passDataToPrefEdit()
     {
+        if (isset($this->error_text) and $this->error_text != '') {
+            $this->Inner_View->assign('error_text', $this->error_text);
+        } else {
+            $this->Inner_View->assign('error_text', '');
+        }
         $Pref_Model = new ModelPreferences($this->mysqli);
         $result = $Pref_Model->getPreferences();
         $this->Inner_View->assign('result', $result);

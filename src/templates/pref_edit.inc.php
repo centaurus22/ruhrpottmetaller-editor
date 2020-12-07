@@ -5,6 +5,11 @@ $fieldset_name = "Preferences";
 echo '<div id="inhalt" class="inhalt_large">
     <form action="" method="get">
         <fieldset class="fieldset_general">' . "\n";
+
+if ($this->_['error_text'] != '') {
+    echo "\t\t\t<p class=\"error\">" . $this->_['error_text'] . "</p>\n";
+}
+
 printf("\t\t\t<legend>%1\$s</legend>", $fieldset_name);
 
 foreach ($this->_['display_array'] as $field) {
