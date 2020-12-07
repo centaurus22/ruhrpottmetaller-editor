@@ -31,7 +31,7 @@ div.leiste_top {
     height: 25px;
 }
 
-div#navigation a {
+nav a {
 	padding-right: 5px;
 	padding-left: 5px;
 	padding-top: 10px;
