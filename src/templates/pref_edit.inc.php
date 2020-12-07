@@ -2,33 +2,12 @@
 
 $fieldset_name = "Preferences";
 
-//Define the array, which describes the page.
-
-$data[] = array(
-    'name' => 'Export lang',
-    'ref' => 'export_lang',
-    'type' => 'select',
-    'options' => array('en_GB' => 'English', 'de_DE' => 'German')
-);
-$data[] = array(
-    'name' => 'Header',
-    'ref' => 'header',
-    'type' => 'textarea',
-    'description' => 'Export header'
-);
-$data[] = array(
-    'name' => 'Footer',
-    'ref' => 'footer',
-    'type' => 'textarea',
-    'description' => 'Footer header'
-);
-
 echo '<div id="inhalt" class="inhalt_large">
     <form action="" method="get">
         <fieldset class="fieldset_general">' . "\n";
 printf("\t\t\t<legend>%1\$s</legend>", $fieldset_name);
 
-foreach ($data as $field) {
+foreach ($this->_['display_array'] as $field) {
     printf(
         '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
         $field['ref'],

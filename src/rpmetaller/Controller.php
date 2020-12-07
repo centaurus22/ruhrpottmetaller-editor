@@ -322,8 +322,38 @@ class Controller
         $Pref_Model = new ModelPreferences($this->mysqli);
         $result = $Pref_Model->getPreferences();
         $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign(
+            'display_array',
+            $this->getDisplayArray('preferences')
+        );
         $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
+    }
+
+    private function getDisplayArray($type)
+    {
+        switch ($type) {
+            case 'preferences':
+                $data[] = array(
+                    'name' => 'Export lang',
+                    'ref' => 'export_lang',
+                    'type' => 'select',
+                    'options' => array('en_GB' => 'English', 'de_DE' => 'German')
+                );
+                $data[] = array(
+                    'name' => 'Header',
+                    'ref' => 'header',
+                    'type' => 'textarea',
+                    'description' => 'Export header'
+                );
+                $data[] = array(
+                    'name' => 'Footer',
+                    'ref' => 'footer',
+                    'type' => 'textarea',
+                    'description' => 'Footer header'
+                );
+        }
+        return $data;
     }
 
     private function getPropertySelector($property_type)
@@ -1007,7 +1037,7 @@ class Controller
 
     private function saveGeneral($type)
     {
-
+        $data = getDisplayArray($type);
     }
 
     /**
