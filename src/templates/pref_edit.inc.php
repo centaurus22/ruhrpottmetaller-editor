@@ -2,46 +2,40 @@
 
 $fieldset_name = "Preferences";
 
-//Define the array, which describes the page.
-
-$data[] = array(
-    'name' => 'Export lang',
-    'ref' => 'export_lang',
-    'type' => 'select',
-    'options' => array('en_GB' => 'English', 'de_DE' => 'German')
-);
-$data[] = array(
-    'name' => 'Header',
-    'ref' => 'header',
-    'type' => 'textarea',
-    'description' => 'Export header'
-);
-$data[] = array(
-    'name' => 'Footer',
-    'ref' => 'footer',
-    'type' => 'textarea',
-    'description' => 'Footer header'
-);
-
 echo '<div id="inhalt" class="inhalt_large">
     <form action="" method="get">
         <fieldset class="fieldset_general">' . "\n";
+
+if ($this->_['error_text'] != '') {
+    echo "\t\t\t<p class=\"error\">" . $this->_['error_text'] . "</p>\n";
+}
+
 printf("\t\t\t<legend>%1\$s</legend>", $fieldset_name);
 
-foreach ($data as $field) {
-    printf(
-        '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
-        $field['ref'],
-        $field['name']
-    );
+foreach ($this->_['display_array'] as $field) {
+    if ($field['type'] != 'hidden') {
+        printf(
+            '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
+            $field['ref'],
+            $field['name']
+        );
+    }
 
     switch($field['type']) {
+        case 'hidden':
+            printf(
+                '<input type="hidden" name="%1$s" value="%2$s">',
+                $field['ref'],
+                $field['value']
+            );
+            break;
         case 'textarea':
+            $value = $this->_['result'][0][$field['ref']];
             printf(
                 '<textarea name="%1$s" id="%1$s">%3$s</textarea>',
                 $field['ref'],
                 $field['name'],
-                $this->_['result'][0][$field['ref']]
+                htmlspecialchars($value, ENT_QUOTES);
             );
             break;
         case 'select':
@@ -66,7 +60,9 @@ foreach ($data as $field) {
             echo '</select>';
             break;
     }
-    echo "<br>\n";
+    if ($field['type'] != 'hidden') {
+        echo "<br>\n";
+    }
 }
 
 echo '</fieldset>

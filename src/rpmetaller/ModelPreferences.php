@@ -6,7 +6,7 @@ namespace rpmetaller;
  * Class to access and manipulate the data in the preferences table.
  * Version 1.0.0
  */
-class ModelPref
+class ModelPreferences
 {
     //Link identifier for the connection to the database
     private $mysqli = null;
@@ -26,7 +26,7 @@ class ModelPref
      * @return array Array with preferences. If no preferences are set it returns
      *  an empty array.
      */
-    public function getPref()
+    public function getPreferences()
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT export_lang, header, footer
@@ -43,7 +43,7 @@ class ModelPref
      * @return array Array with language preferences. If no preferences are set
      *  it returns an empty array.
      */
-    public function getPrefExportLang()
+    public function getPreferencesExportLang()
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT export_lang FROM preferences
@@ -64,10 +64,10 @@ class ModelPref
      * @return integer Integer with a value greater 1 for a succesfully write of
      *  preferences, 0 for no changes, -1 for an error.
      */
-    public function updatePref($export_lang, $header, $footer)
+    public function updatePreferences($export_lang, $header, $footer)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE preferences SET export_lang=?, heade=?,
+        $stmt = $mysqli->prepare('UPDATE preferences SET export_lang=?, header=?,
             footer=?');
         $stmt->bind_param('sss', $export_lang, $header, $footer);
         $stmt->execute();

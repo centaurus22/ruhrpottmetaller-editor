@@ -108,6 +108,11 @@ class Controller
                 case 'concert':
                     $this->error_text = $this->saveConcert();
                     break;
+                case 'preferences':
+                    $this->error_text = $this->saveGeneral(
+                        $this->request['save']
+                    );
+                    break;
             }
 
         }
@@ -162,7 +167,7 @@ class Controller
                 case 'venue':
                     $this->passDataToVenuesDisplay();
                     break;
-                case 'pref':
+                case 'preferences':
                     $this->passDataToPrefEdit();
                     break;
                 case 'export':
@@ -210,7 +215,7 @@ class Controller
             array('Cities','city'),
             array('Venues', 'venue'),
             array('Export', 'export'),
-            array('Preferences','pref')
+            array('Preferences','preferences')
         ));
         $this->View->assign('content', $this->Inner_View->getOutput());
         return $this->View->getOutput();
@@ -314,11 +319,57 @@ class Controller
 
     private function passDataToPrefEdit()
     {
-        $Pref_Model = new ModelPref($this->mysqli);
-        $result = $Pref_Model->getPref();
+        if (isset($this->error_text) and $this->error_text != '') {
+            $this->Inner_View->assign('error_text', $this->error_text);
+        } else {
+            $this->Inner_View->assign('error_text', '');
+        }
+        $Pref_Model = new ModelPreferences($this->mysqli);
+        $result = $Pref_Model->getPreferences();
+        $data = $this->getDisplayArray('preferences');
+
+        //Replace information from database by ones from the request string
+        foreach ($data as $field) {
+            if (isset($this->request[$field['ref']])) {
+                $result[0][$field['ref']] = $this->request[$field['ref']];
+            }
+        }
+
         $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('display_array', $data);
         $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
+    }
+
+    private function getDisplayArray($type)
+    {
+        switch ($type) {
+            case 'preferences':
+                $data[] = array(
+                    'ref' => 'save',
+                    'type' => 'hidden',
+                    'value' => 'preferences'
+                );
+                $data[] = array(
+                    'name' => 'Export lang',
+                    'ref' => 'export_lang',
+                    'type' => 'select',
+                    'options' => array('en_GB' => 'English', 'de_DE' => 'German')
+                );
+                $data[] = array(
+                    'name' => 'Header',
+                    'ref' => 'header',
+                    'type' => 'textarea',
+                    'description' => 'Export header'
+                );
+                $data[] = array(
+                    'name' => 'Footer',
+                    'ref' => 'footer',
+                    'type' => 'textarea',
+                    'description' => 'Footer header'
+                );
+        }
+        return $data;
     }
 
     private function getPropertySelector($property_type)
@@ -389,8 +440,8 @@ class Controller
      */
     private function passDataToConcertsExport()
     {
-        $Pref_Model = new ModelPref($this->mysqli);
-        $prefs = $Pref_Model->getPref();
+        $Pref_Model = new ModelPreferences($this->mysqli);
+        $prefs = $Pref_Model->getPreferences();
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
         $result = $this->processConcertData(
@@ -1000,6 +1051,36 @@ class Controller
 
     }
 
+    private function saveGeneral($type)
+    {
+        $data = $this->getDisplayArray($type);
+        $error = false;
+
+        foreach ($data as $field) {
+            if (!isset($this->request[$field['ref']])) {
+                $error = true;
+            } elseif ($field['type'] != 'hidden') {
+                $values[] = $this->request[$field['ref']];
+            }
+        }
+
+        if ($error === false) {
+            $class = 'rpmetaller\\Model' . ucfirst($type);
+            $method = 'update' . ucfirst($type);
+            $Data_Model = new  $class ($this->mysqli);
+            $return = call_user_func(array($Data_Model, $method), ...$values);
+        }
+
+        if ($type === 'preferences') {
+            $this->request['display'] = 'preferences';
+        }
+
+        if ($error === true or $return === -1) {
+            return "Saving went wrong";
+        }
+        return "";
+    }
+
     /**
      * Save concert data by inserting or updating.
      *
@@ -1260,9 +1341,9 @@ class Controller
             $template = 'default_no_data';
         else:
             //Load Model to access the preference table
-            $Pref_Model = new ModelPref($this->mysqli);
+            $Pref_Model = new ModelPreferences($this->mysqli);
             //Access database entry with the export language setting
-            $pref_export = $Pref_Model->getPrefExportLang();
+            $pref_export = $Pref_Model->getPreferencesExportLang();
             switch($pref_export[0]['export_lang']) {
                 case 'de_DE':
                     setlocale(LC_TIME, "de_DE", "de_DE.utf8");
