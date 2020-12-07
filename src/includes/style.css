@@ -207,9 +207,15 @@ a.urgent {
     margin: 5px 0 5px 0;
 }
 
+textarea {
+    margin: 5px 0 5px 0;
+    width: 725px;
+    height: 250px;
+}
+
 #lineup {
     max-width: 1080px;
-    margin: 10px 0 15px 0;
+    margin: 10px 0 0px 0;
 }
 
 
@@ -234,6 +240,7 @@ a.urgent {
 }
 
 .button_save {
+    margin-top: 15px;
     margin-right: 10px;
 }
 
