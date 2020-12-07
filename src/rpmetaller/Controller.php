@@ -335,6 +335,11 @@ class Controller
         switch ($type) {
             case 'preferences':
                 $data[] = array(
+                    'ref' => 'save',
+                    'type' => 'hidden',
+                    'value' => 'preferences'
+                );
+                $data[] = array(
                     'name' => 'Export lang',
                     'ref' => 'export_lang',
                     'type' => 'select',
@@ -1037,7 +1042,32 @@ class Controller
 
     private function saveGeneral($type)
     {
-        $data = getDisplayArray($type);
+        $data = $this->getDisplayArray($type);
+        $error = false;
+
+        foreach ($data as $field) {
+            if (!isset($this->request[$field['ref']])) {
+                $error = true;
+            } elseif ($field['type'] != 'hidden') {
+                $values[] = $this->request[$field['ref']];
+            }
+        }
+
+        if ($error === false) {
+            $class = 'rpmetaller\\Model' . ucfirst($type);
+            $method = 'update' . ucfirst($type);
+            $Data_Model = new  $class ($this->mysqli);
+            $return = call_user_func(array($Data_Model, $method), ...$values);
+        }
+
+        if ($type === 'preferences') {
+            $this->request['display'] = 'preferences';
+        }
+
+        if ($error === true or $return === -1) {
+            return "Saving went wrong";
+        }
+        return "";
     }
 
     /**

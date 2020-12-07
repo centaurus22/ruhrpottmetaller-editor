@@ -8,13 +8,22 @@ echo '<div id="inhalt" class="inhalt_large">
 printf("\t\t\t<legend>%1\$s</legend>", $fieldset_name);
 
 foreach ($this->_['display_array'] as $field) {
-    printf(
-        '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
-        $field['ref'],
-        $field['name']
-    );
+    if ($field['type'] != 'hidden') {
+        printf(
+            '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
+            $field['ref'],
+            $field['name']
+        );
+    }
 
     switch($field['type']) {
+        case 'hidden':
+            printf(
+                '<input type="hidden" name="%1$s" value="%2$s">',
+                $field['ref'],
+                $field['value']
+            );
+            break;
         case 'textarea':
             printf(
                 '<textarea name="%1$s" id="%1$s">%3$s</textarea>',
@@ -45,7 +54,9 @@ foreach ($this->_['display_array'] as $field) {
             echo '</select>';
             break;
     }
-    echo "<br>\n";
+    if ($field['type'] != 'hidden') {
+        echo "<br>\n";
+    }
 }
 
 echo '</fieldset>
