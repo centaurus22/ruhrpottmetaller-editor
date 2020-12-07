@@ -30,11 +30,12 @@ foreach ($this->_['display_array'] as $field) {
             );
             break;
         case 'textarea':
+            $value = $this->_['result'][0][$field['ref']];
             printf(
                 '<textarea name="%1$s" id="%1$s">%3$s</textarea>',
                 $field['ref'],
                 $field['name'],
-                $this->_['result'][0][$field['ref']]
+                htmlspecialchars($value, ENT_QUOTES);
             );
             break;
         case 'select':
