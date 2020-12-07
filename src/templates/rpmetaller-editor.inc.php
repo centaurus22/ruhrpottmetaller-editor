@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="leiste_top">
-            <div id="navigation">
+            <nav>
 <?php
     foreach ($this->_['menu_entrys'] as $menu_entry) {
         printf(
@@ -20,7 +20,7 @@
         );
     }
 ?>
-            </div>
+            </nav>
         </div>
 <?= $this->_['content']; ?>
         <div class="leiste_bottom">
