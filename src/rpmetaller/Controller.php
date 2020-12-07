@@ -108,6 +108,11 @@ class Controller
                 case 'concert':
                     $this->error_text = $this->saveConcert();
                     break;
+                case 'preferences':
+                    $this->error_text = $this->saveGeneral(
+                        $this->request['save']
+                    );
+                    break;
             }
 
         }
@@ -162,7 +167,7 @@ class Controller
                 case 'venue':
                     $this->passDataToVenuesDisplay();
                     break;
-                case 'pref':
+                case 'preferences':
                     $this->passDataToPrefEdit();
                     break;
                 case 'export':
@@ -210,7 +215,7 @@ class Controller
             array('Cities','city'),
             array('Venues', 'venue'),
             array('Export', 'export'),
-            array('Preferences','pref')
+            array('Preferences','preferences')
         ));
         $this->View->assign('content', $this->Inner_View->getOutput());
         return $this->View->getOutput();
@@ -314,8 +319,8 @@ class Controller
 
     private function passDataToPrefEdit()
     {
-        $Pref_Model = new ModelPref($this->mysqli);
-        $result = $Pref_Model->getPref();
+        $Pref_Model = new ModelPreferences($this->mysqli);
+        $result = $Pref_Model->getPreferences();
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
@@ -389,8 +394,8 @@ class Controller
      */
     private function passDataToConcertsExport()
     {
-        $Pref_Model = new ModelPref($this->mysqli);
-        $prefs = $Pref_Model->getPref();
+        $Pref_Model = new ModelPreferences($this->mysqli);
+        $prefs = $Pref_Model->getPreferences();
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
         $result = $this->processConcertData(
@@ -1000,6 +1005,11 @@ class Controller
 
     }
 
+    private function saveGeneral($type)
+    {
+
+    }
+
     /**
      * Save concert data by inserting or updating.
      *
@@ -1260,9 +1270,9 @@ class Controller
             $template = 'default_no_data';
         else:
             //Load Model to access the preference table
-            $Pref_Model = new ModelPref($this->mysqli);
+            $Pref_Model = new ModelPreferences($this->mysqli);
             //Access database entry with the export language setting
-            $pref_export = $Pref_Model->getPrefExportLang();
+            $pref_export = $Pref_Model->getPreferencesExportLang();
             switch($pref_export[0]['export_lang']) {
                 case 'de_DE':
                     setlocale(LC_TIME, "de_DE", "de_DE.utf8");
