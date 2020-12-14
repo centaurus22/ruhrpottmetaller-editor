@@ -1114,7 +1114,7 @@ class Controller
             if ($this->request['url'] == '' ) {
                 $error_text .= "The URL is empty.<br>\n";
             }
-            if (!isset($this->request['lenght'])) {
+            if (!isset($this->request['length'])) {
                 $this->request['length'] = 1;
             }
             if (!isset($this->request['venue_id'])) {
