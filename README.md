@@ -9,15 +9,15 @@ This work is provided unter the terms of the MIT licence. Please take a look at 
 * Edit the names of bands, cities, venues.
 * Export concerts and festivals in human readable form.
 * Mark bands whose concerts should not be exported.
-## Requirements
-The software does not have any special needs. A reasonably current version of PHP, the web server and MySQL or MariaDB should do the job. It is best to try it out.
-### Definitely working configuration
+## Technology
+The software does not have any special needs. A reasonably version of PHP, the web server and MySQL or MariaDB should do the job. It is best to try it out.
+
+These version are known to work:
 * PHP 7.4
 * Apache 2.5
 * MariaDB 10.4 or MySQL 8.0
 
-or newer.
-## Installation hints
+## Installation
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
 * Download the project by cloning it or fetching one of this files:
@@ -97,4 +97,4 @@ To make a contribution, please clone the project, make your changes and then ope
 
 If you want to support the development, you can send money via paypal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
-If you have any question, just drop a message at thorres [at] brothersofgrey [dot] net.
+If you have any questions, just drop a message at thorres [at] brothersofgrey [dot] net.
