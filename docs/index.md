@@ -9,7 +9,7 @@ layout: default
 
 {% include 03-features.md %}
 
-{% include 08-technologie.md %}
+{% include 08-technology.md %}
 
 {% include 04-installation.md %}
 
