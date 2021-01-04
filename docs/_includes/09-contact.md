@@ -1,2 +1,2 @@
 # Contact
-If you have any question, write an e-mail also to thorres [at] brothersofgrey [dot] net.
+If you have any questions, write an e-mail to thorres [at] brothersofgrey [dot] net.
