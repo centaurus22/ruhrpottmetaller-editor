@@ -1415,7 +1415,7 @@ class Controller
                     }
                     else {
                         $date_end_human = strftime(
-                            $timeformat_without_month,
+                            $timeformat_with_month,
                             $time_end
                         );
                     }

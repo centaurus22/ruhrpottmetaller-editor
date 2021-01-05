@@ -35,7 +35,7 @@ foreach ($this->_['display_array'] as $field) {
                 '<textarea name="%1$s" id="%1$s">%3$s</textarea>',
                 $field['ref'],
                 $field['name'],
-                htmlspecialchars($value, ENT_QUOTES);
+                htmlspecialchars($value, ENT_QUOTES)
             );
             break;
         case 'select':
