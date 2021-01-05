@@ -117,9 +117,7 @@ class Controller
                 case 'preferences':
                 //nobreak
                 default:
-                    $this->error_text = $this->saveGeneral(
-                        $this->request['save']
-                    );
+                    $this->error_text = $this->saveGeneral();
                     break;
             }
 
@@ -319,8 +317,10 @@ class Controller
 
     private function passGeneralDataToDisplay($result)
     {
+        $data = getDataArray($this->request['display']);
         $this->Inner_View->assign('display', $this->request['display']);
         $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('data_array', $data);
         $this->Inner_View->assign('month', $this->request['month']);
         $this->Inner_View->setTemplate('general_display');
     }
@@ -334,7 +334,7 @@ class Controller
         }
         $Pref_Model = new ModelPreferences($this->mysqli);
         $result = $Pref_Model->getPreferences();
-        $data = $this->getDisplayArray('preferences');
+        $data = $this->getDataArray('preferences');
 
         //Replace information from database by ones from the request string
         foreach ($data as $field) {
@@ -344,12 +344,12 @@ class Controller
         }
 
         $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign('display_array', $data);
+        $this->Inner_View->assign('data_array', $data);
         $this->Inner_View->setTemplate('pref_edit');
         $this->View->assign('subtitle', 'preferences');
     }
 
-    private function getDisplayArray($type)
+    private function getDataArray($type)
     {
         switch ($type) {
             case 'preferences':
@@ -376,6 +376,53 @@ class Controller
                     'type' => 'textarea',
                     'description' => 'Footer header'
                 );
+            case 'city':
+                $data[] = array(
+                    'name' => 'Name',
+                    'ref' => 'name',
+                    'type' => 'string',
+                    'description' => 'Name of the city'
+                );
+                break;
+            case 'venue':
+                $data[] = array(
+                    'name' => 'Name',
+                    'ref' => 'name',
+                    'type' => 'string_edit',
+                    'description' => 'Name of the venue'
+                );
+                $data[] = array(
+                    'name' => 'City',
+                    'ref' => 'city_name',
+                    'type' => 'string_display'
+                );
+                $data[] = array(
+                    'name' => 'Standard URL',
+                    'ref' => 'url',
+                    'type' => 'string_edit',
+                    'description' => 'Standard URL of the venue'
+                );
+                $data[] = array(
+                    'name' => 'Export',
+                    'ref' => 'anzeigen',
+                    'type' => 'bool',
+                    'description' => 'Export'
+                );
+                break;
+            case 'band':
+                $data[] = array(
+                    'name' => 'Name',
+                    'ref' => 'name',
+                    'type' => 'string',
+                    'description' => 'Name of the Band'
+                );
+                $data[] = array(
+                    'name' => 'Nazi',
+                    'ref' => 'nazi',
+                    'type' => 'bool',
+                    'description' => 'Nazi band'
+                );
+                break;
         }
         return $data;
     }
@@ -1059,9 +1106,10 @@ class Controller
 
     }
 
-    private function saveGeneral($type)
+    private function saveGeneral()
     {
-        $data = $this->getDisplayArray($type);
+        $type = $this->request['save'];
+        $data = $this->getDataArray($type);
         $error = false;
 
         foreach ($data as $field) {

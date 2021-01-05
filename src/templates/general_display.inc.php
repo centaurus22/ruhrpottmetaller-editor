@@ -1,57 +1,7 @@
 <?php
 
-//Define the array, which describes the page.
 
-switch($this->_['display']) {
-    case 'city':
-        $data[] = array(
-            'name' => 'Name',
-            'ref' => 'name',
-            'type' => 'string',
-            'description' => 'Name of the city'
-        );
-        break;
-    case 'venue':
-        $data[] = array(
-            'name' => 'Name',
-            'ref' => 'name',
-            'type' => 'string_edit',
-            'description' => 'Name of the venue'
-        );
-        $data[] = array(
-            'name' => 'City',
-            'ref' => 'city_name',
-            'type' => 'string_display'
-        );
-        $data[] = array(
-            'name' => 'Standard URL',
-            'ref' => 'url',
-            'type' => 'string_edit',
-            'description' => 'Standard URL of the venue'
-        );
-        $data[] = array(
-            'name' => 'Export',
-            'ref' => 'anzeigen',
-            'type' => 'bool',
-            'description' => 'Export'
-        );
-        break;
-    case 'band':
-        $data[] = array(
-            'name' => 'Name',
-            'ref' => 'name',
-            'type' => 'string',
-            'description' => 'Name of the Band'
-        );
-        $data[] = array(
-            'name' => 'Nazi',
-            'ref' => 'nazi',
-            'type' => 'bool',
-            'description' => 'Nazi band'
-        );
-        break;
-}
-
+$data = $this->Inner_View->assign('data_array', $data);
 $data[] = array('ref' => 'month', 'type' => 'hidden');
 $data[] = array('ref' => 'save', 'type' => 'hidden');
 $data[] = array('ref' => 'save_id', 'type' => 'hidden');

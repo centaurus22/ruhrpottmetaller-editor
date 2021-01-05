@@ -12,7 +12,7 @@ if ($this->_['error_text'] != '') {
 
 printf("\t\t\t<legend>%1\$s</legend>", $fieldset_name);
 
-foreach ($this->_['display_array'] as $field) {
+foreach ($this->_['data_array'] as $field) {
     if ($field['type'] != 'hidden') {
         printf(
             '<label for="%1$s" class="edit_label">%2$s</label>' . "\n",
