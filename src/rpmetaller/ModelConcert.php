@@ -71,7 +71,7 @@ class ModelConcert
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT event.id,
             event.datum_beginn AS date_start,
-            event.datum_ende as date_end,
+            event.datum_ende AS date_end,
             event.name,
             event.url, event.publiziert, event.ausverkauft,
             location.name AS venue_name, location.id as venue_id,

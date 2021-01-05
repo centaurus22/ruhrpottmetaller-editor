@@ -850,12 +850,12 @@ class Controller
         $this->setRequestEditor($concert, 'url', $model_involved);
 
         if (!isset($request['length'])) {
-            if ($model_involved == true and !is_null($concert[0]['date_end'])) {
+            if ($model_involved == true and $concert[0]['date_end'] != '') {
                 $date_start = strtotime($concert[0]['date_start']);
                 $date_end = strtotime($concert[0]['date_end']);
                 $seconds_per_day = 3600 * 24;
                 $length = ($date_end - $date_start) / $seconds_per_day;
-                $this->request['length'] = $length;
+                $this->request['length'] = $length + 1;
             } else {
                 $this->request['length'] = 1;
             }
