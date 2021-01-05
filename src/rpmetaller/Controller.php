@@ -108,7 +108,15 @@ class Controller
                 case 'concert':
                     $this->error_text = $this->saveConcert();
                     break;
+                case 'band':
+                //nobreak
+                case 'city':
+                //nobreak
+                case 'venue':
+                //nobreak
                 case 'preferences':
+                //nobreak
+                default:
                     $this->error_text = $this->saveGeneral(
                         $this->request['save']
                     );
