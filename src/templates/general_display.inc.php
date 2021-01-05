@@ -1,7 +1,7 @@
 <?php
 
 
-$data = $this->Inner_View->assign('data_array', $data);
+$data = $this->_['data_array'];
 $data[] = array('ref' => 'month', 'type' => 'hidden');
 $data[] = array('ref' => 'save', 'type' => 'hidden');
 $data[] = array('ref' => 'save_id', 'type' => 'hidden');

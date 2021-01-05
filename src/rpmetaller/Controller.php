@@ -317,7 +317,7 @@ class Controller
 
     private function passGeneralDataToDisplay($result)
     {
-        $data = getDataArray($this->request['display']);
+        $data = $this->getDataArray($this->request['display']);
         $this->Inner_View->assign('display', $this->request['display']);
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('data_array', $data);
