@@ -1137,8 +1137,6 @@ class Controller
                 $values[] = $this->request[$field['ref']];
             }
         }
-        print_r($values);
-
         if ($error === false) {
             $class = 'rpmetaller\\Model' . ucfirst($type);
             $method = 'update' . ucfirst($type);
