@@ -4,18 +4,21 @@
 $data = $this->_['data_array'];
 $data[] = array('ref' => 'month', 'type' => 'hidden');
 $data[] = array('ref' => 'save', 'type' => 'hidden');
-$data[] = array('ref' => 'save_id', 'type' => 'hidden');
 $data[] = array('name' => 'Admin', 'type' => 'button', 'description' => 'Save');
 
 echo $this->_['property_changer'];
 
-echo '<div id="inhalt" class="inhalt_small">
-    <div class="table">
+echo '<div id="inhalt" class="inhalt_small">';
+if ($this->_['error_text'] != '') {
+    printf('<div class="error">%1$s</div>' . "\n", $this->_['error_text']);
+}
+
+echo '<div class="table">
         <div class="thead">
             <div class="tr">';
 
 foreach ($data as $field) {
-    if ($field['type'] != 'hidden') {
+    if ($field['type'] != 'hidden' and $field['type'] != 'hidden_save') {
         printf('<span class="td">%1$s</span>', $field['name']);
     }
 }
@@ -25,24 +28,26 @@ echo "\t</div>
     <div class=\"tbody\">\n";
 
 foreach($this->_['result'] as $datum) {
-    echo "\t\t<form class=\"tr\">\n";
+    echo "\t\t<form action=\"\" class=\"tr\">\n";
     foreach($data as $field) {
         switch($field['type']) {
             case 'bool':
-                if ($datum[$field['ref']]) {
-                    $checked = 'checked';
-                } else {
-                    $checked = '';
-                }
                 printf(
                     "\t\t\t" . '<span class="td">
-                    <label for="%1$s" hidden>%3$s</label>
-                        <input class="tinputcheckbox" type="checkbox" id="%1$s" name="%1$s" %2$s>
-                    </span>' . "\n",
+                    <label for="%3$s">%2$s</label>
+                    <select id="%3$s" name="%1$s">',
                     $field['ref'],
-                    $checked,
-                    $field['description']
+                    $field['description'],
+                    $field['ref'] . '_' . $datum['id']
                 );
+                if ($datum[$field['ref']] == 1) {
+                    echo '<option value="0">no</option>
+                        <option value="1" selected>yes</option>';
+                } else {
+                    echo '<option value="0" selected>no</option>
+                        <option value="1">yes</option>';
+                }
+                echo '</select></span>' . "\n";
                 break;
             case 'button':
                 printf(
@@ -53,6 +58,8 @@ foreach($this->_['result'] as $datum) {
                 );
                 break;
             case 'hidden':
+            //nobreak
+            case 'hidden_save':
                 switch($field['ref']){
                     case 'month':
                         $datum['month'] = $this->_['month'];
@@ -64,9 +71,10 @@ foreach($this->_['result'] as $datum) {
                         break;
                 }
                 printf(
-                    "\t\t\t<input type=\"hidden\" id=\"%2\$s\" value=\"%1\$s\" name=\"%2\$s\">\n",
+                    "\t\t\t<input type=\"hidden\" id=\"%3\$s\" value=\"%1\$s\" name=\"%2\$s\">\n",
                     htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
-                    $field['ref']
+                    $field['ref'],
+                    $field['ref'] . '_' . $datum['id']
                 );
                 break;
             case 'string_display':
@@ -80,12 +88,13 @@ foreach($this->_['result'] as $datum) {
             default:
                 printf(
                     "\t\t\t" . '<span class="td">
-                    <label for="%2$s" hidden>%3$s</label>
-                    <input class="tinputtext" type="text" id="%2$s" value="%1$s" name="%2$s" placeholder="%3$s">
+                    <label for="%4$s">%3$s:</label>
+                    <input class="tinputtext" type="text" id="%4$s" value="%1$s" name="%2$s" placeholder="%3$s">
                     </span>' . "\n",
                     htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
                     $field['ref'],
-                    $field['description']
+                    $field['description'],
+                    $field['ref'] . '_' . $datum['id']
                 );
                 break;
         }

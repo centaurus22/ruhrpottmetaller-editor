@@ -94,7 +94,7 @@ class ModelCity
     public function updateCity($id, $name)
     {
         $mysqli = $this->mysqli;
-        $mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
+        $stmt = $mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
         $stmt->bind_param('si', $name, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;

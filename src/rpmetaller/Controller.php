@@ -321,6 +321,7 @@ class Controller
         $this->Inner_View->assign('display', $this->request['display']);
         $this->Inner_View->assign('result', $result);
         $this->Inner_View->assign('data_array', $data);
+        $this->Inner_View->assign('error_text', $this->error_text);
         $this->Inner_View->assign('month', $this->request['month']);
         $this->Inner_View->setTemplate('general_display');
     }
@@ -378,6 +379,10 @@ class Controller
                 );
             case 'city':
                 $data[] = array(
+                    'ref' => 'save_id',
+                    'type' => 'hidden_save'
+                );
+                $data[] = array(
                     'name' => 'Name',
                     'ref' => 'name',
                     'type' => 'string',
@@ -385,6 +390,10 @@ class Controller
                 );
                 break;
             case 'venue':
+                $data[] = array(
+                    'ref' => 'save_id',
+                    'type' => 'hidden_save'
+                );
                 $data[] = array(
                     'name' => 'Name',
                     'ref' => 'name',
@@ -410,6 +419,10 @@ class Controller
                 );
                 break;
             case 'band':
+                $data[] = array(
+                    'ref' => 'save_id',
+                    'type' => 'hidden_save'
+                );
                 $data[] = array(
                     'name' => 'Name',
                     'ref' => 'name',
@@ -1113,12 +1126,18 @@ class Controller
         $error = false;
 
         foreach ($data as $field) {
-            if (!isset($this->request[$field['ref']])) {
+            if (!isset($this->request[$field['ref']])
+                and $field['type'] != 'string_display'
+            ) {
                 $error = true;
-            } elseif ($field['type'] != 'hidden') {
+            } elseif (
+                $field['type'] != 'hidden'
+                and $field['type'] != 'string_display'
+            ) {
                 $values[] = $this->request[$field['ref']];
             }
         }
+        print_r($values);
 
         if ($error === false) {
             $class = 'rpmetaller\\Model' . ucfirst($type);
@@ -1127,12 +1146,10 @@ class Controller
             $return = call_user_func(array($Data_Model, $method), ...$values);
         }
 
-        if ($type === 'preferences') {
-            $this->request['display'] = 'preferences';
-        }
+        $this->request['display'] = $type;
 
         if ($error === true or $return === -1) {
-            return "Saving went wrong";
+            return "Saving has gone wrong";
         }
         return "";
     }

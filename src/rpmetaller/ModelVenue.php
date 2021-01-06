@@ -105,7 +105,7 @@ class ModelVenue
     }
 
     /**
-     * Update a venue into the database.
+     * Update a venue in the database.
      *
      * @param string $name Name of the venue.
      * @param int $city_id Id of the city in which the venue is located.
@@ -113,12 +113,12 @@ class ModelVenue
      *  webpage with information about all concert, this value is interesting.
      * @return int 1 for success or 0 for an error.
      */
-    public function updateVenue($id, $name, $city_id, $url)
+    public function updateVenue($id, $name, $url, $export)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE location SET name=?, stadt_id=?, url=?
+        $stmt = $mysqli->prepare('UPDATE location SET name=?, anzeigen=?, url=?
             WHERE id=?');
-        $stmt->bind_param('sisi', $name, $city_id, $url, $id);
+        $stmt->bind_param('sisi', $name, $export, $url, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         $stmt->close();
