@@ -3,13 +3,8 @@
 
 echo "\t" . '<form method="get" action="" >' . "\n";
 
-foreach($this->_['request'] as $parameter => $value) {
-    printf(
-        "\t\t<input type=\"hidden\" name=\"%1\$s\" value=\"%2\$s\">\n",
-        $parameter,
-        $value
-    );
-}
+$this->takeOverRequestParameters('month');
+$this->takeOverRequestParameters('display');
 
 switch($this->_['property_type']) {
     case 'first_char':

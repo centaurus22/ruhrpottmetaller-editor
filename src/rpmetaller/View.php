@@ -62,4 +62,15 @@ class View
             return 'Could not found template' . $tpl . '.';
         }
     }
+
+    public function takeOverRequestParameters($parameter)
+    {
+        if (isset($this->_['request']['display'])) {
+            printf (
+                "\t\t<input type=\"hidden\" name=\"display\" value=\"%2\$s\">\n",
+                $parameter,
+                $this->_['request'][$parameter]
+            );
+        }
+    }
 }
