@@ -311,10 +311,33 @@ class Controller
 
     private function passGeneralDataToDisplay($result)
     {
-        $this->Inner_View->assign('display', $this->request['display']);
-        $this->Inner_View->assign('result', $result);
-        $this->Inner_View->assign('month', $this->request['month']);
-        $this->Inner_View->setTemplate('general_display');
+        if (isset($this->request['display_filter'])) {
+            $filter_value = $this->request['display_filter'];
+            unset($this->request['display_filter']);
+        } else {
+            $filter_value = '';
+        }
+        return $filter_value;
+    }
+
+    private function passGeneralDataToDisplay($result, $filter_value)
+    {
+        $this->Inner_View->assign(
+            'filter_value_changer',
+            $this->getFilterValueChanger($filter_value)
+        );
+        if (count($result) > 0) {
+            $data = $this->getDataArray($this->request['display']);
+            $this->Inner_View->assign('display', $this->request['display']);
+            $this->Inner_View->assign('result', $result);
+            $this->Inner_View->assign('filter_value', $filter_value);
+            $this->Inner_View->assign('data_array', $data);
+            $this->Inner_View->assign('error_text', $this->error_text);
+            $this->Inner_View->assign('month', $this->request['month']);
+            $this->Inner_View->setTemplate('general_display');
+        } else {
+            $this->Inner_View->setTemplate('general_display_no_data');
+        }
     }
 
     private function passDataToPrefEdit()

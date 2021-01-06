@@ -59,7 +59,7 @@ class View
 
         }
         else {
-            return 'Could not found template' . $tpl . '.';
+            return '<div class="inhalt_large">Could not found template "' . $tpl . '".</div>';
         }
     }
 }
