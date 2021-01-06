@@ -6,7 +6,7 @@ $data[] = array('ref' => 'month', 'type' => 'hidden');
 $data[] = array('ref' => 'save', 'type' => 'hidden');
 $data[] = array('name' => 'Admin', 'type' => 'button', 'description' => 'Save');
 
-echo $this->_['property_changer'];
+echo $this->_['filter_value_changer'];
 
 echo '<div id="inhalt" class="inhalt_small">';
 if ($this->_['error_text'] != '') {

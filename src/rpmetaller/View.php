@@ -65,9 +65,9 @@ class View
 
     public function takeOverRequestParameters($parameter)
     {
-        if (isset($this->_['request']['display'])) {
+        if (isset($this->_['request'][$parameter])) {
             printf (
-                "\t\t<input type=\"hidden\" name=\"display\" value=\"%2\$s\">\n",
+                "\t\t<input type=\"hidden\" name=\"%1\$s\" value=\"%2\$s\">\n",
                 $parameter,
                 $this->_['request'][$parameter]
             );
