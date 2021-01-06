@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title><?= $this->_['pagetitle'].$this->_['subtitle'] ?></title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
