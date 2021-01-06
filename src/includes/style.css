@@ -331,7 +331,7 @@ textarea {
     font-size: 12px;
 }
 
-.tbody label {
+.tbody label, .screenreader_only {
    border:0;
    clip: rect(1px, 1px, 1px, 1px);
    clip-path: inset(50%);
