@@ -322,6 +322,7 @@ class Controller
         $data = $this->getDataArray($this->request['display']);
         $this->Inner_View->assign('display', $this->request['display']);
         $this->Inner_View->assign('result', $result);
+        $this->Inner_View->assign('filter_value', $filter_value);
         $this->Inner_View->assign('data_array', $data);
         $this->Inner_View->assign('error_text', $this->error_text);
         $this->Inner_View->assign('month', $this->request['month']);

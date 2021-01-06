@@ -2,6 +2,7 @@
 
 
 $data = $this->_['data_array'];
+$data[] = array('ref' => 'display_filter', 'type' => 'hidden');
 $data[] = array('ref' => 'month', 'type' => 'hidden');
 $data[] = array('ref' => 'save', 'type' => 'hidden');
 $data[] = array('name' => 'Admin', 'type' => 'button', 'description' => 'Save');
@@ -63,12 +64,15 @@ foreach($this->_['result'] as $datum) {
                 switch($field['ref']){
                     case 'month':
                         $datum['month'] = $this->_['month'];
+                        break;
                     case 'save':
                         $datum['save'] = $this->_['display'];
                         break;
                     case 'save_id':
                         $datum['save_id'] = $datum['id'];
                         break;
+                    case 'display_filter':
+                        $datum['display_filter'] = $this->_['filter_value'];
                 }
                 printf(
                     "\t\t\t<input type=\"hidden\" id=\"%3\$s\" value=\"%1\$s\" name=\"%2\$s\">\n",
