@@ -47,8 +47,9 @@ foreach($this->_['concerts'] as $concert) {
 			<td><a class='%1\$s' href='%5\$s'>%5\$s</a></td>
 			<td class=\"table_elements\">
 				<form action=\"\" method=\"GET\" id=\"%9\$u\">
-					<input type=\"hidden\" name=\"special\" value=\"concert\">
-					<select name=\"type\">
+                    <input type=\"hidden\" name=\"special\" value=\"concert\">
+                    <label for=\"type_%9\$s\" class=\"screenreader_only\">Chose an action</label>
+					<select name=\"type\" id=\"type_%9\$s\">
 						<option value=\"add\">Add</option>
 						<option value=\"edit\">Edit</option>
 						<option value=\"published\">Published</option>
