@@ -1,3 +1,3 @@
-<div id="inhalt" class="inhalt_large">
+<main id="main" class="content content_large">
 Attention: Failure on database query.
-</div>
+</main>

@@ -1,12 +1,17 @@
+<main id="main">
+
 <?php
 
 echo $this->_['month_changer'];
-?>
-<div id="inhalt" class="inhalt_small">
-<?php
+
+echo "\t" . '<div class="content content_small">';
+
 printf(
     '<a href="?edit=concert&amp;month=%1$s"><button>Add concert</button></a>',
     $this->_['month']
 );
 ?>
-</div>
+
+    </div>
+</main>
+

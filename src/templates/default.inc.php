@@ -1,8 +1,10 @@
+<main id="main">
 <?php
 
 echo  $this->_['month_changer'];
+
 ?>
-<div id="inhalt" class="inhalt_small">
+<div class="content content_small">
     <table id="data">
         <tr>
             <th></th>
@@ -74,6 +76,6 @@ foreach($this->_['concerts'] as $concert) {
 			$this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
 }
 ?>
-    </table>
-</div>
-<div id="window_stack"></div>
+        </table>
+    </div>
+</main>

@@ -1,4 +1,4 @@
-<div id="inhalt" class="inhalt_large">
+<main id="main" class="content content_large">
     <form action="" method="get">
         <input type="hidden" name="display" value="concert">
         <input type="hidden" name="save" value="concert">
@@ -59,4 +59,4 @@ foreach ($this->_['cities'] as $city) {
         <input class="button_save" type="submit" value="Save">
         <input type="reset" value="Reset">
     </form>
-</div>
+</main>

@@ -1,8 +1,9 @@
+<main id="main">
 <?php
 
 if (isset($this->_['header'])) {
     echo $this->_['month_changer'];
-    echo '<div id="inhalt" class="inhalt_small">';
+    echo '<div class="content content_small">';
     echo nl2br(htmlspecialchars($this->_['header'], ENT_QUOTES));
 }
 
@@ -50,5 +51,8 @@ foreach($this->_['concerts'] as $concert) {
 
 if (isset($this->_['header'])) {
     echo nl2br(htmlspecialchars($this->_['footer'], ENT_QUOTES));
-    echo '</div>';
+    echo '</main>';
 }
+
+?>
+</main>

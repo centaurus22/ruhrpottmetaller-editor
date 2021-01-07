@@ -23,8 +23,8 @@
             </nav>
         </div>
 <?= $this->_['content']; ?>
-        <div class="leiste_bottom">
+        <footer>
             (c) Klaus Thorres 2020. This Software is provided under the <a href="?display=license">MIT License</a>.
-        </div>
+        </footer>
     </body>
 </html>

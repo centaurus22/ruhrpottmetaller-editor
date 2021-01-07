@@ -1,5 +1,5 @@
+<main id="main">
 <?php
-
 
 $data = $this->_['data_array'];
 $data[] = array('ref' => 'display_filter', 'type' => 'hidden');
@@ -9,7 +9,7 @@ $data[] = array('name' => 'Admin', 'type' => 'button', 'description' => 'Save');
 
 echo $this->_['filter_value_changer'];
 
-echo '<div id="inhalt" class="inhalt_small">';
+echo '<div class="content content_small">';
 if ($this->_['error_text'] != '') {
     printf('<div class="error">%1$s</div>' . "\n", $this->_['error_text']);
 }
@@ -108,4 +108,5 @@ foreach($this->_['result'] as $datum) {
 
 echo "\t\t</div>
     </div>
-    </div>\n";
+    </div>
+    </main>\n";

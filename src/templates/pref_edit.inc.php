@@ -2,7 +2,7 @@
 
 $fieldset_name = "Preferences";
 
-echo '<div id="inhalt" class="inhalt_large">
+echo '<main id="main" class=" content content_large">
     <form action="" method="get">
         <fieldset class="fieldset_general">' . "\n";
 
@@ -69,4 +69,4 @@ echo '</fieldset>
     <input class="button_save" type="submit" value="Save">
     <input type="reset" value="Reset">
     </form>
-    </div>' . "\n";
+    </main>' . "\n";
