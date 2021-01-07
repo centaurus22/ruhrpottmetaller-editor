@@ -40,7 +40,7 @@ foreach ($this->_['data_array'] as $field) {
             break;
         case 'select':
             printf(
-                '<select class="edit_select" name="%1$s" id="%1%s">',
+                '<select class="edit_select" name="%1$s" id="%1$s">',
                 $field['ref'],
                 $field['name']
             );
