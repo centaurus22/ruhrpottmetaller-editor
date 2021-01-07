@@ -8,6 +8,7 @@
         <script  type="text/javascript" src="includes/script.js" ></script>
     </head>
     <body>
+        <a class="skip-link" href="#main">Skip to content</a>
         <div class="leiste_top">
             <nav>
 <?php
