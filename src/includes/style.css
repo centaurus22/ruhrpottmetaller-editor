@@ -86,6 +86,15 @@ footer a {
 	color: black;
 }
 
+.image_small {
+    height: 15px;
+    width: 15px;
+}
+
+.image_large {
+
+}
+
 table#data {
 	width: 99.5%;
 	border-collapse: collapse;
