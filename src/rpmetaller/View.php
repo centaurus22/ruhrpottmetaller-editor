@@ -63,6 +63,13 @@ class View
         }
     }
 
+    /**
+     * Writes a request parameter into a form element as a hidden text input
+     * field to write it in the new request string during saving.
+     *
+     * @param string $parameter The name of the request parameter.
+     */
+
     public function takeOverRequestParameters($parameter)
     {
         if (isset($this->_['request'][$parameter])) {
