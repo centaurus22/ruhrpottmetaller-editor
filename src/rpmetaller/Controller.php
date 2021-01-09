@@ -384,6 +384,7 @@ class Controller
                     'type' => 'textarea',
                     'description' => 'Footer header'
                 );
+                break;
             case 'city':
                 $data[] = array(
                     'ref' => 'save_id',
