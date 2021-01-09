@@ -21,8 +21,8 @@ if ($this->_['error_text'] != '') {
             <br>
             <label for="date_start" class="edit_label">Date*</label>
             <input type="date" name="date_start" id="date_start" value="<?=$this->_['request']['date_start']?>" required class="edit_date">
-            &nbsp;<label for="length">for</label>&nbsp;
-            <input type="number" name="length" id="length" value="<?=$this->_['request']['length']?>" class="edit_length" min="1" /> day(s)
+            <span aria-hidden="true">&nbsp;for&nbsp;</span><label class="screenreader_only" for="length">Number of days</label>
+            <input type="number" name="length" id="length" value="<?=$this->_['request']['length']?>" class="edit_length" min="1" /><span aria-hidden="true">&nbsp;day(s)</span>
             <br>
             <label for="city_id" class="edit_label">City</label>
             <select name="city_id" id="city_id" class="edit_select" onchange="display_city_venue_form(); display_venue_new_form();">
