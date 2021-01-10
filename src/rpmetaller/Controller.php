@@ -275,6 +275,10 @@ class Controller
         $this->View->assign('subtitle', 'License');
     }
 
+    /**
+     * Get data to display the bands and pass it to the inner view (band specific
+     * code).
+     */
     private function passDataToBandsDisplay()
     {
         $Band_Model = new ModelBand($this->mysqli);
@@ -284,6 +288,10 @@ class Controller
         $this->View->assign('subtitle', 'bands');
     }
 
+    /**
+     * Get data to display the cities and pass it to the inner view (city specific
+     * code).
+     */
     private function passDataToCitiesDisplay()
     {
         $City_Model = new ModelCity($this->mysqli);
@@ -293,6 +301,10 @@ class Controller
         $this->View->assign('subtitle', 'cities');
     }
 
+    /**
+     * Get data to display the venues and pass it to the inner view (venue
+     * specific code).
+     */
     private function passDataToVenuesDisplay()
     {
         $Venue_Model = new ModelVenue($this->mysqli);
@@ -302,6 +314,13 @@ class Controller
         $this->View->assign('subtitle', 'venues');
     }
 
+    /**
+     * Check if the filter value (to filter information by city_id or first
+     * character) is set and returns the value. If the filter value is not set,
+     * return an empty string.
+     *
+     * @output string The filter value
+     */
     private function getFilterValue()
     {
         if (isset($this->request['display_filter'])) {
@@ -313,6 +332,14 @@ class Controller
         return $filter_value;
     }
 
+    /**
+     * Get data and pass it to the inner view.
+     *
+     * @param array $result Array containing the result of the database request
+     * @param string $filter_value Value by which the the database entries are
+     *  filtered.
+     *
+     */
     private function passGeneralDataToDisplay($result, $filter_value)
     {
         $this->Inner_View->assign(
@@ -333,6 +360,10 @@ class Controller
         }
     }
 
+    /**
+     * Get data to display and edit the venues from the database model and pass
+     * it to the inner view.
+     */
     private function passDataToPrefEdit()
     {
         if (isset($this->error_text) and $this->error_text != '') {
@@ -357,6 +388,13 @@ class Controller
         $this->View->assign('subtitle', 'preferences');
     }
 
+    /**
+     * Returns an array that defines what data is displayed in a table
+     * and which data should be saved from a formula.
+     *
+     * @param string $type Type of the data which should be displayed.
+     * @output array Definition of the table and formula.
+     */
     private function getDataArray($type)
     {
         switch ($type) {
@@ -448,6 +486,12 @@ class Controller
         return $data;
     }
 
+    /**
+     * Define the data to display a select element to choose the filter value.
+     *
+     * @output string The complete html code which contains the formula with the
+     *  select element.
+     */
     private function getFilterValueChanger($filter_value)
     {
         $PropertyChanger = new View();
