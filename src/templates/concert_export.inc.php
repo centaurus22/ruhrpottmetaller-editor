@@ -10,8 +10,7 @@ if (isset($this->_['header'])) {
 foreach($this->_['concerts'] as $concert) {
     if (
         !isset($this->_['header'])
-        or (isset($this->_['header'])
-        and !isset($concert['nazi']))
+        or !isset($concert['visible'])
     ) {
         //Build the list of bands
         $bands = '';

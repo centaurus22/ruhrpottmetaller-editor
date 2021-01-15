@@ -457,12 +457,6 @@ class Controller
                     'type' => 'string_edit',
                     'description' => 'Standard URL of the venue'
                 );
-                $data[] = array(
-                    'name' => 'Export',
-                    'ref' => 'anzeigen',
-                    'type' => 'bool',
-                    'description' => 'Export'
-                );
                 break;
             case 'band':
                 $data[] = array(
@@ -476,10 +470,10 @@ class Controller
                     'description' => 'Name of the Band'
                 );
                 $data[] = array(
-                    'name' => 'Nazi',
-                    'ref' => 'nazi',
+                    'name' => 'Visible',
+                    'ref' => 'visible',
                     'type' => 'bool',
-                    'description' => 'Nazi band'
+                    'description' => 'Visible'
                 );
                 break;
         }
@@ -1543,13 +1537,13 @@ class Controller
                     $lineup_index++
                 ) {
                     $band = $concerts[$concert_index]['bands'][$lineup_index];
-                    if ($band['nazi'] == 1) {
-                        $concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nazi';
+                    if ($band['visible'] == 1) {
+                        $concerts[$concert_index]['bands'][$lineup_index]['visible'] = 'visible';
                         //Write a non-export indicator to the concert-array.
-                        $concerts[$concert_index]['nazi'] = 1;
                     }
                     else {
-                        $concerts[$concert_index]['bands'][$lineup_index]['nazi'] = 'nonazi';
+                        $concerts[$concert_index]['bands'][$lineup_index]['visible'] = 'invisible';
+                        $concerts[$concert_index]['visible'] = false;
                     }
                 }
             endfor;

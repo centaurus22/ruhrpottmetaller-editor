@@ -45,8 +45,9 @@ class ModelConcert
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
-        $stmt = $mysqli->prepare('SELECT band.name, band.nazi, event_band.zusatz
-            FROM event_band LEFT JOIN band ON event_band.band_id = band.id
+        $stmt = $mysqli->prepare('SELECT band.name, band.visible,
+            event_band.zusatz FROM event_band
+            LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?');
         for($i = 0; $i < count($result); $i++) {
             $stmt->bind_param('i', $result[$i]['id']);
@@ -195,7 +196,7 @@ class ModelConcert
     public function getBands($id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT band.id, band.name, band.nazi,
+        $stmt = $mysqli->prepare('SELECT band.id, band.name, band.visible,
             event_band.zusatz FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id LIKE ?');

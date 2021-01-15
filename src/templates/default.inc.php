@@ -25,12 +25,12 @@ foreach($this->_['concerts'] as $concert) {
 			$bands = $bands . sprintf(', <span class="%3$s">%1$s (%2$s)</span>',
 				htmlspecialchars($band['name'], ENT_QUOTES),
 				htmlspecialchars($band['zusatz'], ENT_QUOTES),
-                htmlspecialchars($band['nazi'], ENT_QUOTES)
+                htmlspecialchars($band['visible'], ENT_QUOTES)
             );
         else:
 			$bands = $bands . sprintf(', <span class="%2$s">%1$s</span>',
 				htmlspecialchars($band['name'], ENT_QUOTES),
-                htmlspecialchars($band['nazi'], ENT_QUOTES)
+                htmlspecialchars($band['visible'], ENT_QUOTES)
             );
 		endif;
 	}

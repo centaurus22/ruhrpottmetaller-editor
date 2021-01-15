@@ -33,15 +33,15 @@ class ModelBand
         $mysqli = $this->mysqli;
         switch($initial) {
             case '':
-                $stmt = $mysqli->prepare('SELECT id, name, nazi FROM band
+                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
                     ORDER BY name');
                 break;
             case '%':
-                $stmt = $mysqli->prepare('SELECT id, name, nazi from band
+                $stmt = $mysqli->prepare('SELECT id, name, visible from band
                     WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
                 break;
             default:
-                $stmt = $mysqli->prepare('SELECT id, name, nazi FROM band
+                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
                     WHERE name LIKE ? ORDER BY name');
                 $initial = $initial . '%';
                 $stmt->bind_param('s', $initial);
@@ -61,7 +61,7 @@ class ModelBand
     public function getBand($id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name, nazi FROM band WHERE id=?');
+        $stmt = $mysqli->prepare('SELECT id, name, visible FROM band WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -98,11 +98,11 @@ class ModelBand
      * @return integer Returns 1 for successful operation,
      *  0 for a non-existent id, -1 for an error.
      */
-    public function updateBand($id, $name, $nazi)
+    public function updateBand($id, $name, $visible)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE band SET name=?, nazi=? WHERE id=?');
-        $stmt->bind_param('sii', $name, $nazi, $id);
+        $stmt = $mysqli->prepare('UPDATE band SET name=?, visible=? WHERE id=?');
+        $stmt->bind_param('sii', $name, $visible, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         $stmt->close();
