@@ -17,7 +17,7 @@ These version are known to work:
 * Apache 2.5
 * MariaDB 10.4 or MySQL 8.0
 
-## Installation hints
+## Installation
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
 * Download the project by cloning it or fetching one of this files:
@@ -25,7 +25,7 @@ To install the software the following steps are necessary:
   * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/master
 * Make the content of the folder “php” accessible for the web server.
 * Import the database from the file “databases_rpm.sql” into your database management software.
-* Adjust the file “connect.php” from the php folder.
+* Adjust the "connect.php" file from the PHP folder, which contains the login data for the database management software and the name of the database you selected previously.
 ## Using
 This section describes, how to use the software. Every link at the top has its own subsection.
 
