@@ -1,7 +1,7 @@
 # rpmetaller-editor
-A web-based tool to store, manage and export information about concerts and festivals.
+A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.
 
-I created this software to support the Ruhrpottmetaller project (https://www.facebook.com/Ruhrpottmetaller/) and to learn PHP and MySQL, so the code is safe but not as clean as it could be. The project is currently being rewritten. Bug fixes will continue to be implemented in version 1.0.x.
+This software was created to support the Ruhrpottmetaller project (https://www.facebook.com/Ruhrpottmetaller/).
 ## Licence
 This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
 ## Features
