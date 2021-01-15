@@ -9,7 +9,7 @@ This work is provided unter the terms of the MIT licence. Please take a look at 
 * Edit the names of bands, cities, venues.
 * Export concerts and festivals in human readable form.
 * Mark bands whose concerts should not be exported.
-## Technologis
+## Technology
 The software does not have any special needs. A reasonably current version of PHP, the web server and MySQL or MariaDB should do the job. It is best to try it out.
 
 These version are known to work:
