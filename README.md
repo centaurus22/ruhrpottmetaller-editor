@@ -5,7 +5,7 @@ This software was created to support the Ruhrpottmetaller project (https://www.f
 ## Licence
 This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
 ## Features
-* Save and edit data about concerts and festivals, including bands, date and venue.
+* Save and edit data related to events.
 * Edit the names of bands, cities, venues.
 * Export concerts and festivals in human readable form.
 * Mark bands whose concerts should not be exported.
