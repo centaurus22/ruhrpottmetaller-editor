@@ -452,10 +452,10 @@ class Controller
                     'type' => 'string_display'
                 );
                 $data[] = array(
-                    'name' => 'Standard URL',
+                    'name' => 'Default URL',
                     'ref' => 'url',
                     'type' => 'string_edit',
-                    'description' => 'Standard URL of the venue'
+                    'description' => 'Default URL of the venue'
                 );
                 break;
             case 'band':
