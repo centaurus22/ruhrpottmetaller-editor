@@ -2,7 +2,7 @@
 A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.
 
 This software was created to support the Ruhrpottmetaller project (https://www.facebook.com/Ruhrpottmetaller/).
-## Licence
+## License
 This work is provided unter the terms of the MIT licence. Please take a look at the LICENSE file for the full text.
 ## Features
 * Save and edit data related to events.
