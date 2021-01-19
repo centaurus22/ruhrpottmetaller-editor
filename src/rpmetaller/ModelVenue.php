@@ -48,13 +48,13 @@ class ModelVenue
         if ($city_id == '') {
             $stmt = $mysqli->prepare('SELECT location.id, location.name,
                 stadt.name AS city_name,
-                location.stadt_id, location.url, location.anzeigen FROM location
+                location.stadt_id, location.url FROM location
                 JOIN stadt ON location.stadt_id = stadt.id
                 ORDER BY stadt.name, location.name');
         } else {
             $stmt = $mysqli->prepare('SELECT location.id, location.name,
                 stadt.name AS city_name,
-                location.stadt_id, location.url, location.anzeigen FROM location
+                location.stadt_id, location.url  FROM location
                 JOIN stadt ON location.stadt_id = stadt.id
                 WHERE stadt_id=? ORDER BY name');
             $stmt->bind_param('i', $city_id);
@@ -113,12 +113,12 @@ class ModelVenue
      *  webpage with information about all concert, this value is interesting.
      * @return int 1 for success or 0 for an error.
      */
-    public function updateVenue($id, $name, $url, $export)
+    public function updateVenue($id, $name, $url)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE location SET name=?, anzeigen=?, url=?
+        $stmt = $mysqli->prepare('UPDATE location SET name=?, url=?
             WHERE id=?');
-        $stmt->bind_param('sisi', $name, $export, $url, $id);
+        $stmt->bind_param('ssi', $name, $url, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
         $stmt->close();
