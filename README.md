@@ -75,10 +75,10 @@ On this site you can edit the names of the bands in the database.
 Also you can mark them as not visible. In this case, the band is written in light brown letters in the concert overview on the Termine site. Also concerts with the corresponding band are not be included in the export on the Export site.
 
 Filtering the bands by the first character of its name using the dropdown menu at the top.
-### Städte
-On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
+### Cities
+On this site you can edit the names of the cities in the database. 
 
-The checkbox right of the city name is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
+Filtering by the the first character is also possible on this page.
 ### Locations
 On this site you can edit the names of the venues in the database. The system can contain multiple venues with the same name as long as they are in different cities. A URL for each venue can also be added to the database. If you select the venue in the concert editor and the URL field is still empty, this URL will be filled in there.
 
