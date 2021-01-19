@@ -71,9 +71,10 @@ Clicking one of the four buttons at the end of the row has the following effect:
 
 As you can see, most of your work can be done on this two pages. 
 ### Bands
-On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change. You can filter the band by the first letter of its name using the dropdown menu at the top.
+On this site you can edit the names of the bands in the database.
+Also you can mark them as not visible. In this case, the band is written in light brown letters in the concert overview on the Termine site. Also concerts with the corresponding band are not be included in the export on the Export site.
 
-Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the Termine site. Also concerts with the corresponding band are not be included in the export on the Export site. 
+Filtering the bands by the first character of its name using the dropdown menu at the top.
 ### Städte
 On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
 
