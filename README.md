@@ -89,15 +89,12 @@ In this scope filtering by the city is possible.
 A human readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the Einstellungen site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
-### Einstellungen
+### Preferences
 Using this site a few preferences can be made.
 
-The checkboxes are control the generation of concert exports on the Termine site.
-* The first checkbox determines whether an @ symbol is generated before every Facebook export.
-* The second checkbox determines wether a twitter export is generated.
-* The third checkbox determines if a facebook export is displayed.
+The first drop-down menu is to select the export language of concert exports. Currently English and German is supported.
 
-The two text areas allow to change the header and the footer of the export generated on the Export site. After making changes to the text areas you have to click outside it to save the adjustments.
+The two text areas allow to change the header and the footer of the export generated on the Export site.
 ## How to contribute
 To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below. Development tages place in the `development` branch. 
 
