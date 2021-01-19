@@ -79,11 +79,12 @@ Filtering the bands by the first character of its name using the dropdown menu a
 On this site you can edit the names of the cities in the database. 
 
 Filtering by the the first character is also possible on this page.
-### Locations
-On this site you can edit the names of the venues in the database. The system can contain multiple venues with the same name as long as they are in different cities. A URL for each venue can also be added to the database. If you select the venue in the concert editor and the URL field is still empty, this URL will be filled in there.
+### Venues
+On this site you can edit venue names in the database.A Default URL for each venue can also be added to the database. If you select the venue in the concert editor and the URL field is still empty, this URL will be filled in there.
 
-After changing one of the input fields, you need to click anywhere outside the text field to save the change.
-The checkbox in the column “Anzeigen“ is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
+The system can contain multiple venues with the same name as long as they are located in different cities. 
+
+In this scope filtering by the city is possible.
 ### Export
 A human readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the Einstellungen site.
