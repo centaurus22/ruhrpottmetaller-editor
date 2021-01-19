@@ -30,42 +30,46 @@ To install the software the following steps are necessary:
 This section describes, how to use the software. Every link at the top has its own subsection.
 
 On some sites it is possible to narrow down the displayed items by month, first letter or other categories. In this case, a second row with form elements is displayed.
-### Termine
+### Concerts
 This is the main site of the *rpmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
 
-Clicking at the plus image at the left of a concert opens a human readable export. Export settings can be made on the Einstellungen site.
+Clicking at the plus image at the left of a concert opens a human readable export. Export settings can be made on the Preferences site.
 
 Several commands can be applied to a concert using the drop down menu at the right:
-* `add` opens the concert editor. The date of the concert on which you start the add command, is the preset for the date of the new concert in the editor.
-* `edit` opens the concert editor.
-* `publiziert` marks the concert as published.
-* `del` deletes the concert from the database. It is therefore irrevocably deleted from the system.
-* `sold out` marks the concert as sold out. As a result, the corresponding concert exports are generated with the information that the concert is sold out. This affects this site and the Export site.
+* `Add` opens the concert editor. The date of the concert on which you start the add command, is the preset for the date of the new concert in the editor.
+* `Edit` opens the concert editor.
+* `Published` marks the concert as published.
+* `Del` deletes the concert from the database. It is therefore irrevocably deleted from the system.
+* `Sold Out` marks the concert as sold out. As a result, the corresponding concert exports are generated containing the information that the concert is sold out. This affects this site and the Export site.
 
 A concert can be displayed in different colors:
 * black: The concert is already marked as published.
 * blue: The concert has not yet been marked as published. 
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
+
+Bands written in light brown are marked as not visible.
 #### Concert editor
-This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the location.
-##### In the first part of the editor general information of the concert are entered.
-If the name of the first band is included in the concert name, it will not be shown again in the lineup section of the concert export. Instead, a plus sign is displayed.
+This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the url.
+##### General concert data
+In the first part of the editor general information of the concert are entered.
 
-The date of the concert has to be added in the form “YYYY-MM-DD”.
+If a city is not yet in the database, it is possible to add it by selecting the option “New city” from the bottom of the city drop down menu.  If a city menu option is already selected, a new venue can be added to the database. In this case you have to select the option "New venue" in the second dropdown menu. (Tipp: Press "n" a few times until the option shows up.)
 
-If a city is not yet in the database, it is possible to add it by selecting the option “Neue Stadt” from the bottom of the drop down menu, which is opened by clicking on the city name.  If a city menu option is already selected, a new location can be added to the database. In this case you have to select the option "Neue Location" in the second dropdown menu.
-##### The second part of the editor is the lineup editor.
+The new venue input field is automatically shown if you insert a new city. Also by creating new venues you can enter a default url. This will be putted in the URL field when you choose a venue and the URL is not yet set to spare you a few clicks.
+##### Concert lineup
 Each row represents a band in the lineup.
 
-If you choose a character in the first dropdown menu, bands with those initial letter are loaded in the second one. Also you can add a new band to the database and the lineup by choosing the last option of the menu. The hash symbol stands for special characters. If you do not select a character in the first dropdown menu, you can choose between also adding a new band to the database and the lineup or an entry with “TBA“ (To be anounced) or “Support”.
+If you choose a character in the first dropdown menu, bands with those initial letter are loaded in the second one. The percentage symbol stands for special characters. Also you can add a new band to the database and the lineup by choosing the last option of the second menu. If you do not select a character in the first dropdown menu, you can choose between also adding a new band to the database and the lineup or an entry which is labeled “TBA“ (To be anounced) or “Support”.
 
-The input field labeled with “Zusatz” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
+The input field named “Extra information” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
 
-Clicking the four buttons at the end of the line have the following effect:
+Clicking one of the four buttons at the end of the row has the following effect:
+* Plus sign: Adds a band under the current row
 * Minus sign: Deletes the band from the lineup
-* Plus sign: Adds a band under the current line
 * Arrow signs: Moves the band in the lineup up or down
+
+As you can see, most of your work can be done on this two pages. 
 ### Bands
 On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change. You can filter the band by the first letter of its name using the dropdown menu at the top.
 
