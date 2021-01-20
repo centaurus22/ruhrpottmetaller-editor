@@ -21,11 +21,11 @@ These version are known to work:
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
 * Download the project by cloning it or fetching one of this files:
-  * zip: https://github.com/klaus-thorres/rpmetaller-editor/zipball/master
-  * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/master
-* Make the content of the folder “php” accessible for the web server.
-* Import the database from the file “databases_rpm.sql” into your database management software.
-* Adjust the "connect.php" file from the PHP folder, which contains the login data for the database management software and the name of the database you selected previously.
+  * zip: https://github.com/klaus-thorres/rpmetaller-editor/zipball/main
+  * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/main
+* Make the content of the “src” folder accessible for the web server.
+* Import the database from the file “databases_rpm.sql” in the “database” folder into your database management software.
+* Create the “db_connect.inc.php” file in the “src/include” folder, which contains the login data for the database management software and the name of the database you selected previously. A sample file is located in that folder.
 ## Using
 This section describes, how to use the software. Every link at the top has its own subsection.
 
