@@ -1,4 +1,4 @@
-# Technologie
+# Technology
 These software versions are known to work:
 * PHP 7.4
 * Apache 2.5
