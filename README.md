@@ -30,6 +30,8 @@ To install the software the following steps are necessary:
 This section describes, how to use the software. Every link at the top has its own subsection.
 
 On some sites it is possible to narrow down the displayed items by month, first letter or other categories. In this case, a second row with form elements is displayed.
+
+The concert editor as well as the concert export function needs JavaScript. So do not forget to activate it for the application.
 ### Concerts
 This is the main site of the *rpmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
