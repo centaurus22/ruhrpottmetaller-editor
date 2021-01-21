@@ -89,7 +89,7 @@ The system can contain multiple venues with the same name as long as they are lo
 In this scope filtering by the city is possible.
 ### Export
 A human readable list of the concerts of the currently selected month is created on the export page.
-The header and the footer can be configured on the Einstellungen site.
+The header and the footer can be configured on the Preferences site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
 ### Preferences
 Using this site a few preferences can be made.
