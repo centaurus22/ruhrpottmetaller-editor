@@ -25,7 +25,7 @@ A concert is displayed in one of the following colors:
 * red: The concert has not yet been marked as published and will be within the next two weeks. If it is a festival (a concert with more than one day) it will be within the next 60 days.
 
 ### Concert editor
-![Screenshot of the concert editor](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/07-concert-editor.jpeg)
+![Screenshot of the concert editor](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/07-concert-editor.jpeg)
 
 This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the location.
 
@@ -51,11 +51,12 @@ Clicking one of the four buttons at the end of the row has the following effect:
 As you can see, most of your work can be done just on this two pages. 
 
 ## Bands
-![Screenshot of the bands site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/02-bands.jpeg)
+![Screenshot of the bands site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/02-bands.jpeg)
 
-On this site you can edit the names of the bands in the database. After changing the band name, you need to click anywhere outside the text box to save the change. You can filter the band by the first letter of its name using the dropdown menu at the top.
+On this site you can edit the names of the bands in the database.
+Also you can mark them as not visible. In this case, the band is written in light brown letters in the [concert overview](#concerts). Also concerts with the corresponding band are not be included in the export on the [Export](#export) site.
 
-Also you can mark them as not exportable. In this case, the band is written in light brown letters in the concert overview on the [Termine](#termine) site. Also concerts with the corresponding band are not included in the export on the [Export](#export) site. 
+Filtering the bands by the first character of its name using the dropdown menu at the top.
 ## Städte
 ![Screenshot of the Städte site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/03-staedte.jpeg)
 
