@@ -75,7 +75,7 @@ In this scope filtering by the city is possible.
 ![Screenshot of the Export site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/05-export.jpeg)
 
 A human readable list of the concerts of the currently selected month is created on the export page.
-The header and the footer can be configured on the [Einstellungen](#einstellungen) site.
+The header and the footer can be configured on the [Preferences](#preferences) site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
 ## Einstellungen
 ![Screenshot of the Einstellungen site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/06-einstellungen.jpeg)
