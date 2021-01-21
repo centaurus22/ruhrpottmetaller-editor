@@ -72,21 +72,16 @@ The system can contain multiple venues with the same name as long as they are lo
 
 In this scope filtering by the city is possible.
 ## Export
-![Screenshot of the Export site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/05-export.jpeg)
+![Screenshot of the Export site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/05-export.jpeg)
 
 A human readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the [Preferences](#preferences) site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
-## Einstellungen
-![Screenshot of the Einstellungen site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/06-einstellungen.jpeg)
+## Preferences
+![Screenshot of the Einstellungen site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/06-einstellungen.jpeg)
 
 Using this site a few preferences can be made.
 
-The checkboxes are control the generation of concert exports on the [Termine](#termine) site.
-* The first checkbox determines whether an @ symbol is generated before every Facebook export.
-* The second checkbox determines wether a twitter export is generated.
-* The third checkbox determines if a facebook export is displayed.
+The first drop-down menu is to select the export language of concert exports. Currently English and German is supported.
 
-The difference between Facebook and Twitter export are that shorter terms are used for the Twitter export and the number of bands can be reduced to meet the 280 characters limit.
-
-The two text areas allow to change the header and the footer of the export generated on the [Export](#export) site. After making changes to the text areas you have to click outside it to save the adjustments.
+The two text areas allow to change the header and the footer of the export generated on the Export site.
