@@ -57,12 +57,12 @@ On this site you can edit the names of the bands in the database.
 Also you can mark them as not visible. In this case, the band is written in light brown letters in the [concert overview](#concerts). Also concerts with the corresponding band are not be included in the export on the [Export](#export) site.
 
 Filtering the bands by the first character of its name using the dropdown menu at the top.
-## Städte
-![Screenshot of the Städte site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/03-staedte.jpeg)
+## Cities
+![Screenshot of the Städte site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/03-staedte.jpeg)
 
-On this site you can edit the names of the cities in the database. After changing the city name, you need to click anywhere outside the text box to save the change.
+On this site you can edit the names of the cities in the database. 
 
-The checkbox right of the city name is intended for an external functionality and does not have any affect on the *rpmetaller-editor*. 
+Filtering by the the first character is also possible on this page.
 ## Locations
 ![Screenshot of the Locations site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/master/docs/_images/04-locations.jpeg)
 
