@@ -1,7 +1,7 @@
 <?php
 
 //hostname
-$dbhost = '';
+$dbhost = '127.0.0.1';
 //database
 $db = '';
 //username
