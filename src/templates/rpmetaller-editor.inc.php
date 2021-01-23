@@ -21,7 +21,9 @@
         );
     }
 ?>
-            </nav>
+            <div class="noscript">
+            	<noscript>Please activate JavaScript!</noscript>
+            </div>
         </div>
 <?= $this->_['content']; ?>
         <footer>

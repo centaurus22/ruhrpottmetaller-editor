@@ -30,13 +30,21 @@ div.leiste_top {
     padding-bottom: 5px;
     height: 25px;
 }
-
+nav {
+	display: inline;
+}
 nav a {
 	padding-right: 5px;
 	padding-left: 5px;
 	padding-top: 10px;
 	font-weight: bold;
 	color: black;
+}
+
+.noscript {
+	margin-left: 5px;
+	display: inline-block;
+	color: yellow;
 }
 
 div#leiste_buttons {
@@ -84,15 +92,6 @@ footer {
 
 footer a {
 	color: black;
-}
-
-.image_small {
-    height: 15px;
-    width: 15px;
-}
-
-.image_large {
-
 }
 
 table#data {
