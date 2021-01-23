@@ -51,7 +51,7 @@ foreach ($this->_['cities'] as $city) {
             <?=$this->_['venue_new_form'] ?>
             </span>
             <label for="url" class="edit_label">URL*</label>
-            <input type="url" name="url" id="url" class="edit_text" value="<?=$this->_['request']['url']?>" placeholder="Link to more information" required/><br>
+            <input type="url" name="url" id="url" class="edit_text" value="<?=$this->_['request']['url']?>" placeholder="Link to more information" required/>
         </fieldset>
         <fieldset id="lineup">
             <?= $this->_['lineup'] ?>

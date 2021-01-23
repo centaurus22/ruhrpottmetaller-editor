@@ -422,6 +422,11 @@ class Controller
                     'type' => 'textarea',
                     'description' => 'Footer header'
                 );
+                $data[] = array(
+                    'ref' => 'month',
+                    'type' => 'hidden',
+                    'value' => $this->request['month']
+                );
                 break;
             case 'city':
                 $data[] = array(

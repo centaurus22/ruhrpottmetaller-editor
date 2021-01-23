@@ -223,11 +223,12 @@ textarea {
 
 #lineup {
     max-width: 1080px;
-    margin: 10px 0 0px 0;
+    margin: 10px 0 0 0;
 }
 
 
 .fieldset_general {
+	margin: 0 0 0 0;
     max-width: 1080px;
     padding: 15px 10px 15px 10px;
 }
