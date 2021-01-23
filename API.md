@@ -1,9 +1,10 @@
 # API
 This file describes the parameters to controll the *rpmetaller-editor*.
 ## SYNOPSIS
-* \[\?display=*\<display_type\>*\[&display_id=*\<display_id\>*\]\[&special=sub\]\]
+* \[\?display=*\<display_type\>*\[&display_id=*\<display_id\>*\]\]
   \[&save=*\<save_type\>*&save_id=*\<save_id\>*&SPECIFIC_PARAMETERS\]\[\&month=*\<month\>*\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
 * \[?edit=*<edit_type>*\[&edit_id=*<edit_id>*]\[&SPECIFIC_PARAMETERS\]\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
+
 ## PARAMETERS
 If none of the parameters are specified, the *rpmetaller-editor* only shows the concert overview of the current month.
 
@@ -17,14 +18,12 @@ The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved 
 * `display=export`
 * `display=pref`
 * `display=license`
+
 ##### display_id
 If this parameter is provided only the dataset with the submitted id is displayed. This behaviour is currently implemented only for the `display=concert` parameter.
 #### edit
 The `èdit` parameter overwrites the `display` parameter. It opens an edit-page to insert or update data of the specified type. The following values are possible:
 * `edit=concert`
-* `edit=band`
-* `edit=city`
-* `edit=venue`
 
 Data can also be provided by SPECIFIC_PARAMETERS. In this case, the corresponding input fields are pre filled with that information.
 ##### edit_id
@@ -43,8 +42,9 @@ The `save_id` parameter makes the difference between inserting a new dataset int
 ##### del
 It is possible to delete an entry from the database with the `del` parameter. The following values are possible:
 * `del=concert`
+
 ##### del_id
-The `del_id`specifies which database entry of the indicated type is deleted.
+The `del_id` specifies which database entry of the indicated type is deleted.
 #### special
 Values of `special` are automatically replaced by ordinary non-special parameters. This allows to choose those parameters from a drop down menu within the software. The following replacements are implemented in the *rpmetaller-editor*. Sometimes have to be combined with a correponding data id.
 * `special=concert`
@@ -64,30 +64,30 @@ The `month` parameter in the format YYYY-MM is relevant for sites displaying a c
 ### SPECIFIC_PARAMETERS
 * *`concert`*
   * `name`: Name of the concert or festival.
-  * `date`: Date of concert orthe first day of the festival.
+  * `date_start`: Date of concert or the first day of the festival.
   * `length`: Lenght of the concert in days.
-  * `city_id`: “1” for a new city. Otherwise ignored.
-  * `city_name`: Name of a new city.
+  * `city_id`: 1 of a new city. Otherwise ignored.
+  * `city_new_name`: Name of a new city. Is only accepted if `city_id` is 1.
   * `venue_id`: Id of the venue where the concert takes place.
-  * `venue_name`: Name of the new venue. Is only accepted if `venue_id` is “1”.
+  * `venue_new_name`: Name of the new venue. Is only accepted if `venue_id` or `city_id` is 1.
   * `venue_url`: Standard url of the new venue.
   * `url`: Link to official information about the concert.
-  * `first_sign[]`: First character of the band name. Must not be provided.
+  * `first_sign[]`: First character of the band name.
   * `band_id[]`: Id of a band.
-  * `band_new_name[]`: Name of a new band which is not saved in the dababase yet. Is only accepted if band_id[] is “3”.
+  * `band_new_name[]`: Name of a new band which is not saved in the dababase yet. Is only accepted if the band_id in the same row is 3.
   * `addition[]`: Further information about the set of the band.
 
-Each array listed above must be the same lenght.
+Each array listed above must have the same lenght and every array except the band_id[] array must be provided.
 * *`band`*
   * `name`: Name of the band.
-  * `nazi`: Export status of the band. 0 -> is exported, 1 is not exported.
+  * `visible`: Export status of the band. 1 -> is exported, 0 is not exported.
 * *`city`*
   * `name`: Name of the city.
 * *`venue`*
   * `name`: Name of the venue.
-  * `city_id`: Id of the city in which the venue is located.
-  * `url`: Standard url of the venue.
+  * `city_id`: Id of the city in which the venue is located (Only relevant by adding a new venue).
+  * `url`: Default url of the venue.
 * *`pref`*
-  * `lang`: Language of the concert exports (Currently de_DE or default).
+  * `export_lang`: Language of the concert exports (Currently de_DE or default).
   * `header`: Header of the export page.
   * `footer`: Footer of the export page.
