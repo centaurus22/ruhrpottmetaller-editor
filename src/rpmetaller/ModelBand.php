@@ -23,7 +23,7 @@ class ModelBand
     /**
      * Get band data from the database
      *
-     * @param initial $string Initial letter of the band name in capital letters
+     * @param string $initial Initial letter of the band name in capital letters
      *  or an empty string for all bands or a % for bands witch names start with
      *  a special character.
      * @return array Array with band data.

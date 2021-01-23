@@ -212,7 +212,7 @@ class ModelConcert
      *
      * @param integer id Id of the concert on which the band is playing.
      * @param integer $band_id Band id of the band which is playing.
-     * @param addition $string Additional information about the appearance.
+     * @param string $addition Additional information about the appearance.
      * @return integer Returns 1 for a successful operation, 0 for a non-existent
      *  id, -1 for an error.
      */

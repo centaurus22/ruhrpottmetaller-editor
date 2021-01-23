@@ -13,7 +13,7 @@ class UtilityConnect
     /**
      * Make the database connection.
      *
-     * @return link identifier
+     * @return object
      */
     public static function db_connect()
     {

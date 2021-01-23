@@ -944,7 +944,7 @@ class Controller
         $this->setRequestEditor($concert, 'city_id', $model_involved);
         $this->setRequestEditor($concert, 'url', $model_involved);
 
-        if (!isset($request['length'])) {
+        if (!isset($this->request['length'])) {
             if ($model_involved == true and $concert[0]['date_end'] != '') {
                 $date_start = strtotime($concert[0]['date_start']);
                 $date_end = strtotime($concert[0]['date_end']);
@@ -969,7 +969,6 @@ class Controller
          */
         if (isset($this->request['band_id'])):
             $length_lineup = count($this->request['band_id']);
-            $new_band_id = 3;
             $first_sign_check_result = $this->checkLineupArray(
                 'first_sign',
                 $length_lineup
@@ -994,7 +993,7 @@ class Controller
             $Session_Model->delLineUp();
             for (
                 $band_index = 0;
-                $band_index < count($request['band_id']);
+                $band_index < count($this->request['band_id']);
                 $band_index++
             ):
                 $Session_Model->setBandLineUp($band_index);
@@ -1027,7 +1026,7 @@ class Controller
                     );
                 else:
                     $Band_Model = new ModelBand($this->mysqli);
-                    $band_id = $request['band_id'][$band_index];
+                    $band_id = $this->request['band_id'][$band_index];
                     $band = $Band_Model->getBand($band_id);
                     $first_sign = $this->getFirstSign($band[0]['name']);
                     $Session_Model->updateBandLineUp(
@@ -1484,8 +1483,6 @@ class Controller
                         $timeformat_with_month,
                         $time_start
                     );
-                    //Switch the display status
-                    $display_id = $this->request['display_id'];
                     $template = 'concert_export';
                 } elseif ($type == 'export') {
                     //Export of many concerts
@@ -1502,7 +1499,6 @@ class Controller
                     );
                     $template = 'default';
                 }
-                $date = date('Y-m-d', $time_start);
                 if ($concerts[$concert_index]['date_end'] != '') {
                     $time_end = strtotime($concerts[$concert_index]['date_end']);
                     if ($type == 'concert') {
