@@ -135,7 +135,7 @@ class Controller
             switch($this->request['edit']) {
             case 'concert':
                 //nobreak
-            case 'default':
+            default:
                 $this->passDataToConcertEditor();
                 break;
             }
@@ -977,8 +977,8 @@ class Controller
                 'addition',
                 $length_lineup
             );
-
-            if (in_array($this->request['band_id'])) {
+            $new_band_id = 3;
+            if (in_array($new_band_id, $this->request['band_id'])) {
                 $band_new_name_check_result = $this->checkLineupArray(
                     'band_new_name',
                     $length_lineup
@@ -1387,7 +1387,7 @@ class Controller
             and $request[$type . '_new_name'] != ''
         ) {
             $type_uc = ucfirst($type);
-            $classname = 'Model' . $type_uc;
+            $classname = 'rpmetaller\Model' . $type_uc;
             $Property_Model = new $classname($this->mysqli);
             if ($type == 'city') {
                 $result = $Property_Model->setCity($request['city_new_name']);

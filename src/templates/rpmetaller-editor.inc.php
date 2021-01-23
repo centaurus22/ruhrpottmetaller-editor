@@ -21,6 +21,7 @@
         );
     }
 ?>
+			</nav>
             <div class="noscript">
             	<noscript>Please activate JavaScript!</noscript>
             </div>
