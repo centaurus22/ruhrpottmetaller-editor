@@ -4,6 +4,5 @@ queries:
 paths-ignore:
  - database
  - docs
- - php/classes
- - php/images
- - php/templates 
+ - src/images
+ - src/vendor
