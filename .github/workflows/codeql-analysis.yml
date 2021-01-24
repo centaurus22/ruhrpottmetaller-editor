@@ -22,9 +22,6 @@ jobs:
         # a pull request then we can checkout the head.
         fetch-depth: 2
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
