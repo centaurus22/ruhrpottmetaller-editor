@@ -1,1 +1,7 @@
-php/db_preferences.inc.php
+db_preferences.inc.php
+tags
+tags.lock
+
+.buildpath
+.project
+.settings
