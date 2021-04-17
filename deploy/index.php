@@ -3,11 +3,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
-// Merge $_GET und $_POST
 $request = array_merge($_GET, $_POST);
-// Create controller object
-$Controller = new rpmetaller\Controller($request);
-// Display the output of web application.
+$Controller = new ruhrpottmetaller\Controller($request);
 echo $Controller->getOutput();
