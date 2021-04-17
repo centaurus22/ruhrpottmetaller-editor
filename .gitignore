@@ -3,3 +3,6 @@ tags
 tags.lock
 
 .idea
+/composer.phar
+/deploy/composer.lock
+/.phpunit.result.cache

@@ -1,7 +1,12 @@
 {
+    "name": "ruhrpottmetaller/ruhrpottmetaller-editor",
+    "description":"A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.",
     "autoload": {
         "psr-4": {
-            "rpmetaller\\": "rpmetaller"
+            "ruhrpottmetaller\\": "ruhrpottmetaller"
         }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "9.5.4"
     }
 }
