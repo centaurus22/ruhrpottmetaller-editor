@@ -1,21 +1,10 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller\DataManagement;
 
-//use mysqli;
-
-/**
- * Class to make a database connection
- * Version 1.0.0
- */
 class UtilityConnect
 {
-    /**
-     * Make the database connection.
-     *
-     * @return object
-     */
-    public static function db_connect()
+    public static function db_connect(): \mysqli
     {
         $dbhost = '';
         $dbuser = '';

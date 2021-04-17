@@ -1,6 +1,7 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller;
+
 
 //The controller
 class Controller

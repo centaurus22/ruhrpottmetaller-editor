@@ -1,6 +1,6 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller\DataManagement;
 
 /**
  * Class to acces and maintain venue data.
