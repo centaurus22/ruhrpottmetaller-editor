@@ -1,5 +1,8 @@
 <?php
+
+
 namespace ruhrpottmetaller\DataManagement;
+
 
 class DataBook
 {
