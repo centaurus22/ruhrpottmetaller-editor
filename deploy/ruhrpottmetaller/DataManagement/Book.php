@@ -4,7 +4,7 @@
 namespace ruhrpottmetaller\DataManagement;
 
 
-class DataBook
+class Book
 {
     private array $data = array();
 

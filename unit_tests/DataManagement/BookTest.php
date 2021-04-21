@@ -2,17 +2,17 @@
 
 namespace DataManagement;
 
-use ruhrpottmetaller\DataManagement\DataBook;
+use ruhrpottmetaller\DataManagement\Book;
 use PHPUnit\Framework\TestCase;
 
 
-class DataBookTest extends TestCase
+class BookTest extends TestCase
 {
     private object $stub;
 
     public function setUp(): void
     {
-        $this->stub = new DataBook();
+        $this->stub = new Book();
     }
 
     public function testGetDataRow_GetWithoutSet() {
