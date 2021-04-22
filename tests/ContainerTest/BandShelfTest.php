@@ -1,10 +1,10 @@
 <?php
 
-namespace DataManagement;
+namespace ContainerTest;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\DataManagement\BandShelf;
-use ruhrpottmetaller\DataManagement\Book;
+use ruhrpottmetaller\Container\BandShelf;
+use ruhrpottmetaller\Container\Book;
 
 class BandShelfTest extends TestCase
 {

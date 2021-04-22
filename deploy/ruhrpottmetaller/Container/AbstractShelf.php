@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\DataManagement;
+namespace ruhrpottmetaller\Container;
 
 abstract class AbstractShelf
 {

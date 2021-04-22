@@ -1,11 +1,10 @@
 <?php
 
-namespace DataManagement;
+namespace ContainerTest;
 
-use ruhrpottmetaller\DataManagement\AbstractShelf;
 use PHPUnit\Framework\TestCase;
-
-use ruhrpottmetaller\DataManagement\Book;
+use ruhrpottmetaller\Container\Book;
+use ruhrpottmetaller\Container\AbstractShelf;
 
 use function PHPUnit\Framework\assertEquals;
 use function PHPUnit\Framework\assertTrue;

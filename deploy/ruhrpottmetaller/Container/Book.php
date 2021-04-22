@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ruhrpottmetaller\DataManagement;
+namespace ruhrpottmetaller\Container;
 
 
 class Book

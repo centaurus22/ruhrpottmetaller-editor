@@ -1,8 +1,8 @@
 <?php
 
-namespace DataManagement;
+namespace ContainerTest;
 
-use ruhrpottmetaller\DataManagement\Book;
+use ruhrpottmetaller\Container\Book;
 use PHPUnit\Framework\TestCase;
 
 
