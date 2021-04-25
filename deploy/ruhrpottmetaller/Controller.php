@@ -4,10 +4,10 @@ namespace ruhrpottmetaller;
 
 class Controller
 {
-    private array $request;
+    private array $requestParameters;
 
-    public function __construct(array $request)
+    public function __construct(array $requestParameters)
     {
-        $this->request = $request;
+        $this->requestParameters = $requestParameters;
     }
 }
