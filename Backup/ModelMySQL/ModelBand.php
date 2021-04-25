@@ -3,12 +3,11 @@
 namespace ruhrpottmetaller\DataManagement;
 
 /**
- * Class to acces and manipulate the data in the band table.
+ * Class to access and manipulate the data in the band table.
  * Version 1.0.0
  */
 class ModelBand
 {
-    //Link identifier for the connection to the database
     private $mysqli = null;
 
     /**
@@ -28,46 +27,7 @@ class ModelBand
      *  a special character.
      * @return array Array with band data.
      */
-    public function getBands($initial)
-    {
-        $mysqli = $this->mysqli;
-        switch($initial) {
-            case '':
-                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
-                    ORDER BY name');
-                break;
-            case '%':
-                $stmt = $mysqli->prepare('SELECT id, name, visible from band
-                    WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
-                break;
-            default:
-                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
-                    WHERE name LIKE ? ORDER BY name');
-                $initial = $initial . '%';
-                $stmt->bind_param('s', $initial);
-        }
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-        return $result;
-    }
 
-    /**
-     * Get band data from one band with the submitted id.
-     *
-     * @param integer $id Id of the band.
-     * @return array Array with band data.
-     */
-    public function getBand($id)
-    {
-        $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name, visible FROM band WHERE id=?');
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-        return $result;
-    }
 
     /**
      * Insert data about a band into the database

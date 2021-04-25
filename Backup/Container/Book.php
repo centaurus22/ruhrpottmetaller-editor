@@ -6,9 +6,9 @@ namespace ruhrpottmetaller\Container;
 
 class Book
 {
-    private array $data = array();
+    private array $data;
 
-    public function setDataRow(array $data): void
+    public function __construct(array $data)
     {
         $this->data = $data;
     }

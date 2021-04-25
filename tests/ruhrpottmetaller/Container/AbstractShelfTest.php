@@ -1,6 +1,6 @@
 <?php
 
-namespace ContainerTest;
+namespace ruhrpottmetaller\Container;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Container\Book;
@@ -13,10 +13,10 @@ class AbstractShelfTest extends TestCase
 {
     private object $stub;
 
-    public function __construct(?string $name = null, array $data = [], $dataName = '')
+    protected function setUp(): void
     {
-        parent::__construct($name, $data, $dataName);
         $this->stub = $this->getMockForAbstractClass(AbstractShelf::class);
+        parent::setUp();
     }
 
     public function testGetNextBook_ReturnsFalseIfEmptyShelf()
@@ -27,14 +27,14 @@ class AbstractShelfTest extends TestCase
 
     public function testAddBook_ReturnsTrueIfBookObjectProvided()
     {
-        $Data_Book = new Book();
+        $Data_Book = new Book(array());
         $result = $this->stub->addBook($Data_Book);
         self::assertTrue($result);
     }
 
     public function testAddBookGetNextBook_AfterAddingBookGetNextBookReturnsSameBook()
     {
-        $Data_Book = new Book();
+        $Data_Book = new Book(array());
         $this->stub->addBook($Data_Book);
         $result = $this->stub->getNextBook();
         self::assertIsObject($result);
@@ -43,7 +43,7 @@ class AbstractShelfTest extends TestCase
 
     public function testAddBookGetNextBook_AfterAddingOneBookGetOneBookAndThenFalse()
     {
-        $Data_Book = new Book();
+        $Data_Book = new Book(array());
         $this->stub->addBook($Data_Book);
         $result_1 = $this->stub->getNextBook();
         $result_2 = $this->stub->getNextBook();
@@ -53,10 +53,8 @@ class AbstractShelfTest extends TestCase
 
     public function testAddBookGetNextBook_AddTwoArraysAndGetArraysInSameSequence()
     {
-        $Data_Book_1 = new Book();
-        $Data_Book_1->setDataRow(array("99"));
-        $Data_Book_2 = new Book();
-        $Data_Book_2->setDataRow(array("23"));
+        $Data_Book_1 = new Book(array("99"));
+        $Data_Book_2 = new Book(array("23"));
         $this->stub->addBook($Data_Book_1);
         $this->stub->addBook($Data_Book_2);
         $Result_Object_1 = $this->stub->getNextBook();

@@ -29,7 +29,7 @@ abstract class AbstractShelf
         }
     }
 
-    private function testBook(Book $book): bool
+    protected function testBook(Book $book): bool
     {
         if (is_null($this->bookDefinitionRequiredValues)) {
             $this->bookDefinitionRequiredValues = $this->getBookDefinitionRequiredValues();
