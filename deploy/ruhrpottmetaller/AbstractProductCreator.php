@@ -4,6 +4,6 @@ namespace ruhrpottmetaller;
 
 abstract class AbstractProductCreator
 {
-    abstract public function factoryMethod();
+    abstract public function factoryMethod(): ProductStorage;
 
 }

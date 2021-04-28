@@ -10,4 +10,9 @@ class Controller
     {
         $this->requestParameters = $requestParameters;
     }
+
+    public function getOutput(): string
+    {
+
+    }
 }

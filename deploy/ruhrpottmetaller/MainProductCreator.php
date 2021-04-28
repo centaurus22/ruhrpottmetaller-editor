@@ -11,7 +11,7 @@ class MainProductCreator extends AbstractProductCreator
         $this->requestParameters = $requestParameters;
     }
 
-    public function factoryMethod(): AbstractProduct
+    public function factoryMethod(): ProductStorage
     {
     }
 }
