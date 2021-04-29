@@ -11,12 +11,12 @@ If none of the parameters are specified, the *rpmetaller-editor* only shows the 
 Only one of the two parameters `display` and `edit` can be provided. If both are sent, the `èdit` parameter overwrites the `display` option.
 #### display
 The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved data. The following values are possible:
-* `display=concert`
+* `display=event`
 * `display=band`
 * `display=city`
 * `display=venue`
 * `display=export`
-* `display=pref`
+* `display=preferences`
 * `display=license`
 
 ##### display_id

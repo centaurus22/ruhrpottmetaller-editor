@@ -5,4 +5,5 @@ namespace ruhrpottmetaller;
 class AbstractProduct
 {
 
+
 }
