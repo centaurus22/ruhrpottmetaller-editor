@@ -20,8 +20,9 @@ class ProductFactory
 
     public function factoryMethod(): Storage
     {
-        $productGetterClassName = $this->getProductGetterClassName(product_name: $this->product_name);
-        $productClassName = $this->getProductClassName(product_name: $this->product_name);
+        $namespace = "ruhrpottmetaller\\Products\\";
+        $productGetterClassName = $namespace . $this->getProductGetterClassName(product_name: $this->product_name);
+        $productClassName = $namespace . $this->getProductClassName(product_name: $this->product_name);
         $productGetter = new $productGetterClassName(
             mysqliConnect: new MysqliConnect(db_config_file: "includes/db_preferences.inc.php"),
             productStorage: new Storage(),
@@ -34,7 +35,7 @@ class ProductFactory
 
     public function setProductName($product_name):void
     {
-        if ($this->isProductName(product_name: $product_name)) {
+        if (!$this->isProductName(product_name: $product_name)) {
             throw new \Exception('Product name not found!');
         }
         $this->product_name = $product_name;
@@ -52,8 +53,8 @@ class ProductFactory
 
     protected function isProductName(string $product_name): bool
     {
-        $product_class_mame = $this->getProductClassName(product_name: $product_name);
-        return in_array($product_class_mame, $this->getFilesInProductClassFolder());
+        $product_class_file_name = $this->getProductClassName(product_name: $product_name) . '.php';
+        return in_array($product_class_file_name, $this->getFilesInProductClassFolder());
     }
 
     protected function getFilesInProductClassFolder(): array
@@ -63,12 +64,12 @@ class ProductFactory
 
     protected function getProductClassName(string $product_name): string
     {
-        return ucfirst(string: $product_name) . ".php";
+        return ucfirst(string: $product_name);
     }
 
     protected function getProductGetterClassName(string $product_name): string
     {
-        return 'Get' . ucfirst(string: $product_name) . ".php";
+        return 'Get' . ucfirst(string: $product_name);
     }
 
 
