@@ -12,7 +12,6 @@ class Band implements IProduct
 
     public function __clone(): void
     {
-
     }
 
     public function setInitialData(array $product_data): void
@@ -20,5 +19,24 @@ class Band implements IProduct
         $this->id = $product_data['id'];
         $this->name = $product_data['name'];
         $this->visible = $product_data['visible'];
+    }
+
+    public function prepareData(): void
+    {
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getVisibilityStatus(): bool
+    {
+        return $this->visible;
     }
 }

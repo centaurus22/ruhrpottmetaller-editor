@@ -15,7 +15,7 @@ class StorageTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->productFactory = new ProductFactory(product_class_folder: '');
+        $this->productFactory = new ProductFactory();
     }
 
     public function testGetNextProduct_ReturnsMinusOneIfNoProductIsAddedBefore()

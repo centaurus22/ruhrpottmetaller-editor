@@ -16,5 +16,9 @@ class GetCommand extends AbstractCommand
     public function execute()
     {
         $productStorage = $this->productFactory->factoryMethod();
+        while ($product = $productStorage->getNextItem())
+        {
+            $product->prepareData();
+        }
     }
 }

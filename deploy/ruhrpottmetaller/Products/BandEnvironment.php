@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Products;
 use mysqli;
 use mysqli_stmt;
 
-class GetBand extends AbstractGetProduct
+class BandEnvironment extends AbstractProductEnvironment
 {
     protected function getPreparedMysqliStatement(mysqli $mysqli): mysqli_stmt
     {

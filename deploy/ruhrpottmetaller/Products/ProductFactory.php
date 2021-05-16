@@ -14,16 +14,16 @@ class ProductFactory
     public function factoryMethod(): Storage
     {
         $namespace = "ruhrpottmetaller\\Products\\";
-        $productGetterClassName = $namespace . $this->getProductGetterClassName(product_name: $this->product_name);
+        $productEnvironmentClassName = $namespace . $this->getProductEnvironmentClassName(product_name: $this->product_name);
         $productClassName = $namespace . $this->getProductClassName(product_name: $this->product_name);
-        $productGetter = new $productGetterClassName(
+        $productEnvironment = new $productEnvironmentClassName(
             mysqliConnect: new MysqliConnect(db_config_file: "includes/db_preferences.inc.php"),
             productStorage: new Storage(),
             product: new $productClassName(),
             filters: $this->filters,
             display_type: $this->display_type
         );
-        return $productGetter->getProducts();
+        return $productEnvironment->getProducts();
     }
 
     public function setProductName($product_name):void
@@ -46,10 +46,8 @@ class ProductFactory
         return ucfirst(string: $product_name);
     }
 
-    protected function getProductGetterClassName(string $product_name): string
+    protected function getProductEnvironmentClassName(string $product_name): string
     {
-        return 'Get' . ucfirst(string: $product_name);
+        return ucfirst(string: $product_name) . 'Environment';
     }
-
-
 }

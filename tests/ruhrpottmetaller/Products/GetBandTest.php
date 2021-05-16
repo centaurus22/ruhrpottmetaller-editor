@@ -21,7 +21,7 @@ class GetBandTest extends TestCase
     public function testGetProducts_ReturnAStorageObjectWhichContainsAMinimumOfABandObject()
     {
         $productStorage = new Storage();
-        $bandGetter = new GetBand(
+        $bandGetter = new BandEnvironment(
             $this->mysqliConnect,
             $productStorage,
             product: $this->product,

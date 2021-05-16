@@ -7,7 +7,7 @@ use ruhrpottmetaller\Products\IProduct;
 use ruhrpottmetaller\MysqliConnect;
 use ruhrpottmetaller\Storage;
 
-abstract class AbstractGetProduct
+abstract class AbstractProductEnvironment
 {
     protected MysqliConnect $mysqliConnect;
     protected Storage $productStorage;
