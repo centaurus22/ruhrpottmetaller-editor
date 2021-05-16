@@ -2,30 +2,23 @@
 
 namespace ruhrpottmetaller;
 
+use ruhrpottmetaller\Commands\InterpreterCommandFactory;
+
 class Controller
 {
-    private array $requestParameters;
-    private object $mainProductStorage;
+    private InterpreterCommandFactory $interpreterCommandFactory;
 
-    public function __construct(array $requestParameters)
-    {
-        $this->requestParameters = $requestParameters;
+    public function __construct(
+        InterpreterCommandFactory $interpreterCommandFactory
+    ) {
+        $this->interpreterCommandFactory = $interpreterCommandFactory;
     }
 
-    public function getOutput(): string
+    public function printOutput(): void
     {
-        $mainProductCreator = new MainProductCreator($this->requestParameters);
-        $this->mainProductStorage = $mainProductCreator->factoryMethod();
-
-    }
-
-    private function displayProducts(): string
-    {
-
-    }
-
-    private function displayForm(): string
-    {
-
+        $commandStorage = $this->interpreterCommandFactory->factoryMethod();
+        while ($command = $commandStorage->getNextItem()) {
+            $command->execute();
+        }
     }
 }

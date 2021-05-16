@@ -1,10 +1,10 @@
 <?php
 
 //hostname
-$dbhost = '127.0.0.1';
+$db_host = '127.0.0.1';
 //database
 $db = '';
 //username
-$dbuser = '';
+$db_user = '';
 //password
-$dbuserpass = '';
+$db_user_password = '';
