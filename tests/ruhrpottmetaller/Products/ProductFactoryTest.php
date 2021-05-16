@@ -10,7 +10,7 @@ class ProductFactoryTest extends TestCase
     public function  testFactoryMethod_ProductFactoryUsingBandProductNoFilterAndDisplayTypeEqualsDisplayReturnsAStorageContainingBandObject()
     {
         chdir('../../../deploy/');
-        $productFactory = new ProductFactory("ruhrpottmetaller/Products/");
+        $productFactory = new ProductFactory();
         $productFactory->setFilters(array());
         $productFactory->setDisplayType("display");
         $productFactory->setProductName("band");

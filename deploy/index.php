@@ -13,6 +13,8 @@ $request_parameters = array_merge($_GET, $_POST);
 $interpreterCommandFactory = new InterpreterCommandFactory(
     commandStorage: new Storage(),
     request_parameters: $request_parameters,
-    productFactory: new ProductFactory(product_class_folder: 'ruhrpottmetaller/Products/')
+    productFactory: new ProductFactory(),
+    product_class_folder: 'ruhrpottmetaller/Products'
+
 );
 $controller = new ruhrpottmetaller\Controller(interpreterCommandFactory: $interpreterCommandFactory);

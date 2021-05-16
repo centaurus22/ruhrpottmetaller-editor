@@ -7,16 +7,9 @@ use ruhrpottmetaller\Storage;
 
 class ProductFactory
 {
-    protected string $product_class_folder;
     protected string $product_name;
     protected string $display_type;
     protected array $filters;
-
-    public function __construct(string $product_class_folder)
-    {
-        $this->product_class_folder = $product_class_folder;
-    }
-
 
     public function factoryMethod(): Storage
     {
@@ -35,9 +28,6 @@ class ProductFactory
 
     public function setProductName($product_name):void
     {
-        if (!$this->isProductName(product_name: $product_name)) {
-            throw new \Exception('Product name not found!');
-        }
         $this->product_name = $product_name;
     }
 
@@ -49,17 +39,6 @@ class ProductFactory
     public function setDisplayType($display_type):void
     {
         $this->display_type = $display_type;
-    }
-
-    protected function isProductName(string $product_name): bool
-    {
-        $product_class_file_name = $this->getProductClassName(product_name: $product_name) . '.php';
-        return in_array($product_class_file_name, $this->getFilesInProductClassFolder());
-    }
-
-    protected function getFilesInProductClassFolder(): array
-    {
-        return scandir(directory: $this->product_class_folder);
     }
 
     protected function getProductClassName(string $product_name): string
