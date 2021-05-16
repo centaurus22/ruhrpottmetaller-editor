@@ -23,7 +23,7 @@ class ProductFactory
         $productGetterClassName = $this->getProductGetterClassName(product_name: $this->product_name);
         $productClassName = $this->getProductClassName(product_name: $this->product_name);
         $productGetter = new $productGetterClassName(
-            mysqliConnect: new MysqliConnect(db_config_file: "../../includes/db_preferences.inc.php"),
+            mysqliConnect: new MysqliConnect(db_config_file: "includes/db_preferences.inc.php"),
             productStorage: new Storage(),
             product: new $productClassName(),
             filters: $this->filters,
