@@ -62,5 +62,4 @@ abstract class AbstractProductEnvironment
     }
 
     abstract protected function getPreparedMysqliStatement(mysqli $mysqli);
-
 }

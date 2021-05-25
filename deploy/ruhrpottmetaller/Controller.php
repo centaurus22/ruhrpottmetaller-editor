@@ -17,8 +17,9 @@ class Controller
     public function printOutput(): void
     {
         $commandStorage = $this->interpreterCommandFactory->factoryMethod();
-        while ($command = $commandStorage->getNextItem()) {
-            $command->execute();
+        while (!$commandStorage->isDone()) {
+            $commandStorage->getCurrentItem()->execute();
+            $commandStorage->setPointerToNextItem();
         }
     }
 }
