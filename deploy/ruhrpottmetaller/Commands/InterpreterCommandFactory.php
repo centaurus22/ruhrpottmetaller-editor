@@ -10,19 +10,17 @@ use ruhrpottmetaller\Storage;
 class InterpreterCommandFactory extends AbstractCommandFactory
 {
     private array $request_parameters;
-    private string $product_class_folder;
+    private  const PRODUCT_CLASS_FOLDER = 'ruhrpottmetaller/Products/';
     private string $display_type;
 
     public function __construct(
         Storage $commandStorage,
         array $request_parameters,
         ProductFactory $productFactory,
-        string $product_class_folder,
     ) {
         $this->commandStorage = $commandStorage;
         $this->request_parameters = $request_parameters;
         $this->productFactory = $productFactory;
-        $this->product_class_folder = $product_class_folder;
     }
 
     public function factoryMethod(): Storage
@@ -89,7 +87,7 @@ class InterpreterCommandFactory extends AbstractCommandFactory
 
     protected function getFilesInProductClassFolder(): array
     {
-        return scandir(directory: $this->product_class_folder);
+        return scandir(directory: self::PRODUCT_CLASS_FOLDER);
     }
 
 }

@@ -8,13 +8,8 @@ use mysqli;
 
 class MysqliConnect
 {
-    private string $db_config_file;
+    private string $db_config_file = 'includes/db_preferences.inc.php';
     private mysqli|null $mysqli= null;
-
-    public function __construct(string $db_config_file)
-    {
-        $this->db_config_file = $db_config_file;
-    }
 
     private function initMysqli(): mysqli
     {

@@ -17,7 +17,7 @@ class ProductFactory
         $productEnvironmentClassName = $namespace . $this->getProductEnvironmentClassName(product_name: $this->product_name);
         $productClassName = $namespace . $this->getProductClassName(product_name: $this->product_name);
         $productEnvironment = new $productEnvironmentClassName(
-            mysqliConnect: new MysqliConnect(db_config_file: "includes/db_preferences.inc.php"),
+            mysqliConnect: new MysqliConnect(),
             productStorage: new Storage(),
             product: new $productClassName(),
             filters: $this->filters,

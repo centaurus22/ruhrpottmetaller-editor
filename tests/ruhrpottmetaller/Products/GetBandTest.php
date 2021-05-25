@@ -14,7 +14,8 @@ class GetBandTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->mysqliConnect = new MysqliConnect('../../../deploy/includes/db_preferences.inc.php');
+        chdir('deploy/');
+        $this->mysqliConnect = new MysqliConnect();
         $this->product = new Band();
     }
 
@@ -30,7 +31,7 @@ class GetBandTest extends TestCase
         );
         $productStorage = $bandGetter->getProducts();
         self::assertInstanceOf(Storage::class, $productStorage);
-        self::assertInstanceOf(Band::class, $productStorage->getNextItem());
+        self::assertInstanceOf(Band::class, $productStorage->getCurrentItem());
     }
 
 }

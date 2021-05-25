@@ -14,6 +14,7 @@ class InterpreterCommandFactoryTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        chdir('deploy/');
 
         $this->productFactory = new ProductFactory();
         $this->commandStorage = new Storage();
@@ -25,7 +26,6 @@ class InterpreterCommandFactoryTest extends TestCase
             $this->commandStorage,
             array(),
             $this->productFactory,
-            product_class_folder: '../../../deploy/ruhrpottmetaller/Products/'
         );
         $commandStorage = $interpreterCommandFactory->factoryMethod();
         self::assertInstanceOf(Storage::class, $commandStorage);
@@ -37,10 +37,9 @@ class InterpreterCommandFactoryTest extends TestCase
             $this->commandStorage,
             array(),
             $this->productFactory,
-            product_class_folder: '../../../deploy/ruhrpottmetaller/Products/'
         );
         $commandStorage = $interpreterCommandFactory->factoryMethod();
-        self::assertInstanceOf(GetCommand::class, $commandStorage->getNextItem());
+        self::assertInstanceOf(GetCommand::class, $commandStorage->getCurrentItem());
     }
 
     public function testFactoryMethod_provideRequestWithDisplayEqualsBandAndGetACommandStorageContainingAGetCommand()
@@ -49,10 +48,9 @@ class InterpreterCommandFactoryTest extends TestCase
             $this->commandStorage,
             array('display' => 'band'),
             $this->productFactory,
-            product_class_folder: '../../../deploy/ruhrpottmetaller/Products/'
         );
         $commandStorage = $interpreterCommandFactory->factoryMethod();
-        self::assertInstanceOf(GetCommand::class, $commandStorage->getNextItem());
+        self::assertInstanceOf(GetCommand::class, $commandStorage->getCurrentItem());
     }
 
     public function testFactoryMethod_provideRequestWithEditEqualsBandAndGetACommandStorageContainingAGetCommand()
@@ -61,10 +59,9 @@ class InterpreterCommandFactoryTest extends TestCase
             $this->commandStorage,
             array('edit' => 'band'),
             $this->productFactory,
-            product_class_folder: '../../../deploy/ruhrpottmetaller/Products/'
         );
         $commandStorage = $interpreterCommandFactory->factoryMethod();
-        self::assertInstanceOf(GetCommand::class, $commandStorage->getNextItem());
+        self::assertInstanceOf(GetCommand::class, $commandStorage->getCurrentItem());
     }
 
     public function testFactoryMethod_provideRequestWithADisplayFilterAndGetACommandStorageContainingAGetCommand()
@@ -73,9 +70,8 @@ class InterpreterCommandFactoryTest extends TestCase
             $this->commandStorage,
             array('display_id' => 44),
             $this->productFactory,
-            product_class_folder: '../../../deploy/ruhrpottmetaller/Products/'
         );
         $commandStorage = $interpreterCommandFactory->factoryMethod();
-        self::assertInstanceOf(GetCommand::class, $commandStorage->getNextItem());
+        self::assertInstanceOf(GetCommand::class, $commandStorage->getCurrentItem());
     }
 }
