@@ -11,19 +11,18 @@ class ProductFactory
     protected string $display_type;
     protected array $filters;
 
-    public function factoryMethod(): Storage
+    public function factoryMethod(): AbstractProductEnvironment
     {
         $namespace = "ruhrpottmetaller\\Products\\";
         $productEnvironmentClassName = $namespace . $this->getProductEnvironmentClassName(product_name: $this->product_name);
         $productClassName = $namespace . $this->getProductClassName(product_name: $this->product_name);
-        $productEnvironment = new $productEnvironmentClassName(
+        return new $productEnvironmentClassName(
             mysqliConnect: new MysqliConnect(),
             productStorage: new Storage(),
             product: new $productClassName(),
             filters: $this->filters,
             display_type: $this->display_type
         );
-        return $productEnvironment->getProducts();
     }
 
     public function setProductName($product_name):void
