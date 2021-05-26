@@ -1,7 +1,7 @@
 <?php
 
 
-namespace ruhrpottmetaller;
+namespace ruhrpottmetaller\Storage;
 
 
 use ruhrpottmetaller\Commands\AbstractCommand;

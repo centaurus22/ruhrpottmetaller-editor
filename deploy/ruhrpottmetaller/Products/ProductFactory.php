@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Products;
 
 use ruhrpottmetaller\MysqliConnect;
-use ruhrpottmetaller\Storage;
+use ruhrpottmetaller\Storage\Storage;
 
 class ProductFactory
 {

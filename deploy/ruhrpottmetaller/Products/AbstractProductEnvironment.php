@@ -3,9 +3,8 @@
 namespace ruhrpottmetaller\Products;
 
 use mysqli;
-use ruhrpottmetaller\Products\IProduct;
 use ruhrpottmetaller\MysqliConnect;
-use ruhrpottmetaller\Storage;
+use ruhrpottmetaller\Storage\Storage;
 
 abstract class AbstractProductEnvironment
 {

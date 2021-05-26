@@ -2,7 +2,7 @@
 
 use ruhrpottmetaller\Commands\InterpreterCommandFactory;
 use ruhrpottmetaller\Products\ProductFactory;
-use ruhrpottmetaller\Storage;
+use ruhrpottmetaller\Storage\Storage;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);

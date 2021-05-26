@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Commands;
 
 
 use ruhrpottmetaller\Products\ProductFactory;
-use ruhrpottmetaller\Storage;
+use ruhrpottmetaller\Storage\Storage;
 
 class InterpreterCommandFactory extends AbstractCommandFactory
 {

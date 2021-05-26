@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller;
+namespace ruhrpottmetaller\Storage;
 
 
 use Exception;
