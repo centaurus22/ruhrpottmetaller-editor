@@ -14,7 +14,7 @@ class ProductFactoryTest extends TestCase
         $productFactory->setFilters(array());
         $productFactory->setDisplayType("display");
         $productFactory->setProductName("band");
-        $productStorage = $productFactory->factoryMethod();
+        $productStorage = $productFactory->factoryMethod()->getProducts();
         self::assertInstanceOf(Storage::class, $productStorage);
         self::assertInstanceOf(Band::class, $productStorage->getCurrentItem());
     }
