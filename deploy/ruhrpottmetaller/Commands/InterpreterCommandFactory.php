@@ -81,13 +81,6 @@ class InterpreterCommandFactory extends AbstractCommandFactory
 
     protected function isProductName(string $product_name): bool
     {
-        $product_class_file_name = ucfirst($product_name) . '.php';
-        return in_array($product_class_file_name, $this->getFilesInProductClassFolder());
+        return is_file(self::PRODUCT_CLASS_FOLDER . ucfirst($product_name) . '.php');
     }
-
-    protected function getFilesInProductClassFolder(): array
-    {
-        return scandir(directory: self::PRODUCT_CLASS_FOLDER);
-    }
-
 }
