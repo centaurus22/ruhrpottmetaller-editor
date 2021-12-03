@@ -1,5 +1,6 @@
 db_preferences.inc.php
-tags
-tags.lock
 
 .idea
+/.phpunit.result.cache
+/deploy/vendor/
+/deploy/composer.lock

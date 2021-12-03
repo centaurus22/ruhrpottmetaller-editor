@@ -3,7 +3,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include 'vendor/autoload.php';
+include '../vendor/autoload.php';
 
 // Merge $_GET und $_POST
 $request = array_merge($_GET, $_POST);

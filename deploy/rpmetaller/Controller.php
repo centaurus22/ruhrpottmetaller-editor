@@ -1378,7 +1378,6 @@ class Controller
      * request array.
      *
      * @param string $type Property which is checked.
-     * @param array $request Combined array containing GET and POST data.
      * @return string String witch contains possible error messages.
      */
     private function setNewProperty($type)
