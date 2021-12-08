@@ -1,5 +1,5 @@
 body {
-	margin: 0px;
+	margin: 0;
     background-color: WhiteSmoke;
 }
 
@@ -13,15 +13,15 @@ h1 {
 }
 
 .content_small {
-	padding: 75px 0px 35px 0px;
+	padding: 75px 0 35px 0;
 }
 
 .content_large {
-	padding: 50px 0px 35px 0px;
+	padding: 50px 0 35px 0;
 }
 
 div.leiste_top {
-	top: 0px;
+	top: 0;
     background-color: gray;
     min-width: 600px;
     width: 100%;
@@ -50,11 +50,11 @@ nav a {
 div#leiste_buttons {
 	height: 25px;
 	top: 35px;
-	padding: 5px 0px 5px 5px;
+	padding: 5px 0 5px 5px;
 	position: fixed;
 	min-width: 400px;
 	width: 100%;
-	margin: 0px;
+	margin: 0;
 	background-color: lightgrey;
 }
 
@@ -62,17 +62,16 @@ div#leiste_buttons button, #button, #leiste_buttons select {
 	float: left;
 	height: 25px;
 	/*width: 40px;*/
-	padding: 0px 0px 0px 0px;
+	padding: 0 0 0 0;
 	font-size: 12px;
 	font-weight: bold;
 	margin-right: 5px;
 }
 
 .month {
-	border: 1px;
 	margin: 1px;
 	padding: 2px 5px 2px 5px;
-	border-style: dotted;
+	border: 1px dotted;
 	background-color: lightgrey;
 	font-weight: bold;
 	font-style: italic;
@@ -85,9 +84,9 @@ footer {
 	background-color: gray;
 	width: 100%;
 	position: fixed;
-	bottom: 0px;
+	bottom: 0;
 	font-weight: bold;
-	padding: 5px 0px 6px 5px;
+	padding: 5px 0 6px 5px;
 }
 
 footer a {
@@ -106,7 +105,7 @@ th {
 }
 
 td {
-	padding: 0px 3px 0px 3px;
+	padding: 0 3px 0 3px;
 }
 
 .concerts_table_date {
@@ -130,7 +129,7 @@ td {
 }
 
 .concert_low td {
-	padding: 0px 0px 0px 0px;
+	padding: 0 0 0 0;
 }
 
 .concert_unpublished {
@@ -173,13 +172,13 @@ a.urgent {
 
 .table_elements button {
 	width: 50px;
-	padding-left: 0px;
-	margin-right: 0px;
+	padding-left: 0;
+	margin-right: 0;
 }
 
 .table_elements select {
 	width: 70px;
-	padding-left: 0px;
+	padding-left: 0;
 }
 
 .image_message_gen {
@@ -235,7 +234,7 @@ textarea {
 
 .fieldset_band {
     color: Navy;
-    border: 0px;
+    border: 0;
     margin: 10px 0 10px 0;
     padding: 5px 10px 5px 10px;
 }
@@ -258,8 +257,7 @@ textarea {
 	color: darkred;
 	background-color: pink;
 	padding: 10px 10px 10px 14px;
-	border: 1px;
-	border-style: dotted;
+	border: 1px dotted;
 	margin: 2px 4px 2px 2px;
 	width: 560px;
 }
