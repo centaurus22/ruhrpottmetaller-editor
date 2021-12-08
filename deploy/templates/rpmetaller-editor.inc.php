@@ -3,9 +3,9 @@
     <head>
         <title><?= $this->_['pagetitle'].$this->_['subtitle'] ?></title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="includes/style.css" />
-        <link rel="icon" type="image/vnd.microsoft.icon" href="includes/favicon.ico" />
-        <script  type="text/javascript" src="includes/script.js" ></script>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
+        <script  type="text/javascript" src="assests/js/script.js" ></script>
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
