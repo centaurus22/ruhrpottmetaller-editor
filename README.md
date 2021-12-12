@@ -1,4 +1,4 @@
-# rpmetaller-editor
+# ruhrpottmetaller-editor
 A web-based tool to store, manage and export information about concerts and festivals
 including bands. venues and cities.
 
@@ -13,13 +13,14 @@ This work is provided under the terms of the MIT licence. Please take a look at 
 * Mark bands whose concerts should not be exported.
 
 ## Technology
-The software does not have any special needs. A reasonably current version of PHP,
-the web server and MySQL or MariaDB should do the job. It is best to try it out.
-
-These versions are known to work:
-* PHP 7.4
-* Apache 2.5
+These software versions are the minimum requirements and are known to work:
+* PHP 8.0
+* Apache 2.4
 * MariaDB 10.4 or MySQL 8.0
+
+Needed PHP extensions:
+* mbstring
+* mysqli
 
 ## Installation
 To install the software the following steps are necessary:
@@ -44,7 +45,7 @@ or other categories. In this case, a second row with form elements is displayed.
 The concert editor as well as the concert export function need JavaScript activated in
 your browser. So do not forget to activate it for the application.
 ### Concerts
-This is the main site of the *rpmetaller-editor*.
+This is the main site of the *ruhrpottmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in
 the database. You can also jump back to the current month by clicking the button with
 the small circle.
@@ -52,7 +53,7 @@ the small circle.
 Clicking at the plus image at the left of a concert opens a human-readable export.
 Export settings can be made on the Preferences site.
 
-Several commands can be applied to a concert using the drop down menu at the right:
+Several commands can be applied to a concert using the drop-down menu at the right:
 * `Add` opens the concert editor. The date of the concert on which you start the add
   command, is the preset for the date of the new concert in the editor.
 * `Edit` opens the concert editor.
@@ -124,4 +125,4 @@ To make a contribution, please clone the project, make your changes and then ope
 
 If you want to support the development, you can send money via PayPal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 ## Contact
-If you have any question, just drop a message at thorres [at] brothersofgrey [dot] net.
+If you have any question, just drop a message at ruhrpottmetaller [at] freenet [dot] de.
