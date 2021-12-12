@@ -5,13 +5,13 @@ namespace ruhrpottmetaller;
 use mysqli;
 
 /**
- * Class to acces and maintain venue data.
+ * Class to access and maintain venue data.
  * Version 1.0.0
  */
 class ModelVenue
 {
     //Link identifier for the connection to the database
-    private ?Mysqli $mysqli = null;
+    private ?Mysqli $mysqli;
 
     /**
      * Call the function which initialize the database connection and write the
@@ -41,7 +41,7 @@ class ModelVenue
     /**
      * Get data of all venues in the supplied city from the database.
      *
-     * @param int $city_id Id of the city.
+     * @param int $city_id ID of the city.
      * @return array|int Array with venue data or -1 for an error.
      */
     public function getVenuesByCity(int $city_id): int|array
@@ -89,7 +89,7 @@ class ModelVenue
      * Insert a new venue into the database.
      *
      * @param string $name Name of the venue.
-     * @param int $city_id Id of the city in which the venue is located.
+     * @param int $city_id ID of the city in which the venue is located.
      * @paramt string $url Standard URL of the venue. If the venue has one
      *  webpage with information about all concert, this value is interesting.
      * @return int if of the new venue or -1 for an error.

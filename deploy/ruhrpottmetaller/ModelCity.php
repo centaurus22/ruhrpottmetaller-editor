@@ -54,7 +54,7 @@ class ModelCity
     /**
      * Get city data from one city which is linked to the submitted id.
      *
-     * @param int $id Id of the city.
+     * @param int $id ID of the city.
      * @return array Array with city data.
      */
     public function getCity(int $id): array

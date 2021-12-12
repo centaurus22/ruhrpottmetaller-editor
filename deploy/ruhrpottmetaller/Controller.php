@@ -8,15 +8,15 @@ use mysqli;
 class Controller
 {
     //NULL Array from $_GET and $_POST.
-    private ?array $request = null;
+    private ?array $request;
     //string Name of the template.
-    private $template = '';
+    private string $template = '';
     //object Object representing the (outer) view.
-    private ?View $View = null;
+    private ?View $View;
     //object Object representing the inner view.
-    private ?View $Inner_View = null;
+    private ?View $Inner_View;
     //Mysql link identifier
-    private ?mysqli $mysqli = null;
+    private ?mysqli $mysqli;
     //bool Determine if ajax call or not.
     private bool $ajax = false;
     //string String containing error messages
@@ -202,9 +202,9 @@ class Controller
             $this->View->setTemplate('ajax');
         } else {
             //No ajax call -> load the outer template
-            $this->View->setTemplate('rpmetaller-editor');
+            $this->View->setTemplate('ruhrpottmetaller-editor');
         }
-        $this->View->assign('pagetitle', 'rpmetaller-editor – ');
+        $this->View->assign('pagetitle', 'ruhrpottmetaller-editor – ');
         $this->View->assign('month', $this->request['month']);
         $this->View->assign('menu_entrys', array(
             array('Concerts', 'concert'),
@@ -327,11 +327,11 @@ class Controller
      * Get data and pass it to the inner view.
      *
      * @param array $result Array containing the result of the database request
-     * @param string $filter_value Value by which the the database entries are
+     * @param string $filter_value Value by which the database entries are
      *  filtered.
      *
      */
-    private function passGeneralDataToDisplay($result, $filter_value)
+    private function passGeneralDataToDisplay(array $result, string $filter_value)
     {
         $this->Inner_View->assign(
             'filter_value_changer',
@@ -386,7 +386,7 @@ class Controller
      * @param string $type Type of the data which should be displayed.
      * @output array Definition of the table and formula.
      */
-    private function getDataArray($type)
+    private function getDataArray(string $type): array
     {
         switch ($type) {
             case 'preferences':
@@ -472,6 +472,8 @@ class Controller
                     'description' => 'Visible'
                 );
                 break;
+            default:
+                $data = array();
         }
         return $data;
     }
@@ -482,12 +484,12 @@ class Controller
      * @output string The complete html code which contains the formula with the
      *  select element.
      */
-    private function getFilterValueChanger($filter_value)
+    private function getFilterValueChanger($filter_value): string
     {
         $PropertyChanger = new View();
         switch($this->request['display']) {
             case 'band':
-            //nobreak
+            //no break
             case 'city':
                 $alphabet = range('A', 'Z');
                 array_unshift($alphabet, '');
@@ -560,7 +562,7 @@ class Controller
         );
         /**
          * By reloading the default page the status of the individual
-         * concert exports must be reseted.
+         * concert exports must be reset.
          */
         $Session_Model = new ModelSession();
         $Session_Model->delConcertDisplayStatus();
@@ -761,7 +763,7 @@ class Controller
         //Set the corresponding template
         $monthChanger->setTemplate('month_changer');
         /**
-         * If the display parameter is set, it is passend to all links on the
+         * If the display parameter is set, it is passed to all links on the
          * second line
          */
         if(isset($this->request['display'])) {
@@ -895,7 +897,7 @@ class Controller
 
     /**
      *  Display the form to enter the name of a new band. Either with type="text"
-     *  or type="hidden.
+     *  or type="hidden".
      *
      * @param int $row Row of the lineup
      * @param int $band_id Band id of the band.
@@ -1047,7 +1049,7 @@ class Controller
             ):
                 $band = $concert[0]['bands'][$band_index];
                 $Session_Model->setBandLineUp($band_index);
-                $first_sign = $this->getFirstSign($band['name'], 0, 1);
+                $first_sign = $this->getFirstSign($band['name']);
                 $Session_Model->updateBandLineUp(
                     $band_index,
                     'first_sign',
@@ -1259,7 +1261,7 @@ class Controller
                 isset($this->request['save_id'])
                 and $this->request['save_id'] > 0
             ) {
-                //If the save id is set -> Update of exisiting concert
+                //If the save id is set -> Update of existing concert
                 $result = $Concert_Model->updateConcert(
                     $this->request['save_id'],
                     $this->request['name'],
@@ -1365,7 +1367,7 @@ class Controller
      * @param string $type Property which is checked.
      * @return string String witch contains possible error messages.
      */
-    private function setNewProperty($type)
+    private function setNewProperty(string $type): string
     {
         $request = $this->request;
         $error_text = '';
@@ -1376,7 +1378,7 @@ class Controller
             and $request[$type . '_new_name'] != ''
         ) {
             $type_uc = ucfirst($type);
-            $classname = 'rpmetaller\Model' . $type_uc;
+            $classname = 'ruhrpottmetaller\Model' . $type_uc;
             $Property_Model = new $classname($this->mysqli);
             if ($type == 'city') {
                 $result = $Property_Model->setCity($request['city_new_name']);

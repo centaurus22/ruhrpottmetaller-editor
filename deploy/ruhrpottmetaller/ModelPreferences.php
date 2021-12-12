@@ -11,7 +11,7 @@ use mysqli;
 class ModelPreferences
 {
     //Link identifier for the connection to the database
-    private ?Mysqli $mysqli = null;
+    private ?Mysqli $mysqli;
 
     /**
      * Call the function which initialize the database connection and write the

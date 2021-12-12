@@ -91,7 +91,7 @@ class ModelBand
     /**
      * Update band data in the database
      *
-     * @param int $id Id of the band which is updated.
+     * @param int $id ID of the band which is updated.
      * @param string $name Name of the band.
      * @param $visible
      * @return int Returns 1 for successful operation,

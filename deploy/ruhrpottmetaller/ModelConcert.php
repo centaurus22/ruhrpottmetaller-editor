@@ -12,7 +12,7 @@ use mysqli;
 class ModelConcert
 {
     //Link identifier for the connection to the database
-    private ?Mysqli $mysqli = null;
+    private ?Mysqli $mysqli;
 
     /**
      * Call the function which initialize the database connection and write the
@@ -25,7 +25,7 @@ class ModelConcert
 
     /**
      * Read data about concerts in a specified month from the database and
-     * deliver it as a three dimensional array.
+     * deliver it as a three-dimensional array.
      *
      * @param string $month Month from which the concert is read.
      * @return array Array with the concert data. If no concerts are present in
@@ -64,7 +64,7 @@ class ModelConcert
     /**
      * Read the data of one concert from the database and deliver it as a two-dimensional array.
      *
-     * @param int $id Id of the concert which data is read.
+     * @param int $id ID of the concert which data is read.
      * @return array Array with the concert data. If no concert with this id
      *  exist it returns an empty array.
      */
@@ -188,7 +188,7 @@ class ModelConcert
     /**
      * Retrieve band data of bands which are playing on a concert.
      *
-     * @param int $id Id of the concert from which the band data is
+     * @param int $id ID of the concert from which the band data is
      *  retrieved.
      * @return array|int Array with band id, export bit and additional
      * information about the appearance of a band, or an integer with -1 in case
@@ -232,7 +232,7 @@ class ModelConcert
     /**
      * Retrieve band data of band which are playing on a concert.
      *
-     * @param int $id Id of the concert from which the band data is
+     * @param int $id ID of the concert from which the band data is
      *  retrieved.
      * @return array|int Array with band id, export bit and additional
      *  information about the appearance of a band, or an integer with -1 in case
