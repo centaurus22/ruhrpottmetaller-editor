@@ -271,7 +271,7 @@ class ModelConcert
     /**
      * Set a concert as published.
      *
-     * @param int $id Id of the concert which should be set published.
+     * @param int $id ID of the concert which should be set published.
      * @return int Returns 1 for a successful operation,
      *  0 for a non-existent id, -1 for an error.
      */

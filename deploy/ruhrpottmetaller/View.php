@@ -21,7 +21,7 @@ class View
     private array $_ = array();
 
     /**
-     * Function which assigns the date to the two dimensional array.
+     * Function which assigns the date to the two-dimensional array.
      * @param string $key Key name
      * @param mixed $value Related value
      */

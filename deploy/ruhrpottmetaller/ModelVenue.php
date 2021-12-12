@@ -2,6 +2,8 @@
 
 namespace ruhrpottmetaller;
 
+use mysqli;
+
 /**
  * Class to acces and maintain venue data.
  * Version 1.0.0
@@ -9,7 +11,7 @@ namespace ruhrpottmetaller;
 class ModelVenue
 {
     //Link identifier for the connection to the database
-    private $mysqli = null;
+    private ?Mysqli $mysqli = null;
 
     /**
      * Call the function which initialize the database connection and write the

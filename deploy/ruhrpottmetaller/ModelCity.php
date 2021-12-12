@@ -74,7 +74,7 @@ class ModelCity
      * @param string $name Name of the city.
      * @return int Returns 1 for successful operation, -1 for an error.
      */
-    public function setCity($name): int
+    public function setCity(string $name): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('INSERT INTO stadt SET name=?');
@@ -88,7 +88,7 @@ class ModelCity
     /**
      * Update city data in the database
      *
-     * @param int $id Id of the band which is updated.
+     * @param int $id ID of the band which is updated.
      * @param string $name Name of the city.
      * @return int Returns 1 for success, 0 for a non-existent id, -1 for an
      *  error.

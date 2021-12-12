@@ -5,7 +5,7 @@ namespace ruhrpottmetaller;
 use mysqli;
 
 /**
- * Class to acces and manipulate the data in the band table.
+ * Class to access and manipulate the data in the band table.
  * Version 1.0.0
  */
 class ModelBand

@@ -3,6 +3,7 @@
 namespace ruhrpottmetaller;
 
 //use mysqli;
+use mysqli;
 
 /**
  * Class to make a database connection
@@ -13,16 +14,16 @@ class UtilityConnect
     /**
      * Make the database connection.
      *
-     * @return object
+     * @return mysqli
      */
-    public static function db_connect()
+    public static function db_connect(): mysqli
     {
         $dbhost = '';
         $dbuser = '';
         $dbuserpass = '';
         $db='';
 	include('includes/db_preferences.inc.php');
-        $mysqli = new \mysqli($dbhost, $dbuser, $dbuserpass, $db);
+        $mysqli = new mysqli($dbhost, $dbuser, $dbuserpass, $db);
         if ($mysqli->connect_error) {
             die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
         }
