@@ -2,6 +2,8 @@
 
 namespace ruhrpottmetaller;
 
+use mysqli;
+
 /**
  * Class to acces and manipulate the data in the band table.
  * Version 1.0.0
@@ -9,7 +11,7 @@ namespace ruhrpottmetaller;
 class ModelBand
 {
     //Link identifier for the connection to the database
-    private $mysqli = null;
+    private ?Mysqli $mysqli = null;
 
     /**
      * Call the function which initialize the database connection and write the
@@ -28,7 +30,7 @@ class ModelBand
      *  a special character.
      * @return array Array with band data.
      */
-    public function getBands($initial)
+    public function getBands(string $initial): array
     {
         $mysqli = $this->mysqli;
         switch($initial) {
@@ -55,10 +57,10 @@ class ModelBand
     /**
      * Get band data from one band with the submitted id.
      *
-     * @param integer $id Id of the band.
+     * @param int $id ID of the band.
      * @return array Array with band data.
      */
-    public function getBand($id)
+    public function getBand(int $id): array
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name, visible FROM band WHERE id=?');
@@ -73,11 +75,9 @@ class ModelBand
      * Insert data about a band into the database
      *
      * @param string $name Name of the band.
-     * @param integer $nazi Export status of the band. 0 -> exportable
-     *  1-> non-exportable
-     * @return integer Returns id of the new band, -1 for an error.
+     * @return int Returns id of the new band, -1 for an error.
      */
-    public function setBand($name)
+    public function setBand(string $name): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('INSERT INTO band SET name=?');
@@ -91,14 +91,13 @@ class ModelBand
     /**
      * Update band data in the database
      *
-     * @param integer $id Id of the band which is updated.
+     * @param int $id Id of the band which is updated.
      * @param string $name Name of the band.
-     * @param integer $nazi Export status of the band. 0 -> exportable
-     *  1-> non-exportable
-     * @return integer Returns 1 for successful operation,
+     * @param $visible
+     * @return int Returns 1 for successful operation,
      *  0 for a non-existent id, -1 for an error.
      */
-    public function updateBand($id, $name, $visible)
+    public function updateBand(int $id, string $name, $visible): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('UPDATE band SET name=?, visible=? WHERE id=?');

@@ -2,14 +2,16 @@
 
 namespace ruhrpottmetaller;
 
+use mysqli;
+
 /**
- * Class to acces and manipulate the data in the band table.
+ * Class to access and manipulate the data in the band table.
  * Version 1.0.0
  */
 class ModelCity
 {
     //Link identifier for the connection to the database
-    private $mysqli = null;
+    private ?mysqli $mysqli = null;
 
     /**
      * Call the function which initialize the database connection and write the
@@ -25,7 +27,7 @@ class ModelCity
      *
      * @return array Array with city data.
      */
-    public function getCities($initial)
+    public function getCities($initial): array
     {
         $mysqli = $this->mysqli;
         switch($initial) {
@@ -52,10 +54,10 @@ class ModelCity
     /**
      * Get city data from one city which is linked to the submitted id.
      *
-     * @param integer $id Id of the city.
+     * @param int $id Id of the city.
      * @return array Array with city data.
      */
-    public function getCity($id)
+    public function getCity(int $id): array
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
@@ -70,9 +72,9 @@ class ModelCity
      * Insert data about a city into the database
      *
      * @param string $name Name of the city.
-     * @return integer Returns 1 for successful operation, -1 for an error.
+     * @return int Returns 1 for successful operation, -1 for an error.
      */
-    public function setCity($name)
+    public function setCity($name): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('INSERT INTO stadt SET name=?');
@@ -86,12 +88,12 @@ class ModelCity
     /**
      * Update city data in the database
      *
-     * @param integer $id Id of the band which is updated.
+     * @param int $id Id of the band which is updated.
      * @param string $name Name of the city.
-     * @return integer Returns 1 for success, 0 for a non-existent id, -1 for an
+     * @return int Returns 1 for success, 0 for a non-existent id, -1 for an
      *  error.
      */
-    public function updateCity($id, $name)
+    public function updateCity(int $id, string $name): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');

@@ -25,7 +25,7 @@ class ModelVenue
      *
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenues()
+    public function getVenues(): int|array
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name, stadt_id, url FROM location
@@ -42,7 +42,7 @@ class ModelVenue
      * @param int $city_id Id of the city.
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenuesByCity($city_id)
+    public function getVenuesByCity(int $city_id): int|array
     {
         $mysqli = $this->mysqli;
         if ($city_id == '') {
@@ -68,10 +68,10 @@ class ModelVenue
     /**
      * Get data of the venue with the submitted id.
      *
-     * @param int $venue_id Id of the venue.
+     * @param int $id
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenueById($id)
+    public function getVenueById(int $id): int|array
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name, stadt_id, url FROM location
@@ -92,11 +92,10 @@ class ModelVenue
      *  webpage with information about all concert, this value is interesting.
      * @return int if of the new venue or -1 for an error.
      */
-    public function setVenue($name, $city_id, $url)
+    public function setVenue(string $name, int $city_id, string $url): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO location SET name=?, stadt_id=?,
-            url=?');
+        $stmt = $mysqli->prepare('INSERT INTO location SET name=?, stadt_id=?, url=?');
         $stmt->bind_param('sis', $name, $city_id, $url);
         $stmt->execute();
         $result = $this->mysqli->insert_id;
@@ -107,17 +106,17 @@ class ModelVenue
     /**
      * Update a venue in the database.
      *
+     * @param int $id
      * @param string $name Name of the venue.
-     * @param int $city_id Id of the city in which the venue is located.
+     * @param string $url
+     * @return int 1 for success or 0 for an error.
      * @paramt string $url Standard URL of the venue. If the venue has one
      *  webpage with information about all concert, this value is interesting.
-     * @return int 1 for success or 0 for an error.
      */
-    public function updateVenue($id, $name, $url)
+    public function updateVenue(int $id, string $name, string $url): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE location SET name=?, url=?
-            WHERE id=?');
+        $stmt = $mysqli->prepare('UPDATE location SET name=?, url=? WHERE id=?');
         $stmt->bind_param('ssi', $name, $url, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;

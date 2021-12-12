@@ -9,23 +9,23 @@ namespace ruhrpottmetaller;
 class View
 {
     // string Template path
-    private $template_path = 'templates';
+    private string $template_path = 'templates';
     //string folder in which images are stored.
-    private $image_path = 'images';
+    private string $image_path = 'images';
     // string Template name
-    private $template = 'default';
+    private string $template = 'default';
     /**
      * array Two dimensional array which contains the data which is passed to
      * the view.
      */
-    private $_ = array();
+    private array $_ = array();
 
     /**
      * Function which assigns the date to the two dimensional array.
      * @param string $key Key name
-     * @param string|integer $value Related value
+     * @param mixed $value Related value
      */
-    public function assign($key, $value)
+    public function assign(string $key, mixed $value)
     {
         $this->_[$key] = $value;
     }
@@ -34,7 +34,7 @@ class View
      * Writes the template name into the corresponding class variable
      * @param string $template Name of the template
      */
-    public function setTemplate($template = 'default')
+    public function setTemplate(string $template = 'default')
     {
         $this->template = $template;
     }
@@ -44,7 +44,7 @@ class View
      *
      * @return string Output of the template or an error message.
      */
-    public function getOutput()
+    public function getOutput(): string
     {
         $tpl = $this->template;
         $file = $this->template_path . DIRECTORY_SEPARATOR . $tpl . '.inc.php';
@@ -70,7 +70,7 @@ class View
      * @param string $parameter The name of the request parameter.
      */
 
-    public function takeOverRequestParameters($parameter)
+    public function takeOverRequestParameters(string $parameter)
     {
         if (isset($this->_['request'][$parameter])) {
             printf (

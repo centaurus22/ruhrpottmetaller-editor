@@ -3,31 +3,33 @@
 namespace ruhrpottmetaller;
 
 //The controller
+use mysqli;
+
 class Controller
 {
     //NULL Array from $_GET and $_POST.
-    private $request = null;
+    private ?array $request = null;
     //string Name of the template.
     private $template = '';
     //object Object representing the (outer) view.
-    private $View = null;
+    private ?View $View = null;
     //object Object representing the inner view.
-    private $Inner_View = null;
+    private ?View $Inner_View = null;
     //Mysql link identifier
-    private $mysqli = null;
+    private ?mysqli $mysqli = null;
     //bool Determine if ajax call or not.
-    private $ajax = false;
+    private bool $ajax = false;
     //string String containing error messages
-    private $error_text = '';
+    private string $error_text = '';
 
     /**
      * Initialize the controller.
      *
      * @param array $request Array from  $_GET and $_POST
      */
-    public function __construct($request)
+    public function __construct(array $request)
     {
-        $Utility_Connect = new UtilityConnect;
+        $Utility_Connect = new UtilityConnect();
         $this->mysqli = $Utility_Connect->db_connect();
 
         $this->View = new View();
@@ -55,6 +57,7 @@ class Controller
                     if (isset($this->request['id'])) {
                         $this->request['edit_id'] = $this->request['id'];
                     }
+                    //no break
                 case 'add':
                     $this->request['edit'] = 'concert';
                     break;
@@ -104,22 +107,10 @@ class Controller
         }
 
         if (isset($this->request['save'])) {
-            switch($this->request['save']) {
-                case 'concert':
-                    $this->error_text = $this->saveConcert();
-                    break;
-                case 'band':
-                //nobreak
-                case 'city':
-                //nobreak
-                case 'venue':
-                //nobreak
-                case 'preferences':
-                //nobreak
-                default:
-                    $this->error_text = $this->saveGeneral();
-                    break;
-            }
+            $this->error_text = match ($this->request['save']) {
+                'concert' => $this->saveConcert(),
+                default => $this->saveGeneral(),
+            };
 
         }
 
@@ -134,7 +125,7 @@ class Controller
         if (isset($this->request['edit'])):
             switch($this->request['edit']) {
             case 'concert':
-                //nobreak
+                //no break
             default:
                 $this->passDataToConcertEditor();
                 break;
@@ -184,7 +175,7 @@ class Controller
                     }
                     break;
                 case 'concert':
-                    //nobreak
+                    //no break
                 default:
                     if (isset($this->request['display_id'])) {
                         $this->ajax = true;
@@ -204,7 +195,7 @@ class Controller
      * @output string Complete output of the application respecting the request
      *  parameters.
      */
-    public function getOutput()
+    public function getOutput(): string
     {
         if ($this->ajax == true) {
             //On ajax calls the template of the outer view should be empty
@@ -528,7 +519,6 @@ class Controller
         $concerts = $Concert_Model->getConcert($this->request['display_id']);
         $result = $this->processConcertData(
             $concerts,
-            $this->request['month'],
             'concert_export'
         );
         $this->Inner_View->assign('concerts', $result['concerts']);
@@ -541,16 +531,15 @@ class Controller
     private function passDataToConcertsExport()
     {
         $Pref_Model = new ModelPreferences($this->mysqli);
-        $prefs = $Pref_Model->getPreferences();
+        $preferences = $Pref_Model->getPreferences();
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
         $result = $this->processConcertData(
             $concerts,
-            $this->request['month'],
             'export'
         );
-        $this->Inner_View->assign('header', $prefs[0]['header']);
-        $this->Inner_View->assign('footer', $prefs[0]['footer']);
+        $this->Inner_View->assign('header', $preferences[0]['header']);
+        $this->Inner_View->assign('footer', $preferences[0]['footer']);
         $this->Inner_View->assign('concerts', $result['concerts']);
         $this->Inner_View->assign('month_changer', $this->getMonthChanger());
         $this->Inner_View->setTemplate('concert_export');
@@ -567,7 +556,6 @@ class Controller
         $concerts = $Concert_Model->getConcerts($this->request['month']);
         $result = $this->processConcertData(
             $concerts,
-            $this->request['month'],
             'concert'
         );
         /**
@@ -640,12 +628,13 @@ class Controller
     }
 
     /**
-     * Generete a view for the concert lineup
+     * Generate a view for the concert lineup
      *
-     * @param object $Session_Model Object to access data in the session
+     * @param ModelSession $Session_Model Object to access data in the session
+     * @param string $error_text_lineup
      * @return string Output of the lineup template.
      */
-    private function getLineUp($Session_Model, $error_text_lineup = '')
+    private function getLineUp(ModelSession $Session_Model, string $error_text_lineup = ''): string
     {
         //Initialize a new view for displaying the lineup
         $lineUp = new View();
@@ -653,7 +642,7 @@ class Controller
         $lineUp->setTemplate('lineup');
         //Get the actual lineup
         $bands = $Session_Model->GetBandsLineUp();
-        //Add a initial lineup to the session if the lineup is empty
+        //Add an initial lineup to the session if the lineup is empty
         if (count($bands) == 0) {
             $Session_Model->setBandLineUp(0);
             $bands = $Session_Model->GetBandsLineUp();
@@ -765,7 +754,7 @@ class Controller
      *
      * @return string Output of the corresponding template.
      */
-    private function getMonthChanger()
+    private function getMonthChanger(): string
     {
         //Initialize a new View class for the second line of the web application
         $monthChanger = new View();
@@ -803,7 +792,7 @@ class Controller
      * @param string $band_name Name of the Band.
      * @return string Capital letter or '%'.
      */
-    private function getFirstSign($band_name)
+    private function getFirstSign(string $band_name): string
     {
         $first_char = mb_substr($band_name, 0, 1);
         $first_char = mb_strtoupper($first_char);
@@ -817,11 +806,11 @@ class Controller
     /**
      * Display the option tags for the select element to choose a band.
      *
-     * @param integer  $city_id The id of the choosen city.
-     * @param integer  $venue_id Band id The id of the choosen venue.
+     * @param int $city_id The id of the chosen city.
+     * @param int $venue_id Band id The id of the chosen venue.
      * @return string Output of the template.
      */
-    private function getCityVenueForm ($city_id, $venue_id)
+    private function getCityVenueForm (int $city_id, int $venue_id): string
     {
         $City_Venue_Form = new View();
         $Venue_Model = new ModelVenue($this->mysqli);
@@ -839,7 +828,7 @@ class Controller
             $venues = $Venue_Model->getVenuesByCity($city_id);
         }
         array_splice($venues, 0, 0, array(array('id' => 0, 'name' => '')));
-        //Test, if the band id is in the array with the choosen bands
+        //Test, if the band id is in the array with the chosen bands
         $City_Venue_Form->assign('city_id', $city_id);
         $City_Venue_Form->assign('venues', $venues);
         $City_Venue_Form->assign('venue_id', $venue_id);
@@ -851,10 +840,10 @@ class Controller
      *  Display the form to enter the name of a new venue and to enter a standard
      *  URL for that venue if needed.
      *
-     * @param integer $venue_id Band id of the band.
+     * @param int $venue_id Band id of the band.
      * @return string Output of the template.
      */
-    private function getVenueNewForm($venue_id)
+    private function getVenueNewForm(int $venue_id): string
     {
         $Venue_New_Form = new View();
         if ($venue_id == 1) {
@@ -879,12 +868,12 @@ class Controller
     /**
      * Display the option tags for the select element to choose a band.
      *
-     * @param integer|string $first_sign First (capital) letter of the band
+     * @param int|string $first_sign First (capital) letter of the band
      *  or '%' for a special symbol
-     * @param integer  $band_id Band id
+     * @param int $band_id Band id
      * @return string Output of the template.
      */
-    private function getBandSelectOptions($first_sign, $band_id)
+    private function getBandSelectOptions(int|string $first_sign, int $band_id): string
     {
         if ($first_sign == '') {
             $bands = array(
@@ -908,11 +897,11 @@ class Controller
      *  Display the form to enter the name of a new band. Either with type="text"
      *  or type="hidden.
      *
-     * @param integer $row Row of the lineup
-     * @param integer $band_id Band id of the band.
+     * @param int $row Row of the lineup
+     * @param int $band_id Band id of the band.
      * @return string Output of the template.
      */
-    private function getBandNewForm($row, $band_id)
+    private function getBandNewForm(int $row, int $band_id): string
     {
         $Session_Model = new ModelSession();
         $lineup = $Session_Model->getBandsLineup();
@@ -925,17 +914,13 @@ class Controller
     }
 
     /**
-     * Includes the data from various sources to prefill the the concert formula.
+     * Includes the data from various sources to prefill the concert formula.
      *
-     * @param object $Session_Model Model to access the PHP Session
+     * @param ModelSession $Session_Model Model to access the PHP Session
      */
-    private function prefillConcertEditor($Session_Model)
+    private function prefillConcertEditor(ModelSession $Session_Model)
     {
-        $model_involved = isset(
-            $this->request['edit_id']
-        ) and is_int(
-            $this->request['edit_id']
-        );
+        $model_involved = (isset($this->request['edit_id']) and is_int($this->request['edit_id']));
         if ($model_involved == true) {
             $Concert_Model = new ModelConcert($this->mysqli);
             $concert = $Concert_Model->getConcert($this->request['edit_id']);
@@ -1087,10 +1072,10 @@ class Controller
      * exist.
      *
      * @param array $data_array Contain the data from the model.
-     * @param integer $parameter Define the parameter name.
-     * @param boolean $model_involved Define if data from the model is available.
+     * @param int $parameter Define the parameter name.
+     * @param bool $model_involved Define if data from the model is available.
      */
-    private function setRequestEditor($data_array, $parameter, $model_involved)
+    private function setRequestEditor(array $data_array, int $parameter, bool $model_involved)
     {
         if (!isset($this->request[$parameter])) {
             if ($model_involved == true) {
@@ -1107,13 +1092,13 @@ class Controller
      *
      * @param string $array_name The name of the parameter array which is
      *  checked.
-     * @param integer $length_lineup The length of the reference array.
+     * @param int $length_lineup The length of the reference array.
      * @return array Associative array with to keys:
      *  boolean error true: error, false: no error
      *  boolean include_array true: parameter array must be included, false:
      *      array must not be included
      */
-    private function checkLineupArray($array_name, $length_lineup)
+    private function checkLineupArray(string $array_name, int $length_lineup): array
     {
         if (
             isset($this->request[$array_name])
@@ -1139,7 +1124,7 @@ class Controller
      *
      * @return string Empty string -> no error, otherwise -> error
      */
-    private function delConcert()
+    private function delConcert(): string
     {
         $Concert_Model = new ModelConcert($this->mysqli);
         $result = $Concert_Model->delConcert($this->request['del_id']);
@@ -1150,7 +1135,7 @@ class Controller
 
     }
 
-    private function saveGeneral()
+    private function saveGeneral(): string
     {
         $type = $this->request['save'];
         $data = $this->getDataArray($type);
@@ -1169,7 +1154,7 @@ class Controller
             }
         }
         if ($error === false) {
-            $class = 'rpmetaller\\Model' . ucfirst($type);
+            $class = 'ruhrpottmetaller\\Model' . ucfirst($type);
             $method = 'update' . ucfirst($type);
             $Data_Model = new  $class ($this->mysqli);
             $return = call_user_func(array($Data_Model, $method), ...$values);
@@ -1188,7 +1173,7 @@ class Controller
      *
      * @return string Empty string -> no error, otherwise -> error
      */
-    private function saveConcert()
+    private function saveConcert(): string
     {
         $Concert_Model = new ModelConcert($this->mysqli);
         /**
@@ -1425,13 +1410,13 @@ class Controller
 
     /**
      * Checks for errors, if the dataset is empty or if the concert data should
-     * be displayed or not and than processes the concert data, if necessary.
+     * be displayed or not and then processes the concert data, if necessary.
      *
-     * @param array $concert Array with concert data.
-     * @param string $month Month from which the data is processed.
+     * @param $concerts
+     * @param string $type
      * @return array $result Array witch processed data and template
      */
-    private function processConcertData($concerts, $month, $type = 'concert')
+    private function processConcertData($concerts, string $type = 'concert'): array
     {
         /**
          * Load the session model to access the session if the output contains
@@ -1448,12 +1433,12 @@ class Controller
             switch($pref_export[0]['export_lang']) {
                 case 'de_DE':
                     setlocale(LC_TIME, "de_DE", "de_DE.utf8");
-                    $timeformat_without_month = '%a, %d.';
-                    $timeformat_with_month = '%a, %d. %b';
+                    $time_format_without_month = '%a, %d.';
+                    $time_format_with_month = '%a, %d. %b';
                     break;
                 default:
-                    $timeformat_without_month = '%a, %d';
-                    $timeformat_with_month = '%a, %d %b';
+                    $time_format_without_month = '%a, %d';
+                    $time_format_with_month = '%a, %d %b';
             }
             for(
                 $concert_index = 0;
@@ -1479,44 +1464,36 @@ class Controller
 
                 if ($type == 'concert_export') {
                     /**
-                     * Determine the human readable date for the concert table.
+                     * Determine the human-readable date for the concert table.
                      * Output for a concert export should also include the name
                      * of the month.
                      */
                     $concerts[$concert_index]['date_human'] = strftime(
-                        $timeformat_with_month,
+                        $time_format_with_month,
                         $time_start
                     );
                     $template = 'concert_export';
                 } elseif ($type == 'export') {
                     //Export of many concerts
                     $concerts[$concert_index]['date_human'] = strftime(
-                        $timeformat_with_month,
+                        $time_format_with_month,
                         $time_start
                     );
                     $template = 'concert_export';
                 } else {
                     //Normal display of concerts in a table.
                     $concerts[$concert_index]['date_human'] = strftime(
-                        $timeformat_without_month,
+                        $time_format_without_month,
                         $time_start
                     );
                     $template = 'default';
                 }
                 if ($concerts[$concert_index]['date_end'] != '') {
                     $time_end = strtotime($concerts[$concert_index]['date_end']);
-                    if ($type == 'concert') {
-                        $date_end_human = strftime(
-                            $timeformat_with_month,
-                            $time_end
-                        );
-                    }
-                    else {
-                        $date_end_human = strftime(
-                            $timeformat_with_month,
-                            $time_end
-                        );
-                    }
+                    $date_end_human = strftime(
+                        $time_format_with_month,
+                        $time_end
+                    );
                     $date_human = $concerts[$concert_index]['date_human'];
                     $date_human = $date_human . ' – ' . $date_end_human;
                     $concerts[$concert_index]['date_human'] = $date_human;
@@ -1556,10 +1533,10 @@ class Controller
     /**
      * Get the month from the current date or a submitted string.
      *
-     * @param string $date Optional date from which the month is generated
+     * @param string|null $date Optional date from which the month is generated
      * @return string Generated date
      */
-    private function getMonth($date = null)
+    private function getMonth(?string $date = null): string
     {
         if (is_null($date)) {
             return date('Y-m');
