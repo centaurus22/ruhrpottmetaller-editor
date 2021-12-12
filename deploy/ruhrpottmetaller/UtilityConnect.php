@@ -1,6 +1,6 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller;
 
 //use mysqli;
 

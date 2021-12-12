@@ -1,6 +1,6 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller;
 
 /**
  * Class to acces and manipulate the data in the band table.

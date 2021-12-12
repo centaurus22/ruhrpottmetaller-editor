@@ -1,6 +1,6 @@
 <?php
 
-namespace rpmetaller;
+namespace ruhrpottmetaller;
 
 /**
  * Class to access and manipulate the data in the event table and the event_band
