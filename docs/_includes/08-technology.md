@@ -1,5 +1,9 @@
 # Technology
 These software versions are known to work:
-* PHP 7.4
+* PHP 8.0
 * Apache 2.5
 * MariaDB 10.4 or MySQL 8.0
+
+Needed PHP extensions:
+* mbstring
+* mysqli
