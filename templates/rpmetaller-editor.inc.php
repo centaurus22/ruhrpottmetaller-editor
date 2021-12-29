@@ -5,7 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
-        <script  type="text/javascript" src="assests/js/script.js" ></script>
+        <script  type="text/javascript" src="assets/js/script.js" ></script>
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>

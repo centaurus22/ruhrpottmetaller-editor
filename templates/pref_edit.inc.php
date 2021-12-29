@@ -51,7 +51,7 @@ foreach ($this->_['data_array'] as $field) {
                     $selected = '';
                 }
                 printf(
-                    '<option value="%1$s" %3$s>%2$s</option>' . "\n",
+                    '<option value="%1$s" selected="%3$s">%2$s</option>' . "\n",
                     $value,
                     $description,
                     $selected

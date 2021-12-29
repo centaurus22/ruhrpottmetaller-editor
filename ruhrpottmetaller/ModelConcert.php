@@ -41,7 +41,7 @@ class ModelConcert
             LEFT JOIN location ON event.location_id = location.id
             LEFT JOIN stadt ON location.stadt_id = stadt.id
             WHERE datum_beginn LIKE ?
-            ORDER BY event.datum_beginn ASC');
+            ORDER BY event.datum_beginn');
         $month = $month . '%';
         $stmt->bind_param('s', $month);
         $stmt->execute();
@@ -80,7 +80,7 @@ class ModelConcert
             stadt.name AS city_name, stadt.id AS city_id
             FROM event LEFT JOIN location ON event.location_id = location.id
             LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = ?
-            ORDER BY event.datum_beginn ASC');
+            ORDER BY event.datum_beginn');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

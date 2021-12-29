@@ -69,8 +69,7 @@ class ModelPreferences
     public function updatePreferences(string $export_lang, string $header, string $footer): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE preferences SET export_lang=?, header=?,
-            footer=?');
+        $stmt = $mysqli->prepare('UPDATE preferences SET export_lang=?, header=?, footer=?');
         $stmt->bind_param('sss', $export_lang, $header, $footer);
         $stmt->execute();
         $result = $stmt->affected_rows;

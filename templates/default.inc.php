@@ -37,7 +37,7 @@ foreach($this->_['concerts'] as $concert) {
 	$bands = substr($bands, 2);
     printf(
         "\t\t<tr id=\"concert_high_%9\$s\" class='concert_%1\$s concert_high_closed'>
-			<td><a href=\"#\" onclick=\"display_concert(%9\$u, '%1\$s')\" >
+			<td><a href=\"#\" onclick=\"display_concert('%9\$u', '%1\$s')\" >
 				<img src=\"%10\$s\" alt=\"open export\" id=\"image_%9\$s\" width=\"15\" height=\"15\">
 			</a></td>
 			<td>%2\$s</td>
