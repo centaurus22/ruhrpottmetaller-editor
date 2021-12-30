@@ -9,9 +9,9 @@ namespace ruhrpottmetaller;
 class View
 {
     // string Template path
-    private string $template_path = 'templates';
+    private string $template_path = '../templates';
     //string folder in which images are stored.
-    private string $image_path = 'images';
+    private string $image_path = 'assets/images';
     // string Template name
     private string $template = 'default';
     /**

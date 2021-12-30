@@ -22,7 +22,8 @@ class UtilityConnect
         $dbuser = '';
         $dbuserpass = '';
         $db='';
-	include('includes/db_preferences.inc.php');
+
+	    include('../config/db_preferences.inc.php');
         $mysqli = new mysqli($dbhost, $dbuser, $dbuserpass, $db);
         if ($mysqli->connect_error) {
             die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);

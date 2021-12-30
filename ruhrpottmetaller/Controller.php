@@ -808,11 +808,11 @@ class Controller
     /**
      * Display the option tags for the select element to choose a band.
      *
-     * @param int $city_id The id of the chosen city.
-     * @param int $venue_id Band id The id of the chosen venue.
+     * @param string|null $city_id The id of the chosen city.
+     * @param int|null $venue_id Band id The id of the chosen venue.
      * @return string Output of the template.
      */
-    private function getCityVenueForm (int $city_id, int $venue_id): string
+    private function getCityVenueForm (?string $city_id, ?int $venue_id): string
     {
         $City_Venue_Form = new View();
         $Venue_Model = new ModelVenue($this->mysqli);
@@ -842,10 +842,10 @@ class Controller
      *  Display the form to enter the name of a new venue and to enter a standard
      *  URL for that venue if needed.
      *
-     * @param int $venue_id Band id of the band.
+     * @param int|null $venue_id Band id of the band.
      * @return string Output of the template.
      */
-    private function getVenueNewForm(int $venue_id): string
+    private function getVenueNewForm(?int $venue_id): string
     {
         $Venue_New_Form = new View();
         if ($venue_id == 1) {
@@ -1074,10 +1074,10 @@ class Controller
      * exist.
      *
      * @param array $data_array Contain the data from the model.
-     * @param int $parameter Define the parameter name.
+     * @param string $parameter Define the parameter name.
      * @param bool $model_involved Define if data from the model is available.
      */
-    private function setRequestEditor(array $data_array, int $parameter, bool $model_involved)
+    private function setRequestEditor(array $data_array, string $parameter, bool $model_involved)
     {
         if (!isset($this->request[$parameter])) {
             if ($model_involved == true) {

@@ -3,7 +3,7 @@
         <button>&lt;&lt;</button>
     </a>
     <a href="?<?= http_build_query($this->_['request_now'],'', '&amp;') ?>" >
-        <button>&nbsp;o </button>
+        <button>&nbsp;o&nbsp;</button>
     </a>
     <a href="?<?= http_build_query($this->_['request_next_month'],'', '&amp;') ?>" >
         <button>>></button>

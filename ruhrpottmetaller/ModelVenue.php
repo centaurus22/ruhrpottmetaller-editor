@@ -41,10 +41,10 @@ class ModelVenue
     /**
      * Get data of all venues in the supplied city from the database.
      *
-     * @param int $city_id ID of the city.
+     * @param string $city_id ID of the city.
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenuesByCity(int $city_id): int|array
+    public function getVenuesByCity(string $city_id): int|array
     {
         $mysqli = $this->mysqli;
         if ($city_id == '') {
