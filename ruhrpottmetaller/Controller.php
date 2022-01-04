@@ -2,29 +2,19 @@
 
 namespace ruhrpottmetaller;
 
-//The controller
 use mysqli;
 
 class Controller
 {
-    //NULL Array from $_GET and $_POST.
     private ?array $request;
-    //string Name of the template.
     private string $template = '';
-    //object Object representing the (outer) view.
     private ?View $View;
-    //object Object representing the inner view.
     private ?View $Inner_View;
-    //Mysql link identifier
     private ?mysqli $mysqli;
-    //bool Determine if ajax call or not.
-    private bool $ajax = false;
-    //string String containing error messages
-    private string $error_text = '';
+    private bool $isAjax = false;
+    private string $errorText = '';
 
     /**
-     * Initialize the controller.
-     *
      * @param array $request Array from  $_GET and $_POST
      */
     public function __construct(array $request)
@@ -103,17 +93,18 @@ class Controller
             and $this->request['del'] == 'concert'
             and isset($this->request['del_id'])
         ) {
-            $this->error_text = $this->delConcert();
+            $this->errorText = $this->delConcert();
         }
 
         if (isset($this->request['save'])) {
-            $this->error_text = match ($this->request['save']) {
-                'concert' => $this->saveConcert(),
-                default => $this->saveGeneral(),
-            };
-
+            switch($this->request['save']) {
+                case 'concert':
+                    $this->errorText = $this->saveConcert();
+                    break;
+                default:
+                    $this->errorText = $this->saveGeneral();
+            }
         }
-
     }
 
     /**
@@ -131,7 +122,7 @@ class Controller
                 break;
             }
         elseif (isset($this->request['special'])):
-            $this->ajax = true;
+            $this->isAjax = true;
             switch ($this->request['special']) {
                 case 'lineup':
                     $this->passDataToLineup();
@@ -178,7 +169,7 @@ class Controller
                     //no break
                 default:
                     if (isset($this->request['display_id'])) {
-                        $this->ajax = true;
+                        $this->isAjax = true;
                         $this->passDataToConcertExport();
                     } else {
                         $this->passDataToConcertsDisplay();
@@ -197,7 +188,7 @@ class Controller
      */
     public function getOutput(): string
     {
-        if ($this->ajax == true) {
+        if ($this->isAjax == true) {
             //On ajax calls the template of the outer view should be empty
             $this->View->setTemplate('ajax');
         } else {
@@ -234,9 +225,9 @@ class Controller
             0,
             array(array('id' => 0, 'name' => ''))
         );
-        $cities[] = array('id' => 1, 'name' => 'New city');
+        $cities[] = array('id' => '1', 'name' => 'New city');
         $this->Inner_View->assign('request', $this->request);
-        $this->Inner_View->assign('error_text', $this->error_text);
+        $this->Inner_View->assign('error_text', $this->errorText);
 
         $city_venue_form = $this->getCityVenueForm(
             $this->request['city_id'],
@@ -343,7 +334,7 @@ class Controller
             $this->Inner_View->assign('result', $result);
             $this->Inner_View->assign('filter_value', $filter_value);
             $this->Inner_View->assign('data_array', $data);
-            $this->Inner_View->assign('error_text', $this->error_text);
+            $this->Inner_View->assign('error_text', $this->errorText);
             $this->Inner_View->assign('month', $this->request['month']);
             $this->Inner_View->setTemplate('general_display');
         } else {
@@ -357,8 +348,8 @@ class Controller
      */
     private function passDataToPrefEdit()
     {
-        if (isset($this->error_text) and $this->error_text != '') {
-            $this->Inner_View->assign('error_text', $this->error_text);
+        if (isset($this->errorText) and $this->errorText != '') {
+            $this->Inner_View->assign('error_text', $this->errorText);
         } else {
             $this->Inner_View->assign('error_text', '');
         }
@@ -809,10 +800,10 @@ class Controller
      * Display the option tags for the select element to choose a band.
      *
      * @param string|null $city_id The id of the chosen city.
-     * @param int|null $venue_id Band id The id of the chosen venue.
+     * @param string|null $venue_id Band id The id of the chosen venue.
      * @return string Output of the template.
      */
-    private function getCityVenueForm (?string $city_id, ?int $venue_id): string
+    private function getCityVenueForm (?string $city_id, ?string $venue_id): string
     {
         $City_Venue_Form = new View();
         $Venue_Model = new ModelVenue($this->mysqli);
@@ -830,7 +821,6 @@ class Controller
             $venues = $Venue_Model->getVenuesByCity($city_id);
         }
         array_splice($venues, 0, 0, array(array('id' => 0, 'name' => '')));
-        //Test, if the band id is in the array with the chosen bands
         $City_Venue_Form->assign('city_id', $city_id);
         $City_Venue_Form->assign('venues', $venues);
         $City_Venue_Form->assign('venue_id', $venue_id);
@@ -842,10 +832,10 @@ class Controller
      *  Display the form to enter the name of a new venue and to enter a standard
      *  URL for that venue if needed.
      *
-     * @param int|null $venue_id Band id of the band.
+     * @param mixed $venue_id Band id of the band.
      * @return string Output of the template.
      */
-    private function getVenueNewForm(?int $venue_id): string
+    private function getVenueNewForm($venue_id): string
     {
         $Venue_New_Form = new View();
         if ($venue_id == 1) {
@@ -875,7 +865,7 @@ class Controller
      * @param int $band_id Band id
      * @return string Output of the template.
      */
-    private function getBandSelectOptions(int|string $first_sign, int $band_id): string
+    private function getBandSelectOptions($first_sign, int $band_id): string
     {
         if ($first_sign == '') {
             $bands = array(
@@ -1038,7 +1028,7 @@ class Controller
                  or $first_sign_check_result['error'] == true)
                  and !isset($this->request['save_id'])
              ):
-                 $this->error_text = 'Array lengths in URL parameters does not match! Some data is ignored.';
+                 $this->errorText = 'Array lengths in URL parameters does not match! Some data is ignored.';
              endif;
         elseif ($model_involved == true):
             $Session_Model->delLineUp();

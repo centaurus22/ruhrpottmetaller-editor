@@ -41,7 +41,7 @@ function display_city_venue_form() {
 function display_venue_new_form() {
 	let venue_id;
 	const city_id = document.getElementById("city_id").value;
-	if (city_id === 1) {
+	if (city_id === '1') {
 		venue_id = 1;
 	} else {
 		const venue_id_element = document.getElementById("venue_id");
@@ -51,29 +51,27 @@ function display_venue_new_form() {
 			venue_id = document.getElementById("venue_id").value;
 		}
 	}
-	const xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function() {
-	  	if (xmlhttp.readyState===4 && xmlhttp.status===200) {
-			document.getElementById("venue_new_form").innerHTML=xmlhttp.responseText;
+	const xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange=function() {
+	  	if (xmlHttp.readyState===4 && xmlHttp.status===200) {
+			document.getElementById("venue_new_form").innerHTML=xmlHttp.responseText;
 	  	}
 	};
 	const file = "index.php?special=edit_sub&venue_id=" + venue_id;
-	xmlhttp.open("GET",file,true);
-	xmlhttp.send();
+	xmlHttp.open("GET", file,true);
+	xmlHttp.send();
 
-	//Wenn noch keine URL angegeben ist, soll die Standard-URL einer Location eingesetzt werden,
-	//insofern diese Vorhangen ist
 	const url = document.getElementById("url").value;
 	if ((url === '' || window.editurl === 0) && venue_id !== 1 && venue_id !== 0) {
-		var xmlhttp_url=new XMLHttpRequest();
-		xmlhttp_url.onreadystatechange=function() {
-		  	if (xmlhttp_url.readyState===4 && xmlhttp_url.status===200) {
-				document.getElementById("url").value=xmlhttp_url.responseText;
+		const xmlHttpUrl = new XMLHttpRequest();
+		xmlHttpUrl.onreadystatechange=function() {
+		  	if (xmlHttpUrl.readyState===4 && xmlHttpUrl.status===200) {
+				document.getElementById("url").value=xmlHttpUrl.responseText;
 		  	}
 		};
 		const datei = "index.php?special=set_url&venue_id=" + venue_id;
-		xmlhttp_url.open("GET",datei,true);
-		xmlhttp_url.send();
+		xmlHttpUrl.open("GET",datei,true);
+		xmlHttpUrl.send();
 	}
 }
 
