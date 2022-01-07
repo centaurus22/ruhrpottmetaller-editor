@@ -89,11 +89,11 @@ class ModelSession
      *
      * @param int $row Number of the row.
      * @param string $field Session variable which is filled.
-     * @param int $value Value which is written in the session variable.
+     * @param mixed $value Value which is written in the session variable.
      * @return int 1-> row and band_id parameter are integers, -1-> one of
      *  those parameters are no integer.
      */
-    public function updateBandLineUp(int $row, string $field, int $value): int
+    public function updateBandLineUp(int $row, string $field, $value): int
     {
         $this->initLineUp();
         $_SESSION['lineup'][$row][$field] = $value;

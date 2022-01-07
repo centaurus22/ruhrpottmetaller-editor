@@ -139,14 +139,14 @@ class ModelConcert
      * @param string $date_start It contains the date on which the concert takes
      *  place. If the concert is a multi-day festival it contains the date of the
      *  first day.
-     * @param string $date_end If the concert is a multi-day festival this string
+     * @param string|null $date_end If the concert is a multi-day festival this string
      *  contains the date of the last day in the format YYYY-MM-DD. If it is just
      *  on one day, the string is empty.
      * @param int $venue_id The id of the venue where the concert takes place
      * @param string $url URL which links to information about a concert
      * @return int The id of the last inserted concert.
      */
-    public function setConcert(string $name, string $date_start, string $date_end, int $venue_id, string $url): int
+    public function setConcert(string $name, string $date_start, ?string $date_end, int $venue_id, string $url): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('INSERT INTO event SET name = ?,
@@ -194,7 +194,7 @@ class ModelConcert
      * information about the appearance of a band, or an integer with -1 in case
      * of an error.
      */
-    public function getBands(int $id): int|array
+    public function getBands(int $id)
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT band.id, band.name, band.visible,
@@ -238,7 +238,7 @@ class ModelConcert
      *  information about the appearance of a band, or an integer with -1 in case
      *  of an error.
      */
-    public function delBands(int $id): int|array
+    public function delBands(int $id)
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('DELETE FROM event_band
