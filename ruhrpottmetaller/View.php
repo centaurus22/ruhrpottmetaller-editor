@@ -25,7 +25,7 @@ class View
      * @param string $key Key name
      * @param mixed $value Related value
      */
-    public function assign(string $key, mixed $value)
+    public function assign(string $key, $value)
     {
         $this->_[$key] = $value;
     }

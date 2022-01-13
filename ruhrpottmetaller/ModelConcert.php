@@ -194,7 +194,7 @@ class ModelConcert
      * information about the appearance of a band, or an integer with -1 in case
      * of an error.
      */
-    public function getBands(int $id): int|array
+    public function getBands(int $id)
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT band.id, band.name, band.visible,
@@ -238,7 +238,7 @@ class ModelConcert
      *  information about the appearance of a band, or an integer with -1 in case
      *  of an error.
      */
-    public function delBands(int $id): int|array
+    public function delBands(int $id)
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('DELETE FROM event_band

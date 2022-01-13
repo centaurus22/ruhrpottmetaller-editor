@@ -27,7 +27,7 @@ class ModelVenue
      *
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenues(): int|array
+    public function getVenues()
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name, stadt_id, url FROM location
@@ -44,7 +44,7 @@ class ModelVenue
      * @param string $city_id ID of the city.
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenuesByCity(string $city_id): int|array
+    public function getVenuesByCity(string $city_id)
     {
         $mysqli = $this->mysqli;
         if ($city_id == '') {
@@ -73,7 +73,7 @@ class ModelVenue
      * @param int $id
      * @return array|int Array with venue data or -1 for an error.
      */
-    public function getVenueById(int $id): int|array
+    public function getVenueById(int $id)
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('SELECT id, name, stadt_id, url FROM location
