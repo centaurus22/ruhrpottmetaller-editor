@@ -44,7 +44,7 @@ foreach($this->_['concerts'] as $concert) {
 			<td>%3\$s</td>
 			<td>%4\$s</td>
 			<td>%6\$s</td>
-			<td><a class='%1\$s' href='%5\$s'>%5\$s</a></td>
+			<td><a class='%1\$s' href='%5\$s'>www</a></td>
 			<td class=\"table_elements\">
 				<form action=\"\" method=\"GET\" id=\"%9\$u\">
                     <input type=\"hidden\" name=\"special\" value=\"concert\">
