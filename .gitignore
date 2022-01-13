@@ -4,3 +4,4 @@ db_preferences.inc.php
 /.phpunit.result.cache
 /vendor/
 /composer.lock
+/.project
