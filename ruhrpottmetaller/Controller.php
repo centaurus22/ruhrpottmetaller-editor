@@ -731,7 +731,11 @@ class Controller
      */
     private function passDataToUrlField()
     {
-        if (isset($this->request['venue_id']) and $this->request['venue_id'] != 1) {
+        if (
+            isset($this->request['venue_id'])
+            and $this->request['venue_id'] != 0
+            and $this->request['venue_id'] != 1
+        ) {
             $VenueModel = new ModelVenue($this->mysqli);
             $venue = $VenueModel->getVenueById($this->request['venue_id']);
             $this->Inner_View->assign('content', $venue[0]['url']);
