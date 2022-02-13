@@ -1,34 +1,48 @@
 {
-    "name": "klaus-thorres/ruhrpottmetaller-editor",
-    "description": "A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.",
-    "type": "library",
-    "keywords": ["events", "database", "editor",
-        "web", "concerts", "festivals", "php", "mysql"],
-    "homepage": "https://www.facebook.com/Ruhrpottmetaller/",
-    "readme": "README.md",
-    "license": "MIT",
-    "authors": [{
-        "name": "Klaus Thorres",
-        "email": "thorres@brothersofgrey.net",
-        "homepage": "https://github.com/klaus-thorres/",
-        "role": "developer"
-    }],
-    "support": {
-        "email": "ruhrpottmetaller@freenet.de",
-        "issues": "https://github.com/klaus-thorres/ruhrpottmetaller-editor/issues",
-        "source": "https://github.com/klaus-thorres/ruhrpottmetaller-editor"
-    },
-    "funding": [
-        {"type": "paypal", "url":  "https://www.paypal.me/klausthorres"},
-        {"type":  "bigcartel", "url": "https://ruhrpottmetaller.bigcartel.com/"}
-    ],
-    "require": {
-        "ext-mysqli": "*",
-        "ext-mbstring": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "ruhrpottmetaller\\": "ruhrpottmetaller"
-        }
-    }
+	"name" : "klaus-thorres/ruhrpottmetaller-editor",
+	"description" : "A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.",
+	"type" : "library",
+	"keywords" : [
+		"events",
+		"database",
+		"editor",
+		"web",
+		"concerts",
+		"festivals",
+		"php",
+		"mysql"
+	],
+	"homepage" : "https://www.facebook.com/Ruhrpottmetaller/",
+	"readme" : "README.md",
+	"license" : "MIT",
+	"authors" : [{
+			"name" : "Klaus Thorres",
+			"email" : "thorres@brothersofgrey.net",
+			"homepage" : "https://github.com/klaus-thorres/",
+			"role" : "developer"
+		}],
+	"support" : {
+		"email" : "ruhrpottmetaller@freenet.de",
+		"issues" : "https://github.com/klaus-thorres/ruhrpottmetaller-editor/issues",
+		"source" : "https://github.com/klaus-thorres/ruhrpottmetaller-editor"
+	},
+	"funding" : [
+		{
+			"type" : "paypal",
+			"url" : "https://www.paypal.me/klausthorres"
+		},
+		{
+			"type" : "bigcartel",
+			"url" : "https://ruhrpottmetaller.bigcartel.com/"
+		}
+	],
+	"require" : {
+		"ext-mysqli" : "*",
+		"ext-mbstring" : "*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"ruhrpottmetaller\\" : "ruhrpottmetaller"
+		}
+	}
 }
