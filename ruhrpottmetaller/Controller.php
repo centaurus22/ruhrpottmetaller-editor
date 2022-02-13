@@ -7,7 +7,6 @@ use mysqli;
 class Controller
 {
     private ?array $request;
-    private string $template = '';
     private ?View $View;
     private ?View $Inner_View;
     private ?mysqli $mysqli;
@@ -731,7 +730,11 @@ class Controller
      */
     private function passDataToUrlField()
     {
-        if (isset($this->request['venue_id'])) {
+        if (
+            isset($this->request['venue_id'])
+            and $this->request['venue_id'] != 0
+            and $this->request['venue_id'] != 1
+        ) {
             $VenueModel = new ModelVenue($this->mysqli);
             $venue = $VenueModel->getVenueById($this->request['venue_id']);
             $this->Inner_View->assign('content', $venue[0]['url']);
@@ -912,7 +915,7 @@ class Controller
      */
     private function prefillConcertEditor(ModelSession $Session_Model)
     {
-        $model_involved = (isset($this->request['edit_id']) and is_int($this->request['edit_id']));
+        $model_involved = (isset($this->request['edit_id']) and is_numeric($this->request['edit_id']));
         if ($model_involved == true) {
             $Concert_Model = new ModelConcert($this->mysqli);
             $concert = $Concert_Model->getConcert($this->request['edit_id']);
