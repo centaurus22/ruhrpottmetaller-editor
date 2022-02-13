@@ -162,12 +162,12 @@ function display_concert(concert_id, concert_status) {
 		const file = "index.php?display=concert&display_id=" + concert_id;
 		xmlhttp.open("GET",file,true);
         xmlhttp.send();
-        image.src = "images/minus_small.png";
+        image.src = "assets/images/minus_small.png";
         concert_high.className = "concert_high_opened concert_" + concert_status;
         concert_low.className = "concert_low_opened concert_" + concert_status;
     } else {
         concert_low.innerHTML = "";
-        image.src = "images/plus_small.png";
+        image.src = "assets/images/plus_small.png";
         concert_high.className = "concert_high_closed concert_" + concert_status;
         concert_low.className = "concert_low_closed concert_" + concert_status;
     }
