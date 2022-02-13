@@ -21,7 +21,7 @@ foreach ($this->_['data_array'] as $field) {
         );
     }
 
-    switch($field['type']) {
+    switch ($field['type']) {
         case 'hidden':
             printf(
                 '<input type="hidden" name="%1$s" value="%2$s">',

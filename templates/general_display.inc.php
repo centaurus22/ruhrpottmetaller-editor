@@ -28,10 +28,10 @@ echo "\t</div>
     </div>
     <div class=\"tbody\">\n";
 
-foreach($this->_['result'] as $datum) {
+foreach ($this->_['result'] as $datum) {
     echo "\t\t<form action=\"\" class=\"tr\">\n";
-    foreach($data as $field) {
-        switch($field['type']) {
+    foreach ($data as $field) {
+        switch ($field['type']) {
             case 'bool':
                 printf(
                     "\t\t\t" . '<span class="td">
@@ -61,7 +61,7 @@ foreach($this->_['result'] as $datum) {
             case 'hidden':
             //nobreak
             case 'hidden_save':
-                switch($field['ref']){
+                switch ($field['ref']) {
                     case 'month':
                         $datum['month'] = $this->_['month'];
                         break;

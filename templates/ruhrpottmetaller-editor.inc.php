@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><?= $this->_['pagetitle'].$this->_['subtitle'] ?></title>
+        <title><?= $this->_['pagetitle'] . $this->_['subtitle'] ?></title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
@@ -12,18 +12,20 @@
         <div class="leiste_top">
             <nav>
 <?php
-    foreach ($this->_['menu_entrys'] as $menu_entry) {
-        printf(
-            "\t\t\t\t<a href='?display=%s&amp;month=%s'>%s</a>\n",
-            $menu_entry[1],
-            $this->_['month'],
-            $menu_entry[0]
-        );
-    }
+
+foreach ($this->_['menu_entrys'] as $menu_entry) {
+    printf(
+        "\t\t\t\t<a href='?display=%s&amp;month=%s'>%s</a>\n",
+        $menu_entry[1],
+        $this->_['month'],
+        $menu_entry[0]
+    );
+}
+
 ?>
-			</nav>
+            </nav>
             <div class="noscript">
-            	<noscript>Please activate JavaScript!</noscript>
+                <noscript>Please activate JavaScript!</noscript>
             </div>
         </div>
 <?= $this->_['content']; ?>

@@ -4,8 +4,10 @@
         <input type="hidden" name="save" value="concert">
 <?php
 if (isset($this->_['request']['edit_id'])) {
-    printf("\t\t" . '<input type="hidden" name="save_id" value="%1$u">',
-        $this->_['request']['edit_id']);
+    printf(
+        "\t\t" . '<input type="hidden" name="save_id" value="%1$u">',
+        $this->_['request']['edit_id']
+    );
 }
 ?>
         <fieldset class="fieldset_general">
@@ -28,7 +30,7 @@ if ($this->_['error_text'] != '') {
             <select name="city_id" id="city_id" class="edit_select" onchange="display_city_venue_form(); display_venue_new_form();">
 <?php
 foreach ($this->_['cities'] as $city) {
-    if ($this->_['request']['city_id'] == $city['id'] ) {
+    if ($this->_['request']['city_id'] == $city['id']) {
         printf(
             "\t\t\t\t" . '<option value="%1$u" selected>%2$s</option>' . "\n",
             $city['id'],

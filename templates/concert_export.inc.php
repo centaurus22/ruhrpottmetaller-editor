@@ -7,22 +7,25 @@ if (isset($this->_['header'])) {
     echo nl2br(htmlspecialchars($this->_['header'], ENT_QUOTES));
 }
 
-foreach($this->_['concerts'] as $concert) {
+foreach ($this->_['concerts'] as $concert) {
     if (
         !isset($this->_['header'])
         or !isset($concert['visible'])
     ) {
         //Build the list of bands
         $bands = '';
-        foreach($concert['bands'] as $band) {
+        foreach ($concert['bands'] as $band) {
             if ($band['zusatz'] != '') {
-                $bands = $bands . sprintf('%1$s (%2$s), ',
+                $bands = $bands . sprintf(
+                    '%1$s (%2$s), ',
                     htmlspecialchars($band['name'], ENT_QUOTES),
-                    htmlspecialchars($band['zusatz'], ENT_QUOTES));
-            }
-            else {
-                $bands = $bands . sprintf('%1$s, ',
-                    htmlspecialchars($band['name'], ENT_QUOTES));
+                    htmlspecialchars($band['zusatz'], ENT_QUOTES)
+                );
+            } else {
+                $bands = $bands . sprintf(
+                    '%1$s, ',
+                    htmlspecialchars($band['name'], ENT_QUOTES)
+                );
             }
         }
         $bands = substr($bands, 0, -2);

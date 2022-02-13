@@ -2,38 +2,19 @@
 
 namespace ruhrpottmetaller;
 
-use mysqli;
-
-/**
- * Class to access and manipulate the data in the band table.
- * Version 1.0.0
- */
 class ModelBand
 {
-    //Link identifier for the connection to the database
-    private ?Mysqli $mysqli = null;
+    private ?\mysqli $mysqli = null;
 
-    /**
-     * Call the function which initialize the database connection and write the
-     * link identifier into the class variable.
-     */
     public function __construct($mysqli)
     {
         $this->mysqli = $mysqli;
     }
 
-    /**
-     * Get band data from the database
-     *
-     * @param string $initial Initial letter of the band name in capital letters
-     *  or an empty string for all bands or a % for bands witch names start with
-     *  a special character.
-     * @return array Array with band data.
-     */
     public function getBands(string $initial): array
     {
         $mysqli = $this->mysqli;
-        switch($initial) {
+        switch ($initial) {
             case '':
                 $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
                     ORDER BY name');
@@ -54,12 +35,6 @@ class ModelBand
         return $result;
     }
 
-    /**
-     * Get band data from one band with the submitted id.
-     *
-     * @param int $id ID of the band.
-     * @return array Array with band data.
-     */
     public function getBand(int $id): array
     {
         $mysqli = $this->mysqli;
@@ -71,12 +46,6 @@ class ModelBand
         return $result;
     }
 
-    /**
-     * Insert data about a band into the database
-     *
-     * @param string $name Name of the band.
-     * @return int Returns id of the new band, -1 for an error.
-     */
     public function setBand(string $name): int
     {
         $mysqli = $this->mysqli;
@@ -88,15 +57,6 @@ class ModelBand
         return ($result);
     }
 
-    /**
-     * Update band data in the database
-     *
-     * @param int $id ID of the band which is updated.
-     * @param string $name Name of the band.
-     * @param $visible
-     * @return int Returns 1 for successful operation,
-     *  0 for a non-existent id, -1 for an error.
-     */
     public function updateBand(int $id, string $name, $visible): int
     {
         $mysqli = $this->mysqli;

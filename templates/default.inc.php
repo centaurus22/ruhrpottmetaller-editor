@@ -17,24 +17,25 @@ echo  $this->_['month_changer'];
         </tr>
 <?php
 
-foreach($this->_['concerts'] as $concert) {
-	//Build the list of bands
-	$bands = '';
-	foreach($concert['bands'] as $band) {
-		if ($band['zusatz']):
-			$bands = $bands . sprintf(', <span class="%3$s">%1$s (%2$s)</span>',
-				htmlspecialchars($band['name'], ENT_QUOTES),
-				htmlspecialchars($band['zusatz'], ENT_QUOTES),
+foreach ($this->_['concerts'] as $concert) {
+    $bands = '';
+    foreach ($concert['bands'] as $band) {
+        if ($band['zusatz']) :
+            $bands = $bands . sprintf(
+                ', <span class="%3$s">%1$s (%2$s)</span>',
+                htmlspecialchars($band['name'], ENT_QUOTES),
+                htmlspecialchars($band['zusatz'], ENT_QUOTES),
                 htmlspecialchars($band['visible'], ENT_QUOTES)
             );
-        else:
-			$bands = $bands . sprintf(', <span class="%2$s">%1$s</span>',
-				htmlspecialchars($band['name'], ENT_QUOTES),
+        else :
+            $bands = $bands . sprintf(
+                ', <span class="%2$s">%1$s</span>',
+                htmlspecialchars($band['name'], ENT_QUOTES),
                 htmlspecialchars($band['visible'], ENT_QUOTES)
             );
-		endif;
-	}
-	$bands = substr($bands, 2);
+        endif;
+    }
+    $bands = substr($bands, 2);
     printf(
         "\t\t<tr id=\"concert_high_%9\$s\" class='concert_%1\$s concert_high_closed'>
 			<td><a href=\"#\" onclick=\"display_concert('%9\$u', '%1\$s')\" >
@@ -66,15 +67,17 @@ foreach($this->_['concerts'] as $concert) {
 		<tr class='concert_%1\$s concert_low'>
 			<td id=\"concert_low_%9\$s\" colspan=\"7\"></td>
         </tr>\n",
-            htmlspecialchars($concert['status'], ENT_QUOTES),
-			$concert['date_human'],
-			htmlspecialchars($concert['name'], ENT_QUOTES),
-			htmlspecialchars($concert['venue_city'], ENT_QUOTES),
-            htmlspecialchars($concert['url'], ENT_QUOTES),
-            $bands,
-			$concert['date_start'], $this->_['month'],
-			$concert['id'],
-			$this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png');
+        htmlspecialchars($concert['status'], ENT_QUOTES),
+        $concert['date_human'],
+        htmlspecialchars($concert['name'], ENT_QUOTES),
+        htmlspecialchars($concert['venue_city'], ENT_QUOTES),
+        htmlspecialchars($concert['url'], ENT_QUOTES),
+        $bands,
+        $concert['date_start'],
+        $this->_['month'],
+        $concert['id'],
+        $this->image_path . DIRECTORY_SEPARATOR . 'plus_small.png'
+    );
 }
 ?>
         </table>

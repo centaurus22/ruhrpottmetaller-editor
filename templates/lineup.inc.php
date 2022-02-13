@@ -18,12 +18,12 @@ for (
         $lineup_index
     );
     foreach ($alphabet as $first_sign) {
-        if ($this->_['lineup'][$lineup_index]['first_sign'] == $first_sign):
+        if ($this->_['lineup'][$lineup_index]['first_sign'] == $first_sign) :
             printf(
                 "\t\t\t<option selected value=\"%1\$s\">%1\$s</option>\n",
                 $first_sign
             );
-        else:
+        else :
             printf(
                 "\t\t\t<option value=\"%1\$s\">%1\$s</option>\n",
                 $first_sign
@@ -41,7 +41,8 @@ for (
         <span id=\"band_new_form_%1\$u\">\n", $lineup_index);
     echo $this->_['band_new_form'][$lineup_index];
     $addition = $this->_['lineup'][$lineup_index]['addition'];
-    printf("\t\t" . '</span>
+    printf(
+        "\t\t" . '</span>
         <label for="addition_%1$u" class="screenreader_only">Addition</label>
         <input type="text" name="addition[]" value="%4$s" id="addition_%1$u" class="edit_field" placeholder="Extra information" onchange="save_band_lineup(\'%1$u\', \'addition\')" autocomplete="off"/>
         <button type="button" onclick="set_band_lineup(\'%2$u\')">

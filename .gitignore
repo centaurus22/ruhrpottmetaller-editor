@@ -1,7 +1,8 @@
 db_preferences.inc.php
+/vendor/
+/composer.lock
 
 .idea
 /.phpunit.result.cache
-/vendor/
-/composer.lock
 /.project
+/.vscode/
