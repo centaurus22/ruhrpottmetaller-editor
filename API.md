@@ -9,6 +9,7 @@ This file describes the parameters to controll the *rpmetaller-editor*.
 If none of the parameters are specified, the *rpmetaller-editor* shows the concert overview of the current month.
 
 Only one of the two parameters `display` and `edit` can be provided. If both are sent, the `edit` parameter overwrites the `display` option.
+
 #### display
 The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved data. The following values are possible:
 * `display=concert`
@@ -21,13 +22,16 @@ The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved 
 
 ##### display_id
 If this parameter is provided only the dataset with the submitted id is displayed. This behaviour is currently implemented only for the `display=concert` parameter.
+
 #### edit
-The `èdit` parameter overwrites the `display` parameter. It opens an edit-page to insert or update data of the specified type. The following values are possible:
+The `edit` parameter overwrites the `display` parameter. It opens an edit-page to insert or update data of the specified type. The following values are possible:
 * `edit=concert`
 
 Data can also be provided by SPECIFIC_PARAMETERS. In this case, the corresponding input fields are pre filled with that information.
+
 ##### edit_id
 If a value is provided via the `edit_id` parameter, the *rpmetaller-editor* loads the data from the database into the edit page. Data from parameters listed under SPECIFIC_PARAMETERS override the information from the database.
+
 #### save
 With the `save` parameter, the *rpmetaller-editor* inserts the data transferred with the SPECIFIC_PARAMETERS in the database table that corresponds to the transmitted value. The following values are possible:
 * `save=concert`
@@ -37,14 +41,17 @@ With the `save` parameter, the *rpmetaller-editor* inserts the data transferred 
 * `save=pref`
 
 If the saving of the data fails, the corresponding editor page is opened with the data that could not be saved.
+
 ##### save_id
 The `save_id` parameter makes the difference between inserting a new dataset into the database and updating an existing dataset. If the `save_id` parameter is specified and the corresponding data record is available, the data record is updated. If no id is given, a new record is created. Otherwise the system will issue an error.
+
 ##### del
 It is possible to delete an entry from the database with the `del` parameter. The following values are possible:
 * `del=concert`
 
 ##### del_id
 The `del_id` specifies which database entry of the indicated type is deleted.
+
 #### special
 Values of `special` are automatically replaced by ordinary non-special parameters. This allows to choose those parameters from a drop down menu within the software. The following replacements are implemented in the *rpmetaller-editor*. Sometimes have to be combined with a correponding data id.
 * `special=concert`
@@ -61,6 +68,7 @@ Values of `special` are automatically replaced by ordinary non-special parameter
 
 #### month
 The `month` parameter in the format YYYY-MM is relevant for sites displaying a concert overview. In combination with `display=concert` or `display=export` the `month` parameter changes the output from the current month to a specific month.
+
 ### SPECIFIC_PARAMETERS
 * *`concert`*
   * `name`: Name of the concert or festival.
