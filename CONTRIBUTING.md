@@ -1,5 +1,6 @@
 # Contribution guidelines
 This document describes how to contribute to this project.
+
 ## Development workflow
 This is the development workflow:
 1. Clone the project.
@@ -9,6 +10,7 @@ This is the development workflow:
     * create an e-mail with git `git format-patch` and send it to thorres [at] brothersofgrey [dot] net.
 
 Please describe in commit messages and especially in the pull request, what you have changed and why you have changed it. Mind the linguistic recommendations for commit messages.
+
 ## Branches
 * The master branch should always be deployable. There should not be any inconsistency.
 * Development of new versions should take place in the development branche.
