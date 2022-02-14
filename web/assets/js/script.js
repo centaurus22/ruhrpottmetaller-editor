@@ -16,7 +16,7 @@ function selectElmCnt(elm) {
   }
 }
 
-function display_city_venue_form() {
+function display_new_city_form() {
 	let venue_id;
 	const city_id = document.getElementById("city_id").value;
 	if (city_id !== 1) {
@@ -33,12 +33,12 @@ function display_city_venue_form() {
 			document.getElementById("city_venue_form").innerHTML=xmlhttp.responseText;
 		}
 	};
-	const file = "index.php?special=edit_sub&city_id=" + city_id + "&venue_id=" + venue_id;
+	const file = "index.php?ajax=event_editor_change_city&city_id=" + city_id + "&venue_id=" + venue_id;
 	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
 }
 
-function display_venue_new_form() {
+function display_new_venue_form() {
 	let venue_id;
 	const city_id = document.getElementById("city_id").value;
 	if (city_id === '1') {
@@ -57,7 +57,7 @@ function display_venue_new_form() {
 			document.getElementById("venue_new_form").innerHTML=xmlHttp.responseText;
 	  	}
 	};
-	const file = "index.php?special=edit_sub&venue_id=" + venue_id;
+	const file = "index.php?ajax=event_editor_change_venue&venue_id=" + venue_id;
 	xmlHttp.open("GET", file,true);
 	xmlHttp.send();
 
@@ -69,7 +69,7 @@ function display_venue_new_form() {
 				document.getElementById("url").value=xmlHttpUrl.responseText;
 		  	}
 		};
-		const datei = "index.php?special=set_url&venue_id=" + venue_id;
+		const datei = "index.php?ajax=event_editor_set_url&venue_id=" + venue_id;
 		xmlHttpUrl.open("GET",datei,true);
 		xmlHttpUrl.send();
 	}
@@ -84,7 +84,7 @@ function get_band_select_options(row) {
 			document.getElementById("band_id_" + row).innerHTML=xmlhttp.responseText;
 		}
 	};
-	const file = "index.php?special=lineup_sub&type=band_select_options&first_sign=" + first_sign + "&band_id=" + band_id;
+	const file = "index.php?ajax=event_editor_change_band&type=band_select_options&first_sign=" + first_sign + "&band_id=" + band_id;
 	xmlhttp.open("GET",file , true);
 	xmlhttp.send();
 }
@@ -97,19 +97,19 @@ function get_band_new_form(row) {
 			document.getElementById("band_new_form_" + row).innerHTML=xmlhttp.responseText;
 		}
 	};
-	const file = "index.php?special=lineup_sub&type=band_new_form&band_id=" + band_id + "&row=" + row;
+	const file = "index.php?ajax=event_editor_change_band&type=band_new_form&band_id=" + band_id + "&row=" + row;
 	xmlhttp.open("GET", file, true);
 	xmlhttp.send();
 }
 
-function set_band_lineup(row) {
+function add_band_lineup(row) {
 	const xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange=function() {
 		if (xmlhttp.readyState===4 && xmlhttp.status===200) {
 			document.getElementById("lineup").innerHTML=xmlhttp.responseText;
 		}
 	};
-	const file = "index.php?special=lineup&type=add&row=" + row;
+	const file = "index.php?ajax=event_editor_change_lineup&type=add&row=" + row;
 	xmlhttp.open("GET",file,true);
 	xmlhttp.send();
 }
@@ -121,7 +121,7 @@ function del_band_lineup(row) {
 			document.getElementById("lineup").innerHTML=xmlhttp.responseText;
 		}
 	};
-	const file = "index.php?special=lineup&type=del&row=" + row;
+	const file = "index.php?ajax=event_editor_change_lineup&type=del&row=" + row;
 	xmlhttp.open("GET",file,true);
 	xmlhttp.send();
 }
@@ -134,7 +134,7 @@ function shift_band_lineup(row, direction) {
     			document.getElementById("lineup").innerHTML=xmlhttp.responseText;
     		}
   	};
-	const file = "index.php?special=lineup&type=shift&row=" + row + "&direction=" + direction;
+	const file = "index.php?ajax=event_editor_change_lineup&type=shift&row=" + row + "&direction=" + direction;
 	xmlhttp.open("GET",file,true);
 	xmlhttp.send();
 }
@@ -143,7 +143,7 @@ function save_band_lineup(row, field) {
 	let value = document.getElementById(field + "_" + row).value;
 	value=encodeURIComponent(value);
 	const xmlhttp = new XMLHttpRequest();
-	const file = "index.php?special=lineup&type=save&row=" + row + "&field=" + field + "&value=" + value;
+	const file = "index.php?ajax=event_editor_change_lineup&type=save&row=" + row + "&field=" + field + "&value=" + value;
 	xmlhttp.open("GET", file,true);
 	xmlhttp.send();
 }

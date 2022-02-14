@@ -67,7 +67,7 @@ class ModelConcert
         int $id,
         string $name,
         string $date_start,
-        string $date_end,
+        ?string $date_end,
         int $venue_id,
         string $url
     ): int {

@@ -102,19 +102,21 @@ class Controller
                     $this->passDataToConcertEditor();
                     break;
             }
-        elseif (isset($this->request['special'])) :
+        elseif (isset($this->request['ajax'])) :
             $this->isAjax = true;
-            switch ($this->request['special']) {
-                case 'lineup':
+            switch ($this->request['ajax']) {
+                case 'event_editor_change_lineup':
                     $this->passDataToLineup();
                     break;
-                case 'lineup_sub':
+                case 'event_editor_change_band':
                     $this->passDataToSubLineup();
                     break;
-                case 'edit_sub':
+                case 'event_editor_change_city':
+                    //no break
+                case 'event_editor_change_venue':
                     $this->passDataToSubEditor();
                     break;
-                case 'set_url':
+                case 'event_editor_set_url':
                     $this->passDataToUrlField();
                     break;
             }
@@ -643,7 +645,7 @@ class Controller
         return $monthChanger->getOutput();
     }
 
-    private function getFirstSign(string $band_name): string
+    private function getFirstSign(?string $band_name): string
     {
         $first_char = mb_substr($band_name, 0, 1);
         $first_char = mb_strtoupper($first_char);
@@ -701,7 +703,7 @@ class Controller
         return $Venue_New_Form->getOutput();
     }
 
-    private function getBandSelectOptions($first_sign, int $band_id): string
+    private function getBandSelectOptions($first_sign, ?int $band_id): string
     {
         if ($first_sign == '') {
             $bands = array(
@@ -721,7 +723,7 @@ class Controller
         return $Band_Select_Options->getOutput();
     }
 
-    private function getBandNewForm(int $row, int $band_id): string
+    private function getBandNewForm(int $row, ?int $band_id): string
     {
         $Session_Model = new ModelSession();
         $lineup = $Session_Model->getBandsLineup();
