@@ -6,9 +6,9 @@ This file describes the parameters to controll the *rpmetaller-editor*.
 * \[?edit=*<edit_type>*\[&edit_id=*<edit_id>*]\[&SPECIFIC_PARAMETERS\]\]\[\&del=*\<del_type\>*&del_id=*\<del_id\>*\]
 
 ## PARAMETERS
-If none of the parameters are specified, the *rpmetaller-editor* only shows the concert overview of the current month.
+If none of the parameters are specified, the *rpmetaller-editor* shows the concert overview of the current month.
 
-Only one of the two parameters `display` and `edit` can be provided. If both are sent, the `èdit` parameter overwrites the `display` option.
+Only one of the two parameters `display` and `edit` can be provided. If both are sent, the `edit` parameter overwrites the `display` option.
 #### display
 The `display` parameter lets the *rpmetaller-editor* shows an overwiev of saved data. The following values are possible:
 * `display=concert`
@@ -29,7 +29,7 @@ Data can also be provided by SPECIFIC_PARAMETERS. In this case, the correspondin
 ##### edit_id
 If a value is provided via the `edit_id` parameter, the *rpmetaller-editor* loads the data from the database into the edit page. Data from parameters listed under SPECIFIC_PARAMETERS override the information from the database.
 #### save
-With the `save` parameter, the * rpmetaller-editor * inserts the data transferred with the SPECIFIC_PARAMETERS in the database table that corresponds to the transmitted value. The following values are possible:
+With the `save` parameter, the *rpmetaller-editor* inserts the data transferred with the SPECIFIC_PARAMETERS in the database table that corresponds to the transmitted value. The following values are possible:
 * `save=concert`
 * `save=band`
 * `save=city`
