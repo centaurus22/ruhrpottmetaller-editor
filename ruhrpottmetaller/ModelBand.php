@@ -16,16 +16,18 @@ class ModelBand
         $mysqli = $this->mysqli;
         switch ($initial) {
             case '':
-                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
-                    ORDER BY name');
+                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band ORDER BY name');
                 break;
             case '%':
-                $stmt = $mysqli->prepare('SELECT id, name, visible from band
-                    WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
+                $stmt = $mysqli->prepare('
+                    SELECT id, name, visible
+                    FROM band
+                    WHERE name NOT REGEXP "^[A-Z,a-z]"
+                    ORDER BY name
+                ;');
                 break;
             default:
-                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band
-                    WHERE name LIKE ? ORDER BY name');
+                $stmt = $mysqli->prepare('SELECT id, name, visible FROM band WHERE name LIKE ? ORDER BY name');
                 $initial = $initial . '%';
                 $stmt->bind_param('s', $initial);
         }
