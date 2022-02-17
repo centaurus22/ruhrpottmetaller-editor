@@ -16,16 +16,18 @@ class ModelCity
         $mysqli = $this->mysqli;
         switch ($initial) {
             case '':
-                $stmt = $mysqli->prepare('SELECT id, name FROM stadt
-                    ORDER BY name');
+                $stmt = $mysqli->prepare('SELECT id, name FROM city ORDER BY name');
                 break;
             case '%':
-                $stmt = $mysqli->prepare('SELECT id, name  from stadt
-                    WHERE name NOT REGEXP "^[A-Z,a-z]" ORDER BY name;');
+                $stmt = $mysqli->prepare('
+                    SELECT id, name
+                    FROM city 
+                    WHERE name NOT REGEXP "^[A-Z,a-z]"
+                    ORDER BY name;
+                ');
                 break;
             default:
-                $stmt = $mysqli->prepare('SELECT id, name FROM stadt
-                    WHERE name LIKE ? ORDER BY name');
+                $stmt = $mysqli->prepare('SELECT id, name FROM city WHERE name LIKE ? ORDER BY name');
                 $initial = $initial . '%';
                 $stmt->bind_param('s', $initial);
         }
@@ -38,7 +40,7 @@ class ModelCity
     public function getCity(int $id): array
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name FROM stadt WHERE id=?');
+        $stmt = $mysqli->prepare('SELECT id, name FROM city WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -49,7 +51,7 @@ class ModelCity
     public function setCity(string $name): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO stadt SET name=?');
+        $stmt = $mysqli->prepare('INSERT INTO city SET name=?');
         $stmt->bind_param('s', $name);
         $stmt->execute();
         $result = $mysqli->insert_id;
@@ -60,7 +62,7 @@ class ModelCity
     public function updateCity(int $id, string $name): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE stadt SET name=? WHERE id=?');
+        $stmt = $mysqli->prepare('UPDATE city SET name=? WHERE id=?');
         $stmt->bind_param('si', $name, $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
