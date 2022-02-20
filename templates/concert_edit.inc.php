@@ -31,6 +31,7 @@ if ($this->_['error_text'] != '') {
             <input type="date"
                 name="date_start"
                 id="date_start"
+                pattern="d{4}-d{2}-d{2}"
                 value="<?=$this->_['request']['date_start']?>"
                 required class="edit_date"
             >
