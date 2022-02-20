@@ -14,23 +14,41 @@ class ModelConcert
     public function getConcerts(string $month): array
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT event.id,
-            event.datum_beginn AS date_start, event.datum_ende AS date_end,
-            event.name AS name, event.url, event.publiziert, event.ausverkauft,
-            location.name AS venue_name, stadt.name AS city_name FROM event
-            LEFT JOIN location ON event.location_id = location.id
-            LEFT JOIN stadt ON location.stadt_id = stadt.id
-            WHERE datum_beginn LIKE ?
-            ORDER BY event.datum_beginn');
+        $stmt = $mysqli->prepare('
+            SELECT
+                event.id,
+                event.date_start AS date_start,
+                event.date_end AS date_end,
+                event.name AS name,
+                event.url,
+                export_instagram.time_published_last,
+                event.sold_out AS ausverkauft,
+                venue.name AS venue_name,
+                city.name AS city_name
+            FROM 
+                event
+            LEFT JOIN 
+                venue ON event.venue_id = venue.id
+            LEFT JOIN 
+                city ON venue.city_id = city.id
+            LEFT JOIN
+                export_instagram ON event.id = export_instagram.event_id
+            WHERE 
+                date_start LIKE ?
+            ORDER BY
+                event.date_end
+        ');
         $month = $month . '%';
         $stmt->bind_param('s', $month);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
-        $stmt = $mysqli->prepare('SELECT band.name, band.visible,
-            event_band.zusatz FROM event_band
+        $stmt = $mysqli->prepare('
+            SELECT band.name, band.visible, event_band.additional_information
+            FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
-            WHERE event_band.event_id = ?');
+            WHERE event_band.event_id = ?
+        ');
         for ($i = 0; $i < count($result); $i++) {
             $stmt->bind_param('i', $result[$i]['id']);
             $stmt->execute();
@@ -44,16 +62,32 @@ class ModelConcert
     public function getConcert(int $id): array
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT event.id,
-            event.datum_beginn AS date_start,
-            event.datum_ende AS date_end,
-            event.name,
-            event.url, event.publiziert, event.ausverkauft,
-            location.name AS venue_name, location.id as venue_id,
-            stadt.name AS city_name, stadt.id AS city_id
-            FROM event LEFT JOIN location ON event.location_id = location.id
-            LEFT JOIN stadt ON location.stadt_id = stadt.id WHERE event.id = ?
-            ORDER BY event.datum_beginn');
+        $stmt = $mysqli->prepare('
+            SELECT
+                event.id,
+                event.date_start AS date_start,
+                event.date_end AS date_end,
+                event.name,
+                event.url,
+                event_instagram.time_published_last,
+                event.sold_out,
+                venue.name AS venue_name,
+                venue.id as venue_id,
+                stadt.name AS city_name,
+                stadt.id AS city_id
+            FROM 
+                 event
+            LEFT JOIN 
+                venue ON event.venue_id = venue.id
+            LEFT JOIN
+                city ON venue.city_id = city.id
+            LEFT JOIN
+                export_instagram ON event.id = export_instagram.event_id
+            WHERE
+                event.id = ?
+            ORDER BY
+                event.date_start
+        ');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -72,8 +106,11 @@ class ModelConcert
         string $url
     ): int {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE event SET name = ?, datum_beginn = ?,
-            datum_ende = ?, location_id = ?, url = ? WHERE id = ?');
+        $stmt = $mysqli->prepare('
+            UPDATE event
+            SET name = ?, date_start = ?, date_end = ?, venue_id = ?, url = ?
+            WHERE id = ?
+        ');
         $stmt->bind_param(
             'sssisi',
             $name,
@@ -111,9 +148,12 @@ class ModelConcert
     public function delConcert(int $id): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('DELETE event, event_band FROM event
-            LEFT JOIN event_band ON event.id=event_band.event_id
-            WHERE event.id= ?');
+        $stmt = $mysqli->prepare('
+            DELETE event, event_band 
+            FROM event
+            LEFT JOIN event_band ON event.id = event_band.event_id
+            WHERE event.id = ?
+        ');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
@@ -124,10 +164,12 @@ class ModelConcert
     public function getBands(int $id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT band.id, band.name, band.visible,
-            event_band.zusatz FROM event_band
+        $stmt = $mysqli->prepare('
+            SELECT band.id, band.name, band.visible, event_band.additional_information
+            FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
-            WHERE event_band.event_id LIKE ?');
+            WHERE event_band.event_id = ?
+        ');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -138,8 +180,7 @@ class ModelConcert
     public function setBand(int $id, int $band_id, string $addition): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO event_band SET event_id = ?,
-            band_id = ?, zusatz = ?');
+        $stmt = $mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, zusatz = ?');
         $stmt->bind_param('iis', $id, $band_id, $addition);
         $stmt->execute();
         $result = $stmt->affected_rows;
@@ -150,8 +191,7 @@ class ModelConcert
     public function delBands(int $id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('DELETE FROM event_band
-            WHERE event_band.event_id = ?');
+        $stmt = $mysqli->prepare('DELETE FROM event_band WHERE event_band.event_id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
@@ -163,18 +203,7 @@ class ModelConcert
     public function setSoldOut(int $id): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE event SET ausverkauft=1 WHERE id = ?');
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-        $result = $stmt->affected_rows;
-        $stmt->close();
-        return $result;
-    }
-
-    public function setPublished(int $id): int
-    {
-        $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE event SET publiziert=1 WHERE id= ?');
+        $stmt = $mysqli->prepare('UPDATE event SET sold_out=1 WHERE id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
