@@ -1101,7 +1101,8 @@ class Controller
             isset($this->request['published'])
             and $this->request['published'] == 1
         ) {
-            $result = $Concert_Model->setPublished($this->request['save_id']);
+            $ModelInstagramExport = new ModelExportInstagram($this->mysqli);
+            $result = $ModelInstagramExport->setPublished($this->request['save_id']);
         }
         if (
             isset($this->request['sold_out'])
@@ -1195,10 +1196,10 @@ class Controller
                 if (
                     ($time_start - time() < $two_weeks and is_null($concerts[$concert_index]['date_end'])
                     or ($time_start - time() < $two_months and !is_null($concerts[$concert_index]['date_end'])))
-                    and $concerts[$concert_index]['publiziert'] == 0
+                    and $concerts[$concert_index]['published'] == ''
                 ) {
                     $concerts[$concert_index]['status'] = 'urgent';
-                } elseif ($concerts[$concert_index]['publiziert'] == 1) {
+                } elseif ($concerts[$concert_index]['published'] != '') {
                     $concerts[$concert_index]['status'] = 'published';
                 } else {
                     $concerts[$concert_index]['status'] = 'unpublished';

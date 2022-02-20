@@ -21,7 +21,7 @@ class ModelConcert
                 event.date_end AS date_end,
                 event.name AS name,
                 event.url,
-                export_instagram.time_published_last,
+                export_instagram.time_published_last as published,
                 event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 city.name AS city_name
@@ -69,7 +69,7 @@ class ModelConcert
                 event.date_end AS date_end,
                 event.name,
                 event.url,
-                event_instagram.time_published_last,
+                event_instagram.time_published_last as published,
                 event.sold_out,
                 venue.name AS venue_name,
                 venue.id as venue_id,
