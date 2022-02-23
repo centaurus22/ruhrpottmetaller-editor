@@ -14,7 +14,7 @@ class ModelVenue
     public function getVenues()
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name, city_id AS stadt_id, url FROM venue ORDER BY name');
+        $stmt = $mysqli->prepare('SELECT id, name, city_id AS stadt_id, url_standard AS url  FROM venue ORDER BY name');
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
@@ -26,17 +26,17 @@ class ModelVenue
         $mysqli = $this->mysqli;
         if ($city_id == '') {
             $stmt = $mysqli->prepare('
-                SELECT venue.id, venue.name, city.name AS city_name, venue.stadt_id, venue.url_standard
+                SELECT venue.id, venue.name, city.name AS city_name, venue.city_id, venue.url_standard AS url
                 FROM venue
                 JOIN city ON venue.city_id = city.id
                 ORDER BY city.name, venue.name
             ');
         } else {
             $stmt = $mysqli->prepare('
-                SELECT venue.id, venue.name, city.name AS city_name, city_id, venue.url_standard
+                SELECT venue.id, venue.name, city.name AS city_name, city_id, venue.url_standard AS url
                 FROM venue
-                JOIN city ON location.stadt_id = stadt.id
-                WHERE city_id=?
+                JOIN city ON venue.city_id = city.id
+                WHERE city_id = ?
                 ORDER BY venue.name
             ');
             $stmt->bind_param('i', $city_id);
@@ -50,7 +50,7 @@ class ModelVenue
     public function getVenueById(int $id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('SELECT id, name, city_id, url_standard FROM venue WHERE id=?');
+        $stmt = $mysqli->prepare('SELECT id, name, city_id, url_standard  AS url FROM venue WHERE id=?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);

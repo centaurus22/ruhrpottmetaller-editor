@@ -17,11 +17,11 @@ class ModelConcert
         $stmt = $mysqli->prepare('
             SELECT
                 event.id,
-                event.date_start AS date_start,
-                event.date_end AS date_end,
+                event.date_start,
+                event.date_end,
                 event.name AS name,
                 event.url,
-                export_instagram.time_published_last as published,
+                `export-instagram`.time_published_last as published,
                 event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 city.name AS city_name
@@ -32,7 +32,7 @@ class ModelConcert
             LEFT JOIN 
                 city ON venue.city_id = city.id
             LEFT JOIN
-                export_instagram ON event.id = export_instagram.event_id
+                `export-instagram` ON event.id = `export-instagram`.event_id
             WHERE 
                 date_start LIKE ?
             ORDER BY
@@ -44,7 +44,7 @@ class ModelConcert
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
         $stmt = $mysqli->prepare('
-            SELECT band.name, band.visible, event_band.additional_information
+            SELECT band.name, band.visible, event_band.additional_information AS zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
@@ -65,16 +65,16 @@ class ModelConcert
         $stmt = $mysqli->prepare('
             SELECT
                 event.id,
-                event.date_start AS date_start,
-                event.date_end AS date_end,
+                event.date_start,
+                event.date_end,
                 event.name,
                 event.url,
-                event_instagram.time_published_last as published,
-                event.sold_out,
+                `export-instagram`.time_published_last as published,
+                event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 venue.id as venue_id,
-                stadt.name AS city_name,
-                stadt.id AS city_id
+                city.name AS city_name,
+                city.id AS city_id
             FROM 
                  event
             LEFT JOIN 
@@ -82,7 +82,7 @@ class ModelConcert
             LEFT JOIN
                 city ON venue.city_id = city.id
             LEFT JOIN
-                export_instagram ON event.id = export_instagram.event_id
+                `export-instagram` ON event.id = `export-instagram`.event_id
             WHERE
                 event.id = ?
             ORDER BY
@@ -129,8 +129,8 @@ class ModelConcert
     public function setConcert(string $name, string $date_start, ?string $date_end, int $venue_id, string $url): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO event SET name = ?,
-            datum_beginn = ?, datum_ende = ?, location_id = ?, url = ?');
+        $stmt = $mysqli->prepare('
+            INSERT INTO event SET name = ?, date_start = ?, date_end = ?, venue_id = ?, url = ?');
         $stmt->bind_param(
             'sssis',
             $name,
@@ -165,7 +165,7 @@ class ModelConcert
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('
-            SELECT band.id, band.name, band.visible, event_band.additional_information
+            SELECT band.id, band.name, band.visible, event_band.additional_information as zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
@@ -180,7 +180,7 @@ class ModelConcert
     public function setBand(int $id, int $band_id, string $addition): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, zusatz = ?');
+        $stmt = $mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, additional_information = ?');
         $stmt->bind_param('iis', $id, $band_id, $addition);
         $stmt->execute();
         $result = $stmt->affected_rows;
