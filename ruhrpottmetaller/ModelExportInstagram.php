@@ -14,7 +14,7 @@ class ModelExportInstagram
     public function setPublished(int $id): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('UPDATE `export-instagram` SET time_published_last = NOW() WHERE event_id = ?');
+        $stmt = $mysqli->prepare('UPDATE `event_instagram` SET time_published_last = NOW() WHERE event_id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;

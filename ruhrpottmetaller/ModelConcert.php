@@ -21,7 +21,7 @@ class ModelConcert
                 event.date_end,
                 event.name AS name,
                 event.url,
-                `export-instagram`.time_published_last as published,
+                event_instagram.time_published_last as published,
                 event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 city.name AS city_name
@@ -32,7 +32,7 @@ class ModelConcert
             LEFT JOIN 
                 city ON venue.city_id = city.id
             LEFT JOIN
-                `export-instagram` ON event.id = `export-instagram`.event_id
+                event_instagram ON event.id = event_instagram.event_id
             WHERE 
                 date_start LIKE ?
             ORDER BY
@@ -69,7 +69,7 @@ class ModelConcert
                 event.date_end,
                 event.name,
                 event.url,
-                `export-instagram`.time_published_last as published,
+                event_instagram.time_published_last as published,
                 event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 venue.id as venue_id,
@@ -82,7 +82,7 @@ class ModelConcert
             LEFT JOIN
                 city ON venue.city_id = city.id
             LEFT JOIN
-                `export-instagram` ON event.id = `export-instagram`.event_id
+                event_instagram ON event.id = event_instagram.event_id
             WHERE
                 event.id = ?
             ORDER BY
