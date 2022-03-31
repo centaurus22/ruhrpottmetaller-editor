@@ -36,7 +36,7 @@ class ModelConcert
             WHERE 
                 date_start LIKE ?
             ORDER BY
-                event.date_end
+                event.date_start
         ');
         $month = $month . '%';
         $stmt->bind_param('s', $month);
