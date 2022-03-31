@@ -36,7 +36,7 @@ class ModelConcert
             WHERE 
                 date_start LIKE ?
             ORDER BY
-                event.date_end
+                event.date_start
         ');
         $month = $month . '%';
         $stmt->bind_param('s', $month);
@@ -44,7 +44,10 @@ class ModelConcert
         $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
         $stmt = $mysqli->prepare('
-            SELECT band.name, band.visible, event_band.additional_information AS zusatz
+            SELECT
+                band.name,
+                band.visible,
+                event_band.additional_information AS zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
@@ -126,11 +129,18 @@ class ModelConcert
         return $result;
     }
 
-    public function setConcert(string $name, string $date_start, ?string $date_end, int $venue_id, string $url): int
-    {
+    public function setConcert(
+        string $name,
+        string $date_start,
+        ?string $date_end,
+        int $venue_id,
+        string $url
+    ): int {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('
-            INSERT INTO event SET name = ?, date_start = ?, date_end = ?, venue_id = ?, url = ?');
+            INSERT INTO event
+            SET name = ?, date_start = ?, date_end = ?, venue_id = ?, url = ?
+        ');
         $stmt->bind_param(
             'sssis',
             $name,
@@ -165,7 +175,11 @@ class ModelConcert
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('
-            SELECT band.id, band.name, band.visible, event_band.additional_information as zusatz
+            SELECT
+                band.id,
+                band.name,
+                band.visible,
+                event_band.additional_information as zusatz
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
@@ -180,7 +194,10 @@ class ModelConcert
     public function setBand(int $id, int $band_id, string $addition): int
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('INSERT INTO event_band SET event_id = ?, band_id = ?, additional_information = ?');
+        $stmt = $mysqli->prepare('
+            INSERT INTO event_band
+            SET event_id = ?, band_id = ?, additional_information = ?
+        ');
         $stmt->bind_param('iis', $id, $band_id, $addition);
         $stmt->execute();
         $result = $stmt->affected_rows;
@@ -191,7 +208,9 @@ class ModelConcert
     public function delBands(int $id)
     {
         $mysqli = $this->mysqli;
-        $stmt = $mysqli->prepare('DELETE FROM event_band WHERE event_band.event_id = ?');
+        $stmt = $mysqli->prepare('
+            DELETE FROM event_band WHERE event_band.event_id = ?
+        ');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;
