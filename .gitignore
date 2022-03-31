@@ -2,7 +2,9 @@ db_preferences.inc.php
 /vendor/
 /composer.lock
 
+*.swp
+/tags
+
 .idea
 /.phpunit.result.cache
 /.project
-/.vscode/
