@@ -4,7 +4,4 @@ db_preferences.inc.php
 
 *.swp
 /tags
-
-.idea
-/.phpunit.result.cache
-/.project
+.project.vim
