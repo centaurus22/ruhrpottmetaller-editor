@@ -1,7 +1,7 @@
 # Table of Contents
 * [References](#references)
 * [Features](#features)
-* [Technologie](#technologie)
+* [Technology](#technology)
 * [Installation](#installation)
 * [Using](#using)
 * [How to contribute](#how-to-contribute)

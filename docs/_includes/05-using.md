@@ -7,12 +7,12 @@ The concert editor as well as the concert export function need JavaScript activa
 ## Concerts
 ![Screenshot of the Termine site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/01-termine.jpeg)
 
-This is the main site of the *rpmetaller-editor*.
+This is the main site of the *ruhrpottmetaller-editor*.
 You can use the buttons at the top of the page to browse through all concerts saved in the database. You can also jump back to the current month by clicking the button with the small circle.
 
-Clicking at the plus image at the left of a concert opens a human readable export.  Export settings can be made on the [Preferences](#export) site.
+Clicking at the plus image at the left of a concert opens a human-readable export.  Export settings can be made on the [Preferences](#export) site.
 
-Several commands can be applied to a concert using the drop down menu at the right:
+Several commands can be applied to a concert using the drop-down menu at the right:
 * `Add` opens the [concert editor](#concert-editor) to add a new concert to the database. The date of the concert on which the add command is started, is the preset for the date of the new concert.
 * `Edit` opens the [concert editor](#concert-editor) to edit the concert data.
 * `Published` marks the concert as published.
@@ -62,7 +62,7 @@ Filtering the bands by the first character of its name using the dropdown menu a
 
 On this site you can edit the names of the cities in the database. 
 
-Filtering by the the first character is also possible on this page.
+Filtering by the first character is also possible on this page.
 ## Venues
 ![Screenshot of the Locations site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/04-locations.jpeg)
 
@@ -74,7 +74,7 @@ In this scope filtering by the city is possible.
 ## Export
 ![Screenshot of the Export site](https://raw.githubusercontent.com/klaus-thorres/rpmetaller-editor/main/docs/_images/05-export.jpeg)
 
-A human readable list of the concerts of the currently selected month is created on the export page.
+A human-readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the [Preferences](#preferences) site.
 You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
 ## Preferences

@@ -1,3 +1,3 @@
 # Contact
-If you have any questions, write an e-mail to thorres [at] brothersofgrey [dot] net.
+If you have any questions, write an e-mail to ruhrpottmetaller [at] freenet [dot] de.
 

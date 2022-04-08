@@ -1,5 +1,7 @@
 db_preferences.inc.php
-tags
-tags.lock
+/vendor/
+/composer.lock
 
-.idea
+*.swp
+/tags
+.project.vim
