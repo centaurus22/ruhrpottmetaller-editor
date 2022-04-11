@@ -5,7 +5,8 @@ Here you can find the latest updating instructions.
 ## Update to Version 3.0.0
 
 * The database structure has changed in the following way. You have to adjust
-  your database to complete your update.
+  your database to complete your update. Or you can use the update script in
+  the `/bin` folder to transfer your data to a new database.
 
   |  old              |  new                   |
   |-------------------|------------------------|
@@ -24,6 +25,7 @@ Here you can find the latest updating instructions.
   | header            | export_header          |
   | footer            | export_footer          |
   | **`stadt`**       | **`city`**             |
+
 
 * The index.php file of the Application is moved to the `/web` folder and
   therefore your web server configuration needs to be changed.
