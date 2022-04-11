@@ -3,5 +3,7 @@ db_preferences.inc.php
 /composer.lock
 
 *.swp
+*.swo
+
 /tags
 .project.vim
