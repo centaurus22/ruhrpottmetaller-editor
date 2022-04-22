@@ -25,15 +25,15 @@ class ModelConcert
                 event.sold_out AS ausverkauft,
                 venue.name AS venue_name,
                 city.name AS city_name
-            FROM 
+            FROM
                 event
-            LEFT JOIN 
+            LEFT JOIN
                 venue ON event.venue_id = venue.id
-            LEFT JOIN 
+            LEFT JOIN
                 city ON venue.city_id = city.id
             LEFT JOIN
                 event_instagram ON event.id = event_instagram.event_id
-            WHERE 
+            WHERE
                 date_start LIKE ?
             ORDER BY
                 event.date_start
@@ -51,6 +51,7 @@ class ModelConcert
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
+            ORDER BY event_band.id
         ');
         for ($i = 0; $i < count($result); $i++) {
             $stmt->bind_param('i', $result[$i]['id']);
@@ -78,9 +79,9 @@ class ModelConcert
                 venue.id as venue_id,
                 city.name AS city_name,
                 city.id AS city_id
-            FROM 
+            FROM
                  event
-            LEFT JOIN 
+            LEFT JOIN
                 venue ON event.venue_id = venue.id
             LEFT JOIN
                 city ON venue.city_id = city.id
@@ -183,6 +184,7 @@ class ModelConcert
             FROM event_band
             LEFT JOIN band ON event_band.band_id = band.id
             WHERE event_band.event_id = ?
+            ORDER BY event_band.id
         ');
         $stmt->bind_param('i', $id);
         $stmt->execute();
