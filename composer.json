@@ -40,9 +40,18 @@
 		"ext-mysqli" : "*",
 		"ext-mbstring" : "*"
 	},
+    "require-dev" : {
+        "ext-xdebug" : "*",
+        "phpunit/phpunit" : "^9.5"
+    },
 	"autoload" : {
 		"psr-4" : {
 			"ruhrpottmetaller\\" : "ruhrpottmetaller"
 		}
-	}
+	},
+    "autoload-dev" : {
+        "psr-4" : {
+            "tests\\ruhrpottmetaller\\" : "tests"
+        }
+    }
 }
