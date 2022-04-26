@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Variable;
 
-class VarString implements IString
+class VarString implements IVar, IVarString
 {
     private ?string $String;
 
@@ -11,19 +11,26 @@ class VarString implements IString
         $this->String = $this->convertInput($value);
     }
 
-    public function getIt(): ?string
+    public static function new($value)
+    {
+        return new VarString($value);
+    }
+
+    public function get(): ?string
     {
         return $this->String;
     }
 
-    public function setIt($value): void
+    public function set($value): IVarString
     {
         $this->String = $this->convertInput($value);
+        return $this;
     }
 
-    public function printIt(): void
+    public function print(): IVarString
     {
-        echo (string) $this->String;
+        echo $this->String;
+        return $this;
     }
 
     private function convertInput($value): ?string
