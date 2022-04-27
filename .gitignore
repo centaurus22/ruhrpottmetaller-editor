@@ -1,10 +1,10 @@
 db_preferences.inc.php
 /vendor/
-/composer.lock
 
 *.swp
 *.swo
 
 /tags
+/.idea/
 .project.vim
 /.phpunit.cache/
