@@ -12,6 +12,7 @@ final class DatatypeIntTest extends TestCase
 {
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      */
@@ -24,6 +25,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      */
@@ -36,6 +38,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::set
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
@@ -50,6 +53,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      */
@@ -61,6 +65,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::set
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
@@ -74,6 +79,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::print
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      */
@@ -86,6 +92,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::print
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      */
@@ -98,6 +105,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
@@ -111,6 +119,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::get
@@ -123,6 +132,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::print
@@ -136,6 +146,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::set
@@ -149,6 +160,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::asString
@@ -163,6 +175,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::asString
@@ -180,6 +193,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::asString
@@ -197,6 +211,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::asString
@@ -212,6 +227,7 @@ final class DatatypeIntTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeInt::set

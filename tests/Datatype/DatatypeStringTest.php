@@ -13,6 +13,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -24,6 +25,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -35,6 +37,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -46,6 +49,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::set
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
@@ -59,6 +63,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -70,6 +75,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::set
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
@@ -83,6 +89,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::print
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -95,6 +102,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::print
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      */
@@ -107,6 +115,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
@@ -119,6 +128,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::get
@@ -134,6 +144,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::print
@@ -147,6 +158,7 @@ final class DatatypeStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::__construct
+     * @covers \ruhrpottmetaller\Datatype\AbstractDatatypeValue::__construct
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::convertInput
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::new
      * @covers \ruhrpottmetaller\Datatype\DatatypeString::set

@@ -2,38 +2,21 @@
 
 namespace ruhrpottmetaller\Datatype;
 
-class DatatypeString implements IDatatype
+class DatatypeString extends AbstractDatatypeValue
 {
-    private ?string $String;
+    protected ?string $value;
 
     public function __construct($value)
     {
-        $this->String = $this->convertInput($value);
-    }
-
-    public static function new($value): IDatatype
-    {
-        return new DatatypeString($value);
+        parent::__construct($value);
     }
 
     public function get(): ?string
     {
-        return $this->String;
+        return $this->value;
     }
 
-    public function set($value): IDatatype
-    {
-        $this->String = $this->convertInput($value);
-        return $this;
-    }
-
-    public function print(): IDatatype
-    {
-        echo $this->String;
-        return $this;
-    }
-
-    private function convertInput($value): ?string
+    protected function convertInput($value): ?string
     {
         if (is_null($value)) {
             return null;
