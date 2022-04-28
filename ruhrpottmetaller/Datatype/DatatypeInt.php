@@ -33,6 +33,11 @@ class DatatypeInt implements IDatatype
         return $this;
     }
 
+    public function asString(): DatatypeString
+    {
+        return new DatatypeString($this->int);
+    }
+
     private function convertInput($value): ?int
     {
         if (is_null($value)) {
