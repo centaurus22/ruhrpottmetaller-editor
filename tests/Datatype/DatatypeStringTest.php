@@ -7,7 +7,7 @@ namespace tests\ruhrpottmetaller\Datatype;
 use ruhrpottmetaller\Datatype\DatatypeString;
 use PHPUnit\Framework\TestCase;
 
-final class VarStringTest extends TestCase
+final class DatatypeStringTest extends TestCase
 {
     public \ruhrpottmetaller\Datatype\DatatypeString $String;
 
