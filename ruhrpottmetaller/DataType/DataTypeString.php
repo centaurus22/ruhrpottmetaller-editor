@@ -1,8 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Datatype;
+namespace ruhrpottmetaller\DataType;
 
-class DatatypeString extends AbstractDatatypeValue
+class DataTypeString extends AbstractDataTypeValue
 {
     protected ?string $value;
 

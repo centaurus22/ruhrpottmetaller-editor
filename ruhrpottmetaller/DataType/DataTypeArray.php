@@ -1,13 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Datatype;
+namespace ruhrpottmetaller\DataType;
 
-class DatatypeArray implements IDatatype
+class DataTypeArray implements IDataType
 {
     private array $array = array();
     private int $pointer = 0;
 
-    public static function new(): DatatypeArray
+    public static function new(): DataTypeArray
     {
         return new self();
     }

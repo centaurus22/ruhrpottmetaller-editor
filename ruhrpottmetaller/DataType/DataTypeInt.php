@@ -1,8 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Datatype;
+namespace ruhrpottmetaller\DataType;
 
-class DatatypeInt extends AbstractDatatypeValue
+class DataTypeInt extends AbstractDataTypeValue
 {
     protected ?int $value;
 
@@ -16,9 +16,9 @@ class DatatypeInt extends AbstractDatatypeValue
         return $this->value;
     }
 
-    public function asString(): DatatypeString
+    public function asString(): DataTypeString
     {
-        return new DatatypeString($this->value);
+        return new DataTypeString($this->value);
     }
 
     protected function convertInput($value): ?int
