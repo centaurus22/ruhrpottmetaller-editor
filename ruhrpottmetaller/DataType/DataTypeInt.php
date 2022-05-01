@@ -21,7 +21,7 @@ class DataTypeInt extends AbstractDataTypeValue
         return new DataTypeString($this->value);
     }
 
-    protected function convertInput($value): ?int
+    protected function convert($value): ?int
     {
         if (is_null($value)) {
             return null;

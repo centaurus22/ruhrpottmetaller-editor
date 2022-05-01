@@ -11,10 +11,8 @@ use PHPUnit\Framework\TestCase;
 final class DataTypeIntTest extends TestCase
 {
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldReturnSameIntAfterAcceptingInt(): void
     {
@@ -24,10 +22,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldReturnConvertibleStringAsIntegerAfterAcceptingString(): void
     {
@@ -37,11 +33,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testGetItShoudReturnIntegerAsStringAfterAcceptingInteger(): void
     {
@@ -52,10 +45,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -64,11 +55,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
@@ -78,10 +66,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::print
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldOutputStringAfterAcceptingIt(): void
     {
@@ -91,10 +77,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::print
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -104,11 +88,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testNewShouldAcceptIntAndGetShouldProvideItAgain(): void
     {
@@ -118,12 +99,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -131,12 +108,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::print
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -145,12 +118,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::get
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
@@ -159,13 +128,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::asString
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
      */
     public function testShouldReturnStringObject(): void
     {
@@ -174,14 +139,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::asString
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
      */
     public function testShouldReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -192,14 +152,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::asString
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
      */
     public function testShoultReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -210,14 +165,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::asString
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
      */
     public function testAsStringShouldBeChainable(): void
     {
@@ -226,15 +176,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::__construct
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::convertInput
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::new
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::set
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt::asString
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::get
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::__construct
-     * @covers \ruhrpottmetaller\DataType\DataTypeString::convertInput
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
      */
     public function testAsStringShouldBeChainableAndSavedToAVariable(): void
     {

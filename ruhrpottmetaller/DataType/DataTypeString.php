@@ -16,7 +16,7 @@ class DataTypeString extends AbstractDataTypeValue
         return $this->value;
     }
 
-    protected function convertInput($value): ?string
+    protected function convert($value): ?string
     {
         if (is_null($value)) {
             return null;

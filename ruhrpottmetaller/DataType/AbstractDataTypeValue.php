@@ -6,7 +6,7 @@ abstract class AbstractDataTypeValue implements IDataType
 {
     public function __construct($value)
     {
-        $this->value = $this->convertInput($value);
+        $this->value = $this->convert($value);
     }
 
     public static function new($value): IDataType
@@ -16,7 +16,7 @@ abstract class AbstractDataTypeValue implements IDataType
 
     public function set($value): IDataType
     {
-        $this->value = $this->convertInput($value);
+        $this->value = $this->convert($value);
         return $this;
     }
 
