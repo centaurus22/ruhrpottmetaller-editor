@@ -42,6 +42,28 @@ English requires building the associated localization files.
 
 Please note the UPDATING.md file for update instructions.
 
+## Expect the object orientated madness
+
+I have created high level data type objects which whose methods can be chained by
+object operators. Try this for example:
+
+```php
+
+<?php
+
+namespace ruhrpottmetaller\DataType;
+
+include ('vendor/autoload.php');
+
+$HighLevelDemoArray = DataTypeArray::new()->add(DataTypeString::new('Hello'))
+    ->add(DataTypeString::new(' World!'));
+$HighLevelDemoArray->get()->print();
+$HighLevelDemoArray->pointAtNext()->get()->print();
+
+//Prints 'Hello World!' to the terminal.
+
+```
+
 ## Using
 This section describes, how to use the software. Every link at the top has its own
 subsection.
@@ -80,7 +102,7 @@ A concert can be displayed in different colors:
 Bands written in light brown are marked as not visible.
 
 #### Concert editor
-This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the url.
+This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the URL.
 
 ##### General concert data
 In the first part of the editor general information of the concert are entered.
