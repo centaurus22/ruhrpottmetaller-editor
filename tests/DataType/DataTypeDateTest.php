@@ -116,5 +116,4 @@ final class DataTypeDateTest extends TestCase
         $this->expectOutputString('2010-01-012010-05-05');
         DataTypeDate::new('2010-01-01')->print()->set('2010-05-05')->print();
     }
-
 }
