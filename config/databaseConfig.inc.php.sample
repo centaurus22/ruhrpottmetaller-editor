@@ -1,0 +1,6 @@
+<?php
+
+$databaseUserName = 'ruhrpottmetaller';
+$databaseUserPassword = 'testUserPassword';
+$databaseHost = 'localhost';
+$databaseTable = 'ruhrpottmetaller';
