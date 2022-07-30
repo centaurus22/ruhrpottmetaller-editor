@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\DataSet;
 
 use ruhrpottmetaller\DataType\DataTypeDate;
 use ruhrpottmetaller\DataType\DataTypeString;
@@ -14,6 +14,8 @@ use PHPUnit\Framework\TestCase;
 
 final class QueryConcertDataSetTest extends TestCase
 {
+    private QueryConcertDataSet $DataSet;
+
     /**
      * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
      * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
@@ -237,5 +239,36 @@ final class QueryConcertDataSetTest extends TestCase
         $this->expectException(\TypeError::class);
         $this->DataSet = QueryConcertDataSet::new();
         $this->DataSet->setIsCanceled(DataTypeInt::new(3));
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\DataSet\QueryConcertDataSet
+     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
+     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     */
+    public function testMethodsShouldBeChainable(): void
+    {
+        $this->DataSet = QueryConcertDataSet::new()
+            ->setId(DataTypeInt::new(3))
+            ->setName(DataTypeString::new('Bierfest'))
+            ->setDate(DataTypeDate::new('2022-07-07'))
+            ->setVenueName(DataTypeString::new('Turock'))
+            ->setCityName(DataTypeString::new('Essen'))
+            ->setIsSoldOut(DataTypeBool::new(false))
+            ->setIsCanceled(DataTypeBool::new(false))
+            ->setUrl(DataTypeString::new('www.turock.eu'));
+        $this->assertEquals(3, $this->DataSet->getId()->get());
+        $this->assertEquals('Bierfest', $this->DataSet->getName()->get());
+        $this->assertEquals('2022-07-07', $this->DataSet->getDate()->get());
+        $this->assertEquals('Turock', $this->DataSet->getVenueName()->get());
+        $this->assertEquals('Essen', $this->DataSet->getCityName()->get());
+        $this->assertEquals(false, $this->DataSet->getIsSoldOut()->get());
+        $this->assertEquals(false, $this->DataSet->getIsCanceled()->get());
+        $this->assertEquals('www.turock.eu', $this->DataSet->getUrl()->get());
     }
 }

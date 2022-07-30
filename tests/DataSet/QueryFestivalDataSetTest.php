@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\DataSet;
 
 use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeString;
 use ruhrpottmetaller\DataType\DataTypeBool;
 use ruhrpottmetaller\DataType\DataTypeDate;
-use ruhrpottmetaller\DataType\IDataType;
 use ruhrpottmetaller\DataSet\QueryFestivalDataSet;
 use PHPUnit\Framework\TestCase;
 
 final class QueryFestivalDataSetTest extends TestCase
 {
+    private \ruhrpottmetaller\DataSet\AbstractEventDataSet $DataSet;
+
     /**
      * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
      * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
@@ -76,5 +76,22 @@ final class QueryFestivalDataSetTest extends TestCase
         $this->DataSet->setDateStart(DataTypeBool::new(false));
     }
 
-
+    /**
+     * @covers \ruhrpottmetaller\DataSet\QueryConcertDataSet
+     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
+     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
+     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     */
+    public function testMethodsShouldBeChainable(): void
+    {
+        $this->DataSet = QueryFestivalDataSet::new()
+            ->setDateStart(DataTypeDate::new('2022-07-07'))
+            ->setNumberOfDays(DataTypeInt::new(4));
+        $this->assertEquals('2022-07-07', $this->DataSet->getDateStart()->get());
+        $this->assertEquals(4, $this->DataSet->getNumberOfDays()->get());
+    }
 }
