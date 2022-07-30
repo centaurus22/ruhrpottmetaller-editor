@@ -4,6 +4,8 @@ namespace ruhrpottmetaller\DataType;
 
 abstract class AbstractDataTypeValue implements IDataType
 {
+    protected $value;
+
     public function __construct($value)
     {
         $this->value = $this->convert($value);

@@ -12,12 +12,12 @@ class DataTypeDate extends \DateTime implements IDataType
         $this->reactToInputValueType($value);
     }
 
-    public static function new(?string $value)
+    public static function new(?string $value): DataTypeDate
     {
         return new self($value);
     }
 
-    public function set(?string $value)
+    public function set(?string $value): DataTypeDate
     {
         parent::modify($value);
         $this->reactToInputValueType($value);
@@ -33,7 +33,7 @@ class DataTypeDate extends \DateTime implements IDataType
         return parent::format('Y-m-d');
     }
 
-    public function print()
+    public function print(): DataTypeDate
     {
         if ($this->isNull) {
             echo '';

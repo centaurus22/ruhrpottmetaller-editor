@@ -56,7 +56,7 @@ final class DataTypeArrayTest extends TestCase
     {
         $this->Array = DataTypeArray::new();
         $this->Array->add(DataTypeInt::new(3));
-        $this->assertEquals(3, $this->Array->get()->get());
+        $this->assertEquals(3, $this->Array->getCurrent()->get());
     }
 
     /**
@@ -69,7 +69,7 @@ final class DataTypeArrayTest extends TestCase
         $this->Array = DataTypeArray::new();
         $this->assertEquals(
             3,
-            $this->Array->add(DataTypeInt::new(3))->get()->get()
+            $this->Array->add(DataTypeInt::new(3))->getCurrent()->get()
         );
     }
 
@@ -82,8 +82,11 @@ final class DataTypeArrayTest extends TestCase
     {
         $this->Array = DataTypeArray::new();
         $this->Array->add(DataTypeInt::new(5))->add(DataTypeInt::new(7));
-        $this->assertEquals(5, $this->Array->get()->get());
-        $this->assertEquals(7, $this->Array->pointAtNext()->get()->get());
+        $this->assertEquals(5, $this->Array->getCurrent()->get());
+        $this->assertEquals(
+            7,
+            $this->Array->pointAtNext()->getCurrent()->get()
+        );
     }
 
     /**
@@ -91,11 +94,11 @@ final class DataTypeArrayTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\DataTypeInt
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
-    public function testIsCurrentShouldReturnTrueIfNextElementIsAvailable(): void
+    public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {
         $this->Array = DataTypeArray::new();
         $this->Array->add(DataTypeInt::new(5));
-        $this->assertTrue($this->Array->isCurrent());
+        $this->assertTrue($this->Array->hasCurrent());
     }
 
     /**
@@ -103,10 +106,10 @@ final class DataTypeArrayTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\DataTypeInt
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
-    public function testIsCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
+    public function testHasCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
     {
         $this->Array = DataTypeArray::new();
-        $this->assertFalse($this->Array->isCurrent());
+        $this->assertFalse($this->Array->hasCurrent());
     }
 
     /**
@@ -117,6 +120,6 @@ final class DataTypeArrayTest extends TestCase
     public function testGetShouldThrowAnErrorIfCurrentElementIsNotAvailable(): void
     {
         $this->expectExceptionMessage('The Array does not contain data at this position.');
-        $this->Array = DataTypeArray::new()->get();
+        $this->Array = DataTypeArray::new()->getCurrent();
     }
 }

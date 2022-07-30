@@ -8,9 +8,10 @@ abstract class AbstractConcertDataSet extends AbstractEventDataSet
 {
     protected DataTypeDate $Date;
 
-    public function setDate(DataTypeDate $Date): void
+    public function setDate(DataTypeDate $Date): AbstractConcertDataSet
     {
         $this->Date = $Date;
+        return $this;
     }
 
     public function getDate(): DataTypeDate

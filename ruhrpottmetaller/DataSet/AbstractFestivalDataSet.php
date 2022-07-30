@@ -11,9 +11,10 @@ abstract class AbstractFestivalDataSet extends AbstractEventDataSet
     protected DataTypeDate $DateStart;
 
 
-    public function setDateStart(DataTypeDate $DateStart): void
+    public function setDateStart(DataTypeDate $DateStart): AbstractFestivalDataSet
     {
         $this->DateStart = $DateStart;
+        return $this;
     }
 
     public function getDateStart(): DataTypeDate
@@ -21,9 +22,10 @@ abstract class AbstractFestivalDataSet extends AbstractEventDataSet
         return $this->DateStart;
     }
 
-    public function setNumberOfDays(DataTypeInt $NumberOfDays): void
+    public function setNumberOfDays(DataTypeInt $NumberOfDays): AbstractFestivalDataSet
     {
         $this->NumberOfDays = $NumberOfDays;
+        return $this;
     }
 
     public function getNumberOfDays(): DataTypeInt

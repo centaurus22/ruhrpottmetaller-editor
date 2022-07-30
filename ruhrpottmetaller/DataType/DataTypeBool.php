@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\DataType;
 
 class DataTypeBool extends AbstractDataTypeValue
 {
-    protected ?bool $value;
+    protected $value;
 
     public function __construct($value)
     {

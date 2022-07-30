@@ -12,13 +12,13 @@ class DataTypeArray implements IDataType
         return new self();
     }
 
-    public function add($value)
+    public function add($value): DataTypeArray
     {
         $this->array[] = $value;
         return $this;
     }
 
-    public function get()
+    public function getCurrent()
     {
         if (!isset($this->array[$this->pointer])) {
             throw new \Error('The Array does not contain data at this position.');
@@ -26,13 +26,13 @@ class DataTypeArray implements IDataType
         return $this->array[$this->pointer];
     }
 
-    public function pointAtNext()
+    public function pointAtNext(): DataTypeArray
     {
         $this->pointer++;
         return $this;
     }
 
-    public function isCurrent(): bool
+    public function hasCurrent(): bool
     {
         return isset($this->array[$this->pointer]);
     }

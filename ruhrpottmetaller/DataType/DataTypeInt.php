@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\DataType;
 
 class DataTypeInt extends AbstractDataTypeValue
 {
-    protected ?int $value;
+    protected $value;
 
     public function __construct($value)
     {

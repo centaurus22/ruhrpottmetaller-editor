@@ -17,14 +17,15 @@ abstract class AbstractEventDataSet
     protected DataTypeBool $IsSoldOut;
     protected DataTypeBool $IsCanceled;
 
-    public static function new()
+    public static function new(): AbstractEventDataSet
     {
         return new static();
     }
 
-    public function setId(DataTypeInt $Id): void
+    public function setId(DataTypeInt $Id): AbstractEventDataSet
     {
         $this->Id = $Id;
+        return $this;
     }
 
     public function getId(): DataTypeInt
@@ -32,9 +33,10 @@ abstract class AbstractEventDataSet
         return $this->Id;
     }
 
-    public function setName(DataTypeString $Name): void
+    public function setName(DataTypeString $Name): AbstractEventDataSet
     {
         $this->Name = $Name;
+        return $this;
     }
 
     public function getName(): DataTypeString
@@ -42,9 +44,10 @@ abstract class AbstractEventDataSet
         return $this->Name;
     }
 
-    public function setVenueName(DataTypeString $VenueName): void
+    public function setVenueName(DataTypeString $VenueName): AbstractEventDataSet
     {
         $this->VenueName = $VenueName;
+        return $this;
     }
 
     public function getVenueName(): DataTypeString
@@ -52,9 +55,10 @@ abstract class AbstractEventDataSet
         return $this->VenueName;
     }
 
-    public function setCityName(DataTypeString $CityName): void
+    public function setCityName(DataTypeString $CityName): AbstractEventDataSet
     {
         $this->CityName = $CityName;
+        return $this;
     }
 
     public function getCityName(): DataTypeString
@@ -62,9 +66,10 @@ abstract class AbstractEventDataSet
         return $this->CityName;
     }
 
-    public function setUrl(DataTypeString $Url): void
+    public function setUrl(DataTypeString $Url): AbstractEventDataSet
     {
         $this->Url = $Url;
+        return $this;
     }
 
     public function getUrl(): DataTypeString
@@ -72,9 +77,10 @@ abstract class AbstractEventDataSet
         return $this->Url;
     }
 
-    public function setIsSoldOut(DataTypeBool $IsSoldOut): void
+    public function setIsSoldOut(DataTypeBool $IsSoldOut): AbstractEventDataSet
     {
         $this->IsSoldOut = $IsSoldOut;
+        return $this;
     }
 
     public function getIsSoldOut(): DataTypeBool
@@ -82,9 +88,10 @@ abstract class AbstractEventDataSet
         return $this->IsSoldOut;
     }
 
-    public function setIsCanceled(DataTypeBool $IsCanceled): void
+    public function setIsCanceled(DataTypeBool $IsCanceled): AbstractEventDataSet
     {
         $this->IsCanceled = $IsCanceled;
+        return $this;
     }
 
     public function getIsCanceled(): DataTypeBool
