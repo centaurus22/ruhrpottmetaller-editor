@@ -11,6 +11,11 @@ use PHPUnit\Framework\TestCase;
 final class DataTypeIntTest extends TestCase
 {
     /**
+     * @var DataTypeInt|\ruhrpottmetaller\DataType\IDataType
+     */
+    private $Int;
+
+    /**
      * @covers \ruhrpottmetaller\DataType\DataTypeInt
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
@@ -36,7 +41,7 @@ final class DataTypeIntTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\DataTypeInt
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      */
-    public function testGetItShoudReturnIntegerAsStringAfterAcceptingInteger(): void
+    public function testGetItShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
         $this->Int = new DataTypeInt(42);
         $this->Int->set('42');
