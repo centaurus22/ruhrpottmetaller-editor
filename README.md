@@ -107,7 +107,7 @@ This is the tool for adding or editing concerts. The only necessary input fields
 ##### General concert data
 In the first part of the editor general information of the concert are entered.
 
-If a city is not yet in the database, it is possible to add it by selecting the option “New city” from the bottom of the city drop down menu.  If a city menu option is already selected, a new venue can be added to the database. In this case you have to select the option "New venue" in the second drop-down menu. (Tip: Press "n" a few times until the option shows up.)
+If a city is not yet in the database, it is possible to add it by selecting the option “New city” from the bottom of the city drop-down menu.  If a city menu option is already selected, a new venue can be added to the database. In this case you have to select the option "New venue" in the second drop-down menu. (Tip: Press "n" a few times until the option shows up.)
 
 The new venue input field is automatically shown if you insert a new city.
 Also, by creating new venues you can enter a default URL. This will be put in the URL
@@ -116,7 +116,7 @@ field when you choose a venue and the URL is not yet set to spare you a few clic
 ##### Concert lineup
 Each row represents a band in the lineup.
 
-If you choose a character in the first drop-down menu, bands with those initial letter are loaded in the second one. The percentage symbol stands for special characters. Also you can add a new band to the database and the lineup by choosing the last option of the second menu. If you do not select a character in the first drop-down menu, you can choose between also adding a new band to the database and the lineup or an entry which is labeled “TBA“ (To be announced) or “Support”.
+If you choose a character in the first drop-down menu, bands with those initial letter are loaded in the second one. The percentage symbol stands for special characters. Also, you can add a new band to the database and the lineup by choosing the last option of the second menu. If you do not select a character in the first drop-down menu, you can choose between also adding a new band to the database and the lineup or an entry which is labeled “TBA“ (To be announced) or “Support”.
 
 The input field named “Extra information” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
 
