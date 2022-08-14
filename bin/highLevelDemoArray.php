@@ -1,6 +1,9 @@
 <?php
 
-namespace ruhrpottmetaller\DataType;
+namespace ruhrpottmetaller\LowLevel;
+
+use ruhrpottmetaller\Data\LowLevel\DataTypeArray;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 include('vendor/autoload.php');
 

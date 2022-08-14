@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataSet;
+namespace tests\ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\Concert;
-use ruhrpottmetaller\DataType\DataTypeDate;
-use ruhrpottmetaller\DataType\DataTypeString;
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeBool;
-use ruhrpottmetaller\DataType\IDataType;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
+use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 final class ConcertTest extends TestCase
 {
     private Concert $DataSet;
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldSetDateAndGetTheSameDate(): void
     {
@@ -34,10 +33,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      */
     public function testShouldThrowTypeErrorIfNoDataTypeDateIsSetToDate(): void
     {
@@ -47,10 +46,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldSetIdAndGetTheSameId(): void
     {
@@ -60,10 +59,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToId(): void
     {
@@ -73,10 +72,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldSetNameAndGetTheSameName(): void
     {
@@ -89,10 +88,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToName(): void
     {
@@ -102,10 +101,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldSetVenueNameAndGetTheSameVenueName(): void
     {
@@ -118,10 +117,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToVenueName(): void
     {
@@ -131,10 +130,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldSetCityNameAndGetTheSameCityName(): void
     {
@@ -147,10 +146,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToCityName(): void
     {
@@ -160,10 +159,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldSetUrlAndGetTheSameUrl(): void
     {
@@ -176,10 +175,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToUrl(): void
     {
@@ -189,10 +188,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      */
     public function testShouldSetSoldOutStatusAndGetTheSameSoldOutStatus(): void
     {
@@ -202,10 +201,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetSoldOutStatus(): void
     {
@@ -215,10 +214,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      */
     public function testShouldSetIsCanceledOutStatusAndGetTheSameIsCanceledStatus(): void
     {
@@ -228,10 +227,10 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetToCanceledStatus(): void
     {
@@ -241,14 +240,14 @@ final class ConcertTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testMethodsShouldBeChainable(): void
     {

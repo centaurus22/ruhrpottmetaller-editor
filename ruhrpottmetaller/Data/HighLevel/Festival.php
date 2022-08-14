@@ -1,9 +1,9 @@
 <?php
 
-namespace ruhrpottmetaller\Data;
+namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
 
 class Festival extends AbstractEvent
 {

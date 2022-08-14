@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\View;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\DataType\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 use ruhrpottmetaller\View\View;
 
 final class ViewTest extends TestCase
@@ -13,9 +13,9 @@ final class ViewTest extends TestCase
     private View $View;
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldThrowErrorIfTemplateIsNotAvailable(): void
     {
@@ -29,9 +29,9 @@ final class ViewTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldThrowErrorIfAnotherTemplateIsNotAvailable(): void
     {
@@ -46,8 +46,8 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputTheLoadedTemplate()
     {
@@ -61,8 +61,8 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputTheImagePath()
     {
@@ -76,8 +76,8 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputViaObjectMethod()
     {

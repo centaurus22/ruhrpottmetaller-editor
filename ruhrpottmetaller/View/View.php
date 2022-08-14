@@ -2,8 +2,8 @@
 
 namespace ruhrpottmetaller\View;
 
-use ruhrpottmetaller\DataType\AbstractDataTypeValue;
-use ruhrpottmetaller\DataType\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 class View
 {

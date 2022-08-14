@@ -2,14 +2,14 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\Concert;
-use ruhrpottmetaller\Data\Festival;
-use ruhrpottmetaller\DataType\DataTypeArray;
-use ruhrpottmetaller\DataType\DataTypeString;
-use ruhrpottmetaller\DataType\DataTypeBool;
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeDate;
-use ruhrpottmetaller\Data\AbstractEvent;
+use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
+use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\LowLevel\DataTypeArray;
+use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
+use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {

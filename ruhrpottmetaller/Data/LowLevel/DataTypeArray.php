@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\DataType;
+namespace ruhrpottmetaller\Data\LowLevel;
 
 class DataTypeArray implements IDataType
 {

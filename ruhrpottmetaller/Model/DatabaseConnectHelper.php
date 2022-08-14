@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\DataType\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 class DatabaseConnectHelper extends AbstractConnectHelper
 {

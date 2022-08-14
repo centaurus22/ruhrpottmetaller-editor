@@ -1,8 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Data;
+namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\DataType\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
 
 class Concert extends AbstractEvent
 {

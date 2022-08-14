@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\Data\LowLevel;
 
-use ruhrpottmetaller\DataType\DataTypeBool;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
 
 final class DataTypeBoolTest extends TestCase
 {
     private ?DataTypeBool $Bool = null;
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnTrueAfterAcceptingTrue(): void
     {
@@ -23,8 +23,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnFalseAfterAcceptingFalse(): void
     {
@@ -34,8 +34,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnStringAsTrue(): void
     {
@@ -45,8 +45,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnBoolegegerLargerAsZerorAsTrue(): void
     {
@@ -56,8 +56,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetItShoudReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
     {
@@ -67,8 +67,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -77,8 +77,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
@@ -88,8 +88,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputNothingAfterAcceptingTrue(): void
     {
@@ -99,8 +99,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputNothingAfterAcceptingFalse(): void
     {
@@ -109,8 +109,8 @@ final class DataTypeBoolTest extends TestCase
         $this->Bool->Print();
     }
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -120,8 +120,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testNewShouldAcceptBoolAndGetShouldProvideItAgain(): void
     {
@@ -131,8 +131,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -140,8 +140,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -150,8 +150,8 @@ final class DataTypeBoolTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Datatype\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {

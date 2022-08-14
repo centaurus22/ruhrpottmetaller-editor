@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\Data\LowLevel;
 
-use ruhrpottmetaller\DataType\DataTypeArray;
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\IDataType;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\DataTypeArray;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
+use ruhrpottmetaller\Data\LowLevel\IDataType;
 
 final class DataTypeArrayTest extends TestCase
 {
     private DataTypeArray $Array;
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
      */
     public function testShouldInitADataTypeArray(): void
     {
@@ -22,7 +22,7 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
      */
     public function testShouldImplementTheIDataTypeInterface(): void
     {
@@ -30,7 +30,7 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
      */
     public function testNewShouldInitADataTypeArray(): void
     {
@@ -38,7 +38,7 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
      * @doesNotPerformAssertions
      */
     public function testAddShouldAcceptVariable(): void
@@ -48,9 +48,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetShouldReturnSameVariable(): void
     {
@@ -60,9 +60,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testAddShouldBeChainable(): void
     {
@@ -74,9 +74,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnTwoVariablesInTheSameOrderAsAdded(): void
     {
@@ -90,9 +90,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {
@@ -102,9 +102,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testHasCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
     {
@@ -113,9 +113,9 @@ final class DataTypeArrayTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetShouldThrowAnErrorIfCurrentElementIsNotAvailable(): void
     {

@@ -2,83 +2,83 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\Data\LowLevel;
 
-use ruhrpottmetaller\DataType\DataTypeDate;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
 
 final class DataTypeDateTest extends TestCase
 {
     public DataTypeDate $Date;
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShoudReturnCurrentDateAfterAcceptingEmptyString(): void
     {
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate('');
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate('');
         $this->assertEquals(date('Y-m-d'), $this->Date->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
-    public function testShoudReturnSameDateStringAfterAcceptingDateString(): void
+    public function testShouldReturnSameDateStringAfterAcceptingDateString(): void
     {
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate('2020-03-01');
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate('2020-03-01');
         $this->assertEquals('2020-03-01', $this->Date->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate(null);
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate(null);
         $this->assertTrue(is_null($this->Date->get()));
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldReturnDateStringAfterAcceptingDateStringBySetId(): void
     {
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate('');
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate('');
         $this->Date->set('2020-04-23');
         $this->assertEquals('2020-04-23', $this->Date->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldOutputStringAfterAccepting(): void
     {
         $this->expectOutputString('2022-10-09');
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate('2022-10-09');
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate('2022-10-09');
         $this->Date->Print();
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->Date = new \ruhrpottmetaller\DataType\DataTypeDate(null);
+        $this->Date = new \ruhrpottmetaller\Data\LowLevel\DataTypeDate(null);
         $this->Date->Print();
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
-        $this->Date = \ruhrpottmetaller\DataType\DataTypeDate::new('2020-10-11');
+        $this->Date = \ruhrpottmetaller\Data\LowLevel\DataTypeDate::new('2020-10-11');
         $this->assertEquals('2020-10-11', $this->Date->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -89,7 +89,7 @@ final class DataTypeDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testGetShouldReturnLastChainedSetAfterInitializedWithNull(): void
     {
@@ -100,7 +100,7 @@ final class DataTypeDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShoultGetTheValueFromTheLastChainedSet(): void
     {
@@ -109,7 +109,7 @@ final class DataTypeDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {

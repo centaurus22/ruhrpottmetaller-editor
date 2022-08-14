@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace tests\ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\DataType\DataTypeString;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Model\DatabaseConnectHelper;
 
 final class DatabaseConnectHelperTest extends TestCase
 {
@@ -14,8 +14,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldThrowErrorIfStringIsNoPathToFile(): void
     {
@@ -31,8 +31,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnDatabaseConnection(): void
     {
@@ -45,8 +45,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldBeInitializedByNewMethod(): void
     {
@@ -59,8 +59,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testMethodsShouldBeChainable(): void
     {

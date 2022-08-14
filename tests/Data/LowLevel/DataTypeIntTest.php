@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\DataType;
+namespace tests\ruhrpottmetaller\Data\LowLevel;
 
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeString;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 final class DataTypeIntTest extends TestCase
 {
     /**
-     * @var DataTypeInt|\ruhrpottmetaller\DataType\IDataType
+     * @var DataTypeInt|\ruhrpottmetaller\Data\LowLevel\IDataType
      */
     private $Int;
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnSameIntAfterAcceptingInt(): void
     {
@@ -27,8 +27,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnConvertibleStringAsIntegerAfterAcceptingString(): void
     {
@@ -38,8 +38,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetItShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
@@ -50,8 +50,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -60,8 +60,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
@@ -71,8 +71,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputStringAfterAcceptingIt(): void
     {
@@ -82,8 +82,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -93,8 +93,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testNewShouldAcceptIntAndGetShouldProvideItAgain(): void
     {
@@ -104,8 +104,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -113,8 +113,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -123,8 +123,8 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
@@ -133,9 +133,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldReturnStringObject(): void
     {
@@ -144,9 +144,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShouldReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -157,9 +157,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testShoultReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -170,9 +170,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testAsStringShouldBeChainable(): void
     {
@@ -181,9 +181,9 @@ final class DataTypeIntTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      */
     public function testAsStringShouldBeChainableAndSavedToAVariable(): void
     {

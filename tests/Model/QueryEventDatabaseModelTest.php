@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace tests\ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\Concert;
-use ruhrpottmetaller\Data\Festival;
-use ruhrpottmetaller\Model\QueryEventDatabaseModel;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\DataType\DataTypeArray;
-use ruhrpottmetaller\DataType\DataTypeString;
-use ruhrpottmetaller\Data\AbstractEvent;
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
+use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\LowLevel\DataTypeArray;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Model\DatabaseConnectHelper;
+use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
 final class QueryEventDatabaseModelTest extends TestCase
 {
@@ -46,9 +46,9 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
      */
     public function testShouldReturnDataTypeArray(): void
     {
@@ -60,9 +60,9 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -75,16 +75,16 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Festival
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -99,14 +99,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -122,16 +122,16 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -147,14 +147,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -171,9 +171,9 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -189,14 +189,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -215,15 +215,15 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -242,14 +242,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -268,15 +268,15 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Data\Concert
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      */
     public function testQueryConcertDataSetShouldContainCanceledStatusFromDatabase(): void
     {
@@ -292,14 +292,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -320,14 +320,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -351,18 +351,18 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Data\Festival
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      */
     public function testQueryConcertDataSetShouldContainDateStartAsDateFromDatabase(): void
     {
@@ -380,16 +380,16 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      */
     public function testQueryFestivalDataSetShouldContainDateStartAsDateStartFromDatabase(): void
     {
@@ -408,16 +408,16 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\DataType\DataTypeArray
-     * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers \ruhrpottmetaller\DataType\DataTypeInt
-     * @covers \ruhrpottmetaller\DataType\DataTypeBool
-     * @covers \ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Data\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      */
     public function testQueryFestivalDataSetShouldContainNumberOfDatesFromDatabase(): void
     {

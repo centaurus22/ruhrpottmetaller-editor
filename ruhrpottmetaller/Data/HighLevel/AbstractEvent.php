@@ -1,10 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\Data;
+namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\DataType\DataTypeInt;
-use ruhrpottmetaller\DataType\DataTypeString;
-use ruhrpottmetaller\DataType\DataTypeBool;
+use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
+use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
+use ruhrpottmetaller\Data\LowLevel\DataTypeString;
 
 class AbstractEvent
 {
