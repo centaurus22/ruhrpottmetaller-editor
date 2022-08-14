@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace tests\ruhrpottmetaller\Model;
 
+use ruhrpottmetaller\Data\Concert;
+use ruhrpottmetaller\Data\Festival;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\Model\DatabaseConnectHelper;
 use ruhrpottmetaller\DataType\DataTypeArray;
 use ruhrpottmetaller\DataType\DataTypeString;
-use ruhrpottmetaller\DataSet\AbstractEventDataSet;
-use ruhrpottmetaller\DataSet\QueryFestivalDataSet;
-use ruhrpottmetaller\DataSet\QueryConcertDataSet;
+use ruhrpottmetaller\Data\AbstractEvent;
 use PHPUnit\Framework\TestCase;
 
 final class QueryEventDatabaseModelTest extends TestCase
@@ -75,9 +75,9 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Festival
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -99,8 +99,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -115,15 +115,15 @@ final class QueryEventDatabaseModelTest extends TestCase
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-12"';
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
-            AbstractEventDataSet::class,
+            AbstractEvent::class,
             $this->QueryEventDatabaseModel->getEventsByMonth(DataTypeString::new('2022-06'))
                                           ->getCurrent()
         );
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Festival
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
@@ -140,15 +140,15 @@ final class QueryEventDatabaseModelTest extends TestCase
         $query = 'INSERT INTO event SET number_days = 2, date_start = "2022-06-01"';
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
-            QueryFestivalDataSet::class,
+            Festival::class,
             $this->QueryEventDatabaseModel->getEventsByMonth(DataTypeString::new('2022-06'))
                                           ->getCurrent()
         );
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
+     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -163,7 +163,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $query = 'INSERT INTO event SET number_days = 1, date_start = "2022-06-29"';
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
-            QueryConcertDataSet::class,
+            Concert::class,
             $this->QueryEventDatabaseModel->getEventsByMonth(DataTypeString::new('2022-06'))
                                           ->getCurrent()
         );
@@ -189,8 +189,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -215,8 +215,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
@@ -242,8 +242,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -275,8 +275,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
+     * @covers \ruhrpottmetaller\Data\Concert
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
      */
     public function testQueryConcertDataSetShouldContainCanceledStatusFromDatabase(): void
     {
@@ -292,8 +292,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -320,8 +320,8 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
@@ -360,9 +360,9 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractConcertDataSet
+     * @covers \ruhrpottmetaller\Data\Festival
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Concert
      */
     public function testQueryConcertDataSetShouldContainDateStartAsDateFromDatabase(): void
     {
@@ -383,13 +383,13 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\AbstractDataTypeValue
      * @covers \ruhrpottmetaller\DataType\DataTypeArray
      * @covers \ruhrpottmetaller\DataType\DataTypeString
-     * @covers ruhrpottmetaller\DataType\DataTypeInt
-     * @covers ruhrpottmetaller\DataType\DataTypeBool
-     * @covers ruhrpottmetaller\DataType\DataTypeDate
+     * @covers \ruhrpottmetaller\DataType\DataTypeInt
+     * @covers \ruhrpottmetaller\DataType\DataTypeBool
+     * @covers \ruhrpottmetaller\DataType\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Festival
      */
     public function testQueryFestivalDataSetShouldContainDateStartAsDateStartFromDatabase(): void
     {
@@ -416,8 +416,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\DataType\DataTypeDate
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\DataSet\AbstractEventDataSet
-     * @covers \ruhrpottmetaller\DataSet\AbstractFestivalDataSet
+     * @covers \ruhrpottmetaller\Data\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\Festival
      */
     public function testQueryFestivalDataSetShouldContainNumberOfDatesFromDatabase(): void
     {

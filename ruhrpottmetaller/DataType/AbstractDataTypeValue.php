@@ -11,7 +11,7 @@ abstract class AbstractDataTypeValue implements IDataType
         $this->value = $this->convert($value);
     }
 
-    public static function new($value): IDataType
+    public static function new($value)
     {
         return new static($value);
     }

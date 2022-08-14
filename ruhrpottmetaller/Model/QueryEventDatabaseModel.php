@@ -2,14 +2,14 @@
 
 namespace ruhrpottmetaller\Model;
 
+use ruhrpottmetaller\Data\Concert;
+use ruhrpottmetaller\Data\Festival;
 use ruhrpottmetaller\DataType\DataTypeArray;
 use ruhrpottmetaller\DataType\DataTypeString;
 use ruhrpottmetaller\DataType\DataTypeBool;
 use ruhrpottmetaller\DataType\DataTypeInt;
 use ruhrpottmetaller\DataType\DataTypeDate;
-use ruhrpottmetaller\DataSet\AbstractEventDataSet;
-use ruhrpottmetaller\DataSet\QueryConcertDataSet;
-use ruhrpottmetaller\DataSet\QueryFestivalDataSet;
+use ruhrpottmetaller\Data\AbstractEvent;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
@@ -36,11 +36,11 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
 
         while ($Object = $Result->fetch_object()) {
             if ($Object->number_days > 1) {
-                $DataSet = QueryFestivalDataSet::new()
+                $DataSet = Festival::new()
                        ->setDateStart(DataTypeDate::new($Object->date_start))
                        ->setNumberOfDays(DataTypeInt::new($Object->number_days));
             } else {
-                $DataSet = QueryConcertDataSet::new()
+                $DataSet = Concert::new()
                        ->setDate(DataTypeDate::new($Object->date_start));
             }
 
@@ -51,9 +51,9 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
     }
 
     private function addGeneralData(
-        AbstractEventDataSet $DataSet,
-        \stdClass $Object
-    ): AbstractEventDataSet {
+        AbstractEvent $DataSet,
+        \stdClass     $Object
+    ): AbstractEvent {
         return $DataSet->setName(DataTypeString::new($Object->name))
                        ->setVenueName(DataTypeString::new($Object->venue_name))
                        ->setCityName(DataTypeString::new($Object->city_name))
