@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-abstract class AbstractDataTypeValue implements IDataType
+abstract class AbstractRmValue implements IRmValue
 {
     protected $value;
 
@@ -16,13 +16,13 @@ abstract class AbstractDataTypeValue implements IDataType
         return new static($value);
     }
 
-    public function set($value): IDataType
+    public function set($value)
     {
         $this->value = $this->convert($value);
         return $this;
     }
 
-    public function print(): IDataType
+    public function print(): IRmValue
     {
         echo $this->value;
         return $this;

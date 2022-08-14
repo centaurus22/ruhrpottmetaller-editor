@@ -2,17 +2,17 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class DataTypeArray implements IDataType
+class RmArray implements IRmValue
 {
     private array $array = array();
     private int $pointer = 0;
 
-    public static function new(): DataTypeArray
+    public static function new(): RmArray
     {
         return new self();
     }
 
-    public function add($value): DataTypeArray
+    public function add($value): RmArray
     {
         $this->array[] = $value;
         return $this;
@@ -26,7 +26,7 @@ class DataTypeArray implements IDataType
         return $this->array[$this->pointer];
     }
 
-    public function pointAtNext(): DataTypeArray
+    public function pointAtNext(): RmArray
     {
         $this->pointer++;
         return $this;

@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-interface IDataType
+interface IRmValue
 {
 
 }

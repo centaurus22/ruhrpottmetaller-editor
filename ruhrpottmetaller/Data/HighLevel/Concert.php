@@ -2,19 +2,19 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
+use ruhrpottmetaller\Data\LowLevel\RmDate;
 
 class Concert extends AbstractEvent
 {
-    protected DataTypeDate $Date;
+    protected RmDate $Date;
 
-    public function setDate(DataTypeDate $Date): Concert
+    public function setDate(RmDate $Date): Concert
     {
         $this->Date = $Date;
         return $this;
     }
 
-    public function getDate(): DataTypeDate
+    public function getDate(): RmDate
     {
         return $this->Date;
     }

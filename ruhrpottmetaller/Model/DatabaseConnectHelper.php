@@ -2,11 +2,11 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class DatabaseConnectHelper extends AbstractConnectHelper
 {
-    private DataTypeString $ConnectionInformationFile;
+    private RmString $ConnectionInformationFile;
     private \mysqli $Connection;
 
     public function __construct($ConnectionInformationFile)

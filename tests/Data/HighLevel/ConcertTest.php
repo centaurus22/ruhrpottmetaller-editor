@@ -6,10 +6,10 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\Concert;
-use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
-use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
-use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
-use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\RmBool;
+use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\RmInt;
+use ruhrpottmetaller\Data\LowLevel\RmString;
 
 final class ConcertTest extends TestCase
 {
@@ -19,13 +19,13 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      */
     public function testShouldSetDateAndGetTheSameDate(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setDate(DataTypeDate::new('2922-11-01'));
+        $this->DataSet->setDate(RmDate::new('2922-11-01'));
         $this->assertEquals(
             '2922-11-01',
             $this->DataSet->getDate()->get()
@@ -35,52 +35,52 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldThrowTypeErrorIfNoDataTypeDateIsSetToDate(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setDate(DataTypeBool::new(false));
+        $this->DataSet->setDate(RmBool::new(false));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetIdAndGetTheSameId(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setId(DataTypeInt::new(23));
+        $this->DataSet->setId(RmInt::new(23));
         $this->assertEquals(23, $this->DataSet->getId()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToId(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setId(DataTypeString::new('Iron Maiden'));
+        $this->DataSet->setId(RmString::new('Iron Maiden'));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetNameAndGetTheSameName(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setName(DataTypeString::new('RockHard-Festival'));
+        $this->DataSet->setName(RmString::new('RockHard-Festival'));
         $this->assertEquals(
             'RockHard-Festival',
             $this->DataSet->getName()->get()
@@ -90,26 +90,26 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToName(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setName(DataTypeInt::new(3));
+        $this->DataSet->setName(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetVenueNameAndGetTheSameVenueName(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(DataTypeString::new('Turock'));
+        $this->DataSet->setVenueName(RmString::new('Turock'));
         $this->assertEquals(
             'Turock',
             $this->DataSet->getVenueName()->get()
@@ -119,26 +119,26 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToVenueName(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(DataTypeInt::new(3));
+        $this->DataSet->setVenueName(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetCityNameAndGetTheSameCityName(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setCityName(DataTypeString::new('Essen'));
+        $this->DataSet->setCityName(RmString::new('Essen'));
         $this->assertEquals(
             'Essen',
             $this->DataSet->getCityName()->get()
@@ -148,26 +148,26 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToCityName(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(DataTypeInt::new(3));
+        $this->DataSet->setVenueName(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetUrlAndGetTheSameUrl(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setUrl(DataTypeString::new('http://junkyard.ruhr/'));
+        $this->DataSet->setUrl(RmString::new('http://junkyard.ruhr/'));
         $this->assertEquals(
             'http://junkyard.ruhr/',
             $this->DataSet->getUrl()->get()
@@ -177,89 +177,89 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToUrl(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setUrl(DataTypeInt::new(3));
+        $this->DataSet->setUrl(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldSetSoldOutStatusAndGetTheSameSoldOutStatus(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setIsSoldOut(DataTypeBool::new(false));
+        $this->DataSet->setIsSoldOut(RmBool::new(false));
         $this->assertEquals(false, $this->DataSet->getIsSoldOut()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetSoldOutStatus(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setIsSoldOut(DataTypeInt::new(3));
+        $this->DataSet->setIsSoldOut(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldSetIsCanceledOutStatusAndGetTheSameIsCanceledStatus(): void
     {
         $this->DataSet = Concert::new();
-        $this->DataSet->setIsCanceled(DataTypeBool::new(false));
+        $this->DataSet->setIsCanceled(RmBool::new(false));
         $this->assertEquals(false, $this->DataSet->getIsCanceled()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetToCanceledStatus(): void
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setIsCanceled(DataTypeInt::new(3));
+        $this->DataSet->setIsCanceled(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeDate
-     * @covers \ruhrpottmetaller\Data\LowLevel\DataTypeString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testMethodsShouldBeChainable(): void
     {
         $this->DataSet = Concert::new()
-            ->setId(DataTypeInt::new(3))
-            ->setName(DataTypeString::new('Bierfest'))
-            ->setDate(DataTypeDate::new('2022-07-07'))
-            ->setVenueName(DataTypeString::new('Turock'))
-            ->setCityName(DataTypeString::new('Essen'))
-            ->setIsSoldOut(DataTypeBool::new(false))
-            ->setIsCanceled(DataTypeBool::new(false))
-            ->setUrl(DataTypeString::new('www.turock.eu'));
+            ->setId(RmInt::new(3))
+            ->setName(RmString::new('Bierfest'))
+            ->setDate(RmDate::new('2022-07-07'))
+            ->setVenueName(RmString::new('Turock'))
+            ->setCityName(RmString::new('Essen'))
+            ->setIsSoldOut(RmBool::new(false))
+            ->setIsCanceled(RmBool::new(false))
+            ->setUrl(RmString::new('www.turock.eu'));
         $this->assertEquals(3, $this->DataSet->getId()->get());
         $this->assertEquals('Bierfest', $this->DataSet->getName()->get());
         $this->assertEquals('2022-07-07', $this->DataSet->getDate()->get());

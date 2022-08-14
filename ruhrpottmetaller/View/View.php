@@ -2,30 +2,30 @@
 
 namespace ruhrpottmetaller\View;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractDataTypeValue;
-use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmValue;
+use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class View
 {
-    private DataTypeString $templatePath;
-    private DataTypeString $templateFile;
+    private RmString $templatePath;
+    private RmString $templateFile;
     private array $_ = array();
 
     public function __construct(
-        DataTypeString $templatePath,
-        DataTypeString $templateFile
+        RmString $templatePath,
+        RmString $templateFile
     ) {
         $this->templatePath = $templatePath;
         $this->templateFile = $templateFile;
-        $this->_['imagePath'] = DataTypeString::new('web/assets/images/');
+        $this->_['imagePath'] = RmString::new('web/assets/images/');
     }
 
-    public function set(string $key, AbstractDataTypeValue $value)
+    public function set(string $key, AbstractRmValue $value)
     {
         $this->_[$key] = $value;
     }
 
-    private function getAsObject(string $key): AbstractDataTypeValue
+    private function getAsObject(string $key): AbstractRmValue
     {
         return $this->_[$key];
     }

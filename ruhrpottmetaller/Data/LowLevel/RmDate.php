@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class DataTypeDate extends \DateTime implements IDataType
+class RmDate extends \DateTime implements IRmValue
 {
     private bool $isNull;
 
@@ -12,12 +12,12 @@ class DataTypeDate extends \DateTime implements IDataType
         $this->reactToInputValueType($value);
     }
 
-    public static function new(?string $value): DataTypeDate
+    public static function new(?string $value): RmDate
     {
         return new self($value);
     }
 
-    public function set(?string $value): DataTypeDate
+    public function set(?string $value): RmDate
     {
         parent::modify($value);
         $this->reactToInputValueType($value);
@@ -33,7 +33,7 @@ class DataTypeDate extends \DateTime implements IDataType
         return parent::format('Y-m-d');
     }
 
-    public function print(): DataTypeDate
+    public function print(): RmDate
     {
         if ($this->isNull) {
             echo '';

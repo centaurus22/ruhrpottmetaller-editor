@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class DataTypeString extends AbstractDataTypeValue
+class RmInt extends AbstractRmValue
 {
     protected $value;
 
@@ -11,17 +11,22 @@ class DataTypeString extends AbstractDataTypeValue
         parent::__construct($value);
     }
 
-    public function get(): ?string
+    public function get(): ?int
     {
         return $this->value;
     }
 
-    protected function convert($value): ?string
+    public function asString(): RmString
+    {
+        return new RmString($this->value);
+    }
+
+    protected function convert($value): ?int
     {
         if (is_null($value)) {
             return null;
         }
 
-        return (string) $value;
+        return (int) $value;
     }
 }

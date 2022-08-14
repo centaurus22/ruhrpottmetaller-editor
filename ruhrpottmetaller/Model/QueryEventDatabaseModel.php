@@ -5,20 +5,20 @@ namespace ruhrpottmetaller\Model;
 use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\DataTypeArray;
-use ruhrpottmetaller\Data\LowLevel\DataTypeBool;
-use ruhrpottmetaller\Data\LowLevel\DataTypeDate;
-use ruhrpottmetaller\Data\LowLevel\DataTypeInt;
-use ruhrpottmetaller\Data\LowLevel\DataTypeString;
+use ruhrpottmetaller\Data\LowLevel\RmArray;
+use ruhrpottmetaller\Data\LowLevel\RmBool;
+use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\RmInt;
+use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
-    public function __construct(\mysqli $Connection, DataTypeArray $Array)
+    public function __construct(\mysqli $Connection, RmArray $Array)
     {
         parent::__construct($Connection, $Array);
     }
 
-    public function getEventsByMonth(DataTypeString $Month): DataTypeArray
+    public function getEventsByMonth(RmString $Month): RmArray
     {
         $query = 'SELECT event.name AS name, date_start, number_days,
             venue.name AS venue_name, city.name AS city_name, url,
@@ -37,11 +37,11 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         while ($Object = $Result->fetch_object()) {
             if ($Object->number_days > 1) {
                 $DataSet = Festival::new()
-                       ->setDateStart(DataTypeDate::new($Object->date_start))
-                       ->setNumberOfDays(DataTypeInt::new($Object->number_days));
+                       ->setDateStart(RmDate::new($Object->date_start))
+                       ->setNumberOfDays(RmInt::new($Object->number_days));
             } else {
                 $DataSet = Concert::new()
-                       ->setDate(DataTypeDate::new($Object->date_start));
+                       ->setDate(RmDate::new($Object->date_start));
             }
 
             $DataSet = $this->addGeneralData($DataSet, $Object);
@@ -54,11 +54,11 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         AbstractEvent $DataSet,
         \stdClass     $Object
     ): AbstractEvent {
-        return $DataSet->setName(DataTypeString::new($Object->name))
-                       ->setVenueName(DataTypeString::new($Object->venue_name))
-                       ->setCityName(DataTypeString::new($Object->city_name))
-                       ->setUrl(DataTypeString::new($Object->url))
-                       ->setIsSoldOut(DataTypeBool::new($Object->is_sold_out))
-                       ->setIsCanceled(DataTypeBool::new($Object->is_canceled));
+        return $DataSet->setName(RmString::new($Object->name))
+                       ->setVenueName(RmString::new($Object->venue_name))
+                       ->setCityName(RmString::new($Object->city_name))
+                       ->setUrl(RmString::new($Object->url))
+                       ->setIsSoldOut(RmBool::new($Object->is_sold_out))
+                       ->setIsCanceled(RmBool::new($Object->is_canceled));
     }
 }
