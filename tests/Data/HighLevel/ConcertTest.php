@@ -6,6 +6,7 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\RmBool;
 use ruhrpottmetaller\Data\LowLevel\RmDate;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
@@ -113,13 +114,14 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      */
-    public function testShouldSetVenueNameAndGetTheSameVenueName(): void
+    public function testShouldSetVenueAndGetTheSameVenue(): void
     {
+        $Venue = Venue::new()->setName(RmString::new('Turock'));
         $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(RmString::new('Turock'));
+        $this->DataSet->setVenue($Venue);
         $this->assertEquals(
             'Turock',
-            $this->DataSet->getVenueName()->get()
+            $this->DataSet->getVenue()->getName()->get()
         );
     }
 
@@ -134,38 +136,7 @@ final class ConcertTest extends TestCase
     {
         $this->expectException(\TypeError::class);
         $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(RmInt::new(3));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     */
-    public function testShouldSetCityNameAndGetTheSameCityName(): void
-    {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setCityName(RmString::new('Essen'));
-        $this->assertEquals(
-            'Essen',
-            $this->DataSet->getCityName()->get()
-        );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToCityName(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setVenueName(RmInt::new(3));
+        $this->DataSet->setVenue(RmInt::new(3));
     }
 
     /**
@@ -268,22 +239,40 @@ final class ConcertTest extends TestCase
      */
     public function testMethodsShouldBeChainable(): void
     {
+        $Venue = Venue::new()->setName(RmString::new('Turock'));
+
         $this->DataSet = Concert::new()
             ->setId(RmInt::new(3))
             ->setName(RmString::new('Bierfest'))
             ->setDate(RmDate::new('2022-07-07'))
-            ->setVenueName(RmString::new('Turock'))
-            ->setCityName(RmString::new('Essen'))
+            ->setVenue($Venue)
             ->setIsSoldOut(RmBool::new(false))
             ->setIsCanceled(RmBool::new(false))
             ->setUrl(RmString::new('www.turock.eu'));
         $this->assertEquals(3, $this->DataSet->getId()->get());
-        $this->assertEquals('Bierfest', $this->DataSet->getName()->get());
-        $this->assertEquals('2022-07-07', $this->DataSet->getDate()->get());
-        $this->assertEquals('Turock', $this->DataSet->getVenueName()->get());
-        $this->assertEquals('Essen', $this->DataSet->getCityName()->get());
-        $this->assertEquals(false, $this->DataSet->getIsSoldOut()->get());
-        $this->assertEquals(false, $this->DataSet->getIsCanceled()->get());
-        $this->assertEquals('www.turock.eu', $this->DataSet->getUrl()->get());
+        $this->assertEquals(
+            'Bierfest',
+            $this->DataSet->getName()->get()
+        );
+        $this->assertEquals(
+            '2022-07-07',
+            $this->DataSet->getDate()->get()
+        );
+        $this->assertEquals(
+            'Turock',
+            $this->DataSet->getVenue()->getName()->get()
+        );
+        $this->assertEquals(
+            false,
+            $this->DataSet->getIsSoldOut()->get()
+        );
+        $this->assertEquals(
+            false,
+            $this->DataSet->getIsCanceled()->get()
+        );
+        $this->assertEquals(
+            'www.turock.eu',
+            $this->DataSet->getUrl()->get()
+        );
     }
 }

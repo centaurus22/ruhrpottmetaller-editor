@@ -9,32 +9,20 @@ use ruhrpottmetaller\Data\LowLevel\RmString;
 class AbstractEvent extends AbstractHighLevelDataObject
 {
     protected RmInt $NumberOfDays;
-    protected RmString $VenueName;
-    protected RmString $CityName;
+    protected Venue $Venue;
     protected RmString $Url;
     protected RmBool $IsSoldOut;
     protected RmBool $IsCanceled;
 
-    public function setVenueName(RmString $VenueName): AbstractEvent
+    public function setVenue(Venue $Venue): AbstractEvent
     {
-        $this->VenueName = $VenueName;
+        $this->Venue = $Venue;
         return $this;
     }
 
-    public function getVenueName(): RmString
+    public function getVenue(): Venue
     {
-        return $this->VenueName;
-    }
-
-    public function setCityName(RmString $CityName): AbstractEvent
-    {
-        $this->CityName = $CityName;
-        return $this;
-    }
-
-    public function getCityName(): RmString
-    {
-        return $this->CityName;
+        return $this->Venue;
     }
 
     public function setUrl(RmString $Url): AbstractEvent
