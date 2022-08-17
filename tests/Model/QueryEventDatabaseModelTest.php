@@ -75,6 +75,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
@@ -99,6 +100,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -122,6 +124,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -147,6 +150,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -189,6 +193,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -215,6 +220,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -242,6 +248,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -267,6 +274,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\RmArray
@@ -292,6 +300,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -320,6 +329,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
@@ -350,6 +360,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\RmArray
@@ -379,6 +390,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\RmArray
@@ -407,6 +419,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\RmArray
