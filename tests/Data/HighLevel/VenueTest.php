@@ -13,7 +13,7 @@ use ruhrpottmetaller\Data\LowLevel\RmBool;
 
 final class VenueTest extends TestCase
 {
-    private \ruhrpottmetaller\Data\HighLevel\Venue $DataSet;
+    private Venue $DataSet;
 
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
