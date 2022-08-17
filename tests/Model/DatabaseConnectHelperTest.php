@@ -15,7 +15,7 @@ final class DatabaseConnectHelperTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldThrowErrorIfStringIsNoPathToFile(): void
     {
@@ -32,7 +32,7 @@ final class DatabaseConnectHelperTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnDatabaseConnection(): void
     {
@@ -46,7 +46,7 @@ final class DatabaseConnectHelperTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldBeInitializedByNewMethod(): void
     {
@@ -60,7 +60,7 @@ final class DatabaseConnectHelperTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testMethodsShouldBeChainable(): void
     {

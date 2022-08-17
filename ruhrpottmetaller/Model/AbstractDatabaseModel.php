@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\LowLevel\RmArray;
+use ruhrpottmetaller\Data\RmArray;
 
 abstract class AbstractDatabaseModel
 {

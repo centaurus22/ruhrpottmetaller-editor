@@ -2,7 +2,9 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-abstract class AbstractRmValue implements IRmValue
+use ruhrpottmetaller\Data\IDataObject;
+
+abstract class AbstractLowLevelDataObject implements IDataObject
 {
     protected $value;
 
@@ -22,7 +24,7 @@ abstract class AbstractRmValue implements IRmValue
         return $this;
     }
 
-    public function print(): IRmValue
+    public function print(): IDataObject
     {
         echo $this->value;
         return $this;

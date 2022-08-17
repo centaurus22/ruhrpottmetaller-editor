@@ -18,7 +18,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetNumberOfDaysAndGetTheSameNumberOfDays(): void
@@ -35,7 +35,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToNumberOfDays(): void
@@ -49,7 +49,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      */
     public function testShouldSetDateStartAndGetTheSameDateStart(): void
@@ -66,7 +66,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldThrowTypeErrorIfNoDataTypeDateIsSetToDateStart(): void
@@ -79,7 +79,7 @@ final class FestivalTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate

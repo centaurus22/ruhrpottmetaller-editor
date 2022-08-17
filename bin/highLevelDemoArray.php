@@ -2,8 +2,8 @@
 
 namespace ruhrpottmetaller\LowLevel;
 
-use ruhrpottmetaller\Data\LowLevel\RmArray;
 use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\RmArray;
 
 include('vendor/autoload.php');
 

@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class RmString extends AbstractRmValue
+class RmString extends AbstractLowLevelDataObject
 {
     protected $value;
 

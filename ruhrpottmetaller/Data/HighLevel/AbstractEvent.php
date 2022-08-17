@@ -6,7 +6,7 @@ use ruhrpottmetaller\Data\LowLevel\RmBool;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
-class AbstractEvent
+class AbstractEvent extends AbstractHighLevelDataObject
 {
     protected RmInt $Id;
     protected RmString $Name;
@@ -16,11 +16,6 @@ class AbstractEvent
     protected RmString $Url;
     protected RmBool $IsSoldOut;
     protected RmBool $IsCanceled;
-
-    public static function new()
-    {
-        return new static();
-    }
 
     public function setId(RmInt $Id): AbstractEvent
     {

@@ -5,11 +5,11 @@ namespace ruhrpottmetaller\Model;
 use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\RmArray;
 use ruhrpottmetaller\Data\LowLevel\RmBool;
 use ruhrpottmetaller\Data\LowLevel\RmDate;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
 use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\RmArray;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {

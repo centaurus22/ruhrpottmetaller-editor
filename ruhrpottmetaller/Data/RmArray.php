@@ -1,8 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data;
 
-class RmArray implements IRmValue
+class RmArray implements IDataObject
 {
     private array $array = array();
     private int $pointer = 0;

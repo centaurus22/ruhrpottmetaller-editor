@@ -13,7 +13,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShoudReturnEmptyStringAfterAcceptingEmptyString(): void
     {
@@ -23,7 +23,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShoudReturnSameStringAfterAcceptingString(): void
     {
@@ -33,7 +33,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShoudReturnIntegerAsStringAfterAcceptingInteger(): void
     {
@@ -43,7 +43,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetItShoudReturnIntegerAsStringAfterAcceptingInteger(): void
     {
@@ -54,7 +54,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -64,7 +64,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
@@ -75,7 +75,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputStringAfterAccepting(): void
     {
@@ -86,7 +86,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -97,7 +97,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
@@ -107,7 +107,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -119,7 +119,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -129,7 +129,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {

@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\View;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractRmValue;
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class View
@@ -20,12 +20,12 @@ class View
         $this->_['imagePath'] = RmString::new('web/assets/images/');
     }
 
-    public function set(string $key, AbstractRmValue $value)
+    public function set(string $key, AbstractLowLevelDataObject $value)
     {
         $this->_[$key] = $value;
     }
 
-    private function getAsObject(string $key): AbstractRmValue
+    private function getAsObject(string $key): AbstractLowLevelDataObject
     {
         return $this->_[$key];
     }

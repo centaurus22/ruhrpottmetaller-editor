@@ -2,7 +2,9 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class RmDate extends \DateTime implements IRmValue
+use ruhrpottmetaller\Data\IDataObject;
+
+class RmDate extends \DateTime implements IDataObject
 {
     private bool $isNull;
 

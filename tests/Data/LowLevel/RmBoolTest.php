@@ -13,7 +13,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnTrueAfterAcceptingTrue(): void
     {
@@ -24,7 +24,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnFalseAfterAcceptingFalse(): void
     {
@@ -35,7 +35,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnStringAsTrue(): void
     {
@@ -46,7 +46,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnBoolegegerLargerAsZerorAsTrue(): void
     {
@@ -57,7 +57,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetItShoudReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
     {
@@ -68,7 +68,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -78,7 +78,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
@@ -89,7 +89,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputNothingAfterAcceptingTrue(): void
     {
@@ -100,7 +100,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputNothingAfterAcceptingFalse(): void
     {
@@ -110,7 +110,7 @@ final class RmBoolTest extends TestCase
     }
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -121,7 +121,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testNewShouldAcceptBoolAndGetShouldProvideItAgain(): void
     {
@@ -132,7 +132,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -141,7 +141,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -151,7 +151,7 @@ final class RmBoolTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {

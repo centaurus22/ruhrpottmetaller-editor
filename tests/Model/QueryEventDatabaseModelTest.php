@@ -8,8 +8,8 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\RmArray;
 use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\DatabaseConnectHelper;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
@@ -46,9 +46,9 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\RmArray
      */
     public function testShouldReturnDataTypeArray(): void
     {
@@ -60,8 +60,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
@@ -79,8 +79,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
@@ -102,8 +102,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -126,8 +126,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
@@ -150,8 +150,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
@@ -171,8 +171,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
@@ -192,8 +192,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
@@ -219,8 +219,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
@@ -245,8 +245,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
@@ -268,8 +268,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
@@ -295,8 +295,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -323,8 +323,8 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
@@ -351,8 +351,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -380,8 +380,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -408,8 +408,8 @@ final class QueryEventDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmValue
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
