@@ -20,6 +20,13 @@ class View
         $this->_['imagePath'] = RmString::new('web/assets/images/');
     }
 
+    public static function new(
+        RmString $templatePath,
+        RmString $templateFile
+    ): View {
+        return new self($templatePath, $templateFile);
+    }
+
     public function set(string $key, AbstractLowLevelDataObject $value)
     {
         $this->_[$key] = $value;

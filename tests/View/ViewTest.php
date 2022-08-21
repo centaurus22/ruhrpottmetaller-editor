@@ -89,4 +89,20 @@ final class ViewTest extends TestCase
         $output = $this->View->getOutput();
         $this->assertEquals('test', substr($output, 5, 4));
     }
+
+    /**
+     * @covers \ruhrpottmetaller\View\View
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldBeInitializeWithStaticNew()
+    {
+        $this->View = View::new(
+            RmString::new('tests/View/'),
+            RmString::new('testTemplate2')
+        );
+        $this->View->set('value', RmString::new('test'));
+        $output = $this->View->getOutput();
+        $this->assertEquals('test', substr($output, 5, 4));
+    }
 }

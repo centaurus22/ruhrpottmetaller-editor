@@ -16,6 +16,7 @@ final class VenueTest extends TestCase
     private Venue $DataSet;
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -32,6 +33,7 @@ final class VenueTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -48,6 +50,7 @@ final class VenueTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -64,6 +67,7 @@ final class VenueTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
