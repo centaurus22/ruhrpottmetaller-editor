@@ -10,18 +10,21 @@ class Venue extends AbstractHighLevelDataObject implements IDataObject
     private City $City;
     private RmBool $IsVisible;
 
-    public function setCity(City $City)
+    public function setCity(City $City): Venue
     {
         $this->City = $City;
+        return $this;
     }
 
     public function getCity(): City
     {
         return $this->City;
     }
-    public function setIsVisible(RmBool $IsVisible)
+
+    public function setIsVisible(RmBool $IsVisible): Venue
     {
         $this->IsVisible = $IsVisible;
+        return $this;
     }
 
     public function getIsVisible(): RmBool
