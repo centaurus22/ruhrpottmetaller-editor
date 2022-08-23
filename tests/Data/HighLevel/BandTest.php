@@ -15,6 +15,7 @@ final class BandTest extends TestCase
     private \ruhrpottmetaller\Data\HighLevel\Band $DataSet;
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -31,6 +32,7 @@ final class BandTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -47,6 +49,7 @@ final class BandTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject

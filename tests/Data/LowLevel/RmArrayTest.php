@@ -29,6 +29,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      */
     public function testNewShouldInitADataTypeArray(): void
@@ -37,6 +38,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @doesNotPerformAssertions
      */
@@ -47,6 +49,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -59,6 +62,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -73,6 +77,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -89,6 +94,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -101,6 +107,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -112,6 +119,7 @@ final class RmArrayTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject

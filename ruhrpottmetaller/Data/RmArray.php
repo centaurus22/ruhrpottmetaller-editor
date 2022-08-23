@@ -2,15 +2,12 @@
 
 namespace ruhrpottmetaller\Data;
 
-class RmArray implements IDataObject
+use ruhrpottmetaller\AbstractRmObject;
+
+class RmArray extends AbstractRmObject implements IDataObject
 {
     private array $array = array();
     private int $pointer = 0;
-
-    public static function new(): RmArray
-    {
-        return new self();
-    }
 
     public function add($value): RmArray
     {

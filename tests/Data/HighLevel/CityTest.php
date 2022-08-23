@@ -14,6 +14,7 @@ final class CityTest extends TestCase
     private \ruhrpottmetaller\Data\HighLevel\City $DataSet;
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -30,6 +31,7 @@ final class CityTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject

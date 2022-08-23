@@ -2,20 +2,16 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
+use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
-abstract class AbstractHighLevelDataObject implements IDataObject
+abstract class AbstractHighLevelDataObject extends AbstractRmObject implements IDataObject
 {
 
     protected RmString $Name;
     protected RmInt $Id;
-
-    public static function new()
-    {
-        return new static();
-    }
 
     public function getId(): RmInt
     {
