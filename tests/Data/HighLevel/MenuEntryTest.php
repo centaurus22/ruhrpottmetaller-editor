@@ -23,7 +23,7 @@ final class MenuEntryTest extends TestCase
         $this->MenuEntry = MenuEntry::new()
             ->setId(RmString::new('events'))
             ->setName(RmString::new('Events'));
-        $this->expectOutputString('<li><a href="?display=events">Events</a></li>');
-        $this->MenuEntry->print();
+        $this->expectOutputString('<li><a href="?display=events&amp;month=2022-10">Events</a></li>');
+        $this->MenuEntry->print(RmString::new('2022-10'));
     }
 }
