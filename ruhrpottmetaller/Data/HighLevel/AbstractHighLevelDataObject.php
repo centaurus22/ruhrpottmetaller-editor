@@ -4,21 +4,21 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\LowLevel\RmInt;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
 abstract class AbstractHighLevelDataObject extends AbstractRmObject implements IDataObject
 {
 
     protected RmString $Name;
-    protected AbstractLowLevelDataObject $Id;
+    protected RmInt $Id;
 
-    public function getId(): AbstractLowLevelDataObject
+    public function getId(): RmInt
     {
         return $this->Id;
     }
 
-    public function setId(AbstractLowLevelDataObject $Id): AbstractHighLevelDataObject
+    public function setId(RmInt $Id): AbstractHighLevelDataObject
     {
         $this->Id = $Id;
         return $this;

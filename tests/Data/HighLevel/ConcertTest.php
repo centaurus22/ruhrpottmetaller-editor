@@ -68,6 +68,21 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     */
+    public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToId(): void
+    {
+        $this->expectException(\TypeError::class);
+        $this->DataSet = Concert::new();
+        $this->DataSet->setId(RmString::new('Iron Maiden'));
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
