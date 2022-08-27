@@ -42,7 +42,7 @@ class View
         return $this->_[$key]->get();
     }
 
-    public function getOutput(): string
+    public function getOutput(): RmString
     {
         $file = $this->templatePath->get() . $this->templateFile->get() . '.inc.php';
 
@@ -54,6 +54,6 @@ class View
         include($file);
         $output = ob_get_contents();
         ob_end_clean();
-        return $output;
+        return RmString::new($output);
     }
 }
