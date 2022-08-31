@@ -32,7 +32,7 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
@@ -49,7 +49,7 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
@@ -75,8 +75,9 @@ final class BaseDisplayControllerTest extends TestCase
             $output
         );
     }
+
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
@@ -109,5 +110,35 @@ final class BaseDisplayControllerTest extends TestCase
             'This is a concert. This is a concert. This is a concert.',
             $output
         );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
+     * @covers \ruhrpottmetaller\View\View
+     */
+    public function testShouldSetMenu()
+    {
+        $this->expectExceptionMessage('The Array does not contain data at this position.');
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = BaseDisplayController::new($BaseView);
+        $this->Controller->render();
+        $menu = ($this->Controller->getViewData())['menu'];
+        $this->assertIsObject($menu);
+        $this->assertEquals('events', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('bands', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('cities', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('venues', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $menu->getCurrent();
     }
 }
