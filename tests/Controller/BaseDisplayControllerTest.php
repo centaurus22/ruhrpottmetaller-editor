@@ -32,7 +32,9 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
@@ -49,7 +51,9 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
@@ -77,8 +81,10 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @covers \ruhrpottmetaller\View\View
@@ -113,8 +119,10 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmObject
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @covers \ruhrpottmetaller\View\View
