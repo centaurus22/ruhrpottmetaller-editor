@@ -49,4 +49,12 @@ abstract class AbstractDisplayController implements IDisplayController
     ) {
         $this->View->set($subControllerId . 'Output', $subController->render());
     }
+
+    /**
+     * Just for unit testing
+     */
+    public function getViewData(): array
+    {
+        return $this->View->getAll();
+    }
 }
