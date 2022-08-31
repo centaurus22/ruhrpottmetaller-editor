@@ -59,7 +59,7 @@ final class RmBoolTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testGetItShoudReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
+    public function testGetItShouldReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
     {
         $this->Bool = new RmBool(true);
         $this->Bool->set(false);

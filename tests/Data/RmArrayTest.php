@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Data\LowLevel;
+namespace tests\ruhrpottmetaller\Data;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
