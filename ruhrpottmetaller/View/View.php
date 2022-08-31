@@ -2,6 +2,7 @@
 
 namespace ruhrpottmetaller\View;
 
+use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
@@ -27,7 +28,7 @@ class View
         return new self($templatePath, $templateFile);
     }
 
-    public function set(string $key, AbstractLowLevelDataObject $value)
+    public function set(string $key, IDataObject $value)
     {
         $this->_[$key] = $value;
     }
@@ -55,5 +56,13 @@ class View
         $output = ob_get_contents();
         ob_end_clean();
         return RmString::new($output);
+    }
+
+    /**
+     * Just for unit testing
+     */
+    public function getAll(): array
+    {
+        return $this->_;
     }
 }
