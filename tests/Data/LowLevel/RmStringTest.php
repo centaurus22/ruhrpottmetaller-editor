@@ -81,7 +81,7 @@ final class RmStringTest extends TestCase
     {
         $this->expectOutputString('Band');
         $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('Band');
-        $this->String->Print();
+        echo $this->String;
     }
 
     /**
@@ -92,7 +92,7 @@ final class RmStringTest extends TestCase
     {
         $this->expectOutputString('');
         $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString(null);
-        $this->String->Print();
+        echo $this->String;
     }
 
     /**
@@ -124,7 +124,7 @@ final class RmStringTest extends TestCase
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
         $this->expectOutputString('VenueConcert');
-        RmString::new('Venue')->print()->set('Concert')->print();
+        echo RmString::new('Venue')->set('VenueConcert');
     }
 
     /**

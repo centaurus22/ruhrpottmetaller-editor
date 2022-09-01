@@ -78,7 +78,7 @@ final class RmIntTest extends TestCase
     {
         $this->expectOutputString('23');
         $this->Int = new RmInt(23);
-        $this->Int->Print();
+        echo $this->Int;
     }
 
     /**
@@ -89,7 +89,7 @@ final class RmIntTest extends TestCase
     {
         $this->expectOutputString('');
         $this->Int = new RmInt(null);
-        $this->Int->Print();
+        echo $this->Int;
     }
 
     /**
@@ -119,7 +119,7 @@ final class RmIntTest extends TestCase
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
         $this->expectOutputString('1337');
-        RmInt::new(13)->print()->set(37)->print();
+        echo RmInt::new(13)->set(1337);
     }
 
     /**

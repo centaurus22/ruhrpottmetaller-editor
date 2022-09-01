@@ -95,7 +95,7 @@ final class RmBoolTest extends TestCase
     {
         $this->expectOutputString('1');
         $this->Bool = new RmBool(true);
-        $this->Bool->Print();
+        echo $this->Bool;
     }
 
     /**
@@ -106,7 +106,7 @@ final class RmBoolTest extends TestCase
     {
         $this->expectOutputString('');
         $this->Bool = new RmBool(false);
-        $this->Bool->Print();
+        echo $this->Bool;
     }
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -116,7 +116,7 @@ final class RmBoolTest extends TestCase
     {
         $this->expectOutputString('');
         $this->Bool = new RmBool(null);
-        $this->Bool->Print();
+        echo $this->Bool;
     }
 
     /**
@@ -146,7 +146,7 @@ final class RmBoolTest extends TestCase
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
         $this->expectOutputString('1');
-        RmBool::new(false)->print()->set(true)->print();
+        echo RmBool::new(false)->set(true);
     }
 
     /**

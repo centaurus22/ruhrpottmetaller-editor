@@ -13,6 +13,11 @@ abstract class AbstractLowLevelDataObject implements IDataObject
         $this->value = $this->convert($value);
     }
 
+    public function __toString()
+    {
+        return (string) $this->value;
+    }
+
     public static function new($value)
     {
         return new static($value);
@@ -21,12 +26,6 @@ abstract class AbstractLowLevelDataObject implements IDataObject
     public function set($value)
     {
         $this->value = $this->convert($value);
-        return $this;
-    }
-
-    public function print(): IDataObject
-    {
-        echo $this->value;
         return $this;
     }
 }
