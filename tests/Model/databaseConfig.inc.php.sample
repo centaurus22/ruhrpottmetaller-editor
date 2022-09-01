@@ -1,0 +1,6 @@
+<?php
+
+$this->databaseUserName = 'ruhrpottmetaller';
+$this->databaseUserPassword = 'testUserPassword';
+$this->databaseHost = 'localhost';
+$this->databaseTable = 'ruhrpottmetaller';

@@ -1,24 +1,21 @@
 <?php
 
-namespace ruhrpottmetaller\DataType;
+namespace ruhrpottmetaller\Data;
 
-class DataTypeArray implements IDataType
+use ruhrpottmetaller\AbstractRmObject;
+
+class RmArray extends AbstractRmObject implements IDataObject
 {
     private array $array = array();
     private int $pointer = 0;
 
-    public static function new(): DataTypeArray
-    {
-        return new self();
-    }
-
-    public function add($value)
+    public function add($value): RmArray
     {
         $this->array[] = $value;
         return $this;
     }
 
-    public function get()
+    public function getCurrent()
     {
         if (!isset($this->array[$this->pointer])) {
             throw new \Error('The Array does not contain data at this position.');
@@ -26,13 +23,13 @@ class DataTypeArray implements IDataType
         return $this->array[$this->pointer];
     }
 
-    public function pointAtNext()
+    public function pointAtNext(): RmArray
     {
         $this->pointer++;
         return $this;
     }
 
-    public function isCurrent(): bool
+    public function hasCurrent(): bool
     {
         return isset($this->array[$this->pointer]);
     }

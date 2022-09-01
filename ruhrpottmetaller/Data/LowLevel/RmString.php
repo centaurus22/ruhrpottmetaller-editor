@@ -1,10 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\DataType;
+namespace ruhrpottmetaller\Data\LowLevel;
 
-class DataTypeString extends AbstractDataTypeValue
+class RmString extends AbstractLowLevelDataObject
 {
-    protected ?string $value;
+    protected $value;
 
     public function __construct($value)
     {

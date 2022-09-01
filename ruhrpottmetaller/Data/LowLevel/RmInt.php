@@ -1,10 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\DataType;
+namespace ruhrpottmetaller\Data\LowLevel;
 
-class DataTypeInt extends AbstractDataTypeValue
+class RmInt extends AbstractLowLevelDataObject
 {
-    protected ?int $value;
+    protected $value;
 
     public function __construct($value)
     {
@@ -16,9 +16,9 @@ class DataTypeInt extends AbstractDataTypeValue
         return $this->value;
     }
 
-    public function asString(): DataTypeString
+    public function asString(): RmString
     {
-        return new DataTypeString($this->value);
+        return new RmString($this->value);
     }
 
     protected function convert($value): ?int
