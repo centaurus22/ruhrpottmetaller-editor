@@ -1,1 +1,1 @@
-This is a concert. <?=$this->getAsPrimitive('sub1Output')?>
+This is a concert. <?=$this->get('sub1Output')?>

@@ -1,1 +1,1 @@
-<div><?=$this->getAsObject('value')->get()?></div>
+<div><?=$this->get('value')->get()?></div>
