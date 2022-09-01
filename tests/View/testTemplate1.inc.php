@@ -1,1 +1,1 @@
-<div><?=$this->getAsPrimitive('imagePath')?></div>
+<div><?=$this->get('imagePath')?></div>
