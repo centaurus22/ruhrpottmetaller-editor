@@ -150,7 +150,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      */
     public function testArrayShouldContainQueryFestivalDatasetIfEventLastsMoreThanOneDay(): void
     {
-        $query = 'INSERT INTO event SET number_days = 2, date_start = "2022-06-01"';
+        $query = 'INSERT INTO event SET number_of_days = 2, date_start = "2022-06-01"';
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
             Festival::class,
@@ -177,7 +177,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      */
     public function testArrayShouldContainQueryConcertDatasetIfEventLastOneDay(): void
     {
-        $query = 'INSERT INTO event SET number_days = 1, date_start = "2022-06-29"';
+        $query = 'INSERT INTO event SET number_of_days = 1, date_start = "2022-06-29"';
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
             Concert::class,
@@ -445,7 +445,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      */
     public function testQueryFestivalDataSetShouldContainDateStartAsDateStartFromDatabase(): void
     {
-        $query = 'INSERT INTO event SET number_days = 3, date_start = "2022-06-18"';
+        $query = 'INSERT INTO event SET number_of_days = 3, date_start = "2022-06-18"';
         $this->DatabaseConnection->query($query);
         $Events = $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'));
         $this->assertEquals(
@@ -476,7 +476,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      */
     public function testQueryFestivalDataSetShouldContainNumberOfDatesFromDatabase(): void
     {
-        $query = 'INSERT INTO event SET number_days = 3, date_start = "2022-06-18"';
+        $query = 'INSERT INTO event SET number_of_days = 3, date_start = "2022-06-18"';
         $this->DatabaseConnection->query($query);
         $this->assertEquals(
             3,
