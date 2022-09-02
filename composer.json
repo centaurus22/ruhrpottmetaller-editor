@@ -1,6 +1,6 @@
 {
 	"name" : "klaus-thorres/ruhrpottmetaller-editor",
-	"description" : "A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.",
+	"description" : "A web tool to store information about concerts and festivals including bands, venues and cities.",
 	"type" : "library",
 	"keywords" : [
 		"events",
