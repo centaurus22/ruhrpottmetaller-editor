@@ -19,10 +19,19 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\RmArray
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventDisplayController
      * @covers \ruhrpottmetaller\View\View
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
     public function testShouldSetConcertList()
     {
