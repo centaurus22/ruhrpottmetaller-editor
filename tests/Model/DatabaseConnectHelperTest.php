@@ -37,7 +37,7 @@ final class DatabaseConnectHelperTest extends TestCase
     public function testShouldReturnDatabaseConnection(): void
     {
         $this->Helper = new DatabaseConnectHelper(RmString::new(
-            'config/databaseConfig.inc.php'
+            'tests/Model/databaseConfig.inc.php'
         ));
         $this->Helper->connect();
         $this->assertInstanceOf(\mysqli::class, $this->Helper->getConnection());
@@ -51,7 +51,7 @@ final class DatabaseConnectHelperTest extends TestCase
     public function testShouldBeInitializedByNewMethod(): void
     {
         $this->Helper = DatabaseConnectHelper::new(RmString::new(
-            'config/databaseConfig.inc.php'
+            'tests/Model/databaseConfig.inc.php'
         ));
         $this->Helper->connect();
         $this->assertInstanceOf(\mysqli::class, $this->Helper->getConnection());
@@ -65,7 +65,7 @@ final class DatabaseConnectHelperTest extends TestCase
     public function testMethodsShouldBeChainable(): void
     {
         $this->Helper = DatabaseConnectHelper::new(
-            RmString::new('config/databaseConfig.inc.php')
+            RmString::new('tests/Model/databaseConfig.inc.php')
         );
         $this->assertInstanceOf(
             \mysqli::class,

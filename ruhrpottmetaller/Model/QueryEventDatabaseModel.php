@@ -25,7 +25,7 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         $query = 'SELECT
                 event.name AS name,
                 date_start,
-                number_days,
+                number_of_days,
                 venue.id AS venue_id,
                 venue.name AS venue_name,
                 venue.is_visible AS venue_is_visible,
@@ -46,10 +46,10 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         $Statement->close();
 
         while ($Object = $Result->fetch_object()) {
-            if ($Object->number_days > 1) {
+            if ($Object->number_of_days > 1) {
                 $DataSet = Festival::new()
                        ->setDateStart(RmDate::new($Object->date_start))
-                       ->setNumberOfDays(RmInt::new($Object->number_days));
+                       ->setNumberOfDays(RmInt::new($Object->number_of_days));
             } else {
                 $DataSet = Concert::new()
                        ->setDate(RmDate::new($Object->date_start));

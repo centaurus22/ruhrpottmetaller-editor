@@ -8,6 +8,10 @@ class DatabaseConnectHelper extends AbstractConnectHelper
 {
     private RmString $ConnectionInformationFile;
     private \mysqli $Connection;
+    private string $databaseHost = '';
+    private string $databaseUserName = '';
+    private string $databaseUserPassword = '';
+    private string $databaseTable = '';
 
     public function __construct($ConnectionInformationFile)
     {
@@ -25,20 +29,15 @@ class DatabaseConnectHelper extends AbstractConnectHelper
             throw new \Error('File with database connection information not found.');
         }
 
-        $databaseHost = '';
-        $databaseUserName = '';
-        $databaseUserPassword = '';
-        $databaseTable = '';
-
         include(
             $this->ConnectionInformationFile->get()
         );
 
         $this->Connection = new \mysqli(
-            $databaseHost,
-            $databaseUserName,
-            $databaseUserPassword,
-            $databaseTable
+            $this->databaseHost,
+            $this->databaseUserName,
+            $this->databaseUserPassword,
+            $this->databaseTable
         );
 
         return $this;

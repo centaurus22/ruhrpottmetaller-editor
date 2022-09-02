@@ -33,14 +33,9 @@ class View
         $this->_[$key] = $value;
     }
 
-    private function getAsObject(string $key): AbstractLowLevelDataObject
+    private function get(string $key): AbstractLowLevelDataObject
     {
         return $this->_[$key];
-    }
-
-    private function getAsPrimitive(string $key)
-    {
-        return $this->_[$key]->get();
     }
 
     public function getOutput(): RmString
