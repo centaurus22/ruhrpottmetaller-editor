@@ -4,13 +4,6 @@ namespace ruhrpottmetaller\Data\LowLevel;
 
 class RmString extends AbstractLowLevelDataObject
 {
-    protected $value;
-
-    public function __construct($value)
-    {
-        parent::__construct($value);
-    }
-
     public function get(): ?string
     {
         return $this->value;
