@@ -15,11 +15,6 @@ use ruhrpottmetaller\Data\RmArray;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
-    public function __construct(\mysqli $Connection, RmArray $Array)
-    {
-        parent::__construct($Connection, $Array);
-    }
-
     public function getEventsByMonth(RmString $Month): RmArray
     {
         $query = 'SELECT
