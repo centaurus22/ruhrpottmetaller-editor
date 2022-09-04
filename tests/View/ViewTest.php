@@ -19,8 +19,10 @@ final class ViewTest extends TestCase
      */
     public function testShouldThrowErrorIfTemplateIsNotAvailable(): void
     {
-        $this->View = View::new(RmString::new('View/'))
-            ->setTemplate(RmString::new('testTemplate'));
+        $this->View = new View(
+            RmString::new('View/'),
+            RmString::new('testTemplate')
+        );
         $this->expectError();
         $this->expectErrorMessage('Template "View/testTemplate.inc.php" is not available');
         $this->View->getOutput();
@@ -33,8 +35,10 @@ final class ViewTest extends TestCase
      */
     public function testShouldThrowErrorIfAnotherTemplateIsNotAvailable(): void
     {
-        $this->View = View::new(RmString::new('test/'))
-            ->setTemplate(RmString::new('test'));
+        $this->View = new View(
+            RmString::new('test/'),
+            RmString::new('test')
+        );
         $this->expectError();
         $this->expectErrorMessage('Template "test/test.inc.php" is not available');
         $this->View->getOutput();
@@ -49,11 +53,9 @@ final class ViewTest extends TestCase
     {
         $this->View = new View(
             RmString::new('tests/View/'),
-
+            RmString::new('testTemplate1')
         );
-        $output = $this->View
-            ->setTemplate(RmString::new('testTemplate1'))
-            ->getOutput()->get();
+        $output = $this->View->getOutput()->get();
         $this->assertEquals('<div>', substr($output, 0, 5));
     }
 
@@ -66,11 +68,9 @@ final class ViewTest extends TestCase
     {
         $this->View = new View(
             RmString::new('tests/View/'),
-
+            RmString::new('testTemplate1')
         );
-        $output = $this->View
-            ->setTemplate(RmString::new('testTemplate1'))
-            ->getOutput()->get();
+        $output = $this->View->getOutput()->get();
         $this->assertEquals('web/assets/images/', substr($output, 5, 18));
     }
 
@@ -83,11 +83,10 @@ final class ViewTest extends TestCase
     {
         $this->View = new View(
             RmString::new('tests/View/'),
+            RmString::new('testTemplate2')
         );
         $this->View->set('value', RmString::new('test'));
-        $output = $this->View
-            ->setTemplate(RmString::new('testTemplate2'))
-            ->getOutput()->get();
+        $output = $this->View->getOutput()->get();
         $this->assertEquals('test', substr($output, 5, 4));
     }
 
@@ -100,10 +99,9 @@ final class ViewTest extends TestCase
     {
         $this->View = View::new(
             RmString::new('tests/View/'),
+            RmString::new('testTemplate2')
         );
-        $this->View
-            ->setTemplate(RmString::new('testTemplate2'))
-            ->set('value', RmString::new('test'));
+        $this->View->set('value', RmString::new('test'));
         $output = $this->View->getOutput()->get();
         $this->assertEquals('test', substr($output, 5, 4));
     }
