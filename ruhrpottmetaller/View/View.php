@@ -14,21 +14,21 @@ class View
 
     public function __construct(
         RmString $TemplatePath,
-        RmString $Template
+        RmString $StandardTemplate
     ) {
         $this->TemplatePath = $TemplatePath;
-        $this->Template = $Template;
+        $this->Template = $StandardTemplate;
         $this->_['imagePath'] = RmString::new('web/assets/images/');
     }
 
     public static function new(
         RmString $TemplatePath,
-        RmString $Template
+        RmString $StandardTemplate
     ): View {
-        return new self($TemplatePath, $Template);
+        return new self($TemplatePath, $StandardTemplate);
     }
 
-    public function setTemplate(RmString $Template)
+    public function setTemplate(RmString $Template): View
     {
         $this->Template = $Template;
         return $this;
