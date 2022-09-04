@@ -35,10 +35,8 @@ final class EventDisplayControllerTest extends TestCase
      */
     public function testShouldSetConcertList()
     {
-        $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
-            RmString::new('testTemplate')
-        );
+        $BaseView = View::new(RmString::new('./tests/Controller/'))
+                ->setTemplate(RmString::new('testTemplate'));
 
         $this->Controller = new EventDisplayController(
             $BaseView,
