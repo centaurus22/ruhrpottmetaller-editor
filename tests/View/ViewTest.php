@@ -79,7 +79,7 @@ final class ViewTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShouldOutputViaObjectMethod()
+    public function testShouldGetTheRenderedTemplate()
     {
         $this->View = new View(
             RmString::new('tests/View/'),
@@ -102,6 +102,24 @@ final class ViewTest extends TestCase
             RmString::new('testTemplate2')
         );
         $this->View->set('value', RmString::new('test'));
+        $output = $this->View->getOutput()->get();
+        $this->assertEquals('test', substr($output, 5, 4));
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\View\View
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldOverwriteTemplate()
+    {
+        $this->View = new View(
+            RmString::new('tests/View/'),
+            RmString::new('testTemplate2')
+        );
+        $this->View
+            ->setTemplate(RmString::new('testTemplate2'))
+            ->set('value', RmString::new('test'));
         $output = $this->View->getOutput()->get();
         $this->assertEquals('test', substr($output, 5, 4));
     }

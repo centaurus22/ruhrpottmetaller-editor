@@ -8,24 +8,30 @@ use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class View
 {
-    private RmString $templatePath;
-    private RmString $templateFile;
+    private RmString $TemplatePath;
+    private RmString $Template;
     private array $_ = array();
 
     public function __construct(
-        RmString $templatePath,
-        RmString $templateFile
+        RmString $TemplatePath,
+        RmString $Template
     ) {
-        $this->templatePath = $templatePath;
-        $this->templateFile = $templateFile;
+        $this->TemplatePath = $TemplatePath;
+        $this->Template = $Template;
         $this->_['imagePath'] = RmString::new('web/assets/images/');
     }
 
     public static function new(
-        RmString $templatePath,
-        RmString $templateFile
+        RmString $TemplatePath,
+        RmString $Template
     ): View {
-        return new self($templatePath, $templateFile);
+        return new self($TemplatePath, $Template);
+    }
+
+    public function setTemplate(RmString $Template)
+    {
+        $this->Template = $Template;
+        return $this;
     }
 
     public function set(string $key, IDataObject $value)
@@ -40,7 +46,7 @@ class View
 
     public function getOutput(): RmString
     {
-        $file = $this->templatePath->get() . $this->templateFile->get() . '.inc.php';
+        $file = $this->TemplatePath->get() . $this->Template->get() . '.inc.php';
 
         if (!file_exists($file)) {
             throw new \Error("Template \"$file\" is not available");
