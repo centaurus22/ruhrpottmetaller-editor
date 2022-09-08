@@ -15,7 +15,7 @@ abstract class AbstractDatabaseModel
         $this->Array = $Array;
     }
 
-    public static function new(?\mysqli $Connection, ?RmArray $Array): AbstractDatabaseModel
+    public static function new(?\mysqli $Connection, ?RmArray $Array)
     {
         return new static($Connection, $Array);
     }

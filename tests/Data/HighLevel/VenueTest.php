@@ -19,8 +19,8 @@ final class VenueTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetNameAndGetSameNameBack(): void
     {
@@ -36,8 +36,8 @@ final class VenueTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetIdAndGetSameIdBack(): void
     {
@@ -53,8 +53,8 @@ final class VenueTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldSetIsVisibleAndGetSameIsVisibleValue(): void
     {
@@ -70,9 +70,9 @@ final class VenueTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetCityAndGetSameCityObject(): void
     {

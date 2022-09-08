@@ -17,7 +17,7 @@ final class RmArrayTest extends TestCase
      */
     public function testShouldInitADataTypeArray(): void
     {
-        $this->assertInstanceOf(\ruhrpottmetaller\Data\RmArray::class, new \ruhrpottmetaller\Data\RmArray());
+        $this->assertInstanceOf(RmArray::class, new RmArray());
     }
 
     /**
@@ -25,7 +25,7 @@ final class RmArrayTest extends TestCase
      */
     public function testShouldImplementTheIDataTypeInterface(): void
     {
-        $this->assertInstanceOf(\ruhrpottmetaller\Data\IDataObject::class, new \ruhrpottmetaller\Data\RmArray());
+        $this->assertInstanceOf(\ruhrpottmetaller\Data\IDataObject::class, new RmArray());
     }
 
     /**
@@ -34,7 +34,7 @@ final class RmArrayTest extends TestCase
      */
     public function testNewShouldInitADataTypeArray(): void
     {
-        $this->assertInstanceOf(RmArray::class, \ruhrpottmetaller\Data\RmArray::new());
+        $this->assertInstanceOf(RmArray::class, RmArray::new());
     }
 
     /**
@@ -44,19 +44,19 @@ final class RmArrayTest extends TestCase
      */
     public function testAddShouldAcceptVariable(): void
     {
-        $this->Array = \ruhrpottmetaller\Data\RmArray::new();
+        $this->Array = RmArray::new();
         $this->Array->add(RmInt::new(3));
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldReturnSameVariable(): void
     {
-        $this->Array = \ruhrpottmetaller\Data\RmArray::new();
+        $this->Array = RmArray::new();
         $this->Array->add(RmInt::new(3));
         $this->assertEquals(3, $this->Array->getCurrent()->get());
     }
@@ -64,12 +64,12 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testAddShouldBeChainable(): void
     {
-        $this->Array = \ruhrpottmetaller\Data\RmArray::new();
+        $this->Array = RmArray::new();
         $this->assertEquals(
             3,
             $this->Array->add(RmInt::new(3))->getCurrent()->get()
@@ -79,8 +79,8 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnTwoVariablesInTheSameOrderAsAdded(): void
     {
@@ -96,12 +96,12 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {
-        $this->Array = \ruhrpottmetaller\Data\RmArray::new();
+        $this->Array = RmArray::new();
         $this->Array->add(RmInt::new(5));
         $this->assertTrue($this->Array->hasCurrent());
     }
@@ -109,8 +109,8 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testHasCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
     {
@@ -121,8 +121,8 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldThrowAnErrorIfCurrentElementIsNotAvailable(): void
     {

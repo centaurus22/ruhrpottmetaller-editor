@@ -48,7 +48,7 @@ final class RmBoolTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShouldReturnBoolegegerLargerAsZerorAsTrue(): void
+    public function testShouldConvertValueLargerThanZeroAsTrue(): void
     {
         $this->Bool = new RmBool(2);
         $this->assertIsBool($this->Bool->get());

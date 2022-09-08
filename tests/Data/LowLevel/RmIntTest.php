@@ -10,10 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\RmString;
 
 final class RmIntTest extends TestCase
 {
-    /**
-     * @var RmInt|\ruhrpottmetaller\Data\IDataObject
-     */
-    private $Int;
+    private RmInt $Int;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
@@ -135,7 +132,7 @@ final class RmIntTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldReturnStringObject(): void
     {
@@ -146,7 +143,7 @@ final class RmIntTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -159,7 +156,7 @@ final class RmIntTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShoultReturnStringObjectWhichContainTheIntAsString(): void
     {
@@ -172,7 +169,7 @@ final class RmIntTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testAsStringShouldBeChainable(): void
     {
@@ -183,7 +180,7 @@ final class RmIntTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testAsStringShouldBeChainableAndSavedToAVariable(): void
     {

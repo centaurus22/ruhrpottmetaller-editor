@@ -9,15 +9,15 @@ use ruhrpottmetaller\Data\LowLevel\RmString;
 
 final class RmStringTest extends TestCase
 {
-    public \ruhrpottmetaller\Data\LowLevel\RmString $String;
+    public RmString $String;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShoudReturnEmptyStringAfterAcceptingEmptyString(): void
+    public function testShouldReturnEmptyStringAfterAcceptingEmptyString(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('');
+        $this->String = new RmString('');
         $this->assertEquals('', $this->String->get());
     }
 
@@ -25,9 +25,9 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShoudReturnSameStringAfterAcceptingString(): void
+    public function testShouldReturnSameStringAfterAcceptingString(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('Festival');
+        $this->String = new RmString('Festival');
         $this->assertEquals('Festival', $this->String->get());
     }
 
@@ -35,9 +35,9 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShoudReturnIntegerAsStringAfterAcceptingInteger(): void
+    public function testShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString(33);
+        $this->String = new RmString(33);
         $this->assertEquals('33', $this->String->get());
     }
 
@@ -45,9 +45,9 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testGetItShoudReturnIntegerAsStringAfterAcceptingInteger(): void
+    public function testShouldReturnIntegerAsStringAfterOverwritingEmptyString(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('');
+        $this->String = new RmString('');
         $this->String->set(42);
         $this->assertEquals('42', $this->String->get());
     }
@@ -58,7 +58,7 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString(null);
+        $this->String = new RmString(null);
         $this->assertTrue(is_null($this->String->get()));
     }
 
@@ -68,7 +68,7 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('');
+        $this->String = new RmString('');
         $this->String->set(null);
         $this->assertTrue(is_null($this->String->get()));
     }
@@ -80,7 +80,7 @@ final class RmStringTest extends TestCase
     public function testShouldOutputStringAfterAccepting(): void
     {
         $this->expectOutputString('Band');
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString('Band');
+        $this->String = new RmString('Band');
         echo $this->String;
     }
 
@@ -91,7 +91,7 @@ final class RmStringTest extends TestCase
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->String = new \ruhrpottmetaller\Data\LowLevel\RmString(null);
+        $this->String = new RmString(null);
         echo $this->String;
     }
 
@@ -101,7 +101,7 @@ final class RmStringTest extends TestCase
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
-        $this->String = \ruhrpottmetaller\Data\LowLevel\RmString::new('Venue');
+        $this->String = RmString::new('Venue');
         $this->assertEquals('Venue', $this->String->get());
     }
 

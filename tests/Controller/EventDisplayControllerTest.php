@@ -58,4 +58,35 @@ final class EventDisplayControllerTest extends TestCase
             ($this->Controller->getViewData()['events'])->getCurrent()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @covers \ruhrpottmetaller\View\View
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
+     */
+    public function testShouldNotSetEmptyConcertList()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = new EventDisplayController(
+            $BaseView,
+            new QueryEventDatabaseModelMockEmpty(null, null)
+        );
+
+        $this->Controller->setMonth(RmString::new('2022-10'));
+        $this->Controller->render();
+
+        $this->assertArrayNotHasKey('events', $this->Controller->getViewData());
+    }
 }

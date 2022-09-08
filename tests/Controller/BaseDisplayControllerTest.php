@@ -14,10 +14,10 @@ final class BaseDisplayControllerTest extends TestCase
     private BaseDisplayController $Controller;
 
    /**
-    * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-    * @covers \ruhrpottmetaller\Data\LowLevel\RmString
     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
+    * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+    * @uses \ruhrpottmetaller\Data\LowLevel\RmString
     */
     public function testShouldAddSubController()
     {
@@ -32,13 +32,13 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
-     * @covers \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldRender()
     {
@@ -51,13 +51,13 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
-     * @covers \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldRenderASubControllers()
     {
@@ -81,13 +81,13 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
-     * @covers \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldRenderTwoSubControllers()
     {
@@ -119,13 +119,13 @@ final class BaseDisplayControllerTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
-     * @covers \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldSetMenu()
     {
