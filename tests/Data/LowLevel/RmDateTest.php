@@ -16,7 +16,7 @@ final class RmDateTest extends TestCase
      */
     public function testShouldReturnCurrentDateAfterAcceptingEmptyString(): void
     {
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate('');
+        $this->Date = new RmDate('');
         $this->assertEquals(date('Y-m-d'), $this->Date->get());
     }
 
@@ -25,7 +25,7 @@ final class RmDateTest extends TestCase
      */
     public function testShouldReturnSameDateStringAfterAcceptingDateString(): void
     {
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate('2020-03-01');
+        $this->Date = new RmDate('2020-03-01');
         $this->assertEquals('2020-03-01', $this->Date->get());
     }
 
@@ -34,7 +34,7 @@ final class RmDateTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate(null);
+        $this->Date = new RmDate(null);
         $this->assertTrue(is_null($this->Date->get()));
     }
 
@@ -43,7 +43,7 @@ final class RmDateTest extends TestCase
      */
     public function testShouldReturnDateStringAfterAcceptingDateStringBySetId(): void
     {
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate('');
+        $this->Date = new RmDate('');
         $this->Date->set('2020-04-23');
         $this->assertEquals('2020-04-23', $this->Date->get());
     }
@@ -54,8 +54,8 @@ final class RmDateTest extends TestCase
     public function testShouldOutputStringAfterAccepting(): void
     {
         $this->expectOutputString('2022-10-09');
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate('2022-10-09');
-        $this->Date->Print();
+        $this->Date = new RmDate('2022-10-09');
+        echo $this->Date;
     }
 
     /**
@@ -64,21 +64,23 @@ final class RmDateTest extends TestCase
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->Date = new \ruhrpottmetaller\Data\LowLevel\RmDate(null);
-        $this->Date->Print();
+        $this->Date = new RmDate(null);
+        echo $this->Date;
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @throws \Exception
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
-        $this->Date = \ruhrpottmetaller\Data\LowLevel\RmDate::new('2020-10-11');
+        $this->Date = RmDate::new('2020-10-11');
         $this->assertEquals('2020-10-11', $this->Date->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -90,6 +92,7 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSetAfterInitializedWithNull(): void
     {
@@ -101,6 +104,7 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @throws \Exception
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
@@ -110,10 +114,11 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @throws \Exception
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
-        $this->expectOutputString('2010-01-012010-05-05');
-        RmDate::new('2010-01-01')->print()->set('2010-05-05')->print();
+        $this->expectOutputString('2010-05-05');
+        echo RmDate::new('2010-01-01')->set('2010-05-05');
     }
 }

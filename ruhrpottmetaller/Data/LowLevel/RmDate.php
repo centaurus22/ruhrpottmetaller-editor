@@ -14,6 +14,18 @@ class RmDate extends \DateTime implements IDataObject
         $this->reactToInputValueType($value);
     }
 
+    public function __toString()
+    {
+        if ($this->isNull) {
+            return '';
+        } else {
+            return parent::format('Y-m-d');
+        }
+    }
+
+    /**
+     * @throws \Exception
+     */
     public static function new(?string $value): RmDate
     {
         return new self($value);
@@ -33,16 +45,6 @@ class RmDate extends \DateTime implements IDataObject
         }
 
         return parent::format('Y-m-d');
-    }
-
-    public function print(): RmDate
-    {
-        if ($this->isNull) {
-            echo '';
-        } else {
-            echo parent::format('Y-m-d');
-        }
-        return $this;
     }
 
     private function reactToInputValueType(?string $value)
