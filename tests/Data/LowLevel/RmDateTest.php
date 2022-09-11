@@ -125,6 +125,7 @@ final class RmDateTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @throws \Exception
      */
     public function testShouldPrintMonthChangerMenu()
