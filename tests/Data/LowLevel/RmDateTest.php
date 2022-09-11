@@ -121,4 +121,25 @@ final class RmDateTest extends TestCase
         $this->expectOutputString('2010-05-05');
         echo RmDate::new('2010-01-01')->set('2010-05-05');
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @throws \Exception
+     */
+    public function testShouldPrintMonthChangerMenu()
+    {
+        $month = date('Y-m');
+        $buttonToPreviousMonth = '<a href="?month=2022-09"><button>&nbsp;&lt;&lt;&nbsp;</button></a>';
+        $buttonToCurrentMonth = sprintf(
+            '<a href="?month=%1$s"><button>&nbsp;o&nbsp;</button></a>',
+            $month
+        );
+        $buttonToNextMonth = '<a href="?month=2022-11"><button>&nbsp;&gt;&gt;&nbsp;</button></a>';
+        $monthDisplay = '<div>Oct 2022</div>';
+        $this->assertEquals(
+            '<div>' . $buttonToPreviousMonth . $buttonToCurrentMonth . $buttonToNextMonth . $monthDisplay . '</div>',
+            RmDate::new('2022-10')->getMonthChangerMenu()->get()
+        );
+    }
 }
