@@ -7,6 +7,7 @@ namespace tests\ruhrpottmetaller\Controller;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\EventDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\LowLevel\RmDate;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
@@ -32,6 +33,7 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @throws \Exception
      */
     public function testShouldSetConcertList()
     {
@@ -45,7 +47,7 @@ final class EventDisplayControllerTest extends TestCase
             new QueryEventDatabaseModelMock(null, null)
         );
 
-        $this->Controller->setMonth(RmString::new('2022-10'));
+        $this->Controller->setMonth(RmDate::new('2022-10'));
         $this->Controller->render();
 
         $this->assertArrayHasKey('events', $this->Controller->getViewData());
@@ -62,6 +64,7 @@ final class EventDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
@@ -71,6 +74,7 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @throws \Exception
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -84,7 +88,7 @@ final class EventDisplayControllerTest extends TestCase
             new QueryEventDatabaseModelMockEmpty(null, null)
         );
 
-        $this->Controller->setMonth(RmString::new('2022-10'));
+        $this->Controller->setMonth(RmDate::new('2022-10'));
         $this->Controller->render();
 
         $this->assertArrayNotHasKey('events', $this->Controller->getViewData());

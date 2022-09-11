@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\LowLevel\RmDate;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\DatabaseConnectHelper;
@@ -45,17 +46,19 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\RmArray
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\AbstractRmObject
      */
     public function testShouldReturnDataTypeArray(): void
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
         );
     }
 
@@ -65,6 +68,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
@@ -72,7 +76,7 @@ final class QueryEventDatabaseModelTest extends TestCase
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
         );
     }
 
@@ -98,7 +102,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-11"';
         $this->DatabaseConnection->query($query);
         $this->assertTrue(
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->hasCurrent()
         );
     }
@@ -127,7 +131,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
             AbstractEvent::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -155,7 +159,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
             Festival::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -182,7 +186,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertInstanceOf(
             Concert::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'))
+            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -209,7 +213,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertFalse(
             $this->QueryEventDatabaseModel
-                 ->getEventsByMonth(RmString::new('2022-06'))
+                 ->getEventsByMonth(RmDate::new('2022-06'))
                  ->hasCurrent()
         );
     }
@@ -237,7 +241,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             'Thrash Attack',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getName()
                 ->get()
@@ -267,7 +271,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             'www.rockhard.de',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getUrl()
                 ->get()
@@ -296,7 +300,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertTrue(
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsSoldOut()
                 ->get()
@@ -325,7 +329,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->DatabaseConnection->query($query);
         $this->assertTrue(
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsCanceled()
                 ->get()
@@ -335,18 +339,19 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainVenueNameFromDatabase(): void
     {
@@ -357,7 +362,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             'Turock',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getVenue()
                 ->getName()
@@ -392,7 +397,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             'Essen',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getVenue()
                 ->getCity()
@@ -404,18 +409,19 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainDateStartAsDateFromDatabase(): void
     {
@@ -424,7 +430,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             '2022-06-18',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getDate()
                 ->get()
@@ -434,29 +440,29 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryFestivalDataSetShouldContainDateStartAsDateStartFromDatabase(): void
     {
         $query = 'INSERT INTO event SET number_of_days = 3, date_start = "2022-06-18"';
         $this->DatabaseConnection->query($query);
-        $Events = $this->QueryEventDatabaseModel->getEventsByMonth(RmString::new('2022-06'));
         $this->assertEquals(
             '2022-06-18',
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getDateStart()
                 ->get()
@@ -466,19 +472,20 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryFestivalDataSetShouldContainNumberOfDatesFromDatabase(): void
     {
@@ -487,7 +494,7 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->assertEquals(
             3,
             $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmString::new('2022-06'))
+                ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getNumberOfDays()
                 ->get()

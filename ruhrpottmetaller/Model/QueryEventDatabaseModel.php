@@ -15,7 +15,10 @@ use ruhrpottmetaller\Data\RmArray;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
-    public function getEventsByMonth(RmString $Month): RmArray
+    /**
+     * @throws \Exception
+     */
+    public function getEventsByMonth(RmDate $Month): RmArray
     {
         $query = 'SELECT
                 event.name AS name,
@@ -34,7 +37,7 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
             LEFT JOIN city ON venue.city_id = city.id
             WHERE date_start LIKE ?';
         $Statement = $this->Connection->prepare($query);
-        $month = $Month->get() . '%';
+        $month = $Month->format('Y-m') . '%';
         $Statement->bind_param('s', $month);
         $Statement->execute();
         $Result = $Statement->get_result();

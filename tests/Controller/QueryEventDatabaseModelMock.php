@@ -14,7 +14,7 @@ use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
 class QueryEventDatabaseModelMock extends QueryEventDatabaseModel
 {
-    public function getEventsByMonth(RmString $Month): RmArray
+    public function getEventsByMonth(RmDate $Month): RmArray
     {
         $DataSet = Festival::new()
                 ->setDateStart(RmDate::new('2002-10-02'))
