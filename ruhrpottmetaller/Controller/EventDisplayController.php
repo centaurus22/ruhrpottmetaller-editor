@@ -26,9 +26,13 @@ class EventDisplayController extends AbstractDisplayController
         $this->Month = $Month;
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function prepareThisController(): void
     {
         $Events = $this->queryEventDatabaseModel->getEventsByMonth($this->Month);
+        $this->View->set('month', $this->Month);
 
         if (!$Events->hasCurrent()) {
             return;
