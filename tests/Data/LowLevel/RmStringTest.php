@@ -136,4 +136,14 @@ final class RmStringTest extends TestCase
         $this->String = RmString::new('Venue')->set('Darkness');
         $this->assertEquals('Darkness', $this->String->get());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldConcatTwoStrings(): void
+    {
+        $this->String = RmString::new('Value')->concatWith(RmString::new('Test'));
+        $this->assertEquals('ValueTest', $this->String->get());
+    }
 }
