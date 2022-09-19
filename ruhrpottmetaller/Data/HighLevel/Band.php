@@ -3,18 +3,18 @@
 namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\RmBool;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmBool;
 
 class Band extends AbstractHighLevelDataObject implements IDataObject
 {
-    private RmBool $IsVisible;
+    private AbstractRmBool $IsVisible;
 
-    public function setIsVisible(RmBool $IsVisible)
+    public function setIsVisible(AbstractRmBool $IsVisible)
     {
         $this->IsVisible = $IsVisible;
     }
 
-    public function getIsVisible(): RmBool
+    public function getIsVisible(): AbstractRmBool
     {
         return $this->IsVisible;
     }

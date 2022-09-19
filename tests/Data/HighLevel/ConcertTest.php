@@ -38,20 +38,6 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeDateIsSetToDate(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setDate(RmBool::new(false));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
@@ -71,21 +57,6 @@ final class ConcertTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      */
-    public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToId(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setId(RmString::new('Iron Maiden'));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     */
     public function testShouldSetNameAndGetTheSameName(): void
     {
         $this->DataSet = Concert::new();
@@ -94,21 +65,6 @@ final class ConcertTest extends TestCase
             'RockHard-Festival',
             $this->DataSet->getName()->get()
         );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToName(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setName(RmInt::new(3));
     }
 
     /**
@@ -133,21 +89,6 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToVenueName(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setVenue(RmInt::new(3));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -166,21 +107,6 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeStringIsSetToUrl(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setUrl(RmInt::new(3));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -191,21 +117,6 @@ final class ConcertTest extends TestCase
         $this->DataSet = Concert::new();
         $this->DataSet->setIsSoldOut(RmBool::new(false));
         $this->assertEquals(false, $this->DataSet->getIsSoldOut()->get());
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetSoldOutStatus(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setIsSoldOut(RmInt::new(3));
     }
 
     /**
@@ -228,26 +139,12 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeBoolIsSetToCanceledStatus(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Concert::new();
-        $this->DataSet->setIsCanceled(RmInt::new(3));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testMethodsShouldBeChainable(): void
     {

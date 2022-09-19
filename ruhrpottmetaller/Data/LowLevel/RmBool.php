@@ -2,19 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class RmBool extends AbstractLowLevelDataObject
+class RmBool extends AbstractRmBool
 {
-    public function get(): ?bool
-    {
-        return $this->value;
-    }
 
-    protected function convert($value): ?bool
-    {
-        if (is_null($value)) {
-            return null;
-        }
-
-        return (bool) $value;
-    }
 }

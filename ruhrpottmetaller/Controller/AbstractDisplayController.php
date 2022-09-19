@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
 use ruhrpottmetaller\View\View;
 
 abstract class AbstractDisplayController implements IDisplayController
@@ -19,7 +19,7 @@ abstract class AbstractDisplayController implements IDisplayController
         return new static($View);
     }
 
-    public function render(): RmString
+    public function render(): AbstractRmString
     {
         $this->prepareThisController();
         $this->renderSubControllers();

@@ -20,6 +20,7 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
@@ -33,7 +34,6 @@ final class EventDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @throws \Exception
      */
     public function testShouldSetConcertList()
     {
@@ -65,6 +65,7 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
@@ -74,7 +75,6 @@ final class EventDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @throws \Exception
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -98,6 +98,7 @@ final class EventDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
@@ -111,7 +112,6 @@ final class EventDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @throws \Exception
      */
     public function testShouldSetMonth()
     {

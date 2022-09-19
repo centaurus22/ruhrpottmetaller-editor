@@ -3,12 +3,13 @@
 namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\RmBool;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
 
 class Venue extends AbstractHighLevelDataObject implements IDataObject
 {
     private City $City;
-    private RmBool $IsVisible;
+    private AbstractRmBool $IsVisible;
 
     public function setCity(City $City): Venue
     {
@@ -21,14 +22,20 @@ class Venue extends AbstractHighLevelDataObject implements IDataObject
         return $this->City;
     }
 
-    public function setIsVisible(RmBool $IsVisible): Venue
+    public function setIsVisible(AbstractRmBool $IsVisible): Venue
     {
         $this->IsVisible = $IsVisible;
         return $this;
     }
 
-    public function getIsVisible(): RmBool
+    public function getIsVisible(): AbstractRmBool
     {
         return $this->IsVisible;
+    }
+
+    public function combineVenueAndCityName(): Venue
+    {
+        $this->Name->concatWith(AbstractRmString::new(', '))->concatWith($this->City->getName());
+        return $this;
     }
 }

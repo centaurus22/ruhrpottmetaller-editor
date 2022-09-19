@@ -123,8 +123,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
-
-     */
+ */
     public function testArrayShouldContainChildOfAbstractEventDatasetIfEntryInDatabase(): void
     {
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-12"';
@@ -303,7 +302,7 @@ final class QueryEventDatabaseModelTest extends TestCase
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsSoldOut()
-                ->get()
+                ->isTrue()
         );
     }
 
@@ -332,7 +331,7 @@ final class QueryEventDatabaseModelTest extends TestCase
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsCanceled()
-                ->get()
+                ->isTrue()
         );
     }
 

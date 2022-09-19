@@ -4,31 +4,32 @@ namespace ruhrpottmetaller\View;
 
 use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
 class View
 {
-    private RmString $TemplatePath;
-    private RmString $Template;
+    private AbstractRmString $TemplatePath;
+    private AbstractRmString $Template;
     private array $_ = array();
 
     public function __construct(
-        RmString $TemplatePath,
-        RmString $StandardTemplate
+        AbstractRmString $TemplatePath,
+        AbstractRmString $StandardTemplate
     ) {
         $this->TemplatePath = $TemplatePath;
         $this->Template = $StandardTemplate;
-        $this->_['imagePath'] = RmString::new('web/assets/images/');
+        $this->_['imagePath'] = AbstractRmString::new('web/assets/images/');
     }
 
     public static function new(
-        RmString $TemplatePath,
-        RmString $StandardTemplate
+        AbstractRmString $TemplatePath,
+        AbstractRmString $StandardTemplate
     ): View {
         return new self($TemplatePath, $StandardTemplate);
     }
 
-    public function setTemplate(RmString $Template): View
+    public function setTemplate(AbstractRmString $Template): View
     {
         $this->Template = $Template;
         return $this;
@@ -44,7 +45,7 @@ class View
         return $this->_[$key];
     }
 
-    public function getOutput(): RmString
+    public function getOutput(): AbstractRmString
     {
         $file = $this->TemplatePath->get() . $this->Template->get() . '.inc.php';
 
@@ -56,7 +57,7 @@ class View
         include($file);
         $output = ob_get_contents();
         ob_end_clean();
-        return RmString::new($output);
+        return AbstractRmString::new($output);
     }
 
     /**

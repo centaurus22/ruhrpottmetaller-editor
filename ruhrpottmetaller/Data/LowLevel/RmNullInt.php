@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class RmInt extends AbstractRmInt
+class RmNullInt extends AbstractRmInt
 {
 
 }

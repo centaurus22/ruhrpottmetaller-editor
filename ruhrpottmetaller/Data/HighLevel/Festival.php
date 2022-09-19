@@ -2,12 +2,12 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
+use ruhrpottmetaller\Data\LowLevel\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\Data\LowLevel\RmInt;
 
 class Festival extends AbstractEvent
 {
-    protected RmInt $NumberOfDays;
+    protected AbstractRmInt $NumberOfDays;
     protected RmDate $DateStart;
 
 
@@ -22,13 +22,13 @@ class Festival extends AbstractEvent
         return $this->DateStart;
     }
 
-    public function setNumberOfDays(RmInt $NumberOfDays): Festival
+    public function setNumberOfDays(AbstractRmInt $NumberOfDays): Festival
     {
         $this->NumberOfDays = $NumberOfDays;
         return $this;
     }
 
-    public function getNumberOfDays(): RmInt
+    public function getNumberOfDays(): AbstractRmInt
     {
         return $this->NumberOfDays;
     }

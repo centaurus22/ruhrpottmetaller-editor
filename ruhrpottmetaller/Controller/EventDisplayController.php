@@ -3,8 +3,6 @@
 namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\Data\LowLevel\RmString;
-use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
