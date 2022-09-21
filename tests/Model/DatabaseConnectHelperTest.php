@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 use ruhrpottmetaller\Model\DatabaseConnectHelper;
 

@@ -3,8 +3,6 @@
 namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\Data\LowLevel\RmString;
-use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
@@ -26,9 +24,13 @@ class EventDisplayController extends AbstractDisplayController
         $this->Month = $Month;
     }
 
+    /**
+     * @throws \Exception
+     */
     protected function prepareThisController(): void
     {
         $Events = $this->queryEventDatabaseModel->getEventsByMonth($this->Month);
+        $this->View->set('month', $this->Month);
 
         if (!$Events->hasCurrent()) {
             return;

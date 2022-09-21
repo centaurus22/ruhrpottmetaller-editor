@@ -5,20 +5,23 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\LowLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\RmInt;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\RmInt;
 
 final class RmIntTest extends TestCase
 {
-    private RmInt $Int;
+    private $Int;
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnSameIntAfterAcceptingInt(): void
     {
-        $this->Int = new RmInt(2);
+        $this->Int = RmInt::new(2);
         $this->assertIsInt($this->Int->get());
         $this->assertEquals(2, $this->Int->get());
     }
@@ -29,63 +32,62 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnConvertibleStringAsIntegerAfterAcceptingString(): void
     {
-        $this->Int = new RmInt('33');
+        $this->Int = AbstractRmInt::new('33');
         $this->assertIsInt($this->Int->get());
         $this->assertEquals(33, $this->Int->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetItShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
-        $this->Int = new RmInt(42);
+        $this->Int = AbstractRmInt::new(42);
         $this->Int->set('42');
         $this->assertIsInt($this->Int->get());
         $this->assertEquals(42, $this->Int->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->Int = new RmInt(null);
+        $this->Int = AbstractRmInt::new(null);
         $this->assertTrue(is_null($this->Int->get()));
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
-        $this->Int = new RmInt(3);
-        $this->Int->set(null);
-        $this->assertTrue(is_null($this->Int->get()));
+        $this->Int = AbstractRmInt::new(3)->set(null);
+        $this->assertInstanceOf(RmNullInt::class, $this->Int);
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputStringAfterAcceptingIt(): void
     {
         $this->expectOutputString('23');
-        $this->Int = new RmInt(23);
+        $this->Int = AbstractRmInt::new(23);
         echo $this->Int;
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->Int = new RmInt(null);
+        $this->Int = AbstractRmInt::new(null);
         echo $this->Int;
     }
 
@@ -146,19 +148,6 @@ final class RmIntTest extends TestCase
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldReturnStringObjectWhichContainTheIntAsString(): void
-    {
-        $this->Int = RmInt::new(12);
-        $String = $this->Int->asString();
-        $this->assertIsString($String->get());
-        $this->assertEquals('12', $String->get());
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
-     */
-    public function testShoultReturnStringObjectWhichContainTheIntAsString(): void
     {
         $this->Int = RmInt::new(12);
         $String = $this->Int->asString();

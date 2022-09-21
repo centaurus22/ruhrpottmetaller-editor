@@ -18,22 +18,22 @@ final class EventDisplayControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\RmArray
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmInt
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @covers \ruhrpottmetaller\Controller\EventDisplayController
-     * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @throws \Exception
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
     public function testShouldSetConcertList()
     {
@@ -63,18 +63,18 @@ final class EventDisplayControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
-     * @covers \ruhrpottmetaller\Data\RmArray
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @covers \ruhrpottmetaller\Controller\EventDisplayController
-     * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @throws \Exception
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -92,5 +92,50 @@ final class EventDisplayControllerTest extends TestCase
         $this->Controller->render();
 
         $this->assertArrayNotHasKey('events', $this->Controller->getViewData());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @throws \Exception
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     */
+    public function testShouldSetMonth()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = new EventDisplayController(
+            $BaseView,
+            new QueryEventDatabaseModelMock(null, null)
+        );
+
+        $this->Controller->setMonth(RmDate::new('2022-10'));
+        $this->Controller->render();
+
+        $this->assertArrayHasKey('month', $this->Controller->getViewData());
+        $this->assertInstanceOf(
+            RmArray::class,
+            ($this->Controller->getViewData())['events']
+        );
+        $this->assertInstanceOf(
+            Festival::class,
+            ($this->Controller->getViewData()['events'])->getCurrent()
+        );
     }
 }

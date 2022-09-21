@@ -2,19 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-class RmString extends AbstractLowLevelDataObject
+class RmString extends AbstractRmString
 {
-    public function get(): ?string
-    {
-        return $this->value;
-    }
 
-    protected function convert($value): ?string
-    {
-        if (is_null($value)) {
-            return null;
-        }
-
-        return (string) $value;
-    }
 }

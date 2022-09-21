@@ -9,7 +9,7 @@ use ruhrpottmetaller\Data\LowLevel\RmBool;
 
 final class RmBoolTest extends TestCase
 {
-    private ?RmBool $Bool = null;
+    private $Bool;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
@@ -17,7 +17,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldReturnTrueAfterAcceptingTrue(): void
     {
-        $this->Bool = new RmBool(true);
+        $this->Bool = RmBool::new(true);
         $this->assertIsBool($this->Bool->get());
         $this->assertEquals(true, $this->Bool->get());
     }
@@ -28,7 +28,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldReturnFalseAfterAcceptingFalse(): void
     {
-        $this->Bool = new RmBool(false);
+        $this->Bool = RmBool::new(false);
         $this->assertIsBool($this->Bool->get());
         $this->assertEquals(false, $this->Bool->get());
     }
@@ -39,7 +39,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldReturnStringAsTrue(): void
     {
-        $this->Bool = new RmBool('Beer');
+        $this->Bool = RmBool::new('Beer');
         $this->assertIsBool($this->Bool->get());
         $this->assertEquals(true, $this->Bool->get());
     }
@@ -50,7 +50,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldConvertValueLargerThanZeroAsTrue(): void
     {
-        $this->Bool = new RmBool(2);
+        $this->Bool = RmBool::new(2);
         $this->assertIsBool($this->Bool->get());
         $this->assertEquals(true, $this->Bool->get());
     }
@@ -61,9 +61,8 @@ final class RmBoolTest extends TestCase
      */
     public function testGetItShouldReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
     {
-        $this->Bool = new RmBool(true);
-        $this->Bool->set(false);
-        $this->assertEquals(false, $this->Bool->get());
+        $this->Bool = RmBool::new(true)->set(false);
+        $this->assertEquals(true, $this->Bool->isFalse());
     }
 
     /**
@@ -72,7 +71,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->Bool = new RmBool(null);
+        $this->Bool = RmBool::new(null);
         $this->assertTrue(is_null($this->Bool->get()));
     }
 
@@ -82,8 +81,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
-        $this->Bool = new RmBool(false);
-        $this->Bool->set(null);
+        $this->Bool = RmBool::new(false)->set(null);
         $this->assertTrue(is_null($this->Bool->get()));
     }
 
@@ -94,7 +92,7 @@ final class RmBoolTest extends TestCase
     public function testShouldOutputNothingAfterAcceptingTrue(): void
     {
         $this->expectOutputString('1');
-        $this->Bool = new RmBool(true);
+        $this->Bool = RmBool::new(true);
         echo $this->Bool;
     }
 
@@ -105,7 +103,7 @@ final class RmBoolTest extends TestCase
     public function testShouldOutputNothingAfterAcceptingFalse(): void
     {
         $this->expectOutputString('');
-        $this->Bool = new RmBool(false);
+        $this->Bool = RmBool::new(false);
         echo $this->Bool;
     }
     /**
@@ -115,7 +113,7 @@ final class RmBoolTest extends TestCase
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->Bool = new RmBool(null);
+        $this->Bool = RmBool::new(null);
         echo $this->Bool;
     }
 
@@ -155,7 +153,7 @@ final class RmBoolTest extends TestCase
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
-        $this->Int = RmBool::new(false)->set(true);
-        $this->assertEquals(true, $this->Int->get());
+        $this->Bool = RmBool::new(false)->set(true);
+        $this->assertEquals(true, $this->Bool->get());
     }
 }

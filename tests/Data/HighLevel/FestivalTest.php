@@ -6,7 +6,6 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\RmBool;
 use ruhrpottmetaller\Data\LowLevel\RmDate;
 use ruhrpottmetaller\Data\LowLevel\RmInt;
 
@@ -35,21 +34,6 @@ final class FestivalTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeIntIsSetToNumberOfDays(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Festival::new();
-        $this->DataSet->setNumberOfDays(RmBool::new(false));
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -63,21 +47,6 @@ final class FestivalTest extends TestCase
             '2922-11-01',
             $this->DataSet->getDateStart()->get()
         );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     */
-    public function testShouldThrowTypeErrorIfNoDataTypeDateIsSetToDateStart(): void
-    {
-        $this->expectException(\TypeError::class);
-        $this->DataSet = Festival::new();
-        $this->DataSet->setDateStart(RmBool::new(false));
     }
 
     /**

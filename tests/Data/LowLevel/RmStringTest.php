@@ -5,11 +5,13 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\LowLevel;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\RmString;
 
 final class RmStringTest extends TestCase
 {
-    public RmString $String;
+    public AbstractRmString $String;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
@@ -17,7 +19,7 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnEmptyStringAfterAcceptingEmptyString(): void
     {
-        $this->String = new RmString('');
+        $this->String = RmString::new('');
         $this->assertEquals('', $this->String->get());
     }
 
@@ -27,76 +29,74 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnSameStringAfterAcceptingString(): void
     {
-        $this->String = new RmString('Festival');
+        $this->String = AbstractRmString::new('Festival');
         $this->assertEquals('Festival', $this->String->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
-        $this->String = new RmString(33);
+        $this->String = AbstractRmString::new(33);
         $this->assertEquals('33', $this->String->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnIntegerAsStringAfterOverwritingEmptyString(): void
     {
-        $this->String = new RmString('');
-        $this->String->set(42);
+        $this->String = RmString::new('')->set(42);
         $this->assertEquals('42', $this->String->get());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->String = new RmString(null);
+        $this->String = AbstractRmString::new(null);
         $this->assertTrue(is_null($this->String->get()));
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShouldReturnNullAfterAcceptingNullBySetId(): void
+    public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
-        $this->String = new RmString('');
-        $this->String->set(null);
-        $this->assertTrue(is_null($this->String->get()));
+        $this->String = RmString::new('')->set(null);
+        $this->assertInstanceOf(RmNullString::class, $this->String);
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputStringAfterAccepting(): void
     {
         $this->expectOutputString('Band');
-        $this->String = new RmString('Band');
+        $this->String = RmString::new('Band');
         echo $this->String;
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->String = new RmString(null);
+        $this->String = AbstractRmString::new(null);
         echo $this->String;
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
@@ -135,5 +135,15 @@ final class RmStringTest extends TestCase
     {
         $this->String = RmString::new('Venue')->set('Darkness');
         $this->assertEquals('Darkness', $this->String->get());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldConcatTwoStrings(): void
+    {
+        $this->String = RmString::new('Value')->concatWith(RmString::new('Test'));
+        $this->assertEquals('ValueTest', $this->String->get());
     }
 }
