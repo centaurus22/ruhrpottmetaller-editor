@@ -152,4 +152,16 @@ final class RmStringTest extends TestCase
         $this->String = RmString::new('Value')->concatWith(RmString::new('Test'));
         $this->assertEquals('ValueTest', $this->String->get());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnTrue(): void
+    {
+        $this->String = RmString::new('Value');
+        $this->assertEquals(false, $this->String->isNull());
+    }
 }
