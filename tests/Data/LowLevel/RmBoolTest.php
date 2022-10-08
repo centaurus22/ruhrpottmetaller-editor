@@ -12,6 +12,7 @@ final class RmBoolTest extends TestCase
     private $Bool;
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -23,6 +24,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -34,6 +36,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -45,6 +48,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -56,7 +60,9 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\RmFalse
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetItShouldReturnFalseAfterAcceptingTrueAndThanSettingItToFalse(): void
@@ -66,6 +72,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -76,6 +83,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -86,6 +94,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -97,6 +106,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -106,7 +116,9 @@ final class RmBoolTest extends TestCase
         $this->Bool = RmBool::new(false);
         echo $this->Bool;
     }
+
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -118,6 +130,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -129,6 +142,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -138,6 +152,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -148,6 +163,7 @@ final class RmBoolTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */

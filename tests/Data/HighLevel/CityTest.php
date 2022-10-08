@@ -18,6 +18,7 @@ final class CityTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetNameAndGetSameNameBack(): void
@@ -35,6 +36,7 @@ final class CityTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetIdAndGetSameIdBack(): void

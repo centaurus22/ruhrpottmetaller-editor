@@ -14,6 +14,7 @@ final class RmStringTest extends TestCase
     public AbstractRmString $String;
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -24,6 +25,7 @@ final class RmStringTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -106,6 +108,7 @@ final class RmStringTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -118,6 +121,7 @@ final class RmStringTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -128,6 +132,7 @@ final class RmStringTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -138,6 +143,7 @@ final class RmStringTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */

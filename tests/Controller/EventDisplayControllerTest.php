@@ -23,10 +23,14 @@ final class EventDisplayControllerTest extends TestCase
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
@@ -68,6 +72,7 @@ final class EventDisplayControllerTest extends TestCase
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
@@ -102,9 +107,12 @@ final class EventDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View

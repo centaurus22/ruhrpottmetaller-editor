@@ -19,6 +19,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetNumberOfDaysAndGetTheSameNumberOfDays(): void
@@ -55,6 +56,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate

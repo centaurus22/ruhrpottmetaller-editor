@@ -64,6 +64,7 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -79,6 +80,7 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
@@ -96,8 +98,9 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {

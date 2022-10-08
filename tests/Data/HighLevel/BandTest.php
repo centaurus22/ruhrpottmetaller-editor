@@ -19,6 +19,7 @@ final class BandTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      */
     public function testShouldSetNameAndGetSameNameBack(): void
@@ -36,6 +37,7 @@ final class BandTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
      */
     public function testShouldSetIdAndGetSameIdBack(): void
@@ -53,6 +55,7 @@ final class BandTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      */
     public function testShouldSetIsVisibleAndGetSameIsVisibleValue(): void

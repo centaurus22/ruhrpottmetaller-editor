@@ -16,6 +16,7 @@ class DisplayFactoryTest extends TestCase
      * @covers \ruhrpottmetaller\Factories\DisplayFactory
      * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      **/
     public function testShouldCreateDisplayFactory()
@@ -32,6 +33,7 @@ class DisplayFactoryTest extends TestCase
      * @covers \ruhrpottmetaller\Factories\DisplayFactory
      * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      **/
     public function testNewShouldCreateDisplayFactory()
@@ -46,6 +48,7 @@ class DisplayFactoryTest extends TestCase
      * @covers \ruhrpottmetaller\Factories\DisplayFactory
      * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses  \ruhrpottmetaller\View\View
      **/

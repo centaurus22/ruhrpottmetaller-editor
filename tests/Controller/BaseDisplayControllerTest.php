@@ -37,6 +37,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\View\View
      */
@@ -56,6 +57,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\View\View
      */
@@ -85,6 +87,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\View\View
@@ -123,6 +126,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\View\View

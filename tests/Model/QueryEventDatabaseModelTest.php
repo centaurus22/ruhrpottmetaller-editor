@@ -49,6 +49,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @throws \Exception
      * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
      * @uses   \ruhrpottmetaller\Data\RmArray
@@ -65,12 +66,14 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\AbstractRmObject
      */
     public function testShouldBeInitializedByNew(): void
     {
@@ -83,19 +86,23 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
     public function testArrayShouldContainEntryIfEntryInDatabase(): void
     {
@@ -110,20 +117,24 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
- */
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Model\AbstractDatabaseModel
+     */
     public function testArrayShouldContainChildOfAbstractEventDatasetIfEntryInDatabase(): void
     {
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-12"';
@@ -138,19 +149,23 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testArrayShouldContainQueryFestivalDatasetIfEventLastsMoreThanOneDay(): void
     {
@@ -166,18 +181,23 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testArrayShouldContainQueryConcertDatasetIfEventLastOneDay(): void
     {
@@ -193,18 +213,20 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testArrayShouldContainNoEventsFromOtherMonths(): void
     {
@@ -220,18 +242,22 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainNameFromDatabase(): void
     {
@@ -257,9 +283,12 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
@@ -280,18 +309,23 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmTrue
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainSoldOutStatusFromDatabase(): void
     {
@@ -316,10 +350,14 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\RmTrue
      * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainCanceledStatusFromDatabase(): void
@@ -346,9 +384,12 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
@@ -372,18 +413,22 @@ final class QueryEventDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @throws \Exception
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
     public function testQueryConcertDataSetShouldContainCityNameFromDatabase(): void
     {
@@ -416,9 +461,12 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
@@ -448,9 +496,12 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
@@ -480,9 +531,12 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\RmBool
      * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
      */
