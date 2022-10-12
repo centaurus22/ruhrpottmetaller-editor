@@ -6,16 +6,16 @@ use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 
 class Concert extends AbstractEvent
 {
-    protected RmDate $Date;
+    protected RmDate $date;
 
-    public function setDate(RmDate $Date): Concert
+    public function setDate(RmDate $date): Concert
     {
-        $this->Date = $Date;
+        $this->date = $date;
         return $this;
     }
 
     public function getDate(): RmDate
     {
-        return $this->Date;
+        return $this->date;
     }
 }

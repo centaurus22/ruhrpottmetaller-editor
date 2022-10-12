@@ -7,10 +7,10 @@ use ruhrpottmetaller\View\View;
 
 interface IDisplayController
 {
-    public static function new(View $View);
+    public static function new(View $view);
     public function render(): AbstractRmString;
     public function addSubController(
         string $subControllerId,
-        AbstractDisplayController $DisplayController
+        AbstractDisplayController $displayController
     );
 }

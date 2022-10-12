@@ -2,6 +2,8 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\Date;
 
+use DateInterval;
+use Exception;
 use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -26,7 +28,7 @@ class RmDate extends \DateTime implements IDataObject
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public static function new(?string $value): RmDate
     {
@@ -51,12 +53,12 @@ class RmDate extends \DateTime implements IDataObject
 
     public function getMonthChangerMenu(): AbstractRmString
     {
-        $OneMonth = \DateInterval::createFromDateString('1 month');
+        $oneMonth = DateInterval::createFromDateString('1 month');
         return RmString::new(
             '<div>'
-            . $this->getButtonToPreviousMonth($OneMonth)
+            . $this->getButtonToPreviousMonth($oneMonth)
             . $this->getButtonToCurrentMonth()
-            . $this->getButtonToNextMonth($OneMonth)
+            . $this->getButtonToNextMonth($oneMonth)
             . $this->getMonthDisplay()
             . '</div>'
         );
@@ -77,13 +79,14 @@ class RmDate extends \DateTime implements IDataObject
         parent::setTime('0', '0');
     }
 
-    private function ProcessNull(): void
+    private function processNull(): void
     {
         $this->isNull = true;
     }
-    private function getButtonToPreviousMonth(\DateInterval $OneMonth): string
+
+    private function getButtonToPreviousMonth(DateInterval $oneMonth): string
     {
-        $NextMonth = (clone $this)->sub($OneMonth);
+        $NextMonth = (clone $this)->sub($oneMonth);
         return sprintf(
             '<a href="?month=%1$s"><button>&nbsp;&lt;&lt;&nbsp;</button></a>',
             $NextMonth->format('Y-m')
@@ -98,12 +101,12 @@ class RmDate extends \DateTime implements IDataObject
         );
     }
 
-    private function getButtonToNextMonth(\DateInterval $OneMonth): string
+    private function getButtonToNextMonth(DateInterval $oneMonth): string
     {
-        $NextMonth = (clone $this)->add($OneMonth);
+        $nextMonth = (clone $this)->add($oneMonth);
         return sprintf(
             '<a href="?month=%1$s"><button>&nbsp;&gt;&gt;&nbsp;</button></a>',
-            $NextMonth->format('Y-m')
+            $nextMonth->format('Y-m')
         );
     }
 

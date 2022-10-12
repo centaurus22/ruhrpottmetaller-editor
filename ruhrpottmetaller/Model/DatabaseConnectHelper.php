@@ -2,38 +2,39 @@
 
 namespace ruhrpottmetaller\Model;
 
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class DatabaseConnectHelper extends AbstractConnectHelper
 {
-    private RmString $ConnectionInformationFile;
-    private \mysqli $Connection;
+    private RmString $connectionInformationFile;
+    private mysqli $connection;
     private string $databaseHost = '';
     private string $databaseUserName = '';
     private string $databaseUserPassword = '';
     private string $databaseTable = '';
 
-    public function __construct($ConnectionInformationFile)
+    public function __construct($connectionInformationFile)
     {
-        $this->ConnectionInformationFile = $ConnectionInformationFile;
+        $this->connectionInformationFile = $connectionInformationFile;
     }
 
-    public static function new($ConnectionInformationFile): DatabaseConnectHelper
+    public static function new($connectionInformationFile): DatabaseConnectHelper
     {
-        return new self($ConnectionInformationFile);
+        return new self($connectionInformationFile);
     }
 
     public function connect(): DatabaseConnectHelper
     {
-        if (!is_file($this->ConnectionInformationFile->get())) {
+        if (!is_file($this->connectionInformationFile->get())) {
             throw new \Error('File with database connection information not found.');
         }
 
         include(
-            $this->ConnectionInformationFile->get()
+            $this->connectionInformationFile->get()
         );
 
-        $this->Connection = new \mysqli(
+        $this->connection = new mysqli(
             $this->databaseHost,
             $this->databaseUserName,
             $this->databaseUserPassword,
@@ -43,8 +44,8 @@ class DatabaseConnectHelper extends AbstractConnectHelper
         return $this;
     }
 
-    public function getConnection(): \mysqli
+    public function getConnection(): mysqli
     {
-        return $this->Connection;
+        return $this->connection;
     }
 }

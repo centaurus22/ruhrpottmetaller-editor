@@ -10,28 +10,28 @@ use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 abstract class AbstractHighLevelDataObject extends AbstractRmObject implements IDataObject
 {
 
-    protected AbstractRmString $Name;
-    protected AbstractRmInt $Id;
+    protected AbstractRmString $name;
+    protected AbstractRmInt $id;
 
     public function getId(): AbstractRmInt
     {
-        return $this->Id;
+        return $this->id;
     }
 
-    public function setId(AbstractRmInt $Id): AbstractHighLevelDataObject
+    public function setId(AbstractRmInt $id): AbstractHighLevelDataObject
     {
-        $this->Id = $Id;
+        $this->id = $id;
         return $this;
     }
 
-    public function setName(AbstractRmString $Name): AbstractHighLevelDataObject
+    public function setName(AbstractRmString $name): AbstractHighLevelDataObject
     {
-        $this->Name = $Name;
+        $this->name = $name;
         return $this;
     }
 
     public function getName(): AbstractRmString
     {
-        return $this->Name;
+        return $this->name;
     }
 }

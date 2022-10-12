@@ -8,34 +8,34 @@ use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class Venue extends AbstractHighLevelDataObject implements IDataObject
 {
-    private City $City;
-    private AbstractRmBool $IsVisible;
+    private City $city;
+    private AbstractRmBool $isVisible;
 
-    public function setCity(City $City): Venue
+    public function setCity(City $city): Venue
     {
-        $this->City = $City;
+        $this->city = $city;
         return $this;
     }
 
     public function getCity(): City
     {
-        return $this->City;
+        return $this->city;
     }
 
-    public function setIsVisible(AbstractRmBool $IsVisible): Venue
+    public function setIsVisible(AbstractRmBool $isVisible): Venue
     {
-        $this->IsVisible = $IsVisible;
+        $this->isVisible = $isVisible;
         return $this;
     }
 
     public function getIsVisible(): AbstractRmBool
     {
-        return $this->IsVisible;
+        return $this->isVisible;
     }
 
     public function combineVenueAndCityName(): Venue
     {
-        $this->Name->concatWith(AbstractRmString::new(', '))->concatWith($this->City->getName());
+        $this->name->concatWith(AbstractRmString::new(', '))->concatWith($this->city->getName());
         return $this;
     }
 }

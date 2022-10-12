@@ -7,15 +7,15 @@ use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 
 class Band extends AbstractHighLevelDataObject implements IDataObject
 {
-    private AbstractRmBool $IsVisible;
+    private AbstractRmBool $isVisible;
 
-    public function setIsVisible(AbstractRmBool $IsVisible)
+    public function setIsVisible(AbstractRmBool $isVisible)
     {
-        $this->IsVisible = $IsVisible;
+        $this->isVisible = $isVisible;
     }
 
     public function getIsVisible(): AbstractRmBool
     {
-        return $this->IsVisible;
+        return $this->isVisible;
     }
 }

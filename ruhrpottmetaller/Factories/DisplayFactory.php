@@ -10,18 +10,18 @@ use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractRmObject
 {
-    private RmString $TemplatePath;
+    private RmString $templatePath;
 
     public function __construct()
     {
-        $this->TemplatePath = RmString::new('./templates/');
+        $this->templatePath = RmString::new('./templates/');
     }
 
     public function getDisplayController(array $input): AbstractDisplayController
     {
         return new BaseDisplayController(
             View::new(
-                $this->TemplatePath,
+                $this->templatePath,
                 RmString::new('ruhrpottmetaller-editor')
             )
         );

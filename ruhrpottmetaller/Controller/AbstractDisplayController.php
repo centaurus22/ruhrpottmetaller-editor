@@ -8,29 +8,30 @@ use ruhrpottmetaller\View\View;
 abstract class AbstractDisplayController implements IDisplayController
 {
     protected array $subControllers = [];
-    protected View $View;
+    protected View $view;
 
-    public function __construct(View $View) {
-        $this->View = $View;
+    public function __construct(View $view)
+    {
+        $this->view = $view;
     }
 
-    public static function new(View $View)
+    public static function new(View $view)
     {
-        return new static($View);
+        return new static($view);
     }
 
     public function render(): AbstractRmString
     {
         $this->prepareThisController();
         $this->renderSubControllers();
-        return $this->View->getOutput();
+        return $this->view->getOutput();
     }
 
     public function addSubController(
         string $subControllerId,
-        AbstractDisplayController $DisplayController
+        AbstractDisplayController $displayController
     ): AbstractDisplayController {
-        $this->subControllers[$subControllerId] = $DisplayController;
+        $this->subControllers[$subControllerId] = $displayController;
         return $this;
     }
 
@@ -47,7 +48,7 @@ abstract class AbstractDisplayController implements IDisplayController
         string $subControllerId,
         AbstractDisplayController $subController
     ) {
-        $this->View->set($subControllerId . 'Output', $subController->render());
+        $this->view->set($subControllerId . 'Output', $subController->render());
     }
 
     /**
@@ -55,6 +56,6 @@ abstract class AbstractDisplayController implements IDisplayController
      */
     public function getViewData(): array
     {
-        return $this->View->getAll();
+        return $this->view->getAll();
     }
 }

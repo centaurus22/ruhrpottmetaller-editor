@@ -6,17 +6,17 @@ use ruhrpottmetaller\Data\RmArray;
 
 abstract class AbstractDatabaseModel
 {
-    protected ?\mysqli $Connection;
-    protected ?RmArray $Array;
+    protected ?\mysqli $connection;
+    protected ?RmArray $array;
 
-    public function __construct(?\mysqli $Connection, ?RmArray $Array)
+    public function __construct(?\mysqli $connection, ?RmArray $array)
     {
-        $this->Connection = $Connection;
-        $this->Array = $Array;
+        $this->connection = $connection;
+        $this->array = $array;
     }
 
-    public static function new(?\mysqli $Connection, ?RmArray $Array)
+    public static function new(?\mysqli $connection, ?RmArray $array)
     {
-        return new static($Connection, $Array);
+        return new static($connection, $array);
     }
 }

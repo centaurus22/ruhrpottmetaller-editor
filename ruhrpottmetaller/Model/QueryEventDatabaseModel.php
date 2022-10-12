@@ -12,13 +12,14 @@ use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
+use stdClass;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
     /**
      * @throws \Exception
      */
-    public function getEventsByMonth(RmDate $Month): RmArray
+    public function getEventsByMonth(RmDate $month): RmArray
     {
         $query = 'SELECT
                 event.name AS name,
@@ -36,46 +37,46 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
             LEFT JOIN venue ON event.venue_id = venue.id
             LEFT JOIN city ON venue.city_id = city.id
             WHERE date_start LIKE ?';
-        $Statement = $this->Connection->prepare($query);
-        $month = $Month->format('Y-m') . '%';
-        $Statement->bind_param('s', $month);
-        $Statement->execute();
-        $Result = $Statement->get_result();
-        $Statement->close();
+        $statement = $this->connection->prepare($query);
+        $monthSql = $month->format('Y-m') . '%';
+        $statement->bind_param('s', $monthSql);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
 
-        while ($Object = $Result->fetch_object()) {
-            if ($Object->number_of_days > 1) {
-                $DataSet = Festival::new()
-                       ->setDateStart(RmDate::new($Object->date_start))
-                       ->setNumberOfDays(RmInt::new($Object->number_of_days));
+        while ($object = $result->fetch_object()) {
+            if ($object->number_of_days > 1) {
+                $dataSet = Festival::new()
+                       ->setDateStart(RmDate::new($object->date_start))
+                       ->setNumberOfDays(RmInt::new($object->number_of_days));
             } else {
-                $DataSet = Concert::new()
-                       ->setDate(RmDate::new($Object->date_start));
+                $dataSet = Concert::new()
+                       ->setDate(RmDate::new($object->date_start));
             }
 
-            $DataSet = $this->addGeneralData($DataSet, $Object);
-            $this->Array->add($DataSet);
+            $dataSet = $this->addGeneralData($dataSet, $object);
+            $this->array->add($dataSet);
         }
-        return $this->Array;
+        return $this->array;
     }
 
     private function addGeneralData(
-        AbstractEvent $DataSet,
-        \stdClass     $Object
+        AbstractEvent $dataSet,
+        stdClass $object
     ): AbstractEvent {
-        $City = City::new()
-            ->setId(RmInt::new($Object->city_id))
-            ->setName(RmString::new($Object->city_name));
-        $Venue = Venue::new()
-            ->setId(RmInt::new($Object->venue_id))
-            ->setName(RmString::new($Object->venue_name))
-            ->setCity($City)
-            ->setIsVisible(RmBool::new($Object->venue_is_visible));
-        return $DataSet
-            ->setName(RmString::new($Object->name))
-           ->setVenue($Venue)
-           ->setUrl(RmString::new($Object->url))
-           ->setIsSoldOut(RmBool::new($Object->is_sold_out))
-           ->setIsCanceled(RmBool::new($Object->is_canceled));
+        $city = City::new()
+            ->setId(RmInt::new($object->city_id))
+            ->setName(RmString::new($object->city_name));
+        $venue = Venue::new()
+            ->setId(RmInt::new($object->venue_id))
+            ->setName(RmString::new($object->venue_name))
+            ->setCity($city)
+            ->setIsVisible(RmBool::new($object->venue_is_visible));
+        return $dataSet
+            ->setName(RmString::new($object->name))
+           ->setVenue($venue)
+           ->setUrl(RmString::new($object->url))
+           ->setIsSoldOut(RmBool::new($object->is_sold_out))
+           ->setIsCanceled(RmBool::new($object->is_canceled));
     }
 }

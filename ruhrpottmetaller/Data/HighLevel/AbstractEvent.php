@@ -8,53 +8,53 @@ use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class AbstractEvent extends AbstractHighLevelDataObject
 {
-    protected AbstractRmInt $NumberOfDays;
-    protected Venue $Venue;
-    protected AbstractRmString $Url;
-    protected AbstractRmBool $IsSoldOut;
-    protected AbstractRmBool $IsCanceled;
+    protected AbstractRmInt $numberOfDays;
+    protected Venue $venue;
+    protected AbstractRmString $url;
+    protected AbstractRmBool $isSoldOut;
+    protected AbstractRmBool $isCanceled;
 
-    public function setVenue(Venue $Venue): AbstractEvent
+    public function setVenue(Venue $venue): AbstractEvent
     {
-        $this->Venue = $Venue;
+        $this->venue = $venue;
         return $this;
     }
 
     public function getVenue(): Venue
     {
-        return $this->Venue;
+        return $this->venue;
     }
 
-    public function setUrl(AbstractRmString $Url): AbstractEvent
+    public function setUrl(AbstractRmString $url): AbstractEvent
     {
-        $this->Url = $Url;
+        $this->url = $url;
         return $this;
     }
 
     public function getUrl(): AbstractRmString
     {
-        return $this->Url;
+        return $this->url;
     }
 
-    public function setIsSoldOut(AbstractRmBool $IsSoldOut): AbstractEvent
+    public function setIsSoldOut(AbstractRmBool $isSoldOut): AbstractEvent
     {
-        $this->IsSoldOut = $IsSoldOut;
+        $this->isSoldOut = $isSoldOut;
         return $this;
     }
 
     public function getIsSoldOut(): AbstractRmBool
     {
-        return $this->IsSoldOut;
+        return $this->isSoldOut;
     }
 
-    public function setIsCanceled(AbstractRmBool $IsCanceled): AbstractEvent
+    public function setIsCanceled(AbstractRmBool $isCanceled): AbstractEvent
     {
-        $this->IsCanceled = $IsCanceled;
+        $this->isCanceled = $isCanceled;
         return $this;
     }
 
     public function getIsCanceled(): AbstractRmBool
     {
-        return $this->IsCanceled;
+        return $this->isCanceled;
     }
 }

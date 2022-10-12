@@ -7,29 +7,28 @@ use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 
 class Festival extends AbstractEvent
 {
-    protected AbstractRmInt $NumberOfDays;
-    protected RmDate $DateStart;
+    protected AbstractRmInt $numberOfDays;
+    protected RmDate $dateStart;
 
-
-    public function setDateStart(RmDate $DateStart): Festival
+    public function setDateStart(RmDate $dateStart): Festival
     {
-        $this->DateStart = $DateStart;
+        $this->dateStart = $dateStart;
         return $this;
     }
 
     public function getDateStart(): RmDate
     {
-        return $this->DateStart;
+        return $this->dateStart;
     }
 
-    public function setNumberOfDays(AbstractRmInt $NumberOfDays): Festival
+    public function setNumberOfDays(AbstractRmInt $numberOfDays): Festival
     {
-        $this->NumberOfDays = $NumberOfDays;
+        $this->numberOfDays = $numberOfDays;
         return $this;
     }
 
     public function getNumberOfDays(): AbstractRmInt
     {
-        return $this->NumberOfDays;
+        return $this->numberOfDays;
     }
 }

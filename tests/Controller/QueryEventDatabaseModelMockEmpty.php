@@ -8,7 +8,7 @@ use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 
 class QueryEventDatabaseModelMockEmpty extends QueryEventDatabaseModel
 {
-    public function getEventsByMonth(RmDate $Month): RmArray
+    public function getEventsByMonth(RmDate $month): RmArray
     {
         return RmArray::new();
     }

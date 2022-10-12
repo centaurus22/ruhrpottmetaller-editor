@@ -9,7 +9,7 @@ class BaseDisplayController extends AbstractDisplayController
 {
     protected function prepareThisController(): void
     {
-        $this->View->set(
+        $this->view->set(
             'menu',
             RmArray::new()
                 ->add(RmString::new('events'))

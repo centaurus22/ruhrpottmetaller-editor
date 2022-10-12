@@ -34,9 +34,9 @@ abstract class AbstractRmString extends AbstractLowLevelDataObject
         return $this->nullBehaviour->isNull();
     }
 
-    public function concatWith(AbstractRmString $String): AbstractRmString
+    public function concatWith(AbstractRmString $string): AbstractRmString
     {
-        $this->value .= $String->get();
+        $this->value .= $string->get();
         return $this;
     }
 
