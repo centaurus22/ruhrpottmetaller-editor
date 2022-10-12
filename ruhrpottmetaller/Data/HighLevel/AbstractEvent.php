@@ -2,9 +2,9 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractRmBool;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmInt;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class AbstractEvent extends AbstractHighLevelDataObject
 {

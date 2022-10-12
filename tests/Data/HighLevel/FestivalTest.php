@@ -6,8 +6,8 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\Data\LowLevel\RmInt;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 final class FestivalTest extends TestCase
 {
@@ -19,8 +19,8 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      */
     public function testShouldSetNumberOfDaysAndGetTheSameNumberOfDays(): void
     {
@@ -38,7 +38,7 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldSetDateStartAndGetTheSameDateStart(): void
     {
@@ -56,11 +56,11 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testMethodsShouldBeChainable(): void
     {

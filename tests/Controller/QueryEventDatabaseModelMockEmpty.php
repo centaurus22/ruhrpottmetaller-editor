@@ -2,7 +2,7 @@
 
 namespace tests\ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Data\LowLevel;
+namespace tests\ruhrpottmetaller\Data\LowLevel\String;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\NotNullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour;
 
 final class NotNullBehaviourTest extends TestCase
 {

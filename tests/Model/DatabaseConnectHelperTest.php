@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\DatabaseConnectHelper;
 
 final class DatabaseConnectHelperTest extends TestCase
@@ -16,8 +15,8 @@ final class DatabaseConnectHelperTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldThrowErrorIfStringIsNoPathToFile(): void
     {
@@ -33,8 +32,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnDatabaseConnection(): void
@@ -48,8 +47,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldBeInitializedByNewMethod(): void
@@ -63,8 +62,8 @@ final class DatabaseConnectHelperTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testMethodsShouldBeChainable(): void

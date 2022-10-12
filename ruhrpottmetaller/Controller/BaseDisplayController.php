@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
 class BaseDisplayController extends AbstractDisplayController

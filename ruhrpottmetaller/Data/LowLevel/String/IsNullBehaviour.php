@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data\LowLevel\String;
 
 class IsNullBehaviour implements INullBehaviour
 {

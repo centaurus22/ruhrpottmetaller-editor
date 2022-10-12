@@ -3,8 +3,8 @@
 namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmBool;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class Venue extends AbstractHighLevelDataObject implements IDataObject
 {

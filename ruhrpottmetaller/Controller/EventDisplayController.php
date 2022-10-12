@@ -2,9 +2,9 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\View\View;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
+use ruhrpottmetaller\View\View;
 
 class EventDisplayController extends AbstractDisplayController
 {

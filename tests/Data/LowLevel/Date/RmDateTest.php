@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Data\LowLevel;
+namespace tests\ruhrpottmetaller\Data\LowLevel\Date;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 
 final class RmDateTest extends TestCase
 {
     public RmDate $Date;
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldReturnCurrentDateAfterAcceptingEmptyString(): void
     {
@@ -21,7 +21,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldReturnSameDateStringAfterAcceptingDateString(): void
     {
@@ -30,7 +30,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -39,7 +39,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldReturnDateStringAfterAcceptingDateStringBySetId(): void
     {
@@ -49,7 +49,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldOutputStringAfterAccepting(): void
     {
@@ -59,7 +59,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -69,7 +69,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
@@ -79,7 +79,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSet(): void
@@ -91,7 +91,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSetAfterInitializedWithNull(): void
@@ -103,7 +103,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
@@ -113,7 +113,7 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
@@ -123,11 +123,11 @@ final class RmDateTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
+     *@uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldPrintMonthChangerMenu()
     {

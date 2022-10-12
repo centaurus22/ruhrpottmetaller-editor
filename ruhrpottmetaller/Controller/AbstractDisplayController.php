@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\View\View;
 
 abstract class AbstractDisplayController implements IDisplayController

@@ -2,8 +2,8 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractRmInt;
-use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 
 class Festival extends AbstractEvent
 {

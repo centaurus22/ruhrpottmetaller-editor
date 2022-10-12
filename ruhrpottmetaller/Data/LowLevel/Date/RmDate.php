@@ -1,8 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data\LowLevel\Date;
 
 use ruhrpottmetaller\Data\IDataObject;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class RmDate extends \DateTime implements IDataObject
 {

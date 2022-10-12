@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\RmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\RmArray;
 
 final class RmArrayTest extends TestCase
@@ -51,7 +51,7 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldReturnSameVariable(): void
@@ -64,8 +64,8 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testAddShouldBeChainable(): void
@@ -80,8 +80,8 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnTwoVariablesInTheSameOrderAsAdded(): void
@@ -99,8 +99,8 @@ final class RmArrayTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractRmInt
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      */
     public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {
@@ -112,7 +112,7 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testHasCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
@@ -124,7 +124,7 @@ final class RmArrayTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\RmArray
-     * @uses  \ruhrpottmetaller\Data\LowLevel\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testGetShouldThrowAnErrorIfCurrentElementIsNotAvailable(): void

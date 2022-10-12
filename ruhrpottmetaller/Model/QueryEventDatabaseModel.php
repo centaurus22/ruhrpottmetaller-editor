@@ -7,10 +7,10 @@ use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\HighLevel\Venue;
-use ruhrpottmetaller\Data\LowLevel\RmBool;
-use ruhrpottmetaller\Data\LowLevel\RmDate;
-use ruhrpottmetaller\Data\LowLevel\RmInt;
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel

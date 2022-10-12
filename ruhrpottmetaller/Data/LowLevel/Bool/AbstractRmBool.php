@@ -1,6 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data\LowLevel\Bool;
+
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
 
 abstract class AbstractRmBool extends AbstractLowLevelDataObject
 {

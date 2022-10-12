@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\View;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
 final class ViewTest extends TestCase
@@ -15,8 +15,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldThrowErrorIfTemplateIsNotAvailable(): void
     {
@@ -32,8 +32,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldThrowErrorIfAnotherTemplateIsNotAvailable(): void
     {
@@ -49,8 +49,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldOutputTheLoadedTemplate()
     {
@@ -65,8 +65,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldOutputTheImagePath()
     {
@@ -81,8 +81,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldGetTheRenderedTemplate()
     {
@@ -98,8 +98,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldBeInitializeWithStaticNew()
     {
@@ -115,8 +115,8 @@ final class ViewTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\View\View
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
     public function testShouldOverwriteTemplate()
     {

@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Data\LowLevel;
+namespace tests\ruhrpottmetaller\Data\LowLevel\Bool;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\RmBool;
-use ruhrpottmetaller\Data\LowLevel\RmTrue;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 
 final class RmTrueTest extends TestCase
 {
     private $Bool;
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmTrue
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnTrue(): void
@@ -26,9 +26,9 @@ final class RmTrueTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractRmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmBool
-     * @covers \ruhrpottmetaller\Data\LowLevel\RmTrue
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
     public function testShouldReturnFalse(): void

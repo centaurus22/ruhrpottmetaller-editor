@@ -4,8 +4,7 @@ namespace ruhrpottmetaller\View;
 
 use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class View
 {

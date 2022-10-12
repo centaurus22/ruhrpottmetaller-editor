@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\LowLevel\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 
 class Concert extends AbstractEvent
 {

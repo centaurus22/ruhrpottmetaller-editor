@@ -1,6 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data\LowLevel\Int;
+
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 abstract class AbstractRmInt extends AbstractLowLevelDataObject
 {

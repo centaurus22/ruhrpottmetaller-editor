@@ -4,8 +4,8 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmInt;
-use ruhrpottmetaller\Data\LowLevel\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 abstract class AbstractHighLevelDataObject extends AbstractRmObject implements IDataObject
 {

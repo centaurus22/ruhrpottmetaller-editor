@@ -1,23 +1,25 @@
 <?php
 
-namespace ruhrpottmetaller\Data\LowLevel;
+namespace ruhrpottmetaller\Data\LowLevel\String;
+
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
 
 abstract class AbstractRmString extends AbstractLowLevelDataObject
 {
     protected INullBehaviour $nullBehaviour;
 
-    public function __construct($value, INullBehaviour $nullBehaviour)
+    protected function __construct($value, INullBehaviour $nullBehaviour)
     {
         $this->nullBehaviour = $nullBehaviour;
         parent::__construct($value);
     }
 
-    public static function new($value): AbstractRmString
+    public static function new($value)
     {
         return self::createObject($value);
     }
 
-    public function set($value): AbstractRmString
+    public function set($value)
     {
         return self::createObject($value);
     }
@@ -38,7 +40,7 @@ abstract class AbstractRmString extends AbstractLowLevelDataObject
         return $this;
     }
 
-    protected static function createObject($value): AbstractRmString
+    protected static function createObject($value)
     {
         if (is_null($value)) {
             return new RmNullString(null, new IsNullBehaviour());
@@ -46,5 +48,4 @@ abstract class AbstractRmString extends AbstractLowLevelDataObject
 
         return new RmString($value, new NotNullBehaviour());
     }
-
 }
