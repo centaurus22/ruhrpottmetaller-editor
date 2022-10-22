@@ -194,4 +194,23 @@ final class ConcertTest extends TestCase
             $this->DataSet->getUrl()->get()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testShouldGetFormattedDate(): void
+    {
+        $this->DataSet = Concert::new();
+        $this->DataSet->setDate(RmDate::new('2022-10-22'));
+        $this->assertEquals(
+            '<div class="rm_table_cell">Sat, 22.</div>',
+            $this->DataSet->getFormattedDate()->get()
+        );
+    }
 }

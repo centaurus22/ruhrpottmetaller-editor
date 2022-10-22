@@ -37,13 +37,16 @@ class Festival extends AbstractEvent
     /**
      * @throws \Exception
      */
-    private function getFormattedDate(): AbstractRmString
+    public function getFormattedDate(): AbstractRmString
     {
-        $numberOfDays = new \DateInterval('P' . $this->numberOfDays->get() . 'd');
-        $formattedDateStart = $this->dateStart->getFormatted('D, d');
+        $numberOfDays = new \DateInterval('P' . ($this->numberOfDays->get() - 1) . 'D');
+        $formattedDateStart = $this->dateStart->getFormatted('D, d.');
         $formattedDateEnd = $this->dateStart->add($numberOfDays)
-            ->getFormatted('D, d');
-        return $formattedDateStart->concatWith(RmString::new(' – ')
-            ->concatWith($formattedDateEnd));
+            ->getFormatted('D, d.');
+        return RmString::new('<div class="rm_table_cell">')
+            ->concatWith($formattedDateStart)
+            ->concatWith(RmString::new(' – '))
+            ->concatWith($formattedDateEnd)
+            ->concatWith(RmString::new('</div>'));
     }
 }

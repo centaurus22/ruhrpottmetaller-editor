@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Concert extends AbstractEvent
 {
@@ -20,8 +21,10 @@ class Concert extends AbstractEvent
         return $this->date;
     }
 
-    private function getFormattedDate(): AbstractRmString
+    public function getFormattedDate(): AbstractRmString
     {
-        return $this->date->getFormatted('D, d');
+        return RmString::new('<div class="rm_table_cell">')
+            ->concatWith($this->date->getFormatted('D, d.'))
+            ->concatWith(RmString::new('</div>'));
     }
 }

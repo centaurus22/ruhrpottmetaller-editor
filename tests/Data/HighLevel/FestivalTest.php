@@ -70,4 +70,26 @@ final class FestivalTest extends TestCase
         $this->assertEquals('2022-07-07', $this->DataSet->getDateStart()->get());
         $this->assertEquals(4, $this->DataSet->getNumberOfDays()->get());
     }
+
+    /**
+     * @covers  \ruhrpottmetaller\AbstractRmObject
+     * @covers  \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers  \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers  \ruhrpottmetaller\Data\HighLevel\Festival
+     * @throws \Exception
+     * @uses    \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses    \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses    \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses    \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldGetFormattedDate(): void
+    {
+        $this->DataSet = Festival::new();
+        $this->DataSet->setDateStart(RmDate::new('2022-10-22'))
+            ->setNumberOfDays(RmInt::new(3));
+        $this->assertEquals(
+            '<div class="rm_table_cell">Sat, 22. – Mon, 24.</div>',
+            $this->DataSet->getFormattedDate()->get()
+        );
+    }
 }
