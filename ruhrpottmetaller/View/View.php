@@ -10,7 +10,7 @@ class View
 {
     private AbstractRmString $TemplatePath;
     private AbstractRmString $Template;
-    private array $_ = array();
+    private array $data = array();
 
     public function __construct(
         AbstractRmString $TemplatePath,
@@ -18,7 +18,7 @@ class View
     ) {
         $this->TemplatePath = $TemplatePath;
         $this->Template = $StandardTemplate;
-        $this->_['imagePath'] = AbstractRmString::new('web/assets/images/');
+        $this->data['imagePath'] = AbstractRmString::new('web/assets/images/');
     }
 
     public static function new(
@@ -36,12 +36,12 @@ class View
 
     public function set(string $key, IDataObject $value)
     {
-        $this->_[$key] = $value;
+        $this->data[$key] = $value;
     }
 
     private function get(string $key): AbstractLowLevelDataObject
     {
-        return $this->_[$key];
+        return $this->data[$key];
     }
 
     public function getOutput(): AbstractRmString
@@ -64,6 +64,6 @@ class View
      */
     public function getAll(): array
     {
-        return $this->_;
+        return $this->data;
     }
 }
