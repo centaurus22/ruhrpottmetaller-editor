@@ -125,11 +125,11 @@ final class RmDateTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @throws \Exception
-     *@uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      */
-    public function testShouldPrintMonthChangerMenu()
+    public function testShouldReturnMonthChangerMenu()
     {
         $month = date('Y-m');
         $buttonToPreviousMonth = '<a href="?month=2022-09"><button>&nbsp;&lt;&lt;&nbsp;</button></a>';
@@ -142,6 +142,20 @@ final class RmDateTest extends TestCase
         $this->assertEquals(
             '<div>' . $buttonToPreviousMonth . $buttonToCurrentMonth . $buttonToNextMonth . $monthDisplay . '</div>',
             RmDate::new('2022-10')->getMonthChangerMenu()->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     */
+    public function testShouldReturnFormattedDate()
+    {
+        $this->assertEquals(
+            '2022-10',
+            RmDate::new('2022-10-22')->getFormatted('Y-m')->get()
         );
     }
 }

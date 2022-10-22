@@ -51,6 +51,11 @@ class RmDate extends \DateTime implements IDataObject
         return parent::format('Y-m-d');
     }
 
+    public function getFormatted(string $format): AbstractRmString
+    {
+        return RmString::new(parent::format($format));
+    }
+
     public function getMonthChangerMenu(): AbstractRmString
     {
         $oneMonth = DateInterval::createFromDateString('1 month');
