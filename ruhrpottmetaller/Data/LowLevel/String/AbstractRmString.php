@@ -40,6 +40,11 @@ abstract class AbstractRmString extends AbstractLowLevelDataObject
         return $this;
     }
 
+    public function asUrlTableCell(): string
+    {
+        return RmString::new('<div class="rm_table_cell"><a href="' . $this->value . '">www</a></div>');
+    }
+
     protected static function createObject($value)
     {
         if (is_null($value)) {
