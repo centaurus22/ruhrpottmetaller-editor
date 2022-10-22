@@ -97,6 +97,7 @@ final class VenueTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
      */
     public function testShouldCombineVenueNameAndCityName(): void
     {
@@ -116,6 +117,7 @@ final class VenueTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\IsNullBehaviour
      */
     public function testShouldCombineVenueNameAndEmptyCityName(): void
     {

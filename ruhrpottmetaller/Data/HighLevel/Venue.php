@@ -35,7 +35,9 @@ class Venue extends AbstractHighLevelDataObject implements IDataObject
 
     public function combineVenueAndCityName(): Venue
     {
-        $this->name->concatWith(AbstractRmString::new(', '))->concatWith($this->city->getName());
+        if (!$this->city->getName()->isNull()) {
+            $this->name->concatWith(AbstractRmString::new(', '))->concatWith($this->city->getName());
+        }
         return $this;
     }
 }
