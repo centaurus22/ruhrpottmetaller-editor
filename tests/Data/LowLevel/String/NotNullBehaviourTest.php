@@ -12,7 +12,7 @@ final class NotNullBehaviourTest extends TestCase
     private NotNullBehaviour $isNullBehaviour;
 
     /**
-     * @covers \ruhrpottmetaller\LowLevel\NotNullBehaviour
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
      */
     public function testShouldReturnFalse(): void
     {

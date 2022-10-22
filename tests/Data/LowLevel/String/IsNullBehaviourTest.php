@@ -12,7 +12,7 @@ final class IsNullBehaviourTest extends TestCase
     private IsNullBehaviour $isNullBehaviour;
 
     /**
-     * @covers \ruhrpottmetaller\LowLevel\IsNullBehaviour
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\IsNullBehaviour
      */
     public function testShouldReturnTrue(): void
     {
