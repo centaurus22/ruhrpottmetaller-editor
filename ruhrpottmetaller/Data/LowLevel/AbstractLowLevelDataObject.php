@@ -3,6 +3,7 @@
 namespace ruhrpottmetaller\Data\LowLevel;
 
 use ruhrpottmetaller\Data\IDataObject;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 abstract class AbstractLowLevelDataObject implements IDataObject
 {
@@ -16,5 +17,10 @@ abstract class AbstractLowLevelDataObject implements IDataObject
     public function __toString()
     {
         return (string) $this->value;
+    }
+
+    public function asTableCell(): string
+    {
+        return RmString::new('<div class="rm_table_cell">' . $this->value . '</div>');
     }
 }

@@ -164,4 +164,19 @@ final class RmStringTest extends TestCase
         $this->String = RmString::new('Value');
         $this->assertEquals(false, $this->String->isNull());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     */
+    public function testShouldReturnATableCell(): void
+    {
+        $this->String = RmString::new('Value');
+        $this->assertEquals(
+            '<div class="rm_table_cell">Value</div>',
+            $this->String->asTableCell()
+        );
+    }
 }
