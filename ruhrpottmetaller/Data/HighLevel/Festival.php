@@ -4,6 +4,8 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Festival extends AbstractEvent
 {
@@ -30,5 +32,18 @@ class Festival extends AbstractEvent
     public function getNumberOfDays(): AbstractRmInt
     {
         return $this->numberOfDays;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function getFormattedDate(): AbstractRmString
+    {
+        $numberOfDays = new \DateInterval('P' . $this->numberOfDays->get() . 'd');
+        $formattedDateStart = $this->dateStart->getFormatted('D, d');
+        $formattedDateEnd = $this->dateStart->add($numberOfDays)
+            ->getFormatted('D, d');
+        return $formattedDateStart->concatWith(RmString::new(' – ')
+            ->concatWith($formattedDateEnd));
     }
 }
