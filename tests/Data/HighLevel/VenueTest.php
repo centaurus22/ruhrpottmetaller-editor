@@ -103,10 +103,10 @@ final class VenueTest extends TestCase
     {
         $this->DataSet = Venue::new()->setName(AbstractRmString::new('Parkhaus'));
         $City = City::new()->setName(AbstractRmString::new('Duisburg'));
-        $this->DataSet->setCity($City)->combineVenueAndCityName();
+        $this->DataSet->setCity($City);
         $this->assertEquals(
             'Parkhaus, Duisburg',
-            $this->DataSet->getName()->get()
+            $this->DataSet->asVenueAndCity()
         );
     }
 
@@ -123,10 +123,10 @@ final class VenueTest extends TestCase
     {
         $this->DataSet = Venue::new()->setName(AbstractRmString::new('Parkhaus'));
         $City = City::new()->setName(AbstractRmString::new(null));
-        $this->DataSet->setCity($City)->combineVenueAndCityName();
+        $this->DataSet->setCity($City);
         $this->assertEquals(
             'Parkhaus',
-            $this->DataSet->getName()->get()
+            $this->DataSet->asVenueAndCity()
         );
     }
 }

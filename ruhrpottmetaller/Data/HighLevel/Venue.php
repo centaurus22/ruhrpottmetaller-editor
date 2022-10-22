@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\IDataObject;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Venue extends AbstractHighLevelDataObject implements IDataObject
 {
@@ -33,11 +34,12 @@ class Venue extends AbstractHighLevelDataObject implements IDataObject
         return $this->isVisible;
     }
 
-    public function combineVenueAndCityName(): Venue
+    public function asVenueAndCity(): AbstractRmString
     {
         if (!$this->city->getName()->isNull()) {
-            $this->name->concatWith(AbstractRmString::new(', '))->concatWith($this->city->getName());
+            return $this->name->concatWith(AbstractRmString::new(', '))
+                ->concatWith($this->city->getName());
         }
-        return $this;
+        return $this->name;
     }
 }
