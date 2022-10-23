@@ -39,7 +39,7 @@ class View
         $this->data[$key] = $value;
     }
 
-    private function get(string $key): AbstractLowLevelDataObject
+    private function get(string $key)
     {
         return $this->data[$key];
     }

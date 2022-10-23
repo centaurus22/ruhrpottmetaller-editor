@@ -14,7 +14,7 @@ class DisplayFactory extends AbstractRmObject
 
     public function __construct()
     {
-        $this->templatePath = RmString::new('./templates/');
+        $this->templatePath = RmString::new('../templates/');
     }
 
     public function getDisplayController(array $input): AbstractDisplayController
