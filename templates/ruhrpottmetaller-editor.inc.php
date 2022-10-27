@@ -7,9 +7,8 @@
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
-        <div class="row_top">
-            <nav>
-                <ul>
+        <nav>
+            <ul>
 <?php
 
 while ($this->get('menu')->hasCurrent()) {
@@ -20,16 +19,11 @@ while ($this->get('menu')->hasCurrent()) {
     $this->get('menu')->pointAtNext();
 }
 
-
-?>              </ul>
-            </nav>
-            <div class="noscript">
-                <noscript>Please activate JavaScript!</noscript>
-            </div>
-        </div>
-
+?>
+            </ul>
+        </nav>
         <footer>
-            (c) Klaus Thorres 2020. This Software is provided under the <a href="?display=license">MIT License</a>.
+            (c) Klaus Thorres 2022. This Software is provided under the <a href="?display=license">MIT License</a>.
         </footer>
     </body>
 </html>
