@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    background-color: WhiteSmoke;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000000;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    background-color: gray;
+    width: 100%;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 10px 0 12px 10px;
+}
+
+nav li {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li:first-letter {
+    text-transform: uppercase;
+}
+
+footer {
+    background-color: gray;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    font-weight: bold;
+    padding: 10px;
+}
+
+a {
+    color: black;
+}
