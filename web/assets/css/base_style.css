@@ -16,14 +16,22 @@ body {
 .skip-link:focus {
     top: 0;
 }
-
-nav {
+nav, footer {
     position: absolute;
-    top: 0;
-    background-color: royalblue;
-    width: 100%;
+    width: calc(100% - 20px);
     font-weight: bold;
     color: whitesmoke;
+    background-color: royalblue;
+    margin: 0 10px;
+}
+
+nav a, footer a {
+    color: whitesmoke;
+}
+
+nav {
+    top: 0;
+    border-radius: 0 0 20px 20px;
 }
 
 nav ul {
@@ -45,15 +53,9 @@ nav li:first-letter {
 }
 
 footer {
-    background-color: royalblue;
-    color: whitesmoke;
-    width: 100%;
-    position: fixed;
     bottom: 0;
-    font-weight: bold;
-    padding: 10px;
+    padding: 10px 0;
+    border-radius: 20px 20px 0 0;
+    text-align: center;
 }
 
-nav a, footer a {
-    color: whitesmoke;
-}
