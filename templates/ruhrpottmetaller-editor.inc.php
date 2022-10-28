@@ -23,7 +23,8 @@ while ($this->get('menu')->hasCurrent()) {
             </ul>
         </nav>
         <footer>
-            (c) Klaus Thorres 2022. This Software is provided under the <a href="?display=license">MIT License</a>.
+            Ruhrpottmetaller-Editor (c) Klaus Thorres 2022.
+            This Software is provided under the <a href="?display=license">MIT License</a>.
         </footer>
     </body>
 </html>
