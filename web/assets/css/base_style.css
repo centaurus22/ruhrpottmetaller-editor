@@ -20,9 +20,10 @@ body {
 nav {
     position: absolute;
     top: 0;
-    background-color: gray;
+    background-color: royalblue;
     width: 100%;
     font-weight: bold;
+    color: whitesmoke;
 }
 
 nav ul {
@@ -44,7 +45,8 @@ nav li:first-letter {
 }
 
 footer {
-    background-color: gray;
+    background-color: royalblue;
+    color: whitesmoke;
     width: 100%;
     position: fixed;
     bottom: 0;
@@ -52,6 +54,6 @@ footer {
     padding: 10px;
 }
 
-a {
-    color: black;
+nav a, footer a {
+    color: whitesmoke;
 }
