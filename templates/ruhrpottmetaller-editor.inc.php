@@ -23,6 +23,9 @@ while ($this->get('menu')->hasCurrent()) {
 ?>
             </ul>
         </nav>
+        <main id="main">
+
+        </main>
         <footer>
             Ruhrpottmetaller-Editor (c) Klaus Thorres 2022.
             This Software is provided under the <a href="?display=license">MIT License</a>.
