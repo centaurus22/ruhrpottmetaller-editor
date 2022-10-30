@@ -5,21 +5,21 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\EventDisplayController;
+use ruhrpottmetaller\Controller\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 
-final class EventDisplayControllerTest extends TestCase
+final class EventMainDisplayControllerTest extends TestCase
 {
-    private EventDisplayController $Controller;
+    private EventMainDisplayController $Controller;
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -46,7 +46,7 @@ final class EventDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new EventDisplayController(
+        $this->Controller = new EventMainDisplayController(
             $BaseView,
             new QueryEventDatabaseModelMock(null, null)
         );
@@ -68,7 +68,7 @@ final class EventDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
@@ -88,7 +88,7 @@ final class EventDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new EventDisplayController(
+        $this->Controller = new EventMainDisplayController(
             $BaseView,
             new QueryEventDatabaseModelMockEmpty(null, null)
         );
@@ -102,7 +102,7 @@ final class EventDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventDisplayController
+     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
@@ -128,7 +128,7 @@ final class EventDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new EventDisplayController(
+        $this->Controller = new EventMainDisplayController(
             $BaseView,
             new QueryEventDatabaseModelMock(null, null)
         );

@@ -44,20 +44,4 @@ class DisplayFactoryTest extends TestCase
             $this->DisplayFactory
         );
     }
-    /**
-     * @covers \ruhrpottmetaller\Factories\DisplayFactory
-     * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses  \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses  \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses  \ruhrpottmetaller\View\View
-     **/
-    public function testShouldGetBaseDisplayController()
-    {
-        $this->DisplayFactory = new DisplayFactory();
-        $this->assertInstanceOf(
-            BaseDisplayController::class,
-            $this->DisplayFactory->getDisplayController([])
-        );
-    }
 }

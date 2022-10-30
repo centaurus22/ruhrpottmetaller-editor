@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 
-class EventDisplayController extends AbstractDisplayController
+class EventMainDisplayController extends AbstractDisplayController
 {
     private QueryEventDatabaseModel $queryEventDatabaseModel;
     private RmDate $month;
