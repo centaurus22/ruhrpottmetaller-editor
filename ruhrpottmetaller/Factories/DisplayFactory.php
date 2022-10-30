@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Factories;
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Controller\AbstractDisplayController;
 use ruhrpottmetaller\Controller\BaseDisplayController;
+use ruhrpottmetaller\Controller\EventHeadDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
@@ -19,11 +20,21 @@ class DisplayFactory extends AbstractRmObject
 
     public function getDisplayController(array $input): AbstractDisplayController
     {
-        return new BaseDisplayController(
+        $eventHeadDisplayController = new EventHeadDisplayController(
+            View::new(
+                $this->templatePath,
+                RmString::new('event_head')
+            )
+        );
+        $baseDisplayController =  new BaseDisplayController(
             View::new(
                 $this->templatePath,
                 RmString::new('ruhrpottmetaller-editor')
             )
+        );
+        return $baseDisplayController->addSubController(
+            'eventHeadDisplayController',
+            $eventHeadDisplayController
         );
     }
 }

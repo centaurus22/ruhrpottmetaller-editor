@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?=$this->get('eventHeadDisplayControllerOutput')?>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="assets/css/base_style.css">
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">

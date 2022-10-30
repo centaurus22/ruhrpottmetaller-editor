@@ -6,6 +6,5 @@ class EventHeadDisplayController extends AbstractDisplayController
 {
     protected function prepareThisController(): void
     {
-
     }
 }
