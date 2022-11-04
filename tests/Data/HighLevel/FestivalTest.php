@@ -88,7 +88,7 @@ final class FestivalTest extends TestCase
         $this->DataSet->setDateStart(RmDate::new('2022-10-22'))
             ->setNumberOfDays(RmInt::new(3));
         $this->assertEquals(
-            '<div class="rm_table_cell">Sat, 22. – Mon, 24.</div>',
+            'Sat, 22. – Mon, 24.',
             $this->DataSet->getFormattedDate()->get()
         );
     }

@@ -43,10 +43,8 @@ class Festival extends AbstractEvent
         $formattedDateStart = $this->dateStart->getFormatted('D, d.');
         $formattedDateEnd = $this->dateStart->add($numberOfDays)
             ->getFormatted('D, d.');
-        return RmString::new('<div class="rm_table_cell">')
-            ->concatWith($formattedDateStart)
+        return $formattedDateStart
             ->concatWith(RmString::new(' – '))
-            ->concatWith($formattedDateEnd)
-            ->concatWith(RmString::new('</div>'));
+            ->concatWith($formattedDateEnd);
     }
 }

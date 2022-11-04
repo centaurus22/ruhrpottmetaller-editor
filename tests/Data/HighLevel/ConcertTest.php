@@ -209,7 +209,7 @@ final class ConcertTest extends TestCase
         $this->DataSet = Concert::new();
         $this->DataSet->setDate(RmDate::new('2022-10-22'));
         $this->assertEquals(
-            '<div class="rm_table_cell">Sat, 22.</div>',
+            'Sat, 22.',
             $this->DataSet->getFormattedDate()->get()
         );
     }

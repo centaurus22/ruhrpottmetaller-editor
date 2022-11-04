@@ -23,8 +23,6 @@ class Concert extends AbstractEvent
 
     public function getFormattedDate(): AbstractRmString
     {
-        return RmString::new('<div class="rm_table_cell">')
-            ->concatWith($this->date->getFormatted('D, d.'))
-            ->concatWith(RmString::new('</div>'));
+        return $this->date->getFormatted('D, d.');
     }
 }
