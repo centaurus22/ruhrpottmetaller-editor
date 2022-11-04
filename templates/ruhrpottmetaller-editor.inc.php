@@ -24,7 +24,7 @@ while ($this->get('menu')->hasCurrent()) {
             </ul>
         </nav>
         <main id="main">
-
+            <?=$this->get('eventMainDisplayControllerOutput')?>
         </main>
         <footer>
             Ruhrpottmetaller-Editor (c) Klaus Thorres 2022.
