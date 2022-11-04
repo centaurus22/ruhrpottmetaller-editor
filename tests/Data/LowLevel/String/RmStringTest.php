@@ -186,12 +186,12 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
      */
-    public function testShouldReturnAnUrlTableCell(): void
+    public function testShouldReturnAnUrl(): void
     {
         $this->String = RmString::new('https://www.kulttempel.com');
         $this->assertEquals(
-            '<div class="rm_table_cell"><a href="https://www.kulttempel.com">www</a></div>',
-            $this->String->asUrlTableCell()
+            '<a href="https://www.kulttempel.com">www</a>',
+            $this->String->asWwwUrl()
         );
     }
 }

@@ -40,9 +40,9 @@ abstract class AbstractRmString extends AbstractLowLevelDataObject
         return $this;
     }
 
-    public function asUrlTableCell(): string
+    public function asWwwUrl(): AbstractRmString
     {
-        return RmString::new('<div class="rm_table_cell"><a href="' . $this->value . '">www</a></div>');
+        return RmString::new('<a href="' . $this->value . '">www</a>');
     }
 
     protected static function createObject($value)
