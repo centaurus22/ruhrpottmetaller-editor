@@ -12,7 +12,7 @@ class DatabaseConnectHelper extends AbstractConnectHelper
     private string $databaseHost = '';
     private string $databaseUserName = '';
     private string $databaseUserPassword = '';
-    private string $databaseTable = '';
+    private string $databaseName = '';
 
     public function __construct($connectionInformationFile)
     {
@@ -38,7 +38,7 @@ class DatabaseConnectHelper extends AbstractConnectHelper
             $this->databaseHost,
             $this->databaseUserName,
             $this->databaseUserPassword,
-            $this->databaseTable
+            $this->databaseName
         );
 
         return $this;
