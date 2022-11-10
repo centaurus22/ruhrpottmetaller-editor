@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Controller;
 
 use Exception;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 
@@ -34,12 +35,10 @@ class EventMainDisplayController extends AbstractDisplayController
         $this->view->set('month', $this->month);
 
         if (!$events->hasCurrent()) {
+            $this->view->setTemplate(RmString::new('event_main_empty'));
             return;
         }
 
-        $this->view->set(
-            'events',
-            $events
-        );
+        $this->view->set('events', $events);
     }
 }
