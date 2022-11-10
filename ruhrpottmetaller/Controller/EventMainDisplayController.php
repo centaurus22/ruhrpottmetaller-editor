@@ -39,7 +39,7 @@ class EventMainDisplayController extends AbstractDisplayController
 
         $this->view->set(
             'events',
-            $this->queryEventDatabaseModel->getEventsByMonth($this->month)
+            $events
         );
     }
 }
