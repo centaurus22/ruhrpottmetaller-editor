@@ -64,26 +64,6 @@ final class QueryEventDatabaseModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @throws \Exception
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses   \ruhrpottmetaller\Data\RmArray
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses   \ruhrpottmetaller\AbstractRmObject
-     */
-    public function testShouldBeInitializedByNew(): void
-    {
-        $this->assertInstanceOf(
-            RmArray::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
-        );
-    }
-
-    /**
      * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
      * @throws \Exception
