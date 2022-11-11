@@ -36,7 +36,7 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
             FROM event
             LEFT JOIN venue ON event.venue_id = venue.id
             LEFT JOIN city ON venue.city_id = city.id
-            WHERE date_start LIKE ?';
+            WHERE date_start LIKE ? ORDER BY date_start;';
         $statement = $this->connection->prepare($query);
         $monthSql = $month->format('Y-m') . '%';
         $statement->bind_param('s', $monthSql);
@@ -73,7 +73,7 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
             ->setCity($city)
             ->setIsVisible(RmBool::new($object->venue_is_visible));
         return $dataSet
-            ->setName(RmString::new($object->name))
+           ->setName(RmString::new($object->name))
            ->setVenue($venue)
            ->setUrl(RmString::new($object->url))
            ->setIsSoldOut(RmBool::new($object->is_sold_out))
