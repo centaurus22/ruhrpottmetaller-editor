@@ -59,3 +59,37 @@ footer {
     text-align: center;
 }
 
+.rm_table {
+    display: table;
+    width: 100%;
+}
+
+.rm_table_row {
+    display: table-row;
+}
+
+.rm_table_header {
+    display: table-header-group;
+}
+
+.rm_table_header > .rm_table_cell {
+    border-top-style: double;
+    border-top-width: 3px;
+}
+
+.rm_table_cell {
+    display: table-cell;
+    padding: 1px 0;
+    border-top-style: dotted;
+    border-top-color: black;
+    border-top-width: 1px
+}
+
+.rm_table_row:nth-child(2) > .rm_table_cell {
+    border-top-style: solid;
+}
+
+.rm_table_row:last-child > .rm_table_cell {
+    border-bottom-color: black;
+    border-bottom-style: double;
+}
