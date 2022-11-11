@@ -14,8 +14,8 @@ class BaseDisplayController extends AbstractDisplayController
             RmArray::new()
                 ->add(RmString::new('events'))
                 ->add(RmString::new('bands'))
-                ->add(RmString::new('cities'))
                 ->add(RmString::new('venues'))
+                ->add(RmString::new('cities'))
         );
     }
 }
