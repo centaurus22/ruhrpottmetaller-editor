@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <?=$this->get('eventHeadDisplayControllerOutput')?>
+        <?=$this->get('headDisplayControllerOutput')?>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="assets/css/base_style.css">
         <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
@@ -24,7 +24,7 @@ while ($this->get('menu')->hasCurrent()) {
             </ul>
         </nav>
         <main id="main">
-            <?=$this->get('eventMainDisplayControllerOutput')?>
+            <?=$this->get('mainDisplayControllerOutput')?>
         </main>
         <footer>
             Ruhrpottmetaller-Editor (c) Klaus Thorres 2022.
