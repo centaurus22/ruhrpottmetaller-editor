@@ -18,9 +18,10 @@ final class CityMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -33,9 +34,6 @@ final class CityMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\Festival
-     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
     public function testShouldSetCityList()
@@ -66,7 +64,7 @@ final class CityMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
