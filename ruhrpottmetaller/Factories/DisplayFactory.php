@@ -5,17 +5,12 @@ namespace ruhrpottmetaller\Factories;
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Controller\AbstractDisplayController;
 use ruhrpottmetaller\Controller\BaseDisplayController;
-use ruhrpottmetaller\Controller\EventHeadDisplayController;
-use ruhrpottmetaller\Controller\EventMainDisplayController;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractRmObject
 {
+    private IFactoryBehaviour $factoryBehaviour;
     private RmString $templatePath;
 
     public function __construct()
@@ -26,39 +21,48 @@ class DisplayFactory extends AbstractRmObject
     /**
      * @throws \Exception
      */
-    public function getDisplayController(array $input): AbstractDisplayController
+    public function getDisplayController(): AbstractDisplayController
     {
-        $eventHeadDisplayController = new EventHeadDisplayController(
-            View::new(
-                $this->templatePath,
-                RmString::new('event_head')
-            )
-        );
-
-        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        $eventMainDisplayController = new EventMainDisplayController(
-            View::new(
-                $this->templatePath,
-                RmString::new('event_main')
-            ),
-            QueryEventDatabaseModel::new(
-                DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
-                RmArray::new()
-            )
-        );
-        $eventMainDisplayController->setMonth(RmDate::new('2022-10'));
         $baseDisplayController =  new BaseDisplayController(
             View::new(
                 $this->templatePath,
                 RmString::new('ruhrpottmetaller-editor')
             )
         );
+
+        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
         return $baseDisplayController->addSubController(
-            'eventHeadDisplayController',
-            $eventHeadDisplayController
+            'headDisplayController',
+            $this->factoryBehaviour->getHeadDisplayController($this->templatePath)
         )->addSubController(
-            'eventMainDisplayController',
-            $eventMainDisplayController
+            'mainDisplayController',
+            $this->factoryBehaviour->getMainDisplayController(
+                $this->templatePath,
+                $pathToDatabaseConfig
+            )
         );
+    }
+
+    public function setFactoryBehaviour(array $input): DisplayFactory
+    {
+        $allowedBehaviours = [
+            'events' => 'Event',
+            'bands' => 'Band',
+            'venues' => 'Venue',
+            'cities' => 'City'
+        ];
+
+        if (
+            isset($input['display'])
+            and array_key_exists($input['display'], $allowedBehaviours)
+        ) {
+            $behaviour = $allowedBehaviours[$input['display']];
+        } else {
+            $behaviour = 'Event';
+        }
+        $behaviour = __NAMESPACE__ . '\\' . $behaviour . 'FactoryBehaviour';
+
+        $this->factoryBehaviour = new $behaviour();
+        return $this;
     }
 }
