@@ -42,7 +42,7 @@ final class EventMainDisplayControllerTest extends TestCase
     public function testShouldSetConcertList()
     {
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
@@ -84,7 +84,7 @@ final class EventMainDisplayControllerTest extends TestCase
     public function testShouldNotSetEmptyConcertList()
     {
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
@@ -124,7 +124,7 @@ final class EventMainDisplayControllerTest extends TestCase
     public function testShouldSetMonth()
     {
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 

@@ -44,7 +44,7 @@ final class BaseDisplayControllerTest extends TestCase
     public function testShouldRender()
     {
         $View = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
         $this->Controller = BaseDisplayController::new($View);
@@ -64,17 +64,17 @@ final class BaseDisplayControllerTest extends TestCase
     public function testShouldRenderASubControllers()
     {
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testBaseTemplate1')
         );
         $SubView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
         $this->Controller = BaseDisplayController::new($BaseView)->addSubController(
-                'sub1',
-                BaseDisplayController::new($SubView)
-            );
+            'sub1',
+            BaseDisplayController::new($SubView)
+        );
         $output = $this->Controller->render()->get();
         $this->assertEquals(
             'This is a concert. This is a concert.',
@@ -95,15 +95,15 @@ final class BaseDisplayControllerTest extends TestCase
     public function testShouldRenderTwoSubControllers()
     {
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testBaseTemplate2')
         );
         $SubView1 = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
         $SubView2 = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
         $this->Controller = BaseDisplayController::new($BaseView)->addSubController(
@@ -135,7 +135,7 @@ final class BaseDisplayControllerTest extends TestCase
     {
         $this->expectExceptionMessage('The Array does not contain data at this position.');
         $BaseView = View::new(
-            RmString::new('./tests/Controller/'),
+            RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
@@ -147,9 +147,9 @@ final class BaseDisplayControllerTest extends TestCase
         $menu->pointAtNext();
         $this->assertEquals('bands', $menu->getCurrent()->get());
         $menu->pointAtNext();
-        $this->assertEquals('cities', $menu->getCurrent()->get());
-        $menu->pointAtNext();
         $this->assertEquals('venues', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('cities', $menu->getCurrent()->get());
         $menu->pointAtNext();
         $menu->getCurrent();
     }
