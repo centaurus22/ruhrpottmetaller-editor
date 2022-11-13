@@ -16,7 +16,7 @@ class QueryCityDatabaseModel extends AbstractDatabaseModel
      */
     public function getCities(): RmArray
     {
-        $query = 'SELECT id, name, is_visible FROM city';
+        $query = 'SELECT id, name, is_visible FROM city ORDER BY name';
         $statement = $this->connection->prepare($query);
         $statement->execute();
         $result = $statement->get_result();
