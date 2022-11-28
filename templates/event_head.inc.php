@@ -1,1 +1,0 @@
-<title>Ruhrpottmetaller-Editor – Events</title>

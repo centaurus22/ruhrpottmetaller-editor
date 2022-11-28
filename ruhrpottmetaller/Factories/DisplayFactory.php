@@ -10,7 +10,8 @@ use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractRmObject
 {
-    private IFactoryBehaviour $factoryBehaviour;
+    private IMainDisplayFactoryBehaviour $mainDisplayFactoryBehaviour;
+    private IHeadDisplayFactoryBehaviour $headDisplayFactoryBehaviour;
     private RmString $templatePath;
 
     public function __construct()
@@ -33,17 +34,17 @@ class DisplayFactory extends AbstractRmObject
         $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
         return $baseDisplayController->addSubController(
             'headDisplayController',
-            $this->factoryBehaviour->getHeadDisplayController($this->templatePath)
+            $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
         )->addSubController(
             'mainDisplayController',
-            $this->factoryBehaviour->getMainDisplayController(
+            $this->mainDisplayFactoryBehaviour->getDisplayController(
                 $this->templatePath,
                 $pathToDatabaseConfig
             )
         );
     }
 
-    public function setFactoryBehaviour(array $input): DisplayFactory
+    public function setFactoryBehaviours(array $input): DisplayFactory
     {
         $allowedBehaviours = [
             'events' => 'Event',
@@ -56,13 +57,16 @@ class DisplayFactory extends AbstractRmObject
             isset($input['display'])
             and array_key_exists($input['display'], $allowedBehaviours)
         ) {
-            $behaviour = $allowedBehaviours[$input['display']];
+            $mainBehaviourClass = $allowedBehaviours[$input['display']];
+            $pageName = RmString::new($input['display']);
         } else {
-            $behaviour = 'Event';
+            $mainBehaviourClass = 'Event';
+            $pageName = RmString::new('events');
         }
-        $behaviour = __NAMESPACE__ . '\\' . $behaviour . 'FactoryBehaviour';
+        $mainBehaviourClass = __NAMESPACE__ . '\\' . $mainBehaviourClass . 'MainDisplayFactoryBehaviour';
 
-        $this->factoryBehaviour = new $behaviour();
+        $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
+        $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
         return $this;
     }
 }

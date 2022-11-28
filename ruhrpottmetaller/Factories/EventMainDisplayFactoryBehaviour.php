@@ -3,7 +3,6 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\AbstractDisplayController;
-use ruhrpottmetaller\Controller\EventHeadDisplayController;
 use ruhrpottmetaller\Controller\EventMainDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -12,22 +11,12 @@ use ruhrpottmetaller\Model\DatabaseConnectHelper;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 
-class EventFactoryBehaviour implements IFactoryBehaviour
+class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
 {
-    public function getHeadDisplayController(RmString $templatePath): AbstractDisplayController
-    {
-        return new EventHeadDisplayController(
-            View::new(
-                $templatePath,
-                RmString::new('event_head')
-            )
-        );
-    }
-
     /**
      * @throws \Exception
      */
-    public function getMainDisplayController(
+    public function getDisplayController(
         RmString $templatePath,
         RmString $pathToDatabaseConfig
     ): AbstractDisplayController {

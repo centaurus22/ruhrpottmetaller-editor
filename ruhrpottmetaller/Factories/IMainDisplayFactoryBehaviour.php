@@ -5,10 +5,9 @@ namespace ruhrpottmetaller\Factories;
 use ruhrpottmetaller\Controller\AbstractDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-interface IFactoryBehaviour
+interface IMainDisplayFactoryBehaviour
 {
-    public function getHeadDisplayController(RmString $templatePath): AbstractDisplayController;
-    public function getMainDisplayController(
+    public function getDisplayController(
         RmString $templatePath,
         RmString $pathToDatabaseConfig
     ): AbstractDisplayController;
