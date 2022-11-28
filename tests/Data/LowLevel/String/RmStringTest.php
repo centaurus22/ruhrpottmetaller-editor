@@ -194,4 +194,33 @@ final class RmStringTest extends TestCase
             $this->String->asWwwUrl()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     */
+    public function testShouldReturnStringWithFirstCharInUppercase(): void
+    {
+        $this->String = RmString::new('iron Kobra');
+        $this->assertEquals(
+            'Iron Kobra',
+            $this->String->asFirstUppercase()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     */
+    public function testShouldReturnNullString(): void
+    {
+        $this->String = RmString::new(null);
+        $this->assertNull(
+            $this->String->asFirstUppercase()->get()
+        );
+    }
 }
