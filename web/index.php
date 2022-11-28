@@ -7,6 +7,6 @@ include '../vendor/autoload.php';
 
 $request = array_merge($_GET, $_POST);
 $Controller = ruhrpottmetaller\Factories\DisplayFactory::new()
-    ->setFactoryBehaviour($request)
+    ->setFactoryBehaviours($request)
     ->getDisplayController();
 echo $Controller->render();
