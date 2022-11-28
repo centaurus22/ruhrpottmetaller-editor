@@ -9,9 +9,10 @@ class Band extends AbstractHighLevelDataObject implements IDataObject
 {
     private AbstractRmBool $isVisible;
 
-    public function setIsVisible(AbstractRmBool $isVisible)
+    public function setIsVisible(AbstractRmBool $isVisible): Band
     {
         $this->isVisible = $isVisible;
+        return $this;
     }
 
     public function getIsVisible(): AbstractRmBool
