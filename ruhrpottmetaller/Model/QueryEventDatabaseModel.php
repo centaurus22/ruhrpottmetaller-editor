@@ -16,6 +16,11 @@ use stdClass;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
+    public static function new(?\mysqli $connection)
+    {
+        return new static($connection);
+    }
+
     /**
      * @throws \Exception
      */
@@ -44,6 +49,7 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         $result = $statement->get_result();
         $statement->close();
 
+        $array = RmArray::new();
         while ($object = $result->fetch_object()) {
             if ($object->number_of_days > 1) {
                 $dataSet = Festival::new()
@@ -55,9 +61,9 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
             }
 
             $dataSet = $this->addGeneralData($dataSet, $object);
-            $this->array->add($dataSet);
+            $array->add($dataSet);
         }
-        return $this->array;
+        return $array;
     }
 
     private function addGeneralData(

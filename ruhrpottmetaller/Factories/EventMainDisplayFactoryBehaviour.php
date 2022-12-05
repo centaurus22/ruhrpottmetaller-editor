@@ -28,7 +28,6 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
             ),
             QueryEventDatabaseModel::new(
                 DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
-                RmArray::new()
             )
         );
         $mainDisplayController->setMonth(RmDate::new('2022-10'));

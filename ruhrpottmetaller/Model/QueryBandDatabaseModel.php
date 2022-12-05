@@ -11,6 +11,11 @@ use stdClass;
 
 class QueryBandDatabaseModel extends AbstractDatabaseModel
 {
+    public static function new(?\mysqli $connection)
+    {
+        return new static($connection);
+    }
+
     /**
      * @throws \Exception
      */
@@ -22,10 +27,11 @@ class QueryBandDatabaseModel extends AbstractDatabaseModel
         $result = $statement->get_result();
         $statement->close();
 
+        $array = RmArray::new();
         while ($object = $result->fetch_object()) {
-            $this->array->add($this->getBandFromDatabaseResult($object));
+            $array->add($this->getBandFromDatabaseResult($object));
         }
-        return $this->array;
+        return $array;
     }
 
     private function getBandFromDatabaseResult(stdClass $object): Band

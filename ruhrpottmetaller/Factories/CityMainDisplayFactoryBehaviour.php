@@ -27,7 +27,6 @@ class CityMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
             ),
             QueryCityDatabaseModel::new(
                 DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
-                RmArray::new()
             )
         );
     }

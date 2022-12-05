@@ -11,6 +11,11 @@ use stdClass;
 
 class QueryCityDatabaseModel extends AbstractDatabaseModel
 {
+    public static function new(?\mysqli $connection)
+    {
+        return new static($connection);
+    }
+
     /**
      * @throws \Exception
      */
@@ -22,10 +27,26 @@ class QueryCityDatabaseModel extends AbstractDatabaseModel
         $result = $statement->get_result();
         $statement->close();
 
+        $array = RmArray::new();
         while ($object = $result->fetch_object()) {
-            $this->array->add($this->getCityFromDatabaseResult($object));
+            $array->add($this->getCityFromDatabaseResult($object));
         }
-        return $this->array;
+        return $array;
+    }
+
+
+
+    public function getCityById(RmInt $cityId): RmArray
+    {
+        $query = 'SELECT id, name, is_visible FROM city WHERE id = ?';
+        $statement = $this->connection->prepare($query);
+        $cityIdSql = $cityId->get();
+        $statement->bind_param('i', $cityIdSql);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
+        $array = RmArray::new();
+        return $array->add($this->getCityFromDatabaseResult($result->fetch_object()));
     }
 
     private function getCityFromDatabaseResult(stdClass $object): City

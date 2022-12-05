@@ -27,7 +27,6 @@ class BandMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
             ),
             QueryBandDatabaseModel::new(
                 DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
-                RmArray::new()
             )
         );
     }
