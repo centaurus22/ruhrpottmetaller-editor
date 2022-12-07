@@ -189,4 +189,16 @@ final class RmIntTest extends TestCase
         $String = RmInt::new(12)->set(3)->asString();
         $this->assertInstanceOf(RmString::class, $String);
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testIsNullShouldReturnTrue(): void
+    {
+        $this->Int = RmInt::new(null);
+        $this->assertEquals(true, $this->Int->isNull());
+    }
 }

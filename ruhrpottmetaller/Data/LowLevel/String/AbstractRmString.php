@@ -3,6 +3,9 @@
 namespace ruhrpottmetaller\Data\LowLevel\String;
 
 use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\LowLevel\INullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\IsNullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\NotNullBehaviour;
 
 abstract class AbstractRmString extends AbstractLowLevelDataObject
 {

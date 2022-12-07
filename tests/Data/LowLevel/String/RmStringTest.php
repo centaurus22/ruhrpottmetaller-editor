@@ -157,9 +157,9 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
-    public function testShouldReturnTrue(): void
+    public function testIsNullShouldReturnFalse(): void
     {
         $this->String = RmString::new('Value');
         $this->assertEquals(false, $this->String->isNull());
@@ -169,7 +169,7 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnATableCell(): void
     {
@@ -184,7 +184,7 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnAnUrl(): void
     {
@@ -199,7 +199,7 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnStringWithFirstCharInUppercase(): void
     {
@@ -214,7 +214,7 @@ final class RmStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnNullString(): void
     {
