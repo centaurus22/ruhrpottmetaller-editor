@@ -6,43 +6,40 @@ namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\{Int\RmInt, String\RmString};
+use ruhrpottmetaller\Data\HighLevel\NullCity;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\Model\QueryCityDatabaseModel;
+use ruhrpottmetaller\Model\{DatabaseConnection, QueryCityDatabaseModel};
 
 final class QueryCityDatabaseModelTest extends TestCase
 {
-    private QueryCityDatabaseModel $QueryCityDatabaseModel;
-    private \mysqli $DatabaseConnection;
+    private QueryCityDatabaseModel $queryCityDatabaseModel;
+    private \mysqli $connection;
 
     protected function setUp(): void
     {
         $ConnectionInformationFile = RmString::new('tests/Model/databaseConfig.inc.php');
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->DatabaseConnection = DatabaseConnectHelper::new($ConnectionInformationFile)
+        $this->connection = DatabaseConnection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->QueryCityDatabaseModel = QueryCityDatabaseModel::new(
-            $this->DatabaseConnection,
-            RmArray::new()
+        $this->queryCityDatabaseModel = QueryCityDatabaseModel::new(
+            $this->connection,
         );
     }
 
     protected function tearDown(): void
     {
         $query[] = 'TRUNCATE city';
-        $this->DatabaseConnection->query($query[0]);
+        $this->connection->query($query[0]);
     }
 
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @throws \Exception
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
@@ -53,18 +50,17 @@ final class QueryCityDatabaseModelTest extends TestCase
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->QueryCityDatabaseModel->getCities()
+            $this->queryCityDatabaseModel->getCities()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @throws \Exception
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -78,21 +74,20 @@ final class QueryCityDatabaseModelTest extends TestCase
     public function testArrayShouldContainEntryIfEntryInDatabase(): void
     {
         $query = 'INSERT INTO city SET name = "Dortmund"';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertTrue(
-            $this->QueryCityDatabaseModel->getCities()
+            $this->queryCityDatabaseModel->getCities()
                 ->hasCurrent()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @throws \Exception
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -106,10 +101,10 @@ final class QueryCityDatabaseModelTest extends TestCase
     public function testArrayShouldGetCityDatasetIfEntryInDatabase(): void
     {
         $query = 'INSERT INTO city SET name = "Essen"';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertInstanceOf(
             City::class,
-            $this->QueryCityDatabaseModel->getCities()
+            $this->queryCityDatabaseModel->getCities()
                                           ->getCurrent()
         );
     }
@@ -117,11 +112,10 @@ final class QueryCityDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -130,15 +124,15 @@ final class QueryCityDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetCityNameFromDatabase(): void
     {
         $query = 'INSERT INTO city SET name = "Mülheim an der Ruhr"';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertEquals(
             'Mülheim an der Ruhr',
-            $this->QueryCityDatabaseModel
+            $this->queryCityDatabaseModel
                 ->getCities()
                 ->getCurrent()
                 ->getName()
@@ -149,11 +143,10 @@ final class QueryCityDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -162,15 +155,15 @@ final class QueryCityDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetIdFromDatabase(): void
     {
         $query = 'INSERT INTO city SET name = "Mülheim an der Ruhr"';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertEquals(
             '1',
-            $this->QueryCityDatabaseModel
+            $this->queryCityDatabaseModel
                 ->getCities()
                 ->getCurrent()
                 ->getId()
@@ -181,11 +174,10 @@ final class QueryCityDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -194,15 +186,15 @@ final class QueryCityDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetVisibleStatusFromDatabase(): void
     {
         $query = 'INSERT INTO city SET name = "Mülheim an der Ruhr", is_visible = 0';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertEquals(
             '0',
-            $this->QueryCityDatabaseModel
+            $this->queryCityDatabaseModel
                 ->getCities()
                 ->getCurrent()
                 ->getIsVisible()
@@ -213,11 +205,10 @@ final class QueryCityDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -226,19 +217,38 @@ final class QueryCityDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetCityById(): void
     {
         $query = 'INSERT INTO city SET name = "Mülheim an der Ruhr", is_visible = 0';
-        $this->DatabaseConnection->query($query);
+        $this->connection->query($query);
         $this->assertEquals(
             '1',
-            $this->QueryCityDatabaseModel
+            $this->queryCityDatabaseModel
                 ->getCityById(RmInt::new(1))
-                ->getCurrent()
                 ->getId()
                 ->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testShouldGetNullCity(): void
+    {
+        $this->assertInstanceOf(
+            NullCity::class,
+            $this->queryCityDatabaseModel->getCityById(RmInt::new(null))
         );
     }
 }

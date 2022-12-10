@@ -2,10 +2,9 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\HighLevel\Venue;
+use ruhrpottmetaller\Data\HighLevel\{IVenue, Venue, NullVenue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\{AbstractRmInt, RmInt};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
@@ -31,9 +30,6 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
         return new static($connection, $queryCityDatabaseModel);
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getVenues(): RmArray
     {
         $query = 'SELECT id, name, city_id, is_visible FROM venue ORDER BY name';
@@ -49,17 +45,30 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
         return $array;
     }
 
+    public function getVenueById(AbstractRmInt $venueId): IVenue
+    {
+        if ($venueId->isNull()) {
+            return NullVenue::new();
+        }
+
+        $query = 'SELECT id, name, city_id, is_visible FROM venue WHERE id = ?';
+        $statement = $this->connection->prepare($query);
+        $venueIdSql = $venueId->get();
+        $statement->bind_param('i', $venueIdSql);
+        $statement->execute();
+        $result = $statement->get_result();
+        $statement->close();
+        return $this->getVenueFromDatabaseResult($result->fetch_object());
+    }
+
     private function getVenueFromDatabaseResult(stdClass $object): Venue
     {
+        $city = $this->queryCityDatabaseModel
+            ->getCityById(RmInt::new($object->city_id));
         return Venue::new()
             ->setId(RmInt::new($object->id))
             ->setName(RmString::new($object->name))
-            ->setCity($this->getCity(RmInt::new($object->city_id)))
+            ->setCity($city)
             ->setIsVisible(RmBool::new($object->is_visible));
-    }
-
-    private function getCity(RmInt $cityId): City
-    {
-        return $this->queryCityDatabaseModel->getCityById($cityId)->getCurrent();
     }
 }

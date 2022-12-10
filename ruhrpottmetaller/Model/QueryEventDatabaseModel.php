@@ -2,45 +2,46 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
-use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\HighLevel\Concert;
-use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\HighLevel\Venue;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
+use ruhrpottmetaller\Data\LowLevel\{
+    Bool\RmBool,
+    Date\RmDate,
+    Int\RmInt,
+    String\RmString
+};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
 class QueryEventDatabaseModel extends AbstractDatabaseModel
 {
-    public static function new(?\mysqli $connection)
-    {
-        return new static($connection);
+    private QueryVenueDatabaseModel $queryVenueDatabaseModel;
+
+    public function __construct(
+        ?\mysqli $connection,
+        QueryVenueDatabaseModel $queryVenueDatabaseModel
+    ) {
+        parent::__construct($connection);
+        $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;
     }
 
-    /**
-     * @throws \Exception
-     */
+    public static function new(
+        ?\mysqli $connection,
+        QueryVenueDatabaseModel $queryVenueDatabaseModel
+    ): QueryEventDatabaseModel {
+        return new static($connection, $queryVenueDatabaseModel);
+    }
+
     public function getEventsByMonth(RmDate $month): RmArray
     {
         $query = 'SELECT
                 event.name AS name,
                 date_start,
                 number_of_days,
-                venue.id AS venue_id,
-                venue.name AS venue_name,
-                venue.is_visible AS venue_is_visible,
-                city.id AS city_id,
-                city.name AS city_name,
+                venue_id,
                 url,
                 is_sold_out,
                 is_canceled
             FROM event
-            LEFT JOIN venue ON event.venue_id = venue.id
-            LEFT JOIN city ON venue.city_id = city.id
             WHERE date_start LIKE ? ORDER BY date_start;';
         $statement = $this->connection->prepare($query);
         $monthSql = $month->format('Y-m') . '%';
@@ -70,14 +71,8 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
         AbstractEvent $dataSet,
         stdClass $object
     ): AbstractEvent {
-        $city = City::new()
-            ->setId(RmInt::new($object->city_id))
-            ->setName(RmString::new($object->city_name));
-        $venue = Venue::new()
-            ->setId(RmInt::new($object->venue_id))
-            ->setName(RmString::new($object->venue_name))
-            ->setCity($city)
-            ->setIsVisible(RmBool::new($object->venue_is_visible));
+        $venue = $this->queryVenueDatabaseModel
+            ->getVenueById(RmInt::new($object->venue_id));
         return $dataSet
            ->setName(RmString::new($object->name))
            ->setVenue($venue)
