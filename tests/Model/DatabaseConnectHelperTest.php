@@ -6,15 +6,15 @@ namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
+use ruhrpottmetaller\Model\DatabaseConnection;
 
 final class DatabaseConnectHelperTest extends TestCase
 {
-    private DatabaseConnectHelper $Helper;
+    private DatabaseConnection $Helper;
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -24,21 +24,21 @@ final class DatabaseConnectHelperTest extends TestCase
         $this->expectExceptionMessage(
             'File with database connection information not found.'
         );
-        $this->Helper = new DatabaseConnectHelper(
+        $this->Helper = new DatabaseConnection(
             RmString::new('testDatei')
         );
         $this->Helper->connect();
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnDatabaseConnection(): void
     {
-        $this->Helper = new DatabaseConnectHelper(RmString::new(
+        $this->Helper = new DatabaseConnection(RmString::new(
             'tests/Model/databaseConfig.inc.php'
         ));
         $this->Helper->connect();
@@ -46,14 +46,14 @@ final class DatabaseConnectHelperTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldBeInitializedByNewMethod(): void
     {
-        $this->Helper = DatabaseConnectHelper::new(RmString::new(
+        $this->Helper = DatabaseConnection::new(RmString::new(
             'tests/Model/databaseConfig.inc.php'
         ));
         $this->Helper->connect();
@@ -61,14 +61,14 @@ final class DatabaseConnectHelperTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testMethodsShouldBeChainable(): void
     {
-        $this->Helper = DatabaseConnectHelper::new(
+        $this->Helper = DatabaseConnection::new(
             RmString::new('tests/Model/databaseConfig.inc.php')
         );
         $this->assertInstanceOf(

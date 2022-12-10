@@ -2,12 +2,14 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\String;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
-use ruhrpottmetaller\Data\LowLevel\INullBehaviour;
-use ruhrpottmetaller\Data\LowLevel\IsNullBehaviour;
-use ruhrpottmetaller\Data\LowLevel\NotNullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\{
+    AbstractLowLevelData,
+    INullBehaviour,
+    IsNullBehaviour,
+    NotNullBehaviour
+};
 
-abstract class AbstractRmString extends AbstractLowLevelDataObject
+abstract class AbstractRmString extends AbstractLowLevelData
 {
     protected INullBehaviour $nullBehaviour;
 

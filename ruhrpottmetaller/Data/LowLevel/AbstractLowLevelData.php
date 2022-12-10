@@ -2,10 +2,10 @@
 
 namespace ruhrpottmetaller\Data\LowLevel;
 
-use ruhrpottmetaller\Data\IDataObject;
+use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-abstract class AbstractLowLevelDataObject implements IDataObject
+abstract class AbstractLowLevelData implements IData
 {
     protected $value;
 

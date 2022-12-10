@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Factories;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\BaseDisplayController;
 use ruhrpottmetaller\Factories\DisplayFactory;
 
 class DisplayFactoryTest extends TestCase
@@ -15,7 +14,7 @@ class DisplayFactoryTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Factories\DisplayFactory
      * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\RmString
      **/
@@ -32,7 +31,7 @@ class DisplayFactoryTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Factories\DisplayFactory
      * @uses  \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\RmString
      **/

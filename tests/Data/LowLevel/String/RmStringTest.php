@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\LowLevel\String;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString, RmNullString};
 
 final class RmStringTest extends TestCase
 {
@@ -16,7 +14,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnEmptyStringAfterAcceptingEmptyString(): void
     {
@@ -27,7 +25,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnSameStringAfterAcceptingString(): void
     {
@@ -37,7 +35,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
@@ -47,7 +45,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnIntegerAsStringAfterOverwritingEmptyString(): void
     {
@@ -57,7 +55,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
@@ -67,7 +65,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
@@ -77,7 +75,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldOutputStringAfterAccepting(): void
     {
@@ -88,7 +86,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
@@ -99,7 +97,7 @@ final class RmStringTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
@@ -110,7 +108,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -123,7 +121,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -134,7 +132,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
@@ -145,7 +143,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldConcatTwoStrings(): void
     {
@@ -156,7 +154,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testIsNullShouldReturnFalse(): void
@@ -168,7 +166,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnATableCell(): void
@@ -183,7 +181,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnAnUrl(): void
@@ -198,7 +196,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnStringWithFirstCharInUppercase(): void
@@ -213,7 +211,7 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldReturnNullString(): void

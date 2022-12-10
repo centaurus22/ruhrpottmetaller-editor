@@ -127,7 +127,7 @@ final class RmDateTest extends TestCase
      * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnMonthChangerMenu()
     {
@@ -149,7 +149,7 @@ final class RmDateTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnFormattedDate()
     {

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Model\{QueryCityDatabaseModel, QueryVenueDatabaseModel};
 use ruhrpottmetaller\Controller\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 
@@ -20,9 +20,11 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @throws \Exception
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers   \ruhrpottmetaller\Model\QueryEventDatabaseModel
+     * @uses  \ruhrpottmetaller\Model\QueryCityDatabaseModel
+     * @uses  \ruhrpottmetaller\Model\QueryVenueDatabaseModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -48,7 +50,13 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMock(null, null)
+            new QueryEventDatabaseModelMock(
+                null,
+                QueryVenueDatabaseModel::new(
+                    null,
+                    QueryCityDatabaseModel::new(null)
+                )
+            )
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));
@@ -69,15 +77,17 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @throws \Exception
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses  \ruhrpottmetaller\Model\QueryEventDatabaseModel
+     * @uses  \ruhrpottmetaller\Model\QueryVenueDatabaseModel
+     * @uses  \ruhrpottmetaller\Model\QueryCityDatabaseModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
@@ -90,7 +100,13 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMockEmpty(null, null)
+            new QueryEventDatabaseModelMockEmpty(
+                null,
+                QueryVenueDatabaseModelMock::new(
+                    null,
+                    QueryCityDatabaseModelMock::new(null)
+                )
+            )
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));
@@ -103,9 +119,11 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @throws \Exception
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
+     * @uses \ruhrpottmetaller\Model\QueryVenueDatabaseModel
+     * @uses \ruhrpottmetaller\Model\QueryCityDatabaseModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -130,7 +148,13 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMock(null, null)
+            new QueryEventDatabaseModelMock(
+                null,
+                QueryVenueDatabaseModelMock::new(
+                    null,
+                    QueryCityDatabaseModelMock::new(null)
+                )
+            )
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));

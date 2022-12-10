@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\Concert;
-use ruhrpottmetaller\Data\HighLevel\Venue;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\HighLevel\{Concert, Venue};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmString};
 
 final class ConcertTest extends TestCase
 {
@@ -18,10 +14,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      */
     public function testShouldSetDateAndGetTheSameDate(): void
@@ -36,10 +32,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
@@ -53,10 +49,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -72,10 +68,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -92,10 +88,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -111,10 +107,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      */
@@ -127,10 +123,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      */
@@ -143,7 +139,7 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @throws \Exception
@@ -154,7 +150,7 @@ final class ConcertTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testMethodsShouldBeChainable(): void
     {
@@ -197,10 +193,10 @@ final class ConcertTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */

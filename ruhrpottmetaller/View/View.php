@@ -2,8 +2,7 @@
 
 namespace ruhrpottmetaller\View;
 
-use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 class View
@@ -34,7 +33,7 @@ class View
         return $this;
     }
 
-    public function set(string $key, IDataObject $value)
+    public function set(string $key, IData $value)
     {
         $this->data[$key] = $value;
     }

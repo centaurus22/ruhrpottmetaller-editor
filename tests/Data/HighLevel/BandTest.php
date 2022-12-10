@@ -16,9 +16,9 @@ final class BandTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -34,9 +34,9 @@ final class BandTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\City
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      */
@@ -52,9 +52,9 @@ final class BandTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      */

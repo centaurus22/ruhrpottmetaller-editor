@@ -2,9 +2,9 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\Bool;
 
-use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject;
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData;
 
-abstract class AbstractRmBool extends AbstractLowLevelDataObject
+abstract class AbstractRmBool extends AbstractLowLevelData
 {
     public static function new($value)
     {

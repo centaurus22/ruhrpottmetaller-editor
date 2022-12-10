@@ -5,12 +5,8 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\EventMainDisplayController;
 use ruhrpottmetaller\Controller\GeneralHeadDisplayController;
-use ruhrpottmetaller\Data\HighLevel\Festival;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 
 final class GeneralHeadDisplayControllerTest extends TestCase
@@ -21,7 +17,7 @@ final class GeneralHeadDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\GeneralHeadDisplayController
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\View\View

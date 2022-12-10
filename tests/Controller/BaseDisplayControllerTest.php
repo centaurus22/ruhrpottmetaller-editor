@@ -16,7 +16,7 @@ final class BaseDisplayControllerTest extends TestCase
    /**
     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
     * @covers \ruhrpottmetaller\Controller\BaseDisplayController
-    * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+    * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
     */
     public function testShouldAddSubController()
@@ -36,7 +36,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\View\View
@@ -56,7 +56,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\View\View
@@ -86,7 +86,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
@@ -125,7 +125,7 @@ final class BaseDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\RmArray

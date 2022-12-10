@@ -18,9 +18,9 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -36,9 +36,9 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      */
@@ -54,9 +54,9 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      */
@@ -72,9 +72,9 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -92,12 +92,12 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
     public function testShouldCombineVenueNameAndCityName(): void
     {
@@ -112,12 +112,12 @@ final class VenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      */
     public function testShouldCombineVenueNameAndEmptyCityName(): void
     {

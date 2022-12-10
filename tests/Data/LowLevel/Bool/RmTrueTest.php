@@ -5,18 +5,19 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\LowLevel\Bool;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 
 final class RmTrueTest extends TestCase
 {
-    private $Bool;
+    private AbstractRmBool $Bool;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnTrue(): void
     {
@@ -29,7 +30,7 @@ final class RmTrueTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @covers \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      */
     public function testShouldReturnFalse(): void
     {

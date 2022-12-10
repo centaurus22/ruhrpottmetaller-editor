@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Data;
 
 use ruhrpottmetaller\AbstractRmObject;
 
-class RmArray extends AbstractRmObject implements IDataObject
+class RmArray extends AbstractRmObject implements IData
 {
     private array $array = array();
     private int $pointer = 0;

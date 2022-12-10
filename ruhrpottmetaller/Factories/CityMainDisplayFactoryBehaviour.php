@@ -6,7 +6,7 @@ use ruhrpottmetaller\Controller\AbstractDisplayController;
 use ruhrpottmetaller\Controller\CityMainDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
+use ruhrpottmetaller\Model\DatabaseConnection;
 use ruhrpottmetaller\Model\QueryCityDatabaseModel;
 use ruhrpottmetaller\View\View;
 
@@ -26,7 +26,7 @@ class CityMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 RmString::new('city_main')
             ),
             QueryCityDatabaseModel::new(
-                DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
+                DatabaseConnection::new($pathToDatabaseConfig)->connect()->getConnection(),
             )
         );
     }

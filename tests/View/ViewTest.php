@@ -14,7 +14,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -31,7 +31,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -48,7 +48,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -64,7 +64,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -80,7 +80,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -97,7 +97,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -114,7 +114,7 @@ final class ViewTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\View\View
-     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */

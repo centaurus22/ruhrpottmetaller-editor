@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Model\{DatabaseConnection, QueryBandDatabaseModel};
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\Model\QueryBandDatabaseModel;
 
 final class QueryBandDatabaseModelTest extends TestCase
 {
@@ -20,7 +19,7 @@ final class QueryBandDatabaseModelTest extends TestCase
     {
         $ConnectionInformationFile = RmString::new('tests/Model/databaseConfig.inc.php');
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->DatabaseConnection = DatabaseConnectHelper::new($ConnectionInformationFile)
+        $this->DatabaseConnection = DatabaseConnection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
         $this->QueryBandDatabaseModel = QueryBandDatabaseModel::new(
@@ -39,9 +38,8 @@ final class QueryBandDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @throws \Exception
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
@@ -58,12 +56,11 @@ final class QueryBandDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @throws \Exception
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -86,12 +83,11 @@ final class QueryBandDatabaseModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseConnectHelper
-     * @throws \Exception
+     * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -116,11 +112,10 @@ final class QueryBandDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -129,7 +124,7 @@ final class QueryBandDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetBandNameFromDatabase(): void
     {
@@ -148,11 +143,10 @@ final class QueryBandDatabaseModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
-     * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -161,7 +155,7 @@ final class QueryBandDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetIdFromDatabase(): void
     {
@@ -182,9 +176,9 @@ final class QueryBandDatabaseModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\QueryBandDatabaseModel
      * @throws \Exception
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -193,7 +187,7 @@ final class QueryBandDatabaseModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnectHelper
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
     public function testShouldGetVisibleStatusFromDatabase(): void
     {

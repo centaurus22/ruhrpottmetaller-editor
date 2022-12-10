@@ -2,7 +2,6 @@
 
 namespace ruhrpottmetaller\Data;
 
-interface IDataObject
+interface IData
 {
-
 }

@@ -2,13 +2,14 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\AbstractDisplayController;
-use ruhrpottmetaller\Controller\EventMainDisplayController;
-use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnectHelper;
-use ruhrpottmetaller\Model\QueryEventDatabaseModel;
+use ruhrpottmetaller\Controller\{AbstractDisplayController, EventMainDisplayController};
+use ruhrpottmetaller\Model\{
+    DatabaseConnection,
+    QueryCityDatabaseModel,
+    QueryEventDatabaseModel,
+    QueryVenueDatabaseModel
+};
+use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
 use ruhrpottmetaller\View\View;
 
 class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
@@ -21,13 +22,20 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
         RmString $pathToDatabaseConfig
     ): AbstractDisplayController {
         $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
+        $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
+            ->connect()
+            ->getConnection();
         $mainDisplayController = new EventMainDisplayController(
             View::new(
                 $templatePath,
                 RmString::new('event_main')
             ),
             QueryEventDatabaseModel::new(
-                DatabaseConnectHelper::new($pathToDatabaseConfig)->connect()->getConnection(),
+                $databaseConnection,
+                QueryVenueDatabaseModel::new(
+                    $databaseConnection,
+                    QueryCityDatabaseModel::new($databaseConnection)
+                )
             )
         );
         $mainDisplayController->setMonth(RmDate::new('2022-10'));

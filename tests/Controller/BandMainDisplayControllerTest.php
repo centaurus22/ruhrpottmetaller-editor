@@ -19,10 +19,9 @@ final class BandMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
-     * @throws \Exception
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -65,15 +64,14 @@ final class BandMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
-     * @throws \Exception
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */

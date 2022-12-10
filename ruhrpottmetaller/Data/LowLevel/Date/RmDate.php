@@ -4,11 +4,10 @@ namespace ruhrpottmetaller\Data\LowLevel\Date;
 
 use DateInterval;
 use Exception;
-use ruhrpottmetaller\Data\IDataObject;
-use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\IData;
+use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
 
-class RmDate extends \DateTime implements IDataObject
+class RmDate extends \DateTime implements IData
 {
     private bool $isNull;
 

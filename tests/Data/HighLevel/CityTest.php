@@ -6,9 +6,7 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt, String\RmString};
 
 final class CityTest extends TestCase
 {
@@ -16,9 +14,9 @@ final class CityTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\City
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
@@ -34,9 +32,9 @@ final class CityTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\City
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      */
@@ -52,9 +50,9 @@ final class CityTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelDataObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\City
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelDataObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      */
     public function testShouldSetVisibilityStatusAndGetSameStatusBack(): void
