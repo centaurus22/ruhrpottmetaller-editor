@@ -2,10 +2,10 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\IDataObject;
+use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 
-class City extends AbstractHighLevelDataObject implements IDataObject
+class City extends AbstractHighLevelData implements IData, ICity
 {
     private AbstractRmBool $isVisible;
 

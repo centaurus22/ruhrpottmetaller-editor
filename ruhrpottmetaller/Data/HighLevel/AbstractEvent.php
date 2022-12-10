@@ -6,21 +6,21 @@ use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
-class AbstractEvent extends AbstractHighLevelDataObject
+class AbstractEvent extends AbstractHighLevelData
 {
     protected AbstractRmInt $numberOfDays;
-    protected Venue $venue;
+    protected IVenue $venue;
     protected AbstractRmString $url;
     protected AbstractRmBool $isSoldOut;
     protected AbstractRmBool $isCanceled;
 
-    public function setVenue(Venue $venue): AbstractEvent
+    public function setVenue(IVenue $venue): AbstractEvent
     {
         $this->venue = $venue;
         return $this;
     }
 
-    public function getVenue(): Venue
+    public function getVenue(): IVenue
     {
         return $this->venue;
     }

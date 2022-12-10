@@ -2,23 +2,22 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
-use ruhrpottmetaller\Data\IDataObject;
+use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class Venue extends AbstractHighLevelDataObject implements IDataObject
+class Venue extends AbstractHighLevelData implements IData, IVenue
 {
-    private City $city;
+    private ICity $city;
     private AbstractRmBool $isVisible;
 
-    public function setCity(City $city): Venue
+    public function setCity(ICity $city): Venue
     {
         $this->city = $city;
         return $this;
     }
 
-    public function getCity(): City
+    public function getCity(): ICity
     {
         return $this->city;
     }
