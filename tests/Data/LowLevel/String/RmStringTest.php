@@ -6,6 +6,7 @@ namespace tests\ruhrpottmetaller\Data\LowLevel\String;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString, RmNullString};
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 final class RmStringTest extends TestCase
 {
@@ -175,6 +176,28 @@ final class RmStringTest extends TestCase
         $this->assertEquals(
             '<div class="rm_table_cell">Value</div>',
             $this->String->asTableCell()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnAnInputField(): void
+    {
+        $this->String = RmString::new('Value');
+        $expectedString = '<label for="name_1" class="visually-hidden">Name</label>
+            <input id="name_1" name="name" value="Value" placeholder="Name">';
+        $this->assertEquals(
+            $expectedString,
+            $this->String->asTableInput(
+                RmString::new('name'),
+                RmInt::new(1)
+            )
         );
     }
 
