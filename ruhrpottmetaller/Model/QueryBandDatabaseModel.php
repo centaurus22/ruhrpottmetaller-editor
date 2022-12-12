@@ -3,9 +3,7 @@
 namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\HighLevel\Band;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
@@ -16,9 +14,6 @@ class QueryBandDatabaseModel extends AbstractDatabaseModel
         return new static($connection);
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getBands(): RmArray
     {
         $query = 'SELECT id, name, is_visible FROM band ORDER BY name';
