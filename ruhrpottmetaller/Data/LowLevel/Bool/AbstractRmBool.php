@@ -3,6 +3,8 @@
 namespace ruhrpottmetaller\Data\LowLevel\Bool;
 
 use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 abstract class AbstractRmBool extends AbstractLowLevelData
 {
@@ -30,5 +32,20 @@ abstract class AbstractRmBool extends AbstractLowLevelData
         } else {
             return new RmFalse(false);
         }
+    }
+
+    public function asTableInput(
+        RmString $fieldName,
+        RmString $description,
+        RmInt $rowId
+    ): RmString {
+        $primitive = sprintf(
+            $this->getTableInputFormatString(),
+            $fieldName->get(),
+            $rowId->get(),
+            $this->value,
+            $description
+        );
+        return RmString::new($primitive);
     }
 }
