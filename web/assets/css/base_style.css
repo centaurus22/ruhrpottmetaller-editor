@@ -90,6 +90,7 @@ footer {
 
 .rm_table_header {
     display: table-header-group;
+    background: darkgray;
 }
 
 .rm_table_header > .rm_table_cell {
@@ -101,16 +102,6 @@ footer {
     display: table-cell;
     padding: 1px 0;
     border-top-width: 1px;
-}
-
-.rm_table_row:nth-child(2) > .rm_table_cell {
-    border-top-style: solid;
-}
-
-.rm_table_row:last-child > .rm_table_cell {
-    border-bottom-color: black;
-    border-bottom-style: dotted;
-    border-bottom-width: 1px;
 }
 
 .rm_table_cell > input {
