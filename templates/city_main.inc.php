@@ -12,9 +12,18 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $data = $this->get('cities')->getCurrent(); ?>
         <div class="rm_table_row">
             <?=$data->getName()
-                ->asTableInput(RmString::new('name'), $data->getId())
+                ->asTableInput(
+                    RmString::new('name'),
+                    RmString::new('Name'),
+                    $data->getId()
+                )
                 ->asTableCell() ?>
-            <?=$data->getIsVisible()->asTableCell() ?>
+            <?=$data->getIsVisible()
+                ->asTableInput(
+                    RmString::new('is_visible'),
+                    RmString::new('Visible'),
+                    $data->getId()
+                )->asTableCell() ?>
         </div>
         <?php $this->get('cities')->pointAtNext(); ?>
     <?php endwhile; ?>
