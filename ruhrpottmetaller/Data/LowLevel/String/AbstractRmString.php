@@ -2,12 +2,7 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\String;
 
-use ruhrpottmetaller\Data\LowLevel\{
-    AbstractLowLevelData,
-    INullBehaviour,
-    IsNullBehaviour,
-    NotNullBehaviour
-};
+use ruhrpottmetaller\Data\LowLevel\{AbstractLowLevelData, Int\RmInt, INullBehaviour, IsNullBehaviour, NotNullBehaviour};
 
 abstract class AbstractRmString extends AbstractLowLevelData
 {
@@ -57,5 +52,22 @@ abstract class AbstractRmString extends AbstractLowLevelData
         }
 
         return new RmString($value, new NotNullBehaviour());
+    }
+
+    public function asTableInput(
+        RmString $fieldName,
+        RmString $description,
+        RmInt $rowId
+    ): RmString {
+        $format = '<label for="%1$s_%2$u" class="visually-hidden">%4$s</label>
+            <input id="%1$s_%2$u" name="%1$s" value="%3$s" placeholder="%4$s">';
+        $primitive = sprintf(
+            $format,
+            $fieldName->get(),
+            $rowId->get(),
+            $this->value,
+            $description
+        );
+        return RmString::new($primitive);
     }
 }

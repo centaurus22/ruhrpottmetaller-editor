@@ -196,6 +196,30 @@ final class RmStringTest extends TestCase
             $expectedString,
             $this->String->asTableInput(
                 RmString::new('name'),
+                RmString::new('Name'),
+                RmInt::new(1)
+            )
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnAnInputFieldWithDifferentLabel(): void
+    {
+        $this->String = RmString::new('Value');
+        $expectedString = '<label for="city_name_1" class="visually-hidden">Name</label>
+            <input id="city_name_1" name="city_name" value="Value" placeholder="Name">';
+        $this->assertEquals(
+            $expectedString,
+            $this->String->asTableInput(
+                RmString::new('city_name'),
+                RmString::new('Name'),
                 RmInt::new(1)
             )
         );
