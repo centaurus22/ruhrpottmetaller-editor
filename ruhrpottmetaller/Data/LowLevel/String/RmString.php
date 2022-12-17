@@ -10,4 +10,9 @@ class RmString extends AbstractRmString
     {
         return RmString::new(ucfirst($this->value));
     }
+
+    public function asPrefixed(RmString $prefix): RmString
+    {
+        return RmString::new($prefix->concatWith($this));
+    }
 }

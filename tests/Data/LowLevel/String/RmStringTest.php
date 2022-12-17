@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 final class RmStringTest extends TestCase
 {
-    public AbstractRmString $String;
+    public AbstractRmString $value;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -19,8 +19,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnEmptyStringAfterAcceptingEmptyString(): void
     {
-        $this->String = RmString::new('');
-        $this->assertEquals('', $this->String->get());
+        $this->value = RmString::new('');
+        $this->assertEquals('', $this->value->get());
     }
 
     /**
@@ -30,8 +30,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnSameStringAfterAcceptingString(): void
     {
-        $this->String = AbstractRmString::new('Festival');
-        $this->assertEquals('Festival', $this->String->get());
+        $this->value = AbstractRmString::new('Festival');
+        $this->assertEquals('Festival', $this->value->get());
     }
 
     /**
@@ -40,8 +40,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
-        $this->String = AbstractRmString::new(33);
-        $this->assertEquals('33', $this->String->get());
+        $this->value = AbstractRmString::new(33);
+        $this->assertEquals('33', $this->value->get());
     }
 
     /**
@@ -50,8 +50,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnIntegerAsStringAfterOverwritingEmptyString(): void
     {
-        $this->String = RmString::new('')->set(42);
-        $this->assertEquals('42', $this->String->get());
+        $this->value = RmString::new('')->set(42);
+        $this->assertEquals('42', $this->value->get());
     }
 
     /**
@@ -60,8 +60,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->String = AbstractRmString::new(null);
-        $this->assertTrue(is_null($this->String->get()));
+        $this->value = AbstractRmString::new(null);
+        $this->assertTrue(is_null($this->value->get()));
     }
 
     /**
@@ -70,8 +70,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNullBySet(): void
     {
-        $this->String = RmString::new('')->set(null);
-        $this->assertInstanceOf(RmNullString::class, $this->String);
+        $this->value = RmString::new('')->set(null);
+        $this->assertInstanceOf(RmNullString::class, $this->value);
     }
 
     /**
@@ -81,8 +81,8 @@ final class RmStringTest extends TestCase
     public function testShouldOutputStringAfterAccepting(): void
     {
         $this->expectOutputString('Band');
-        $this->String = RmString::new('Band');
-        echo $this->String;
+        $this->value = RmString::new('Band');
+        echo $this->value;
     }
 
     /**
@@ -92,8 +92,8 @@ final class RmStringTest extends TestCase
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->String = AbstractRmString::new(null);
-        echo $this->String;
+        $this->value = AbstractRmString::new(null);
+        echo $this->value;
     }
 
     /**
@@ -102,8 +102,8 @@ final class RmStringTest extends TestCase
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
-        $this->String = RmString::new('Venue');
-        $this->assertEquals('Venue', $this->String->get());
+        $this->value = RmString::new('Venue');
+        $this->assertEquals('Venue', $this->value->get());
     }
 
     /**
@@ -137,8 +137,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
-        $this->String = RmString::new('Venue')->set('Darkness');
-        $this->assertEquals('Darkness', $this->String->get());
+        $this->value = RmString::new('Venue')->set('Darkness');
+        $this->assertEquals('Darkness', $this->value->get());
     }
 
     /**
@@ -148,8 +148,8 @@ final class RmStringTest extends TestCase
      */
     public function testShouldConcatTwoStrings(): void
     {
-        $this->String = RmString::new('Value')->concatWith(RmString::new('Test'));
-        $this->assertEquals('ValueTest', $this->String->get());
+        $this->value = RmString::new('Value')->concatWith(RmString::new('Test'));
+        $this->assertEquals('ValueTest', $this->value->get());
     }
 
     /**
@@ -160,8 +160,8 @@ final class RmStringTest extends TestCase
      */
     public function testIsNullShouldReturnFalse(): void
     {
-        $this->String = RmString::new('Value');
-        $this->assertEquals(false, $this->String->isNull());
+        $this->value = RmString::new('Value');
+        $this->assertEquals(false, $this->value->isNull());
     }
 
     /**
@@ -172,10 +172,10 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnATableCell(): void
     {
-        $this->String = RmString::new('Value');
+        $this->value = RmString::new('Value');
         $this->assertEquals(
             '<div class="rm_table_cell">Value</div>',
-            $this->String->asTableCell()
+            $this->value->asTableCell()
         );
     }
 
@@ -189,12 +189,12 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnAnInputField(): void
     {
-        $this->String = RmString::new('Value');
+        $this->value = RmString::new('Value');
         $expectedString = '<label for="name_1" class="visually-hidden">Name</label>
             <input id="name_1" name="name" value="Value" placeholder="Name">';
         $this->assertEquals(
             $expectedString,
-            $this->String->asTableInput(
+            $this->value->asTableInput(
                 RmString::new('name'),
                 RmString::new('Name'),
                 RmInt::new(1)
@@ -212,12 +212,12 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnAnInputFieldWithDifferentLabel(): void
     {
-        $this->String = RmString::new('Value');
+        $this->value = RmString::new('Value');
         $expectedString = '<label for="city_name_1" class="visually-hidden">Name</label>
             <input id="city_name_1" name="city_name" value="Value" placeholder="Name">';
         $this->assertEquals(
             $expectedString,
-            $this->String->asTableInput(
+            $this->value->asTableInput(
                 RmString::new('city_name'),
                 RmString::new('Name'),
                 RmInt::new(1)
@@ -233,10 +233,10 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnAnUrl(): void
     {
-        $this->String = RmString::new('https://www.kulttempel.com');
+        $this->value = RmString::new('https://www.kulttempel.com');
         $this->assertEquals(
             '<a href="https://www.kulttempel.com">www</a>',
-            $this->String->asWwwUrl()
+            $this->value->asWwwUrl()
         );
     }
 
@@ -248,24 +248,25 @@ final class RmStringTest extends TestCase
      */
     public function testShouldReturnStringWithFirstCharInUppercase(): void
     {
-        $this->String = RmString::new('iron Kobra');
+        $this->value = RmString::new('iron Kobra');
         $this->assertEquals(
             'Iron Kobra',
-            $this->String->asFirstUppercase()
+            $this->value->asFirstUppercase()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
-    public function testShouldReturnNullString(): void
+    public function testShouldReturnStringPrefixedWithAnotherString(): void
     {
-        $this->String = RmString::new(null);
-        $this->assertNull(
-            $this->String->asFirstUppercase()->get()
+        $this->value = RmString::new('filter_by');
+        $this->assertEquals(
+            '?filter_by',
+            $this->value->asPrefixed(RmString::new('?'))
         );
     }
 }

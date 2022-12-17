@@ -8,4 +8,8 @@ class RmNullString extends AbstractRmString
     {
         return RmNullString::new(null);
     }
+    public function asPrefixed(RmString $prefix): RmNullString
+    {
+        return RmNullString::new(null);
+    }
 }
