@@ -2,8 +2,6 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\String;
 
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-
 class RmString extends AbstractRmString
 {
     public function asFirstUppercase(): RmString
@@ -11,7 +9,7 @@ class RmString extends AbstractRmString
         return RmString::new(ucfirst($this->value));
     }
 
-    public function asPrefixed(RmString $prefix): RmString
+    public function asPrefixedWidth(RmString $prefix): RmString
     {
         return RmString::new($prefix->concatWith($this));
     }

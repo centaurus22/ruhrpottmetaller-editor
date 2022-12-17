@@ -37,7 +37,7 @@ final class RmNullStringTest extends TestCase
         $this->value = RmNullString::new(null);
         $this->assertEquals(
             '',
-            $this->value->asPrefixed(RmString::new('?'))
+            $this->value->asPrefixedWidth(RmString::new('?'))
         );
     }
 }

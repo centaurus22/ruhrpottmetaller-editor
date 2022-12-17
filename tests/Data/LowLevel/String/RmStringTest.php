@@ -266,7 +266,7 @@ final class RmStringTest extends TestCase
         $this->value = RmString::new('filter_by');
         $this->assertEquals(
             '?filter_by',
-            $this->value->asPrefixed(RmString::new('?'))
+            $this->value->asPrefixedWidth(RmString::new('?'))
         );
     }
 }
