@@ -18,6 +18,7 @@ final class BandMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
@@ -25,6 +26,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\RmArray
@@ -44,7 +46,9 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMock(null, null)
+            new QueryBandDatabaseModelMock(null, null),
+            RmString::new(null),
+            RmString::new(null)
         );
 
         $this->Controller->render();
@@ -63,11 +67,13 @@ final class BandMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
@@ -84,11 +90,52 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMockEmpty(null, null)
+            new QueryBandDatabaseModelMockEmpty(null),
+            RmString::new(null),
+            RmString::new(null)
         );
 
         $this->Controller->render();
 
         $this->assertArrayNotHasKey('cities', $this->Controller->getViewData());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     */
+    public function testShouldSetGetParameterString()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = new BandMainDisplayController(
+            $BaseView,
+            new QueryBandDatabaseModelMockEmpty(null),
+            RmString::new(null),
+            RmString::new('name')
+        );
+
+        $this->Controller->render();
+
+        $this->assertEquals(
+            '?show=bands&order_by=name',
+            ($this->Controller->getViewData())['getParameters']
+        );
     }
 }

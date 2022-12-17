@@ -4,20 +4,22 @@ namespace ruhrpottmetaller\Controller;
 
 use Exception;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 
-class EventMainDisplayController extends AbstractDisplayController
+class EventMainDisplayController extends AbstractDataMainDisplayController
 {
     private QueryEventDatabaseModel $queryEventDatabaseModel;
     private RmDate $month;
 
     public function __construct(
         View $view,
-        QueryEventDatabaseModel $queryEventDatabaseModel
+        QueryEventDatabaseModel $queryEventDatabaseModel,
+        AbstractRmString $filterByValue,
+        AbstractRmString $orderByValue
     ) {
-        parent::__construct($view);
+        parent::__construct($view, $filterByValue, $orderByValue);
         $this->queryEventDatabaseModel = $queryEventDatabaseModel;
     }
 
@@ -31,6 +33,11 @@ class EventMainDisplayController extends AbstractDisplayController
      */
     protected function prepareThisController(): void
     {
+        $this->view->set(
+            'getParameters',
+            $this->getGetParameters(RmString::new('events'))
+        );
+
         $events = $this->queryEventDatabaseModel->getEventsByMonth($this->month);
         $this->view->set('month', $this->month);
 

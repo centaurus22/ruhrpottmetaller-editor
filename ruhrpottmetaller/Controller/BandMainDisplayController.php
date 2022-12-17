@@ -3,35 +3,38 @@
 namespace ruhrpottmetaller\Controller;
 
 use Exception;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\QueryBandDatabaseModel;
-use ruhrpottmetaller\Model\QueryCityDatabaseModel;
 use ruhrpottmetaller\View\View;
 
-class BandMainDisplayController extends AbstractDisplayController
+class BandMainDisplayController extends AbstractDataMainDisplayController
 {
     private QueryBandDatabaseModel $queryBandDatabaseModel;
 
     public function __construct(
         View $view,
-        QueryBandDatabaseModel $queryBandDatabaseModel
+        QueryBandDatabaseModel $queryBandDatabaseModel,
+        AbstractRmString $filterByValue,
+        AbstractRmString $orderByValue
     ) {
-        parent::__construct($view);
+        parent::__construct($view, $filterByValue, $orderByValue);
         $this->queryBandDatabaseModel = $queryBandDatabaseModel;
     }
 
-    /**
-     * @throws Exception
-     */
     protected function prepareThisController(): void
     {
-        $cities = $this->queryBandDatabaseModel->getBands();
+        $this->view->set(
+            'getParameters',
+            $this->getGetParameters(RmString::new('bands'))
+        );
+        $data = $this->queryBandDatabaseModel->getBands();
 
-        if (!$cities->hasCurrent()) {
+        if (!$data->hasCurrent()) {
             $this->view->setTemplate(RmString::new('band_main_empty'));
             return;
         }
 
-        $this->view->set('bands', $cities);
+        $this->view->set('bands', $data);
     }
 }
