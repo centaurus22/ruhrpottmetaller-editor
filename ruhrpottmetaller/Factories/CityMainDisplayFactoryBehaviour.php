@@ -2,19 +2,13 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\AbstractDisplayController;
-use ruhrpottmetaller\Controller\CityMainDisplayController;
+use ruhrpottmetaller\Controller\{AbstractDisplayController, CityMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseConnection;
-use ruhrpottmetaller\Model\QueryCityDatabaseModel;
+use ruhrpottmetaller\Model\{DatabaseConnection, QueryCityDatabaseModel};
 use ruhrpottmetaller\View\View;
 
 class CityMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
 {
-    /**
-     * @throws \Exception
-     */
     public function getDisplayController(
         RmString $templatePath,
         RmString $pathToDatabaseConfig
