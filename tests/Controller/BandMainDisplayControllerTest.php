@@ -46,12 +46,12 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMock(null, null),
-            RmString::new(null),
-            RmString::new(null)
+            new QueryBandDatabaseModelMock(null)
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey('bands', $this->Controller->getViewData());
         $this->assertInstanceOf(
@@ -91,11 +91,11 @@ final class BandMainDisplayControllerTest extends TestCase
         $this->Controller = new BandMainDisplayController(
             $BaseView,
             new QueryBandDatabaseModelMockEmpty(null),
-            RmString::new(null),
-            RmString::new(null)
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayNotHasKey('cities', $this->Controller->getViewData());
     }
@@ -127,7 +127,10 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMockEmpty(null),
+            new QueryBandDatabaseModelMockEmpty(null)
+        );
+
+        $this->Controller->setGetParameters(
             RmString::new(null),
             RmString::new('name')
         );

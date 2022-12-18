@@ -13,17 +13,15 @@ class VenueMainDisplayController extends AbstractDataMainDisplayController
 
     public function __construct(
         View $view,
-        QueryVenueDatabaseModel $queryVenueDatabaseModel,
-        AbstractRmString $filterByParameter,
-        AbstractRmString $orderByParameter
+        QueryVenueDatabaseModel $queryVenueDatabaseModel
     ) {
-        parent::__construct($view, $filterByParameter, $orderByParameter);
+        parent::__construct($view);
         $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;
     }
 
     protected function prepareThisController(): void
     {
-        $this->setGetParameters();
+        $this->transferGetParametersToView();
         $venues = $this->queryVenueDatabaseModel->getVenues();
 
         if (!$venues->hasCurrent()) {

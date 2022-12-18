@@ -46,12 +46,12 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new QueryCityDatabaseModelMock(null, null),
-            RmString::new(null),
-            RmString::new(null)
+            new QueryCityDatabaseModelMock(null)
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey('cities', $this->Controller->getViewData());
         $this->assertInstanceOf(
@@ -91,11 +91,11 @@ final class CityMainDisplayControllerTest extends TestCase
         $this->Controller = new CityMainDisplayController(
             $BaseView,
             new QueryCityDatabaseModelMockEmpty(null, null),
-            RmString::new(null),
-            RmString::new(null)
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayNotHasKey('cities', $this->Controller->getViewData());
     }
@@ -126,12 +126,12 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new QueryCityDatabaseModelMockEmpty(null),
-            RmString::new('B'),
-            RmString::new(null)
+            new QueryCityDatabaseModelMockEmpty(null)
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new('B'), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey(
             'filterByParameter',

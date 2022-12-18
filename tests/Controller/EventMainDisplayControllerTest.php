@@ -58,13 +58,13 @@ final class EventMainDisplayControllerTest extends TestCase
                     null,
                     QueryCityDatabaseModel::new(null)
                 )
-            ),
-            RmString::new(null),
-            RmString::new(null)
+            )
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey('events', $this->Controller->getViewData());
         $this->assertInstanceOf(
@@ -118,7 +118,9 @@ final class EventMainDisplayControllerTest extends TestCase
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayNotHasKey('events', $this->Controller->getViewData());
     }
@@ -170,7 +172,9 @@ final class EventMainDisplayControllerTest extends TestCase
         );
 
         $this->Controller->setMonth(RmDate::new('2022-10'));
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey('month', $this->Controller->getViewData());
         $this->assertInstanceOf(
@@ -224,13 +228,13 @@ final class EventMainDisplayControllerTest extends TestCase
                     null,
                     QueryCityDatabaseModelMock::new(null)
                 )
-            ),
-            RmString::new('2022-11'),
-            RmString::new(null)
+            )
         );
 
         $this->Controller->setMonth(RmDate::new('2022-11'));
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new('2022-11'), RmString::new(null))
+            ->render();
 
         $this->assertEquals(
             '2022-11',

@@ -2,26 +2,23 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use Exception;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\View\View;
 
 class AbstractDataMainDisplayController extends AbstractDisplayController
 {
     protected AbstractRmString $filterByParameter;
     protected AbstractRmString $orderByParameter;
 
-    public function __construct(
-        View $view,
+    public function setGetParameters(
         AbstractRmString $filterByParameter,
-        AbstractRmString $orderByParameter
-    ) {
+        AbstractRmString $orderByParameters
+    ): AbstractDataMainDisplayController {
         $this->filterByParameter = $filterByParameter;
-        $this->orderByParameter = $orderByParameter;
-        parent::__construct($view);
+        $this->orderByParameter = $orderByParameters;
+        return $this;
     }
 
-    protected function setGetParameters(): AbstractDataMainDisplayController
+    protected function transferGetParametersToView(): AbstractDataMainDisplayController
     {
         $this->view->set('filterByParameter', $this->filterByParameter);
         $this->view->set('orderByParameter', $this->orderByParameter);

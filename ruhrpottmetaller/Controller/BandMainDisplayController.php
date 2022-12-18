@@ -14,17 +14,15 @@ class BandMainDisplayController extends AbstractDataMainDisplayController
 
     public function __construct(
         View $view,
-        QueryBandDatabaseModel $queryBandDatabaseModel,
-        AbstractRmString $filterByParameter,
-        AbstractRmString $orderByParameter
+        QueryBandDatabaseModel $queryBandDatabaseModel
     ) {
-        parent::__construct($view, $filterByParameter, $orderByParameter);
+        parent::__construct($view);
         $this->queryBandDatabaseModel = $queryBandDatabaseModel;
     }
 
     protected function prepareThisController(): void
     {
-        $this->setGetParameters();
+        $this->transferGetParametersToView();
         $data = $this->queryBandDatabaseModel->getBands();
 
         if (!$data->hasCurrent()) {

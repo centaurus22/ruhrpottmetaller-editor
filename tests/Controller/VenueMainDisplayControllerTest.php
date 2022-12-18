@@ -50,13 +50,13 @@ final class VenueMainDisplayControllerTest extends TestCase
             $BaseView,
             new QueryVenueDatabaseModelMock(
                 null,
-                new QueryCityDatabaseModelMock(null),
-            ),
-            RmString::new(null),
-            RmString::new(null)
+                new QueryCityDatabaseModelMock(null)
+            )
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayHasKey('venues', $this->Controller->getViewData());
         $this->assertInstanceOf(
@@ -99,12 +99,12 @@ final class VenueMainDisplayControllerTest extends TestCase
             new QueryVenueDatabaseModelMockEmpty(
                 null,
                 new QueryCityDatabaseModelMock(null)
-            ),
-            RmString::new(null),
-            RmString::new(null)
+            )
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new(null), RmString::new(null))
+            ->render();
 
         $this->assertArrayNotHasKey('venues', $this->Controller->getViewData());
     }
@@ -139,12 +139,12 @@ final class VenueMainDisplayControllerTest extends TestCase
             new QueryVenueDatabaseModelMockEmpty(
                 null,
                 new QueryCityDatabaseModelMock(null)
-            ),
-            RmString::new('1'),
-            RmString::new('name')
+            )
         );
 
-        $this->Controller->render();
+        $this->Controller
+            ->setGetParameters(RmString::new('1'), RmString::new('name'))
+            ->render();
 
         $this->assertEquals(
             '1',
