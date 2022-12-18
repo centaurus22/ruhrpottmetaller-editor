@@ -13,4 +13,9 @@ class RmString extends AbstractRmString
     {
         return RmString::new($prefix->concatWith($this));
     }
+
+    public function asSubmitButton(): RmString
+    {
+        return RmString::new('<button type="submit">' . $this->value . '</button>');
+    }
 }
