@@ -29,6 +29,7 @@ final class RmNullStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
