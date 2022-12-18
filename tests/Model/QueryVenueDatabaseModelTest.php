@@ -262,6 +262,44 @@ final class QueryVenueDatabaseModelTest extends TestCase
         );
     }
 
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @covers \ruhrpottmetaller\Model\QueryVenueDatabaseModel
+     * @covers \ruhrpottmetaller\Model\QueryCityDatabaseModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\City
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
+     */
+    public function testShouldGetDefaultUrlFromDatabase(): void
+    {
+        $query[0] = 'INSERT INTO venue SET
+                      name = "JunkYard",
+                      city_id = 1,
+                      url_default = "https://junkyard.ruhr"';
+        $this->connection->query($query[0]);
+        $this->assertEquals(
+            'https://junkyard.ruhr',
+            $this->queryVenueDatabaseModel
+                ->getVenues()
+                ->getCurrent()
+                ->getUrlDefault()
+                ->get()
+        );
+    }
+
     /**
      * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
      * @covers \ruhrpottmetaller\Model\QueryVenueDatabaseModel
@@ -295,6 +333,7 @@ final class QueryVenueDatabaseModelTest extends TestCase
                 ->getName()
                 ->get()
         );
+
         $query[0] = 'INSERT INTO venue SET name = "JunkYard", city_id = 2, is_visible = 0';
         $query[1] = 'INSERT INTO city SET name = "Hagen"';
         $this->connection->query($query[0]);

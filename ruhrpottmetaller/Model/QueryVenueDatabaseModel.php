@@ -32,7 +32,7 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
 
     public function getVenues(): RmArray
     {
-        $query = 'SELECT id, name, city_id, is_visible FROM venue ORDER BY name';
+        $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue ORDER BY name';
         $statement = $this->connection->prepare($query);
         $statement->execute();
         $result = $statement->get_result();
@@ -51,7 +51,7 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
             return NullVenue::new();
         }
 
-        $query = 'SELECT id, name, city_id, is_visible FROM venue WHERE id = ?';
+        $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue WHERE id = ?';
         $statement = $this->connection->prepare($query);
         $venueIdSql = $venueId->get();
         $statement->bind_param('i', $venueIdSql);
@@ -69,6 +69,7 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
             ->setId(RmInt::new($object->id))
             ->setName(RmString::new($object->name))
             ->setCity($city)
+            ->setUrlDefault(RmString::new($object->url_default))
             ->setIsVisible(RmBool::new($object->is_visible));
     }
 }
