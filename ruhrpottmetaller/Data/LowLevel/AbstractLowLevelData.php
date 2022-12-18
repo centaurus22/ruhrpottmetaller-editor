@@ -25,9 +25,9 @@ abstract class AbstractLowLevelData implements IData
         return RmString::new('<div class="rm_table_cell">' . $this->value . '</div>');
     }
 
-    public function asHiddenTableInput(RmString $fieldName, RmInt $rowId): RmString
+    public function asHiddenTableInput(RmString $fieldName): RmString
     {
-        $format = '<input type="hidden" id="%1$s_%2$s" name="%1$s" value="%3$s">';
-        return RmString::new(sprintf($format, $fieldName->get(), $rowId->get(), $this->value));
+        $format = '<input type="hidden" name="%1$s" value="%2$s">';
+        return RmString::new(sprintf($format, $fieldName->get(), $this->value));
     }
 }

@@ -211,13 +211,10 @@ final class RmIntTest extends TestCase
     public function testShouldReturnAHiddenInputField(): void
     {
         $this->value = RmInt::new(23);
-        $expectedString = '<input type="hidden" id="id_12" name="id" value="23">';
+        $expectedString = '<input type="hidden" name="id" value="23">';
         $this->assertEquals(
             $expectedString,
-            $this->value->asHiddenTableInput(
-                RmString::new('id'),
-                RmInt::new(12)
-            )
+            $this->value->asHiddenTableInput(RmString::new('id'))
         );
     }
 }
