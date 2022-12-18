@@ -11,7 +11,6 @@ use ruhrpottmetaller\View\View;
 class EventMainDisplayController extends AbstractDataMainDisplayController
 {
     private QueryEventDatabaseModel $queryEventDatabaseModel;
-    private RmDate $month;
 
     public function __construct(
         View $view,
@@ -21,20 +20,12 @@ class EventMainDisplayController extends AbstractDataMainDisplayController
         $this->queryEventDatabaseModel = $queryEventDatabaseModel;
     }
 
-    public function setMonth(RmDate $month)
-    {
-        $this->month = $month;
-    }
-
-    /**
-     * @throws Exception
-     */
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
 
-        $events = $this->queryEventDatabaseModel->getEventsByMonth($this->month);
-        $this->view->set('month', $this->month);
+        $events = $this->queryEventDatabaseModel
+            ->getEventsByMonth(RmDate::new('2021-11'));
 
         if (!$events->hasCurrent()) {
             $this->view->setTemplate(RmString::new('event_main_empty'));

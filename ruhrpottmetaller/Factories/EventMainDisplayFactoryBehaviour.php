@@ -14,9 +14,6 @@ use ruhrpottmetaller\View\View;
 
 class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
 {
-    /**
-     * @throws \Exception
-     */
     public function getDisplayController(
         RmString $templatePath,
         RmString $pathToDatabaseConfig
@@ -25,7 +22,7 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
         $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
             ->connect()
             ->getConnection();
-        $mainDisplayController = new EventMainDisplayController(
+        return new EventMainDisplayController(
             View::new(
                 $templatePath,
                 RmString::new('event_main')
@@ -38,7 +35,5 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 )
             )
         );
-        $mainDisplayController->setMonth(RmDate::new('2022-10'));
-        return $mainDisplayController;
     }
 }
