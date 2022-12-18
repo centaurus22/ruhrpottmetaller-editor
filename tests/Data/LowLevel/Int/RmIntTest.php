@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 final class RmIntTest extends TestCase
 {
-    private AbstractRmInt $Int;
+    private AbstractRmInt $value;
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
@@ -19,9 +19,9 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnSameIntAfterAcceptingInt(): void
     {
-        $this->Int = RmInt::new(2);
-        $this->assertIsInt($this->Int->get());
-        $this->assertEquals(2, $this->Int->get());
+        $this->value = RmInt::new(2);
+        $this->assertIsInt($this->value->get());
+        $this->assertEquals(2, $this->value->get());
     }
 
     /**
@@ -31,9 +31,9 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnConvertibleStringAsIntegerAfterAcceptingString(): void
     {
-        $this->Int = AbstractRmInt::new('33');
-        $this->assertIsInt($this->Int->get());
-        $this->assertEquals(33, $this->Int->get());
+        $this->value = AbstractRmInt::new('33');
+        $this->assertIsInt($this->value->get());
+        $this->assertEquals(33, $this->value->get());
     }
 
     /**
@@ -42,10 +42,10 @@ final class RmIntTest extends TestCase
      */
     public function testGetItShouldReturnIntegerAsStringAfterAcceptingInteger(): void
     {
-        $this->Int = AbstractRmInt::new(42);
-        $this->Int->set('42');
-        $this->assertIsInt($this->Int->get());
-        $this->assertEquals(42, $this->Int->get());
+        $this->value = AbstractRmInt::new(42);
+        $this->value->set('42');
+        $this->assertIsInt($this->value->get());
+        $this->assertEquals(42, $this->value->get());
     }
 
     /**
@@ -54,8 +54,8 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNull(): void
     {
-        $this->Int = AbstractRmInt::new(null);
-        $this->assertTrue(is_null($this->Int->get()));
+        $this->value = AbstractRmInt::new(null);
+        $this->assertTrue(is_null($this->value->get()));
     }
 
     /**
@@ -64,8 +64,8 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnNullAfterAcceptingNullBySetId(): void
     {
-        $this->Int = AbstractRmInt::new(3)->set(null);
-        $this->assertInstanceOf(RmNullInt::class, $this->Int);
+        $this->value = AbstractRmInt::new(3)->set(null);
+        $this->assertInstanceOf(RmNullInt::class, $this->value);
     }
 
     /**
@@ -75,8 +75,8 @@ final class RmIntTest extends TestCase
     public function testShouldOutputStringAfterAcceptingIt(): void
     {
         $this->expectOutputString('23');
-        $this->Int = AbstractRmInt::new(23);
-        echo $this->Int;
+        $this->value = AbstractRmInt::new(23);
+        echo $this->value;
     }
 
     /**
@@ -86,8 +86,8 @@ final class RmIntTest extends TestCase
     public function testShouldOutputEmptyStringAfterAcceptingNull(): void
     {
         $this->expectOutputString('');
-        $this->Int = AbstractRmInt::new(null);
-        echo $this->Int;
+        $this->value = AbstractRmInt::new(null);
+        echo $this->value;
     }
 
     /**
@@ -97,9 +97,9 @@ final class RmIntTest extends TestCase
      */
     public function testNewShouldAcceptIntAndGetShouldProvideItAgain(): void
     {
-        $this->Int = RmInt::new(3);
-        $this->assertIsInt($this->Int->get());
-        $this->assertEquals(3, $this->Int->get());
+        $this->value = RmInt::new(3);
+        $this->assertIsInt($this->value->get());
+        $this->assertEquals(3, $this->value->get());
     }
 
     /**
@@ -130,8 +130,8 @@ final class RmIntTest extends TestCase
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
-        $this->Int = RmInt::new(12)->set(24);
-        $this->assertEquals(24, $this->Int->get());
+        $this->value = RmInt::new(12)->set(24);
+        $this->assertEquals(24, $this->value->get());
     }
 
     /**
@@ -143,8 +143,8 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnStringObject(): void
     {
-        $this->Int = RmInt::new(12);
-        $this->assertInstanceOf(RmString::class, $this->Int->asString());
+        $this->value = RmInt::new(12);
+        $this->assertInstanceOf(RmString::class, $this->value->asString());
     }
 
     /**
@@ -156,8 +156,8 @@ final class RmIntTest extends TestCase
      */
     public function testShouldReturnStringObjectWhichContainTheIntAsString(): void
     {
-        $this->Int = RmInt::new(12);
-        $String = $this->Int->asString();
+        $this->value = RmInt::new(12);
+        $String = $this->value->asString();
         $this->assertIsString($String->get());
         $this->assertEquals('12', $String->get());
     }
@@ -196,7 +196,28 @@ final class RmIntTest extends TestCase
      */
     public function testIsNullShouldReturnTrue(): void
     {
-        $this->Int = RmInt::new(null);
-        $this->assertEquals(true, $this->Int->isNull());
+        $this->value = RmInt::new(null);
+        $this->assertEquals(true, $this->value->isNull());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnAHiddenInputField(): void
+    {
+        $this->value = RmInt::new(23);
+        $expectedString = '<input type="hidden" id="id_12" name="id" value="23">';
+        $this->assertEquals(
+            $expectedString,
+            $this->value->asHiddenTableInput(
+                RmString::new('id'),
+                RmInt::new(12)
+            )
+        );
     }
 }
