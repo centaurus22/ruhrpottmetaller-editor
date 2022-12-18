@@ -9,10 +9,14 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?=RmString::new('City')->asTableCell()?>
         <?=RmString::new('Default Url')->asTableCell()?>
         <?=RmString::new('Visible')->asTableCell()?>
+        <?=RmString::new('')->asTableCell()?>
     </div>
     <?php while ($this->get('venues')->hasCurrent()) : ?>
         <?php $data = $this->get('venues')->getCurrent(); ?>
-        <div class="rm_table_row">
+        <form action="" class="rm_table_row">
+            <?=RmString::new('venues')
+                ->asHiddenTableInput(RmString::new('show')) ?>
+            <?=$data->getId()->asHiddenTableInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
                     RmString::new('name'),
@@ -33,7 +37,8 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     $data->getId()
                 )
                 ->asTableCell() ?>
-        </div>
+            <?=RmString::new('Save')->asSubmitButton()->asTableCell()?>
+        </form>
         <?php $this->get('venues')->pointAtNext(); ?>
     <?php endwhile; ?>
 </div>
