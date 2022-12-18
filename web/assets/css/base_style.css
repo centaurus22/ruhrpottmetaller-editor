@@ -104,6 +104,10 @@ footer {
     border-top-width: 1px;
 }
 
+.rm_table_cell:last-child {
+    text-align: right;
+}
+
 .rm_table_cell > input {
     background: gainsboro;
     width: 400px;
