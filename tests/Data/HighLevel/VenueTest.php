@@ -5,12 +5,9 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\HighLevel\Venue;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\HighLevel\{City, Venue};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt};
+use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
 
 final class VenueTest extends TestCase
 {
@@ -49,6 +46,24 @@ final class VenueTest extends TestCase
         $this->assertEquals(
             '123',
             $this->DataSet->getId()->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     */
+    public function testShouldSetDefaultUrlAndGetSameDefaultUrlBack(): void
+    {
+        $this->DataSet = Venue::new();
+        $this->DataSet->setUrlDefault(RmString::new('www.matrix-bochum.de'));
+        $this->assertEquals(
+            'www.matrix-bochum.de',
+            $this->DataSet->getUrlDefault()->get()
         );
     }
 

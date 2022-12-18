@@ -9,11 +9,11 @@ use ruhrpottmetaller\Data\HighLevel\{NullVenue, NullCity};
 
 final class NullVenueTest extends TestCase
 {
-    private NullVenue $DataSet;
+    private NullVenue $dataSet;
 
     protected function setUp(): void
     {
-        $this->DataSet = NullVenue::new();
+        $this->dataSet = NullVenue::new();
     }
 
     /**
@@ -28,7 +28,7 @@ final class NullVenueTest extends TestCase
      */
     public function testShouldGetNullStringAsTheName(): void
     {
-        $this->assertTrue($this->DataSet->getName()->isNull());
+        $this->assertTrue($this->dataSet->getName()->isNull());
     }
 
     /**
@@ -43,7 +43,22 @@ final class NullVenueTest extends TestCase
      */
     public function testShouldGetNullIntAsTheId(): void
     {
-        $this->assertTrue($this->DataSet->getId()->isNull());
+        $this->assertTrue($this->dataSet->getId()->isNull());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelNullData
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testShouldGetNullStringAsTheDefaultUrl(): void
+    {
+        $this->assertTrue($this->dataSet->getUrlDefault()->isNull());
     }
 
     /**
@@ -56,7 +71,7 @@ final class NullVenueTest extends TestCase
      */
     public function testShouldGetNullBoolAsIsVisibleValue(): void
     {
-        $this->assertNull($this->DataSet->getIsVisible()->get());
+        $this->assertNull($this->dataSet->getIsVisible()->get());
     }
 
     /**
@@ -72,7 +87,7 @@ final class NullVenueTest extends TestCase
     {
         $this->assertInstanceOf(
             NullCity::class,
-            $this->DataSet->getCity()
+            $this->dataSet->getCity()
         );
     }
 
@@ -87,6 +102,6 @@ final class NullVenueTest extends TestCase
      */
     public function testShouldCombineVenueNameAndCityName(): void
     {
-        $this->assertTrue($this->DataSet->asVenueAndCity()->isNull());
+        $this->assertTrue($this->dataSet->asVenueAndCity()->isNull());
     }
 }

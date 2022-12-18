@@ -11,6 +11,7 @@ interface IVenue
     public function getId(): AbstractRmInt;
     public function getName(): AbstractRmString;
     public function getCity(): ICity;
+    public function getUrlDefault(): AbstractRmString;
     public function getIsVisible(): AbstractRmBool;
     public function asVenueAndCity(): AbstractRmString;
 }

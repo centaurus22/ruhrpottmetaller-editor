@@ -13,6 +13,11 @@ class NullVenue extends AbstractHighLevelNullData implements IData, IVenue
         return NullCity::new();
     }
 
+    public function getUrlDefault(): RmNullString
+    {
+        return RmNullString::new(null);
+    }
+
     public function getIsVisible(): RmNullBool
     {
         return RmNullBool::new(null);
