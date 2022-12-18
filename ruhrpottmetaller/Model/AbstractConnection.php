@@ -2,7 +2,6 @@
 
 namespace ruhrpottmetaller\Model;
 
-abstract class AbstractConnectHelper
+abstract class AbstractConnection
 {
-
 }
