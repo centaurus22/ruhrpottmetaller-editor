@@ -3,8 +3,7 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\AbstractRmObject;
-use ruhrpottmetaller\Controller\AbstractDisplayController;
-use ruhrpottmetaller\Controller\BaseDisplayController;
+use ruhrpottmetaller\Controller\{AbstractDisplayController, BaseDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
@@ -19,31 +18,6 @@ class DisplayFactory extends AbstractRmObject
         $this->templatePath = RmString::new('../templates/');
     }
 
-    /**
-     * @throws \Exception
-     */
-    public function getDisplayController(): AbstractDisplayController
-    {
-        $baseDisplayController =  new BaseDisplayController(
-            View::new(
-                $this->templatePath,
-                RmString::new('ruhrpottmetaller-editor')
-            )
-        );
-
-        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        return $baseDisplayController->addSubController(
-            'headDisplayController',
-            $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
-        )->addSubController(
-            'mainDisplayController',
-            $this->mainDisplayFactoryBehaviour->getDisplayController(
-                $this->templatePath,
-                $pathToDatabaseConfig
-            )
-        );
-    }
-
     public function setFactoryBehaviours(array $input): DisplayFactory
     {
         $allowedBehaviours = [
@@ -54,11 +28,11 @@ class DisplayFactory extends AbstractRmObject
         ];
 
         if (
-            isset($input['display'])
-            and array_key_exists($input['display'], $allowedBehaviours)
+            isset($input['show'])
+            and array_key_exists($input['show'], $allowedBehaviours)
         ) {
-            $mainBehaviourClass = $allowedBehaviours[$input['display']];
-            $pageName = RmString::new($input['display']);
+            $mainBehaviourClass = $allowedBehaviours[$input['show']];
+            $pageName = RmString::new($input['show']);
         } else {
             $mainBehaviourClass = 'Event';
             $pageName = RmString::new('events');
@@ -68,5 +42,34 @@ class DisplayFactory extends AbstractRmObject
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
         $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
         return $this;
+    }
+
+    public function getDisplayController(array $input): AbstractDisplayController
+    {
+        $baseDisplayController =  new BaseDisplayController(
+            View::new(
+                $this->templatePath,
+                RmString::new('ruhrpottmetaller-editor')
+            )
+        );
+
+        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
+        $mainDisplayController = $this->mainDisplayFactoryBehaviour->getDisplayController(
+            $this->templatePath,
+            $pathToDatabaseConfig
+        )->setGetParameters(
+            RmString::new($input['filter_by'] ?? null),
+            RmString::new($input['order_by'] ?? null)
+        );
+
+        return $baseDisplayController
+            ->addSubController(
+                'headDisplayController',
+                $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
+            )
+            ->addSubController(
+                'mainDisplayController',
+                $mainDisplayController
+            );
     }
 }

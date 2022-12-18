@@ -14,7 +14,7 @@
 
 while ($this->get('menu')->hasCurrent()) {
     printf(
-        '<li><a href="?display=%1$s">%1$s</a></li>',
+        '<li><a href="?show=%1$s">%1$s</a></li>',
         $this->get('menu')->getCurrent()->get()
     );
     $this->get('menu')->pointAtNext();
