@@ -3,27 +3,27 @@
 namespace ruhrpottmetaller\Controller;
 
 use Exception;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
 use ruhrpottmetaller\Model\QueryVenueDatabaseModel;
 use ruhrpottmetaller\View\View;
 
-class VenueMainDisplayController extends AbstractDisplayController
+class VenueMainDisplayController extends AbstractDataMainDisplayController
 {
     private QueryVenueDatabaseModel $queryVenueDatabaseModel;
 
     public function __construct(
         View $view,
-        QueryVenueDatabaseModel $queryVenueDatabaseModel
+        QueryVenueDatabaseModel $queryVenueDatabaseModel,
+        AbstractRmString $filterByParameter,
+        AbstractRmString $orderByParameter
     ) {
-        parent::__construct($view);
+        parent::__construct($view, $filterByParameter, $orderByParameter);
         $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;
     }
 
-    /**
-     * @throws Exception
-     */
     protected function prepareThisController(): void
     {
+        $this->setGetParameters();
         $venues = $this->queryVenueDatabaseModel->getVenues();
 
         if (!$venues->hasCurrent()) {

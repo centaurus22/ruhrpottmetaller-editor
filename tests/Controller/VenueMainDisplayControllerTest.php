@@ -18,6 +18,7 @@ final class VenueMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -26,6 +27,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
      * @uses \ruhrpottmetaller\Data\RmArray
@@ -48,8 +50,10 @@ final class VenueMainDisplayControllerTest extends TestCase
             $BaseView,
             new QueryVenueDatabaseModelMock(
                 null,
-                new QueryCityDatabaseModelMock(null)
-            )
+                new QueryCityDatabaseModelMock(null),
+            ),
+            RmString::new(null),
+            RmString::new(null)
         );
 
         $this->Controller->render();
@@ -68,11 +72,13 @@ final class VenueMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
@@ -93,11 +99,61 @@ final class VenueMainDisplayControllerTest extends TestCase
             new QueryVenueDatabaseModelMockEmpty(
                 null,
                 new QueryCityDatabaseModelMock(null)
-            )
+            ),
+            RmString::new(null),
+            RmString::new(null)
         );
 
         $this->Controller->render();
 
         $this->assertArrayNotHasKey('venues', $this->Controller->getViewData());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\VenueMainDisplayController
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @uses \ruhrpottmetaller\Model\QueryVenueDatabaseModel
+     */
+    public function testShouldSetGetParameterString()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = new VenueMainDisplayController(
+            $BaseView,
+            new QueryVenueDatabaseModelMockEmpty(
+                null,
+                new QueryCityDatabaseModelMock(null)
+            ),
+            RmString::new('1'),
+            RmString::new('name')
+        );
+
+        $this->Controller->render();
+
+        $this->assertEquals(
+            '1',
+            ($this->Controller->getViewData())['filterByParameter']
+        );
+
+        $this->assertEquals(
+            'name',
+            ($this->Controller->getViewData())['orderByParameter']
+        );
     }
 }

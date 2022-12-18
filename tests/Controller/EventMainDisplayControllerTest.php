@@ -233,8 +233,8 @@ final class EventMainDisplayControllerTest extends TestCase
         $this->Controller->render();
 
         $this->assertEquals(
-            '?show=events&filter_by=2022-11',
-            ($this->Controller->getViewData())['getParameters']
+            '2022-11',
+            ($this->Controller->getViewData())['filterByParameter']
         );
     }
 }

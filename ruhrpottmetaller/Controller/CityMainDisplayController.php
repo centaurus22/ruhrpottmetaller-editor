@@ -14,19 +14,16 @@ class CityMainDisplayController extends AbstractDataMainDisplayController
     public function __construct(
         View $view,
         QueryCityDatabaseModel $queryCityDatabaseModel,
-        AbstractRmString $filterByValue,
-        AbstractRmString $orderByValue
+        AbstractRmString $filterByParameter,
+        AbstractRmString $orderByParameter
     ) {
-        parent::__construct($view, $filterByValue, $orderByValue);
+        parent::__construct($view, $filterByParameter, $orderByParameter);
         $this->queryCityDatabaseModel = $queryCityDatabaseModel;
     }
 
     protected function prepareThisController(): void
     {
-        $this->view->set(
-            'getParameters',
-            $this->getGetParameters(RmString::new('cities'))
-        );
+        $this->setGetParameters();
         $cities = $this->queryCityDatabaseModel->getCities();
 
         if (!$cities->hasCurrent()) {

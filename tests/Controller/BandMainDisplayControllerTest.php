@@ -116,6 +116,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      */
     public function testShouldSetGetParameterString()
     {
@@ -133,9 +134,13 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller->render();
 
+        $this->assertTrue(
+            (($this->Controller->getViewData())['filterByParameter'])->isNull()
+        );
+
         $this->assertEquals(
-            '?show=bands&order_by=name',
-            ($this->Controller->getViewData())['getParameters']
+            'name',
+            ($this->Controller->getViewData())['orderByParameter']
         );
     }
 }

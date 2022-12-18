@@ -16,10 +16,10 @@ class EventMainDisplayController extends AbstractDataMainDisplayController
     public function __construct(
         View $view,
         QueryEventDatabaseModel $queryEventDatabaseModel,
-        AbstractRmString $filterByValue,
-        AbstractRmString $orderByValue
+        AbstractRmString $filterByParameter,
+        AbstractRmString $orderByParameter
     ) {
-        parent::__construct($view, $filterByValue, $orderByValue);
+        parent::__construct($view, $filterByParameter, $orderByParameter);
         $this->queryEventDatabaseModel = $queryEventDatabaseModel;
     }
 
@@ -33,10 +33,7 @@ class EventMainDisplayController extends AbstractDataMainDisplayController
      */
     protected function prepareThisController(): void
     {
-        $this->view->set(
-            'getParameters',
-            $this->getGetParameters(RmString::new('events'))
-        );
+        $this->setGetParameters();
 
         $events = $this->queryEventDatabaseModel->getEventsByMonth($this->month);
         $this->view->set('month', $this->month);

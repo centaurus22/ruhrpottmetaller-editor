@@ -117,7 +117,7 @@ final class CityMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
      */
-    public function testShouldSetGetParameterString()
+    public function testShouldSetGetParameters()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
@@ -127,98 +127,20 @@ final class CityMainDisplayControllerTest extends TestCase
         $this->Controller = new CityMainDisplayController(
             $BaseView,
             new QueryCityDatabaseModelMockEmpty(null),
-            RmString::new(null),
+            RmString::new('B'),
             RmString::new(null)
         );
 
         $this->Controller->render();
 
         $this->assertArrayHasKey(
-            'getParameters',
+            'filterByParameter',
             $this->Controller->getViewData()
         );
 
         $this->assertEquals(
-            '?show=cities',
-            ($this->Controller->getViewData())['getParameters']
-        );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
-     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
-     * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
-     */
-    public function testShouldSetGetParameterStringContainingFilter()
-    {
-        $BaseView = View::new(
-            RmString::new('./tests/Controller/templates/'),
-            RmString::new('testTemplate')
-        );
-
-        $this->Controller = new CityMainDisplayController(
-            $BaseView,
-            new QueryCityDatabaseModelMockEmpty(null),
-            RmString::new('A'),
-            RmString::new(null)
-        );
-
-        $this->Controller->render();
-
-        $this->assertEquals(
-            '?show=cities&filter_by=A',
-            ($this->Controller->getViewData())['getParameters']
-        );
-    }
-
-/**
- * @covers \ruhrpottmetaller\AbstractRmObject
- * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
- * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
- * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
- * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
- * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
- * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
- * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
- * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
- * @uses \ruhrpottmetaller\Data\RmArray
- * @uses \ruhrpottmetaller\Controller\BaseDisplayController
- * @uses \ruhrpottmetaller\View\View
- * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
- * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
- * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
- */
-    public function testShouldSetGetParameterStringContainingOrder()
-    {
-        $BaseView = View::new(
-            RmString::new('./tests/Controller/templates/'),
-            RmString::new('testTemplate')
-        );
-
-        $this->Controller = new CityMainDisplayController(
-            $BaseView,
-            new QueryCityDatabaseModelMockEmpty(null),
-            RmString::new(null),
-            RmString::new('name')
-        );
-
-        $this->Controller->render();
-
-        $this->assertEquals(
-            '?show=cities&order_by=name',
-            ($this->Controller->getViewData())['getParameters']
+            'B',
+            ($this->Controller->getViewData())['filterByParameter']
         );
     }
 }
