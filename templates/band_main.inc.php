@@ -7,10 +7,14 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
     <div class="rm_table_header">
         <?=RmString::new('Name')->asTableCell()?>
         <?=RmString::new('Visible')->asTableCell()?>
+        <?=RmString::new('')->asTableCell()?>
     </div>
     <?php while ($this->get('bands')->hasCurrent()) : ?>
         <?php $data = $this->get('bands')->getCurrent(); ?>
-        <div class="rm_table_row">
+        <form action="" class="rm_table_row">
+            <?=RmString::new('bands')
+                ->asHiddenTableInput(RmString::new('show')) ?>
+            <?=$data->getId()->asHiddenTableInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
                     RmString::new('name'),
@@ -25,7 +29,8 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     $data->getId()
                 )
                 ->asTableCell() ?>
-        </div>
+            <?=RmString::new('Save')->asSubmitButton()->asTableCell()?>
+        </form>
         <?php $this->get('bands')->pointAtNext(); ?>
     <?php endwhile; ?>
 </div>
