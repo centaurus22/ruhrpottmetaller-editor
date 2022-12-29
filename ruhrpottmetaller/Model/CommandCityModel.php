@@ -6,7 +6,7 @@ use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class CommandCityModel extends AbstractModel
+class CommandCityModel extends AbstractCommandModel
 {
     public static function new(?\mysqli $connection): CommandCityModel
     {
@@ -16,11 +16,10 @@ class CommandCityModel extends AbstractModel
     public function updateCity(RmInt $id, RmString $name, AbstractRmBool $isVisible)
     {
         $query = 'UPDATE city SET name = ?, is_visible = ? WHERE id = ?';
-        $statement = $this->connection->prepare($query);
-        $isVisibleSql = $isVisible->get();
-        $idSql = $id->get();
-        $statement->bind_param('sii', $name, $isVisibleSql, $idSql);
-        $statement->execute();
-        $statement->close();
+        $this->query(
+            $query,
+            'sii',
+            [$name->get(), $isVisible->get(), $id->get()]
+        );
     }
 }
