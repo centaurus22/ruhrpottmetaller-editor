@@ -403,7 +403,7 @@ final class QueryEventDatabaseModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      */
-    public function testQueryConcertDataSetShouldContainVenueNameFromDatabase(): void
+    public function testQueryConcertDataSetShouldContainVenueAndCityNameFromDatabase(): void
     {
         $query[] = 'INSERT INTO event SET venue_id = 1, date_start = "2022-06-18"';
         $query[] = 'INSERT INTO venue SET name = "Turock", city_id = 1';
@@ -412,55 +412,11 @@ final class QueryEventDatabaseModelTest extends TestCase
         $this->databaseConnection->query($query[1]);
         $this->databaseConnection->query($query[2]);
         $this->assertEquals(
-            'Turock',
+            'Turock, Essen',
             $this->QueryEventDatabaseModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
-                ->getVenue()
-                ->getName()
-                ->get()
-        );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\Model\AbstractDatabaseModel
-     * @covers \ruhrpottmetaller\Model\QueryEventDatabaseModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityDatabaseModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueDatabaseModel
-     * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
-     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses   \ruhrpottmetaller\Data\HighLevel\City
-     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
-     * @uses   \ruhrpottmetaller\Data\RmArray
-     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
-     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
-     * @uses   \ruhrpottmetaller\Model\DatabaseConnection
-     */
-    public function testQueryConcertDataSetShouldContainCityNameFromDatabase(): void
-    {
-        $query[] = 'INSERT INTO event SET venue_id = 1, date_start = "2022-06-18"';
-        $query[] = 'INSERT INTO venue SET name = "Turock", city_id = 1';
-        $query[] = 'INSERT INTO city SET name = "Essen"';
-        $this->databaseConnection->query($query[0]);
-        $this->databaseConnection->query($query[1]);
-        $this->databaseConnection->query($query[2]);
-        $this->assertEquals(
-            'Essen',
-            $this->QueryEventDatabaseModel
-                ->getEventsByMonth(RmDate::new('2022-06'))
-                ->getCurrent()
-                ->getVenue()
-                ->getCityName()
-                ->get()
+                ->getVenueAndCityName()
         );
     }
 
