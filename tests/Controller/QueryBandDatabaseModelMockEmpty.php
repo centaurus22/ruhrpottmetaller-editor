@@ -3,9 +3,9 @@
 namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryBandDatabaseModel;
+use ruhrpottmetaller\Model\QueryBandModel;
 
-class QueryBandDatabaseModelMockEmpty extends QueryBandDatabaseModel
+class QueryBandDatabaseModelMockEmpty extends QueryBandModel
 {
     public function getBands(): RmArray
     {

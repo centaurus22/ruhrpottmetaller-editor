@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, VenueMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{DatabaseConnection, QueryCityDatabaseModel, QueryVenueDatabaseModel};
+use ruhrpottmetaller\Model\{Connection, QueryCityModel, QueryVenueModel};
 use ruhrpottmetaller\View\View;
 
 class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
@@ -14,7 +14,7 @@ class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
         RmString $pathToDatabaseConfig
     ): AbstractDisplayController {
         $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
+        $databaseConnection = Connection::new($pathToDatabaseConfig)
             ->connect()
             ->getConnection();
         return new VenueMainDisplayController(
@@ -22,9 +22,9 @@ class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('venue_main')
             ),
-            QueryVenueDatabaseModel::new(
+            QueryVenueModel::new(
                 $databaseConnection,
-                QueryCityDatabaseModel::new($databaseConnection)
+                QueryCityModel::new($databaseConnection)
             )
         );
     }

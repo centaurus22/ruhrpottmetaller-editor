@@ -9,13 +9,13 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryVenueDatabaseModel extends AbstractDatabaseModel
+class QueryVenueModel extends AbstractModel
 {
-    private QueryCityDatabaseModel $queryCityDatabaseModel;
+    private QueryCityModel $queryCityDatabaseModel;
 
     public function __construct(
         ?\mysqli $connection,
-        QueryCityDatabaseModel $queryCityDatabaseModel
+        QueryCityModel $queryCityDatabaseModel
     ) {
         parent::__construct(
             $this->connection = $connection,
@@ -25,7 +25,7 @@ class QueryVenueDatabaseModel extends AbstractDatabaseModel
 
     public static function new(
         ?\mysqli $connection,
-        QueryCityDatabaseModel $queryCityDatabaseModel
+        QueryCityModel $queryCityDatabaseModel
     ) {
         return new static($connection, $queryCityDatabaseModel);
     }

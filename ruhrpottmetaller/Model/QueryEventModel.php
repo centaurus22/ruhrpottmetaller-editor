@@ -12,13 +12,13 @@ use ruhrpottmetaller\Data\LowLevel\{
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryEventDatabaseModel extends AbstractDatabaseModel
+class QueryEventModel extends AbstractModel
 {
-    private QueryVenueDatabaseModel $queryVenueDatabaseModel;
+    private QueryVenueModel $queryVenueDatabaseModel;
 
     public function __construct(
         ?\mysqli $connection,
-        QueryVenueDatabaseModel $queryVenueDatabaseModel
+        QueryVenueModel $queryVenueDatabaseModel
     ) {
         parent::__construct($connection);
         $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;
@@ -26,8 +26,8 @@ class QueryEventDatabaseModel extends AbstractDatabaseModel
 
     public static function new(
         ?\mysqli $connection,
-        QueryVenueDatabaseModel $queryVenueDatabaseModel
-    ): QueryEventDatabaseModel {
+        QueryVenueModel $queryVenueDatabaseModel
+    ): QueryEventModel {
         return new static($connection, $queryVenueDatabaseModel);
     }
 

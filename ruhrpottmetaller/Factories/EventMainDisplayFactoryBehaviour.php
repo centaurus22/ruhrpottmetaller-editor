@@ -4,12 +4,12 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, EventMainDisplayController};
 use ruhrpottmetaller\Model\{
-    DatabaseConnection,
-    QueryCityDatabaseModel,
-    QueryEventDatabaseModel,
-    QueryVenueDatabaseModel
+    Connection,
+    QueryCityModel,
+    QueryEventModel,
+    QueryVenueModel
 };
-use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
 class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
@@ -19,7 +19,7 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
         RmString $pathToDatabaseConfig
     ): AbstractDisplayController {
         $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
+        $databaseConnection = Connection::new($pathToDatabaseConfig)
             ->connect()
             ->getConnection();
         return new EventMainDisplayController(
@@ -27,11 +27,11 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('event_main')
             ),
-            QueryEventDatabaseModel::new(
+            QueryEventModel::new(
                 $databaseConnection,
-                QueryVenueDatabaseModel::new(
+                QueryVenueModel::new(
                     $databaseConnection,
-                    QueryCityDatabaseModel::new($databaseConnection)
+                    QueryCityModel::new($databaseConnection)
                 )
             )
         );
