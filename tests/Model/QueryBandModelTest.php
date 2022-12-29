@@ -37,6 +37,7 @@ final class QueryBandModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -55,6 +56,8 @@ final class QueryBandModelTest extends TestCase
     }
 
     /**
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\QueryBandModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\AbstractRmObject
@@ -69,7 +72,6 @@ final class QueryBandModelTest extends TestCase
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses   \ruhrpottmetaller\Model\AbstractModel
      */
     public function testArrayShouldContainEntryIfEntryInDatabase(): void
     {
@@ -83,6 +85,7 @@ final class QueryBandModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -111,6 +114,7 @@ final class QueryBandModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\QueryBandModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -143,6 +147,7 @@ final class QueryBandModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -174,7 +179,7 @@ final class QueryBandModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\QueryBandModel
-     * @throws \Exception
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
