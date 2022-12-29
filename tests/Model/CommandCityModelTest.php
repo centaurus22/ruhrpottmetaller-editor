@@ -40,6 +40,7 @@ final class CommandCityModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\CommandCityModel
      * @covers \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
