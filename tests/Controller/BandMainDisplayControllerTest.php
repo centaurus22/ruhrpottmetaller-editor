@@ -35,7 +35,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @uses \ruhrpottmetaller\Model\AbstractModel
      */
     public function testShouldSetBandList()
     {
@@ -79,7 +79,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @uses \ruhrpottmetaller\Model\AbstractModel
      */
     public function testShouldNotSetEmptyBandList()
     {
@@ -115,7 +115,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Model\AbstractDatabaseModel
+     * @uses \ruhrpottmetaller\Model\AbstractModel
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      */
     public function testShouldSetGetParameterString()

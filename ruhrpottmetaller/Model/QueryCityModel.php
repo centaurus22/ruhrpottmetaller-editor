@@ -9,9 +9,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryCityDatabaseModel extends AbstractDatabaseModel
+class QueryCityModel extends AbstractQueryModel
 {
-    public static function new(?\mysqli $connection): QueryCityDatabaseModel
+    public static function new(?\mysqli $connection): QueryCityModel
     {
         return new static($connection);
     }
@@ -19,16 +19,7 @@ class QueryCityDatabaseModel extends AbstractDatabaseModel
     public function getCities(): RmArray
     {
         $query = 'SELECT id, name, is_visible FROM city ORDER BY name';
-        $statement = $this->connection->prepare($query);
-        $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-
-        $array = RmArray::new();
-        while ($object = $result->fetch_object()) {
-            $array->add($this->getCityFromDatabaseResult($object));
-        }
-        return $array;
+        return $this->query($query);
     }
 
 
@@ -40,16 +31,10 @@ class QueryCityDatabaseModel extends AbstractDatabaseModel
         }
 
         $query = 'SELECT id, name, is_visible FROM city WHERE id = ?';
-        $statement = $this->connection->prepare($query);
-        $cityIdSql = $cityId->get();
-        $statement->bind_param('i', $cityIdSql);
-        $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-        return $this->getCityFromDatabaseResult($result->fetch_object());
+        return $this->queryOne($query, 'i', [$cityId->get()]);
     }
 
-    private function getCityFromDatabaseResult(stdClass $object): City
+    protected function getDataFromResult(stdClass $object): ICity
     {
         return City::new()
             ->setId(RmInt::new($object->id))

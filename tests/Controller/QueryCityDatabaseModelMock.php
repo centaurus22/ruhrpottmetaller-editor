@@ -7,9 +7,9 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryCityDatabaseModel;
+use ruhrpottmetaller\Model\QueryCityModel;
 
-class QueryCityDatabaseModelMock extends QueryCityDatabaseModel
+class QueryCityDatabaseModelMock extends QueryCityModel
 {
     public function getCities(): RmArray
     {

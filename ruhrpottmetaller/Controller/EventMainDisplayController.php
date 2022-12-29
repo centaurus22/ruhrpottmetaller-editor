@@ -4,16 +4,16 @@ namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\QueryEventDatabaseModel;
+use ruhrpottmetaller\Model\QueryEventModel;
 use ruhrpottmetaller\View\View;
 
 class EventMainDisplayController extends AbstractDataMainDisplayController
 {
-    private QueryEventDatabaseModel $queryEventDatabaseModel;
+    private QueryEventModel $queryEventDatabaseModel;
 
     public function __construct(
         View $view,
-        QueryEventDatabaseModel $queryEventDatabaseModel
+        QueryEventModel $queryEventDatabaseModel
     ) {
         parent::__construct($view);
         $this->queryEventDatabaseModel = $queryEventDatabaseModel;

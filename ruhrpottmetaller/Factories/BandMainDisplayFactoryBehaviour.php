@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, BandMainDisplayController};
-use ruhrpottmetaller\Model\{DatabaseConnection, QueryBandDatabaseModel};
+use ruhrpottmetaller\Model\{Connection, QueryBandModel};
 use ruhrpottmetaller\View\View;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
@@ -19,8 +19,8 @@ class BandMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('band_main')
             ),
-            QueryBandDatabaseModel::new(
-                DatabaseConnection::new($pathToDatabaseConfig)->connect()->getConnection(),
+            QueryBandModel::new(
+                Connection::new($pathToDatabaseConfig)->connect()->getConnection(),
             )
         );
     }

@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Model;
 use mysqli;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class DatabaseConnection extends AbstractConnection
+class Connection
 {
     private RmString $connectionInformationFile;
     private mysqli $connection;
@@ -19,12 +19,12 @@ class DatabaseConnection extends AbstractConnection
         $this->connectionInformationFile = $connectionInformationFile;
     }
 
-    public static function new($connectionInformationFile): DatabaseConnection
+    public static function new($connectionInformationFile): Connection
     {
         return new self($connectionInformationFile);
     }
 
-    public function connect(): DatabaseConnection
+    public function connect(): Connection
     {
         if (!is_file($this->connectionInformationFile->get())) {
             throw new \Error('File with database connection information not found.');

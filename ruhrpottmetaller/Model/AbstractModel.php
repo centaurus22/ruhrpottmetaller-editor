@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\RmArray;
 
-abstract class AbstractDatabaseModel
+abstract class AbstractModel
 {
     protected ?\mysqli $connection;
 

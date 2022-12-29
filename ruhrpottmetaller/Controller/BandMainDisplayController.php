@@ -2,19 +2,17 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use Exception;
-use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\QueryBandDatabaseModel;
+use ruhrpottmetaller\Model\QueryBandModel;
 use ruhrpottmetaller\View\View;
 
 class BandMainDisplayController extends AbstractDataMainDisplayController
 {
-    private QueryBandDatabaseModel $queryBandDatabaseModel;
+    private QueryBandModel $queryBandDatabaseModel;
 
     public function __construct(
         View $view,
-        QueryBandDatabaseModel $queryBandDatabaseModel
+        QueryBandModel $queryBandDatabaseModel
     ) {
         parent::__construct($view);
         $this->queryBandDatabaseModel = $queryBandDatabaseModel;

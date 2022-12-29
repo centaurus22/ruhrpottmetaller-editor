@@ -7,9 +7,9 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryBandDatabaseModel;
+use ruhrpottmetaller\Model\QueryBandModel;
 
-class QueryBandDatabaseModelMock extends QueryBandDatabaseModel
+class QueryBandDatabaseModelMock extends QueryBandModel
 {
     public function getBands(): RmArray
     {
