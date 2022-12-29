@@ -2,9 +2,8 @@
 
 namespace ruhrpottmetaller\Controller;
 
-use Exception;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
-use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\QueryEventDatabaseModel;
 use ruhrpottmetaller\View\View;
 

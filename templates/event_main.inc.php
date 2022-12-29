@@ -15,7 +15,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <div class="rm_table_row">
             <?=$event->getFormattedDate()->asTableCell() ?>
             <?=$event->getName()->asTableCell() ?>
-            <?=$event->getVenue()->asVenueAndCity()->asTableCell()?>
+            <?=$event->getVenueAndCityName()->asTableCell()?>
             <?=$event->getUrl()->asWwwUrl()->asTableCell()?>
         </div>
         <?php $this->get('events')->pointAtNext(); ?>

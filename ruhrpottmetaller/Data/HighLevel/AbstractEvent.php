@@ -20,11 +20,6 @@ class AbstractEvent extends AbstractHighLevelData
         return $this;
     }
 
-    public function getVenue(): IVenue
-    {
-        return $this->venue;
-    }
-
     public function setUrl(AbstractRmString $url): AbstractEvent
     {
         $this->url = $url;
@@ -56,5 +51,10 @@ class AbstractEvent extends AbstractHighLevelData
     public function getIsCanceled(): AbstractRmBool
     {
         return $this->isCanceled;
+    }
+
+    public function getVenueAndCityName(): AbstractRmString
+    {
+        return $this->venue->asVenueAndCity();
     }
 }

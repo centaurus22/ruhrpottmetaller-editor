@@ -16,9 +16,6 @@ class GeneralHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
         $this->pageName = $pageName;
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getDisplayController(
         RmString $templatePath
     ): AbstractDisplayController {
