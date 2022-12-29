@@ -18,9 +18,9 @@ class Venue extends AbstractHighLevelData implements IData, IVenue
         return $this;
     }
 
-    public function getCity(): ICity
+    public function getCityName(): AbstractRmString
     {
-        return $this->city;
+        return $this->city->getName();
     }
 
     public function setUrlDefault(AbstractRmString $urlDefault): IVenue

@@ -94,14 +94,14 @@ final class VenueTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
-    public function testShouldSetCityAndGetSameCityObject(): void
+    public function testShouldSetCityAndGetTheCityName(): void
     {
         $this->DataSet = Venue::new();
         $City = City::new()->setName(RmString::new('Duisburg'));
         $this->DataSet->setCity($City);
         $this->assertEquals(
             'Duisburg',
-            $this->DataSet->getCity()->getName()->get()
+            $this->DataSet->getCityName()->get()
         );
     }
 

@@ -459,8 +459,7 @@ final class QueryEventDatabaseModelTest extends TestCase
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getVenue()
-                ->getCity()
-                ->getName()
+                ->getCityName()
                 ->get()
         );
     }

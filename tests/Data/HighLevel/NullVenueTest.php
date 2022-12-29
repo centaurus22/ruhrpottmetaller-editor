@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{NullVenue, NullCity};
+use ruhrpottmetaller\Data\HighLevel\NullVenue;
+use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 
 final class NullVenueTest extends TestCase
 {
@@ -83,11 +84,11 @@ final class NullVenueTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      */
-    public function testShouldSetCityAndGetSameCityObject(): void
+    public function testShouldSetCityNullCityAndGetNullCityName(): void
     {
         $this->assertInstanceOf(
-            NullCity::class,
-            $this->dataSet->getCity()
+            RmNullString::class,
+            $this->dataSet->getCityName()
         );
     }
 

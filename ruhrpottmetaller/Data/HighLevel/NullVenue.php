@@ -8,9 +8,9 @@ use ruhrpottmetaller\Data\LowLevel\String\{RmString, RmNullString};
 
 class NullVenue extends AbstractHighLevelNullData implements IData, IVenue
 {
-    public function getCity(): NullCity
+    public function getCityName(): RmNullString
     {
-        return NullCity::new();
+        return RmNullString::new(null);
     }
 
     public function getUrlDefault(): RmNullString

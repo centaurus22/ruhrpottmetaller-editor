@@ -256,8 +256,7 @@ final class QueryVenueDatabaseModelTest extends TestCase
             $this->queryVenueDatabaseModel
                 ->getVenues()
                 ->getCurrent()
-                ->getCity()
-                ->getName()
+                ->getCityName()
                 ->get()
         );
     }
@@ -329,8 +328,7 @@ final class QueryVenueDatabaseModelTest extends TestCase
             $this->queryVenueDatabaseModel
                 ->getVenues()
                 ->getCurrent()
-                ->getCity()
-                ->getName()
+                ->getCityName()
                 ->get()
         );
 
@@ -349,8 +347,7 @@ final class QueryVenueDatabaseModelTest extends TestCase
                 ->getVenues()
                 ->pointAtNext()
                 ->getCurrent()
-                ->getCity()
-                ->getName()
+                ->getCityName()
                 ->get()
         );
     }

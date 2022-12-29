@@ -23,7 +23,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     RmString::new('Name'),
                     $data->getId()
                 )->asTableCell() ?>
-            <?=$data->getCity()->getName()->asTableCell() ?>
+            <?=$data->getCityName()->asTableCell() ?>
             <?=$data->getUrlDefault()
                 ->asTableInput(
                     RmString::new('url_default'),
