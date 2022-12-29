@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Model;
 use mysqli;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class Connection extends AbstractConnection
+class Connection
 {
     private RmString $connectionInformationFile;
     private mysqli $connection;
