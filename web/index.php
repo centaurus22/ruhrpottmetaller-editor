@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 
 include '../vendor/autoload.php';
 
-$request = array_merge($_GET, $_POST);
+$input = array_merge($_GET, $_POST);
 $Controller = ruhrpottmetaller\Factories\DisplayFactory::new()
-    ->setFactoryBehaviours($request)
-    ->getDisplayController();
+    ->setFactoryBehaviours($input)
+    ->getDisplayController($input);
 echo $Controller->render();
