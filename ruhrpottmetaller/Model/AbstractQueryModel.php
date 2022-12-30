@@ -12,6 +12,9 @@ abstract class AbstractQueryModel extends AbstractModel
         ?array $parameters = null
     ): RmArray {
         $statement = $this->connection->prepare($query);
+        if (!is_null($parameterTypes)) {
+            $statement->bind_param($parameterTypes, ...$parameters);
+        }
         $statement->execute();
         $result = $statement->get_result();
         $statement->close();

@@ -12,7 +12,7 @@ use ruhrpottmetaller\Data\LowLevel\{
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryEventModel extends AbstractModel
+class QueryEventModel extends AbstractQueryModel
 {
     private QueryVenueModel $queryVenueDatabaseModel;
 
@@ -43,37 +43,34 @@ class QueryEventModel extends AbstractModel
                 is_canceled
             FROM event
             WHERE date_start LIKE ? ORDER BY date_start;';
-        $statement = $this->connection->prepare($query);
-        $monthSql = $month->format('Y-m') . '%';
-        $statement->bind_param('s', $monthSql);
-        $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-
-        $array = RmArray::new();
-        while ($object = $result->fetch_object()) {
-            if ($object->number_of_days > 1) {
-                $dataSet = Festival::new()
-                       ->setDateStart(RmDate::new($object->date_start))
-                       ->setNumberOfDays(RmInt::new($object->number_of_days));
-            } else {
-                $dataSet = Concert::new()
-                       ->setDate(RmDate::new($object->date_start));
-            }
-
-            $dataSet = $this->addGeneralData($dataSet, $object);
-            $array->add($dataSet);
-        }
-        return $array;
+        return $this->query(
+            $query,
+            's',
+            [$month->format('Y-m') . '%']
+        );
     }
 
-    private function addGeneralData(
-        AbstractEvent $dataSet,
+    protected function getDataFromResult(stdClass $object): AbstractEvent
+    {
+        if ($object->number_of_days > 1) {
+            $event = Festival::new()
+                ->setDateStart(RmDate::new($object->date_start))
+                ->setNumberOfDays(RmInt::new($object->number_of_days));
+        } else {
+            $event = Concert::new()
+                ->setDate(RmDate::new($object->date_start));
+        }
+
+        return $this->addGeneralData($event, $object);
+    }
+
+    protected function addGeneralData(
+        AbstractEvent $event,
         stdClass $object
     ): AbstractEvent {
         $venue = $this->queryVenueDatabaseModel
             ->getVenueById(RmInt::new($object->venue_id));
-        return $dataSet
+        return $event
            ->setName(RmString::new($object->name))
            ->setVenue($venue)
            ->setUrl(RmString::new($object->url))
