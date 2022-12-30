@@ -11,21 +11,21 @@ use stdClass;
 
 class QueryVenueModel extends AbstractQueryModel
 {
-    private QueryCityModel $queryCityDatabaseModel;
+    private QueryCityModel $queryCityModel;
 
     public function __construct(
         ?\mysqli $connection,
-        QueryCityModel $queryCityDatabaseModel
+        QueryCityModel $queryCityModel
     ) {
         parent::__construct($this->connection = $connection);
-        $this->queryCityDatabaseModel = $queryCityDatabaseModel;
+        $this->queryCityModel = $queryCityModel;
     }
 
     public static function new(
         ?\mysqli $connection,
-        QueryCityModel $queryCityDatabaseModel
+        QueryCityModel $queryCityModel
     ) {
-        return new static($connection, $queryCityDatabaseModel);
+        return new static($connection, $queryCityModel);
     }
 
     public function getVenues(): RmArray
@@ -46,7 +46,7 @@ class QueryVenueModel extends AbstractQueryModel
 
     protected function getDataFromResult(stdClass $object): Venue
     {
-        $city = $this->queryCityDatabaseModel
+        $city = $this->queryCityModel
             ->getCityById(RmInt::new($object->city_id));
         return Venue::new()
             ->setId(RmInt::new($object->id))

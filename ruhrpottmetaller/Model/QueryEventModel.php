@@ -14,21 +14,21 @@ use stdClass;
 
 class QueryEventModel extends AbstractQueryModel
 {
-    private QueryVenueModel $queryVenueDatabaseModel;
+    private QueryVenueModel $queryVenueModel;
 
     public function __construct(
         ?\mysqli $connection,
-        QueryVenueModel $queryVenueDatabaseModel
+        QueryVenueModel $queryVenueModel
     ) {
         parent::__construct($connection);
-        $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;
+        $this->queryVenueModel = $queryVenueModel;
     }
 
     public static function new(
         ?\mysqli $connection,
-        QueryVenueModel $queryVenueDatabaseModel
+        QueryVenueModel $queryVenueModel
     ): QueryEventModel {
-        return new static($connection, $queryVenueDatabaseModel);
+        return new static($connection, $queryVenueModel);
     }
 
     public function getEventsByMonth(RmDate $month): RmArray
@@ -68,7 +68,7 @@ class QueryEventModel extends AbstractQueryModel
         AbstractEvent $event,
         stdClass $object
     ): AbstractEvent {
-        $venue = $this->queryVenueDatabaseModel
+        $venue = $this->queryVenueModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event
            ->setName(RmString::new($object->name))
