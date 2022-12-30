@@ -20,6 +20,12 @@ class QueryBandModel extends AbstractQueryModel
         return $this->query($query);
     }
 
+    public function getBandById(RmInt $id): Band
+    {
+        $query = 'SELECT id, name, is_visible FROM band WHERE id = ?';
+        return $this->queryOne($query, 'i', [$id->get()]);
+    }
+
     protected function getDataFromResult(stdClass $object): Band
     {
         return Band::new()
