@@ -2,9 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\HighLevel\City;
 
 class CommandCityModel extends AbstractCommandModel
 {
@@ -13,13 +11,13 @@ class CommandCityModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function updateCity(RmInt $id, RmString $name, AbstractRmBool $isVisible)
+    public function replaceCity(City $city)
     {
         $query = 'UPDATE city SET name = ?, is_visible = ? WHERE id = ?';
         $this->query(
             $query,
             'sii',
-            [$name->get(), $isVisible->get(), $id->get()]
+            [$city->getName()->get(), $city->getIsVisible()->get(), $city->getId()->get()]
         );
     }
 }

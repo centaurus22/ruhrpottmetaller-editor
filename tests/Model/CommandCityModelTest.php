@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -54,15 +55,15 @@ final class CommandCityModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
 
-    public function testShouldUpdateCity(): void
+    public function testShouldUpdateCityName(): void
     {
         $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
-        $this->commandModel->updateCity(
-            RmInt::new(1),
-            RmString::new('Lünen'),
-            RmBool::new(true)
-        );
+        $city = City::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Lünen'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->replaceCity($city);
         $this->assertEquals(
             'Lünen',
             $this->queryModel
