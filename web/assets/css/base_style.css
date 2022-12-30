@@ -4,8 +4,6 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
     flex-wrap: nowrap;
     background-color: whitesmoke;
 }
@@ -51,7 +49,7 @@ nav ul {
 
 nav li {
     list-style-type: none;
-    margin: 0;
+    margin: 0 3px 0 3px;
 }
 
 nav li:first-letter {
@@ -102,6 +100,7 @@ footer {
     display: table-cell;
     padding: 1px 0;
     border-top-width: 1px;
+    vertical-align: middle;
 }
 
 .rm_table_cell:last-child {
