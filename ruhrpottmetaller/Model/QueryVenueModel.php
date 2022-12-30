@@ -9,7 +9,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryVenueModel extends AbstractModel
+class QueryVenueModel extends AbstractQueryModel
 {
     private QueryCityModel $queryCityDatabaseModel;
 
@@ -17,9 +17,7 @@ class QueryVenueModel extends AbstractModel
         ?\mysqli $connection,
         QueryCityModel $queryCityDatabaseModel
     ) {
-        parent::__construct(
-            $this->connection = $connection,
-        );
+        parent::__construct($this->connection = $connection);
         $this->queryCityDatabaseModel = $queryCityDatabaseModel;
     }
 
@@ -33,16 +31,7 @@ class QueryVenueModel extends AbstractModel
     public function getVenues(): RmArray
     {
         $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue ORDER BY name';
-        $statement = $this->connection->prepare($query);
-        $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-
-        $array = RmArray::new();
-        while ($object = $result->fetch_object()) {
-            $array->add($this->getVenueFromDatabaseResult($object));
-        }
-        return $array;
+        return $this->query($query);
     }
 
     public function getVenueById(AbstractRmInt $venueId): IVenue
@@ -52,16 +41,10 @@ class QueryVenueModel extends AbstractModel
         }
 
         $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue WHERE id = ?';
-        $statement = $this->connection->prepare($query);
-        $venueIdSql = $venueId->get();
-        $statement->bind_param('i', $venueIdSql);
-        $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-        return $this->getVenueFromDatabaseResult($result->fetch_object());
+        return $this->queryOne($query, 'i', [$venueId->get()]);
     }
 
-    private function getVenueFromDatabaseResult(stdClass $object): Venue
+    protected function getDataFromResult(stdClass $object): Venue
     {
         $city = $this->queryCityDatabaseModel
             ->getCityById(RmInt::new($object->city_id));
