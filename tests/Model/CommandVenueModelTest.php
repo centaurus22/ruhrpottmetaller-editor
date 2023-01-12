@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -43,6 +44,7 @@ final class CommandVenueModelTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -61,12 +63,12 @@ final class CommandVenueModelTest extends TestCase
         $this->connection->query($query);
         $query = 'INSERT INTO city SET name = "Recklinghausen"';
         $this->connection->query($query);
-        $this->commandModel->updateVenue(
-            RmInt::new(1),
-            RmString::new('Lükaz'),
-            RmString::new(null),
-            RmBool::new(true)
-        );
+        $venue = Venue::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Lükaz'))
+            ->setUrlDefault(RmString::new('null'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->updateVenue($venue);
         $this->assertEquals(
             'Lükaz',
             $this->queryModel
