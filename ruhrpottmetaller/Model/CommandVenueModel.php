@@ -2,10 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\HighLevel\Venue;
 
 class CommandVenueModel extends AbstractCommandModel
 {
@@ -14,17 +11,18 @@ class CommandVenueModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function updateVenue(
-        RmInt $id,
-        RmString $name,
-        AbstractRmString $urlDefault,
-        AbstractRmBool $isVisible
-    ): void {
+    public function updateVenue(Venue $venue): void
+    {
         $query = 'UPDATE venue SET name = ?, url_default = ?, is_visible = ? WHERE id = ?';
         $this->query(
             $query,
             'ssii',
-            [$name->get(), $urlDefault->get(), $isVisible->get(), $id->get()]
+            [
+                $venue->getName()->get(),
+                $venue->getUrlDefault()->get(),
+                $venue->getIsVisible()->get(),
+                $venue->getId()->get()
+            ]
         );
     }
 }
