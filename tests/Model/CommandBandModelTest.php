@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -58,11 +59,11 @@ final class CommandBandModelTest extends TestCase
     {
         $query = 'INSERT INTO band SET name = "Sabiendas"';
         $this->connection->query($query);
-        $this->commandModel->updateBand(
-            RmInt::new(1),
-            RmString::new('Custard'),
-            RmBool::new(true)
-        );
+        $band = Band::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Custard'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->updateBand($band);
         $this->assertEquals(
             'Custard',
             $this->queryModel
