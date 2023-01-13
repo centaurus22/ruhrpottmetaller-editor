@@ -46,7 +46,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new QueryCityDatabaseModelMock(null)
+            new CityQueryDatabaseModelMock(null)
         );
 
         $this->Controller
@@ -90,7 +90,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new QueryCityDatabaseModelMockEmpty(null, null),
+            new CityQueryDatabaseModelMockEmpty(null, null),
         );
 
         $this->Controller
@@ -126,7 +126,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new QueryCityDatabaseModelMockEmpty(null)
+            new CityQueryDatabaseModelMockEmpty(null)
         );
 
         $this->Controller

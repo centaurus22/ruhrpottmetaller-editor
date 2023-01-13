@@ -3,16 +3,16 @@
 namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\QueryCityModel;
+use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class CityMainDisplayController extends AbstractDataMainDisplayController
 {
-    private QueryCityModel $queryCityDatabaseModel;
+    private CityQueryModel $queryCityDatabaseModel;
 
     public function __construct(
         View $view,
-        QueryCityModel $queryCityDatabaseModel
+        CityQueryModel $queryCityDatabaseModel
     ) {
         parent::__construct($view);
         $this->queryCityDatabaseModel = $queryCityDatabaseModel;

@@ -3,9 +3,9 @@
 namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryVenueModel;
+use ruhrpottmetaller\Model\VenueQueryModel;
 
-class QueryVenueDatabaseModelMockEmpty extends QueryVenueModel
+class VenueDatabaseQueryModelMockEmpty extends VenueQueryModel
 {
     public function getVenues(): RmArray
     {

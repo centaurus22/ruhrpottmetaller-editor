@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, VenueMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{Connection, QueryCityModel, QueryVenueModel};
+use ruhrpottmetaller\Model\{Connection, CityQueryModel, VenueQueryModel};
 use ruhrpottmetaller\View\View;
 
 class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
@@ -22,9 +22,9 @@ class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('venue_main')
             ),
-            QueryVenueModel::new(
+            VenueQueryModel::new(
                 $databaseConnection,
-                QueryCityModel::new($databaseConnection)
+                CityQueryModel::new($databaseConnection)
             )
         );
     }

@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, CityMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{Connection, QueryCityModel};
+use ruhrpottmetaller\Model\{Connection, CityQueryModel};
 use ruhrpottmetaller\View\View;
 
 class CityMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
@@ -19,7 +19,7 @@ class CityMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('city_main')
             ),
-            QueryCityModel::new(
+            CityQueryModel::new(
                 Connection::new($pathToDatabaseConfig)->connect()->getConnection(),
             )
         );

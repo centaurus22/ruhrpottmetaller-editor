@@ -9,12 +9,12 @@ use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{CommandBandModel, Connection, QueryBandModel};
+use ruhrpottmetaller\Model\{BandCommandModel, Connection, BandQueryModel};
 
 final class CommandBandModelTest extends TestCase
 {
-    private QueryBandModel $queryModel;
-    private CommandBandModel $commandModel;
+    private BandQueryModel $queryModel;
+    private BandCommandModel $commandModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -24,10 +24,10 @@ final class CommandBandModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = QueryBandModel::new(
+        $this->queryModel = BandQueryModel::new(
             $this->connection,
         );
-        $this->commandModel = CommandBandModel::new(
+        $this->commandModel = BandCommandModel::new(
             $this->connection,
         );
     }
@@ -39,10 +39,10 @@ final class CommandBandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\CommandBandModel
+     * @covers \ruhrpottmetaller\Model\BandCommandModel
      * @covers \ruhrpottmetaller\Model\AbstractCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData

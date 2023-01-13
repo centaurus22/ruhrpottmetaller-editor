@@ -12,22 +12,22 @@ use ruhrpottmetaller\Data\LowLevel\{
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryEventModel extends AbstractQueryModel
+class EventQueryModel extends AbstractQueryModel
 {
-    private QueryVenueModel $queryVenueModel;
+    private VenueQueryModel $venueQueryModel;
 
     public function __construct(
         ?\mysqli $connection,
-        QueryVenueModel $queryVenueModel
+        VenueQueryModel $queryVenueModel
     ) {
         parent::__construct($connection);
-        $this->queryVenueModel = $queryVenueModel;
+        $this->venueQueryModel = $queryVenueModel;
     }
 
     public static function new(
         ?\mysqli $connection,
-        QueryVenueModel $queryVenueModel
-    ): QueryEventModel {
+        VenueQueryModel $queryVenueModel
+    ): EventQueryModel {
         return new static($connection, $queryVenueModel);
     }
 
@@ -68,7 +68,7 @@ class QueryEventModel extends AbstractQueryModel
         AbstractEvent $event,
         stdClass $object
     ): AbstractEvent {
-        $venue = $this->queryVenueModel
+        $venue = $this->venueQueryModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event
            ->setName(RmString::new($object->name))

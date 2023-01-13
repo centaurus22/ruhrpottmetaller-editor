@@ -4,9 +4,9 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\HighLevel\Venue;
 
-class CommandVenueModel extends AbstractCommandModel
+class VenueCommandModel extends AbstractCommandModel
 {
-    public static function new(?\mysqli $connection): CommandVenueModel
+    public static function new(?\mysqli $connection): VenueCommandModel
     {
         return new static($connection);
     }

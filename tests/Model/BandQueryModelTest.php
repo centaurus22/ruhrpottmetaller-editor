@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Model\{Connection, QueryBandModel};
+use ruhrpottmetaller\Model\{Connection, BandQueryModel};
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
-final class QueryBandModelTest extends TestCase
+final class BandQueryModelTest extends TestCase
 {
-    private QueryBandModel $QueryBandDatabaseModel;
+    private BandQueryModel $QueryBandDatabaseModel;
     private \mysqli $DatabaseConnection;
 
     protected function setUp(): void
@@ -22,9 +22,8 @@ final class QueryBandModelTest extends TestCase
         $this->DatabaseConnection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->QueryBandDatabaseModel = QueryBandModel::new(
-            $this->DatabaseConnection,
-            RmArray::new()
+        $this->QueryBandDatabaseModel = BandQueryModel::new(
+            $this->DatabaseConnection
         );
     }
 
@@ -36,7 +35,7 @@ final class QueryBandModelTest extends TestCase
 
 
     /**
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @uses   \ruhrpottmetaller\Model\Connection
@@ -59,7 +58,7 @@ final class QueryBandModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -85,7 +84,7 @@ final class QueryBandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\AbstractRmObject
@@ -116,7 +115,7 @@ final class QueryBandModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -147,7 +146,7 @@ final class QueryBandModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -179,7 +178,7 @@ final class QueryBandModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryBandModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData

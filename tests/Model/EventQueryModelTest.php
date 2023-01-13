@@ -10,14 +10,14 @@ use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\{
     Connection,
-    QueryCityModel,
-    QueryEventModel,
-    QueryVenueModel,
+    CityQueryModel,
+    EventQueryModel,
+    VenueQueryModel,
 };
 
-final class QueryEventModelTest extends TestCase
+final class EventQueryModelTest extends TestCase
 {
-    private QueryEventModel $QueryEventDatabaseModel;
+    private EventQueryModel $QueryEventDatabaseModel;
     private \mysqli $databaseConnection;
 
     protected function setUp(): void
@@ -27,11 +27,11 @@ final class QueryEventModelTest extends TestCase
         $this->databaseConnection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->QueryEventDatabaseModel = QueryEventModel::new(
+        $this->QueryEventDatabaseModel = EventQueryModel::new(
             $this->databaseConnection,
-            QueryVenueModel::new(
+            VenueQueryModel::new(
                 $this->databaseConnection,
-                QueryCityModel::new($this->databaseConnection)
+                CityQueryModel::new($this->databaseConnection)
             )
         );
     }
@@ -48,11 +48,11 @@ final class QueryEventModelTest extends TestCase
 
 
     /**
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -70,11 +70,11 @@ final class QueryEventModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -104,11 +104,11 @@ final class QueryEventModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\Connection
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -140,10 +140,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -175,10 +175,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -211,10 +211,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -242,10 +242,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -279,11 +279,11 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -317,10 +317,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -354,10 +354,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses \ruhrpottmetaller\Model\QueryCityModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -392,9 +392,9 @@ final class QueryEventModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
@@ -432,11 +432,11 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
@@ -469,9 +469,9 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -507,10 +507,10 @@ final class QueryEventModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent

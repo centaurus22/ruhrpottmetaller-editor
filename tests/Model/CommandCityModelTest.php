@@ -9,12 +9,12 @@ use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{Connection, QueryCityModel, CommandCityModel};
+use ruhrpottmetaller\Model\{Connection, CityQueryModel, CityCommandModel};
 
 final class CommandCityModelTest extends TestCase
 {
-    private QueryCityModel $queryModel;
-    private CommandCityModel $commandModel;
+    private CityQueryModel $queryModel;
+    private CityCommandModel $commandModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -24,10 +24,10 @@ final class CommandCityModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = QueryCityModel::new(
+        $this->queryModel = CityQueryModel::new(
             $this->connection,
         );
-        $this->commandModel = CommandCityModel::new(
+        $this->commandModel = CityCommandModel::new(
             $this->connection,
         );
     }
@@ -39,7 +39,7 @@ final class CommandCityModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\CommandCityModel
+     * @covers \ruhrpottmetaller\Model\CityCommandModel
      * @covers \ruhrpottmetaller\Model\AbstractCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
@@ -50,7 +50,7 @@ final class CommandCityModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\AbstractModel
      * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\QueryCityModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */

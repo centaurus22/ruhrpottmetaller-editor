@@ -10,9 +10,9 @@ use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryEventModel;
+use ruhrpottmetaller\Model\EventQueryModel;
 
-class QueryEventDatabaseModelMock extends QueryEventModel
+class EventQueryDatabaseModelMock extends EventQueryModel
 {
     public function getEventsByMonth(RmDate $month): RmArray
     {

@@ -37,7 +37,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
     public function testShouldSetCityList()
     {
@@ -48,9 +48,9 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new QueryVenueDatabaseModelMock(
+            new VenueDatabaseQueryModelMock(
                 null,
-                new QueryCityDatabaseModelMock(null)
+                new CityQueryDatabaseModelMock(null)
             )
         );
 
@@ -85,7 +85,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -96,9 +96,9 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new QueryVenueDatabaseModelMockEmpty(
+            new VenueDatabaseQueryModelMockEmpty(
                 null,
-                new QueryCityDatabaseModelMock(null)
+                new CityQueryDatabaseModelMock(null)
             )
         );
 
@@ -125,7 +125,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
     public function testShouldSetGetParameterString()
     {
@@ -136,9 +136,9 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new QueryVenueDatabaseModelMockEmpty(
+            new VenueDatabaseQueryModelMockEmpty(
                 null,
-                new QueryCityDatabaseModelMock(null)
+                new CityQueryDatabaseModelMock(null)
             )
         );
 

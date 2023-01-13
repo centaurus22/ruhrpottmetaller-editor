@@ -46,7 +46,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMock(null)
+            new BandQueryDatabaseModelMock(null)
         );
 
         $this->Controller
@@ -90,7 +90,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMockEmpty(null),
+            new BandQueryDatabaseModelMockEmpty(null),
         );
 
         $this->Controller
@@ -127,7 +127,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new QueryBandDatabaseModelMockEmpty(null)
+            new BandQueryDatabaseModelMockEmpty(null)
         );
 
         $this->Controller->setGetParameters(

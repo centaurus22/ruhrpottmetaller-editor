@@ -4,9 +4,9 @@ namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryEventModel;
+use ruhrpottmetaller\Model\EventQueryModel;
 
-class QueryEventDatabaseModelMockEmpty extends QueryEventModel
+class EventQueryDatabaseModelMockEmpty extends EventQueryModel
 {
     public function getEventsByMonth(RmDate $month): RmArray
     {

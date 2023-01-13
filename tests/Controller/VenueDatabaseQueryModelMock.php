@@ -8,9 +8,9 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\QueryVenueModel;
+use ruhrpottmetaller\Model\VenueQueryModel;
 
-class QueryVenueDatabaseModelMock extends QueryVenueModel
+class VenueDatabaseQueryModelMock extends VenueQueryModel
 {
     public function getVenues(): RmArray
     {

@@ -3,25 +3,25 @@
 namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\QueryBandModel;
+use ruhrpottmetaller\Model\BandQueryModel;
 use ruhrpottmetaller\View\View;
 
 class BandMainDisplayController extends AbstractDataMainDisplayController
 {
-    private QueryBandModel $queryBandDatabaseModel;
+    private BandQueryModel $bandQueryModel;
 
     public function __construct(
         View $view,
-        QueryBandModel $queryBandDatabaseModel
+        BandQueryModel $bandQueryModel
     ) {
         parent::__construct($view);
-        $this->queryBandDatabaseModel = $queryBandDatabaseModel;
+        $this->bandQueryModel = $bandQueryModel;
     }
 
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
-        $data = $this->queryBandDatabaseModel->getBands();
+        $data = $this->bandQueryModel->getBands();
 
         if (!$data->hasCurrent()) {
             $this->view->setTemplate(RmString::new('band_main_empty'));

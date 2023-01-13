@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class QueryBandModel extends AbstractQueryModel
+class BandQueryModel extends AbstractQueryModel
 {
     public static function new(?\mysqli $connection)
     {

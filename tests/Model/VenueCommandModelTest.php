@@ -9,12 +9,12 @@ use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{Connection, QueryCityModel, QueryVenueModel, CommandVenueModel};
+use ruhrpottmetaller\Model\{Connection, CityQueryModel, VenueQueryModel, VenueCommandModel};
 
-final class CommandVenueModelTest extends TestCase
+final class VenueCommandModelTest extends TestCase
 {
-    private QueryVenueModel $queryModel;
-    private CommandVenueModel $commandModel;
+    private VenueQueryModel $queryModel;
+    private VenueCommandModel $commandModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -24,11 +24,11 @@ final class CommandVenueModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = QueryVenueModel::new(
+        $this->queryModel = VenueQueryModel::new(
             $this->connection,
-            QueryCityModel::new($this->connection)
+            CityQueryModel::new($this->connection)
         );
-        $this->commandModel = CommandVenueModel::new($this->connection);
+        $this->commandModel = VenueCommandModel::new($this->connection);
     }
 
     protected function tearDown(): void
@@ -38,8 +38,8 @@ final class CommandVenueModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\CommandVenueModel
-     * @covers \ruhrpottmetaller\Model\QueryVenueModel
+     * @covers \ruhrpottmetaller\Model\VenueCommandModel
+     * @covers \ruhrpottmetaller\Model\VenueQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
@@ -51,7 +51,7 @@ final class CommandVenueModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\AbstractModel
      * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\QueryCityModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour

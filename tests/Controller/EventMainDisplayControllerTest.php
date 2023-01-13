@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Model\{QueryCityModel, QueryVenueModel};
+use ruhrpottmetaller\Model\{CityQueryModel, VenueQueryModel};
 use ruhrpottmetaller\Controller\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -21,9 +21,9 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -52,11 +52,11 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMock(
+            new EventQueryDatabaseModelMock(
                 null,
-                QueryVenueModel::new(
+                VenueQueryModel::new(
                     null,
-                    QueryCityModel::new(null)
+                    CityQueryModel::new(null)
                 )
             )
         );
@@ -81,9 +81,9 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @uses  \ruhrpottmetaller\Model\QueryEventModel
-     * @uses  \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses  \ruhrpottmetaller\Model\QueryCityModel
+     * @uses  \ruhrpottmetaller\Model\EventQueryModel
+     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -105,11 +105,11 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMockEmpty(
+            new EventQueryDatabaseModelMockEmpty(
                 null,
-                QueryVenueDatabaseModelMock::new(
+                VenueDatabaseQueryModelMock::new(
                     null,
-                    QueryCityDatabaseModelMock::new(null)
+                    CityQueryDatabaseModelMock::new(null)
                 )
             )
         );
@@ -126,9 +126,9 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\QueryEventModel
-     * @uses \ruhrpottmetaller\Model\QueryVenueModel
-     * @uses \ruhrpottmetaller\Model\QueryCityModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -156,11 +156,11 @@ final class EventMainDisplayControllerTest extends TestCase
 
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new QueryEventDatabaseModelMock(
+            new EventQueryDatabaseModelMock(
                 null,
-                QueryVenueDatabaseModelMock::new(
+                VenueDatabaseQueryModelMock::new(
                     null,
-                    QueryCityDatabaseModelMock::new(null)
+                    CityQueryDatabaseModelMock::new(null)
                 )
             )
         );

@@ -4,9 +4,9 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\HighLevel\Band;
 
-class CommandBandModel extends AbstractCommandModel
+class BandCommandModel extends AbstractCommandModel
 {
-    public static function new(?\mysqli $connection): CommandBandModel
+    public static function new(?\mysqli $connection): BandCommandModel
     {
         return new static($connection);
     }
