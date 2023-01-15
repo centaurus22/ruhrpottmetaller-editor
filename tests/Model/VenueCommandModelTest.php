@@ -68,7 +68,7 @@ final class VenueCommandModelTest extends TestCase
             ->setName(RmString::new('Lükaz'))
             ->setUrlDefault(RmString::new('null'))
             ->setIsVisible(RmBool::new(true));
-        $this->commandModel->updateVenue($venue);
+        $this->commandModel->replaceData($venue);
         $this->assertEquals(
             'Lükaz',
             $this->queryModel

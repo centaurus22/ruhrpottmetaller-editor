@@ -11,7 +11,7 @@ class VenueCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function updateVenue(Venue $venue): void
+    public function replaceData(Venue $venue): void
     {
         $query = 'UPDATE venue SET name = ?, url_default = ?, is_visible = ? WHERE id = ?';
         $this->query(

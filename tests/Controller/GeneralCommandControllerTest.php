@@ -6,14 +6,14 @@ namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\GeneralCommandController;
-use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Data\HighLevel\{City, Band, Venue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Connection;
 use ruhrpottmetaller\Model\{CityCommandModel, CityQueryModel};
 use ruhrpottmetaller\Model\{BandCommandModel, BandQueryModel};
+use ruhrpottmetaller\Model\{VenueCommandModel, VenueQueryModel};
 
 final class GeneralCommandControllerTest extends TestCase
 {
@@ -111,6 +111,63 @@ final class GeneralCommandControllerTest extends TestCase
             'Kreator',
             $queryModel
                 ->getBandById(RmInt::new(1))
+                ->getName()
+        );
+
+        $query = 'TRUNCATE band';
+        $this->connection->query($query);
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @uses \ruhrpottmetaller\Model\VenueCommandModel
+     * @uses \ruhrpottmetaller\Model\CityCommandModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+
+    public function testShouldUpdateVenueName(): void
+    {
+        $query = 'INSERT INTO venue SET name = "Parkhaus", city_id = 1';
+        $this->connection->query($query);
+        $query = 'INSERT INTO city SET name = "Duisburg"';
+        $this->connection->query($query);
+        $queryModel = VenueQueryModel::new(
+            $this->connection,
+            CityQueryModel::new($this->connection)
+        );
+        $commandModel = VenueCommandModel::new($this->connection);
+        $city = City::new()->setId(RmInt::new(1));
+        $data = Venue::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Kultopia'))
+            ->setCity($city)
+            ->setUrlDefault(RmString::new(''))
+            ->setIsVisible(RmBool::new(true));
+        $commandController = GeneralCommandController::new(
+            $commandModel,
+            $data
+        );
+        $commandController->execute();
+        $this->assertEquals(
+            'Kultopia',
+            $queryModel
+                ->getVenueById(RmInt::new(1))
                 ->getName()
         );
 
