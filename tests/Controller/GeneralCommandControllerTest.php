@@ -7,15 +7,16 @@ namespace tests\ruhrpottmetaller\Controller;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\GeneralCommandController;
 use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{Connection, CityQueryModel, CityCommandModel};
+use ruhrpottmetaller\Model\Connection;
+use ruhrpottmetaller\Model\{CityCommandModel, CityQueryModel};
+use ruhrpottmetaller\Model\{BandCommandModel, BandQueryModel};
 
 final class GeneralCommandControllerTest extends TestCase
 {
-    private GeneralCommandController $commandController;
-    private CityCommandModel $commandModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -25,9 +26,6 @@ final class GeneralCommandControllerTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->commandModel = CityCommandModel::new(
-            $this->connection,
-        );
     }
 
     /**
@@ -53,13 +51,14 @@ final class GeneralCommandControllerTest extends TestCase
     {
         $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
+        $commandModel = CityCommandModel::new($this->connection);
         $queryModel = CityQueryModel::new($this->connection);
         $city = City::new()
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Lünen'))
             ->setIsVisible(RmBool::new(true));
         $this->commandController = GeneralCommandController::new(
-            $this->commandModel,
+            $commandModel,
             $city
         );
         $this->commandController->execute();
@@ -71,6 +70,51 @@ final class GeneralCommandControllerTest extends TestCase
         );
 
         $query = 'TRUNCATE city';
+        $this->connection->query($query);
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @uses \ruhrpottmetaller\Model\BandCommandModel
+     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+
+    public function testShouldUpdateBandName(): void
+    {
+        $query = 'INSERT INTO band SET name = "Mad Butcher"';
+        $this->connection->query($query);
+        $queryModel = BandQueryModel::new($this->connection);
+        $commandModel = BandCommandModel::new($this->connection);
+        $data = Band::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Kreator'))
+            ->setIsVisible(RmBool::new(true));
+        $commandController = GeneralCommandController::new(
+            $commandModel,
+            $data
+        );
+        $commandController->execute();
+        $this->assertEquals(
+            'Kreator',
+            $queryModel
+                ->getBandById(RmInt::new(1))
+                ->getName()
+        );
+
+        $query = 'TRUNCATE band';
         $this->connection->query($query);
     }
 }

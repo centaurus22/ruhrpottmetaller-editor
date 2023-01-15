@@ -63,7 +63,7 @@ final class CommandBandModelTest extends TestCase
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Custard'))
             ->setIsVisible(RmBool::new(true));
-        $this->commandModel->updateBand($band);
+        $this->commandModel->replaceData($band);
         $this->assertEquals(
             'Custard',
             $this->queryModel

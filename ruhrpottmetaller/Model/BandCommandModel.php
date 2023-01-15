@@ -11,7 +11,7 @@ class BandCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function updateBand(Band $band)
+    public function replaceData(Band $band)
     {
         $query = 'UPDATE band SET name = ?, is_visible = ? WHERE id = ?';
         $this->query(
