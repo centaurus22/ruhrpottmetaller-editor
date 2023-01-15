@@ -11,7 +11,7 @@ class CityCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function replaceCity(City $city)
+    public function replaceData(City $city)
     {
         $query = 'UPDATE city SET name = ?, is_visible = ? WHERE id = ?';
         $this->query(

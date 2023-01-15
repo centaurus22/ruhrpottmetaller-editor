@@ -2,18 +2,19 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Controller\GeneralCommandController;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{Connection, CityQueryModel, CityCommandModel};
 
-final class CommandCityModelTest extends TestCase
+final class GeneralCommandControllerTest extends TestCase
 {
-    private CityQueryModel $queryModel;
+    private GeneralCommandController $commandController;
     private CityCommandModel $commandModel;
     private \mysqli $connection;
 
@@ -24,24 +25,17 @@ final class CommandCityModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = CityQueryModel::new(
-            $this->connection,
-        );
         $this->commandModel = CityCommandModel::new(
             $this->connection,
         );
     }
 
-    protected function tearDown(): void
-    {
-        $query[] = 'TRUNCATE city';
-        $this->connection->query($query[0]);
-    }
-
     /**
-     * @covers \ruhrpottmetaller\Model\CityCommandModel
-     * @covers \ruhrpottmetaller\Model\AbstractCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @uses \ruhrpottmetaller\Model\CityCommandModel
+     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
@@ -59,16 +53,24 @@ final class CommandCityModelTest extends TestCase
     {
         $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
+        $queryModel = CityQueryModel::new($this->connection);
         $city = City::new()
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Lünen'))
             ->setIsVisible(RmBool::new(true));
-        $this->commandModel->replaceData($city);
+        $this->commandController = GeneralCommandController::new(
+            $this->commandModel,
+            $city
+        );
+        $this->commandController->execute();
         $this->assertEquals(
             'Lünen',
-            $this->queryModel
+            $queryModel
                 ->getCityById(RmInt::new(1))
                 ->getName()
         );
+
+        $query = 'TRUNCATE city';
+        $this->connection->query($query);
     }
 }
