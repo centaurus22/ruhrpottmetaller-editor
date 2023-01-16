@@ -7,8 +7,8 @@ use ruhrpottmetaller\Model\AbstractCommandModel;
 
 abstract class AbstractCommandController
 {
-    protected AbstractCommandModel $commandModel;
-    protected AbstractHighLevelData $highLevelData;
+    protected ?AbstractCommandModel $commandModel;
+    protected ?AbstractHighLevelData $highLevelData;
 
     public function __construct(
         ?AbstractCommandModel $commandModel,
