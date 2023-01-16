@@ -11,16 +11,16 @@ abstract class AbstractCommandController
     protected AbstractHighLevelData $highLevelData;
 
     public function __construct(
-        AbstractCommandModel $commandModel,
-        AbstractHighLevelData $highLevelData
+        ?AbstractCommandModel $commandModel,
+        ?AbstractHighLevelData $highLevelData
     ) {
         $this->commandModel = $commandModel;
         $this->highLevelData = $highLevelData;
     }
 
     public static function new(
-        AbstractCommandModel $commandModel,
-        AbstractHighLevelData $highLevelData
+        ?AbstractCommandModel $commandModel,
+        ?AbstractHighLevelData $highLevelData
     ) {
         return new static($commandModel, $highLevelData);
     }
