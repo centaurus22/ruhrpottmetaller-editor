@@ -2,7 +2,6 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Controller\AbstractCommandController;
 use ruhrpottmetaller\Controller\GeneralCommandController;
 use ruhrpottmetaller\Controller\NullCommandController;
@@ -12,19 +11,19 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\BandCommandModel;
-use ruhrpottmetaller\Model\Connection;
 
-class CommandFactory extends AbstractRmObject
+class CommandFactory extends AbstractFactory
 {
+    public function __construct(\mysqli $connection)
+    {
+        $this->connection = $connection;
+    }
+
     public function getCommandController(array $input): AbstractCommandController
     {
-        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        $databaseConnection = Connection::new($pathToDatabaseConfig)
-            ->connect()
-            ->getConnection();
         if (isset($input['save']) and $input['save'] == 'band') {
             return GeneralCommandController::new(
-                BandCommandModel::new($databaseConnection),
+                BandCommandModel::new($this->connection),
                 $this->getDataObject($input)
             );
         }

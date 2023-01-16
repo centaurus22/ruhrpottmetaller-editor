@@ -2,19 +2,19 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Controller\{AbstractDisplayController, BaseDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
-class DisplayFactory extends AbstractRmObject
+class DisplayFactory extends AbstractFactory
 {
     private IMainDisplayFactoryBehaviour $mainDisplayFactoryBehaviour;
     private IHeadDisplayFactoryBehaviour $headDisplayFactoryBehaviour;
     private RmString $templatePath;
 
-    public function __construct()
+    public function __construct(\mysqli $connection)
     {
+        $this->connection = $connection;
         $this->templatePath = RmString::new('../templates/');
     }
 
@@ -53,10 +53,9 @@ class DisplayFactory extends AbstractRmObject
             )
         );
 
-        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
         $mainDisplayController = $this->mainDisplayFactoryBehaviour->getDisplayController(
             $this->templatePath,
-            $pathToDatabaseConfig
+            $this->connection
         )->setGetParameters(
             RmString::new($input['filter_by'] ?? null),
             RmString::new($input['order_by'] ?? null)

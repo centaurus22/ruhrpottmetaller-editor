@@ -4,7 +4,6 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\{AbstractDisplayController, EventMainDisplayController};
 use ruhrpottmetaller\Model\{
-    Connection,
     CityQueryModel,
     EventQueryModel,
     VenueQueryModel
@@ -16,22 +15,18 @@ class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        RmString $pathToDatabaseConfig
+        \mysqli $connection
     ): AbstractDisplayController {
-        $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-        $databaseConnection = Connection::new($pathToDatabaseConfig)
-            ->connect()
-            ->getConnection();
         return new EventMainDisplayController(
             View::new(
                 $templatePath,
                 RmString::new('event_main')
             ),
             EventQueryModel::new(
-                $databaseConnection,
+                $connection,
                 VenueQueryModel::new(
-                    $databaseConnection,
-                    CityQueryModel::new($databaseConnection)
+                    $connection,
+                    CityQueryModel::new($connection)
                 )
             )
         );

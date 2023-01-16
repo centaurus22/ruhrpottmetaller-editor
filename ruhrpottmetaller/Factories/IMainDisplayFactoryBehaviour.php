@@ -9,6 +9,6 @@ interface IMainDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        RmString $pathToDatabaseConfig
+        \mysqli $connection
     ): AbstractDisplayController;
 }
