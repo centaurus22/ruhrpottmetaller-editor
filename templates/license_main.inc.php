@@ -1,1 +1,3 @@
-<?= nl2br(file_get_contents('LICENSE')) ?>
+<div>
+    <?= nl2br(file_get_contents('LICENSE')) ?>
+</div>
