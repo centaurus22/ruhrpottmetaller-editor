@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{City, Concert, Venue};
+use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmString};
 
 final class ConcertTest extends TestCase
@@ -234,6 +234,24 @@ final class ConcertTest extends TestCase
         $this->DataSet = Concert::new();
         $this->assertEquals(
             false,
+            $this->DataSet->hasCurrentBand()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     */
+    public function testMethodsShouldBandArrayWithOneBand(): void
+    {
+        $band = Band::new()->setName(RmString::new('Dipsomania'));
+        $this->DataSet = Concert::new()
+            ->addBand($band);
+        $this->assertEquals(
+            true,
             $this->DataSet->hasCurrentBand()
         );
     }

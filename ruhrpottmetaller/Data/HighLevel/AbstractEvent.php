@@ -65,6 +65,12 @@ class AbstractEvent extends AbstractHighLevelData
         return $this->venue->asVenueAndCity();
     }
 
+    public function addBand(Band $band): AbstractEvent
+    {
+        $this->bands->add($band);
+        return $this;
+    }
+
     public function hasCurrentBand():bool
     {
         return $this->bands->hasCurrent();
