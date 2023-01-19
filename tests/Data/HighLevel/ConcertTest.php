@@ -221,4 +221,20 @@ final class ConcertTest extends TestCase
             $this->DataSet->getVenueAndCityName()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     */
+    public function testMethodsShouldGetEmptyBandArray(): void
+    {
+        $this->DataSet = Concert::new();
+        $this->assertEquals(
+            false,
+            $this->DataSet->hasCurrentBand()
+        );
+    }
 }

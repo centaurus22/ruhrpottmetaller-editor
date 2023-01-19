@@ -5,14 +5,21 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\RmArray;
 
 class AbstractEvent extends AbstractHighLevelData
 {
     protected AbstractRmInt $numberOfDays;
+    protected RmArray $bands;
     protected IVenue $venue;
     protected AbstractRmString $url;
     protected AbstractRmBool $isSoldOut;
     protected AbstractRmBool $isCanceled;
+
+    public function __construct()
+    {
+        $this->bands = RmArray::new();
+    }
 
     public function setVenue(IVenue $venue): AbstractEvent
     {
@@ -56,5 +63,10 @@ class AbstractEvent extends AbstractHighLevelData
     public function getVenueAndCityName(): AbstractRmString
     {
         return $this->venue->asVenueAndCity();
+    }
+
+    public function hasCurrentBand():bool
+    {
+        return $this->bands->hasCurrent();
     }
 }
