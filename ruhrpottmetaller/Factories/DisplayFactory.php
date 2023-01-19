@@ -73,7 +73,8 @@ class DisplayFactory extends AbstractFactory
             'events' => 'Event',
             'bands' => 'Band',
             'venues' => 'Venue',
-            'cities' => 'City'
+            'cities' => 'City',
+            'license' => 'License'
         ];
     }
 }

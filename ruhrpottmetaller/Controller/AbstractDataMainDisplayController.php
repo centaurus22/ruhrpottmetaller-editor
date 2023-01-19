@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
-class AbstractDataMainDisplayController extends AbstractDisplayController
+abstract class AbstractDataMainDisplayController extends AbstractDisplayController
 {
     protected AbstractRmString $filterByParameter;
     protected AbstractRmString $orderByParameter;
