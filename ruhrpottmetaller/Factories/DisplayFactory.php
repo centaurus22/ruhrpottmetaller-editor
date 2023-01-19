@@ -20,12 +20,7 @@ class DisplayFactory extends AbstractFactory
 
     public function setFactoryBehaviours(array $input): DisplayFactory
     {
-        $allowedBehaviours = [
-            'events' => 'Event',
-            'bands' => 'Band',
-            'venues' => 'Venue',
-            'cities' => 'City'
-        ];
+        $allowedBehaviours = $this->getAllowedFactoryBehaviours();
 
         if (
             isset($input['show'])
@@ -70,5 +65,15 @@ class DisplayFactory extends AbstractFactory
                 'mainDisplayController',
                 $mainDisplayController
             );
+    }
+
+    private function getAllowedFactoryBehaviours(): array
+    {
+        return [
+            'events' => 'Event',
+            'bands' => 'Band',
+            'venues' => 'Venue',
+            'cities' => 'City'
+        ];
     }
 }
