@@ -76,8 +76,14 @@ class AbstractEvent extends AbstractHighLevelData
         return $this->bands->getCurrent();
     }
 
-    public function hasCurrentBand():bool
+    public function hasCurrentBand(): bool
     {
         return $this->bands->hasCurrent();
+    }
+
+    public function pointAtNextBand(): AbstractEvent
+    {
+        $this->bands->pointAtNext();
+        return $this;
     }
 }
