@@ -63,6 +63,10 @@ main {
     justify-content: center;
 }
 
+#text_content {
+    padding-top: 20px;
+}
+
 #spacer {
     flex-grow: 2;
 }
