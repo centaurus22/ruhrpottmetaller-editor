@@ -16,6 +16,8 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <form action="" class="rm_table_row">
             <?=RmString::new('venues')
                 ->asHiddenTableInput(RmString::new('show')) ?>
+            <?=RmString::new('venue')
+                ->asHiddenTableInput(RmString::new('save')) ?>
             <?=$data->getId()->asHiddenTableInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
