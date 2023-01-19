@@ -71,6 +71,11 @@ class AbstractEvent extends AbstractHighLevelData
         return $this;
     }
 
+    public function getCurrentBand(): Band
+    {
+        return $this->bands->getCurrent();
+    }
+
     public function hasCurrentBand():bool
     {
         return $this->bands->hasCurrent();

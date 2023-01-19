@@ -254,5 +254,9 @@ final class ConcertTest extends TestCase
             true,
             $this->DataSet->hasCurrentBand()
         );
+        $this->assertEquals(
+            'Dipsomania',
+            $this->DataSet->getCurrentBand()->getName()
+        );
     }
 }
