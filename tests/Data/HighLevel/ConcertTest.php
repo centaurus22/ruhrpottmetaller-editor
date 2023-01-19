@@ -228,6 +228,8 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData;
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
      */
     public function testMethodsShouldGetEmptyBandArray(): void
     {
@@ -266,6 +268,8 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData;
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
      */
     public function testMethodsShouldGetBandArrayMoreThanOneBand(): void
     {
