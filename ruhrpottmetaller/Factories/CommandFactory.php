@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Factories;
 use ruhrpottmetaller\Controller\AbstractCommandController;
 use ruhrpottmetaller\Controller\GeneralCommandController;
 use ruhrpottmetaller\Controller\NullCommandController;
-use ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData;
+use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Venue;
@@ -35,7 +35,7 @@ class CommandFactory extends AbstractFactory
         return NullCommandController::new(null, null);
     }
 
-    private function getDataObject(array $input): AbstractHighLevelData
+    private function getDataObject(array $input): AbstractNamedHighLevelData
     {
         switch ($input['save']) {
             case 'city':

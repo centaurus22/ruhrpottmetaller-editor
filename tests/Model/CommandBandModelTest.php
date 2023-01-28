@@ -45,7 +45,7 @@ final class CommandBandModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt

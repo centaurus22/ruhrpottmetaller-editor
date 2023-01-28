@@ -24,7 +24,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -92,7 +92,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
      */
@@ -129,7 +129,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString

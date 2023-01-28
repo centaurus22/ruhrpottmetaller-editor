@@ -14,7 +14,7 @@ final class FestivalTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -33,7 +33,7 @@ final class FestivalTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -51,7 +51,7 @@ final class FestivalTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -72,7 +72,7 @@ final class FestivalTest extends TestCase
 
     /**
      * @covers  \ruhrpottmetaller\AbstractRmObject
-     * @covers  \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers  \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers  \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers  \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses    \ruhrpottmetaller\Data\LowLevel\Date\RmDate

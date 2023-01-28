@@ -9,7 +9,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-abstract class AbstractHighLevelNullData extends AbstractRmObject implements IData
+abstract class AbstractNamedHighLevelNullData extends AbstractRmObject implements IData
 {
     public function getId(): AbstractRmInt
     {

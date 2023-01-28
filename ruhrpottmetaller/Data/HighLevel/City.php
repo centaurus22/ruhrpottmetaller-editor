@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 
-class City extends AbstractHighLevelData implements IData, ICity
+class City extends AbstractNamedHighLevelData implements IData, ICity
 {
     private AbstractRmBool $isVisible;
 

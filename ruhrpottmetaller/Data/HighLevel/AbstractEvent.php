@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\RmArray;
 
-abstract class AbstractEvent extends AbstractHighLevelData
+abstract class AbstractEvent extends AbstractNamedHighLevelData
 {
     protected AbstractRmInt $numberOfDays;
     protected RmArray $bands;

@@ -6,7 +6,7 @@ use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
-class Venue extends AbstractHighLevelData implements IData, IVenue
+class Venue extends AbstractNamedHighLevelData implements IData, IVenue
 {
     private ICity $city;
     private AbstractRmString $urlDefault;
