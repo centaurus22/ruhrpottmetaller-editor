@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\RmArray;
 abstract class AbstractEvent extends AbstractNamedHighLevelData
 {
     protected AbstractRmInt $numberOfDays;
-    protected RmArray $bands;
+    protected RmArray $gigs;
     protected IVenue $venue;
     protected AbstractRmString $url;
     protected AbstractRmBool $isSoldOut;
@@ -18,7 +18,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
 
     public function __construct()
     {
-        $this->bands = RmArray::new();
+        $this->gigs = RmArray::new();
     }
 
     public function setVenue(IVenue $venue): AbstractEvent
@@ -65,25 +65,25 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         return $this->venue->asVenueAndCity();
     }
 
-    public function addBands(RmArray $bands): AbstractEvent
+    public function addGigs(RmArray $gigs): AbstractEvent
     {
-        $this->bands = $bands;
+        $this->gigs = $gigs;
         return $this;
     }
 
-    public function getCurrentBand(): Band
+    public function getCurrentGig(): Gig
     {
-        return $this->bands->getCurrent();
+        return $this->gigs->getCurrent();
     }
 
-    public function hasCurrentBand(): bool
+    public function hasCurrentGig(): bool
     {
-        return $this->bands->hasCurrent();
+        return $this->gigs->hasCurrent();
     }
 
-    public function pointAtNextBand(): AbstractEvent
+    public function pointAtNextGig(): AbstractEvent
     {
-        $this->bands->pointAtNext();
+        $this->gigs->pointAtNext();
         return $this;
     }
 }

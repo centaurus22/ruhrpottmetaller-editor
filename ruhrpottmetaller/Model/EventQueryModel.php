@@ -77,7 +77,7 @@ class EventQueryModel extends AbstractQueryModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event
             ->setName(RmString::new($object->name))
-            ->addBands($this->gigQueryModel->getGigsByEventId(RmInt::new($object->id)))
+            ->addGigs($this->gigQueryModel->getGigsByEventId(RmInt::new($object->id)))
             ->setVenue($venue)
             ->setUrl(RmString::new($object->url))
             ->setIsSoldOut(RmBool::new($object->is_sold_out))

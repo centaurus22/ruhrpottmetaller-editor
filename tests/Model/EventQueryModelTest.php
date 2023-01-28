@@ -619,7 +619,7 @@ final class EventQueryModelTest extends TestCase
             $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
-                ->hasCurrentBand()
+                ->hasCurrentGig()
         );
     }
 }

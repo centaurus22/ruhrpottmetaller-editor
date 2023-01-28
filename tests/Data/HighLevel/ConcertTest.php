@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue};
+use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue, Gig};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 
@@ -236,7 +236,7 @@ final class ConcertTest extends TestCase
         $this->DataSet = Concert::new();
         $this->assertEquals(
             false,
-            $this->DataSet->hasCurrentBand()
+            $this->DataSet->hasCurrentGig()
         );
     }
 
@@ -244,6 +244,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -252,16 +253,16 @@ final class ConcertTest extends TestCase
     public function testMethodsShouldGetBandArrayWithOneBand(): void
     {
         $bands = RmArray::new()
-            ->add(Band::new()->setName(RmString::new('Dipsomania')));
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Dipsomania'))));
         $this->DataSet = Concert::new()
-            ->addBands($bands);
+            ->addGigs($bands);
         $this->assertEquals(
             true,
-            $this->DataSet->hasCurrentBand()
+            $this->DataSet->hasCurrentGig()
         );
         $this->assertEquals(
             'Dipsomania',
-            $this->DataSet->getCurrentBand()->getName()
+            $this->DataSet->getCurrentGig()->getBandName()
         );
     }
 
@@ -269,6 +270,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -277,18 +279,18 @@ final class ConcertTest extends TestCase
     public function testMethodsShouldGetBandArrayMoreThanOneBand(): void
     {
         $bands = RmArray::new()
-            ->add(Band::new()->setName(RmString::new('Dipsomania')))
-            ->add(Band::new()->setName(RmString::new('Darkness')));
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Dipsomania'))))
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Darkness'))));
         $this->DataSet = Concert::new()
-            ->addBands($bands)
-            ->pointAtNextBand();
+            ->addGigs($bands)
+            ->pointAtNextGig();
         $this->assertEquals(
             true,
-            $this->DataSet->hasCurrentBand()
+            $this->DataSet->hasCurrentGig()
         );
         $this->assertEquals(
             'Darkness',
-            $this->DataSet->getCurrentBand()->getName()
+            $this->DataSet->getCurrentGig()->getBandName()
         );
     }
 }
