@@ -10,9 +10,21 @@ use stdClass;
 
 class GigQueryModel extends AbstractQueryModel
 {
-    public static function new(?\mysqli $connection): GigQueryModel
-    {
-        return new static($connection);
+    private BandQueryModel $bandQueryModel;
+
+    public function __construct(
+        BandQueryModel $bandQueryModel,
+        ?\mysqli $connection
+    ) {
+        $this->bandQueryModel = $bandQueryModel;
+        parent::__construct($connection);
+    }
+
+    public static function new(
+        BandQueryModel $bandQueryModel,
+        ?\mysqli $connection
+    ): GigQueryModel {
+        return new static($bandQueryModel, $connection);
     }
 
     public function getGigsByEventId(RmInt $eventId): RmArray
@@ -25,6 +37,7 @@ class GigQueryModel extends AbstractQueryModel
     protected function getDataFromResult(stdClass $object): Gig
     {
         return Gig::new()
-            ->setAdditionalInformation(RmString::new($object->additional_information));
+            ->setAdditionalInformation(RmString::new($object->additional_information))
+            ->setBand($this->bandQueryModel->getBandById(RmInt::new($object->band_id)));
     }
 }

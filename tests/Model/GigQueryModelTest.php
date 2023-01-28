@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{Connection, GigQueryModel};
+use ruhrpottmetaller\Model\{BandQueryModel, Connection, GigQueryModel};
 
 final class GigQueryModelTest extends TestCase
 {
@@ -23,7 +23,8 @@ final class GigQueryModelTest extends TestCase
                 ->connect()
                 ->getConnection();
         $this->gigQueryModel = GigQueryModel::new(
-            $this->connection,
+            BandQueryModel::new($this->connection),
+            $this->connection
         );
     }
 
@@ -39,6 +40,7 @@ final class GigQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\gigQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -63,9 +65,11 @@ final class GigQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\gigQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Gig
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -81,7 +85,9 @@ final class GigQueryModelTest extends TestCase
                     event_id = 1,
                     band_id = 1,
                     additional_information = 'Gibt Freibier'";
+        $query[1] = "INSERT INTO band SET NAME = 'Imparity'";
         $this->connection->query($query[0]);
+        $this->connection->query($query[1]);
         $this->assertTrue(
             $this
                 ->gigQueryModel
@@ -95,6 +101,14 @@ final class GigQueryModelTest extends TestCase
                 ->getGigsByEventId(RmInt::new(1))
                 ->getCurrent()
                 ->getAdditionalInformation()
+        );
+        $this->assertEquals(
+            'Imparity',
+            $this
+                ->gigQueryModel
+                ->getGigsByEventId(RmInt::new(1))
+                ->getCurrent()
+                ->getBandName()
         );
     }
 }
