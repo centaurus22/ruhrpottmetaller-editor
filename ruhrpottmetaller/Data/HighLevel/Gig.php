@@ -5,10 +5,18 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Gig extends AbstractRmObject implements IData
 {
     private AbstractRmString $additionalInformation;
+    private Band $band;
+
+    public function setBand(Band $band): Gig
+    {
+        $this->band = $band;
+        return $this;
+    }
 
     public function getAdditionalInformation(): AbstractRmString
     {
@@ -19,5 +27,10 @@ class Gig extends AbstractRmObject implements IData
     {
         $this->additionalInformation = $additional_information;
         return $this;
+    }
+
+    public function getBandName(): AbstractRmString
+    {
+        return $this->band->getName();
     }
 }
