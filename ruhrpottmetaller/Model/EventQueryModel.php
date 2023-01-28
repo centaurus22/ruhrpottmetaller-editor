@@ -14,26 +14,31 @@ use stdClass;
 
 class EventQueryModel extends AbstractQueryModel
 {
+    private GigQueryModel $gigQueryModel;
     private VenueQueryModel $venueQueryModel;
 
     public function __construct(
         ?\mysqli $connection,
-        VenueQueryModel $queryVenueModel
+        GigQueryModel $gigQueryModel,
+        VenueQueryModel $venueQueryModel
     ) {
         parent::__construct($connection);
-        $this->venueQueryModel = $queryVenueModel;
+        $this->gigQueryModel = $gigQueryModel;
+        $this->venueQueryModel = $venueQueryModel;
     }
 
     public static function new(
         ?\mysqli $connection,
-        VenueQueryModel $queryVenueModel
+        GigQueryModel $gigQueryModel,
+        VenueQueryModel $venueQueryModel
     ): EventQueryModel {
-        return new static($connection, $queryVenueModel);
+        return new static($connection, $gigQueryModel, $venueQueryModel);
     }
 
     public function getEventsByMonth(RmDate $month): RmArray
     {
         $query = 'SELECT
+                id,
                 event.name AS name,
                 date_start,
                 number_of_days,
@@ -71,10 +76,11 @@ class EventQueryModel extends AbstractQueryModel
         $venue = $this->venueQueryModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event
-           ->setName(RmString::new($object->name))
-           ->setVenue($venue)
-           ->setUrl(RmString::new($object->url))
-           ->setIsSoldOut(RmBool::new($object->is_sold_out))
-           ->setIsCanceled(RmBool::new($object->is_canceled));
+            ->setName(RmString::new($object->name))
+            ->addBands($this->gigQueryModel->getGigsByEventId(RmInt::new($object->id)))
+            ->setVenue($venue)
+            ->setUrl(RmString::new($object->url))
+            ->setIsSoldOut(RmBool::new($object->is_sold_out))
+            ->setIsCanceled(RmBool::new($object->is_canceled));
     }
 }

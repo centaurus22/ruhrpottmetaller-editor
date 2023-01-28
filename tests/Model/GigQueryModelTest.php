@@ -23,8 +23,8 @@ final class GigQueryModelTest extends TestCase
                 ->connect()
                 ->getConnection();
         $this->gigQueryModel = GigQueryModel::new(
-            BandQueryModel::new($this->connection),
-            $this->connection
+            $this->connection,
+            BandQueryModel::new($this->connection)
         );
     }
 

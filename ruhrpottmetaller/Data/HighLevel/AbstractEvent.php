@@ -65,9 +65,9 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         return $this->venue->asVenueAndCity();
     }
 
-    public function addBand(Band $band): AbstractEvent
+    public function addBands(RmArray $bands): AbstractEvent
     {
-        $this->bands->add($band);
+        $this->bands = $bands;
         return $this;
     }
 

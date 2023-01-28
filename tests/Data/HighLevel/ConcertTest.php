@@ -7,6 +7,7 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmString};
+use ruhrpottmetaller\Data\RmArray;
 
 final class ConcertTest extends TestCase
 {
@@ -250,9 +251,10 @@ final class ConcertTest extends TestCase
      */
     public function testMethodsShouldGetBandArrayWithOneBand(): void
     {
-        $band = Band::new()->setName(RmString::new('Dipsomania'));
+        $bands = RmArray::new()
+            ->add(Band::new()->setName(RmString::new('Dipsomania')));
         $this->DataSet = Concert::new()
-            ->addBand($band);
+            ->addBands($bands);
         $this->assertEquals(
             true,
             $this->DataSet->hasCurrentBand()
@@ -274,11 +276,11 @@ final class ConcertTest extends TestCase
      */
     public function testMethodsShouldGetBandArrayMoreThanOneBand(): void
     {
-        $band1 = Band::new()->setName(RmString::new('Dipsomania'));
-        $band2 = Band::new()->setName(RmString::new('Darkness'));
+        $bands = RmArray::new()
+            ->add(Band::new()->setName(RmString::new('Dipsomania')))
+            ->add(Band::new()->setName(RmString::new('Darkness')));
         $this->DataSet = Concert::new()
-            ->addBand($band1)
-            ->addBand($band2)
+            ->addBands($bands)
             ->pointAtNextBand();
         $this->assertEquals(
             true,

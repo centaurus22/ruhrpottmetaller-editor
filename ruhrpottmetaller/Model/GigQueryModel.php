@@ -13,18 +13,18 @@ class GigQueryModel extends AbstractQueryModel
     private BandQueryModel $bandQueryModel;
 
     public function __construct(
-        BandQueryModel $bandQueryModel,
-        ?\mysqli $connection
+        ?\mysqli $connection,
+        BandQueryModel $bandQueryModel
     ) {
         $this->bandQueryModel = $bandQueryModel;
         parent::__construct($connection);
     }
 
     public static function new(
-        BandQueryModel $bandQueryModel,
-        ?\mysqli $connection
+        ?\mysqli $connection,
+        BandQueryModel $bandQueryModel
     ): GigQueryModel {
-        return new static($bandQueryModel, $connection);
+        return new static($connection, $bandQueryModel);
     }
 
     public function getGigsByEventId(RmInt $eventId): RmArray
