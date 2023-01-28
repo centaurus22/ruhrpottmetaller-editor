@@ -2,8 +2,9 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\HighLevel\{ICity, City};
+use ruhrpottmetaller\Data\HighLevel\Gig;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
@@ -21,8 +22,9 @@ class GigQueryModel extends AbstractQueryModel
         return $this->query($query, 'i', [$eventId->get()]);
     }
 
-    protected function getDataFromResult(stdClass $object): ICity
+    protected function getDataFromResult(stdClass $object): Gig
     {
-        return City::new();
+        return Gig::new()
+            ->setAdditionalInformation(RmString::new($object->additional_information));
     }
 }

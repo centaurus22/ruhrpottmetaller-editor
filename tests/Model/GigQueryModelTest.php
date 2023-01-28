@@ -57,4 +57,44 @@ final class GigQueryModelTest extends TestCase
             $this->gigQueryModel->getGigsByEventId(RmInt::new(1))
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Model\gigQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\Model\Connection
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Gig
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     */
+    public function testShouldReturnArrayWithOneGig(): void
+    {
+        $query[0] = "INSERT INTO gig SET
+                    id = 1,
+                    event_id = 1,
+                    band_id = 1,
+                    additional_information = 'Gibt Freibier'";
+        $this->connection->query($query[0]);
+        $this->assertTrue(
+            $this
+                ->gigQueryModel
+                ->getGigsByEventId(RmInt::new(1))
+                ->hasCurrent()
+        );
+        $this->assertEquals(
+            'Gibt Freibier',
+            $this
+                ->gigQueryModel
+                ->getGigsByEventId(RmInt::new(1))
+                ->getCurrent()
+                ->getAdditionalInformation()
+        );
+    }
 }
