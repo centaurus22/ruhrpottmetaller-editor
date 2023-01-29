@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
 abstract class AbstractEvent extends AbstractNamedHighLevelData
@@ -71,19 +72,8 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         return $this;
     }
 
-    public function getCurrentGig(): Gig
+    public function getBandList(): RmString
     {
-        return $this->gigs->getCurrent();
-    }
-
-    public function hasCurrentGig(): bool
-    {
-        return $this->gigs->hasCurrent();
-    }
-
-    public function pointAtNextGig(): AbstractEvent
-    {
-        $this->gigs->pointAtNext();
-        return $this;
+        return $this->gigs->getCurrent()->getBandName();
     }
 }

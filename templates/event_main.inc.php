@@ -8,6 +8,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?=RmString::new('Date')->asTableCell()?>
         <?=RmString::new('Name')->asTableCell()?>
         <?=RmString::new('Venue')->asTableCell()?>
+        <?=RmString::new('Bands')->asTableCell()?>
         <?=RmString::new('Url')->asTableCell()?>
     </div>
     <?php while ($this->get('events')->hasCurrent()) : ?>

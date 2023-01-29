@@ -615,11 +615,12 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query[0]);
         $this->databaseConnection->query($query[1]);
         $this->databaseConnection->query($query[2]);
-        $this->assertTrue(
+        $this->assertEquals(
+            'Houndwolf',
             $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
-                ->hasCurrentGig()
+                ->getBandList()
         );
     }
 }
