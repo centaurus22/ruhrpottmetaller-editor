@@ -262,4 +262,22 @@ final class ConcertTest extends TestCase
             ->addGigs($gigs);
         $this->assertEquals('Dipsomania, Darkness', $this->dataSet->getBandList());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testMethodsShouldGetBandListZeroBands(): void
+    {
+        $gigs = RmArray::new();
+        $this->dataSet = Concert::new()
+            ->addGigs($gigs);
+        $this->assertEquals('', $this->dataSet->getBandList());
+    }
 }
