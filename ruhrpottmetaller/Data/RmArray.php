@@ -33,4 +33,12 @@ class RmArray extends AbstractRmObject implements IData
     {
         return isset($this->array[$this->pointer]);
     }
+
+    public function isFirst(): bool
+    {
+        if ($this->pointer === 0) {
+            return true;
+        }
+        return false;
+    }
 }
