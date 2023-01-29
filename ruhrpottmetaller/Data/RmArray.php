@@ -36,9 +36,6 @@ class RmArray extends AbstractRmObject implements IData
 
     public function isFirst(): bool
     {
-        if ($this->pointer === 0) {
-            return true;
-        }
-        return false;
+        return $this->pointer === 0;
     }
 }
