@@ -74,6 +74,15 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
 
     public function getBandList(): RmString
     {
-        return $this->gigs->getCurrent()->getBandName();
+        while ($this->gigs->hasCurrent()) {
+            if ($this->gigs->isFirst()) {
+                $bandList = $this->gigs->getCurrent()->getBandName();
+            } else {
+                $bandList->concatWith(RmString::new(', ')
+                        ->concatWith($this->gigs->getCurrent()->getBandName()));
+            }
+            $this->gigs->pointAtNext();
+        }
+        return $bandList;
     }
 }
