@@ -31,7 +31,9 @@ final class GigQueryModelTest extends TestCase
     protected function tearDown(): void
     {
         $query[] = 'TRUNCATE gig';
+        $query[] = 'TRUNCATE band';
         $this->connection->query($query[0]);
+        $this->connection->query($query[1]);
     }
 
 
