@@ -76,6 +76,7 @@ class EventQueryModel extends AbstractQueryModel
         $venue = $this->venueQueryModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event
+            ->setId(RmInt::new($object->id))
             ->setName(RmString::new($object->name))
             ->addGigs($this->gigQueryModel->getGigsByEventId(RmInt::new($object->id)))
             ->setVenue($venue)
