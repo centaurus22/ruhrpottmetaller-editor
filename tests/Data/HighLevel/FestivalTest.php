@@ -55,6 +55,24 @@ final class FestivalTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     */
+    public function testShouldSetDateStartAndItAsTheDate(): void
+    {
+        $this->DataSet = Festival::new();
+        $this->DataSet->setDateStart(RmDate::new('2921-11-01'));
+        $this->assertEquals(
+            '2921-11-01',
+            $this->DataSet->getDate()->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
