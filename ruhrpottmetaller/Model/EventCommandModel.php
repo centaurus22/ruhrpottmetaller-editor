@@ -23,4 +23,16 @@ class EventCommandModel extends AbstractCommandModel
             ]
         );
     }
+
+    public function delete(RmInt $eventId): void
+    {
+        $query = 'DELETE FROM event WHERE id = ?';
+        $this->query(
+            $query,
+            'i',
+            [
+                $eventId->get()
+            ]
+        );
+    }
 }
