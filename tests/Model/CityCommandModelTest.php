@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{BandCommandModel, Connection, BandQueryModel};
+use ruhrpottmetaller\Model\{Connection, CityQueryModel, CityCommandModel};
 
-final class CommandBandModelTest extends TestCase
+final class CityCommandModelTest extends TestCase
 {
-    private BandQueryModel $queryModel;
-    private BandCommandModel $commandModel;
+    private CityQueryModel $queryModel;
+    private CityCommandModel $commandModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -24,10 +24,10 @@ final class CommandBandModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = BandQueryModel::new(
+        $this->queryModel = CityQueryModel::new(
             $this->connection,
         );
-        $this->commandModel = BandCommandModel::new(
+        $this->commandModel = CityCommandModel::new(
             $this->connection,
         );
     }
@@ -39,35 +39,35 @@ final class CommandBandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\BandCommandModel
+     * @covers \ruhrpottmetaller\Model\CityCommandModel
      * @covers \ruhrpottmetaller\Model\AbstractCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\AbstractModel
      * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
 
-    public function testShouldUpdateBand(): void
+    public function testShouldUpdateCityName(): void
     {
-        $query = 'INSERT INTO band SET name = "Sabiendas"';
+        $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
-        $band = Band::new()
+        $city = City::new()
             ->setId(RmInt::new(1))
-            ->setName(RmString::new('Custard'))
+            ->setName(RmString::new('Lünen'))
             ->setIsVisible(RmBool::new(true));
-        $this->commandModel->replaceData($band);
+        $this->commandModel->replaceData($city);
         $this->assertEquals(
-            'Custard',
+            'Lünen',
             $this->queryModel
-                ->getBandById(RmInt::new(1))
+                ->getCityById(RmInt::new(1))
                 ->getName()
         );
     }
