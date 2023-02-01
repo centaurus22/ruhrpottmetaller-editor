@@ -19,8 +19,8 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelNullData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -34,8 +34,8 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelNullData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @covers \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
@@ -49,8 +49,8 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelNullData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -64,7 +64,7 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -77,7 +77,7 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
@@ -94,7 +94,7 @@ final class NullVenueTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool

@@ -20,7 +20,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\BandMainDisplayController
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -77,7 +77,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
      */
@@ -113,7 +113,7 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Controller\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour

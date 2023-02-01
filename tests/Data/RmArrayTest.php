@@ -11,7 +11,7 @@ use ruhrpottmetaller\Data\RmArray;
 
 final class RmArrayTest extends TestCase
 {
-    private RmArray $Array;
+    private RmArray $array;
 
     /**
      * @covers \ruhrpottmetaller\Data\RmArray
@@ -45,8 +45,8 @@ final class RmArrayTest extends TestCase
      */
     public function testAddShouldAcceptVariable(): void
     {
-        $this->Array = RmArray::new();
-        $this->Array->add(RmInt::new(3));
+        $this->array = RmArray::new();
+        $this->array->add(RmInt::new(3));
     }
 
     /**
@@ -57,9 +57,9 @@ final class RmArrayTest extends TestCase
      */
     public function testGetShouldReturnSameVariable(): void
     {
-        $this->Array = RmArray::new();
-        $this->Array->add(RmInt::new(3));
-        $this->assertEquals(3, $this->Array->getCurrent()->get());
+        $this->array = RmArray::new();
+        $this->array->add(RmInt::new(3));
+        $this->assertEquals(3, $this->array->getCurrent()->get());
     }
 
     /**
@@ -71,10 +71,10 @@ final class RmArrayTest extends TestCase
      */
     public function testAddShouldBeChainable(): void
     {
-        $this->Array = RmArray::new();
+        $this->array = RmArray::new();
         $this->assertEquals(
             3,
-            $this->Array->add(RmInt::new(3))->getCurrent()->get()
+            $this->array->add(RmInt::new(3))->getCurrent()->get()
         );
     }
 
@@ -87,12 +87,12 @@ final class RmArrayTest extends TestCase
      */
     public function testShouldReturnTwoVariablesInTheSameOrderAsAdded(): void
     {
-        $this->Array = RmArray::new();
-        $this->Array->add(RmInt::new(5))->add(RmInt::new(7));
-        $this->assertEquals(5, $this->Array->getCurrent()->get());
+        $this->array = RmArray::new();
+        $this->array->add(RmInt::new(5))->add(RmInt::new(7));
+        $this->assertEquals(5, $this->array->getCurrent()->get());
         $this->assertEquals(
             7,
-            $this->Array->pointAtNext()->getCurrent()->get()
+            $this->array->pointAtNext()->getCurrent()->get()
         );
     }
 
@@ -105,9 +105,9 @@ final class RmArrayTest extends TestCase
      */
     public function testHasCurrentShouldReturnTrueIfElementIsAvailable(): void
     {
-        $this->Array = RmArray::new();
-        $this->Array->add(RmInt::new(5));
-        $this->assertTrue($this->Array->hasCurrent());
+        $this->array = RmArray::new();
+        $this->array->add(RmInt::new(5));
+        $this->assertTrue($this->array->hasCurrent());
     }
 
     /**
@@ -118,8 +118,8 @@ final class RmArrayTest extends TestCase
      */
     public function testHasCurrentShouldReturnFalseIfCurrentElementIsNotAvailable(): void
     {
-        $this->Array = RmArray::new();
-        $this->assertFalse($this->Array->hasCurrent());
+        $this->array = RmArray::new();
+        $this->assertFalse($this->array->hasCurrent());
     }
 
     /**
@@ -131,6 +131,18 @@ final class RmArrayTest extends TestCase
     public function testGetShouldThrowAnErrorIfCurrentElementIsNotAvailable(): void
     {
         $this->expectExceptionMessage('The Array does not contain data at this position.');
-        $this->Array = RmArray::new()->getCurrent();
+        $this->array = RmArray::new()->getCurrent();
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     */
+    public function testGetShouldReturnTrueIfFirstElement(): void
+    {
+        $this->array = RmArray::new()->add('Decaptacon');
+        $this->assertTrue($this->array->isFirst());
     }
 }

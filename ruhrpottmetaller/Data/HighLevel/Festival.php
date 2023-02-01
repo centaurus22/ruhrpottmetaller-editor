@@ -23,6 +23,11 @@ class Festival extends AbstractEvent
         return $this->dateStart;
     }
 
+    public function getDate(): RmDate
+    {
+        return $this->dateStart;
+    }
+
     public function setNumberOfDays(AbstractRmInt $numberOfDays): Festival
     {
         $this->numberOfDays = $numberOfDays;
@@ -34,9 +39,6 @@ class Festival extends AbstractEvent
         return $this->numberOfDays;
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getFormattedDate(): AbstractRmString
     {
         $numberOfDays = new \DateInterval('P' . ($this->numberOfDays->get() - 1) . 'D');

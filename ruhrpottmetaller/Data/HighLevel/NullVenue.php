@@ -6,7 +6,7 @@ use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmNullBool;
 use ruhrpottmetaller\Data\LowLevel\String\{RmString, RmNullString};
 
-class NullVenue extends AbstractHighLevelNullData implements IData, IVenue
+class NullVenue extends AbstractNamedHighLevelNullData implements IData, IVenue
 {
     public function getCityName(): RmNullString
     {

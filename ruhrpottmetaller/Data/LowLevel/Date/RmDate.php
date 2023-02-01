@@ -26,9 +26,6 @@ class RmDate extends \DateTime implements IData
         }
     }
 
-    /**
-     * @throws Exception
-     */
     public static function new(?string $value): RmDate
     {
         return new self($value);
@@ -46,11 +43,10 @@ class RmDate extends \DateTime implements IData
         if ($this->isNull) {
             return null;
         }
-
         return parent::format('Y-m-d');
     }
 
-    public function getFormatted(string $format): AbstractRmString
+    public function getFormatted(string $format = 'Y-m-d'): AbstractRmString
     {
         return RmString::new(parent::format($format));
     }

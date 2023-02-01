@@ -5,16 +5,17 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{City, Concert, Venue};
+use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue, Gig};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmString};
+use ruhrpottmetaller\Data\RmArray;
 
 final class ConcertTest extends TestCase
 {
-    private Concert $DataSet;
+    private Concert $dataSet;
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -22,17 +23,17 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetDateAndGetTheSameDate(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setDate(RmDate::new('2922-11-01'));
+        $this->dataSet = Concert::new();
+        $this->dataSet->setDate(RmDate::new('2922-11-01'));
         $this->assertEquals(
             '2922-11-01',
-            $this->DataSet->getDate()->get()
+            $this->dataSet->getDate()->get()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -42,14 +43,14 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetIdAndGetTheSameId(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setId(RmInt::new(23));
-        $this->assertEquals(23, $this->DataSet->getId()->get());
+        $this->dataSet = Concert::new();
+        $this->dataSet->setId(RmInt::new(23));
+        $this->assertEquals(23, $this->dataSet->getId()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -58,17 +59,17 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetNameAndGetTheSameName(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setName(RmString::new('RockHard-Festival'));
+        $this->dataSet = Concert::new();
+        $this->dataSet->setName(RmString::new('RockHard-Festival'));
         $this->assertEquals(
             'RockHard-Festival',
-            $this->DataSet->getName()->get()
+            $this->dataSet->getName()->get()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -77,17 +78,17 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetUrlAndGetTheSameUrl(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setUrl(RmString::new('https://junkyard.ruhr/'));
+        $this->dataSet = Concert::new();
+        $this->dataSet->setUrl(RmString::new('https://junkyard.ruhr/'));
         $this->assertEquals(
             'https://junkyard.ruhr/',
-            $this->DataSet->getUrl()->get()
+            $this->dataSet->getUrl()->get()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -96,14 +97,14 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetSoldOutStatusAndGetTheSameSoldOutStatus(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setIsSoldOut(RmBool::new(false));
-        $this->assertEquals(false, $this->DataSet->getIsSoldOut()->get());
+        $this->dataSet = Concert::new();
+        $this->dataSet->setIsSoldOut(RmBool::new(false));
+        $this->assertEquals(false, $this->dataSet->getIsSoldOut()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -112,14 +113,14 @@ final class ConcertTest extends TestCase
      */
     public function testShouldSetIsCanceledOutStatusAndGetTheSameIsCanceledStatus(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setIsCanceled(RmBool::new(false));
-        $this->assertEquals(false, $this->DataSet->getIsCanceled()->get());
+        $this->dataSet = Concert::new();
+        $this->dataSet->setIsCanceled(RmBool::new(false));
+        $this->assertEquals(false, $this->dataSet->getIsCanceled()->get());
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
@@ -135,7 +136,7 @@ final class ConcertTest extends TestCase
     {
         $Venue = Venue::new()->setName(RmString::new('Turock'));
 
-        $this->DataSet = Concert::new()
+        $this->dataSet = Concert::new()
             ->setId(RmInt::new(3))
             ->setName(RmString::new('Bierfest'))
             ->setDate(RmDate::new('2022-07-07'))
@@ -143,32 +144,32 @@ final class ConcertTest extends TestCase
             ->setIsSoldOut(RmBool::new(false))
             ->setIsCanceled(RmBool::new(false))
             ->setUrl(RmString::new('www.turock.eu'));
-        $this->assertEquals(3, $this->DataSet->getId()->get());
+        $this->assertEquals(3, $this->dataSet->getId()->get());
         $this->assertEquals(
             'Bierfest',
-            $this->DataSet->getName()->get()
+            $this->dataSet->getName()->get()
         );
         $this->assertEquals(
             '2022-07-07',
-            $this->DataSet->getDate()->get()
+            $this->dataSet->getDate()->get()
         );
         $this->assertEquals(
             false,
-            $this->DataSet->getIsSoldOut()->get()
+            $this->dataSet->getIsSoldOut()->get()
         );
         $this->assertEquals(
             false,
-            $this->DataSet->getIsCanceled()->get()
+            $this->dataSet->getIsCanceled()->get()
         );
         $this->assertEquals(
             'www.turock.eu',
-            $this->DataSet->getUrl()->get()
+            $this->dataSet->getUrl()->get()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -177,17 +178,17 @@ final class ConcertTest extends TestCase
      */
     public function testShouldGetFormattedDate(): void
     {
-        $this->DataSet = Concert::new();
-        $this->DataSet->setDate(RmDate::new('2022-10-22'));
+        $this->dataSet = Concert::new();
+        $this->dataSet->setDate(RmDate::new('2022-10-22'));
         $this->assertEquals(
             'Sat, 22.',
-            $this->DataSet->getFormattedDate()->get()
+            $this->dataSet->getFormattedDate()->get()
         );
     }
 
     /**
     * @covers \ruhrpottmetaller\AbstractRmObject
-    * @covers \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+    * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
@@ -208,7 +209,7 @@ final class ConcertTest extends TestCase
             ->setName(RmString::new('Turock'))
             ->setCity($City);
 
-        $this->DataSet = Concert::new()
+        $this->dataSet = Concert::new()
         ->setId(RmInt::new(3))
         ->setName(RmString::new('Bierfest'))
         ->setDate(RmDate::new('2022-07-07'))
@@ -218,7 +219,65 @@ final class ConcertTest extends TestCase
         ->setUrl(RmString::new('www.turock.eu'));
         $this->assertEquals(
             'Turock, Essen',
-            $this->DataSet->getVenueAndCityName()
+            $this->dataSet->getVenueAndCityName()
         );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+
+    public function testMethodsShouldGetBandList(): void
+    {
+        $gigs = RmArray::new()
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Dipsomania'))));
+        $this->dataSet = Concert::new()
+            ->addGigs($gigs);
+        $this->assertEquals('Dipsomania', $this->dataSet->getBandList());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testMethodsShouldGetBandListWithTwoBands(): void
+    {
+        $gigs = RmArray::new()
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Dipsomania'))))
+            ->add(Gig::new()->setBand(Band::new()->setName(RmString::new('Darkness'))));
+        $this->dataSet = Concert::new()
+            ->addGigs($gigs);
+        $this->assertEquals('Dipsomania, Darkness', $this->dataSet->getBandList());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testMethodsShouldGetBandListZeroBands(): void
+    {
+        $gigs = RmArray::new();
+        $this->dataSet = Concert::new()
+            ->addGigs($gigs);
+        $this->assertEquals('', $this->dataSet->getBandList());
     }
 }

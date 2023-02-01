@@ -8,16 +8,16 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
 use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{
+use ruhrpottmetaller\Model\{BandQueryModel,
     Connection,
     CityQueryModel,
     EventQueryModel,
-    VenueQueryModel,
-};
+    GigQueryModel,
+    VenueQueryModel};
 
 final class EventQueryModelTest extends TestCase
 {
-    private EventQueryModel $QueryEventDatabaseModel;
+    private EventQueryModel $eventQueryModel;
     private \mysqli $databaseConnection;
 
     protected function setUp(): void
@@ -27,8 +27,12 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->QueryEventDatabaseModel = EventQueryModel::new(
+        $this->eventQueryModel = EventQueryModel::new(
             $this->databaseConnection,
+            GigQueryModel::new(
+                $this->databaseConnection,
+                BandQueryModel::new($this->databaseConnection)
+            ),
             VenueQueryModel::new(
                 $this->databaseConnection,
                 CityQueryModel::new($this->databaseConnection)
@@ -41,9 +45,13 @@ final class EventQueryModelTest extends TestCase
         $query[] = 'TRUNCATE event';
         $query[] = 'TRUNCATE city';
         $query[] = 'TRUNCATE venue';
+        $query[] = 'TRUNCATE band';
+        $query[] = 'TRUNCATE gig';
         $this->databaseConnection->query($query[0]);
         $this->databaseConnection->query($query[1]);
         $this->databaseConnection->query($query[2]);
+        $this->databaseConnection->query($query[3]);
+        $this->databaseConnection->query($query[4]);
     }
 
 
@@ -51,6 +59,8 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
@@ -65,7 +75,7 @@ final class EventQueryModelTest extends TestCase
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
+            $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
         );
     }
 
@@ -75,8 +85,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
@@ -98,7 +110,7 @@ final class EventQueryModelTest extends TestCase
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-11"';
         $this->databaseConnection->query($query);
         $this->assertTrue(
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
+            $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->hasCurrent()
         );
     }
@@ -109,8 +121,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
@@ -133,7 +147,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertInstanceOf(
             AbstractEvent::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
+            $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -144,8 +158,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
@@ -168,7 +184,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertInstanceOf(
             Festival::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
+            $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -179,8 +195,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -204,7 +222,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertInstanceOf(
             Concert::class,
-            $this->QueryEventDatabaseModel->getEventsByMonth(RmDate::new('2022-06'))
+            $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
     }
@@ -215,8 +233,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -234,7 +254,7 @@ final class EventQueryModelTest extends TestCase
         $query = 'INSERT INTO event SET date_start = "2022-07-18"';
         $this->databaseConnection->query($query);
         $this->assertFalse(
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                  ->getEventsByMonth(RmDate::new('2022-06'))
                  ->hasCurrent()
         );
@@ -246,8 +266,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -269,7 +291,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertEquals(
             'Thrash Attack',
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getName()
@@ -284,8 +306,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -307,7 +331,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertEquals(
             'www.rockhard.de',
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getUrl()
@@ -321,8 +345,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -344,7 +370,7 @@ final class EventQueryModelTest extends TestCase
         $query = 'INSERT INTO event SET is_sold_out = true, date_start = "2022-06-18"';
         $this->databaseConnection->query($query);
         $this->assertTrue(
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsSoldOut()
@@ -358,8 +384,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -381,7 +409,7 @@ final class EventQueryModelTest extends TestCase
         $query = 'INSERT INTO event SET is_canceled = true, date_start = "2022-06-18"';
         $this->databaseConnection->query($query);
         $this->assertTrue(
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getIsCanceled()
@@ -395,8 +423,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -423,7 +453,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query[2]);
         $this->assertEquals(
             'Turock, Essen',
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getVenueAndCityName()
@@ -437,7 +467,9 @@ final class EventQueryModelTest extends TestCase
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -459,7 +491,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertEquals(
             '2022-06-18',
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getDate()
@@ -472,9 +504,11 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
@@ -497,7 +531,7 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertEquals(
             '2022-06-18',
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getDateStart()
@@ -511,8 +545,10 @@ final class EventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
@@ -535,11 +571,56 @@ final class EventQueryModelTest extends TestCase
         $this->databaseConnection->query($query);
         $this->assertEquals(
             3,
-            $this->QueryEventDatabaseModel
+            $this->eventQueryModel
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getNumberOfDays()
                 ->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Gig
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldReturnBands(): void
+    {
+        $query[] = 'INSERT INTO event SET date_start = "2022-06-18"';
+        $query[] = 'INSERT INTO gig SET event_id = 1, band_id = 1';
+        $query[] = 'INSERT INTO band SET name = "Houndwolf"';
+        $this->databaseConnection->query($query[0]);
+        $this->databaseConnection->query($query[1]);
+        $this->databaseConnection->query($query[2]);
+        $this->assertEquals(
+            'Houndwolf',
+            $this->eventQueryModel
+                ->getEventsByMonth(RmDate::new('2022-06'))
+                ->getCurrent()
+                ->getBandList()
         );
     }
 }
