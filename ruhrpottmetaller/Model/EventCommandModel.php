@@ -2,7 +2,6 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 class EventCommandModel extends AbstractCommandModel
