@@ -35,10 +35,6 @@ nav a, footer a {
     color: whitesmoke;
 }
 
-nav {
-    border-radius: 0 0 20px 20px;
-}
-
 nav ul {
     display: flex;
     flex-wrap: wrap;
@@ -54,6 +50,18 @@ nav li {
 
 nav li:first-letter {
     text-transform: uppercase;
+}
+
+#nav_secondary {
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: cornflowerblue;
+    padding: 7px;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    justify-content: center;
 }
 
 main {

@@ -23,6 +23,9 @@ while ($this->get('menu')->hasCurrent()) {
 ?>
             </ul>
         </nav>
+        <div id="nav_secondary">
+            &nbsp;
+        </div>
         <main id="main">
             <?=$this->get('mainDisplayControllerOutput')?>
         </main>
