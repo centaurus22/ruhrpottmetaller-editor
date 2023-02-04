@@ -11,11 +11,11 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <option value=""></option>
         <?php while ($this->get('cities')->hasCurrent()) : ?>
             <?php $currentCity = $this->get('cities')->getCurrent()->getName()->get() ?>
-C            <?php if ($currentCity == $this->get('filterByParameter')) : ?>
-                <option value="<?=$currentCity?>" selected ="selected"><?=$currentCity?></option>
-             <?php else : ?>
+            <?php if ($currentCity == $this->get('filterByParameter')) : ?>
+                <option value="<?=$currentCity?>" selected="selected"><?=$currentCity?></option>
+            <?php else : ?>
                 <option value="<?=$currentCity?>"><?=$currentCity?></option>
-             <?php endif; ?>
+            <?php endif; ?>
             <?php $this->get('cities')->pointAtNext() ?>
         <?php endwhile; ?>
     </select>

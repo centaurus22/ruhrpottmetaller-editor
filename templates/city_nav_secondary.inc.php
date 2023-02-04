@@ -12,7 +12,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php while ($this->get('firstChars')->hasCurrent()) : ?>
             <?php $currentChar = $this->get('firstChars')->getCurrent() ?>
             <?php if ($currentChar == $this->get('filterByParameter')) : ?>
-                <option value="<?=$currentChar?>" selected ="selected"><?=$currentChar?></option>
+                <option value="<?=$currentChar?>" selected="selected"><?=$currentChar?></option>
             <?php else : ?>
                 <option value="<?=$currentChar?>"><?=$currentChar?></option>
             <?php endif; ?>
