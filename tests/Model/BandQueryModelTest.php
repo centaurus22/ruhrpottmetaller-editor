@@ -210,4 +210,107 @@ final class BandQueryModelTest extends TestCase
                 ->get()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldFilterByFirstChar(): void
+    {
+        $query[] = 'INSERT INTO band SET name = "Custard", is_visible = 0';
+        $query[] = 'INSERT INTO band SET name = "Firestorm", is_visible = 0';
+        $this->DatabaseConnection->query($query[0]);
+        $this->DatabaseConnection->query($query[1]);
+        $this->assertEquals(
+            'Firestorm',
+            $this->QueryBandDatabaseModel
+                ->getBandsByFirstChar(RmString::new('F'))
+                ->getCurrent()
+                ->getName()
+                ->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldFindBandsWhoseNameStartWithASpecialChar(): void
+    {
+        $query[] = 'INSERT INTO band SET name = "Custard", is_visible = 0';
+        $query[] = 'INSERT INTO band SET name = "1349", is_visible = 0';
+        $this->DatabaseConnection->query($query[0]);
+        $this->DatabaseConnection->query($query[1]);
+        $this->assertEquals(
+            '1349',
+            $this->QueryBandDatabaseModel
+                ->getBandsWithSpecialChar()
+                ->getCurrent()
+                ->getName()
+                ->get()
+        );
+    }
+
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldFindBandsWhoseNameStartWithASpecialCharAndNoLowercaseChars(): void
+    {
+        $query[] = 'INSERT INTO band SET name = "custard", is_visible = 0';
+        $query[] = 'INSERT INTO band SET name = "1349", is_visible = 0';
+        $this->DatabaseConnection->query($query[0]);
+        $this->DatabaseConnection->query($query[1]);
+        $this->assertEquals(
+            '1349',
+            $this->QueryBandDatabaseModel
+                ->getBandsWithSpecialChar()
+                ->getCurrent()
+                ->getName()
+                ->get()
+        );
+    }
 }

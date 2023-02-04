@@ -20,6 +20,18 @@ class BandQueryModel extends AbstractQueryModel
         return $this->query($query);
     }
 
+    public function getBandsByFirstChar(RmString $firstChar): RmArray
+    {
+        $query = 'SELECT id, name, is_visible FROM band WHERE name LIKE ? ORDER BY name';
+        return $this->query($query, 's', [$firstChar->get() . '%']);
+    }
+
+    public function getBandsWithSpecialChar(): RmArray
+    {
+        $query = 'SELECT id, name, is_visible FROM band WHERE name NOT REGEXP "^[A-Z]%" ORDER BY name';
+        return $this->query($query);
+    }
+
     public function getBandById(RmInt $id): Band
     {
         $query = 'SELECT id, name, is_visible FROM band WHERE id = ?';
