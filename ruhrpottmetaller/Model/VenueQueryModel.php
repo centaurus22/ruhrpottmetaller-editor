@@ -34,6 +34,21 @@ class VenueQueryModel extends AbstractQueryModel
         return $this->query($query);
     }
 
+    public function getVenuesByCityName(RmString $cityName): RmArray
+    {
+        $query = 'SELECT 
+                venue.id AS id,
+                venue.name AS name,
+                city_id,
+                url_default,
+                venue.is_visible AS is_visible
+            FROM venue
+            JOIN city ON venue.city_id = city.id
+            WHERE city.name LIKE ?
+            ORDER BY name';
+        return $this->query($query, 's', [$cityName->get()]);
+    }
+
     public function getVenueById(AbstractRmInt $venueId): IVenue
     {
         if ($venueId->isNull()) {

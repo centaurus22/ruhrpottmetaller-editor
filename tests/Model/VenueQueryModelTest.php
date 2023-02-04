@@ -410,4 +410,39 @@ final class VenueQueryModelTest extends TestCase
             $this->queryVenueDatabaseModel->getVenueById(RmInt::new(1))
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\VenueQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses  \ruhrpottmetaller\Data\HighLevel\City
+     * @uses  \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldGetVenuesByCityName(): void
+    {
+        $query[] = 'INSERT INTO city SET name = "Essen"';
+        $query[] = 'INSERT INTO venue SET name = "Café Nord", city_id = 2';
+        $query[] = 'INSERT INTO venue SET name = "JunkYard", city_id = 1';
+
+        for ($n = 0; $n < 3; $n++) {
+            $this->connection->query($query[$n]);
+        }
+        $this->assertEquals(
+            'Café Nord',
+            $this->queryVenueDatabaseModel
+                ->getVenuesByCityName(RmString::new('Essen'))
+                ->getCurrent()
+                ->getName()
+        );
+    }
 }
