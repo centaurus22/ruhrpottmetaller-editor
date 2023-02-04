@@ -20,7 +20,7 @@ final class CharNavSecondaryDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\CharNavSecondaryDisplayController
      */
-    public function testShouldSetCityList()
+    public function testShouldSetListOfFirstChars()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),

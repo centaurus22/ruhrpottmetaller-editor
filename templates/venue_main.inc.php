@@ -18,7 +18,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                 ->asHiddenInput(RmString::new('show')) ?>
             <?=RmString::new('venue')
                 ->asHiddenInput(RmString::new('save')) ?>
-            <?=$data->getId()->asHiddenTableInput(RmString::new('id')) ?>
+            <?=$this->get('filterByParameter')
+                ->asHiddenInput(RmString::new('filter_by')) ?>
+            <?=$data->getId()->asHiddenInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
                     RmString::new('name'),

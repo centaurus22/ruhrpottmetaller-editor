@@ -11,7 +11,6 @@ class CharNavSecondaryDisplayController extends AbstractDataMainDisplayControlle
     {
         $this->transferGetParametersToView();
         $alphabetArray = RmArray::new()
-            ->add(RmString::new(''))
             ->add(RmString::new('%'));
 
         foreach (range('A', 'Z') as $char) {
