@@ -2,23 +2,22 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\{AbstractDisplayController, CityMainDisplayController};
+use ruhrpottmetaller\Controller\{AbstractDisplayController,
+    CityNavSecondaryDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\View\View;
 
-class CityMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
+class CityNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
         \mysqli $connection
     ): AbstractDisplayController {
-        return new CityMainDisplayController(
+        return new CityNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('city_main')
+                RmString::new('city_nav_secondary')
             ),
-            CityQueryModel::new($connection)
         );
     }
 }

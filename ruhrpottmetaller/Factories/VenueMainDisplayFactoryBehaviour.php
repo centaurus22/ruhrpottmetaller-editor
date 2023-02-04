@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{CityQueryModel, VenueQueryModel};
 use ruhrpottmetaller\View\View;
 
-class VenueMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
+class VenueMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,

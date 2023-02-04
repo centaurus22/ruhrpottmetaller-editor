@@ -7,7 +7,7 @@ use ruhrpottmetaller\Model\BandQueryModel;
 use ruhrpottmetaller\View\View;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class BandMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
+class BandMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,

@@ -8,8 +8,9 @@ use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractFactory
 {
-    private IMainDisplayFactoryBehaviour $mainDisplayFactoryBehaviour;
+    private IGeneralDisplayFactoryBehaviour $mainDisplayFactoryBehaviour;
     private IHeadDisplayFactoryBehaviour $headDisplayFactoryBehaviour;
+    private IGeneralDisplayFactoryBehaviour $navSecondaryDisplayFactoryBehaviour;
     private RmString $templatePath;
 
     public function __construct(\mysqli $connection)
@@ -26,15 +27,18 @@ class DisplayFactory extends AbstractFactory
             isset($input['show'])
             and array_key_exists($input['show'], $allowedBehaviours)
         ) {
-            $mainBehaviourClass = $allowedBehaviours[$input['show']];
+            $generalBehaviourClass = $allowedBehaviours[$input['show']];
             $pageName = RmString::new($input['show']);
         } else {
-            $mainBehaviourClass = 'Event';
+            $generalBehaviourClass = 'Event';
             $pageName = RmString::new('events');
         }
-        $mainBehaviourClass = __NAMESPACE__ . '\\' . $mainBehaviourClass . 'MainDisplayFactoryBehaviour';
+        $mainBehaviourClass = __NAMESPACE__ . '\\' . $generalBehaviourClass . 'MainDisplayFactoryBehaviour';
+        $navSecondaryBehaviourClass = __NAMESPACE__
+            . '\\' . $generalBehaviourClass . 'NavSecondaryDisplayFactoryBehaviour';
 
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
+        $this->navSecondaryDisplayFactoryBehaviour = new $navSecondaryBehaviourClass();
         $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
         return $this;
     }
@@ -56,10 +60,22 @@ class DisplayFactory extends AbstractFactory
             RmString::new($input['order_by'] ?? null)
         );
 
+        $navSecondaryDisplayController = $this->navSecondaryDisplayFactoryBehaviour->getDisplayController(
+            $this->templatePath,
+            $this->connection
+        )->setGetParameters(
+            RmString::new($input['filter_by'] ?? null),
+            RmString::new($input['order_by'] ?? null)
+        );
+
         return $baseDisplayController
             ->addSubController(
                 'headDisplayController',
                 $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
+            )
+            ->addSubController(
+                'navSecondaryDisplayController',
+                $navSecondaryDisplayController
             )
             ->addSubController(
                 'mainDisplayController',

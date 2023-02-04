@@ -6,7 +6,7 @@ use ruhrpottmetaller\Controller\{AbstractDisplayController, LicenseMainDisplayCo
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
-class LicenseMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
+class LicenseMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,

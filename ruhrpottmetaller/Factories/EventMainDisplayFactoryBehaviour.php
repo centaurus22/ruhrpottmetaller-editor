@@ -7,7 +7,7 @@ use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, EventQueryModel, Gig
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
-class EventMainDisplayFactoryBehaviour implements IMainDisplayFactoryBehaviour
+class EventMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,

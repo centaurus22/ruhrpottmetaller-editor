@@ -11,6 +11,7 @@ class CityNavSecondaryDisplayController extends AbstractDataMainDisplayControlle
 {
     protected function prepareThisController(): void
     {
+        $this->transferGetParametersToView();
         $alphabetArray = RmArray::new()
             ->add(RmString::new(''))
             ->add(RmString::new('%'));
