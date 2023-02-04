@@ -132,15 +132,15 @@ final class RmDateTest extends TestCase
     public function testShouldReturnMonthChangerMenu()
     {
         $month = date('Y-m');
-        $buttonToPreviousMonth = '<a href="?month=2022-09"><button>&nbsp;&lt;&lt;&nbsp;</button></a>';
+        $buttonToPreviousMonth = '<a href="?filter_by=2022-09"><button>&nbsp;&lt;&lt;&nbsp;</button></a>';
         $buttonToCurrentMonth = sprintf(
-            '<a href="?month=%1$s"><button>&nbsp;o&nbsp;</button></a>',
+            '<a href="?filter_by=%1$s"><button>&nbsp;o&nbsp;</button></a>',
             $month
         );
-        $buttonToNextMonth = '<a href="?month=2022-11"><button>&nbsp;&gt;&gt;&nbsp;</button></a>';
+        $buttonToNextMonth = '<a href="?filter_by=2022-11"><button>&nbsp;&gt;&gt;&nbsp;</button></a>';
         $monthDisplay = '<div>Oct 2022</div>';
         $this->assertEquals(
-            '<div>' . $buttonToPreviousMonth . $buttonToCurrentMonth . $buttonToNextMonth . $monthDisplay . '</div>',
+            $buttonToPreviousMonth . $buttonToCurrentMonth . $buttonToNextMonth . $monthDisplay,
             RmDate::new('2022-10')->getMonthChangerMenu()->get()
         );
     }

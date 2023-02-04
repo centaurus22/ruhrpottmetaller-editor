@@ -55,12 +55,10 @@ class RmDate extends \DateTime implements IData
     {
         $oneMonth = DateInterval::createFromDateString('1 month');
         return RmString::new(
-            '<div>'
-            . $this->getButtonToPreviousMonth($oneMonth)
+            $this->getButtonToPreviousMonth($oneMonth)
             . $this->getButtonToCurrentMonth()
             . $this->getButtonToNextMonth($oneMonth)
             . $this->getMonthDisplay()
-            . '</div>'
         );
     }
 
@@ -88,7 +86,7 @@ class RmDate extends \DateTime implements IData
     {
         $NextMonth = (clone $this)->sub($oneMonth);
         return sprintf(
-            '<a href="?month=%1$s"><button>&nbsp;&lt;&lt;&nbsp;</button></a>',
+            '<a href="?filter_by=%1$s"><button>&nbsp;&lt;&lt;&nbsp;</button></a>',
             $NextMonth->format('Y-m')
         );
     }
@@ -96,7 +94,7 @@ class RmDate extends \DateTime implements IData
     private function getButtonToCurrentMonth(): string
     {
         return sprintf(
-            '<a href="?month=%1$s"><button>&nbsp;o&nbsp;</button></a>',
+            '<a href="?filter_by=%1$s"><button>&nbsp;o&nbsp;</button></a>',
             date('Y-m')
         );
     }
@@ -105,7 +103,7 @@ class RmDate extends \DateTime implements IData
     {
         $nextMonth = (clone $this)->add($oneMonth);
         return sprintf(
-            '<a href="?month=%1$s"><button>&nbsp;&gt;&gt;&nbsp;</button></a>',
+            '<a href="?filter_by=%1$s"><button>&nbsp;&gt;&gt;&nbsp;</button></a>',
             $nextMonth->format('Y-m')
         );
     }

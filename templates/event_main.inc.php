@@ -19,8 +19,10 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                 ->asHiddenInput(RmString::new('show')) ?>
             <?=RmString::new('event')
                 ->asHiddenInput(RmString::new('modify')) ?>
-            <?=$event->getId()->asHiddenTableInput(RmString::new('id'))?>
-            <?=$event->getDate()->getFormatted()->asHiddenTableInput(RmString::new('date'))?>
+            <?=$this->get('filterByParameter')
+                ->asHiddenInput(RmString::new('filter_by')) ?>
+            <?=$event->getId()->asHiddenInput(RmString::new('id'))?>
+            <?=$event->getDate()->getFormatted()->asHiddenInput(RmString::new('date'))?>
             <?=$event->getFormattedDate()->asTableCell() ?>
             <?=$event->getName()->asTableCell() ?>
             <?=$event->getVenueAndCityName()->asTableCell()?>
