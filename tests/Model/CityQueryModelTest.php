@@ -13,7 +13,7 @@ use ruhrpottmetaller\Model\{Connection, CityQueryModel};
 
 final class CityQueryModelTest extends TestCase
 {
-    private CityQueryModel $queryCityDatabaseModel;
+    private CityQueryModel $cityQueryModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -23,7 +23,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryCityDatabaseModel = CityQueryModel::new(
+        $this->cityQueryModel = CityQueryModel::new(
             $this->connection,
         );
     }
@@ -55,7 +55,7 @@ final class CityQueryModelTest extends TestCase
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->queryCityDatabaseModel->getCities()
+            $this->cityQueryModel->getCities()
         );
     }
 
@@ -82,7 +82,7 @@ final class CityQueryModelTest extends TestCase
         $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
         $this->assertTrue(
-            $this->queryCityDatabaseModel->getCities()
+            $this->cityQueryModel->getCities()
                 ->hasCurrent()
         );
     }
@@ -111,7 +111,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertInstanceOf(
             City::class,
-            $this->queryCityDatabaseModel->getCities()
+            $this->cityQueryModel->getCities()
                                           ->getCurrent()
         );
     }
@@ -140,7 +140,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             'Mülheim an der Ruhr',
-            $this->queryCityDatabaseModel
+            $this->cityQueryModel
                 ->getCities()
                 ->getCurrent()
                 ->getName()
@@ -172,7 +172,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             '1',
-            $this->queryCityDatabaseModel
+            $this->cityQueryModel
                 ->getCities()
                 ->getCurrent()
                 ->getId()
@@ -204,7 +204,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             '0',
-            $this->queryCityDatabaseModel
+            $this->cityQueryModel
                 ->getCities()
                 ->getCurrent()
                 ->getIsVisible()
@@ -237,7 +237,7 @@ final class CityQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             '1',
-            $this->queryCityDatabaseModel
+            $this->cityQueryModel
                 ->getCityById(RmInt::new(1))
                 ->getId()
                 ->get()
@@ -259,7 +259,75 @@ final class CityQueryModelTest extends TestCase
     {
         $this->assertInstanceOf(
             NullCity::class,
-            $this->queryCityDatabaseModel->getCityById(RmInt::new(null))
+            $this->cityQueryModel->getCityById(RmInt::new(null))
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldFilterByFirstChar(): void
+    {
+        $query[] = 'INSERT INTO city SET name = "Hagen", is_visible = 0';
+        $query[] = 'INSERT INTO city SET name = "Gelsenkirchen", is_visible = 0';
+        $this->connection->query($query[0]);
+        $this->connection->query($query[1]);
+        $this->assertEquals(
+            'Gelsenkirchen',
+            $this->cityQueryModel
+                ->getCitiesByFirstChar(RmString::new('G'))
+                ->getCurrent()
+                ->getName()
+                ->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldFindBandsWhoseNameStartWithASpecialChar(): void
+    {
+        $query[] = 'INSERT INTO city SET name = "Dortmund", is_visible = 0';
+        $query[] = 'INSERT INTO city SET name = "Åkrehamn", is_visible = 0';
+        $this->connection->query($query[0]);
+        $this->connection->query($query[1]);
+        $this->assertEquals(
+            'Åkrehamn',
+            $this->cityQueryModel
+                ->getCitiesWithSpecialChar()
+                ->getCurrent()
+                ->getName()
+                ->get()
         );
     }
 }

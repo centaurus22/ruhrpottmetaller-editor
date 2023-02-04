@@ -22,7 +22,17 @@ class CityQueryModel extends AbstractQueryModel
         return $this->query($query);
     }
 
+    public function getCitiesByFirstChar(RmString $firstChar): RmArray
+    {
+        $query = 'SELECT id, name, is_visible FROM city WHERE name LIKE ? ORDER BY name';
+        return $this->query($query, 's', [$firstChar->get() . '%']);
+    }
 
+    public function getCitiesWithSpecialChar(): RmArray
+    {
+        $query = 'SELECT id, name, is_visible FROM city WHERE name NOT REGEXP "^[A-Z]%" ORDER BY name';
+        return $this->query($query);
+    }
 
     public function getCityById(AbstractRmInt $cityId): ICity
     {
