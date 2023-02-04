@@ -64,6 +64,11 @@ nav li:first-letter {
     justify-content: center;
 }
 
+#nav_secondary > div {
+    width: 90px;
+    padding-left: 5px;
+}
+
 main {
     padding: 5px 10px 5px 10px;
     overflow: scroll;
