@@ -13,9 +13,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $data = $this->get('cities')->getCurrent(); ?>
         <form action="" class="rm_table_row">
             <?=RmString::new('cities')
-                ->asHiddenTableInput(RmString::new('show')) ?>
+                ->asHiddenInput(RmString::new('show')) ?>
             <?=RmString::new('city')
-                ->asHiddenTableInput(RmString::new('save')) ?>
+                ->asHiddenInput(RmString::new('save')) ?>
             <?=$data->getId()->asHiddenTableInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(

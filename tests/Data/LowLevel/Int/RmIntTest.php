@@ -214,7 +214,7 @@ final class RmIntTest extends TestCase
         $expectedString = '<input type="hidden" name="id" value="23">';
         $this->assertEquals(
             $expectedString,
-            $this->value->asHiddenTableInput(RmString::new('id'))
+            $this->value->asHiddenInput(RmString::new('id'))
         );
     }
 }

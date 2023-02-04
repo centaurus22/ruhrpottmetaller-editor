@@ -16,9 +16,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $event = $this->get('events')->getCurrent(); ?>
         <form action="" class="rm_table_row">
             <?=RmString::new('events')
-                ->asHiddenTableInput(RmString::new('show')) ?>
+                ->asHiddenInput(RmString::new('show')) ?>
             <?=RmString::new('event')
-                ->asHiddenTableInput(RmString::new('modify')) ?>
+                ->asHiddenInput(RmString::new('modify')) ?>
             <?=$event->getId()->asHiddenTableInput(RmString::new('id'))?>
             <?=$event->getDate()->getFormatted()->asHiddenTableInput(RmString::new('date'))?>
             <?=$event->getFormattedDate()->asTableCell() ?>
