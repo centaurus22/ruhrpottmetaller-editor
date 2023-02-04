@@ -5,21 +5,20 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\CityNavSecondaryDisplayController;
-use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Controller\CharNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 
-final class CityNavSecondaryDisplayControllerTest extends TestCase
+final class CharNavSecondaryDisplayControllerTest extends TestCase
 {
-    private CityNavSecondaryDisplayController $Controller;
+    private CharNavSecondaryDisplayController $Controller;
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CityNavSecondaryDisplayController
+     * @covers \ruhrpottmetaller\Controller\CharNavSecondaryDisplayController
      */
     public function testShouldSetCityList()
     {
@@ -28,7 +27,7 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new CityNavSecondaryDisplayController(
+        $this->Controller = new CharNavSecondaryDisplayController(
             $BaseView
         );
 

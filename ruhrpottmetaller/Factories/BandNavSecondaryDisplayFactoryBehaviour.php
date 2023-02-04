@@ -7,7 +7,7 @@ use ruhrpottmetaller\Controller\{AbstractDisplayController,
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
-class CityNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
+class BandNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
@@ -16,7 +16,7 @@ class CityNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryB
         return new CharNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('city_nav_secondary')
+                RmString::new('band_nav_secondary')
             ),
         );
     }

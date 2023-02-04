@@ -4,10 +4,8 @@ namespace ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\CityQueryModel;
-use ruhrpottmetaller\View\View;
 
-class CityNavSecondaryDisplayController extends AbstractDataMainDisplayController
+class CharNavSecondaryDisplayController extends AbstractDataMainDisplayController
 {
     protected function prepareThisController(): void
     {
