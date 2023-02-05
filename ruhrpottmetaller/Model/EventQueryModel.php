@@ -47,7 +47,7 @@ class EventQueryModel extends AbstractQueryModel
                 is_sold_out,
                 is_canceled
             FROM event
-            WHERE date_start LIKE ? ORDER BY date_start;';
+            WHERE date_start LIKE ? ORDER BY date_start';
         return $this->query(
             $query,
             's',
