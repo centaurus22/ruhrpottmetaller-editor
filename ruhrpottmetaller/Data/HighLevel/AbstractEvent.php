@@ -79,8 +79,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
             if ($this->gigs->isFirst()) {
                 $bandList = $this->getHtmlBandName();
             } else {
-                $bandList->concatWith(RmString::new(', ')
-                        ->concatWith($this->gigs->getCurrent()->getBandName()));
+                $bandList->concatWith(RmString::new(', '))->concatWith($this->getHtmlBandName());
             }
             $this->gigs->pointAtNext();
         }
