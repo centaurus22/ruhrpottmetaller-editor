@@ -21,7 +21,14 @@ class BandMainDisplayController extends AbstractDataMainDisplayController
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
-        $data = $this->bandQueryModel->getBands();
+
+        if ($this->filterByParameter->get() == '%') {
+            $data = $this->bandQueryModel->getBandsWithSpecialChar();
+        } elseif ($this->filterByParameter->isEmpty()) {
+            $data = $this->bandQueryModel->getBands();
+        } else {
+            $data = $this->bandQueryModel->getBandsByFirstChar($this->filterByParameter);
+        }
 
         if (!$data->hasCurrent()) {
             $this->view->setTemplate(RmString::new('band_main_empty'));
