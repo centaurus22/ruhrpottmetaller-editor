@@ -12,13 +12,6 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
     <?php while ($this->get('cities')->hasCurrent()) : ?>
         <?php $data = $this->get('cities')->getCurrent(); ?>
         <form action="" class="rm_table_row">
-            <?=RmString::new('cities')
-                ->asHiddenInput(RmString::new('show')) ?>
-            <?=RmString::new('city')
-                ->asHiddenInput(RmString::new('save')) ?>
-            <?=$this->get('filterByParameter')
-                ->asHiddenInput(RmString::new('filter_by')) ?>
-            <?=$data->getId()->asHiddenInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
                     RmString::new('name'),
@@ -32,6 +25,13 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     RmString::new('Visible'),
                     $data->getId()
                 )->asTableCell() ?>
+            <?=$data->getId()->asHiddenInput(RmString::new('id')) ?>
+            <?=RmString::new('cities')
+                ->asHiddenInput(RmString::new('show')) ?>
+            <?=RmString::new('city')
+                ->asHiddenInput(RmString::new('save')) ?>
+            <?=$this->get('filterByParameter')
+                ->asHiddenInput(RmString::new('filter_by')) ?>
             <?=RmString::new('Save')->asSubmitButton()->asTableCell()?>
         </form>
         <?php $this->get('cities')->pointAtNext(); ?>
