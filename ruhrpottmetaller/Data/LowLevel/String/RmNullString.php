@@ -12,4 +12,9 @@ class RmNullString extends AbstractRmString
     {
         return RmNullString::new(null);
     }
+
+    public function isEmpty(): bool
+    {
+        return true;
+    }
 }
