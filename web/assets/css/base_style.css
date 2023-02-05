@@ -118,13 +118,20 @@ footer {
 
 .rm_table_cell {
     display: table-cell;
-    padding: 1px 0;
+    padding: 1px 5px;
     border-top-width: 1px;
     vertical-align: middle;
 }
 
+.rm_table_cell:first-child {
+    padding-left: 0;
+    min-width: 72px;
+}
+
 .rm_table_cell:last-child {
     text-align: right;
+    padding-right: 0;
+    min-width: 154px;
 }
 
 .rm_table_cell > input {
