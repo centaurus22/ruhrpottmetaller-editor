@@ -21,6 +21,7 @@ class BandMainDisplayController extends AbstractDataMainDisplayController
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
+
         $data = $this->bandQueryModel->getBands();
 
         if (!$data->hasCurrent()) {
