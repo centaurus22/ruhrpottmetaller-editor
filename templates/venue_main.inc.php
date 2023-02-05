@@ -14,13 +14,6 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
     <?php while ($this->get('venues')->hasCurrent()) : ?>
         <?php $data = $this->get('venues')->getCurrent(); ?>
         <form action="" class="rm_table_row">
-            <?=RmString::new('venues')
-                ->asHiddenInput(RmString::new('show')) ?>
-            <?=RmString::new('venue')
-                ->asHiddenInput(RmString::new('save')) ?>
-            <?=$this->get('filterByParameter')
-                ->asHiddenInput(RmString::new('filter_by')) ?>
-            <?=$data->getId()->asHiddenInput(RmString::new('id')) ?>
             <?=$data->getName()
                 ->asTableInput(
                     RmString::new('name'),
@@ -41,6 +34,13 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     $data->getId()
                 )
                 ->asTableCell() ?>
+            <?=RmString::new('venues')
+                ->asHiddenInput(RmString::new('show')) ?>
+            <?=RmString::new('venue')
+                ->asHiddenInput(RmString::new('save')) ?>
+            <?=$this->get('filterByParameter')
+                ->asHiddenInput(RmString::new('filter_by')) ?>
+            <?=$data->getId()->asHiddenInput(RmString::new('id')) ?>
             <?=RmString::new('Save')->asSubmitButton()->asTableCell()?>
         </form>
         <?php $this->get('venues')->pointAtNext(); ?>
