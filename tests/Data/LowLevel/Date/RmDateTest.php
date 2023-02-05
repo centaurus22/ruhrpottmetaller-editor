@@ -70,7 +70,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      */
     public function testNewShouldAcceptStringAndGetShouldProvideItAgain(): void
     {
@@ -80,7 +79,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSet(): void
     {
@@ -92,7 +90,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      */
     public function testGetShouldReturnLastChainedSetAfterInitializedWithNull(): void
     {
@@ -104,7 +101,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      */
     public function testShouldGetTheValueFromTheLastChainedSet(): void
     {
@@ -114,7 +110,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      */
     public function testShouldPrintTheValueFromTheLastChainedSet(): void
     {
@@ -124,7 +119,6 @@ final class RmDateTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @throws \Exception
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
