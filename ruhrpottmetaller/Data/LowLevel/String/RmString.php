@@ -23,4 +23,9 @@ class RmString extends AbstractRmString
     {
         return $this->value == '';
     }
+
+    public function hasSpecialFirstChar(): bool
+    {
+        return !preg_match('/^[a-zA-Z]/', $this->value);
+    }
 }
