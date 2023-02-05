@@ -77,7 +77,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         $bandList = RmString::new('');
         while ($this->gigs->hasCurrent()) {
             if ($this->gigs->isFirst()) {
-                $bandList = $this->gigs->getCurrent()->getBandName();
+                $bandList = $this->getHtmlBandName();
             } else {
                 $bandList->concatWith(RmString::new(', ')
                         ->concatWith($this->gigs->getCurrent()->getBandName()));
@@ -85,5 +85,15 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
             $this->gigs->pointAtNext();
         }
         return $bandList;
+    }
+
+    private function getHtmlBandName(): RmString
+    {
+        if ($this->gigs->getCurrent()->isBandVisible()->get()) {
+            return $this->gigs->getCurrent()->getBandName();
+        }
+        return RmString::new('<span class="invisible">')
+            ->concatWith($this->gigs->getCurrent()->getBandName())
+            ->concatWith(RmString::new('</span>'));
     }
 }
