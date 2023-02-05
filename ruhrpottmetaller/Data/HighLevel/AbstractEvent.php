@@ -77,22 +77,35 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         $bandList = RmString::new('');
         while ($this->gigs->hasCurrent()) {
             if ($this->gigs->isFirst()) {
-                $bandList = $this->getHtmlBandName();
+                $bandList = $this->getFormattedBandName();
             } else {
-                $bandList->concatWith(RmString::new(', '))->concatWith($this->getHtmlBandName());
+                $bandList->concatWith(RmString::new(', '))->concatWith($this->getFormattedBandName());
             }
             $this->gigs->pointAtNext();
         }
         return $bandList;
     }
 
-    private function getHtmlBandName(): RmString
+    private function getFormattedBandName(): RmString
     {
         if ($this->gigs->getCurrent()->isBandVisible()->get()) {
-            return $this->gigs->getCurrent()->getBandName();
+            return $this->gigs
+                ->getCurrent()
+                ->getBandName()
+                ->concatWith($this->getFormattedAdditionalInformation());
         }
         return RmString::new('<span class="invisible">')
             ->concatWith($this->gigs->getCurrent()->getBandName())
-            ->concatWith(RmString::new('</span>'));
+            ->concatWith(RmString::new('</span>'))
+            ->concatWith($this->getFormattedAdditionalInformation());
+    }
+
+    private function getFormattedAdditionalInformation(): RmString
+    {
+        if ($this->gigs->getCurrent()->getAdditionalInformation()->isNull()) {
+            return RmString::new('');
+        }
+
+        return RmString::new(' (' . $this->gigs->getCurrent()->getAdditionalInformation()->get() . ')');
     }
 }
