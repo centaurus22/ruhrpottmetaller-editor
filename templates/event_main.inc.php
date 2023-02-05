@@ -26,7 +26,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
             <?=$event->getFormattedDate()->asTableCell() ?>
             <?=$event->getName()->asTableCell() ?>
             <?=$event->getVenueAndCityName()->asTableCell()?>
-            <?=$event->getBandList()?>
+            <?=$event->getBandList()->asTableCell()?>
             <?=$event->getUrl()->asWwwUrl()->asTableCell()?>
             <?=RmString::new('<select name="action">
                 <option value="add">Add</option>
