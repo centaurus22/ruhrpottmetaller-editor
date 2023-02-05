@@ -18,4 +18,9 @@ class RmString extends AbstractRmString
     {
         return RmString::new('<button type="submit">' . $this->value . '</button>');
     }
+
+    public function isEmpty(): bool
+    {
+        return $this->value == '';
+    }
 }
