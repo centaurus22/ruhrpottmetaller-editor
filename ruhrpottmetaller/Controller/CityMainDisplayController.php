@@ -8,26 +8,33 @@ use ruhrpottmetaller\View\View;
 
 class CityMainDisplayController extends AbstractDataMainDisplayController
 {
-    private CityQueryModel $queryCityDatabaseModel;
+    private CityQueryModel $cityQueryModel;
 
     public function __construct(
         View $view,
         CityQueryModel $queryCityDatabaseModel
     ) {
         parent::__construct($view);
-        $this->queryCityDatabaseModel = $queryCityDatabaseModel;
+        $this->cityQueryModel = $queryCityDatabaseModel;
     }
 
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
-        $cities = $this->queryCityDatabaseModel->getCities();
 
-        if (!$cities->hasCurrent()) {
+        if ($this->filterByParameter->get() == '%') {
+            $data = $this->cityQueryModel->getCitiesWithSpecialChar();
+        } elseif ($this->filterByParameter->isEmpty()) {
+            $data = $this->cityQueryModel->getCities();
+        } else {
+            $data = $this->cityQueryModel->getCitiesByFirstChar($this->filterByParameter);
+        }
+
+        if (!$data->hasCurrent()) {
             $this->view->setTemplate(RmString::new('city_main_empty'));
             return;
         }
 
-        $this->view->set('cities', $cities);
+        $this->view->set('cities', $data);
     }
 }

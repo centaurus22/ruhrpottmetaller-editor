@@ -30,7 +30,7 @@ class CityQueryModel extends AbstractQueryModel
 
     public function getCitiesWithSpecialChar(): RmArray
     {
-        $query = 'SELECT id, name, is_visible FROM city WHERE name NOT REGEXP "^[A-Z]%" ORDER BY name';
+        $query = 'SELECT id, name, is_visible FROM city WHERE name NOT REGEXP "^[A-Z]" ORDER BY name';
         return $this->query($query);
     }
 
