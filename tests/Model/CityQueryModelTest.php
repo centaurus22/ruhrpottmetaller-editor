@@ -267,9 +267,11 @@ final class CityQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @covers \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\HighLevel\City
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -283,8 +285,8 @@ final class CityQueryModelTest extends TestCase
      */
     public function testShouldFilterByFirstChar(): void
     {
-        $query[] = 'INSERT INTO city SET name = "Hagen", is_visible = 0';
-        $query[] = 'INSERT INTO city SET name = "Gelsenkirchen", is_visible = 0';
+        $query[] = 'INSERT INTO city SET name = "Hagen"';
+        $query[] = 'INSERT INTO city SET name = "Gelsenkirchen"';
         $this->connection->query($query[0]);
         $this->connection->query($query[1]);
         $this->assertEquals(
@@ -301,9 +303,11 @@ final class CityQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\AbstractModel
      * @covers \ruhrpottmetaller\Model\BandQueryModel
      * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\HighLevel\City
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\RmArray
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString

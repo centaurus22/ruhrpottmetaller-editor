@@ -7,7 +7,6 @@ namespace tests\ruhrpottmetaller\Controller\templates;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\DateNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 
 final class DateNavSecondaryDisplayControllerTest extends TestCase
@@ -15,10 +14,14 @@ final class DateNavSecondaryDisplayControllerTest extends TestCase
     private DateNavSecondaryDisplayController $Controller;
 
     /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
+     * @covers   \ruhrpottmetaller\AbstractRmObject
+     * @covers  \ruhrpottmetaller\Controller\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CharNavSecondaryDisplayController
+     * @covers \ruhrpottmetaller\Controller\DateNavSecondaryDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\RmArray
      */
     public function testShouldSetListOfFirstChars()
     {
