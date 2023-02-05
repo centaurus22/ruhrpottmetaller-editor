@@ -404,4 +404,39 @@ final class ConcertTest extends TestCase
             $this->dataSet->getBandList()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Gig
+     * @covers \ruhrpottmetaller\Data\HighLevel\Band
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldGetBandListWithExtraInformationOnVisibleBand(): void
+    {
+        $gigs = RmArray::new()
+            ->add(Gig::new()->setBand(
+                Band::new()
+                    ->setName(RmString::new('Dipsomania'))
+                    ->setIsVisible(RmBool::new(false))
+            )->setAdditionalInformation(RmNullString::new(null)))
+            ->add(Gig::new()->setBand(
+                Band::new()
+                    ->setName(RmString::new('Darkness'))
+                    ->setIsVisible(RmBool::new(true))
+            )->setAdditionalInformation(RmString::new('Acoustic Set')));
+        $this->dataSet = Concert::new()
+            ->addGigs($gigs);
+        $this->assertEquals(
+            '<span class="invisible">Dipsomania</span>, Darkness (Acoustic Set)',
+            $this->dataSet->getBandList()
+        );
+    }
 }
