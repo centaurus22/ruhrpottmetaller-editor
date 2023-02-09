@@ -70,6 +70,7 @@ final class CityTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
     public function testShouldGetFormattedStringWhenCityIsVisible(): void
@@ -79,6 +80,26 @@ final class CityTest extends TestCase
         $this->DataSet->setIsVisible(RmBool::new(1));
         $this->assertEquals(
             'Kamen',
+            $this->DataSet->getFormattedName()->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmFalse
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testShouldGetFormattedStringWhenCityVisible(): void
+    {
+        $this->DataSet = City::new();
+        $this->DataSet->setName(RmString::new('Bonn'));
+        $this->DataSet->setIsVisible(RmBool::new(false));
+        $this->assertEquals(
+            '<span class="invisible">Bonn</span>',
             $this->DataSet->getFormattedName()->get()
         );
     }

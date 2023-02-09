@@ -24,6 +24,9 @@ class City extends AbstractNamedHighLevelData implements IData, ICity
 
     public function getFormattedName(): AbstractRmString
     {
-        return $this->name;
+        if ($this->isVisible->isTrue()) {
+            return $this->name;
+        }
+        return RmString::new('<span class="invisible">' . $this->name . '</span>');
     }
 }
