@@ -105,4 +105,18 @@ final class NullVenueTest extends TestCase
     {
         $this->assertTrue($this->dataSet->asVenueAndCity()->isNull());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testShouldCombineFormattedVenueNameAndCityName(): void
+    {
+        $this->assertTrue($this->dataSet->asFormattedVenueAndCity()->isNull());
+    }
 }

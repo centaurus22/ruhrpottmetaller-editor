@@ -27,4 +27,9 @@ class NullVenue extends AbstractNamedHighLevelNullData implements IData, IVenue
     {
         return RmString::new(null);
     }
+
+    public function asFormattedVenueAndCity(): RmNullString
+    {
+        return RmNullString::new(null);
+    }
 }
