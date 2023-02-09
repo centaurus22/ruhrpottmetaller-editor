@@ -25,7 +25,7 @@ final class NullCityTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      */
-    public function testShouldGetNullIntAsName(): void
+    public function testShouldGetNullStringAsName(): void
     {
         $this->assertTrue($this->DataSet->getName()->isNull());
     }
@@ -54,5 +54,19 @@ final class NullCityTest extends TestCase
     public function testShouldGetNullAsVisibilityStatusBack(): void
     {
         $this->assertNull($this->DataSet->getIsVisible()->get());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullCity
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testShouldGetNullStringAsFormattedName(): void
+    {
+        $this->assertTrue($this->DataSet->getFormattedName()->isNull());
     }
 }
