@@ -6,7 +6,7 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{City, Venue};
-use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Bool\RmFalse, Bool\RmTrue, Int\RmInt};
 use ruhrpottmetaller\Data\LowLevel\String\{AbstractRmString, RmString};
 
 final class VenueTest extends TestCase
@@ -142,6 +142,63 @@ final class VenueTest extends TestCase
         $this->assertEquals(
             'Parkhaus',
             $this->DataSet->asVenueAndCity()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @covers \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmFalse
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldCombineVisibleVenueAndInvisibleCity(): void
+    {
+        $City = City::new()
+            ->setName(AbstractRmString::new('Duisburg'))
+            ->setIsVisible(RmBool::new(false));
+        $this->DataSet = Venue::new()
+            ->setName(AbstractRmString::new('Parkhaus'))
+            ->setIsVisible(RmTrue::new(true))
+            ->setCity($City);
+        $this->assertEquals(
+            'Parkhaus, <span class="invisible">Duisburg</span>',
+            $this->DataSet->getFormattedVenueAndCity()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @covers \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmFalse
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldCombineInvisibleVenueAndInvisibleCity(): void
+    {
+        $this->DataSet = Venue::new()
+            ->setName(AbstractRmString::new('Parkhaus'))
+            ->setIsVisible(RmFalse::new(false));
+        $City = City::new()
+            ->setName(AbstractRmString::new('Duisburg'))
+            ->setIsVisible(RmBool::new(false));
+        $this->DataSet->setCity($City);
+        $this->assertEquals(
+            '<span class="invisible">Parkhaus</span>, <span class="invisible">Duisburg</span>',
+            $this->DataSet->getFormattedVenueAndCity()
         );
     }
 }

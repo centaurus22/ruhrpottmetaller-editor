@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Venue extends AbstractNamedHighLevelData implements IData, IVenue
 {
@@ -52,5 +53,22 @@ class Venue extends AbstractNamedHighLevelData implements IData, IVenue
                 ->concatWith($this->city->getName());
         }
         return $this->name;
+    }
+
+    public function getFormattedVenueAndCity(): AbstractRmString
+    {
+        if (!$this->city->getName()->isNull()) {
+            return $this->getFormattedName()->concatWith(AbstractRmString::new(', '))
+                ->concatWith($this->city->getFormattedName());
+        }
+        return $this->getFormattedName();
+    }
+
+    private function getFormattedName(): AbstractRmString
+    {
+        if ($this->isVisible->isTrue()) {
+            return $this->name;
+        }
+        return RmString::new('<span class="invisible">' . $this->name->get() . '</span>');
     }
 }
