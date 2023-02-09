@@ -4,6 +4,8 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class City extends AbstractNamedHighLevelData implements IData, ICity
 {
@@ -18,5 +20,10 @@ class City extends AbstractNamedHighLevelData implements IData, ICity
     {
         $this->isVisible = $isVisible;
         return $this;
+    }
+
+    public function getFormattedName(): AbstractRmString
+    {
+        return $this->name;
     }
 }

@@ -59,9 +59,27 @@ final class CityTest extends TestCase
     {
         $this->DataSet = City::new();
         $this->DataSet->setIsVisible(RmBool::new(1));
-        $this->assertEquals(
-            true,
+        $this->assertTrue(
             $this->DataSet->getIsVisible()->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testShouldGetFormattedStringWhenCityIsVisible(): void
+    {
+        $this->DataSet = City::new();
+        $this->DataSet->setName(RmString::new('Kamen'));
+        $this->DataSet->setIsVisible(RmBool::new(1));
+        $this->assertEquals(
+            'Kamen',
+            $this->DataSet->getFormattedName()->get()
         );
     }
 }
