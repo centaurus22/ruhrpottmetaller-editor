@@ -66,6 +66,11 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData
         return $this->venue->asVenueAndCity();
     }
 
+    public function getFormattedVenueAndCityName(): AbstractRmString
+    {
+        return $this->venue->getFormattedVenueAndCity();
+    }
+
     public function addGigs(RmArray $gigs): AbstractEvent
     {
         $this->gigs = $gigs;

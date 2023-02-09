@@ -17,7 +17,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <form action="" class="rm_table_row<?=$event->getIsCanceled()->get() ? ' canceled' : ''?>">
             <?=$event->getFormattedDate()->asTableCell() ?>
             <?=$event->getName()->asTableCell() ?>
-            <?=$event->getVenueAndCityName()->asTableCell()?>
+            <?=$event->getFormattedVenueAndCityName()->asTableCell()?>
             <?=$event->getBandList()->asTableCell()?>
             <?=$event->getUrl()->asWwwUrl()->asTableCell()?>
             <?=$event->getId()->asHiddenInput(RmString::new('id'))?>
