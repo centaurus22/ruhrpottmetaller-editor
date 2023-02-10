@@ -38,6 +38,18 @@ class BandQueryModel extends AbstractQueryModel
         return $this->queryOne($query, 'i', [$id->get()]);
     }
 
+
+    public function getBandByBandData(Band $band): Band
+    {
+        $query = 'SELECT id, name, is_visible FROM band
+                            WHERE name = ? AND is_visible = ?';
+        return $this->queryOne(
+            $query,
+            'si',
+            [$band->getName(), $band->getIsVisible()->get()]
+        );
+    }
+
     protected function getDataFromResult(stdClass $object): Band
     {
         return Band::new()

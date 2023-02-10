@@ -7,6 +7,8 @@ namespace tests\ruhrpottmetaller\Model;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Model\{Connection, BandQueryModel};
 use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
@@ -310,6 +312,40 @@ final class BandQueryModelTest extends TestCase
                 ->getBandsWithSpecialChar()
                 ->getCurrent()
                 ->getName()
+                ->get()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldGetBandByBandData(): void
+    {
+        $query = 'INSERT INTO band SET id = 4, name = "Houndwolf", is_visible = 1';
+        $this->DatabaseConnection->query($query);
+        $band = Band::new()
+            ->setName(RmString::new('Houndwolf'))
+            ->setIsVisible(RmBool::new(true));
+        $this->assertEquals(
+            '4',
+            $this->QueryBandDatabaseModel
+                ->getBandByBandData($band)
+                ->getId()
                 ->get()
         );
     }
