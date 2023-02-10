@@ -6,7 +6,7 @@ namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
-use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, String\RmString};
+use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\{BandQueryModel,
     Connection,
@@ -621,6 +621,46 @@ final class EventQueryModelTest extends TestCase
                 ->getEventsByMonth(RmDate::new('2022-06'))
                 ->getCurrent()
                 ->getBandList()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\BandQueryModel
+     * @uses  \ruhrpottmetaller\Model\GigQueryModel
+     * @uses   \ruhrpottmetaller\AbstractRmObject
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses   \ruhrpottmetaller\Data\RmArray
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses   \ruhrpottmetaller\Model\Connection
+     */
+    public function testShouldGetEventById(): void
+    {
+        $query = 'INSERT INTO event SET number_of_days = 1, date_start = "2022-06-18"';
+        $this->databaseConnection->query($query);
+        $this->databaseConnection->query($query);
+        $this->assertEquals(
+            2,
+            $this->eventQueryModel
+                ->getEventById(RmInt::new(2))
+                ->getId()
+                ->get()
         );
     }
 }

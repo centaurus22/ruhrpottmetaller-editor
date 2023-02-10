@@ -55,6 +55,26 @@ class EventQueryModel extends AbstractQueryModel
         );
     }
 
+    public function getEventById(RmInt $id): AbstractEvent
+    {
+        $query = 'SELECT
+                id,
+                event.name AS name,
+                date_start,
+                number_of_days,
+                venue_id,
+                url,
+                is_sold_out,
+                is_canceled
+            FROM event
+            WHERE id LIKE ?';
+        return $this->queryOne(
+            $query,
+            'i',
+            [$id->get()]
+        );
+    }
+
     protected function getDataFromResult(stdClass $object): AbstractEvent
     {
         if ($object->number_of_days > 1) {
