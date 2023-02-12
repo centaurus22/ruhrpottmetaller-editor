@@ -12,5 +12,6 @@ interface IEvent
     public function getName(): AbstractRmString;
     public function getNumberOfDays(): AbstractRmInt;
     public function getDate(): RmDate;
+    public function getVenueId(): AbstractRmInt;
     public function getUrl(): AbstractRmString;
 }
