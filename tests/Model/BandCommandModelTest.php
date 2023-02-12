@@ -11,7 +11,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{BandCommandModel, Connection, BandQueryModel};
 
-final class BandModelCommandTest extends TestCase
+final class BandCommandModelTest extends TestCase
 {
     private BandQueryModel $queryModel;
     private BandCommandModel $commandModel;
@@ -68,6 +68,37 @@ final class BandModelCommandTest extends TestCase
             'Custard',
             $this->queryModel
                 ->getBandById(RmInt::new(1))
+                ->getName()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\BandCommandModel
+     * @covers \ruhrpottmetaller\Model\AbstractCommandModel
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+
+    public function testShouldAddBand(): void
+    {
+        $band = Band::new()
+            ->setName(RmString::new('Custard'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->addBand($band);
+        $this->assertEquals(
+            'Custard',
+            $this->queryModel
+                ->getBandByBandData($band)
                 ->getName()
         );
     }

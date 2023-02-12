@@ -11,7 +11,20 @@ class BandCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
-    public function replaceData(Band $band)
+    public function addBand(Band $band)
+    {
+        $query = 'INSERT INTO band SET name = ?, is_visible = ?';
+        $this->query(
+            $query,
+            'si',
+            [
+                $band->getName()->get(),
+                $band->getIsVisible()->get(),
+            ]
+        );
+    }
+
+    public function replaceData(Band $band): void
     {
         $query = 'UPDATE band SET name = ?, is_visible = ? WHERE id = ?';
         $this->query(
