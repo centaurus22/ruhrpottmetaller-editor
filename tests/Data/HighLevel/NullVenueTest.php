@@ -127,8 +127,7 @@ final class NullVenueTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      */
     public function testShouldGetNullAsCityId(): void
     {
