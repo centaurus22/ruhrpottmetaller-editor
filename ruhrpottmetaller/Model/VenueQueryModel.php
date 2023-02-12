@@ -59,6 +59,18 @@ class VenueQueryModel extends AbstractQueryModel
         return $this->queryOne($query, 'i', [$venueId->get()]);
     }
 
+
+    public function getVenueByVenueData(Venue $venue): Venue
+    {
+        $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue
+            WHERE name = ? AND city_id = ?';
+        return $this->queryOne(
+            $query,
+            'si',
+            [$venue->getName()->get(), $venue->getCityId()->get()]
+        );
+    }
+
     protected function getDataFromResult(stdClass $object): Venue
     {
         $city = $this->queryCityModel

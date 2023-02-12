@@ -5,19 +5,16 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\HighLevel\Venue;
-use ruhrpottmetaller\Data\LowLevel\{String\RmString, Int\RmInt};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, String\RmString, Int\RmInt};
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{
-    Connection,
-    CityQueryModel,
-    VenueQueryModel
-};
+use ruhrpottmetaller\Model\{CityCommandModel, Connection, CityQueryModel, VenueCommandModel, VenueQueryModel};
 
 final class VenueQueryModelTest extends TestCase
 {
-    private VenueQueryModel $queryVenueDatabaseModel;
+    private VenueQueryModel $queryModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -27,7 +24,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryVenueDatabaseModel = VenueQueryModel::new(
+        $this->queryModel = VenueQueryModel::new(
             $this->connection,
             CityQueryModel::new($this->connection)
         );
@@ -62,7 +59,7 @@ final class VenueQueryModelTest extends TestCase
     {
         $this->assertInstanceOf(
             RmArray::class,
-            $this->queryVenueDatabaseModel->getVenues()
+            $this->queryModel->getVenues()
         );
     }
 
@@ -92,7 +89,7 @@ final class VenueQueryModelTest extends TestCase
         $query = 'INSERT INTO venue SET name = "Turock", city_id = 1';
         $this->connection->query($query);
         $this->assertTrue(
-            $this->queryVenueDatabaseModel->getVenues()
+            $this->queryModel->getVenues()
                 ->hasCurrent()
         );
     }
@@ -124,7 +121,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertInstanceOf(
             Venue::class,
-            $this->queryVenueDatabaseModel->getVenues()
+            $this->queryModel->getVenues()
                                           ->getCurrent()
         );
     }
@@ -156,7 +153,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             'Kulttempel',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getName()
@@ -191,7 +188,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             '1',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getId()
@@ -226,7 +223,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertEquals(
             '0',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getIsVisible()
@@ -261,7 +258,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query[0]);
         $this->assertEquals(
             'Dortmund',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getCityName()
@@ -300,7 +297,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query[0]);
         $this->assertEquals(
             'https://junkyard.ruhr',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getUrlDefault()
@@ -335,7 +332,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query[0]);
         $this->assertEquals(
             'Dortmund',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->getCurrent()
                 ->getCityName()
@@ -347,13 +344,13 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query[0]);
         $this->connection->query($query[1]);
 
-        $this->queryVenueDatabaseModel = VenueQueryModel::new(
+        $this->queryModel = VenueQueryModel::new(
             $this->connection,
             CityQueryModel::new($this->connection)
         );
         $this->assertEquals(
             'Hagen',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenues()
                 ->pointAtNext()
                 ->getCurrent()
@@ -378,7 +375,7 @@ final class VenueQueryModelTest extends TestCase
     {
         $this->assertInstanceOf(
             NullVenue::class,
-            $this->queryVenueDatabaseModel->getVenueById(RmInt::new(null))
+            $this->queryModel->getVenueById(RmInt::new(null))
         );
     }
 
@@ -407,7 +404,7 @@ final class VenueQueryModelTest extends TestCase
         $this->connection->query($query);
         $this->assertInstanceOf(
             Venue::class,
-            $this->queryVenueDatabaseModel->getVenueById(RmInt::new(1))
+            $this->queryModel->getVenueById(RmInt::new(1))
         );
     }
 
@@ -440,10 +437,56 @@ final class VenueQueryModelTest extends TestCase
         }
         $this->assertEquals(
             'Café Nord',
-            $this->queryVenueDatabaseModel
+            $this->queryModel
                 ->getVenuesByCityName(RmString::new('Essen'))
                 ->getCurrent()
                 ->getName()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Model\AbstractModel
+     * @covers \ruhrpottmetaller\Model\VenueQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses  \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses  \ruhrpottmetaller\Data\HighLevel\City
+     * @uses  \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
+     * @uses \ruhrpottmetaller\Model\VenueCommandModel
+     * @uses \ruhrpottmetaller\Model\CityCommandModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldGetVenueByVenueData(): void
+    {
+        $city = City::new()
+            ->setId(RmInt::new(2))
+            ->setName(RmString::new('Bielefeld'))
+            ->setIsVisible(RmBool::new(true));
+        $cityCommandModel = CityCommandModel::new($this->connection);
+        $cityCommandModel->addCity($city);
+
+        $venue = Venue::new()
+            ->setName(RmString::new('Bier'))
+            ->setCity($city)
+            ->setUrlDefault(RmString::new(null))
+            ->setIsVisible(RmBool::new(true));
+        $venueCommandModel = VenueCommandModel::new($this->connection);
+        $venueCommandModel->addVenue($venue);
+        $this->assertEquals(
+            1,
+            $this->queryModel
+                ->getVenueByVenueData($venue)
+                ->getId()
+                ->get()
         );
     }
 }

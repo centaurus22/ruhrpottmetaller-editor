@@ -92,11 +92,11 @@ final class BandCommandModelTest extends TestCase
     public function testShouldAddBand(): void
     {
         $band = Band::new()
-            ->setName(RmString::new('Custard'))
+            ->setName(RmString::new('Fairytale'))
             ->setIsVisible(RmBool::new(true));
         $this->commandModel->addBand($band);
         $this->assertEquals(
-            'Custard',
+            'Fairytale',
             $this->queryModel
                 ->getBandByBandData($band)
                 ->getName()
