@@ -67,6 +67,7 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
      */
     public function testShouldSetCityList()
     {
+        $this->connection->query('TRUNCATE city');
         $this->connection->query('INSERT INTO city SET NAME = "Duisburg"');
 
         $this->Controller
