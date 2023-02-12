@@ -56,4 +56,17 @@ final class NullEventTest extends TestCase
         $this->dataSet->setDate(RmDate::new('2922-12-12'));
         $this->assertEquals('2922-12-12', $this->dataSet->getDate());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullEvent
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+    public function testShouldGetUrl(): void
+    {
+        $this->assertNull($this->dataSet->getUrl()->get());
+    }
 }
