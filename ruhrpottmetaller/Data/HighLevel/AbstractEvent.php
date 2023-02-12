@@ -8,7 +8,7 @@ use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
-abstract class AbstractEvent extends AbstractNamedHighLevelData
+abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEvent
 {
     protected AbstractRmInt $numberOfDays;
     protected RmArray $gigs;
