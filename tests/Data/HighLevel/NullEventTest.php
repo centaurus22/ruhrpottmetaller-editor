@@ -28,4 +28,17 @@ final class NullEventTest extends TestCase
     {
         $this->assertTrue($this->dataSet->getName()->isNull());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullEvent
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+    public function testShouldGetNumberOfDays(): void
+    {
+        $this->assertEquals(1, $this->dataSet->getNumberOfDays()->get());
+    }
 }

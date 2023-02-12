@@ -3,8 +3,9 @@
 namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Concert extends AbstractEvent
 {
@@ -19,6 +20,11 @@ class Concert extends AbstractEvent
     public function getDate(): RmDate
     {
         return $this->date;
+    }
+
+    public function getNumberOfDays(): AbstractRmInt
+    {
+        return RmInt::new(1);
     }
 
     public function getFormattedDate(): AbstractRmString
