@@ -6,6 +6,7 @@ namespace tests\ruhrpottmetaller\Data\HighLevel;
 
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\NullVenue;
+use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 
 final class NullVenueTest extends TestCase
@@ -118,5 +119,21 @@ final class NullVenueTest extends TestCase
     public function testShouldCombineFormattedVenueNameAndCityName(): void
     {
         $this->assertTrue($this->dataSet->asFormattedVenueAndCity()->isNull());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullVenue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     */
+    public function testShouldGetNullAsCityId(): void
+    {
+        $this->assertNull(
+            $this->dataSet->getCityId()->get()
+        );
     }
 }
