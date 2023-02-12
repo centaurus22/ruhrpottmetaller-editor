@@ -71,4 +71,36 @@ final class CityCommandModelTest extends TestCase
                 ->getName()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\CityCommandModel
+     * @covers \ruhrpottmetaller\Model\AbstractCommandModel
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     */
+
+    public function testShouldAddCity(): void
+    {
+        $city = City::new()
+            ->setId(RmInt::new(1))
+            ->setName(RmString::new('Lünen'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->addCity($city);
+        $this->assertEquals(
+            'Lünen',
+            $this->queryModel
+                ->getCityById(RmInt::new(1))
+                ->getName()
+        );
+    }
 }

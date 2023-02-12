@@ -11,6 +11,16 @@ class CityCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
+    public function addCity(City $city)
+    {
+        $query = 'INSERT INTO city SET name = ?, is_visible = ?';
+        $this->query(
+            $query,
+            'si',
+            [$city->getName()->get(), $city->getIsVisible()->get()]
+        );
+    }
+
     public function replaceData(City $city)
     {
         $query = 'UPDATE city SET name = ?, is_visible = ? WHERE id = ?';
