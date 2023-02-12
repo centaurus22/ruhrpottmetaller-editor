@@ -11,6 +11,21 @@ class VenueCommandModel extends AbstractCommandModel
         return new static($connection);
     }
 
+    public function addVenue(Venue $venue): void
+    {
+        $query = 'INSERT INTO venue SET name = ?, city_id = ?, url_default = ?, is_visible = ?';
+        $this->query(
+            $query,
+            'sisi',
+            [
+                $venue->getName()->get(),
+                $venue->getCityId()->get(),
+                $venue->getUrlDefault()->get(),
+                $venue->getIsVisible()->get(),
+            ]
+        );
+    }
+
     public function replaceData(Venue $venue): void
     {
         $query = 'UPDATE venue SET name = ?, url_default = ?, is_visible = ? WHERE id = ?';

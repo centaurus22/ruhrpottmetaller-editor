@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
@@ -35,6 +36,46 @@ final class VenueCommandModelTest extends TestCase
     {
         $query[] = 'TRUNCATE venue';
         $this->connection->query($query[0]);
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\VenueCommandModel
+     * @covers \ruhrpottmetaller\Model\VenueQueryModel
+     * @covers \ruhrpottmetaller\Model\AbstractCommandModel
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+
+    public function testShouldAddVenue(): void
+    {
+        $query = 'INSERT INTO city SET name = "Marl"';
+        $this->connection->query($query);
+        $city = City::new()
+            ->setId(RmInt::new(1));
+        $venue = Venue::new()
+            ->setName(RmString::new('Lükaz'))
+            ->setCity($city)
+            ->setUrlDefault(RmString::new('null'))
+            ->setIsVisible(RmBool::new(true));
+        $this->commandModel->addVenue($venue);
+        $this->assertEquals(
+            'Lükaz',
+            $this->queryModel
+                ->getVenueById(RmInt::new(1))
+                ->getName()
+        );
     }
 
     /**
