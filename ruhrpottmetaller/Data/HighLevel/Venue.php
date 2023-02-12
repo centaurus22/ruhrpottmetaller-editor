@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
@@ -22,6 +23,11 @@ class Venue extends AbstractNamedHighLevelData implements IData, IVenue
     public function getCityName(): AbstractRmString
     {
         return $this->city->getName();
+    }
+
+    public function getCityId(): AbstractRmInt
+    {
+        return $this->city->getId();
     }
 
     public function setUrlDefault(AbstractRmString $urlDefault): IVenue
