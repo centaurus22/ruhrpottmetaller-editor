@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue, Gig};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmNullString, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
+use function PHPUnit\Framework\assertEquals;
 
 final class ConcertTest extends TestCase
 {
@@ -438,5 +439,21 @@ final class ConcertTest extends TestCase
             '<span class="invisible">Dipsomania</span>, Darkness (Acoustic Set)',
             $this->dataSet->getBandList()
         );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+
+    public function testMethodsShouldGetVenueId(): void
+    {
+        $venue = Venue::new()->setId(RmInt::new(12));
+        $this->dataSet = Concert::new()->setVenue($venue);
+        assertEquals(12, $this->dataSet->getVenueId()->get());
     }
 }

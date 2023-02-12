@@ -61,6 +61,11 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
         return $this->isCanceled;
     }
 
+    public function getVenueId(): AbstractRmInt
+    {
+        return $this->venue->getId();
+    }
+
     public function getVenueAndCityName(): AbstractRmString
     {
         return $this->venue->asVenueAndCity();

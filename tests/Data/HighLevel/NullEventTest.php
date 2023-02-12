@@ -76,7 +76,7 @@ final class NullEventTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\NullEvent
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      */
     public function testShouldGetVenueId(): void
     {
