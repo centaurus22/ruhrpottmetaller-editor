@@ -82,14 +82,18 @@ final class GigQueryModelTest extends TestCase
      */
     public function testShouldReturnArrayWithOneGig(): void
     {
-        $query[0] = "INSERT INTO gig SET
+        $query[] = 'TRUNCATE gig';
+        $query[] = 'TRUNCATE band';
+        $query[] = "INSERT INTO gig SET
                     id = 1,
                     event_id = 1,
                     band_id = 1,
                     additional_information = 'Gibt Freibier'";
-        $query[1] = "INSERT INTO band SET NAME = 'Imparity'";
+        $query[] = "INSERT INTO band SET NAME = 'Imparity'";
         $this->connection->query($query[0]);
         $this->connection->query($query[1]);
+        $this->connection->query($query[2]);
+        $this->connection->query($query[3]);
         $this->assertTrue(
             $this
                 ->gigQueryModel

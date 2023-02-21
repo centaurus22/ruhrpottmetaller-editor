@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller;
+namespace tests\ruhrpottmetaller\Controller\Display;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\CharNavSecondaryDisplayController;
+use ruhrpottmetaller\Controller\Display\CharNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
@@ -16,9 +16,9 @@ final class CharNavSecondaryDisplayControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CharNavSecondaryDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\CharNavSecondaryDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\RmArray

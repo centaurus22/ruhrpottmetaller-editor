@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\{AbstractDisplayController, BaseDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BaseDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 

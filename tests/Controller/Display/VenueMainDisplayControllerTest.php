@@ -2,25 +2,29 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller;
+namespace tests\ruhrpottmetaller\Controller\Display;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\CityMainDisplayController;
-use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Controller\Display\VenueMainDisplayController;
+use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
+use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\VenueDatabaseQueryModelMock;
+use tests\ruhrpottmetaller\Controller\VenueDatabaseQueryModelMockEmpty;
 
-final class CityMainDisplayControllerTest extends TestCase
+final class VenueMainDisplayControllerTest extends TestCase
 {
-    private CityMainDisplayController $Controller;
+    private VenueMainDisplayController $Controller;
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -33,9 +37,10 @@ final class CityMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
     public function testShouldSetCityList()
     {
@@ -44,42 +49,46 @@ final class CityMainDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new CityMainDisplayController(
+        $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMock(null)
+            new VenueDatabaseQueryModelMock(
+                null,
+                new CityQueryDatabaseModelMock(null)
+            )
         );
 
         $this->Controller
             ->setGetParameters(RmString::new(null), RmString::new(null))
             ->render();
 
-        $this->assertArrayHasKey('cities', $this->Controller->getViewData());
+        $this->assertArrayHasKey('venues', $this->Controller->getViewData());
         $this->assertInstanceOf(
             RmArray::class,
-            ($this->Controller->getViewData())['cities']
+            ($this->Controller->getViewData())['venues']
         );
         $this->assertInstanceOf(
-            City::class,
-            ($this->Controller->getViewData()['cities'])->getCurrent()
+            Venue::class,
+            ($this->Controller->getViewData()['venues'])->getCurrent()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -88,59 +97,66 @@ final class CityMainDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new CityMainDisplayController(
+        $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMockEmpty(null, null),
+            new VenueDatabaseQueryModelMockEmpty(
+                null,
+                new CityQueryDatabaseModelMock(null)
+            )
         );
 
         $this->Controller
             ->setGetParameters(RmString::new(null), RmString::new(null))
             ->render();
 
-        $this->assertArrayNotHasKey('cities', $this->Controller->getViewData());
+        $this->assertArrayNotHasKey('venues', $this->Controller->getViewData());
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\CityMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
      * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
-    public function testShouldSetGetParameters()
+    public function testShouldSetGetParameterString()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new CityMainDisplayController(
+        $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMockEmpty(null)
+            new VenueDatabaseQueryModelMockEmpty(
+                null,
+                new CityQueryDatabaseModelMock(null)
+            )
         );
 
         $this->Controller
-            ->setGetParameters(RmString::new('B'), RmString::new(null))
+            ->setGetParameters(RmString::new('1'), RmString::new('name'))
             ->render();
 
-        $this->assertArrayHasKey(
-            'filterByParameter',
-            $this->Controller->getViewData()
+        $this->assertEquals(
+            '1',
+            ($this->Controller->getViewData())['filterByParameter']
         );
 
         $this->assertEquals(
-            'B',
-            ($this->Controller->getViewData())['filterByParameter']
+            'name',
+            ($this->Controller->getViewData())['orderByParameter']
         );
     }
 }

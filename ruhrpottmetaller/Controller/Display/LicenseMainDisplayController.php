@@ -1,9 +1,7 @@
 <?php
 
-namespace ruhrpottmetaller\Controller;
+namespace ruhrpottmetaller\Controller\Display;
 
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class LicenseMainDisplayController extends AbstractDataMainDisplayController

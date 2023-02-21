@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller;
+namespace tests\ruhrpottmetaller\Controller\Command;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\GeneralCommandController;
-use ruhrpottmetaller\Data\HighLevel\{City, Band, Venue};
+use ruhrpottmetaller\Controller\Command\GeneralCommandController;
+use ruhrpottmetaller\Data\HighLevel\{Band, City, Venue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\Connection;
 use ruhrpottmetaller\Model\{CityCommandModel, CityQueryModel};
 use ruhrpottmetaller\Model\{BandCommandModel, BandQueryModel};
 use ruhrpottmetaller\Model\{VenueCommandModel, VenueQueryModel};
+use ruhrpottmetaller\Model\Connection;
 
 final class GeneralCommandControllerTest extends TestCase
 {
@@ -30,8 +30,8 @@ final class GeneralCommandControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\CityCommandModel
      * @uses \ruhrpottmetaller\Model\AbstractCommandModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
@@ -75,8 +75,8 @@ final class GeneralCommandControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\BandCommandModel
      * @uses \ruhrpottmetaller\Model\AbstractCommandModel
      * @uses \ruhrpottmetaller\Model\AbstractQueryModel
@@ -120,8 +120,8 @@ final class GeneralCommandControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\VenueCommandModel
      * @uses \ruhrpottmetaller\Model\CityCommandModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel

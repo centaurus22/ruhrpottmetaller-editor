@@ -2,10 +2,10 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\{AbstractDisplayController, BandMainDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BandMainDisplayController};
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\BandQueryModel;
 use ruhrpottmetaller\View\View;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class BandMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Controller;
+namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\View\View;

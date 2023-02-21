@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Controller\templates;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\DateNavSecondaryDisplayController;
+use ruhrpottmetaller\Controller\Display\DateNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
@@ -15,9 +15,9 @@ final class DateNavSecondaryDisplayControllerTest extends TestCase
 
     /**
      * @covers   \ruhrpottmetaller\AbstractRmObject
-     * @covers  \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\DateNavSecondaryDisplayController
+     * @covers  \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\DateNavSecondaryDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString

@@ -2,9 +2,7 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\{AbstractDisplayController,
-    CharNavSecondaryDisplayController,
-    CityNavSecondaryDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, CityNavSecondaryDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\View\View;

@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller;
+namespace tests\ruhrpottmetaller\Controller\Display;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, GigQueryModel, VenueQueryModel};
-use ruhrpottmetaller\Controller\EventMainDisplayController;
+use ruhrpottmetaller\Controller\Display\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
+use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, GigQueryModel, VenueQueryModel};
 use ruhrpottmetaller\View\View;
+use tests\ruhrpottmetaller\Controller\EventQueryDatabaseModelMock;
 
 final class EventMainDisplayControllerTest extends TestCase
 {
@@ -40,9 +41,9 @@ final class EventMainDisplayControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
      * @uses  \ruhrpottmetaller\Model\VenueQueryModel
@@ -60,7 +61,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
@@ -86,9 +87,9 @@ final class EventMainDisplayControllerTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\EventMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
      * @covers \ruhrpottmetaller\Model\EventQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
@@ -105,7 +106,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses \ruhrpottmetaller\Controller\BaseDisplayController
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival

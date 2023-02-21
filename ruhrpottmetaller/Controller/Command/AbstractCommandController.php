@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Controller;
+namespace ruhrpottmetaller\Controller\Command;
 
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Model\AbstractCommandModel;

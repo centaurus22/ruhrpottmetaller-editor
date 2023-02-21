@@ -2,9 +2,9 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\{AbstractDisplayController, EventMainDisplayController};
-use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, EventQueryModel, GigQueryModel, VenueQueryModel};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EventMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, EventQueryModel, GigQueryModel, VenueQueryModel};
 use ruhrpottmetaller\View\View;
 
 class EventMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
