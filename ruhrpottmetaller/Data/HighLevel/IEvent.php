@@ -2,11 +2,12 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
+use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
-interface IEvent
+interface IEvent extends IData
 {
     public function getId(): AbstractRmInt;
     public function getName(): AbstractRmString;

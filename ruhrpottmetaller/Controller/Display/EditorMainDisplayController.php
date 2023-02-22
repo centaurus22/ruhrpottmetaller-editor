@@ -3,7 +3,6 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\HighLevel\IEvent;
-use ruhrpottmetaller\Data\HighLevel\NullEvent;
 use ruhrpottmetaller\Model\EventQueryModel;
 use ruhrpottmetaller\View\View;
 
@@ -23,8 +22,13 @@ class EditorMainDisplayController extends AbstractDataMainDisplayController
 
     protected function prepareThisController(): void
     {
-        if ($this->event->getId()->isNull()) {
-            $this->view->set('event', NullEvent::new());
+        if (
+            $this->event->getId()->isNull()
+            or !$this->event->getName()->isNull()
+            or !$this->event->getVenueId()->isNull()
+            or !$this->event->getUrl()->isNull()
+        ) {
+            $this->view->set('event', $this->event);
         } else {
             $this->view->set(
                 'event',
