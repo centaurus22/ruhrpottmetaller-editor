@@ -3,12 +3,7 @@
 namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
-use ruhrpottmetaller\Data\LowLevel\{
-    Bool\RmBool,
-    Date\RmDate,
-    Int\RmInt,
-    String\RmString
-};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
@@ -55,7 +50,7 @@ class EventQueryModel extends AbstractQueryModel
         );
     }
 
-    public function getEventById(RmInt $id): AbstractEvent
+    public function getEventById(AbstractRmInt $id): AbstractEvent
     {
         $query = 'SELECT
                 id,
