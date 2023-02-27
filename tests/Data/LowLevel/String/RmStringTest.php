@@ -182,6 +182,21 @@ final class RmStringTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnATableCellWithExtraCssClass(): void
+    {
+        $this->value = RmString::new('Value');
+        $this->assertEquals(
+            '<div class="rm_table_cell event">Value</div>',
+            $this->value->asTableCell(RmString::new('event'))
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
      * @covers \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
