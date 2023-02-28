@@ -19,14 +19,15 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                     RmString::new('name'),
                     RmString::new('Name'),
                     $data->getId()
-                )->asTableCell() ?>
+                )->asTableCell(RmString::new('venue_name'))
+            ?>
             <?=$data->getCityName()->asTableCell() ?>
             <?=$data->getUrlDefault()
                 ->asTableInput(
                     RmString::new('url_default'),
                     RmString::new('Default Url'),
                     $data->getId()
-                )->asTableCell() ?>
+                )->asTableCell(RmString::new('venue_url')) ?>
             <?=$data->getIsVisible()
                 ->asTableInput(
                     RmString::new('is_visible'),

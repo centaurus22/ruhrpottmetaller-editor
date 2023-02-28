@@ -123,6 +123,15 @@ footer {
     vertical-align: middle;
 }
 
+.rm_table_cell.venue_name > input {
+    width: 200px;
+}
+
+.rm_table_cell.venue_url > input {
+    width: 300px;
+}
+
+
 .rm_table_cell:first-child {
     padding-left: 0;
     min-width: 72px;
