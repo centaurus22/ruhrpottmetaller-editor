@@ -34,7 +34,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
                 <option value="canceled">Set canceled</option>
                 <option value="delete">Delete</option>
                 <option value="sold_out">Set sold out</option>
-            </select>')->concatWith(RmString::new('Do It')->asSubmitButton())->asTableCell()?>
+            </select>')->concatWith(RmString::new('Do It')->asSubmitButton())->asTableCell(RmString::new('event'))?>
         </form>
         <?php $this->get('events')->pointAtNext(); ?>
     <?php endwhile; ?>

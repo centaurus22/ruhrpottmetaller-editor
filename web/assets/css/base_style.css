@@ -131,6 +131,9 @@ footer {
 .rm_table_cell:last-child {
     text-align: right;
     padding-right: 0;
+}
+
+.rm_table_cell.event:last-child {
     min-width: 154px;
 }
 
