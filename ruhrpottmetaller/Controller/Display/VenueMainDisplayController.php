@@ -21,7 +21,12 @@ class VenueMainDisplayController extends AbstractDataMainDisplayController
     protected function prepareThisController(): void
     {
         $this->transferGetParametersToView();
-        $venues = $this->queryVenueDatabaseModel->getVenues();
+
+        if ($this->filterByParameter->isEmpty()) {
+            $venues = $this->queryVenueDatabaseModel->getVenues();
+        } else {
+            $venues = $this->queryVenueDatabaseModel->getVenuesByCityName($this->filterByParameter);
+        }
 
         if (!$venues->hasCurrent()) {
             $this->view->setTemplate(RmString::new('venue_main_empty'));

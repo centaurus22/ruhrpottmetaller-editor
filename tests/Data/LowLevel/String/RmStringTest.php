@@ -299,4 +299,48 @@ final class RmStringTest extends TestCase
             $this->value->asSubmitButton()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnTrue(): void
+    {
+        $this->value = RmString::new('');
+        $this->assertTrue(
+            $this->value->isEmpty()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnTrueIfStringBeginsWithSpecialChar(): void
+    {
+        $this->value = RmString::new('Ølstykke');
+        $this->assertTrue(
+            $this->value->hasSpecialFirstChar()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnFalseIfStringBeginsNotWithSpecialChar(): void
+    {
+        $this->value = RmString::new('Haltern');
+        $this->assertFalse(
+            $this->value->hasSpecialFirstChar()
+        );
+    }
 }

@@ -23,6 +23,18 @@ class EventCommandModel extends AbstractCommandModel
         );
     }
 
+    public function setCanceled(RmInt $eventId): void
+    {
+        $query = 'UPDATE event SET is_canceled = 1 WHERE id = ?';
+        $this->query(
+            $query,
+            'i',
+            [
+                $eventId->get()
+            ]
+        );
+    }
+
     public function delete(RmInt $eventId): void
     {
         $query = 'DELETE FROM event WHERE id = ?';

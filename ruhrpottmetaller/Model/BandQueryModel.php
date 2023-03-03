@@ -28,7 +28,7 @@ class BandQueryModel extends AbstractQueryModel
 
     public function getBandsWithSpecialChar(): RmArray
     {
-        $query = 'SELECT id, name, is_visible FROM band WHERE name NOT REGEXP "^[A-Z]%" ORDER BY name';
+        $query = 'SELECT id, name, is_visible FROM band WHERE name NOT REGEXP "^[A-Z]" ORDER BY name';
         return $this->query($query);
     }
 

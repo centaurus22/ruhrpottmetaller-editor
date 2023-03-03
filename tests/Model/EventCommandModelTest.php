@@ -127,8 +127,49 @@ final class EventCommandModelTest extends TestCase
         $this->commandModel->delete(RmInt::new(1));
         $this->assertFalse(
             $this->queryModel
-                ->getEventsByMonth(RmDate::new("2022-01-01"))
+                ->getEventsByMonth(RmDate::new('2022-01-01'))
                 ->hasCurrent()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Model\EventCommandModel
+     * @covers \ruhrpottmetaller\Model\AbstractCommandModel
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Concert
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\EventQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\GigQueryModel
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
+     * @uses \ruhrpottmetaller\Data\RmArray
+     *
+     */
+
+    public function testShouldSetEventAsCanceled(): void
+    {
+        $query = 'INSERT INTO event SET date_start = "2022-01-01"';
+        $this->connection->query($query);
+        $this->commandModel->setCanceled(RmInt::new(1));
+        $this->assertTrue(
+            $this->queryModel
+                ->getEventsByMonth(RmDate::new('2022-01-01'))
+                ->getCurrent()
+                ->getIsCanceled()
+                ->isTrue()
         );
     }
 }

@@ -141,7 +141,7 @@ final class VenueMainDisplayControllerTest extends TestCase
             $BaseView,
             new VenueDatabaseQueryModelMockEmpty(
                 null,
-                new CityQueryDatabaseModelMock(null)
+                new CityQueryDatabaseModelMockEmpty(null)
             )
         );
 

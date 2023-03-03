@@ -17,4 +17,9 @@ class RmNullString extends AbstractRmString
     {
         return true;
     }
+
+    public function hasSpecialFirstChar(): bool
+    {
+        return false;
+    }
 }
