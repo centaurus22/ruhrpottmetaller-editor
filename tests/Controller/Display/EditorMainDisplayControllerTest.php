@@ -132,7 +132,6 @@ final class EditorMainDisplayControllerTest extends TestCase
             ->setUrl(RmNullString::new(null))
             ->setVenue(NullVenue::new());
 
-
         $this->controller = new EditorMainDisplayController(
             $BaseView,
             new EventQueryDatabaseModelMock(

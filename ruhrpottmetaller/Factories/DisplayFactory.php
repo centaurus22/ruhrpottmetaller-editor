@@ -12,6 +12,7 @@ class DisplayFactory extends AbstractFactory
     private IHeadDisplayFactoryBehaviour $headDisplayFactoryBehaviour;
     private IGeneralDisplayFactoryBehaviour $navSecondaryDisplayFactoryBehaviour;
     private RmString $templatePath;
+    private string $generalBehaviour;
 
     public function __construct(\mysqli $connection)
     {
@@ -23,23 +24,33 @@ class DisplayFactory extends AbstractFactory
     {
         $allowedBehaviours = $this->getAllowedFactoryBehaviours();
 
-        if (
+        if (isset($input['action']) and $input['action'] == 'edit') {
+            $this->generalBehaviour = $allowedBehaviours[$input['action']];
+            $pageName = RmString::new($input['action']);
+        } elseif (
             isset($input['show'])
             and array_key_exists($input['show'], $allowedBehaviours)
         ) {
-            $generalBehaviourClass = $allowedBehaviours[$input['show']];
+            $this->generalBehaviour = $allowedBehaviours[$input['show']];
             $pageName = RmString::new($input['show']);
         } else {
-            $generalBehaviourClass = 'Event';
+            $this->generalBehaviour = 'Event';
             $pageName = RmString::new('events');
         }
-        $mainBehaviourClass = __NAMESPACE__ . '\\' . $generalBehaviourClass . 'MainDisplayFactoryBehaviour';
-        $navSecondaryBehaviourClass = __NAMESPACE__
-            . '\\' . $generalBehaviourClass . 'NavSecondaryDisplayFactoryBehaviour';
 
+        $mainBehaviourClass = __NAMESPACE__ . '\\' . $this->generalBehaviour . 'MainDisplayFactoryBehaviour';
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
-        $this->navSecondaryDisplayFactoryBehaviour = new $navSecondaryBehaviourClass();
-        $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
+
+
+        if (isset($input['action']) and $input['action'] == 'edit') {
+            $this->mainDisplayFactoryBehaviour->setInput($input);
+        }
+
+        if ($pageName->get() == 'editor') {
+            $this->headDisplayFactoryBehaviour = new EditorHeadDisplayFactoryBehaviour($pageName);
+        } else {
+            $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
+        }
         return $this;
     }
 
@@ -60,6 +71,32 @@ class DisplayFactory extends AbstractFactory
             RmString::new($input['order_by'] ?? null)
         );
 
+        $baseDisplayController->addSubController(
+            'headDisplayController',
+            $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
+        )->addSubController(
+            'mainDisplayController',
+            $mainDisplayController
+        );
+
+        return $this->addNavSecondaryDisplayController(
+            $baseDisplayController,
+            $input
+        );
+    }
+
+    private function addNavSecondaryDisplayController(
+        BaseDisplayController $baseDisplayController,
+        array $input
+    ): BaseDisplayController {
+        if (!in_array($this->generalBehaviour, ['Event', 'Band', 'Venue', 'City'])) {
+            return $baseDisplayController;
+        }
+
+        $navSecondaryBehaviourClass = __NAMESPACE__
+            . '\\' . $this->generalBehaviour . 'NavSecondaryDisplayFactoryBehaviour';
+        $this->navSecondaryDisplayFactoryBehaviour = new $navSecondaryBehaviourClass();
+
         $navSecondaryDisplayController = $this->navSecondaryDisplayFactoryBehaviour->getDisplayController(
             $this->templatePath,
             $this->connection
@@ -68,24 +105,17 @@ class DisplayFactory extends AbstractFactory
             RmString::new($input['order_by'] ?? null)
         );
 
-        return $baseDisplayController
-            ->addSubController(
-                'headDisplayController',
-                $this->headDisplayFactoryBehaviour->getDisplayController($this->templatePath)
-            )
-            ->addSubController(
-                'navSecondaryDisplayController',
-                $navSecondaryDisplayController
-            )
-            ->addSubController(
-                'mainDisplayController',
-                $mainDisplayController
-            );
+
+        return $baseDisplayController->addSubController(
+            'navSecondaryDisplayController',
+            $navSecondaryDisplayController
+        );
     }
 
     private function getAllowedFactoryBehaviours(): array
     {
         return [
+            'edit' => 'Editor',
             'events' => 'Event',
             'bands' => 'Band',
             'venues' => 'Venue',
