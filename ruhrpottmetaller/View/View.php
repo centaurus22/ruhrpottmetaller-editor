@@ -40,7 +40,7 @@ class View
 
     private function get(string $key)
     {
-        return $this->data[$key];
+        return $this->data[$key] ?? null;
     }
 
     public function getOutput(): AbstractRmString

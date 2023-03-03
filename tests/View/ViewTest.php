@@ -130,4 +130,20 @@ final class ViewTest extends TestCase
         $output = $this->View->getOutput()->get();
         $this->assertEquals('test', substr($output, 5, 4));
     }
+
+    /**
+     * @covers \ruhrpottmetaller\View\View
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     */
+    public function testShouldOutputNullIfValueDoesNotExist()
+    {
+        $this->View = new View(
+            RmString::new('tests/View/'),
+            RmString::new('testTemplate3')
+        );
+        $output = $this->View->getOutput();
+        $this->assertEquals('<div></div>', $output);
+    }
 }
