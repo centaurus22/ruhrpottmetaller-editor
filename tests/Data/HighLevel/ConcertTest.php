@@ -456,4 +456,22 @@ final class ConcertTest extends TestCase
         $this->dataSet = Concert::new()->setVenue($venue);
         assertEquals(12, $this->dataSet->getVenueId()->get());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+
+    public function testMethodsShouldGetCityId(): void
+    {
+        $city = City::new()->setId(RmInt::new(42));
+        $venue = Venue::new()->setCity($city);
+        $this->dataSet = Concert::new()->setVenue($venue);
+        assertEquals(42, $this->dataSet->getCityId()->get());
+    }
 }

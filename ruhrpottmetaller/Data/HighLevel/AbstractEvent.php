@@ -70,7 +70,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
 
     public function getCityId(): AbstractRmInt
     {
-        return RmNullInt::new(null);
+        return $this->venue->getCityId();
     }
 
     public function getVenueAndCityName(): AbstractRmString
