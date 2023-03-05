@@ -13,6 +13,7 @@ use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\BandQueryModel;
 use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\Model\GigQueryModel;
@@ -53,12 +54,14 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      */
-    public function testShouldSetEvent()
+    public function testShouldSetNullEventIfNoIdIsGiven()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
+
+        $cityQueryModel = CityQueryModel::new(null);
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
@@ -70,9 +73,10 @@ final class EditorMainDisplayControllerTest extends TestCase
                 ),
                 VenueQueryModel::new(
                     null,
-                    CityQueryModel::new(null)
+                    $cityQueryModel
                 )
             ),
+            $cityQueryModel,
             NullEvent::new()
         );
 
@@ -132,6 +136,7 @@ final class EditorMainDisplayControllerTest extends TestCase
             ->setUrl(RmNullString::new(null))
             ->setVenue(NullVenue::new());
 
+        $cityQueryModel = CityQueryModel::new(null);
         $this->controller = new EditorMainDisplayController(
             $BaseView,
             new EventQueryDatabaseModelMock(
@@ -142,9 +147,10 @@ final class EditorMainDisplayControllerTest extends TestCase
                 ),
                 VenueQueryModel::new(
                     null,
-                    CityQueryModel::new(null)
+                    $cityQueryModel
                 )
             ),
+            $cityQueryModel,
             $event
         );
 
@@ -197,6 +203,8 @@ final class EditorMainDisplayControllerTest extends TestCase
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Ragers-Elite-Festival'));
 
+        $cityQueryModel = CityQueryModel::new(null);
+
         $this->controller = new EditorMainDisplayController(
             $BaseView,
             new EventQueryDatabaseModelMock(
@@ -207,9 +215,10 @@ final class EditorMainDisplayControllerTest extends TestCase
                 ),
                 VenueQueryModel::new(
                     null,
-                    CityQueryModel::new(null)
+                    $cityQueryModel
                 )
             ),
+            $cityQueryModel,
             $event
         );
 
@@ -219,6 +228,72 @@ final class EditorMainDisplayControllerTest extends TestCase
         $this->assertInstanceOf(
             Concert::class,
             ($this->controller->getViewData())['event']
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\EventQueryModel
+     * @uses \ruhrpottmetaller\Model\GigQueryModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     */
+    public function testShouldLoadCities()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+
+        $cityQueryModel = CityQueryModel::new(null);
+
+        $this->controller = new EditorMainDisplayController(
+            $BaseView,
+            new EventQueryDatabaseModelMock(
+                null,
+                GigQueryModel::new(
+                    null,
+                    BandQueryModel::new(null)
+                ),
+                VenueQueryModel::new(
+                    null,
+                    $cityQueryModel
+                )
+            ),
+            $cityQueryModel,
+            NullEvent::new()
+        );
+
+        $this->controller->render();
+
+        $this->assertArrayHasKey('event', $this->controller->getViewData());
+        $this->assertInstanceOf(
+            RmArray::class,
+            ($this->controller->getViewData())['cities']
         );
     }
 }

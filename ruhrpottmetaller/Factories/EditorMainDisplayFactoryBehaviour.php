@@ -30,6 +30,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
         RmString $templatePath,
         \mysqli $connection
     ): AbstractDisplayController {
+        $cityQueryModel = CityQueryModel::new($connection);
         return new EditorMainDisplayController(
             View::new(
                 $templatePath,
@@ -38,8 +39,9 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
             EventQueryModel::new(
                 $connection,
                 GigQueryModel::new($connection, BandQueryModel::new($connection)),
-                VenueQueryModel::new($connection, CityQueryModel::new($connection))
+                VenueQueryModel::new($connection, $cityQueryModel)
             ),
+            $cityQueryModel,
             $this->createEvent()
         );
     }
@@ -57,7 +59,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
         $event->setId(RmInt::new($this->input['id'] ?? null));
         $event->setName(RmString::new($this->input['name'] ?? null));
         $event->setVenue(
-            $this->input['venue_id']
+            isset($this->input['venue_id'])
                 ? Venue::new()->setId($this->input['venue_id'])
                 : NullVenue::new()
         );
