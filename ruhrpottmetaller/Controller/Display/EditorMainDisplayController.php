@@ -21,6 +21,7 @@ class EditorMainDisplayController extends AbstractDataMainDisplayController
     ) {
         parent::__construct($view);
         $this->eventQueryModel = $eventQueryModel;
+        $this->cityQueryModel = $cityQueryModel;
         $this->event = $event;
     }
 
@@ -40,6 +41,6 @@ class EditorMainDisplayController extends AbstractDataMainDisplayController
             );
         }
 
-        $this->view->set('cities', RmArray::new());
+        $this->view->set('cities', $this->cityQueryModel->getCities());
     }
 }

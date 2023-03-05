@@ -19,6 +19,7 @@ use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\Model\GigQueryModel;
 use ruhrpottmetaller\Model\VenueQueryModel;
 use ruhrpottmetaller\View\View;
+use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
 use tests\ruhrpottmetaller\Controller\EventQueryDatabaseModelMock;
 
 final class EditorMainDisplayControllerTest extends TestCase
@@ -31,6 +32,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -61,7 +63,7 @@ final class EditorMainDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryModel = CityQueryModel::new(null);
+        $cityQueryModel = CityQueryDatabaseModelMock::new(null);
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
@@ -95,6 +97,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -136,7 +139,7 @@ final class EditorMainDisplayControllerTest extends TestCase
             ->setUrl(RmNullString::new(null))
             ->setVenue(NullVenue::new());
 
-        $cityQueryModel = CityQueryModel::new(null);
+        $cityQueryModel = CityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorMainDisplayController(
             $BaseView,
             new EventQueryDatabaseModelMock(
@@ -169,6 +172,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -203,7 +207,7 @@ final class EditorMainDisplayControllerTest extends TestCase
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Ragers-Elite-Festival'));
 
-        $cityQueryModel = CityQueryModel::new(null);
+        $cityQueryModel = CityQueryDatabaseModelMock::new(null);
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
@@ -238,6 +242,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -269,7 +274,7 @@ final class EditorMainDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryModel = CityQueryModel::new(null);
+        $cityQueryModel = CityQueryDatabaseModelMock::new(null);
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
@@ -290,10 +295,15 @@ final class EditorMainDisplayControllerTest extends TestCase
 
         $this->controller->render();
 
-        $this->assertArrayHasKey('event', $this->controller->getViewData());
+        $this->assertArrayHasKey('cities', $this->controller->getViewData());
+        $cities = ($this->controller->getViewData())['cities'];
         $this->assertInstanceOf(
             RmArray::class,
-            ($this->controller->getViewData())['cities']
+            $cities
+        );
+        $this->assertEquals(
+            'Essen',
+            $cities->getCurrent()->getName()
         );
     }
 }
