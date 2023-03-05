@@ -14,5 +14,6 @@ interface IEvent extends IData
     public function getNumberOfDays(): AbstractRmInt;
     public function getDate(): RmDate;
     public function getVenueId(): AbstractRmInt;
+    public function getCityId(): AbstractRmInt;
     public function getUrl(): AbstractRmString;
 }

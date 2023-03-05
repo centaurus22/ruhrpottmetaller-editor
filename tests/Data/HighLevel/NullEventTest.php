@@ -82,4 +82,17 @@ final class NullEventTest extends TestCase
     {
         $this->assertNull($this->dataSet->getVenueId()->get());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\NullEvent
+     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+    public function testShouldGetCityId(): void
+    {
+        $this->assertNull($this->dataSet->getCityId()->get());
+    }
 }

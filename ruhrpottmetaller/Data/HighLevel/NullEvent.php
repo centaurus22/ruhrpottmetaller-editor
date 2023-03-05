@@ -34,6 +34,11 @@ class NullEvent extends AbstractNamedHighLevelNullData implements IEvent
         return RmNullInt::new(null);
     }
 
+    public function getCityId(): AbstractRmInt
+    {
+        return RmNullInt::new(null);
+    }
+
     public function getUrl(): AbstractRmString
     {
         return RmNullString::new(null);

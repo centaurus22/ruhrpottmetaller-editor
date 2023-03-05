@@ -4,6 +4,8 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
@@ -64,6 +66,11 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
     public function getVenueId(): AbstractRmInt
     {
         return $this->venue->getId();
+    }
+
+    public function getCityId(): AbstractRmInt
+    {
+        return RmNullInt::new(null);
     }
 
     public function getVenueAndCityName(): AbstractRmString
