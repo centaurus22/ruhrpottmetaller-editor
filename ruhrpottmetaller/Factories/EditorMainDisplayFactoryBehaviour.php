@@ -41,7 +41,6 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
                 GigQueryModel::new($connection, BandQueryModel::new($connection)),
                 VenueQueryModel::new($connection, $cityQueryModel)
             ),
-            $cityQueryModel,
             $this->createEvent()
         );
     }

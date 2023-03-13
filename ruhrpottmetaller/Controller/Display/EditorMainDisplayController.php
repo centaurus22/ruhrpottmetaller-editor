@@ -3,25 +3,20 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\HighLevel\IEvent;
-use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\Model\EventQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorMainDisplayController extends AbstractDataMainDisplayController
 {
     private EventQueryModel $eventQueryModel;
-    private CityQueryModel $cityQueryModel;
     private IEvent $event;
     public function __construct(
         View $view,
         EventQueryModel $eventQueryModel,
-        CityQueryModel $cityQueryModel,
         IEvent $event
     ) {
         parent::__construct($view);
         $this->eventQueryModel = $eventQueryModel;
-        $this->cityQueryModel = $cityQueryModel;
         $this->event = $event;
     }
 
@@ -40,7 +35,5 @@ class EditorMainDisplayController extends AbstractDataMainDisplayController
                 $this->eventQueryModel->getEventById($this->event->getId())
             );
         }
-
-        $this->view->set('cities', $this->cityQueryModel->getCities());
     }
 }

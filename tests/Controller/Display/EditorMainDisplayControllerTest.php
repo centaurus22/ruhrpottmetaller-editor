@@ -78,7 +78,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            $cityQueryModel,
             NullEvent::new()
         );
 
@@ -153,7 +152,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            $cityQueryModel,
             $event
         );
 
@@ -222,7 +220,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            $cityQueryModel,
             $event
         );
 
@@ -232,78 +229,6 @@ final class EditorMainDisplayControllerTest extends TestCase
         $this->assertInstanceOf(
             Concert::class,
             ($this->controller->getViewData())['event']
-        );
-    }
-
-    /**
-     * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses \ruhrpottmetaller\Data\HighLevel\City
-     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
-     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmNullString
-     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
-     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
-     * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
-     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
-     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
-     * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
-     * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Model\EventQueryModel
-     * @uses \ruhrpottmetaller\Model\GigQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
-     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
-     */
-    public function testShouldLoadCities()
-    {
-        $BaseView = View::new(
-            RmString::new('./tests/Controller/templates/'),
-            RmString::new('testTemplate')
-        );
-
-        $cityQueryModel = CityQueryDatabaseModelMock::new(null);
-
-        $this->controller = new EditorMainDisplayController(
-            $BaseView,
-            new EventQueryDatabaseModelMock(
-                null,
-                GigQueryModel::new(
-                    null,
-                    BandQueryModel::new(null)
-                ),
-                VenueQueryModel::new(
-                    null,
-                    $cityQueryModel
-                )
-            ),
-            $cityQueryModel,
-            NullEvent::new()
-        );
-
-        $this->controller->render();
-
-        $this->assertArrayHasKey('cities', $this->controller->getViewData());
-        $cities = ($this->controller->getViewData())['cities'];
-        $this->assertInstanceOf(
-            RmArray::class,
-            $cities
-        );
-        $this->assertEquals(
-            'Essen',
-            $cities->getCurrent()->getName()
         );
     }
 }
