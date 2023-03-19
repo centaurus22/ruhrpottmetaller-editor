@@ -1,14 +1,7 @@
 <form action="" method="get">
-    <input type="hidden" name="display" value="concert">
+    <input type="hidden" name="show" value="events">
     <input type="hidden" name="save" value="concert">
-<?php
-if (isset($this->_['request']['edit_id'])) {
-    printf(
-        '<input type="hidden" name="save_id" value="%1$u">',
-        $this->_['request']['edit_id']
-    );
-}
-?>
+    <input type="hidden" name="id" value="<?=$this->get('event')->getId()?>">
     <fieldset class="fieldset_general">
         <legend>General concert data</legend>
 
@@ -16,7 +9,7 @@ if (isset($this->_['request']['edit_id'])) {
         <input type="text"
             name="name"
             id="name"
-            value="<?=$this->_['request']['name']?>"
+            value="<?=$this->get('event')->getName()?>"
             class="edit_text"
             placeholder="Name of the concert"
         >
@@ -25,7 +18,7 @@ if (isset($this->_['request']['edit_id'])) {
         <input type="date"
             name="date_start"
             id="date_start"
-            value="<?=$this->_['request']['date_start']?>"
+            value="<?=$this->get('event')->getDate()->getFormatted() ?>"
             required class="edit_date"
         >
         <span aria-hidden="true">&nbsp;for&nbsp;</span>
@@ -33,55 +26,43 @@ if (isset($this->_['request']['edit_id'])) {
         <input type="number"
             name="length"
             id="length"
-            value="<?=$this->_['request']['length']?>"
+            value="<?=$this->get('event')->getNumberOfDays()?>"
             class="edit_length"
             min="1"
         >
         <span aria-hidden="true">&nbsp;day(s)</span>
         <br>
-        <label for="city_id" class="edit_label">City</label>
+        <!--<label for="city_id" class="edit_label">City</label>
         <select name="city_id"
             id="city_id"
             class="edit_select"
             onchange="display_new_city_form(); display_new_venue_form();"
         >
 <?php
-foreach ($this->_['cities'] as $city) {
-    if ($this->_['request']['city_id'] == $city['id']) {
-        printf(
-            '<option value="%1$u" selected>%2$s</option>',
-            $city['id'],
-            $city['name']
-        );
-    } else {
-        printf(
-            '<option value="%1$u">%2$s</option>',
-            $city['id'],
-            $city['name']
-        );
-    }
-}
+$cities = $this->get('cities');
+
+
 ?>
-        </select><br>
-        <span id="city_venue_form">
-<?= $this->_['city_venue_form'] ?>
-        </span>
-        <span id="venue_new_form">
-        <?=$this->_['venue_new_form'] ?>
+        </select><br>-->
+        <?php $venueId = $this->get('event')->getVenueId() ?>
+        <?php $cityId = $this->get('event')->getCityId() ?>
+        <span id="ajax_city_venue"
+              data-venue-id="<?=$venueId->get() ?? null ?>"
+              data-city-id="<?=$cityId->get() ?? null ?>">
         </span>
         <label for="url" class="edit_label">URL*</label>
         <input type="url"
             name="url"
             id="url"
             class="edit_text"
-            value="<?=$this->_['request']['url']?>"
+            value="<?=$this->get('event')->getUrl()?>"
             placeholder="Link to more information"
             required
         >
     </fieldset>
-    <fieldset id="lineup">
-        <?= $this->_['lineup'] ?>
+    <fieldset id="ajax_lineup">
     </fieldset>
     <input class="button_save" type="submit" value="Save">
     <input type="reset" value="Reset">
 </form>
+<script src="assets/js/editor.js"></script>
