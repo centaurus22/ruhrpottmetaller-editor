@@ -137,7 +137,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
-    public function testShouldPassGetNewVenueValueToView()
+    public function testShouldPassGetNewCityValueToView()
     {
         $view = View::new(
             RmString::new('./tests/Controller/templates/'),
@@ -154,7 +154,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
         $this->controller->setCityId(RmNullInt::new(null));
         $this->controller->render();
 
-        $this->assertArrayHasKey('getNewVenue', $this->controller->getViewData());
+        $this->assertArrayHasKey('getNewCity', $this->controller->getViewData());
     }
 
     /**
@@ -196,7 +196,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
         $this->controller->setCityId(RmNullInt::new(1));
         $this->controller->render();
 
-        $this->assertArrayHasKey('getNewVenue', $this->controller->getViewData());
-        $this->assertTrue($this->controller->getViewData()['getNewVenue']->isTrue());
+        $this->assertArrayHasKey('getNewCity', $this->controller->getViewData());
+        $this->assertTrue($this->controller->getViewData()['getNewCity']->isTrue());
     }
 }
