@@ -6,7 +6,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\VenueQueryModel;
 
-class VenueDatabaseQueryModelMockEmpty extends VenueQueryModel
+class VenueQueryDatabaseModelMockEmpty extends VenueQueryModel
 {
     public function getVenues(): RmArray
     {

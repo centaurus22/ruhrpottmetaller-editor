@@ -11,8 +11,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\VenueDatabaseQueryModelMock;
-use tests\ruhrpottmetaller\Controller\VenueDatabaseQueryModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\VenueQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\VenueQueryDatabaseModelMockEmpty;
 
 final class VenueMainDisplayControllerTest extends TestCase
 {
@@ -51,7 +52,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueDatabaseQueryModelMock(
+            new VenueQueryDatabaseModelMock(
                 null,
                 new CityQueryDatabaseModelMock(null)
             )
@@ -99,7 +100,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueDatabaseQueryModelMockEmpty(
+            new VenueQueryDatabaseModelMockEmpty(
                 null,
                 new CityQueryDatabaseModelMock(null)
             )
@@ -139,7 +140,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueDatabaseQueryModelMockEmpty(
+            new VenueQueryDatabaseModelMockEmpty(
                 null,
                 new CityQueryDatabaseModelMockEmpty(null)
             )

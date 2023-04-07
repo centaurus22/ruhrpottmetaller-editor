@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\VenueQueryModel;
 
-class VenueDatabaseQueryModelMock extends VenueQueryModel
+class VenueQueryDatabaseModelMock extends VenueQueryModel
 {
     public function getVenues(): RmArray
     {
