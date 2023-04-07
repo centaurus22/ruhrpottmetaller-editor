@@ -36,7 +36,11 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
             $this->view->set('getNewVenue', RmTrue::new(true));
         } else {
             $this->view->set('getNewCity', RmFalse::new(false));
-            $this->view->set('getNewVenue', RmTrue::new(true));
+            if ($this->venueId->get() === self::NEW_VENUE) {
+                $this->view->set('getNewVenue', RmTrue::new(true));
+            } else {
+                $this->view->set('getNewVenue', RmFalse::new(false));
+            }
         }
     }
 
