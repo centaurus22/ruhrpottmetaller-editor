@@ -179,7 +179,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\VenueQueryModel
      */
-    public function testShouldPassTrueAsGetNewVenueValueToView()
+    public function testShouldPassTrueAsGetNewCityValueToView()
     {
         $view = View::new(
             RmString::new('./tests/Controller/templates/'),
