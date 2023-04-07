@@ -51,6 +51,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             VenueQueryDatabaseModelMock::new(null, $cityQueryDatabaseModel)
         );
 
+        $this->controller->setCityId(RmNullInt::new(null));
         $this->controller->render();
 
         $this->assertArrayHasKey('cities', $this->controller->getViewData());
@@ -154,5 +155,48 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
         $this->controller->render();
 
         $this->assertArrayHasKey('getNewVenue', $this->controller->getViewData());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
+     * @uses \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmTrue
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses \ruhrpottmetaller\View\View
+     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     */
+    public function testShouldPassTrueAsGetNewVenueValueToView()
+    {
+        $view = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+
+        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $this->controller = new EditorAjaxCityVenueDisplayController(
+            $view,
+            $cityQueryDatabaseModel::new(null),
+            VenueQueryDatabaseModelMock::new(null, $cityQueryDatabaseModel)
+        );
+
+        $this->controller->setCityId(RmNullInt::new(1));
+        $this->controller->render();
+
+        $this->assertArrayHasKey('getNewVenue', $this->controller->getViewData());
+        $this->assertTrue($this->controller->getViewData()['getNewVenue']->isTrue());
     }
 }

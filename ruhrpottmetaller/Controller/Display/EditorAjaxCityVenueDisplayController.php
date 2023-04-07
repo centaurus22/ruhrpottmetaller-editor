@@ -3,6 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\Bool\RmFalse;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\Model\VenueQueryModel;
@@ -27,7 +28,11 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     {
         $this->view->set('cities', $this->cityQueryModel->getCities());
         $this->view->set('venues', $this->venueQueryModel->getVenues());
-        $this->view->set('getNewVenue', RmFalse::new(false));
+        if ($this->cityId->get() === 1) {
+            $this->view->set('getNewVenue', RmTrue::new(true));
+        } else {
+            $this->view->set('getNewVenue', RmFalse::new(false));
+        }
     }
 
     public function setCityId(AbstractRmInt $cityId)
