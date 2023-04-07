@@ -14,6 +14,7 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     private CityQueryModel $cityQueryModel;
     private VenueQueryModel $venueQueryModel;
     private AbstractRmInt $cityId;
+    private AbstractRmInt $venueId;
     private const NEW_CITY = 1;
     private const NEW_VENUE = 1;
     public function __construct(
@@ -35,11 +36,17 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
             $this->view->set('getNewVenue', RmTrue::new(true));
         } else {
             $this->view->set('getNewCity', RmFalse::new(false));
+            $this->view->set('getNewVenue', RmTrue::new(true));
         }
     }
 
-    public function setCityId(AbstractRmInt $cityId)
+    public function setCityId(AbstractRmInt $id)
     {
-        $this->cityId = $cityId;
+        $this->cityId = $id;
+    }
+
+    public function setVenueId(AbstractRmInt $id)
+    {
+        $this->venueId = $id;
     }
 }
