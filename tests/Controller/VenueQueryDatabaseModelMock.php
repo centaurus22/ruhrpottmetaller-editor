@@ -26,4 +26,19 @@ class VenueQueryDatabaseModelMock extends VenueQueryModel
         $Array = RmArray::new();
         return $Array->add($venue);
     }
+
+    public function getVenuesByCityId(?RmInt $cityId): RmArray
+    {
+        $city = City::new()
+            ->setId(RmInt::new('3'))
+            ->setName(RmString::new('Dortmund'))
+            ->setIsVisible(RmBool::new(true));
+        $venue  = Venue::new()
+            ->setId(RmInt::new('2'))
+            ->setName(RmString::new('JunkYard'))
+            ->setCity($city)
+            ->setIsVisible(RmBool::new(true));
+        $Array = RmArray::new();
+        return $Array->add($venue);
+    }
 }

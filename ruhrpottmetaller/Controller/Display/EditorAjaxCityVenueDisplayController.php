@@ -30,7 +30,6 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     protected function prepareThisController(): void
     {
         $this->view->set('cities', $this->cityQueryModel->getCities());
-        $this->view->set('venues', $this->venueQueryModel->getVenues());
 
         if ($this->cityId->get() === self::NEW_CITY) {
             $this->setValuesIfNewCity();
@@ -58,6 +57,15 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     private function setValuesIfNoNewCity()
     {
         $this->view->set('getNewCity', RmFalse::new(false));
+
+        if ($this->cityId->get() >= 1) {
+            $this->view->set(
+                'venues',
+                $this->venueQueryModel->getVenuesByCityId($this->cityId)
+            );
+        } else {
+            $this->view->set('venues', $this->venueQueryModel->getVenues());
+        }
 
         if ($this->venueId->get() === self::NEW_VENUE) {
             $this->view->set('getNewVenue', RmTrue::new(true));
