@@ -24,7 +24,7 @@ class VenueQueryModel extends AbstractQueryModel
     public static function new(
         ?\mysqli $connection,
         CityQueryModel $queryCityModel
-    ) {
+    ): VenueQueryModel {
         return new static($connection, $queryCityModel);
     }
 
@@ -47,6 +47,20 @@ class VenueQueryModel extends AbstractQueryModel
             WHERE city.name LIKE ?
             ORDER BY name';
         return $this->query($query, 's', [$cityName->get()]);
+    }
+
+    public function getVenuesByCityId(RmInt $cityId): RmArray
+    {
+        $query = 'SELECT 
+                venue.id AS id,
+                venue.name AS name,
+                city_id,
+                url_default,
+                venue.is_visible AS is_visible
+            FROM venue
+            WHERE city_id LIKE ?
+            ORDER BY name';
+        return $this->query($query, 'i', [$cityId->get()]);
     }
 
     public function getVenueById(AbstractRmInt $venueId): IVenue
