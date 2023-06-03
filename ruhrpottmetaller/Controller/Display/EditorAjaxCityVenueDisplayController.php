@@ -2,9 +2,14 @@
 
 namespace ruhrpottmetaller\Controller\Display;
 
+use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmFalse;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\CityQueryModel;
 use ruhrpottmetaller\Model\VenueQueryModel;
 use ruhrpottmetaller\View\View;
@@ -29,7 +34,10 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
 
     protected function prepareThisController(): void
     {
-        $this->view->set('cities', $this->cityQueryModel->getCities());
+        $cities = $this->cityQueryModel->getCities();
+        $this->view->set('cityId', $this->cityId);
+        $cities->add(City::new()->setId(RmInt::new(1))->setName(RmString::new('New city')));
+        $this->view->set('cities', $cities);
 
         if ($this->cityId->get() === self::NEW_CITY) {
             $this->setValuesIfNewCity();
@@ -61,10 +69,11 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
         if ($this->cityId->get() >= 1) {
             $this->view->set(
                 'venues',
-                $this->venueQueryModel->getVenuesByCityId($this->cityId)
+                $this->addNewVenueObject($this->venueQueryModel->getVenuesByCityId($this->cityId))
             );
+            $this->view->set('venueId', $this->venueId);
         } else {
-            $this->view->set('venues', $this->venueQueryModel->getVenues());
+            $this->view->set('venues', $this->addNewVenueObject($this->venueQueryModel->getVenues()));
         }
 
         if ($this->venueId->get() === self::NEW_VENUE) {
@@ -72,5 +81,10 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
         } else {
             $this->view->set('getNewVenue', RmFalse::new(false));
         }
+    }
+
+    private function addNewVenueObject(RmArray $venues): RmArray
+    {
+        return $venues->add(Venue::new()->setId(RmInt::new(1))->setName(RmString::new('New venue')));
     }
 }

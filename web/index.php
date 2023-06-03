@@ -2,7 +2,7 @@
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Connection;
-use ruhrpottmetaller\Factories\{CommandFactory, DisplayFactory};
+use ruhrpottmetaller\Factories\{AjaxDisplayFactory, CommandFactory, DisplayFactory};
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -20,7 +20,12 @@ CommandFactory::new($databaseConnection)
     ->getCommandController($input)
     ->execute();
 
-echo DisplayFactory::new($databaseConnection)
-    ->setFactoryBehaviours($input)
+if (isset($input['ajax'])) {
+    $displayFactory = AjaxDisplayFactory::new($databaseConnection);
+} else {
+    $displayFactory = DisplayFactory::new($databaseConnection);
+}
+
+echo $displayFactory->setFactoryBehaviours($input)
     ->getDisplayController($input)
     ->render();

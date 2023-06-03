@@ -32,24 +32,10 @@
         >
         <span aria-hidden="true">&nbsp;day(s)</span>
         <br>
-        <!--<label for="city_id" class="edit_label">City</label>
-        <select name="city_id"
-            id="city_id"
-            class="edit_select"
-            onchange="display_new_city_form(); display_new_venue_form();"
-        >
-<?php
-$cities = $this->get('cities');
-
-
-?>
-        </select><br>-->
-        <?php $venueId = $this->get('event')->getVenueId() ?>
-        <?php $cityId = $this->get('event')->getCityId() ?>
         <span id="ajax_city_venue"
-              data-venue-id="<?=$venueId->get() ?? null ?>"
-              data-city-id="<?=$cityId->get() ?? null ?>">
-        </span>
+              data-venue-id="<?=$this->get('event')->getVenueId() ?? null ?>"
+              data-city-id="<?=$this->get('event')->getCityId()  ?? null ?>">
+        </span><br>
         <label for="url" class="edit_label">URL*</label>
         <input type="url"
             name="url"
