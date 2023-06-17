@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\DatabaseConnection;
 
-final class ConnectionTest extends TestCase
+final class DatabaseConnectionTest extends TestCase
 {
     private DatabaseConnection $Helper;
 

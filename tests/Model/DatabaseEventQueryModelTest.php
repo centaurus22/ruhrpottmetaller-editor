@@ -15,7 +15,7 @@ use ruhrpottmetaller\Model\{DatabaseBandQueryModel,
     DatabaseGigQueryModel,
     DatabaseVenueQueryModel};
 
-final class EventQueryModelTest extends TestCase
+final class DatabaseEventQueryModelTest extends TestCase
 {
     private DatabaseEventQueryModel $eventQueryModel;
     private \mysqli $databaseConnection;

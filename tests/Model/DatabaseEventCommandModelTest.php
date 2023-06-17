@@ -18,7 +18,7 @@ use ruhrpottmetaller\Model\{DatabaseBandQueryModel,
     DatabaseGigQueryModel,
     DatabaseVenueQueryModel};
 
-final class EventCommandModelTest extends TestCase
+final class DatabaseEventCommandModelTest extends TestCase
 {
     private DatabaseEventQueryModel $queryModel;
     private DatabaseEventCommandModel $commandModel;

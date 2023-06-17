@@ -16,7 +16,7 @@ use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\DatabaseVenueCommandModel;
 use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
 
-final class VenueQueryModelTest extends TestCase
+final class DatabaseVenueQueryModelTest extends TestCase
 {
     private DatabaseVenueQueryModel $queryModel;
     private \mysqli $connection;

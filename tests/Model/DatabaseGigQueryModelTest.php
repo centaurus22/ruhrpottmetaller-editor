@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\{DatabaseBandQueryModel, DatabaseConnection, DatabaseGigQueryModel};
 
-final class GigQueryModelTest extends TestCase
+final class DatabaseGigQueryModelTest extends TestCase
 {
     private DatabaseGigQueryModel $gigQueryModel;
     private \mysqli $connection;
