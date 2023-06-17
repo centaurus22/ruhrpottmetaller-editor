@@ -10,10 +10,10 @@ use ruhrpottmetaller\Data\HighLevel\{Band, City, Venue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{CityCommandModel, CityQueryModel};
-use ruhrpottmetaller\Model\{BandCommandModel, BandQueryModel};
+use ruhrpottmetaller\Model\{DatabaseCityCommandModel, DatabaseCityQueryModel};
+use ruhrpottmetaller\Model\{DatabaseBandCommandModel, DatabaseBandQueryModel};
 use ruhrpottmetaller\Model\{DatabaseVenueCommandModel, DatabaseVenueQueryModel};
-use ruhrpottmetaller\Model\Connection;
+use ruhrpottmetaller\Model\DatabaseConnection;
 
 final class GeneralCommandControllerTest extends TestCase
 {
@@ -23,7 +23,7 @@ final class GeneralCommandControllerTest extends TestCase
     {
         $ConnectionInformationFile = RmString::new('tests/Model/databaseConfig.inc.php');
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->connection = Connection::new($ConnectionInformationFile)
+        $this->connection = DatabaseConnection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
     }
@@ -32,7 +32,7 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
-     * @uses \ruhrpottmetaller\Model\CityCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\City
@@ -41,8 +41,8 @@ final class GeneralCommandControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
@@ -51,8 +51,8 @@ final class GeneralCommandControllerTest extends TestCase
     {
         $query = 'INSERT INTO city SET name = "Dortmund"';
         $this->connection->query($query);
-        $commandModel = CityCommandModel::new($this->connection);
-        $queryModel = CityQueryModel::new($this->connection);
+        $commandModel = DatabaseCityCommandModel::new($this->connection);
+        $queryModel = DatabaseCityQueryModel::new($this->connection);
         $city = City::new()
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Lünen'))
@@ -77,7 +77,7 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
-     * @uses \ruhrpottmetaller\Model\BandCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseBandCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
@@ -86,8 +86,8 @@ final class GeneralCommandControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
@@ -96,8 +96,8 @@ final class GeneralCommandControllerTest extends TestCase
     {
         $query = 'INSERT INTO band SET name = "Mad Butcher"';
         $this->connection->query($query);
-        $queryModel = BandQueryModel::new($this->connection);
-        $commandModel = BandCommandModel::new($this->connection);
+        $queryModel = DatabaseBandQueryModel::new($this->connection);
+        $commandModel = DatabaseBandCommandModel::new($this->connection);
         $data = Band::new()
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Kreator'))
@@ -123,9 +123,9 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\DatabaseVenueCommandModel
-     * @uses \ruhrpottmetaller\Model\CityCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -135,8 +135,8 @@ final class GeneralCommandControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      */
@@ -149,7 +149,7 @@ final class GeneralCommandControllerTest extends TestCase
         $this->connection->query($query);
         $queryModel = DatabaseVenueQueryModel::new(
             $this->connection,
-            CityQueryModel::new($this->connection)
+            DatabaseCityQueryModel::new($this->connection)
         );
         $commandModel = DatabaseVenueCommandModel::new($this->connection);
         $city = City::new()->setId(RmInt::new(1));

@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, CityNavSecondaryDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\CityQueryModel;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class VenueNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
@@ -18,7 +18,7 @@ class VenueNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactory
                 $templatePath,
                 RmString::new('venue_nav_secondary')
             ),
-            CityQueryModel::new($connection)
+            DatabaseCityQueryModel::new($connection)
         );
     }
 }

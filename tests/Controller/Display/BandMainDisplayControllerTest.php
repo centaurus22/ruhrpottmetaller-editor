@@ -10,8 +10,8 @@ use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
-use tests\ruhrpottmetaller\Controller\BandQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\BandQueryDatabaseModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\DatabaseBandQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseBandQueryDatabaseModelMockEmpty;
 
 final class BandMainDisplayControllerTest extends TestCase
 {
@@ -48,7 +48,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new BandQueryDatabaseModelMock(null)
+            new DatabaseBandQueryDatabaseModelMock(null)
         );
 
         $this->Controller
@@ -92,7 +92,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new BandQueryDatabaseModelMockEmpty(null),
+            new DatabaseBandQueryDatabaseModelMockEmpty(null),
         );
 
         $this->Controller
@@ -129,7 +129,7 @@ final class BandMainDisplayControllerTest extends TestCase
 
         $this->Controller = new BandMainDisplayController(
             $BaseView,
-            new BandQueryDatabaseModelMockEmpty(null)
+            new DatabaseBandQueryDatabaseModelMockEmpty(null)
         );
 
         $this->Controller->setGetParameters(

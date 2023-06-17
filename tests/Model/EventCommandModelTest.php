@@ -10,9 +10,9 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{BandQueryModel,
-    Connection,
-    CityQueryModel,
+use ruhrpottmetaller\Model\{DatabaseBandQueryModel,
+    DatabaseConnection,
+    DatabaseCityQueryModel,
     DatabaseEventCommandModel,
     DatabaseEventQueryModel,
     DatabaseGigQueryModel,
@@ -28,18 +28,18 @@ final class EventCommandModelTest extends TestCase
     {
         $ConnectionInformationFile = RmString::new('tests/Model/databaseConfig.inc.php');
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->connection = Connection::new($ConnectionInformationFile)
+        $this->connection = DatabaseConnection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
         $this->queryModel = DatabaseEventQueryModel::new(
             $this->connection,
             DatabaseGigQueryModel::new(
                 $this->connection,
-                BandQueryModel::new($this->connection)
+                DatabaseBandQueryModel::new($this->connection)
             ),
             DatabaseVenueQueryModel::new(
                 $this->connection,
-                CityQueryModel::new($this->connection)
+                DatabaseCityQueryModel::new($this->connection)
             )
         );
         $this->commandModel = DatabaseEventCommandModel::new(
@@ -65,11 +65,11 @@ final class EventCommandModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -106,11 +106,11 @@ final class EventCommandModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -144,11 +144,11 @@ final class EventCommandModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\Connection
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\BandQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString

@@ -11,11 +11,11 @@ use stdClass;
 
 class DatabaseVenueQueryModel extends DatabaseQueryModel
 {
-    private CityQueryModel $queryCityModel;
+    private DatabaseCityQueryModel $queryCityModel;
 
     public function __construct(
         ?\mysqli $connection,
-        CityQueryModel $queryCityModel
+        DatabaseCityQueryModel $queryCityModel
     ) {
         parent::__construct($this->connection = $connection);
         $this->queryCityModel = $queryCityModel;
@@ -23,7 +23,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
 
     public static function new(
         ?\mysqli $connection,
-        CityQueryModel $queryCityModel
+        DatabaseCityQueryModel $queryCityModel
     ): DatabaseVenueQueryModel {
         return new static($connection, $queryCityModel);
     }

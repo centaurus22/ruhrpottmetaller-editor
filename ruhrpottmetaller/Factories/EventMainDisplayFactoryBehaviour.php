@@ -4,8 +4,8 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EventMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\BandQueryModel;
-use ruhrpottmetaller\Model\CityQueryModel;
+use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\DatabaseEventQueryModel;
 use ruhrpottmetaller\Model\DatabaseGigQueryModel;
 use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
@@ -26,11 +26,11 @@ class EventMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviou
                 $connection,
                 DatabaseGigQueryModel::new(
                     $connection,
-                    BandQueryModel::new($connection)
+                    DatabaseBandQueryModel::new($connection)
                 ),
                 DatabaseVenueQueryModel::new(
                     $connection,
-                    CityQueryModel::new($connection)
+                    DatabaseCityQueryModel::new($connection)
                 )
             )
         );

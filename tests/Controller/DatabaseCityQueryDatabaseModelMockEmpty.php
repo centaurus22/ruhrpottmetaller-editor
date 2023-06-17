@@ -4,9 +4,9 @@ namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\CityQueryModel;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 
-class CityQueryDatabaseModelMockEmpty extends CityQueryModel
+class DatabaseCityQueryDatabaseModelMockEmpty extends DatabaseCityQueryModel
 {
     public function getCities(): RmArray
     {

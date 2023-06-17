@@ -10,11 +10,11 @@ use stdClass;
 
 class DatabaseGigQueryModel extends DatabaseQueryModel
 {
-    private BandQueryModel $bandQueryModel;
+    private DatabaseBandQueryModel $bandQueryModel;
 
     public function __construct(
         ?\mysqli $connection,
-        BandQueryModel $bandQueryModel
+        DatabaseBandQueryModel $bandQueryModel
     ) {
         $this->bandQueryModel = $bandQueryModel;
         parent::__construct($connection);
@@ -22,7 +22,7 @@ class DatabaseGigQueryModel extends DatabaseQueryModel
 
     public static function new(
         ?\mysqli $connection,
-        BandQueryModel $bandQueryModel
+        DatabaseBandQueryModel $bandQueryModel
     ): DatabaseGigQueryModel {
         return new static($connection, $bandQueryModel);
     }

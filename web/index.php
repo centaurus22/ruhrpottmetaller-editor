@@ -1,7 +1,7 @@
 <?php
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\Connection;
+use ruhrpottmetaller\Model\DatabaseConnection;
 use ruhrpottmetaller\Factories\{AjaxDisplayFactory, CommandFactory, DisplayFactory};
 
 error_reporting(E_ALL);
@@ -12,7 +12,7 @@ include '../vendor/autoload.php';
 $input = array_merge($_GET, $_POST);
 
 $pathToDatabaseConfig = RmString::new('../config/databaseConfig.inc.php');
-$databaseConnection = Connection::new($pathToDatabaseConfig)
+$databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
     ->connect()
     ->getConnection();
 

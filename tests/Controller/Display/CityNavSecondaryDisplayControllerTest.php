@@ -9,8 +9,8 @@ use ruhrpottmetaller\Controller\Display\CityNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\CityQueryModel;
-use ruhrpottmetaller\Model\Connection;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\DatabaseConnection;
 use ruhrpottmetaller\View\View;
 
 final class CityNavSecondaryDisplayControllerTest extends TestCase
@@ -22,10 +22,10 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
     {
         $ConnectionInformationFile = RmString::new('tests/Model/databaseConfig.inc.php');
         mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-        $this->connection = Connection::new($ConnectionInformationFile)
+        $this->connection = DatabaseConnection::new($ConnectionInformationFile)
             ->connect()
             ->getConnection();
-        $queryCityDatabaseModel = CityQueryModel::new(
+        $queryCityDatabaseModel = DatabaseCityQueryModel::new(
             $this->connection,
         );
 
@@ -61,8 +61,8 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldSetCityList()

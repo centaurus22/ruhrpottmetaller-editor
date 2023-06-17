@@ -2,22 +2,22 @@
 
 namespace tests\ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\BandQueryModel;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 
-class BandQueryDatabaseModelMock extends BandQueryModel
+class DatabaseCityQueryDatabaseModelMock extends DatabaseCityQueryModel
 {
-    public function getBands(): RmArray
+    public function getCities(): RmArray
     {
-        $Band = Band::new()
+        $City = City::new()
             ->setId(RmInt::new('3'))
-            ->setName(RmString::new('Wheel'))
+            ->setName(RmString::new('Essen'))
             ->setIsVisible(RmBool::new(true));
         $Array = RmArray::new();
-        return $Array->add($Band);
+        return $Array->add($City);
     }
 }

@@ -11,7 +11,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
-use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMock;
 use tests\ruhrpottmetaller\Controller\DatabaseVenueQueryDatabaseModelMock;
 
 final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
@@ -38,7 +38,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldLoadCities()
@@ -47,10 +47,10 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
-            CityQueryDatabaseModelMock::new(null),
+            DatabaseCityQueryDatabaseModelMock::new(null),
             DatabaseVenueQueryDatabaseModelMock::new(null, $cityQueryDatabaseModel)
         );
 
@@ -88,7 +88,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldLoadVenuesIfCityIdIsNull()
@@ -98,7 +98,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -139,7 +139,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassGetNewCityValueToView()
@@ -149,7 +149,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -182,7 +182,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassTrueAsGetNewCityValueToView()
@@ -192,7 +192,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -225,7 +225,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassGetNewVenueValueToView()
@@ -235,7 +235,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -268,7 +268,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassTrueAsGetNewVenueValueToView()
@@ -278,7 +278,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -313,7 +313,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassFalseAsGetNewVenueValueToView()
@@ -323,7 +323,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -357,7 +357,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassNoCitiesToViewIfNewCityShouldBeCreated()
@@ -367,7 +367,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),
@@ -401,7 +401,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\CityQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldPassOnlyVenuesInTheCityToTheView()
@@ -411,7 +411,7 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
             RmString::new('testTemplate')
         );
 
-        $cityQueryDatabaseModel = CityQueryDatabaseModelMock::new(null);
+        $cityQueryDatabaseModel = DatabaseCityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorAjaxCityVenueDisplayController(
             $view,
             $cityQueryDatabaseModel::new(null),

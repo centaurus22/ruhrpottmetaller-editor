@@ -10,8 +10,8 @@ use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
-use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMockEmpty;
 
 final class CityMainDisplayControllerTest extends TestCase
 {
@@ -48,7 +48,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMock(null)
+            new DatabaseCityQueryDatabaseModelMock(null)
         );
 
         $this->Controller
@@ -92,7 +92,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMockEmpty(null, null),
+            new DatabaseCityQueryDatabaseModelMockEmpty(null, null),
         );
 
         $this->Controller
@@ -128,7 +128,7 @@ final class CityMainDisplayControllerTest extends TestCase
 
         $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new CityQueryDatabaseModelMockEmpty(null)
+            new DatabaseCityQueryDatabaseModelMockEmpty(null)
         );
 
         $this->Controller

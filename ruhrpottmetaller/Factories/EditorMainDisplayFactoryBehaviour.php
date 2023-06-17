@@ -12,8 +12,8 @@ use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\BandQueryModel;
-use ruhrpottmetaller\Model\CityQueryModel;
+use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\DatabaseEventQueryModel;
 use ruhrpottmetaller\Model\DatabaseGigQueryModel;
 use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
@@ -30,7 +30,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
         RmString $templatePath,
         \mysqli $connection
     ): AbstractDisplayController {
-        $cityQueryModel = CityQueryModel::new($connection);
+        $cityQueryModel = DatabaseCityQueryModel::new($connection);
         return new EditorMainDisplayController(
             View::new(
                 $templatePath,
@@ -38,7 +38,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
             ),
             DatabaseEventQueryModel::new(
                 $connection,
-                DatabaseGigQueryModel::new($connection, BandQueryModel::new($connection)),
+                DatabaseGigQueryModel::new($connection, DatabaseBandQueryModel::new($connection)),
                 DatabaseVenueQueryModel::new($connection, $cityQueryModel)
             ),
             $this->createEvent()

@@ -9,9 +9,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class CityQueryModel extends DatabaseQueryModel
+class DatabaseCityQueryModel extends DatabaseQueryModel
 {
-    public static function new(?\mysqli $connection): CityQueryModel
+    public static function new(?\mysqli $connection): DatabaseCityQueryModel
     {
         return new static($connection);
     }

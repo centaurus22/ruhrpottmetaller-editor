@@ -6,7 +6,7 @@ use ruhrpottmetaller\Controller\Display\{AbstractDisplayController,
     EditorAjaxCityVenueDisplayController};
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{CityQueryModel, DatabaseVenueQueryModel};
+use ruhrpottmetaller\Model\{DatabaseCityQueryModel, DatabaseVenueQueryModel};
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxCityVenueDisplayFactoryBehaviour
@@ -21,8 +21,8 @@ class EditorAjaxCityVenueDisplayFactoryBehaviour
                 $templatePath,
                 RmString::new('editor_ajax_city_venue')
             ),
-            CityQueryModel::new($connection),
-            DatabaseVenueQueryModel::new($connection, CityQueryModel::new($connection))
+            DatabaseCityQueryModel::new($connection),
+            DatabaseVenueQueryModel::new($connection, DatabaseCityQueryModel::new($connection))
         );
 
         $controller->setVenueId(RmInt::new($input['venue_id'] ?? null));

@@ -7,7 +7,7 @@ namespace tests\ruhrpottmetaller\Factories;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Factories\DisplayFactory;
-use ruhrpottmetaller\Model\Connection;
+use ruhrpottmetaller\Model\DatabaseConnection;
 
 class DisplayFactoryTest extends TestCase
 {
@@ -15,7 +15,7 @@ class DisplayFactoryTest extends TestCase
     protected function setUp(): void
     {
         $pathToDatabaseConfig = RmString::new('./tests/Model/databaseConfig.inc.php');
-        $this->connection = Connection::new($pathToDatabaseConfig)
+        $this->connection = DatabaseConnection::new($pathToDatabaseConfig)
             ->connect()
             ->getConnection();
     }
@@ -28,7 +28,7 @@ class DisplayFactoryTest extends TestCase
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
      **/
     public function testShouldCreateDisplayFactory()
     {
@@ -47,7 +47,7 @@ class DisplayFactoryTest extends TestCase
      * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses  \ruhrpottmetaller\Data\LowLevel\String\RmString
-     * @uses \ruhrpottmetaller\Model\Connection
+     * @uses \ruhrpottmetaller\Model\DatabaseConnection
      **/
     public function testNewShouldCreateDisplayFactory()
     {

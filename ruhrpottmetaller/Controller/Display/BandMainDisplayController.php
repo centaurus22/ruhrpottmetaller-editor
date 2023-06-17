@@ -3,16 +3,16 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\BandQueryModel;
+use ruhrpottmetaller\Model\DatabaseBandQueryModel;
 use ruhrpottmetaller\View\View;
 
 class BandMainDisplayController extends AbstractDataMainDisplayController
 {
-    private BandQueryModel $bandQueryModel;
+    private DatabaseBandQueryModel $bandQueryModel;
 
     public function __construct(
         View $view,
-        BandQueryModel $bandQueryModel
+        DatabaseBandQueryModel $bandQueryModel
     ) {
         parent::__construct($view);
         $this->bandQueryModel = $bandQueryModel;
