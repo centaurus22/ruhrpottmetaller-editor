@@ -11,13 +11,13 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\CityQueryModel;
-use ruhrpottmetaller\Model\VenueQueryModel;
+use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayController
 {
     private CityQueryModel $cityQueryModel;
-    private VenueQueryModel $venueQueryModel;
+    private DatabaseVenueQueryModel $venueQueryModel;
     private AbstractRmInt $cityId;
     private AbstractRmInt $venueId;
     private const NEW_CITY = 1;
@@ -25,7 +25,7 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     public function __construct(
         View $view,
         CityQueryModel $cityQueryModel,
-        VenueQueryModel $venueQueryModel
+        DatabaseVenueQueryModel $venueQueryModel
     ) {
         parent::__construct($view);
         $this->cityQueryModel = $cityQueryModel;

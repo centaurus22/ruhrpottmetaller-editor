@@ -12,8 +12,8 @@ use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
 use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMockEmpty;
-use tests\ruhrpottmetaller\Controller\VenueQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\VenueQueryDatabaseModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\DatabaseVenueQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseVenueQueryDatabaseModelMockEmpty;
 
 final class VenueMainDisplayControllerTest extends TestCase
 {
@@ -40,8 +40,8 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldSetCityList()
     {
@@ -52,7 +52,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueQueryDatabaseModelMock(
+            new DatabaseVenueQueryDatabaseModelMock(
                 null,
                 new CityQueryDatabaseModelMock(null)
             )
@@ -88,8 +88,8 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -100,7 +100,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueQueryDatabaseModelMockEmpty(
+            new DatabaseVenueQueryDatabaseModelMockEmpty(
                 null,
                 new CityQueryDatabaseModelMock(null)
             )
@@ -128,8 +128,8 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      */
     public function testShouldSetGetParameterString()
     {
@@ -140,7 +140,7 @@ final class VenueMainDisplayControllerTest extends TestCase
 
         $this->Controller = new VenueMainDisplayController(
             $BaseView,
-            new VenueQueryDatabaseModelMockEmpty(
+            new DatabaseVenueQueryDatabaseModelMockEmpty(
                 null,
                 new CityQueryDatabaseModelMockEmpty(null)
             )

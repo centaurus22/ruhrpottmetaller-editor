@@ -9,9 +9,9 @@ use ruhrpottmetaller\Controller\Display\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, GigQueryModel, VenueQueryModel};
+use ruhrpottmetaller\Model\{BandQueryModel, CityQueryModel, DatabaseGigQueryModel, DatabaseVenueQueryModel};
 use ruhrpottmetaller\View\View;
-use tests\ruhrpottmetaller\Controller\EventQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseEventQueryDatabaseModelMock;
 
 final class EventMainDisplayControllerTest extends TestCase
 {
@@ -25,13 +25,13 @@ final class EventMainDisplayControllerTest extends TestCase
         );
         $this->Controller = new EventMainDisplayController(
             $BaseView,
-            new EventQueryDatabaseModelMock(
+            new DatabaseEventQueryDatabaseModelMock(
                 null,
-                GigQueryModel::new(
+                DatabaseGigQueryModel::new(
                     null,
                     BandQueryModel::new(null)
                 ),
-                VenueQueryModel::new(
+                DatabaseVenueQueryModel::new(
                     null,
                     CityQueryModel::new(null)
                 )
@@ -44,10 +44,10 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\EventQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
      * @uses  \ruhrpottmetaller\Model\CityQueryModel
-     * @uses  \ruhrpottmetaller\Model\VenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\GigQueryModel
+     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses  \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -66,7 +66,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
      */
     public function testShouldSetConcertList()
     {
@@ -90,10 +90,10 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\EventQueryModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses  \ruhrpottmetaller\Model\GigQueryModel
+     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses  \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -111,7 +111,7 @@ final class EventMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
-     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
      */
     public function testShouldSetGetParameterStringContainingOrder()
     {

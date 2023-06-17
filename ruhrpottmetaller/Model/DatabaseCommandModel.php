@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-class AbstractCommandModel extends AbstractModel
+class DatabaseCommandModel extends DatabaseModel
 {
     protected function query(
         string $query,

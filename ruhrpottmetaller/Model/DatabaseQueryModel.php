@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\RmArray;
 
-abstract class AbstractQueryModel extends AbstractModel
+abstract class DatabaseQueryModel extends DatabaseModel
 {
     protected function query(
         string $query,

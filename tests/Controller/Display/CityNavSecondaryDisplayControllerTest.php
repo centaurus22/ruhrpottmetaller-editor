@@ -59,8 +59,8 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\RmArray
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Model\Connection
      * @uses \ruhrpottmetaller\View\View

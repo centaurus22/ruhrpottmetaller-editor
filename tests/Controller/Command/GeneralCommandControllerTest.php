@@ -12,7 +12,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{CityCommandModel, CityQueryModel};
 use ruhrpottmetaller\Model\{BandCommandModel, BandQueryModel};
-use ruhrpottmetaller\Model\{VenueCommandModel, VenueQueryModel};
+use ruhrpottmetaller\Model\{DatabaseVenueCommandModel, DatabaseVenueQueryModel};
 use ruhrpottmetaller\Model\Connection;
 
 final class GeneralCommandControllerTest extends TestCase
@@ -33,14 +33,14 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\CityCommandModel
-     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
-     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\Connection
      * @uses \ruhrpottmetaller\Model\CityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
@@ -78,14 +78,14 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\BandCommandModel
-     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
-     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\Connection
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
@@ -122,19 +122,19 @@ final class GeneralCommandControllerTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
      * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
-     * @uses \ruhrpottmetaller\Model\VenueCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueCommandModel
      * @uses \ruhrpottmetaller\Model\CityCommandModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\AbstractCommandModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
-     * @uses \ruhrpottmetaller\Model\AbstractModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\Connection
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
@@ -147,11 +147,11 @@ final class GeneralCommandControllerTest extends TestCase
         $this->connection->query($query);
         $query = 'INSERT INTO city SET name = "Duisburg"';
         $this->connection->query($query);
-        $queryModel = VenueQueryModel::new(
+        $queryModel = DatabaseVenueQueryModel::new(
             $this->connection,
             CityQueryModel::new($this->connection)
         );
-        $commandModel = VenueCommandModel::new($this->connection);
+        $commandModel = DatabaseVenueCommandModel::new($this->connection);
         $city = City::new()->setId(RmInt::new(1));
         $data = Venue::new()
             ->setId(RmInt::new(1))

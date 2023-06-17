@@ -16,11 +16,11 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\BandQueryModel;
 use ruhrpottmetaller\Model\CityQueryModel;
-use ruhrpottmetaller\Model\GigQueryModel;
-use ruhrpottmetaller\Model\VenueQueryModel;
+use ruhrpottmetaller\Model\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\CityQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\EventQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseEventQueryDatabaseModelMock;
 
 final class EditorMainDisplayControllerTest extends TestCase
 {
@@ -48,12 +48,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Model\EventQueryModel
-     * @uses \ruhrpottmetaller\Model\GigQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      */
     public function testShouldSetNullEventIfNoIdIsGiven()
@@ -67,13 +67,13 @@ final class EditorMainDisplayControllerTest extends TestCase
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
-            new EventQueryDatabaseModelMock(
+            new DatabaseEventQueryDatabaseModelMock(
                 null,
-                GigQueryModel::new(
+                DatabaseGigQueryModel::new(
                     null,
                     BandQueryModel::new(null)
                 ),
-                VenueQueryModel::new(
+                DatabaseVenueQueryModel::new(
                     null,
                     $cityQueryModel
                 )
@@ -110,12 +110,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Model\EventQueryModel
-     * @uses \ruhrpottmetaller\Model\GigQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
@@ -141,13 +141,13 @@ final class EditorMainDisplayControllerTest extends TestCase
         $cityQueryModel = CityQueryDatabaseModelMock::new(null);
         $this->controller = new EditorMainDisplayController(
             $BaseView,
-            new EventQueryDatabaseModelMock(
+            new DatabaseEventQueryDatabaseModelMock(
                 null,
-                GigQueryModel::new(
+                DatabaseGigQueryModel::new(
                     null,
                     BandQueryModel::new(null)
                 ),
-                VenueQueryModel::new(
+                DatabaseVenueQueryModel::new(
                     null,
                     $cityQueryModel
                 )
@@ -186,12 +186,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
-     * @uses \ruhrpottmetaller\Model\AbstractModel
-     * @uses \ruhrpottmetaller\Model\AbstractQueryModel
-     * @uses \ruhrpottmetaller\Model\EventQueryModel
-     * @uses \ruhrpottmetaller\Model\GigQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseModel
+     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\Model\CityQueryModel
-     * @uses \ruhrpottmetaller\Model\VenueQueryModel
+     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      */
     public function testShouldNotLoadEventIfEventIsNotEmpty()
@@ -209,13 +209,13 @@ final class EditorMainDisplayControllerTest extends TestCase
 
         $this->controller = new EditorMainDisplayController(
             $BaseView,
-            new EventQueryDatabaseModelMock(
+            new DatabaseEventQueryDatabaseModelMock(
                 null,
-                GigQueryModel::new(
+                DatabaseGigQueryModel::new(
                     null,
                     BandQueryModel::new(null)
                 ),
-                VenueQueryModel::new(
+                DatabaseVenueQueryModel::new(
                     null,
                     $cityQueryModel
                 )

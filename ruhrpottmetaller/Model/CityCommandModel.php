@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\HighLevel\City;
 
-class CityCommandModel extends AbstractCommandModel
+class CityCommandModel extends DatabaseCommandModel
 {
     public static function new(?\mysqli $connection): CityCommandModel
     {

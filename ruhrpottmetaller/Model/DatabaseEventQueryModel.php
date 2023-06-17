@@ -7,15 +7,15 @@ use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\AbstractRmInt,
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class EventQueryModel extends AbstractQueryModel
+class DatabaseEventQueryModel extends DatabaseQueryModel
 {
-    private GigQueryModel $gigQueryModel;
-    private VenueQueryModel $venueQueryModel;
+    private DatabaseGigQueryModel $gigQueryModel;
+    private DatabaseVenueQueryModel $venueQueryModel;
 
     public function __construct(
-        ?\mysqli $connection,
-        GigQueryModel $gigQueryModel,
-        VenueQueryModel $venueQueryModel
+        ?\mysqli              $connection,
+        DatabaseGigQueryModel $gigQueryModel,
+        DatabaseVenueQueryModel $venueQueryModel
     ) {
         parent::__construct($connection);
         $this->gigQueryModel = $gigQueryModel;
@@ -23,10 +23,10 @@ class EventQueryModel extends AbstractQueryModel
     }
 
     public static function new(
-        ?\mysqli $connection,
-        GigQueryModel $gigQueryModel,
-        VenueQueryModel $venueQueryModel
-    ): EventQueryModel {
+        ?\mysqli              $connection,
+        DatabaseGigQueryModel $gigQueryModel,
+        DatabaseVenueQueryModel $venueQueryModel
+    ): DatabaseEventQueryModel {
         return new static($connection, $gigQueryModel, $venueQueryModel);
     }
 

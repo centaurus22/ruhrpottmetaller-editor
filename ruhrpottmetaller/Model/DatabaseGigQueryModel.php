@@ -8,7 +8,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class GigQueryModel extends AbstractQueryModel
+class DatabaseGigQueryModel extends DatabaseQueryModel
 {
     private BandQueryModel $bandQueryModel;
 
@@ -23,7 +23,7 @@ class GigQueryModel extends AbstractQueryModel
     public static function new(
         ?\mysqli $connection,
         BandQueryModel $bandQueryModel
-    ): GigQueryModel {
+    ): DatabaseGigQueryModel {
         return new static($connection, $bandQueryModel);
     }
 

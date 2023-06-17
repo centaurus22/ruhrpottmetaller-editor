@@ -4,9 +4,9 @@ namespace ruhrpottmetaller\Model;
 
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
-class EventCommandModel extends AbstractCommandModel
+class DatabaseEventCommandModel extends DatabaseCommandModel
 {
-    public static function new(?\mysqli $connection): EventCommandModel
+    public static function new(?\mysqli $connection): DatabaseEventCommandModel
     {
         return new static($connection);
     }

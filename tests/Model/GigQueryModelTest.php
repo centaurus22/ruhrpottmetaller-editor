@@ -8,11 +8,11 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{BandQueryModel, Connection, GigQueryModel};
+use ruhrpottmetaller\Model\{BandQueryModel, Connection, DatabaseGigQueryModel};
 
 final class GigQueryModelTest extends TestCase
 {
-    private GigQueryModel $gigQueryModel;
+    private DatabaseGigQueryModel $gigQueryModel;
     private \mysqli $connection;
 
     protected function setUp(): void
@@ -22,7 +22,7 @@ final class GigQueryModelTest extends TestCase
         $this->connection = Connection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->gigQueryModel = GigQueryModel::new(
+        $this->gigQueryModel = DatabaseGigQueryModel::new(
             $this->connection,
             BandQueryModel::new($this->connection)
         );
@@ -39,9 +39,9 @@ final class GigQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\gigQueryModel
-     * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseModel
+     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -64,9 +64,9 @@ final class GigQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\gigQueryModel
-     * @covers \ruhrpottmetaller\Model\AbstractModel
-     * @covers \ruhrpottmetaller\Model\AbstractQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\DatabaseModel
+     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Model\BandQueryModel
      * @uses   \ruhrpottmetaller\Model\Connection
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData

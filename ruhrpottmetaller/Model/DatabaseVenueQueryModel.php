@@ -9,7 +9,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
-class VenueQueryModel extends AbstractQueryModel
+class DatabaseVenueQueryModel extends DatabaseQueryModel
 {
     private CityQueryModel $queryCityModel;
 
@@ -24,7 +24,7 @@ class VenueQueryModel extends AbstractQueryModel
     public static function new(
         ?\mysqli $connection,
         CityQueryModel $queryCityModel
-    ): VenueQueryModel {
+    ): DatabaseVenueQueryModel {
         return new static($connection, $queryCityModel);
     }
 

@@ -3,16 +3,16 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\VenueQueryModel;
+use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 
 class VenueMainDisplayController extends AbstractDataMainDisplayController
 {
-    private VenueQueryModel $queryVenueDatabaseModel;
+    private DatabaseVenueQueryModel $queryVenueDatabaseModel;
 
     public function __construct(
         View $view,
-        VenueQueryModel $queryVenueDatabaseModel
+        DatabaseVenueQueryModel $queryVenueDatabaseModel
     ) {
         parent::__construct($view);
         $this->queryVenueDatabaseModel = $queryVenueDatabaseModel;

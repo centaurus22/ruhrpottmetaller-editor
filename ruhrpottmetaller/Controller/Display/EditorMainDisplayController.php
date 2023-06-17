@@ -3,17 +3,17 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\HighLevel\IEvent;
-use ruhrpottmetaller\Model\EventQueryModel;
+use ruhrpottmetaller\Model\DatabaseEventQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorMainDisplayController extends AbstractDataMainDisplayController
 {
-    private EventQueryModel $eventQueryModel;
+    private DatabaseEventQueryModel $eventQueryModel;
     private IEvent $event;
     public function __construct(
-        View $view,
-        EventQueryModel $eventQueryModel,
-        IEvent $event
+        View                    $view,
+        DatabaseEventQueryModel $eventQueryModel,
+        IEvent                  $event
     ) {
         parent::__construct($view);
         $this->eventQueryModel = $eventQueryModel;

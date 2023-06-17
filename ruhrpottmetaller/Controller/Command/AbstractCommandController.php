@@ -3,15 +3,15 @@
 namespace ruhrpottmetaller\Controller\Command;
 
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
-use ruhrpottmetaller\Model\AbstractCommandModel;
+use ruhrpottmetaller\Model\DatabaseCommandModel;
 
 abstract class AbstractCommandController
 {
-    protected ?AbstractCommandModel $commandModel;
+    protected ?DatabaseCommandModel $commandModel;
     protected ?AbstractNamedHighLevelData $highLevelData;
 
     public function __construct(
-        ?AbstractCommandModel $commandModel,
+        ?DatabaseCommandModel       $commandModel,
         ?AbstractNamedHighLevelData $highLevelData
     ) {
         $this->commandModel = $commandModel;
@@ -19,7 +19,7 @@ abstract class AbstractCommandController
     }
 
     public static function new(
-        ?AbstractCommandModel $commandModel,
+        ?DatabaseCommandModel       $commandModel,
         ?AbstractNamedHighLevelData $highLevelData
     ) {
         return new static($commandModel, $highLevelData);
