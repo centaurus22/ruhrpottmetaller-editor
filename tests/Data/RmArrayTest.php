@@ -145,4 +145,25 @@ final class RmArrayTest extends TestCase
         $this->array = RmArray::new()->add('Decaptacon');
         $this->assertTrue($this->array->isFirst());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     */
+    public function testGetShouldAddElementAfterAnElement(): void
+    {
+        $this->array = RmArray::new()
+            ->add('Decaptacon')
+            ->add('SMORRAH')
+            ->addAfter(RmInt::new(0), 'Teutonic Slaughter');
+
+        $this->assertEquals('Decaptacon', $this->array->getCurrent());
+        $this->array->pointAtNext();
+        $this->assertEquals('Teutonic Slaughter', $this->array->getCurrent());
+        $this->array->pointAtNext();
+        $this->assertEquals('SMORRAH', $this->array->getCurrent());
+    }
 }

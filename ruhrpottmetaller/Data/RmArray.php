@@ -3,6 +3,8 @@
 namespace ruhrpottmetaller\Data;
 
 use ruhrpottmetaller\AbstractRmObject;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class RmArray extends AbstractRmObject implements IData
 {
@@ -12,6 +14,14 @@ class RmArray extends AbstractRmObject implements IData
     public function add($value): RmArray
     {
         $this->array[] = $value;
+        return $this;
+    }
+
+    public function addAfter(RmInt $position, $value): RmArray
+    {
+        $firstElements = array_slice($this->array, 0, 1 + $position->get());
+        $lastElements = array_slice($this->array, 1 + $position->get());
+        $this->array = array_merge($firstElements, [$value], $lastElements);
         return $this;
     }
 
