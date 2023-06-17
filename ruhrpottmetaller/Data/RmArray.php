@@ -34,6 +34,10 @@ class RmArray extends AbstractRmObject implements IData
 
     public function switch(RmInt $position1, RmInt $position2): RmArray
     {
+        if (!isset($this->array[$position1->get()]) or !isset($this->array[$position2->get()])) {
+            return $this;
+        }
+
         $element = $this->array[$position1->get()];
         $this->array[$position1->get()] = $this->array[$position2->get()];
         $this->array[$position2->get()] = $element;
