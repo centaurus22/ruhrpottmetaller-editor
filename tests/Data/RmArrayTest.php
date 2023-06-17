@@ -217,4 +217,20 @@ final class RmArrayTest extends TestCase
 
         $this->assertEquals('Decaptacon', $this->array->getCurrent());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     */
+    public function testShouldReplaceValue(): void
+    {
+        $this->array = RmArray::new()
+            ->add('Decaptacon')
+            ->set(RmInt::new(0), 'Absence');
+
+        $this->assertEquals('Absence', $this->array->getCurrent());
+    }
 }

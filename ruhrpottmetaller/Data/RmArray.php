@@ -17,6 +17,12 @@ class RmArray extends AbstractRmObject implements IData
         return $this;
     }
 
+    public function set(RmInt $position, $value): RmArray
+    {
+        $this->array[$position->get()] = $value;
+        return $this;
+    }
+
     public function addAfter(RmInt $position, $value): RmArray
     {
         $firstElements = array_slice($this->array, 0, 1 + $position->get());
