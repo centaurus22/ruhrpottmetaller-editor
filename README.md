@@ -16,7 +16,7 @@ This work is provided under the terms of the MIT license. Please take a look at 
 
 ## Technology
 These software versions are the minimum requirements and are known to work:
-* PHP 7.4
+* PHP 8.1
 * Apache 2.4
 * MariaDB 10.4 or MySQL 8.0
 
@@ -91,7 +91,8 @@ Several commands can be applied to a concert using the drop-down menu at the rig
 * `Published` marks the concert as published.
 * `Del` deletes the concert from the database. It is therefore irrevocably deleted from
   the system.
-* `Sold Out` marks the concert as sold out. As a result, the corresponding concert exports are generated containing the information that the concert is sold out. This affects this site and the Export site.
+* `Sold Out` marks the concert as sold out. As a result, the corresponding concert exports are generated containing the
+information that the concert is sold out. This affects this site and the Export site.
 
 A concert can be displayed in different colors:
 * black: The concert is already marked as published.
@@ -102,12 +103,16 @@ A concert can be displayed in different colors:
 Bands written in light brown are marked as not visible.
 
 #### Concert editor
-This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and the URL.
+This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and
+the URL.
 
 ##### General concert data
 In the first part of the editor general information of the concert are entered.
 
-If a city is not yet in the database, it is possible to add it by selecting the option “New city” from the bottom of the city drop-down menu.  If a city menu option is already selected, a new venue can be added to the database. In this case you have to select the option "New venue" in the second drop-down menu. (Tip: Press "n" a few times until the option shows up.)
+If a city is not yet in the database, it is possible to add it by selecting the option “New city” from the bottom of the
+city drop-down menu.  If a city menu option is already selected, a new venue can be added to the database. In this case
+you have to select the option "New venue" in the second drop-down menu. (Tip: Press "n" a few times until the option
+shows up.)
 
 The new venue input field is automatically shown if you insert a new city.
 Also, by creating new venues you can enter a default URL. This will be put in the URL
@@ -116,9 +121,13 @@ field when you choose a venue and the URL is not yet set to spare you a few clic
 ##### Concert lineup
 Each row represents a band in the lineup.
 
-If you choose a character in the first drop-down menu, bands with those initial letter are loaded in the second one. The percentage symbol stands for special characters. Also, you can add a new band to the database and the lineup by choosing the last option of the second menu. If you do not select a character in the first drop-down menu, you can choose between also adding a new band to the database and the lineup or an entry which is labeled “TBA“ (To be announced) or “Support”.
+If you choose a character in the first drop-down menu, bands with those initial letter are loaded in the second one. The
+percentage symbol stands for special characters. Also, you can add a new band to the database and the lineup by choosing
+the last option of the second menu. If you do not select a character in the first drop-down menu, you can choose between
+also adding a new band to the database and the lineup or an entry which is labeled “TBA“ (To be announced) or “Support”.
 
-The input field named “Extra information” serves for additional information about this show by this band. This may be the information about an acoustic show or a special set.
+The input field named “Extra information” serves for additional information about this show by this band. This may be
+the information about an acoustic show or a special set.
 
 Clicking one of the four buttons at the end of the row has the following effect:
 * Plus sign: Adds a band under the current row
@@ -129,7 +138,8 @@ As you can see, most of your work can be done on this two pages.
 
 ### Bands
 On this site you can edit the names of the bands in the database.
-Also, you can mark them as not visible. In this case, the band is written in light brown letters in the concert overview. Also concerts with the corresponding band are not be included in the export on the Export site.
+Also, you can mark them as not visible. In this case, the band is written in light brown letters in the concert
+overview. Also concerts with the corresponding band are not be included in the export on the Export site.
 
 Filtering the bands by the first character of its name using the drop-down menu at the top.
 
@@ -139,7 +149,8 @@ On this site you can edit the names of the cities in the database.
 Filtering by the first character is also possible on this page.
 
 ### Venues
-On this site you can edit venue names in the database.A Default URL for each venue can also be added to the database. If you select the venue in the concert editor and the URL field is still empty, this URL will be filled in there.
+On this site you can edit venue names in the database.A Default URL for each venue can also be added to the database. If
+you select the venue in the concert editor and the URL field is still empty, this URL will be filled in there.
 
 The system can contain multiple venues with the same name as long as they are located in different cities.
 
@@ -148,7 +159,8 @@ In this scope filtering by the city is possible.
 ### Export
 A human-readable list of the concerts of the currently selected month is created on the export page.
 The header and the footer can be configured on the Preferences site.
-You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button with the small circle.
+You can scroll through the months at the top of the page. You can also jump to the current month by clicking the button
+with the small circle.
 
 ### Preferences
 Using this site a few preferences can be made.
@@ -158,9 +170,11 @@ The first drop-down menu is to select the export language of concert exports. Cu
 The two text areas allow to change the header and the footer of the export generated on the Export site.
 
 ## How to contribute
-To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail created with `git format-patch` to the contact address below. Development takes place in the `development` branch.
+To make a contribution, please clone the project, make your changes and then open a push request or send an e-mail
+created with `git format-patch` to the contact address below. Development takes place in the `development` branch.
 
-If you want to support the development, you can send money via PayPal to https://www.paypal.me/klausthorres or BTC to 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
+If you want to support the development, you can send money via PayPal to https://www.paypal.me/klausthorres or BTC to
+13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 
 ## Contact
 If you have any question, just drop a message at ruhrpottmetaller [at] freenet [dot] de.
