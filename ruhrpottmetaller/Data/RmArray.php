@@ -25,6 +25,13 @@ class RmArray extends AbstractRmObject implements IData
         return $this;
     }
 
+    public function delete(RmInt $position): RmArray
+    {
+        unset($this->array[$position->get()]);
+        $this->array = array_values($this->array);
+        return $this;
+    }
+
     public function getCurrent()
     {
         if (!isset($this->array[$this->pointer])) {

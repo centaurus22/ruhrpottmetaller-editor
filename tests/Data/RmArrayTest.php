@@ -166,4 +166,21 @@ final class RmArrayTest extends TestCase
         $this->array->pointAtNext();
         $this->assertEquals('SMORRAH', $this->array->getCurrent());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     */
+    public function testGetShouldDeleteElement(): void
+    {
+        $this->array = RmArray::new()
+            ->add('Decaptacon')
+            ->add('SMORRAH')
+            ->delete(RmInt::new(0));
+
+        $this->assertEquals('SMORRAH', $this->array->getCurrent());
+    }
 }
