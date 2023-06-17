@@ -183,4 +183,21 @@ final class RmArrayTest extends TestCase
 
         $this->assertEquals('SMORRAH', $this->array->getCurrent());
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\RmArray
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses  \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     */
+    public function testGetShouldSwitchElements(): void
+    {
+        $this->array = RmArray::new()
+            ->add('Decaptacon')
+            ->add('SMORRAH')
+            ->switch(RmInt::new(1), RmInt::new(0));
+
+        $this->assertEquals('SMORRAH', $this->array->getCurrent());
+    }
 }

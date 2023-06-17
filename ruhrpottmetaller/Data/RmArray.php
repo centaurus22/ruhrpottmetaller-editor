@@ -32,6 +32,14 @@ class RmArray extends AbstractRmObject implements IData
         return $this;
     }
 
+    public function switch(RmInt $position1, RmInt $position2): RmArray
+    {
+        $element = $this->array[$position1->get()];
+        $this->array[$position1->get()] = $this->array[$position2->get()];
+        $this->array[$position2->get()] = $element;
+        return $this;
+    }
+
     public function getCurrent()
     {
         if (!isset($this->array[$this->pointer])) {
