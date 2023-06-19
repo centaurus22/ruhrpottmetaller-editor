@@ -8,7 +8,7 @@ use ruhrpottmetaller\Data\RmArray;
 
 class SessionGigCommandModel
 {
-    private DatabaseBandQueryModel $bandModel;
+    protected DatabaseBandQueryModel $bandModel;
 
     public function __construct(DatabaseBandQueryModel $bandQueryModel)
     {

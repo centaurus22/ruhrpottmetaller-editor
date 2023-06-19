@@ -8,6 +8,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
+use ruhrpottmetaller\Data\RmArray;
 
 class NullEvent extends AbstractNamedHighLevelNullData implements IEvent
 {
@@ -42,5 +43,10 @@ class NullEvent extends AbstractNamedHighLevelNullData implements IEvent
     public function getUrl(): AbstractRmString
     {
         return RmNullString::new(null);
+    }
+
+    public function getGigs(): RmArray
+    {
+        return RmArray::new();
     }
 }

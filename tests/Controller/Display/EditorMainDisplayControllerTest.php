@@ -13,14 +13,14 @@ use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\DatabaseBandQueryModel;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\DatabaseGigQueryModel;
 use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
+use ruhrpottmetaller\Model\SessionGigCommandModel;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMock;
 use tests\ruhrpottmetaller\Controller\DatabaseEventQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Model\SessionGigCommandModelMock;
 
 final class EditorMainDisplayControllerTest extends TestCase
 {
@@ -78,6 +78,7 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
+            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             NullEvent::new()
         );
 
@@ -120,7 +121,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @uses \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -152,6 +153,7 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
+            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             $event
         );
 
@@ -169,7 +171,7 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -220,6 +222,7 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
+            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             $event
         );
 

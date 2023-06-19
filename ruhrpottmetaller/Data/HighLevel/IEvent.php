@@ -6,6 +6,7 @@ use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
+use ruhrpottmetaller\Data\RmArray;
 
 interface IEvent extends IData
 {
@@ -16,4 +17,6 @@ interface IEvent extends IData
     public function getVenueId(): AbstractRmInt;
     public function getCityId(): AbstractRmInt;
     public function getUrl(): AbstractRmString;
+
+    public function getGigs(): RmArray;
 }

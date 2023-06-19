@@ -4,13 +4,11 @@ namespace ruhrpottmetaller\Data\HighLevel;
 
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
-abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEvent
+abstract class Event extends AbstractNamedHighLevelData implements IEvent
 {
     protected AbstractRmInt $numberOfDays;
     protected RmArray $gigs;
@@ -24,13 +22,13 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
         $this->gigs = RmArray::new();
     }
 
-    public function setVenue(IVenue $venue): AbstractEvent
+    public function setVenue(IVenue $venue): Event
     {
         $this->venue = $venue;
         return $this;
     }
 
-    public function setUrl(AbstractRmString $url): AbstractEvent
+    public function setUrl(AbstractRmString $url): Event
     {
         $this->url = $url;
         return $this;
@@ -41,7 +39,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
         return $this->url;
     }
 
-    public function setIsSoldOut(AbstractRmBool $isSoldOut): AbstractEvent
+    public function setIsSoldOut(AbstractRmBool $isSoldOut): Event
     {
         $this->isSoldOut = $isSoldOut;
         return $this;
@@ -52,7 +50,7 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
         return $this->isSoldOut;
     }
 
-    public function setIsCanceled(AbstractRmBool $isCanceled): AbstractEvent
+    public function setIsCanceled(AbstractRmBool $isCanceled): Event
     {
         $this->isCanceled = $isCanceled;
         return $this;
@@ -83,10 +81,15 @@ abstract class AbstractEvent extends AbstractNamedHighLevelData implements IEven
         return $this->venue->getFormattedVenueAndCity();
     }
 
-    public function addGigs(RmArray $gigs): AbstractEvent
+    public function addGigs(RmArray $gigs): Event
     {
         $this->gigs = $gigs;
         return $this;
+    }
+
+    public function getGigs(): RmArray
+    {
+        return $this->gigs;
     }
 
     public function getBandList(): RmString
