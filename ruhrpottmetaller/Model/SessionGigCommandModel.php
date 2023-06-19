@@ -10,10 +10,15 @@ class SessionGigCommandModel
 {
     private DatabaseBandQueryModel $bandModel;
 
-    public function __construct(DatabaseBandQueryModel $bandModel)
+    public function __construct(DatabaseBandQueryModel $bandQueryModel)
     {
-        $this->bandModel = $bandModel;
+        $this->bandModel = $bandQueryModel;
         session_start();
+    }
+
+    public static function new(DatabaseBandQueryModel $bandQueryModel): SessionGigCommandModel
+    {
+        return new static($bandQueryModel);
     }
 
     public function load(RmArray $gigs): void
