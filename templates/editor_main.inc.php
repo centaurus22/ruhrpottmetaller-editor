@@ -49,6 +49,5 @@
     <fieldset id="ajax_lineup">
     </fieldset>
     <input class="button_save" type="submit" value="Save">
-    <input type="reset" value="Reset">
 </form>
 <script src="assets/js/editor.js"></script>
