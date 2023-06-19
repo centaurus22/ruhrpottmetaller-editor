@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
-use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
+use ruhrpottmetaller\Data\HighLevel\{Event, Concert, Festival};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
@@ -50,7 +50,7 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
         );
     }
 
-    public function getEventById(AbstractRmInt $id): AbstractEvent
+    public function getEventById(AbstractRmInt $id): Event
     {
         $query = 'SELECT
                 id,
@@ -70,7 +70,7 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
         );
     }
 
-    protected function getDataFromResult(stdClass $object): AbstractEvent
+    protected function getDataFromResult(stdClass $object): Event
     {
         if ($object->number_of_days > 1) {
             $event = Festival::new()
@@ -85,9 +85,9 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     }
 
     protected function addGeneralData(
-        AbstractEvent $event,
+        Event    $event,
         stdClass $object
-    ): AbstractEvent {
+    ): Event {
         $venue = $this->venueQueryModel
             ->getVenueById(RmInt::new($object->venue_id));
         return $event

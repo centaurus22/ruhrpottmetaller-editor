@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
-class Concert extends AbstractEvent
+class Concert extends Event
 {
     protected RmDate $date;
 

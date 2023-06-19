@@ -2,7 +2,7 @@
 
 namespace tests\ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\HighLevel\AbstractEvent;
+use ruhrpottmetaller\Data\HighLevel\Event;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\HighLevel\Venue;
@@ -39,7 +39,7 @@ class DatabaseEventQueryDatabaseModelMock extends DatabaseEventQueryModel
         return $Array->add($DataSet);
     }
 
-    public function getEventById(AbstractRmInt $id): AbstractEvent
+    public function getEventById(AbstractRmInt $id): Event
     {
         return $this->getEventsByMonth(RmDate::new(null))->getCurrent();
     }

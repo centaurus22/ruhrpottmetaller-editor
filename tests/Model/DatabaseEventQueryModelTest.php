@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace tests\ruhrpottmetaller\Model;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{AbstractEvent, Concert, Festival};
+use ruhrpottmetaller\Data\HighLevel\{Event, Concert, Festival};
 use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\{DatabaseBandQueryModel,
@@ -89,7 +89,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -125,7 +125,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -146,7 +146,7 @@ final class DatabaseEventQueryModelTest extends TestCase
         $query = 'INSERT INTO event SET name = "Beerfest", date_start = "2022-06-12"';
         $this->databaseConnection->query($query);
         $this->assertInstanceOf(
-            AbstractEvent::class,
+            Event::class,
             $this->eventQueryModel->getEventsByMonth(RmDate::new('2022-06'))
                                           ->getCurrent()
         );
@@ -162,7 +162,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -199,7 +199,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -237,7 +237,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -270,7 +270,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -310,7 +310,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -349,7 +349,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -388,7 +388,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -427,7 +427,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -470,7 +470,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -509,7 +509,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -549,7 +549,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
@@ -589,7 +589,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -634,7 +634,7 @@ final class DatabaseEventQueryModelTest extends TestCase
      * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses   \ruhrpottmetaller\Data\HighLevel\Festival
      * @uses   \ruhrpottmetaller\Data\HighLevel\Venue
