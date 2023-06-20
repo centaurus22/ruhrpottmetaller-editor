@@ -37,9 +37,10 @@
 		}
 	],
 	"require" : {
-		"ext-mysqli" : "*",
-		"ext-mbstring" : "*"
-	},
+      "ext-mysqli" : "*",
+	  "ext-mbstring" : "*",
+      "ext-intl": "*"
+    },
 	"autoload" : {
 		"psr-4" : {
 			"ruhrpottmetaller\\" : "ruhrpottmetaller"

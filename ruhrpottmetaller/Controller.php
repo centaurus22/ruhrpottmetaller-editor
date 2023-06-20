@@ -2,6 +2,8 @@
 
 namespace ruhrpottmetaller;
 
+use IntlDateFormatter;
+
 class Controller
 {
     private ?array $request;
@@ -1177,13 +1179,12 @@ class Controller
             $pref_export = $Pref_Model->getPreferencesExportLang();
             switch ($pref_export[0]['export_lang']) {
                 case 'de_DE':
-                    setlocale(LC_TIME, "de_DE", "de_DE.utf8");
-                    $time_format_without_month = '%a, %d.';
-                    $time_format_with_month = '%a, %d. %b';
+                    $time_format_without_month = 'EE, d.';
+                    $time_format_with_month = 'E, d. MMM';
                     break;
                 default:
-                    $time_format_without_month = '%a, %d';
-                    $time_format_with_month = '%a, %d %b';
+                    $time_format_without_month = 'E, d';
+                    $time_format_with_month = 'E, d MM';
             }
             for (
                 $concert_index = 0;
@@ -1206,28 +1207,62 @@ class Controller
                 }
 
                 if ($type == 'concert_export') {
-                    $concerts[$concert_index]['date_human'] = strftime(
-                        $time_format_with_month,
-                        $time_start
+                    $format = datefmt_create(
+                        $pref_export[0]['export_lang'],
+                        IntlDateFormatter::FULL,
+                        IntlDateFormatter::FULL,
+                        null,
+                        IntlDateFormatter::GREGORIAN,
+                        $time_format_with_month
                     );
+                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
                     $template = 'concert_export';
                 } elseif ($type == 'export') {
-                    $concerts[$concert_index]['date_human'] = strftime(
-                        $time_format_with_month,
-                        $time_start
+                    $format = datefmt_create(
+                        $pref_export[0]['export_lang'],
+                        IntlDateFormatter::FULL,
+                        IntlDateFormatter::FULL,
+                        null,
+                        IntlDateFormatter::GREGORIAN,
+                        $time_format_with_month
                     );
+                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
                     $template = 'concert_export';
                 } else {
-                    $concerts[$concert_index]['date_human'] = strftime(
-                        $time_format_without_month,
-                        $time_start
+                    $format = datefmt_create(
+                        $pref_export[0]['export_lang'],
+                        IntlDateFormatter::TRADITIONAL,
+                        IntlDateFormatter::FULL,
+                        null,
+                        IntlDateFormatter::GREGORIAN,
+                        $time_format_without_month
                     );
+                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
                     $template = 'default';
                 }
                 if ($concerts[$concert_index]['date_end'] != '') {
                     $time_end = strtotime($concerts[$concert_index]['date_end']);
-                    $date_end_human = strftime(
-                        $time_format_with_month,
+                    if ($type == 'export' or $type == 'concert_export') {
+                        $format = datefmt_create(
+                            $pref_export[0]['export_lang'],
+                            IntlDateFormatter::FULL,
+                            IntlDateFormatter::FULL,
+                            null,
+                            IntlDateFormatter::GREGORIAN,
+                            $time_format_with_month
+                        );
+                    } else {
+                        $format = datefmt_create(
+                            $pref_export[0]['export_lang'],
+                            IntlDateFormatter::SHORT,
+                            IntlDateFormatter::FULL,
+                            null,
+                            IntlDateFormatter::GREGORIAN,
+                            $time_format_without_month
+                        );
+                    }
+                    $date_end_human = datefmt_format(
+                        $format,
                         $time_end
                     );
                     $date_human = $concerts[$concert_index]['date_human'];
