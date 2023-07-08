@@ -76,7 +76,7 @@ for (
         $lineup_index,
         $lineup_index + 1,
         $this->image_path,
-        htmlspecialchars($addition, ENT_QUOTES)
+        htmlspecialchars($addition ?? '', ENT_QUOTES)
     );
 }
 ?>

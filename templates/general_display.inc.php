@@ -95,7 +95,7 @@ foreach ($this->_['result'] as $datum) {
                     <label for="%4$s">%3$s:</label>
                     <input class="tinputtext" type="text" id="%4$s" value="%1$s" name="%2$s" placeholder="%3$s">
                     </span>' . "\n",
-                    htmlspecialchars($datum[$field['ref']], ENT_QUOTES),
+                    htmlspecialchars($datum[$field['ref']] ?? '', ENT_QUOTES),
                     $field['ref'],
                     $field['description'],
                     $field['ref'] . '_' . $datum['id']
