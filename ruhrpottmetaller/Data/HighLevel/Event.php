@@ -122,7 +122,7 @@ abstract class Event extends AbstractNamedHighLevelData implements IEvent
 
     private function getFormattedAdditionalInformation(): RmString
     {
-        if ($this->gigs->getCurrent()->getAdditionalInformation()->isNull()) {
+        if ($this->gigs->getCurrent()->getAdditionalInformation()->isEmpty()) {
             return RmString::new('');
         }
 
