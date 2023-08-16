@@ -143,7 +143,7 @@ footer {
 }
 
 .rm_table_cell.event:last-child {
-    min-width: 154px;
+    min-width: 160px;
 }
 
 .rm_table_cell > input {
