@@ -46,7 +46,7 @@
             required
         >
     </fieldset>
-    <fieldset id="ajax_lineup">
+    <fieldset id="ajax_lineup" data-event-id="<?=$this->get('event')->getId()?>">
     </fieldset>
     <input class="button_save" type="submit" value="Save">
 </form>

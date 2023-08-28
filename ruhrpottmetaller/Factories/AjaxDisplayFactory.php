@@ -21,8 +21,10 @@ class AjaxDisplayFactory extends AbstractFactory
 
         if (isset($input['content']) and $input['content'] == 'city_venue') {
             $behaviour = 'EditorAjaxCityVenue';
+        } elseif (isset($input['content']) and $input['content'] == 'lineup') {
+            $behaviour = 'EditorAjaxLineup';
         } else {
-            throw new \HttpInvalidParamException('Ajax call not understood');
+            throw new \DomainException('Ajax call not understood');
         }
 
         $behaviourClass = __NAMESPACE__ . '\\' . $behaviour . 'DisplayFactoryBehaviour';
