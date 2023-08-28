@@ -23,6 +23,7 @@ class EditorAjaxLineupDisplayController extends AbstractDataMainDisplayControlle
 
     protected function prepareThisController(): void
     {
-
+        $gigs = $this->gigQueryModel->getGigsByEventId($this->eventId);
+        $this->view->set('lineup', $gigs);
     }
 }
