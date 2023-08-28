@@ -26,11 +26,6 @@ class SessionGigCommandModel
         $_SESSION['gigs'] = $gigs;
     }
 
-    public function read(): RmArray
-    {
-        return $_SESSION['gigs'];
-    }
-
     public function addGigAfter(RmInt $position): void
     {
         $_SESSION['gigs']->addAfter($position, Gig::new());
