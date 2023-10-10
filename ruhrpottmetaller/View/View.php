@@ -17,7 +17,7 @@ class View
     ) {
         $this->TemplatePath = $TemplatePath;
         $this->Template = $StandardTemplate;
-        $this->data['imagePath'] = AbstractRmString::new('web/assets/images/');
+        $this->data['imagePath'] = AbstractRmString::new('assets/images/');
     }
 
     public static function new(

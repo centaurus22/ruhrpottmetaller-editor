@@ -58,7 +58,6 @@ function loadLineupContent(eventId = null)
     const file = "index.php?ajax=1&content=lineup&event_id=" + eventId;
     xmlHttp.open("GET", file,true);
     xmlHttp.send();
-
 }
 
 function getVenueIdFromDataTag()

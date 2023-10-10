@@ -46,7 +46,7 @@ class DisplayFactory extends AbstractFactory
             $this->mainDisplayFactoryBehaviour->setInput($input);
         }
 
-        if ($pageName->get() == 'editor') {
+        if ($pageName->get() == 'edit') {
             $this->headDisplayFactoryBehaviour = new EditorHeadDisplayFactoryBehaviour($pageName);
         } else {
             $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
