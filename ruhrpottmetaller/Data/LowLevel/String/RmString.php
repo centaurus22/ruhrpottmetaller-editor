@@ -9,6 +9,11 @@ class RmString extends AbstractRmString
         return RmString::new(ucfirst($this->value));
     }
 
+    public function getFirstChar(): RmString
+    {
+        return RmString::new(substr(0, 1, $this->value));
+    }
+
     public function asPrefixedWidth(RmString $prefix): RmString
     {
         return RmString::new($prefix->concatWith($this));
