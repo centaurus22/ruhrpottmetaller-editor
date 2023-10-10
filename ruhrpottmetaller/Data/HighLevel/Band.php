@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 
-class Band extends AbstractNamedHighLevelData implements IData
+class Band extends AbstractNamedHighLevelData implements IData, IBand
 {
     private AbstractRmBool $isVisible;
 
