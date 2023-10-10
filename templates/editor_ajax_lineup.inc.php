@@ -18,8 +18,8 @@ $lineupIndex = 1;
             <!--onchange="save_band_lineup(\'%1$u\', \'first_sign\'); get_band_select_options(\'%1$u\')"-->
 
             <?php foreach ($alphabet as $firstSign): ?>
-                <?php if ($this->_['lineup'][$lineupIndex - 1]['first_sign'] == $firstSign) : ?>
-                    <option selected value="<?=$firstSign?>"><?=$firstSign?></option>
+                <?php if ($gig->getBandFirstChar()->get() == $firstSign) : ?>
+                    <option value="<?=$firstSign?>" selected><?=$firstSign?></option>
                 <?php else : ?>
                     <option value="<?=$firstSign?>"><?=$firstSign?></option>
                 <?php endif; ?>
