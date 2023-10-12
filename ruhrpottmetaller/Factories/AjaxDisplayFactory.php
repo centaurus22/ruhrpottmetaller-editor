@@ -23,6 +23,8 @@ class AjaxDisplayFactory extends AbstractFactory
             $behaviour = 'EditorAjaxCityVenue';
         } elseif (isset($input['content']) and $input['content'] == 'lineup') {
             $behaviour = 'EditorAjaxLineup';
+        } elseif (isset($input['content']) and $input['content'] == 'band_options') {
+            $behaviour = 'EditorAjaxBandOptions';
         } else {
             throw new \DomainException('Ajax call not understood');
         }

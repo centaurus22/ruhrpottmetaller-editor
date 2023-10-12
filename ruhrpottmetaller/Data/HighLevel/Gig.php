@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
@@ -28,6 +29,11 @@ class Gig extends AbstractRmObject implements IData
     {
         $this->additionalInformation = $additional_information;
         return $this;
+    }
+
+    public function getBandId(): AbstractRmInt
+    {
+        return $this->band->getId();
     }
 
     public function getBandName(): AbstractRmString

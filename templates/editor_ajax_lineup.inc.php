@@ -11,12 +11,16 @@ $lineupIndex = 1;
 
 <?php while ($this->get('gigs')->hasCurrent()): ?>
     <?php $gig = $this->get('gigs')->getCurrent() ?>
-    <fieldset class="fieldset_band">
+    <fieldset class="fieldset_band"
+              id="band_<?=$lineupIndex?>"
+              data-band-first-char="<?=$gig->getBandFirstChar()?>"
+              data-band-id="<?=$gig->getBandId()?>">
         <legend>Band <?=$lineupIndex?></legend>
         <label for="first_sign_<?=$lineupIndex?>" class="screen_reader_only">First letter the of the band name</label>
-        <select  id="first_sign_<?=$lineupIndex?>" name="first_sign[]" autocomplete="off">
+        <select  id="first_sign_<?=$lineupIndex?>"
+                 name="first_sign[]"
+                 autocomplete="off">
             <!--onchange="save_band_lineup(\'%1$u\', \'first_sign\'); get_band_select_options(\'%1$u\')"-->
-
             <?php foreach ($alphabet as $firstSign): ?>
                 <?php if ($gig->getBandFirstChar()->get() == $firstSign) : ?>
                     <option value="<?=$firstSign?>" selected><?=$firstSign?></option>
