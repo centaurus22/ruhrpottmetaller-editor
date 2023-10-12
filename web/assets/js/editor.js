@@ -58,9 +58,13 @@ function loadLineupContent(eventId) {
                 let bandId = band.getAttribute('data-band-id');
                 let bandFirstChar = band.getAttribute('data-band-first-char');
                 let bandLineupId = band.id.substring(5);
-                updateBandSelect(bandId, bandFirstChar, bandLineupId)
+                let bandOptions = document.getElementById('band_id_' + bandLineupId);
+                updateBandSelect(bandOptions, bandId, bandFirstChar)
+                bandOptions.onchange = (event) => {
+                    updateNewBandContainer(event);
+                }
+                bandOptions.dispatchEvent(new Event('change'));
             }
-
         }
     };
     const file = "index.php?ajax=1&content=lineup&event_id=" + eventId;
@@ -68,16 +72,12 @@ function loadLineupContent(eventId) {
     xmlHttp.send();
 }
 
-function updateBandSelect(bandId, bandFirstChar, bandLineupId)
+function updateBandSelect(bandOptions, bandId, bandFirstChar)
 {
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-            let bandOptions = document.getElementById('band_id_' + bandLineupId);
             bandOptions.innerHTML = xmlHttp.responseText;
-            bandOptions.onchange = (event) => {
-                updateNewBandContainer(event);
-            }
         }
     };
     const file = 'index.php?ajax=1&content=band_options&band_id=' + bandId + '&band_first_char=' + bandFirstChar;
