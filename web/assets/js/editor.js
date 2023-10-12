@@ -55,9 +55,17 @@ function loadLineupContent(eventId) {
             lineup.innerHTML = xmlHttp.responseText;
 
             for (let band of lineup.getElementsByClassName('fieldset_band')) {
+                let bandLineupId = band.id.substring(5);
+                let bandFirstCharSelect = document.getElementById('first_sign_' + bandLineupId)
+                bandFirstCharSelect.onchange = (event) => {
+                    let bandFirstChar = event.target.value;
+                    let bandLineupId = event.target.id.substring(11);
+                    let bandOptions = document.getElementById('band_id_' + bandLineupId);
+                    updateBandSelect(bandOptions, bandId, bandFirstChar)
+                }
+
                 let bandId = band.getAttribute('data-band-id');
                 let bandFirstChar = band.getAttribute('data-band-first-char');
-                let bandLineupId = band.id.substring(5);
                 let bandOptions = document.getElementById('band_id_' + bandLineupId);
                 updateBandSelect(bandOptions, bandId, bandFirstChar)
                 bandOptions.onchange = (event) => {

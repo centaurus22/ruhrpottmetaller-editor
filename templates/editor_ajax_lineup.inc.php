@@ -19,7 +19,6 @@ $lineupIndex = 1;
         <label for="first_sign_<?=$lineupIndex?>" class="screen_reader_only">First letter the of the band name</label>
         <select  id="first_sign_<?=$lineupIndex?>"
                  autocomplete="off">
-            <!--onchange="save_band_lineup(\'%1$u\', \'first_sign\'); get_band_select_options(\'%1$u\')"-->
             <?php foreach ($alphabet as $firstSign): ?>
                 <?php if ($gig->getBandFirstChar()->get() == $firstSign) : ?>
                     <option value="<?=$firstSign?>" selected><?=$firstSign?></option>
@@ -29,10 +28,7 @@ $lineupIndex = 1;
             <?php endforeach; ?>
         </select>
         <label for="band_id_<?=$lineupIndex?>" class="screen_reader_only">Band</label>
-        <select name="band_id[]" id="band_id_<?=$lineupIndex?>" autocomplete="off" class="edit_band_id">
-            <!-- onchange="save_band_lineup(\'%1$u\', \'band_id\'); get_band_new_form(\'%1$u\')" -->
-            <!-- echo $this->_['band_select_options'][$lineup_index]; -->
-        </select>
+        <select name="band_id[]" id="band_id_<?=$lineupIndex?>" autocomplete="off" class="edit_band_id"></select>
         <label for="band_new_name_<?=$lineupIndex?>" class="screen_reader_only"></label>
         <input type="text"
                value="<?=$gig->getBandName()?>"
@@ -45,7 +41,6 @@ $lineupIndex = 1;
             id="addition_<?=$lineupIndex?>"
             class="edit_field"
             placeholder="Extra information">
-        <!-- onchange="save_band_lineup(\'%1$u\', \'addition\')" autocomplete="off" -->
         <button type="button" onclick="add_band_lineup(\'%2$u\')">
             <img src="<?=$this->get('imagePath')?>plus_small.png"
                  alt="Add band to lineup"

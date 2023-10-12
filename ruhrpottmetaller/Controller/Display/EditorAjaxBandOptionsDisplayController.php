@@ -31,7 +31,7 @@ class EditorAjaxBandOptionsDisplayController extends AbstractDataMainDisplayCont
 
     protected function prepareThisController(): void
     {
-        if ($this->bandFirstChar->get() === ' ') {
+        if ($this->bandFirstChar->get() === '') {
             $bands = RmArray::new()
                 ->add(NullBand::new())
                 ->add(Band::new()->setId(RmInt::new(1))->setName(RmString::new('Unknown')));
