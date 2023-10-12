@@ -35,12 +35,13 @@ class EditorAjaxBandOptionsDisplayController extends AbstractDataMainDisplayCont
             $bands = RmArray::new()
                 ->add(NullBand::new())
                 ->add(Band::new()->setId(RmInt::new(1))->setName(RmString::new('Unknown')));
-            ;
         } elseif ($this->bandFirstChar->get() === '%') {
             $bands = $this->bandQueryModel->getBandsWithSpecialChar();
         } else {
             $bands = $this->bandQueryModel->getBandsByFirstChar($this->bandFirstChar);
         }
+        $bandNew = Band::new()->setId(RmInt::new(3))->setName(RmString::new('New Band'));
+        $bands->add($bandNew);
         $this->view->set('bands', $bands);
         $this->view->set('bandId', $this->bandId);
     }
