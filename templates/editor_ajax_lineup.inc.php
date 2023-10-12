@@ -18,7 +18,6 @@ $lineupIndex = 1;
         <legend>Band <?=$lineupIndex?></legend>
         <label for="first_sign_<?=$lineupIndex?>" class="screen_reader_only">First letter the of the band name</label>
         <select  id="first_sign_<?=$lineupIndex?>"
-                 name="first_sign[]"
                  autocomplete="off">
             <!--onchange="save_band_lineup(\'%1$u\', \'first_sign\'); get_band_select_options(\'%1$u\')"-->
             <?php foreach ($alphabet as $firstSign): ?>
@@ -34,12 +33,14 @@ $lineupIndex = 1;
             <!-- onchange="save_band_lineup(\'%1$u\', \'band_id\'); get_band_new_form(\'%1$u\')" -->
             <!-- echo $this->_['band_select_options'][$lineup_index]; -->
         </select>
-        <span id="band_new_form_<?=$lineupIndex?>">
-            <!--echo $this->_['band_new_form'][$lineup_index];-->
-        </span>
+        <label for="band_new_name_<?=$lineupIndex?>" class="screen_reader_only"></label>
+        <input type="text"
+               value="<?=$gig->getBandName()?>"
+               id="band_new_name_<?=$lineupIndex?>"
+               class="edit_field"
+               placeholder="Name of the new band">
         <label for="addition_<?=$lineupIndex?>" class="screen_reader_only">Addition</label>
         <input type="text" 
-            name="addition[]"
             value="<?=$gig->getAdditionalInformation()?>"
             id="addition_<?=$lineupIndex?>"
             class="edit_field"

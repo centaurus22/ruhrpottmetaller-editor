@@ -25,9 +25,9 @@ class Gig extends AbstractRmObject implements IData
         return $this->additionalInformation;
     }
 
-    public function setAdditionalInformation(AbstractRmString $additional_information): Gig
+    public function setAdditionalInformation(AbstractRmString $additionalInformation): Gig
     {
-        $this->additionalInformation = $additional_information;
+        $this->additionalInformation = $additionalInformation;
         return $this;
     }
 

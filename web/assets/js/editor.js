@@ -75,11 +75,25 @@ function updateBandSelect(bandId, bandFirstChar, bandLineupId)
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             let bandOptions = document.getElementById('band_id_' + bandLineupId);
             bandOptions.innerHTML = xmlHttp.responseText;
+            bandOptions.onchange = (event) => {
+                updateNewBandContainer(event);
+            }
         }
     };
     const file = 'index.php?ajax=1&content=band_options&band_id=' + bandId + '&band_first_char=' + bandFirstChar;
     xmlHttp.open('GET', file, true);
     xmlHttp.send();
+}
+
+function updateNewBandContainer(event) {
+    const bandLineupId = event.target.id.substring(8);
+    const bandId = event.target.value;
+    let bandNewNameInput = document.getElementById('band_new_name_' + bandLineupId);
+    if (bandId === '3') {
+         bandNewNameInput.style.display = 'inline-block';
+    } else {
+         bandNewNameInput.style.display = 'none';
+    }
 }
 
 function getVenueIdFromDataTag()
