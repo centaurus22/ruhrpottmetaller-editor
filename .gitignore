@@ -5,6 +5,7 @@ db_preferences.inc.php
 *.swp
 *.swo
 .phpunit.cache/
+.idea
 
 /tags
 .project.vim
