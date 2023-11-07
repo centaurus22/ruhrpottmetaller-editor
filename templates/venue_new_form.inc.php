@@ -5,7 +5,7 @@
         id="venue_new_name"
         class="edit_text"
         value="<?= $this->_['venue_new_name']?>"
-        placeholder="Default URL of the new venue"
+        placeholder="Name of the new venue"
     >
     <br>
     <label for="venue_url" class="edit_label">Default URL</label>
@@ -14,7 +14,7 @@
         id="venue_url"
         value="<?= $this->_['venue_url']?>"
         class="edit_text"
-        placeholder="Standard URL of the venue"
+        placeholder="Default URL of the venue"
     >
     <br>
 <?php endif; ?>
