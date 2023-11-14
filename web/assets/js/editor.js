@@ -69,7 +69,7 @@ function loadLineupContent(eventId) {
                 let bandOptions = document.getElementById('band_id_' + bandLineupId);
                 updateBandSelect(bandOptions, bandId, bandFirstChar)
                 bandOptions.onchange = (event) => {
-                    updateNewBandContainer(event);
+                    updateBand(event);
                 }
                 bandOptions.dispatchEvent(new Event('change'));
             }
@@ -93,7 +93,7 @@ function updateBandSelect(bandOptions, bandId, bandFirstChar)
     xmlHttp.send();
 }
 
-function updateNewBandContainer(event) {
+function updateBand(event) {
     const bandLineupId = event.target.id.substring(8);
     const bandId = event.target.value;
     let bandNewNameInput = document.getElementById('band_new_name_' + bandLineupId);
@@ -102,6 +102,11 @@ function updateNewBandContainer(event) {
     } else {
          bandNewNameInput.style.display = 'none';
     }
+
+    const xmlHttp = new XMLHttpRequest();
+    const file = 'index.php?ajax=1&command=change_gig&band_id=' + bandId;
+    xmlHttp.open('GET', file, true);
+    xmlHttp.send();
 }
 
 function getVenueIdFromDataTag()

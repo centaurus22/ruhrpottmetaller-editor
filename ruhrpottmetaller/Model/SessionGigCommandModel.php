@@ -2,6 +2,7 @@
 
 namespace ruhrpottmetaller\Model;
 
+use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\Gig;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\RmArray;
@@ -33,7 +34,12 @@ class SessionGigCommandModel
 
     public function changeGigAt(RmInt $position, RmInt $bandId): void
     {
-        $gig = Gig::new()->setBand($this->bandModel->getBandById($bandId));
+        if ($bandId->get() == 3) {
+            $band = $this->bandModel->getBandById($bandId);
+        } else {
+            $band = Band::new();
+        }
+        $gig = Gig::new()->setBand($band);
         $_SESSION['gigs']->set($position, $gig);
     }
 
