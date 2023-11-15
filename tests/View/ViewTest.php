@@ -75,7 +75,7 @@ final class ViewTest extends TestCase
             RmString::new('testTemplate1')
         );
         $output = $this->View->getOutput()->get();
-        $this->assertEquals('web/assets/images/', substr($output, 5, 18));
+        $this->assertEquals('assets/images/', substr($output, 5, 14));
     }
 
     /**
