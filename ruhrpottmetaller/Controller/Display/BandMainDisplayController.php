@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\View\View;
 
 class BandMainDisplayController extends AbstractDataMainDisplayController

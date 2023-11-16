@@ -1,15 +1,16 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
+use mysqli;
 use ruhrpottmetaller\Data\HighLevel\Band;
-use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt, String\RmString};
+use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Int\RmInt, String\AbstractRmString, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
 class DatabaseBandQueryModel extends DatabaseQueryModel
 {
-    public static function new(?\mysqli $connection)
+    public static function new(?mysqli $connection): DatabaseBandQueryModel
     {
         return new static($connection);
     }
@@ -20,7 +21,7 @@ class DatabaseBandQueryModel extends DatabaseQueryModel
         return $this->query($query);
     }
 
-    public function getBandsByFirstChar(RmString $firstChar): RmArray
+    public function getBandsByFirstChar(AbstractRmString $firstChar): RmArray
     {
         $query = 'SELECT id, name, is_visible FROM band WHERE name LIKE ? ORDER BY name';
         return $this->query($query, 's', [$firstChar->get() . '%']);

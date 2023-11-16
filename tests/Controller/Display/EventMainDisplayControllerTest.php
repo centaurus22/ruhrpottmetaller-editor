@@ -9,10 +9,10 @@ use ruhrpottmetaller\Controller\Display\EventMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
-use ruhrpottmetaller\Model\DatabaseGigQueryModel;
-use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\DatabaseEventQueryDatabaseModelMock;
 
@@ -47,11 +47,11 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -93,11 +93,11 @@ final class EventMainDisplayControllerTest extends TestCase
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
      * @covers \ruhrpottmetaller\Controller\Display\EventMainDisplayController
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString

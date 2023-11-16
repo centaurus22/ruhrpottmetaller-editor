@@ -1,10 +1,12 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
-use ruhrpottmetaller\Data\HighLevel\{IVenue, Venue, NullVenue};
+use ruhrpottmetaller\Data\HighLevel\{IVenue, NullVenue, Venue};
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\{AbstractRmInt, RmInt};
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
@@ -14,7 +16,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
     private DatabaseCityQueryModel $queryCityModel;
 
     public function __construct(
-        ?\mysqli $connection,
+        ?mysqli                $connection,
         DatabaseCityQueryModel $queryCityModel
     ) {
         parent::__construct($this->connection = $connection);
@@ -22,7 +24,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
     }
 
     public static function new(
-        ?\mysqli $connection,
+        ?mysqli                $connection,
         DatabaseCityQueryModel $queryCityModel
     ): DatabaseVenueQueryModel {
         return new static($connection, $queryCityModel);
@@ -34,7 +36,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
         return $this->query($query);
     }
 
-    public function getVenuesByCityName(RmString $cityName): RmArray
+    public function getVenuesByCityName(AbstractRmString $cityName): RmArray
     {
         $query = 'SELECT 
                 venue.id AS id,
@@ -49,7 +51,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
         return $this->query($query, 's', [$cityName->get()]);
     }
 
-    public function getVenuesByCityId(RmInt $cityId): RmArray
+    public function getVenuesByCityId(AbstractRmInt $cityId): RmArray
     {
         $query = 'SELECT 
                 venue.id AS id,

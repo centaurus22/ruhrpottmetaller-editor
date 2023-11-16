@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller\Display;
 
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class CityNavSecondaryDisplayController extends AbstractDataMainDisplayController

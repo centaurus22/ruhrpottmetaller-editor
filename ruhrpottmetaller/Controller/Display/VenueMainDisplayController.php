@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 
 class VenueMainDisplayController extends AbstractDataMainDisplayController

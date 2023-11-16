@@ -1,9 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
-use ruhrpottmetaller\Data\HighLevel\{Event, Concert, Festival};
+use ruhrpottmetaller\Data\HighLevel\{Concert, Event, Festival};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
+use mysqli;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
@@ -13,8 +14,8 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     private DatabaseVenueQueryModel $venueQueryModel;
 
     public function __construct(
-        ?\mysqli              $connection,
-        DatabaseGigQueryModel $gigQueryModel,
+        ?mysqli                 $connection,
+        DatabaseGigQueryModel   $gigQueryModel,
         DatabaseVenueQueryModel $venueQueryModel
     ) {
         parent::__construct($connection);
@@ -23,8 +24,8 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     }
 
     public static function new(
-        ?\mysqli              $connection,
-        DatabaseGigQueryModel $gigQueryModel,
+        ?mysqli                 $connection,
+        DatabaseGigQueryModel   $gigQueryModel,
         DatabaseVenueQueryModel $venueQueryModel
     ): DatabaseEventQueryModel {
         return new static($connection, $gigQueryModel, $venueQueryModel);

@@ -3,7 +3,7 @@
 namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
 class DatabaseBandQueryDatabaseModelMockEmpty extends DatabaseBandQueryModel
 {

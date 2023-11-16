@@ -37,9 +37,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldLoadCities()
     {
@@ -87,9 +87,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldLoadVenuesIfCityIdIsNull()
     {
@@ -138,9 +138,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassGetNewCityValueToView()
     {
@@ -181,9 +181,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassTrueAsGetNewCityValueToView()
     {
@@ -224,9 +224,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassGetNewVenueValueToView()
     {
@@ -267,9 +267,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassTrueAsGetNewVenueValueToView()
     {
@@ -312,9 +312,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassFalseAsGetNewVenueValueToView()
     {
@@ -356,9 +356,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassNoCitiesToViewIfNewCityShouldBeCreated()
     {
@@ -400,9 +400,9 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldPassOnlyVenuesInTheCityToTheView()
     {

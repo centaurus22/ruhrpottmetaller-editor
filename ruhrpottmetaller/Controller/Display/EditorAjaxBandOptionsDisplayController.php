@@ -8,7 +8,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxBandOptionsDisplayController extends AbstractDataMainDisplayController

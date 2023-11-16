@@ -4,7 +4,7 @@ namespace tests\ruhrpottmetaller\Controller;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 
 class DatabaseCityQueryDatabaseModelMockEmpty extends DatabaseCityQueryModel
 {

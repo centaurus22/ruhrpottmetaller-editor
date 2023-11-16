@@ -3,15 +3,16 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, VenueMainDisplayController};
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{DatabaseCityQueryModel, DatabaseVenueQueryModel};
+use ruhrpottmetaller\Model\{Query\DatabaseCityQueryModel, Query\DatabaseVenueQueryModel};
 use ruhrpottmetaller\View\View;
 
 class VenueMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection
+        mysqli $connection
     ): AbstractDisplayController {
         return new VenueMainDisplayController(
             View::new(

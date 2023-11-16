@@ -2,21 +2,25 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Model\Command;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{DatabaseConnection, DatabaseCityQueryModel, DatabaseVenueQueryModel, DatabaseVenueCommandModel};
+use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Command\DatabaseVenueCommandModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 
 final class DatabaseVenueCommandModelTest extends TestCase
 {
     private DatabaseVenueQueryModel $queryModel;
     private DatabaseVenueCommandModel $commandModel;
-    private \mysqli $connection;
+    private mysqli $connection;
 
     protected function setUp(): void
     {
@@ -39,11 +43,11 @@ final class DatabaseVenueCommandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseVenueCommandModel
-     * @covers \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseVenueCommandModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -52,7 +56,7 @@ final class DatabaseVenueCommandModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseConnection
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
@@ -79,11 +83,11 @@ final class DatabaseVenueCommandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseVenueCommandModel
-     * @covers \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseVenueCommandModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -92,7 +96,7 @@ final class DatabaseVenueCommandModelTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Model\DatabaseConnection
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour

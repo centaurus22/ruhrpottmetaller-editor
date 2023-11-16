@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class CityMainDisplayController extends AbstractDataMainDisplayController

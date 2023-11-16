@@ -1,12 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Command;
 
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 class DatabaseEventCommandModel extends DatabaseCommandModel
 {
-    public static function new(?\mysqli $connection): DatabaseEventCommandModel
+    public static function new(?mysqli $connection): DatabaseEventCommandModel
     {
         return new static($connection);
     }

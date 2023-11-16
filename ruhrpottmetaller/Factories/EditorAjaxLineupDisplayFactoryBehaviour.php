@@ -2,19 +2,20 @@
 
 namespace ruhrpottmetaller\Factories;
 
+use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Controller\Display\EditorAjaxLineupDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
-use ruhrpottmetaller\Model\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxLineupDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection,
+        mysqli $connection,
         array $input
     ): AbstractDisplayController {
         return new EditorAjaxLineupDisplayController(

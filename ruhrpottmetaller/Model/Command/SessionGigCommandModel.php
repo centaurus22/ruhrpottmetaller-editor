@@ -1,11 +1,12 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Command;
 
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\Gig;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\RmArray;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
 class SessionGigCommandModel
 {

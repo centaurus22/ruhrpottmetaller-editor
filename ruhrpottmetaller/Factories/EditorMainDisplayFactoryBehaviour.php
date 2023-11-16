@@ -2,22 +2,23 @@
 
 namespace ruhrpottmetaller\Factories;
 
+use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Controller\Display\EditorMainDisplayController;
-use ruhrpottmetaller\Data\HighLevel\Event;
 use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\HighLevel\Event;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
-use ruhrpottmetaller\Model\DatabaseEventQueryModel;
-use ruhrpottmetaller\Model\DatabaseGigQueryModel;
-use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
-use ruhrpottmetaller\Model\SessionGigCommandModel;
+use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
@@ -29,7 +30,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
     }
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection
+        mysqli $connection
     ): AbstractDisplayController {
         $cityQueryModel = DatabaseCityQueryModel::new($connection);
         $bandQueryModel = DatabaseBandQueryModel::new($connection);

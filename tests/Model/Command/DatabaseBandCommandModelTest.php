@@ -2,20 +2,23 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Model\Command;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{DatabaseBandCommandModel, DatabaseConnection, DatabaseBandQueryModel};
+use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Command\DatabaseBandCommandModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
 final class DatabaseBandCommandModelTest extends TestCase
 {
     private DatabaseBandQueryModel $queryModel;
     private DatabaseBandCommandModel $commandModel;
-    private \mysqli $connection;
+    private mysqli $connection;
 
     protected function setUp(): void
     {
@@ -24,12 +27,8 @@ final class DatabaseBandCommandModelTest extends TestCase
         $this->connection = DatabaseConnection::new($ConnectionInformationFile)
                 ->connect()
                 ->getConnection();
-        $this->queryModel = DatabaseBandQueryModel::new(
-            $this->connection,
-        );
-        $this->commandModel = DatabaseBandCommandModel::new(
-            $this->connection,
-        );
+        $this->queryModel = DatabaseBandQueryModel::new($this->connection);
+        $this->commandModel = DatabaseBandCommandModel::new($this->connection);
     }
 
     protected function tearDown(): void
@@ -39,11 +38,11 @@ final class DatabaseBandCommandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseBandCommandModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseBandCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -73,11 +72,11 @@ final class DatabaseBandCommandModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseBandCommandModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseBandCommandModel
+     * @covers \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData

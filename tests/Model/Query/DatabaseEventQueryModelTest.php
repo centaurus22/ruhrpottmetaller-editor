@@ -2,23 +2,24 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Model\Query;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Data\HighLevel\{Event, Concert, Festival};
-use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, Int\AbstractRmInt, Int\RmInt, String\RmString};
+use ruhrpottmetaller\Data\HighLevel\{Concert, Event, Festival};
+use ruhrpottmetaller\Data\LowLevel\{Date\RmDate, Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{DatabaseBandQueryModel,
-    DatabaseConnection,
-    DatabaseCityQueryModel,
-    DatabaseEventQueryModel,
-    DatabaseGigQueryModel,
-    DatabaseVenueQueryModel};
+use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 
 final class DatabaseEventQueryModelTest extends TestCase
 {
     private DatabaseEventQueryModel $eventQueryModel;
-    private \mysqli $databaseConnection;
+    private mysqli $databaseConnection;
 
     protected function setUp(): void
     {
@@ -56,13 +57,13 @@ final class DatabaseEventQueryModelTest extends TestCase
 
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses   \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -80,13 +81,13 @@ final class DatabaseEventQueryModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -116,13 +117,13 @@ final class DatabaseEventQueryModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -154,12 +155,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -191,12 +192,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -229,12 +230,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -262,12 +263,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -301,13 +302,13 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -341,12 +342,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -380,12 +381,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses \ruhrpottmetaller\AbstractRmObject
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
@@ -419,12 +420,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -462,13 +463,13 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\HighLevel\Concert
@@ -501,12 +502,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -541,12 +542,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -581,12 +582,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event
@@ -626,12 +627,12 @@ final class DatabaseEventQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseGigQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @uses  \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Event

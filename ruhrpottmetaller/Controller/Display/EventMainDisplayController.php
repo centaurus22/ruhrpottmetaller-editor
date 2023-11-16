@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseEventQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EventMainDisplayController extends AbstractDataMainDisplayController

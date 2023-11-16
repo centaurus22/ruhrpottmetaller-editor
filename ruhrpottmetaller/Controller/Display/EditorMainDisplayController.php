@@ -3,8 +3,8 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\HighLevel\IEvent;
-use ruhrpottmetaller\Model\DatabaseEventQueryModel;
-use ruhrpottmetaller\Model\SessionGigCommandModel;
+use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
+use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorMainDisplayController extends AbstractDataMainDisplayController

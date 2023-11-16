@@ -2,20 +2,21 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Model\Query;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Model\{DatabaseConnection, DatabaseBandQueryModel};
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
+use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
 final class DatabaseBandQueryModelTest extends TestCase
 {
     private DatabaseBandQueryModel $QueryBandDatabaseModel;
-    private \mysqli $DatabaseConnection;
+    private mysqli $DatabaseConnection;
 
     protected function setUp(): void
     {
@@ -37,8 +38,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseModel
      * @uses \ruhrpottmetaller\Data\HighLevel\Band
      * @uses   \ruhrpottmetaller\Model\DatabaseConnection
@@ -61,9 +62,9 @@ final class DatabaseBandQueryModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -82,15 +83,12 @@ final class DatabaseBandQueryModelTest extends TestCase
     {
         $query = 'INSERT INTO band SET name = "Spiker"';
         $this->DatabaseConnection->query($query);
-        $this->assertTrue(
-            $this->QueryBandDatabaseModel->getBands()
-                ->hasCurrent()
-        );
+        $this->assertTrue($this->QueryBandDatabaseModel->getBands()->hasCurrent());
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -119,8 +117,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -151,8 +149,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -183,8 +181,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -215,8 +213,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -249,8 +247,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -284,8 +282,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -318,8 +316,8 @@ final class DatabaseBandQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -339,7 +337,7 @@ final class DatabaseBandQueryModelTest extends TestCase
         $query = 'INSERT INTO band SET id = 4, name = "Houndwolf", is_visible = 1';
         $this->DatabaseConnection->query($query);
         $band = Band::new()
-            ->setName(RmString::new('Houndwolf'))
+            ->setName(RmString::new('Hound wolf'))
             ->setIsVisible(RmBool::new(true));
         $this->assertEquals(
             '4',

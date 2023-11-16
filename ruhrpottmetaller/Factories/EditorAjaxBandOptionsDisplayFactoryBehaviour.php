@@ -2,18 +2,19 @@
 
 namespace ruhrpottmetaller\Factories;
 
+use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Controller\Display\EditorAjaxBandOptionsDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxBandOptionsDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection,
+        mysqli $connection,
         array $input
     ): AbstractDisplayController {
         return new EditorAjaxBandOptionsDisplayController(

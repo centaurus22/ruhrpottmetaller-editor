@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace tests\ruhrpottmetaller\Controller\Display;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\Display\CityNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 
 final class CityNavSecondaryDisplayControllerTest extends TestCase
 {
     private CityNavSecondaryDisplayController $Controller;
-    private \mysqli $connection;
+    private mysqli $connection;
 
     protected function setUp(): void
     {
@@ -60,15 +61,15 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\View\View
      */
     public function testShouldSetCityList()
     {
         $this->connection->query('TRUNCATE city');
-        $this->connection->query('INSERT INTO city SET NAME = "Duisburg"');
+        $this->connection->query('INSERT INTO city SET name = "Duisburg"');
 
         $this->Controller
             ->setGetParameters(RmString::new(null), RmString::new(null))

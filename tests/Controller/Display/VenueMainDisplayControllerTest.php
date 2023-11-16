@@ -41,7 +41,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldSetCityList()
     {
@@ -89,7 +89,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldNotSetEmptyConcertList()
     {
@@ -129,7 +129,7 @@ final class VenueMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
      */
     public function testShouldSetGetParameterString()
     {

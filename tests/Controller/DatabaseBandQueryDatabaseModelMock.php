@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
 class DatabaseBandQueryDatabaseModelMock extends DatabaseBandQueryModel
 {

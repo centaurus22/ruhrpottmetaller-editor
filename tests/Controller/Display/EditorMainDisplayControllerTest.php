@@ -13,14 +13,13 @@ use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseBandQueryModel;
-use ruhrpottmetaller\Model\DatabaseGigQueryModel;
-use ruhrpottmetaller\Model\DatabaseVenueQueryModel;
-use ruhrpottmetaller\Model\SessionGigCommandModel;
+use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 use ruhrpottmetaller\View\View;
 use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMock;
 use tests\ruhrpottmetaller\Controller\DatabaseEventQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Model\SessionGigCommandModelMock;
+use tests\ruhrpottmetaller\Model\Command\SessionGigCommandModelMock;
 
 final class EditorMainDisplayControllerTest extends TestCase
 {
@@ -49,12 +48,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelNullData
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      */
     public function testShouldSetNullEventIfNoIdIsGiven()
     {
@@ -112,12 +111,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Controller\Display\BaseDisplayController
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -189,12 +188,12 @@ final class EditorMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseEventQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseGigQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseVenueQueryModel
-     * @uses \ruhrpottmetaller\Model\DatabaseBandQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseEventQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseGigQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
+     * @uses \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
      */
     public function testShouldNotLoadEventIfEventIsNotEmpty()
     {

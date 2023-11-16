@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display;
 
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
-use ruhrpottmetaller\Model\DatabaseGigQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxLineupDisplayController extends AbstractDataMainDisplayController

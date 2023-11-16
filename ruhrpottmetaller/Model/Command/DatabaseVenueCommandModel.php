@@ -1,12 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Command;
 
+use mysqli;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 
 class DatabaseVenueCommandModel extends DatabaseCommandModel
 {
-    public static function new(?\mysqli $connection): DatabaseVenueCommandModel
+    public static function new(?mysqli $connection): DatabaseVenueCommandModel
     {
         return new static($connection);
     }

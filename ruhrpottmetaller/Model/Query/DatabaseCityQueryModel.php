@@ -1,17 +1,19 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
-use ruhrpottmetaller\Data\HighLevel\{ICity, City, NullCity};
+use ruhrpottmetaller\Data\HighLevel\{City, ICity, NullCity};
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\{AbstractRmInt, RmInt};
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use stdClass;
 
 class DatabaseCityQueryModel extends DatabaseQueryModel
 {
-    public static function new(?\mysqli $connection): DatabaseCityQueryModel
+    public static function new(?mysqli $connection): DatabaseCityQueryModel
     {
         return new static($connection);
     }
@@ -22,7 +24,7 @@ class DatabaseCityQueryModel extends DatabaseQueryModel
         return $this->query($query);
     }
 
-    public function getCitiesByFirstChar(RmString $firstChar): RmArray
+    public function getCitiesByFirstChar(AbstractRmString $firstChar): RmArray
     {
         $query = 'SELECT id, name, is_visible FROM city WHERE name LIKE ? ORDER BY name';
         return $this->query($query, 's', [$firstChar->get() . '%']);

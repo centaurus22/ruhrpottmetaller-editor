@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 
 class DatabaseCityQueryDatabaseModelMock extends DatabaseCityQueryModel
 {

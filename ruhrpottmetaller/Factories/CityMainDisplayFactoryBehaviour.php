@@ -3,15 +3,16 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, CityMainDisplayController};
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 
 class CityMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection
+        mysqli $connection
     ): AbstractDisplayController {
         return new CityMainDisplayController(
             View::new(

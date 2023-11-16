@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
 use ruhrpottmetaller\Data\RmArray;
 

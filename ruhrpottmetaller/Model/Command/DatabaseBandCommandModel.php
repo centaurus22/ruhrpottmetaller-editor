@@ -1,12 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Command;
 
+use mysqli;
 use ruhrpottmetaller\Data\HighLevel\Band;
 
 class DatabaseBandCommandModel extends DatabaseCommandModel
 {
-    public static function new(?\mysqli $connection): DatabaseBandCommandModel
+    public static function new(?mysqli $connection): DatabaseBandCommandModel
     {
         return new static($connection);
     }

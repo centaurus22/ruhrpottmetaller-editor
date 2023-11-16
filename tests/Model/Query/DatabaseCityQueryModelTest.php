@@ -2,19 +2,21 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Model;
+namespace tests\ruhrpottmetaller\Model\Query;
 
+use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\City;
-use ruhrpottmetaller\Data\LowLevel\{Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\HighLevel\NullCity;
+use ruhrpottmetaller\Data\LowLevel\{Int\RmInt, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
-use ruhrpottmetaller\Model\{DatabaseConnection, DatabaseCityQueryModel};
+use ruhrpottmetaller\Model\DatabaseConnection;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 
 final class DatabaseCityQueryModelTest extends TestCase
 {
     private DatabaseCityQueryModel $cityQueryModel;
-    private \mysqli $connection;
+    private mysqli $connection;
 
     protected function setUp(): void
     {
@@ -37,9 +39,9 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -60,8 +62,8 @@ final class DatabaseCityQueryModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
@@ -88,9 +90,9 @@ final class DatabaseCityQueryModelTest extends TestCase
     }
 
     /**
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @covers \ruhrpottmetaller\Model\DatabaseConnection
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -118,8 +120,8 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -150,8 +152,8 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -182,8 +184,8 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -214,8 +216,8 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\City
@@ -247,7 +249,7 @@ final class DatabaseCityQueryModelTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @uses \ruhrpottmetaller\Model\DatabaseConnection
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
@@ -265,9 +267,9 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseCityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band
@@ -301,9 +303,9 @@ final class DatabaseCityQueryModelTest extends TestCase
 
     /**
      * @covers \ruhrpottmetaller\Model\DatabaseModel
-     * @covers \ruhrpottmetaller\Model\DatabaseBandQueryModel
-     * @covers \ruhrpottmetaller\Model\DatabaseQueryModel
-     * @uses  \ruhrpottmetaller\Model\DatabaseCityQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseBandQueryModel
+     * @covers \ruhrpottmetaller\Model\Query\DatabaseQueryModel
+     * @uses  DatabaseCityQueryModel
      * @uses   \ruhrpottmetaller\AbstractRmObject
      * @uses   \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses   \ruhrpottmetaller\Data\HighLevel\Band

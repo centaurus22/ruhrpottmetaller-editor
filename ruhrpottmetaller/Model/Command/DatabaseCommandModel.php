@@ -1,6 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Command;
+
+use ruhrpottmetaller\Model\DatabaseModel;
 
 class DatabaseCommandModel extends DatabaseModel
 {

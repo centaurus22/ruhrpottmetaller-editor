@@ -2,18 +2,18 @@
 
 namespace ruhrpottmetaller\Factories;
 
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController,
-    EditorAjaxCityVenueDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EditorAjaxCityVenueDisplayController};
+use mysqli;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Model\{DatabaseCityQueryModel, DatabaseVenueQueryModel};
+use ruhrpottmetaller\Model\{Query\DatabaseCityQueryModel, Query\DatabaseVenueQueryModel};
 use ruhrpottmetaller\View\View;
 
 class EditorAjaxCityVenueDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
-        \mysqli $connection,
+        mysqli $connection,
         array $input
     ): AbstractDisplayController {
         $controller = new EditorAjaxCityVenueDisplayController(

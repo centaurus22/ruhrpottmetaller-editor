@@ -1,8 +1,9 @@
 <?php
 
-namespace ruhrpottmetaller\Model;
+namespace ruhrpottmetaller\Model\Query;
 
 use ruhrpottmetaller\Data\RmArray;
+use ruhrpottmetaller\Model\DatabaseModel;
 
 abstract class DatabaseQueryModel extends DatabaseModel
 {
