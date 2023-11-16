@@ -5,6 +5,7 @@ namespace tests\ruhrpottmetaller\Controller;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
@@ -27,7 +28,7 @@ class DatabaseVenueQueryDatabaseModelMock extends DatabaseVenueQueryModel
         return $Array->add($venue);
     }
 
-    public function getVenuesByCityId(?RmInt $cityId): RmArray
+    public function getVenuesByCityId(?AbstractRmInt $cityId): RmArray
     {
         $city = City::new()
             ->setId(RmInt::new('3'))

@@ -2,7 +2,7 @@
 
 namespace tests\ruhrpottmetaller\Controller;
 
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 
@@ -13,7 +13,7 @@ class DatabaseCityQueryDatabaseModelMockEmpty extends DatabaseCityQueryModel
         return RmArray::new();
     }
 
-    public function getCitiesByFirstChar(RmString $firstChar): RmArray
+    public function getCitiesByFirstChar(AbstractRmString $firstChar): RmArray
     {
         return RmArray::new();
     }
