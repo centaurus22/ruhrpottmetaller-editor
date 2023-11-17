@@ -9,6 +9,6 @@ class SessionGigCommandModelMock extends SessionGigCommandModel
 {
     public function __construct(DatabaseBandQueryModel $bandQueryModel)
     {
-        parent::__construct($bandQueryModel);
+        $this->bandModel = $bandQueryModel;
     }
 }

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\Main;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\EditorMainDisplayController;
+use ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\HighLevel\NullEvent;
@@ -28,8 +28,8 @@ final class EditorMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -93,8 +93,8 @@ final class EditorMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
@@ -168,8 +168,8 @@ final class EditorMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData

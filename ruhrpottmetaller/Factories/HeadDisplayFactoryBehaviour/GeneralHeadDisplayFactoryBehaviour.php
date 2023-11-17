@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour;
 
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
-use ruhrpottmetaller\Controller\Display\GeneralHeadDisplayController;
+use ruhrpottmetaller\Controller\Display\Head\GeneralHeadDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 

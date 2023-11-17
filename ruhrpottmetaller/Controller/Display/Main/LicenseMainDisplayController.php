@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\Main;
 
 use ruhrpottmetaller\View\View;
 

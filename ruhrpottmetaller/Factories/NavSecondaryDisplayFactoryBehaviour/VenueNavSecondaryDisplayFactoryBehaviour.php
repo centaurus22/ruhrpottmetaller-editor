@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Factories\NavSecondaryDisplayFactoryBehaviour;
 
 use mysqli;
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, CityNavSecondaryDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, NavSecondary\CityNavSecondaryDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;

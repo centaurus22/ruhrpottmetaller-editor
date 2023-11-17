@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBevahiour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
-use ruhrpottmetaller\Controller\Display\EditorAjaxBandOptionsDisplayController;
+use ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxBandOptionsDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;

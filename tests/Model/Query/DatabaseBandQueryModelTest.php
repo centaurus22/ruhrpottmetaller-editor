@@ -337,7 +337,7 @@ final class DatabaseBandQueryModelTest extends TestCase
         $query = 'INSERT INTO band SET id = 4, name = "Houndwolf", is_visible = 1';
         $this->DatabaseConnection->query($query);
         $band = Band::new()
-            ->setName(RmString::new('Hound wolf'))
+            ->setName(RmString::new('Houndwolf'))
             ->setIsVisible(RmBool::new(true));
         $this->assertEquals(
             '4',

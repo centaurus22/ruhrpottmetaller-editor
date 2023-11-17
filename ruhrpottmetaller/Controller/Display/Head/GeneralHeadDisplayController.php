@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\Head;
 
+use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 

@@ -2,28 +2,28 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\Main;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\BandMainDisplayController;
-use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Controller\Display\Main\CityMainDisplayController;
+use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\View\View;
-use tests\ruhrpottmetaller\Controller\DatabaseBandQueryDatabaseModelMock;
-use tests\ruhrpottmetaller\Controller\DatabaseBandQueryDatabaseModelMockEmpty;
+use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMock;
+use tests\ruhrpottmetaller\Controller\DatabaseCityQueryDatabaseModelMockEmpty;
 
-final class BandMainDisplayControllerTest extends TestCase
+final class CityMainDisplayControllerTest extends TestCase
 {
-    private BandMainDisplayController $Controller;
+    private CityMainDisplayController $Controller;
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\BandMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\CityMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @uses \ruhrpottmetaller\Data\HighLevel\Band
+     * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -39,38 +39,38 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\View\View
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      */
-    public function testShouldSetBandList()
+    public function testShouldSetCityList()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new BandMainDisplayController(
+        $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new DatabaseBandQueryDatabaseModelMock(null)
+            new DatabaseCityQueryDatabaseModelMock(null)
         );
 
         $this->Controller
             ->setGetParameters(RmString::new(null), RmString::new(null))
             ->render();
 
-        $this->assertArrayHasKey('bands', $this->Controller->getViewData());
+        $this->assertArrayHasKey('cities', $this->Controller->getViewData());
         $this->assertInstanceOf(
             RmArray::class,
-            ($this->Controller->getViewData())['bands']
+            ($this->Controller->getViewData())['cities']
         );
         $this->assertInstanceOf(
-            Band::class,
-            ($this->Controller->getViewData()['bands'])->getCurrent()
+            City::class,
+            ($this->Controller->getViewData()['cities'])->getCurrent()
         );
     }
 
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\BandMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\CityMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -83,16 +83,16 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Model\DatabaseModel
      */
-    public function testShouldNotSetEmptyBandList()
+    public function testShouldNotSetEmptyConcertList()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new BandMainDisplayController(
+        $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new DatabaseBandQueryDatabaseModelMockEmpty(null),
+            new DatabaseCityQueryDatabaseModelMockEmpty(null, null),
         );
 
         $this->Controller
@@ -105,8 +105,8 @@ final class BandMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\BandMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\CityMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -118,34 +118,31 @@ final class BandMainDisplayControllerTest extends TestCase
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Model\DatabaseModel
-     * @uses \ruhrpottmetaller\Data\LowLevel\IsNullBehaviour
      */
-    public function testShouldSetGetParameterString()
+    public function testShouldSetGetParameters()
     {
         $BaseView = View::new(
             RmString::new('./tests/Controller/templates/'),
             RmString::new('testTemplate')
         );
 
-        $this->Controller = new BandMainDisplayController(
+        $this->Controller = new CityMainDisplayController(
             $BaseView,
-            new DatabaseBandQueryDatabaseModelMockEmpty(null)
+            new DatabaseCityQueryDatabaseModelMockEmpty(null)
         );
 
-        $this->Controller->setGetParameters(
-            RmString::new(null),
-            RmString::new('name')
-        );
+        $this->Controller
+            ->setGetParameters(RmString::new('B'), RmString::new(null))
+            ->render();
 
-        $this->Controller->render();
-
-        $this->assertTrue(
-            (($this->Controller->getViewData())['filterByParameter'])->isNull()
+        $this->assertArrayHasKey(
+            'filterByParameter',
+            $this->Controller->getViewData()
         );
 
         $this->assertEquals(
-            'name',
-            ($this->Controller->getViewData())['orderByParameter']
+            'B',
+            ($this->Controller->getViewData())['filterByParameter']
         );
     }
 }

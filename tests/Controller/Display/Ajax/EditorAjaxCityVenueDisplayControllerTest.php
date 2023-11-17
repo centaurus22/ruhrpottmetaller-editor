@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\Ajax;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController;
+use ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
@@ -23,8 +23,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -73,8 +73,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -124,8 +124,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -166,8 +166,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -209,8 +209,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -252,8 +252,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -296,8 +296,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -340,8 +340,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
@@ -384,8 +384,8 @@ final class EditorAjaxCityVenueDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\EditorAjaxCityVenueDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxCityVenueDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue

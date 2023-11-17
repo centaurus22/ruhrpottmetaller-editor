@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\Ajax;
 
+use ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Model\Query\DatabaseGigQueryModel;
 use ruhrpottmetaller\View\View;

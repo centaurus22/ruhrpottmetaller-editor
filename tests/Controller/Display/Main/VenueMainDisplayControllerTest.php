@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\Main;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\VenueMainDisplayController;
+use ruhrpottmetaller\Controller\Display\Main\VenueMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
@@ -22,8 +22,8 @@ final class VenueMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\Venue
      * @uses \ruhrpottmetaller\Data\HighLevel\City
@@ -76,8 +76,8 @@ final class VenueMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -116,8 +116,8 @@ final class VenueMainDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\VenueMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\VenueMainDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString

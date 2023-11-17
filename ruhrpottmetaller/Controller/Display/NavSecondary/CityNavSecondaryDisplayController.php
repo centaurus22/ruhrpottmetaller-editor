@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\NavSecondary;
 
+use ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController;
 use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\View\View;
 

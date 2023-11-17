@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories\MainDisplayFactoryBehaviour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
-use ruhrpottmetaller\Controller\Display\EditorMainDisplayController;
+use ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Event;
 use ruhrpottmetaller\Data\HighLevel\Festival;

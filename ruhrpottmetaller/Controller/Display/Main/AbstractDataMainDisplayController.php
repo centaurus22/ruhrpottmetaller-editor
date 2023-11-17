@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\Main;
 
+use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 
 abstract class AbstractDataMainDisplayController extends AbstractDisplayController

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\NavSecondary;
 
 use mysqli;
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\CityNavSecondaryDisplayController;
+use ruhrpottmetaller\Controller\Display\NavSecondary\CityNavSecondaryDisplayController;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
@@ -51,8 +51,8 @@ final class CityNavSecondaryDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\AbstractDataMainDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\CityNavSecondaryDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\NavSecondary\CityNavSecondaryDisplayController
      * @uses \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @uses \ruhrpottmetaller\Data\HighLevel\City
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData

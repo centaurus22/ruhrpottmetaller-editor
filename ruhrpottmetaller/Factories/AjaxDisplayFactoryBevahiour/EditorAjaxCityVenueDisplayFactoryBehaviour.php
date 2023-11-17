@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBevahiour;
 
 use mysqli;
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EditorAjaxCityVenueDisplayController};
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, Ajax\EditorAjaxCityVenueDisplayController};
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{Query\DatabaseCityQueryModel, Query\DatabaseVenueQueryModel};

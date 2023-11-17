@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\Ajax;
 
+use ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmFalse;

@@ -1,11 +1,12 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Display;
+namespace ruhrpottmetaller\Controller\Display\NavSecondary;
 
+use ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 
-class CharNavSecondaryDisplayController extends AbstractDataMainDisplayController
+class DateNavSecondaryDisplayController extends AbstractDataMainDisplayController
 {
     protected function prepareThisController(): void
     {

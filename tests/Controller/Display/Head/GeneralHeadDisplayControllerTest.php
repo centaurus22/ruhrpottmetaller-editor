@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace tests\ruhrpottmetaller\Controller\Display;
+namespace tests\ruhrpottmetaller\Controller\Display\Head;
 
 use PHPUnit\Framework\TestCase;
-use ruhrpottmetaller\Controller\Display\GeneralHeadDisplayController;
+use ruhrpottmetaller\Controller\Display\Head\GeneralHeadDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
@@ -16,7 +16,7 @@ final class GeneralHeadDisplayControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
-     * @covers \ruhrpottmetaller\Controller\Display\GeneralHeadDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\Head\GeneralHeadDisplayController
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
