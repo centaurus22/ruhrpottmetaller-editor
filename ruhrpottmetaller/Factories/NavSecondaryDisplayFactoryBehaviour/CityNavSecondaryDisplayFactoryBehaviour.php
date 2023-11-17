@@ -1,12 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\NavSecondaryDisplayFactoryBehaviour;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, CharNavSecondaryDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\View\View;
 
-class EventNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
+class CityNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
 {
     public function getDisplayController(
         RmString $templatePath,
@@ -15,7 +16,7 @@ class EventNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactory
         return new CharNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('event_nav_secondary')
+                RmString::new('city_nav_secondary')
             ),
         );
     }

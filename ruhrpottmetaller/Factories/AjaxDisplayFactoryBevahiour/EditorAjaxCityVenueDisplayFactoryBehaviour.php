@@ -1,9 +1,9 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBevahiour;
 
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EditorAjaxCityVenueDisplayController};
 use mysqli;
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EditorAjaxCityVenueDisplayController};
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\{Query\DatabaseCityQueryModel, Query\DatabaseVenueQueryModel};

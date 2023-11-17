@@ -4,6 +4,9 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BaseDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\EditorHeadDisplayFactoryBehaviour;
+use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\GeneralHeadDisplayFactoryBehaviour;
+use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\IHeadDisplayFactoryBehaviour;
 use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractFactory

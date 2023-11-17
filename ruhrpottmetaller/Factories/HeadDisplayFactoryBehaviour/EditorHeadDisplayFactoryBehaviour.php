@@ -1,13 +1,13 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour;
 
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Controller\Display\GeneralHeadDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\View\View;
 
-class GeneralHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
+class EditorHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
 {
     private RmString $pageName;
 
@@ -22,7 +22,7 @@ class GeneralHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
         return new GeneralHeadDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('general_head')
+                RmString::new('editor_head')
             ),
             $this->pageName
         );

@@ -1,10 +1,11 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\MainDisplayFactoryBehaviour;
 
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EventMainDisplayController};
 use mysqli;
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, EventMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;

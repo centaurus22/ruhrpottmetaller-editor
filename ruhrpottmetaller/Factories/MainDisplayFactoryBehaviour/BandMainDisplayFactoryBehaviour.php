@@ -1,10 +1,11 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\MainDisplayFactoryBehaviour;
 
-use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BandMainDisplayController};
 use mysqli;
+use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BandMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\View\View;
 

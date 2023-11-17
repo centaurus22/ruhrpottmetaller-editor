@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour;
 
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;

@@ -1,9 +1,10 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\MainDisplayFactoryBehaviour;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, LicenseMainDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\View\View;
 
 class LicenseMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour

@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories;
+namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBevahiour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\AbstractDisplayController;
