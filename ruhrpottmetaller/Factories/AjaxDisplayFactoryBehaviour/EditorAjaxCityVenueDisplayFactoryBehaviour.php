@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBevahiour;
+namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBehaviour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, Ajax\EditorAjaxCityVenueDisplayController};
