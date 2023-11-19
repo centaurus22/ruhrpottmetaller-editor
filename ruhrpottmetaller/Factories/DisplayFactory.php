@@ -41,7 +41,9 @@ class DisplayFactory extends AbstractFactory
             $pageName = RmString::new('events');
         }
 
-        $mainBehaviourClass = __NAMESPACE__ . '\\' . $this->generalBehaviour . 'MainDisplayFactoryBehaviour';
+        $mainBehaviourClass = __NAMESPACE__
+            . '\\MainDisplayFactoryBehaviour\\'
+            . $this->generalBehaviour . 'MainDisplayFactoryBehaviour';
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
 
 
@@ -97,7 +99,8 @@ class DisplayFactory extends AbstractFactory
         }
 
         $navSecondaryBehaviourClass = __NAMESPACE__
-            . '\\' . $this->generalBehaviour . 'NavSecondaryDisplayFactoryBehaviour';
+            . '\\NavSecondaryDisplayFactoryBehaviour\\'
+            . $this->generalBehaviour . 'NavSecondaryDisplayFactoryBehaviour';
         $this->navSecondaryDisplayFactoryBehaviour = new $navSecondaryBehaviourClass();
 
         $navSecondaryDisplayController = $this->navSecondaryDisplayFactoryBehaviour->getDisplayController(
