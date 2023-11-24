@@ -20,7 +20,7 @@ class EditorAjaxBandOptionsDisplayFactoryBehaviour
         return new EditorAjaxBandOptionsDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('editor_ajax_band_options')
+                RmString::new('ajax/editor_band_options')
             ),
             DatabaseBandQueryModel::new($connection),
             RmString::new($input['band_first_char']),

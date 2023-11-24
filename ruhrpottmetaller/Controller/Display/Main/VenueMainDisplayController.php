@@ -29,7 +29,7 @@ class VenueMainDisplayController extends AbstractDataMainDisplayController
         }
 
         if (!$venues->hasCurrent()) {
-            $this->view->setTemplate(RmString::new('venue_main_empty'));
+            $this->view->setTemplate(RmString::new('main/venue_empty'));
             return;
         }
 

@@ -16,7 +16,7 @@ class CityNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryB
         return new CharNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('city_nav_secondary')
+                RmString::new('nav_secondary/city')
             ),
         );
     }

@@ -18,7 +18,7 @@ class BandMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
         return new BandMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('band_main')
+                RmString::new('main/band')
             ),
             DatabaseBandQueryModel::new($connection)
         );

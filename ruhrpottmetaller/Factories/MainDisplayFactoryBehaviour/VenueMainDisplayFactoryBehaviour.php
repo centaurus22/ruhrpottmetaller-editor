@@ -18,7 +18,7 @@ class VenueMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviou
         return new VenueMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('venue_main')
+                RmString::new('main/venue')
             ),
             DatabaseVenueQueryModel::new(
                 $connection,

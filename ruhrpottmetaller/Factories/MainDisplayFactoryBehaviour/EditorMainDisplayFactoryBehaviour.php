@@ -38,7 +38,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
         return new EditorMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('editor_main')
+                RmString::new('main/editor')
             ),
             DatabaseEventQueryModel::new(
                 $connection,

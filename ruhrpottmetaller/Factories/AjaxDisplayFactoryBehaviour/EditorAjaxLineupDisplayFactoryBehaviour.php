@@ -21,7 +21,7 @@ class EditorAjaxLineupDisplayFactoryBehaviour
         return new EditorAjaxLineupDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('editor_ajax_lineup')
+                RmString::new('ajax/editor_lineup')
             ),
             DatabaseGigQueryModel::new($connection, DatabaseBandQueryModel::new($connection)),
             AbstractRmInt::new($input['event_id'])

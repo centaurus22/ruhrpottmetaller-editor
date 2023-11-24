@@ -31,7 +31,7 @@ class CityMainDisplayController extends AbstractDataMainDisplayController
         }
 
         if (!$data->hasCurrent()) {
-            $this->view->setTemplate(RmString::new('city_main_empty'));
+            $this->view->setTemplate(RmString::new('main/city_empty'));
             return;
         }
 

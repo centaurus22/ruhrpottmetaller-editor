@@ -16,7 +16,7 @@ class BandNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactoryB
         return new CharNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('band_nav_secondary')
+                RmString::new('nav_secondary/band')
             ),
         );
     }

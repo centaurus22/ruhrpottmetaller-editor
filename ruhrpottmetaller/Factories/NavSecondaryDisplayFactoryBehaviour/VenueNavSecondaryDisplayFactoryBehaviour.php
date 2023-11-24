@@ -18,7 +18,7 @@ class VenueNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactory
         return new CityNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('venue_nav_secondary')
+                RmString::new('nav_secondary/venue')
             ),
             DatabaseCityQueryModel::new($connection)
         );

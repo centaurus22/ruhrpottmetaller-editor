@@ -22,7 +22,7 @@ class EditorHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
         return new GeneralHeadDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('editor_head')
+                RmString::new('head/editor')
             ),
             $this->pageName
         );

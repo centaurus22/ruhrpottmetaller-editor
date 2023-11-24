@@ -16,7 +16,7 @@ class EventNavSecondaryDisplayFactoryBehaviour implements IGeneralDisplayFactory
         return new CharNavSecondaryDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('event_nav_secondary')
+                RmString::new('nav_secondary/event')
             ),
         );
     }

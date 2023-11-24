@@ -31,7 +31,7 @@ class BandMainDisplayController extends AbstractDataMainDisplayController
         }
 
         if (!$data->hasCurrent()) {
-            $this->view->setTemplate(RmString::new('band_main_empty'));
+            $this->view->setTemplate(RmString::new('main/band_empty'));
             return;
         }
 

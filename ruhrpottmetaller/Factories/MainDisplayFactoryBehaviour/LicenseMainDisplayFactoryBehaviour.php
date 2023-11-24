@@ -16,7 +16,7 @@ class LicenseMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavi
         return new LicenseMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('license_main')
+                RmString::new('main/license')
             )
         );
     }

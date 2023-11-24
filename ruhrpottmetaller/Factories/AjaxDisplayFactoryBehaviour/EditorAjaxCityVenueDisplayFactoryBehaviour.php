@@ -19,7 +19,7 @@ class EditorAjaxCityVenueDisplayFactoryBehaviour
         $controller = new EditorAjaxCityVenueDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('editor_ajax_city_venue')
+                RmString::new('ajax/editor_city_venue')
             ),
             DatabaseCityQueryModel::new($connection),
             DatabaseVenueQueryModel::new($connection, DatabaseCityQueryModel::new($connection))

@@ -22,7 +22,7 @@ class GeneralHeadDisplayFactoryBehaviour implements IHeadDisplayFactoryBehaviour
         return new GeneralHeadDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('general_head')
+                RmString::new('head/general')
             ),
             $this->pageName
         );

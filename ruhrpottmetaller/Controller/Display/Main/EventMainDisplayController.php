@@ -27,7 +27,7 @@ class EventMainDisplayController extends AbstractDataMainDisplayController
             ->getEventsByMonth(RmDate::new($this->filterByParameter));
 
         if (!$events->hasCurrent()) {
-            $this->view->setTemplate(RmString::new('event_main_empty'));
+            $this->view->setTemplate(RmString::new('main/event_empty'));
             return;
         }
 

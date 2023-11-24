@@ -18,7 +18,7 @@ class CityMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviour
         return new CityMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('city_main')
+                RmString::new('main/city')
             ),
             DatabaseCityQueryModel::new($connection)
         );

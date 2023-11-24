@@ -22,7 +22,7 @@ class EventMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehaviou
         return new EventMainDisplayController(
             View::new(
                 $templatePath,
-                RmString::new('event_main')
+                RmString::new('main/event')
             ),
             DatabaseEventQueryModel::new(
                 $connection,
