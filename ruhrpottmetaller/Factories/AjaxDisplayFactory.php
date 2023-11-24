@@ -29,7 +29,9 @@ class AjaxDisplayFactory extends AbstractFactory
             throw new \DomainException('Ajax call not understood');
         }
 
-        $behaviourClass = __NAMESPACE__ . '\\' . $behaviour . 'DisplayFactoryBehaviour';
+        $behaviourClass = __NAMESPACE__
+            . '\\AjaxDisplayFactoryBehaviour\\'
+            . $behaviour . 'DisplayFactoryBehaviour';
         $this->displayFactoryBehaviour = new $behaviourClass();
 
         return $this;
