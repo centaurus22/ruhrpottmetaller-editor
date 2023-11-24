@@ -30,7 +30,7 @@ class AjaxDisplayFactory extends AbstractFactory
         }
 
         $behaviourClass = __NAMESPACE__
-            . '\\AjaxDisplayFactoryBehaviour\\'
+            . '\\AjaxFactoryBehaviour\\'
             . $behaviour . 'DisplayFactoryBehaviour';
         $this->displayFactoryBehaviour = new $behaviourClass();
 
