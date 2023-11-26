@@ -15,8 +15,16 @@ class AjaxCommandFactory extends AbstractFactory
 
     public function setFactoryBehaviour(array $input): AjaxCommandFactory
     {
-        if (isset($input['command']) and $input['command'] == 'change_gig_at') {
+        if ($input['command'] == 'change_gig_at') {
             $behaviour = 'EditorAjaxChangeGigAt';
+        } elseif ($input['command'] == 'add_gig_after') {
+                $behaviour = 'EditorAjaxAddGigAfter';
+        } elseif ($input['command'] == 'delete_gig_at') {
+            $behaviour = 'EditorAjaxDeleteGigAt';
+        } elseif ($input['command'] == 'shift_gig_down_at') {
+            $behaviour = 'EditorAjaxShiftGigDownAt';
+        } elseif ($input['command'] == 'shift_gig_up_at') {
+            $behaviour = 'EditorAjaxShiftGigUpAt';
         } else {
             throw new \DomainException('Ajax call not understood');
         }

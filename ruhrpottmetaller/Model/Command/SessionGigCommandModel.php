@@ -49,12 +49,12 @@ class SessionGigCommandModel
         $_SESSION['gigs']->deleteAt($position);
     }
 
-    public function shiftUpGigAt(RmInt $position): void
+    public function shiftGigUpAt(RmInt $position): void
     {
         $_SESSION['gigs']->switch(RmInt::new($position->get() - 1), $position);
     }
 
-    public function shiftDownGigAt(RmInt $position): void
+    public function shiftGigDownAt(RmInt $position): void
     {
         $_SESSION['gigs']->switch(RmInt::new($position->get() + 1), $position);
     }
