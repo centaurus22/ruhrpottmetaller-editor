@@ -47,7 +47,8 @@ function loadCityVenueContent(cityId, venueId, changedField = null)
     xmlHttp.send();
 }
 
-function loadLineupContent(eventId) {
+function loadLineupContent(eventId)
+{
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
@@ -93,7 +94,8 @@ function updateBandSelect(bandOptions, bandId, bandFirstChar)
     xmlHttp.send();
 }
 
-function updateBand(event) {
+function updateBand(event)
+{
     const bandLineupId = event.target.id.substring(8);
     const bandId = event.target.value;
     let bandNewNameInput = document.getElementById('band_new_name_' + bandLineupId);
@@ -104,7 +106,7 @@ function updateBand(event) {
     }
 
     const xmlHttp = new XMLHttpRequest();
-    const file = 'index.php?ajax=1&command=change_gig&band_id=' + bandId;
+    const file = 'index.php?ajax=1&command=change_gig_at&band_id=' + bandId;
     xmlHttp.open('GET', file, true);
     xmlHttp.send();
 }

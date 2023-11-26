@@ -12,7 +12,7 @@ class DatabaseBandCommandModel extends DatabaseCommandModel
         return new static($connection);
     }
 
-    public function addBand(Band $band)
+    public function addBand(Band $band): void
     {
         $query = 'INSERT INTO band SET name = ?, is_visible = ?';
         $this->query(

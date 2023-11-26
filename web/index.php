@@ -1,8 +1,11 @@
 <?php
 
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Factories\AjaxCommandFactory;
+use ruhrpottmetaller\Factories\AjaxDisplayFactory;
+use ruhrpottmetaller\Factories\CommandFactory;
+use ruhrpottmetaller\Factories\DisplayFactory;
 use ruhrpottmetaller\Model\DatabaseConnection;
-use ruhrpottmetaller\Factories\{AjaxDisplayFactory, CommandFactory, DisplayFactory};
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -16,11 +19,17 @@ $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
     ->connect()
     ->getConnection();
 
-CommandFactory::new($databaseConnection)
-    ->getCommandController($input)
-    ->execute();
+if (isset($input['ajax']) and isset($input['command'])) {
+    $commandFactory = AjaxCommandFactory::new($databaseConnection)
+        ->setFactoryBehaviour($input);
+} else {
+    $commandFactory = CommandFactory::new($databaseConnection);
+}
 
-if (isset($input['ajax'])) {
+$commandFactory->getCommandController($input)->execute();
+
+
+if (isset($input['ajax']) and isset($input['content'])) {
     $displayFactory = AjaxDisplayFactory::new($databaseConnection);
 } else {
     $displayFactory = DisplayFactory::new($databaseConnection);
