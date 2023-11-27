@@ -5,6 +5,7 @@ namespace ruhrpottmetaller\Model\Command;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\Gig;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
@@ -57,5 +58,17 @@ class SessionGigCommandModel
     public function shiftGigDownAt(RmInt $position): void
     {
         $_SESSION['gigs']->switch(RmInt::new($position->get() + 1), $position);
+    }
+
+    public function setBandName(RmInt $position, RmString $bandName): void
+    {
+        $_SESSION['gigs']->set($position, $bandName);
+    }
+
+    public function setAdditionalInformation(
+        RmInt $position,
+        RmString $additionalInformation
+    ): void {
+        $_SESSION['gigs']->set($position, $additionalInformation);
     }
 }
