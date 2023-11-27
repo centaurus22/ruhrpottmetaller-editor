@@ -29,18 +29,18 @@ $lineupIndex = 1;
         </select>
         <label for="band_id_<?=$lineupIndex?>" class="screen_reader_only">Band</label>
         <select name="band_id[]" id="band_id_<?=$lineupIndex?>" autocomplete="off" class="edit_band_id"></select>
-        <label for="band_new_name_<?=$lineupIndex?>" class="screen_reader_only"></label>
+        <label for="input_band_name_<?=$lineupIndex?>" class="screen_reader_only"></label>
         <input type="text"
                value="<?=$gig->getBandName()?>"
-               id="band_new_name_<?=$lineupIndex?>"
+               id="input_band_name_<?=$lineupIndex?>"
                class="edit_field"
                placeholder="Name of the new band">
-        <label for="addition_<?=$lineupIndex?>" class="screen_reader_only">Addition</label>
+        <label for="input_additional_information_<?=$lineupIndex?>" class="screen_reader_only">Addition</label>
         <input type="text" 
             value="<?=$gig->getAdditionalInformation()?>"
-            id="addition_<?=$lineupIndex?>"
+            id="input_additional_information_<?=$lineupIndex?>"
             class="edit_field"
-            placeholder="Extra information">
+            placeholder="Additional information">
         <button type="button" id="button_add_<?=$lineupIndex?>">
             <img src="<?=$this->get('imagePath')?>plus_small.png"
                  alt="Add band to lineup"
