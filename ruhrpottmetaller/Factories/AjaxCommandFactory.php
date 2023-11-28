@@ -16,26 +16,26 @@ class AjaxCommandFactory extends AbstractFactory
     public function setFactoryBehaviour(array $input): AjaxCommandFactory
     {
         if ($input['command'] == 'change_gig_at') {
-            $behaviour = 'EditorAjaxChangeGigAt';
+            $behaviour = 'ChangeGigAt';
         } elseif ($input['command'] == 'add_gig_after') {
-                $behaviour = 'EditorAjaxAddGigAfter';
+            $behaviour = 'AddGigAfter';
         } elseif ($input['command'] == 'delete_gig_at') {
-            $behaviour = 'EditorAjaxDeleteGigAt';
+            $behaviour = 'DeleteGigAt';
         } elseif ($input['command'] == 'shift_gig_down_at') {
-            $behaviour = 'EditorAjaxShiftGigDownAt';
+            $behaviour = 'ShiftGigDownAt';
         } elseif ($input['command'] == 'shift_gig_up_at') {
-            $behaviour = 'EditorAjaxShiftGigUpAt';
-        } elseif ($input['command'] == 'set_band_name_at') {
-            $behaviour = 'EditorAjaxSetBandNameAt';
+            $behaviour = 'ShiftGigUpAt';
+        } elseif ($input['command'] == 'set_band_new_name_at') {
+            $behaviour = 'SetBandNewNameAt';
         } elseif ($input['command'] == 'set_additional_information_at') {
-            $behaviour = 'EditorAjaxSetAdditionalInformationAt';
+            $behaviour = 'SetAdditionalInformationAt';
         } else {
             throw new \DomainException('Ajax call not understood');
         }
 
         $behaviourClass = __NAMESPACE__
             . '\\AjaxFactoryBehaviour\\'
-            . $behaviour . 'CommandFactoryBehaviour';
+            . 'EditorAjax' . $behaviour . 'CommandFactoryBehaviour';
         $this->factoryBehaviour = new $behaviourClass($this->connection);
 
         return $this;

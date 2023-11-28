@@ -6,31 +6,31 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 
-class EditorAjaxSetBandNameAtCommandController extends AbstractCommandController
+class EditorAjaxSetBandNewNameAtCommandController extends AbstractCommandController
 {
     protected RmInt $position;
-    protected RmString $bandName;
+    protected RmString $bandNewName;
 
     public function __construct(
         SessionGigCommandModel $commandModel,
         RmInt $position,
-        RmString $bandName
+        RmString $bandNewName
     ) {
         parent::__construct($commandModel);
         $this->position = $position;
-        $this->bandName = $bandName;
+        $this->bandNewName = $bandNewName;
     }
 
     public static function new(
         SessionGigCommandModel $commandModel,
         RmInt $position,
-        RmString $bandName
+        RmString $bandNewName
     ): AbstractCommandController {
-        return new static($commandModel, $position, $bandName);
+        return new static($commandModel, $position, $bandNewName);
     }
 
     public function execute(): void
     {
-        $this->commandModel->setBandNameAt($this->position, $this->bandName);
+        $this->commandModel->setBandNewName($this->position, $this->bandNewName);
     }
 }

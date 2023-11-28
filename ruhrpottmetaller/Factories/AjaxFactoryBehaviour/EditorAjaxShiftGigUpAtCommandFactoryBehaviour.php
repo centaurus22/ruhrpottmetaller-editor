@@ -9,7 +9,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
-class EditorAjaxShiftGigUpAtFactoryBehaviour
+class EditorAjaxShiftGigUpAtCommandFactoryBehaviour
 {
     private mysqli $connection;
 

@@ -15,7 +15,7 @@ class DatabaseGigQueryModel extends DatabaseQueryModel
     private DatabaseBandQueryModel $bandQueryModel;
 
     public function __construct(
-        ?mysqli                $connection,
+        ?mysqli $connection,
         DatabaseBandQueryModel $bandQueryModel
     ) {
         $this->bandQueryModel = $bandQueryModel;
@@ -23,7 +23,7 @@ class DatabaseGigQueryModel extends DatabaseQueryModel
     }
 
     public static function new(
-        ?mysqli                $connection,
+        ?mysqli $connection,
         DatabaseBandQueryModel $bandQueryModel
     ): DatabaseGigQueryModel {
         return new static($connection, $bandQueryModel);
@@ -32,7 +32,7 @@ class DatabaseGigQueryModel extends DatabaseQueryModel
     public function getGigsByEventId(AbstractRmInt $eventId): RmArray
     {
         $query = 'SELECT band_id, additional_information FROM gig
-                                       WHERE event_id = ? ORDER BY id';
+                        WHERE event_id = ? ORDER BY id';
         return $this->query($query, 'i', [$eventId->get()]);
     }
 

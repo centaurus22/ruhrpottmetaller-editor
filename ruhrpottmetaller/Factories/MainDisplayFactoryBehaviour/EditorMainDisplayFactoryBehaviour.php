@@ -14,7 +14,6 @@ use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
-use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
 use ruhrpottmetaller\Model\Query\DatabaseEventQueryModel;
@@ -45,7 +44,6 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
                 DatabaseGigQueryModel::new($connection, $bandQueryModel),
                 DatabaseVenueQueryModel::new($connection, $cityQueryModel)
             ),
-            SessionGigCommandModel::new($bandQueryModel),
             $this->createEvent()
         );
     }

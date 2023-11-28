@@ -5,7 +5,7 @@ function initEditor()
     const venueId = getVenueIdFromDataTag();
     const eventId = getEventIdFromDataTag();
     loadCityVenueContent(cityId, venueId);
-    loadLineupContent(eventId);
+    loadLineupContent('initial', eventId);
 }
 
 function reloadCityVenueContent(citySelectElement, venueSelectElement, changedField)
@@ -62,7 +62,7 @@ function getEventIdFromDataTag()
     return document.getElementById('ajax_lineup').getAttribute('data-event-id');
 }
 
-function loadLineupContent(eventId)
+function loadLineupContent(lineupStatus, eventId)
 {
     const xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
@@ -75,7 +75,7 @@ function loadLineupContent(eventId)
             }
         }
     };
-    const file = "index.php?ajax=1&content=lineup&event_id=" + eventId;
+    const file = 'index.php?ajax=1&content=' + lineupStatus + '_lineup&event_id=' + eventId;
     xmlHttp.open("GET", file, true);
     xmlHttp.send();
 }
@@ -83,6 +83,7 @@ function loadLineupContent(eventId)
 function initBand(band)
 {
     let bandLineupId = band.id.substring(5);
+    let bandLineUpIdConverted = parseInt(bandLineupId) - 1;
     let bandFirstCharSelect = document.getElementById('first_sign_' + bandLineupId)
     bandFirstCharSelect.onchange = (event) => {
         let bandFirstChar = event.target.value;
@@ -101,50 +102,70 @@ function initBand(band)
 
     document.getElementById('button_add_' + bandLineupId).addEventListener('click', function () {
         const xmlHttp = new XMLHttpRequest();
-        const file = 'index.php?ajax=1&command=add_gig_after&position=' + bandLineupId;
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                loadLineupContent('updated', null);
+            }
+        };
+        const file = 'index.php?ajax=1&command=add_gig_after&position=' + bandLineUpIdConverted;
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
 
     document.getElementById('button_delete_' + bandLineupId).addEventListener('click', function () {
         const xmlHttp = new XMLHttpRequest();
-        const file = 'index.php?ajax=1&command=delete_gig_at&position=' + bandLineupId;
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                loadLineupContent('updated', null);
+            }
+        };
+        const file = 'index.php?ajax=1&command=delete_gig_at&position=' + bandLineUpIdConverted;
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
 
     document.getElementById('button_shift_up_' + bandLineupId).addEventListener('click', function () {
         const xmlHttp = new XMLHttpRequest();
-        const file = 'index.php?ajax=1&command=shift_gig_up_at&position=' + bandLineupId;
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                loadLineupContent('updated', null);
+            }
+        };
+        const file = 'index.php?ajax=1&command=shift_gig_up_at&position=' + bandLineUpIdConverted;
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
 
     document.getElementById('button_shift_down_' + bandLineupId).addEventListener('click', function () {
         const xmlHttp = new XMLHttpRequest();
-        const file = 'index.php?ajax=1&command=shift_gig_down_at&position=' + bandLineupId;
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                loadLineupContent('updated', null);
+            }
+        };
+        const file = 'index.php?ajax=1&command=shift_gig_down_at&position=' + bandLineUpIdConverted;
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
 
-    document.getElementById('input_band_name_' + bandLineupId).addEventListener('blur', function (event) {
+    document.getElementById('input_band_new_name_' + bandLineupId).addEventListener('blur', function (event) {
         const xmlHttp = new XMLHttpRequest();
         const file = 'index.php' +
             '?ajax=1' +
-            '&command=set_name_at' +
-            '&position=' + bandLineupId +
-            '&bandName=' + event.target.value;
+            '&command=set_band_new_name_at' +
+            '&position=' + bandLineUpIdConverted +
+            '&band_new_name=' + event.target.value;
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
 
-    document.getElementById('input_band_name_' + bandLineupId).addEventListener('blur', function (event) {
+    document.getElementById('input_additional_information_' + bandLineupId).addEventListener('blur', function (event) {
         const xmlHttp = new XMLHttpRequest();
         const file = 'index.php' +
             '?ajax=1' +
             '&command=set_additional_information_at' +
-            '&position=' + bandLineupId +
-            '&bandName=' + event.target.value
+            '&position=' + bandLineUpIdConverted +
+            '&additional_information=' + event.target.value
         xmlHttp.open('GET', file, true);
         xmlHttp.send();
     })
@@ -156,6 +177,7 @@ function updateBandSelect(bandOptions, bandId, bandFirstChar)
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
             bandOptions.innerHTML = xmlHttp.responseText;
+            bandOptions.dispatchEvent(new Event('change'));
         }
     };
     const file = 'index.php?ajax=1&content=band_options&band_id=' + bandId + '&band_first_char=' + bandFirstChar;
@@ -166,16 +188,17 @@ function updateBandSelect(bandOptions, bandId, bandFirstChar)
 function updateBand(event)
 {
     const bandLineupId = event.target.id.substring(8);
+    let bandLineupIdConverted = parseInt(bandLineupId) - 1;
     const bandId = event.target.value;
-    let bandNewNameInput = document.getElementById('band_new_name_' + bandLineupId);
+    let bandNameInput = document.getElementById('input_band_new_name_' + bandLineupId);
     if (bandId === '3') {
-         bandNewNameInput.style.display = 'inline-block';
+         bandNameInput.style.display = 'inline-block';
     } else {
-         bandNewNameInput.style.display = 'none';
+         bandNameInput.style.display = 'none';
     }
 
     const xmlHttp = new XMLHttpRequest();
-    const file = 'index.php?ajax=1&command=change_gig_at&position=' + bandLineupId + '&band_id=' + bandId;
+    const file = 'index.php?ajax=1&command=change_gig_at&position=' + bandLineupIdConverted + '&band_id=' + bandId;
     xmlHttp.open('GET', file, true);
     xmlHttp.send();
 }

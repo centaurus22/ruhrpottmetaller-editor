@@ -15,7 +15,7 @@ class SessionGigQueryModel
 
     public static function new(): SessionGigQueryModel
     {
-        return new static;
+        return new static();
     }
 
     public function read(): RmArray

@@ -2,8 +2,8 @@
 
 namespace ruhrpottmetaller\Model\Command;
 
-use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\Gig;
+use ruhrpottmetaller\Data\HighLevel\NullBand;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Data\RmArray;
@@ -31,23 +31,20 @@ class SessionGigCommandModel
 
     public function addGigAfter(RmInt $position): void
     {
-        $_SESSION['gigs']->addAfter($position, Gig::new());
+        $band = NullBand::new();
+        $gig = Gig::new()->setBand($band)->setAdditionalInformation(RmString::new(null));
+        $_SESSION['gigs']->addAfter($position, $gig);
     }
 
     public function changeGigAt(RmInt $position, RmInt $bandId): void
     {
-        if ($bandId->get() == 3) {
-            $band = $this->bandModel->getBandById($bandId);
-        } else {
-            $band = Band::new();
-        }
-        $gig = Gig::new()->setBand($band);
-        $_SESSION['gigs']->set($position, $gig);
+        $band = $this->bandModel->getBandById($bandId);
+        $_SESSION['gigs']->get($position)->setBand($band);
     }
 
     public function deleteGigAt(RmInt $position): void
     {
-        $_SESSION['gigs']->deleteAt($position);
+        $_SESSION['gigs']->delete($position);
     }
 
     public function shiftGigUpAt(RmInt $position): void
@@ -60,15 +57,15 @@ class SessionGigCommandModel
         $_SESSION['gigs']->switch(RmInt::new($position->get() + 1), $position);
     }
 
-    public function setBandName(RmInt $position, RmString $bandName): void
+    public function setBandNewName(RmInt $position, RmString $bandNewName): void
     {
-        $_SESSION['gigs']->set($position, $bandName);
+        $_SESSION['gigs']->get($position)->setBandNewName($bandNewName);
     }
 
     public function setAdditionalInformation(
         RmInt $position,
         RmString $additionalInformation
     ): void {
-        $_SESSION['gigs']->set($position, $additionalInformation);
+        $_SESSION['gigs']->get($position)->setAdditionalInformation($additionalInformation);
     }
 }

@@ -31,7 +31,7 @@ class EditorAjaxSetAdditionalInformationAtCommandController extends AbstractComm
 
     public function execute(): void
     {
-        $this->commandModel->setAdditionalInfornationAt(
+        $this->commandModel->setAdditionalInformation(
             $this->position,
             $this->additionalInformation
         );

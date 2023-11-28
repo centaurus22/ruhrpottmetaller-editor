@@ -20,18 +20,20 @@ class AjaxDisplayFactory extends AbstractFactory
     {
 
         if (isset($input['content']) and $input['content'] == 'city_venue') {
-            $behaviour = 'EditorAjaxCityVenue';
-        } elseif (isset($input['content']) and $input['content'] == 'lineup') {
-            $behaviour = 'EditorAjaxLineup';
+            $behaviour = 'CityVenue';
+        } elseif (isset($input['content']) and $input['content'] == 'initial_lineup') {
+            $behaviour = 'InitialLineup';
+        } elseif (isset($input['content']) and $input['content'] == 'updated_lineup') {
+            $behaviour = 'UpdatedLineup';
         } elseif (isset($input['content']) and $input['content'] == 'band_options') {
-            $behaviour = 'EditorAjaxBandOptions';
+            $behaviour = 'BandOptions';
         } else {
             throw new \DomainException('Ajax call not understood');
         }
 
         $behaviourClass = __NAMESPACE__
             . '\\AjaxFactoryBehaviour\\'
-            . $behaviour . 'DisplayFactoryBehaviour';
+            . 'EditorAjax' . $behaviour . 'DisplayFactoryBehaviour';
         $this->displayFactoryBehaviour = new $behaviourClass();
 
         return $this;

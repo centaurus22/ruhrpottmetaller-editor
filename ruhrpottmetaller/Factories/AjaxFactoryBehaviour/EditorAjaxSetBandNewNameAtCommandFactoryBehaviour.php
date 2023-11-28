@@ -4,13 +4,13 @@ namespace ruhrpottmetaller\Factories\AjaxFactoryBehaviour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\EditorAjaxSetBandNameAtCommandController;
+use ruhrpottmetaller\Controller\Command\EditorAjaxSetBandNewNameAtCommandController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
 
-class EditorAjaxSetBandNameAtFactoryBehaviour
+class EditorAjaxSetBandNewNameAtCommandFactoryBehaviour
 {
     private mysqli $connection;
 
@@ -22,10 +22,10 @@ class EditorAjaxSetBandNameAtFactoryBehaviour
     public function getCommandController(
         array $input
     ): AbstractCommandController {
-        return EditorAjaxSetBandNameAtCommandController::new(
+        return EditorAjaxSetBandNewNameAtCommandController::new(
             SessionGigCommandModel::new(DatabaseBandQueryModel::new($this->connection)),
             RmInt::new($input['position']),
-            RmString::new($input['band_name'])
+            RmString::new($input['band_new_name'])
         );
     }
 }
