@@ -4,7 +4,6 @@ namespace ruhrpottmetaller\Data;
 
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class RmArray extends AbstractRmObject implements IData
 {
@@ -21,6 +20,11 @@ class RmArray extends AbstractRmObject implements IData
     {
         $this->array[$position->get()] = $value;
         return $this;
+    }
+
+    public function get(RmInt $position)
+    {
+        return $this->array[$position->get()];
     }
 
     public function addAfter(RmInt $position, $value): RmArray
@@ -72,5 +76,11 @@ class RmArray extends AbstractRmObject implements IData
     public function isFirst(): bool
     {
         return $this->pointer === 0;
+    }
+
+    public function resetPointer(): RmArray
+    {
+        $this->pointer = 0;
+        return $this;
     }
 }
