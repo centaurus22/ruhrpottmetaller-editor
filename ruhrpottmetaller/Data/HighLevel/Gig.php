@@ -12,9 +12,15 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
 class Gig extends AbstractRmObject implements IData
 {
     private AbstractRmString $additionalInformation;
-    private Band $band;
+    private IBand $band;
+    private AbstractRmString $bandNewName;
 
-    public function setBand(Band $band): Gig
+    public function __construct()
+    {
+        $this->bandNewName = AbstractRmString::new(null);
+    }
+
+    public function setBand(IBand $band): Gig
     {
         $this->band = $band;
         return $this;
@@ -43,7 +49,7 @@ class Gig extends AbstractRmObject implements IData
 
     public function getBandFirstChar(): RmString
     {
-        $bandName = $this->band->getName();
+        $bandName = $this->getBandName();
         if ($bandName->isNull()) {
             return RmString::new(' ');
         } elseif ($bandName->hasSpecialFirstChar()) {
@@ -56,5 +62,16 @@ class Gig extends AbstractRmObject implements IData
     public function isBandVisible(): AbstractRmBool
     {
         return $this->band->getIsVisible();
+    }
+
+    public function setBandNewName(AbstractRmString $bandNewName): Gig
+    {
+        $this->bandNewName = $bandNewName;
+        return $this;
+    }
+
+    public function getBandNewName(): AbstractRmString
+    {
+        return $this->bandNewName;
     }
 }

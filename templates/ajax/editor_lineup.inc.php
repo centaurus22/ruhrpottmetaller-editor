@@ -31,7 +31,7 @@ $lineupIndex = 1;
         <select name="band_id[]" id="band_id_<?=$lineupIndex?>" autocomplete="off" class="edit_band_id"></select>
         <label for="input_band_name_<?=$lineupIndex?>" class="screen_reader_only"></label>
         <input type="text"
-               value="<?=$gig->getBandName()?>"
+               value="<?=$gig->getBandNewName()?>"
                id="input_band_name_<?=$lineupIndex?>"
                class="edit_field"
                placeholder="Name of the new band">
