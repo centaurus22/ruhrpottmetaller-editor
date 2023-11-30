@@ -3,6 +3,7 @@
 namespace ruhrpottmetaller\Controller\Display\Ajax;
 
 use ruhrpottmetaller\Controller\Display\Main\AbstractDataMainDisplayController;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Query\SessionGigQueryModel;
 use ruhrpottmetaller\View\View;
 
@@ -22,6 +23,12 @@ class EditorAjaxUpdatedLineupDisplayController extends AbstractDataMainDisplayCo
     {
         $gigs = $this->gigQueryModel->read();
         $gigs->resetPointer();
+
+        if (!$gigs->hasCurrent()) {
+            $this->view->setTemplate(RmString::new('ajax/editor_lineup_empty'));
+            return;
+        }
+
         $this->view->set('gigs', $gigs);
     }
 }
