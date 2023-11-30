@@ -9,3 +9,65 @@
     position: absolute !important;
     word-wrap:normal !important;
 }
+
+form {
+    min-width: 80%;
+    text-align: center;
+}
+
+legend {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fieldset_general {
+    margin: 20px 0;
+}
+
+.fieldset_general > div, #ajax_city_venue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fieldset_general > div {
+    text-align: left;
+    width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#ajax_lineup  {
+    margin-bottom: 20px;
+}
+
+.fieldset_band {
+    border: 0;
+    color: royalblue;
+}
+
+label {
+    width: 47px;
+    display: inline-block;
+}
+
+input {
+    width: 253px;
+}
+
+select {
+    width: 261px;
+}
+
+#date_start {
+    width: 125px;
+}
+
+#length {
+    width: 40px;
+}
+
+.edit_band_id, .edit_field {
+    width: 250px;
+}
