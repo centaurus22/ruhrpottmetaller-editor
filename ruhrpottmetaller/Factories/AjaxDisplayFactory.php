@@ -21,11 +21,24 @@ class AjaxDisplayFactory extends AbstractFactory
 
         if (isset($input['content']) and $input['content'] == 'city_venue') {
             $behaviour = 'CityVenue';
-        } elseif (isset($input['content']) and $input['content'] == 'initial_lineup') {
-            $behaviour = 'InitialLineup';
-        } elseif (isset($input['content']) and $input['content'] == 'updated_lineup') {
+        } elseif (
+            isset($input['content'])
+            and $input['content'] == 'initial_lineup'
+        ) {
+            if ($input['event_id'] == '') {
+                $behaviour = 'NewLineup';
+            } else {
+                $behaviour = 'InitialLineup';
+            }
+        } elseif (
+            isset($input['content'])
+            and $input['content'] == 'updated_lineup'
+        ) {
             $behaviour = 'UpdatedLineup';
-        } elseif (isset($input['content']) and $input['content'] == 'band_options') {
+        } elseif (
+            isset($input['content'])
+            and $input['content'] == 'band_options'
+        ) {
             $behaviour = 'BandOptions';
         } else {
             throw new \DomainException('Ajax call not understood');

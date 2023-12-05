@@ -2,20 +2,21 @@
 <div>
     <label for="city_id" class="edit_label">City</label>
     <select id="city_id" name="city_id">
-    <?php while ($cities->hasCurrent()) : ?>
-        <?php $cityId = $cities->getCurrent()->getId()->get(); ?>
-        <?php $cityName = $cities->getCurrent()->getName()->get(); ?>
-        <?php if ($this->get('cityId')->get() == $cities->getCurrent()->getId()->get()) : ?>
-            <?=printf(
-                '<option value="%1$u" selected="selected">%2$s</option>',
-                $cityId,
-                $cityName
-            );?>
-        <?php else : ?>
-            <option value="<?=$cityId?>"><?=$cityName?></option>
-        <?php endif; ?>
-        <?php $cities->pointAtNext(); ?>
-    <?php endwhile; ?>
+        <option value="0"></option>
+        <?php while ($cities->hasCurrent()) : ?>
+            <?php $cityId = $cities->getCurrent()->getId()->get(); ?>
+            <?php $cityName = $cities->getCurrent()->getName()->get(); ?>
+            <?php if ($this->get('cityId')->get() == $cities->getCurrent()->getId()->get()) : ?>
+                <?=printf(
+                    '<option value="%1$u" selected="selected">%2$s</option>',
+                    $cityId,
+                    $cityName
+                );?>
+            <?php else : ?>
+                <option value="<?=$cityId?>"><?=$cityName?></option>
+            <?php endif; ?>
+            <?php $cities->pointAtNext(); ?>
+        <?php endwhile; ?>
     </select>
 </div>
 <?php if ($this->get('getNewCity')->isFalse()) : ?>

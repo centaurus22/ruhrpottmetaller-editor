@@ -27,7 +27,10 @@ class DisplayFactory extends AbstractFactory
     {
         $allowedBehaviours = $this->getAllowedFactoryBehaviours();
 
-        if (isset($input['action']) and $input['action'] == 'edit') {
+        if (
+            isset($input['action'])
+            and ($input['action'] == 'edit' or $input['action'] == 'add')
+        ) {
             $this->generalBehaviour = $allowedBehaviours[$input['action']];
             $pageName = RmString::new($input['action']);
         } elseif (
@@ -47,11 +50,14 @@ class DisplayFactory extends AbstractFactory
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
 
 
-        if (isset($input['action']) and $input['action'] == 'edit') {
+        if (
+            isset($input['action'])
+            and ($input['action'] == 'edit' or $input['action'] == 'add')
+        ) {
             $this->mainDisplayFactoryBehaviour->setInput($input);
         }
 
-        if ($pageName->get() == 'edit') {
+        if ($pageName->get() == 'edit' or $pageName->get() == 'add') {
             $this->headDisplayFactoryBehaviour = new EditorHeadDisplayFactoryBehaviour($pageName);
         } else {
             $this->headDisplayFactoryBehaviour = new GeneralHeadDisplayFactoryBehaviour($pageName);
@@ -122,6 +128,7 @@ class DisplayFactory extends AbstractFactory
     {
         return [
             'edit' => 'Editor',
+            'add' => 'Editor',
             'events' => 'Event',
             'bands' => 'Band',
             'venues' => 'Venue',

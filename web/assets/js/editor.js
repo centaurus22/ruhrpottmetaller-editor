@@ -62,24 +62,6 @@ function getEventIdFromDataTag()
     return document.getElementById('ajax_lineup').getAttribute('data-event-id');
 }
 
-function addEventListenerToFirstGigButton()
-{
-    const addFirstGigButton = document.getElementById('button_add_first');
-    if (addFirstGigButton !== null) {
-        addFirstGigButton.addEventListener('click', function () {
-            const xmlHttp = new XMLHttpRequest();
-            xmlHttp.onreadystatechange = function () {
-                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
-                    loadLineupContent('updated', null);
-                }
-            };
-            const file = 'index.php?ajax=1&command=add_gig_after&position=-1';
-            xmlHttp.open('GET', file, true);
-            xmlHttp.send();
-        })
-    }
-}
-
 function loadLineupContent(lineupStatus, eventId)
 {
     const xmlHttp = new XMLHttpRequest();
@@ -97,6 +79,24 @@ function loadLineupContent(lineupStatus, eventId)
     const file = 'index.php?ajax=1&content=' + lineupStatus + '_lineup&event_id=' + eventId;
     xmlHttp.open("GET", file, true);
     xmlHttp.send();
+}
+
+function addEventListenerToFirstGigButton()
+{
+    const addFirstGigButton = document.getElementById('button_add_first');
+    if (addFirstGigButton !== null) {
+        addFirstGigButton.addEventListener('click', function () {
+            const xmlHttp = new XMLHttpRequest();
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+                    loadLineupContent('updated', null);
+                }
+            };
+            const file = 'index.php?ajax=1&command=add_gig_after&position=0';
+            xmlHttp.open('GET', file, true);
+            xmlHttp.send();
+        })
+    }
 }
 
 function initBand(band)

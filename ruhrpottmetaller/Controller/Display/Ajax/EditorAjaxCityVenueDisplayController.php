@@ -24,8 +24,8 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
     private const NEW_CITY = 1;
     private const NEW_VENUE = 1;
     public function __construct(
-        View                    $view,
-        DatabaseCityQueryModel  $cityQueryModel,
+        View $view,
+        DatabaseCityQueryModel $cityQueryModel,
         DatabaseVenueQueryModel $venueQueryModel
     ) {
         parent::__construct($view);
@@ -47,23 +47,23 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
         }
     }
 
-    public function setCityId(AbstractRmInt $id)
+    public function setCityId(AbstractRmInt $id): void
     {
         $this->cityId = $id;
     }
 
-    public function setVenueId(AbstractRmInt $id)
+    public function setVenueId(AbstractRmInt $id): void
     {
         $this->venueId = $id;
     }
 
-    private function setValuesIfNewCity()
+    private function setValuesIfNewCity(): void
     {
         $this->view->set('getNewCity', RmTrue::new(true));
         $this->view->set('getNewVenue', RmTrue::new(true));
     }
 
-    private function setValuesIfNoNewCity()
+    private function setValuesIfNoNewCity(): void
     {
         $this->view->set('getNewCity', RmFalse::new(false));
 
@@ -72,10 +72,11 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
                 'venues',
                 $this->addNewVenueObject($this->venueQueryModel->getVenuesByCityId($this->cityId))
             );
-            $this->view->set('venueId', $this->venueId);
         } else {
             $this->view->set('venues', $this->addNewVenueObject($this->venueQueryModel->getVenues()));
         }
+
+        $this->view->set('venueId', $this->venueId);
 
         if ($this->venueId->get() === self::NEW_VENUE) {
             $this->view->set('getNewVenue', RmTrue::new(true));

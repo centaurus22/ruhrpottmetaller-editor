@@ -8,10 +8,13 @@ use ruhrpottmetaller\Controller\Display\Main\EditorMainDisplayController;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Event;
 use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\HighLevel\IEvent;
 use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmNullInt;
+use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Factories\IGeneralDisplayFactoryBehaviour;
 use ruhrpottmetaller\Model\Query\DatabaseBandQueryModel;
@@ -28,6 +31,7 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
     {
         $this->input = $input;
     }
+
     public function getDisplayController(
         RmString $templatePath,
         mysqli $connection
@@ -48,7 +52,31 @@ class EditorMainDisplayFactoryBehaviour implements IGeneralDisplayFactoryBehavio
         );
     }
 
-    private function createEvent(): Event
+    private function createEvent(): IEvent
+    {
+        if ($this->input['action'] == 'edit') {
+            return $this->loadEvent();
+        }
+
+        return $this->createNewEvent();
+    }
+
+    private function createNewEvent(): IEvent
+    {
+        return Festival::new()
+            ->setId(RmNullInt::new(null))
+            ->setName(RmNullString::new(null))
+            ->setDateStart(RmDate::new(substr(
+                $this->input['date'],
+                0,
+                8
+            ) . '1'))
+            ->setNumberOfDays(RmInt::new(1))
+            ->setVenue(NullVenue::new())
+            ->setUrl(RmNullString::new(null));
+    }
+
+    private function loadEvent(): Event
     {
         if (isset($this->input['number_of_days']) and $this->input['number_of_days'] > 1) {
             $event = Festival::new();

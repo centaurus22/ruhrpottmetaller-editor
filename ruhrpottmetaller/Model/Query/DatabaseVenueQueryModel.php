@@ -16,7 +16,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
     private DatabaseCityQueryModel $queryCityModel;
 
     public function __construct(
-        ?mysqli                $connection,
+        ?mysqli $connection,
         DatabaseCityQueryModel $queryCityModel
     ) {
         parent::__construct($this->connection = $connection);
@@ -24,7 +24,7 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
     }
 
     public static function new(
-        ?mysqli                $connection,
+        ?mysqli $connection,
         DatabaseCityQueryModel $queryCityModel
     ): DatabaseVenueQueryModel {
         return new static($connection, $queryCityModel);
