@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Command;
+namespace ruhrpottmetaller\Controller\Command\Ajax;
 
+use ruhrpottmetaller\Controller\Command\AbstractCommandController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 

@@ -1,11 +1,12 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Command;
+namespace ruhrpottmetaller\Controller\Command\Ajax;
 
+use ruhrpottmetaller\Controller\Command\AbstractCommandController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;
 
-class EditorAjaxShiftGigDownAtCommandController extends AbstractCommandController
+class EditorAjaxDeleteGigAtCommandController extends AbstractCommandController
 {
     protected RmInt $position;
 
@@ -26,6 +27,6 @@ class EditorAjaxShiftGigDownAtCommandController extends AbstractCommandControlle
 
     public function execute(): void
     {
-        $this->commandModel->shiftGigDownAt($this->position);
+        $this->commandModel->deleteGigAt($this->position);
     }
 }

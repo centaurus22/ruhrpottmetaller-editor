@@ -3,8 +3,8 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\GeneralCommandController;
-use ruhrpottmetaller\Controller\Command\NullCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\NullCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;

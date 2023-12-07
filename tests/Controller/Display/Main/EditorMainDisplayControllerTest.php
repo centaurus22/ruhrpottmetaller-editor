@@ -77,7 +77,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             NullEvent::new()
         );
 
@@ -152,7 +151,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             $event
         );
 
@@ -221,7 +219,6 @@ final class EditorMainDisplayControllerTest extends TestCase
                     $cityQueryModel
                 )
             ),
-            SessionGigCommandModelMock::new(DatabaseBandQueryModel::new(null)),
             $event
         );
 

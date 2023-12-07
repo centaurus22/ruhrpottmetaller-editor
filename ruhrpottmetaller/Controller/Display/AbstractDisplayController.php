@@ -15,7 +15,7 @@ abstract class AbstractDisplayController implements IDisplayController
         $this->view = $view;
     }
 
-    public static function new(View $view)
+    public static function new(View $view): static
     {
         return new static($view);
     }
@@ -47,7 +47,7 @@ abstract class AbstractDisplayController implements IDisplayController
     protected function renderSubController(
         string $subControllerId,
         AbstractDisplayController $subController
-    ) {
+    ): void {
         $this->view->set($subControllerId . 'Output', $subController->render());
     }
 

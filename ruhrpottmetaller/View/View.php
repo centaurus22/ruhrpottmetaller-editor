@@ -33,7 +33,7 @@ class View
         return $this;
     }
 
-    public function set(string $key, IData $value)
+    public function set(string $key, IData $value): void
     {
         $this->data[$key] = $value;
     }

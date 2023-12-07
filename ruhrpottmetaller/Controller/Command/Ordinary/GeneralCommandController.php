@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Command;
+namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
 class GeneralCommandController extends AbstractGeneralCommandController
 {

@@ -4,7 +4,7 @@ namespace ruhrpottmetaller\Factories\AjaxFactoryBehaviour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\EditorAjaxSetBandNewNameAtCommandController;
+use ruhrpottmetaller\Controller\Command\Ajax\EditorAjaxSetBandNewNameAtCommandController;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 use ruhrpottmetaller\Model\Command\SessionGigCommandModel;

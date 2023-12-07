@@ -15,36 +15,18 @@ class DatabaseEventCommandModel extends DatabaseCommandModel
     public function setSoldOut(RmInt $eventId): void
     {
         $query = 'UPDATE event SET is_sold_out = 1 WHERE id = ?';
-        $this->query(
-            $query,
-            'i',
-            [
-                $eventId->get()
-            ]
-        );
+        $this->query($query, 'i', [$eventId->get()]);
     }
 
     public function setCanceled(RmInt $eventId): void
     {
         $query = 'UPDATE event SET is_canceled = 1 WHERE id = ?';
-        $this->query(
-            $query,
-            'i',
-            [
-                $eventId->get()
-            ]
-        );
+        $this->query($query, 'i', [$eventId->get()]);
     }
 
     public function delete(RmInt $eventId): void
     {
         $query = 'DELETE FROM event WHERE id = ?';
-        $this->query(
-            $query,
-            'i',
-            [
-                $eventId->get()
-            ]
-        );
+        $this->query($query, 'i', [$eventId->get()]);
     }
 }

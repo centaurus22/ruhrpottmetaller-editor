@@ -7,7 +7,7 @@ namespace tests\ruhrpottmetaller\Controller\Command;
 use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\GeneralCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController;
 use ruhrpottmetaller\Data\HighLevel\{Band, City, Venue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
@@ -34,7 +34,7 @@ final class GeneralCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
@@ -79,7 +79,7 @@ final class GeneralCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseBandCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
@@ -124,7 +124,7 @@ final class GeneralCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\GeneralCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseVenueCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel

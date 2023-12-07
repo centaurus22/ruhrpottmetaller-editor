@@ -14,8 +14,8 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     private DatabaseVenueQueryModel $venueQueryModel;
 
     public function __construct(
-        ?mysqli                 $connection,
-        DatabaseGigQueryModel   $gigQueryModel,
+        ?mysqli $connection,
+        DatabaseGigQueryModel $gigQueryModel,
         DatabaseVenueQueryModel $venueQueryModel
     ) {
         parent::__construct($connection);
@@ -24,8 +24,8 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     }
 
     public static function new(
-        ?mysqli                 $connection,
-        DatabaseGigQueryModel   $gigQueryModel,
+        ?mysqli $connection,
+        DatabaseGigQueryModel $gigQueryModel,
         DatabaseVenueQueryModel $venueQueryModel
     ): DatabaseEventQueryModel {
         return new static($connection, $gigQueryModel, $venueQueryModel);
@@ -86,7 +86,7 @@ class DatabaseEventQueryModel extends DatabaseQueryModel
     }
 
     protected function addGeneralData(
-        Event    $event,
+        Event $event,
         stdClass $object
     ): Event {
         $venue = $this->venueQueryModel

@@ -1,7 +1,8 @@
 <?php
 
-namespace ruhrpottmetaller\Controller\Command;
+namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
+use ruhrpottmetaller\Controller\Command\AbstractCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 
 abstract class AbstractGeneralCommandController extends AbstractCommandController
