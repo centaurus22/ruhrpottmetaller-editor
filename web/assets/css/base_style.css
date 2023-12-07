@@ -158,7 +158,7 @@ footer {
     text-decoration: line-through;
 }
 
-.invisible {
+.invisible, .warning {
     color: red;
 }
 
