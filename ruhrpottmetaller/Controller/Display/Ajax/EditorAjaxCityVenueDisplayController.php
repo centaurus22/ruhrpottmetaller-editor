@@ -73,7 +73,7 @@ class EditorAjaxCityVenueDisplayController extends AbstractDataMainDisplayContro
                 $this->addNewVenueObject($this->venueQueryModel->getVenuesByCityId($this->cityId))
             );
         } else {
-            $this->view->set('venues', $this->addNewVenueObject($this->venueQueryModel->getVenues()));
+            $this->view->set('venues', $this->venueQueryModel->getVenues());
         }
 
         $this->view->set('venueId', $this->venueId);
