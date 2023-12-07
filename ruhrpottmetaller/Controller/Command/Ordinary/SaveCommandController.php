@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
-class SaveCommandController extends AbstractGeneralCommandController
+class SaveCommandController extends AbstractOrdinaryCommandController
 {
     public function execute(): void
     {

@@ -5,7 +5,7 @@ namespace ruhrpottmetaller\Controller\Command\Ordinary;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 
-abstract class AbstractGeneralCommandController extends AbstractCommandController
+abstract class AbstractOrdinaryCommandController extends AbstractCommandController
 {
     protected ?AbstractNamedHighLevelData $highLevelData;
 

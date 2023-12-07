@@ -2,7 +2,7 @@
 
 namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
-class NullCommandController extends AbstractGeneralCommandController
+class NullCommandController extends AbstractOrdinaryCommandController
 {
     public function execute(): void
     {
