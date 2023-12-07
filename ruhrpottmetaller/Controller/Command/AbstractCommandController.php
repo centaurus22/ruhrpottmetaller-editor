@@ -2,9 +2,11 @@
 
 namespace ruhrpottmetaller\Controller\Command;
 
+use ruhrpottmetaller\Model\Command\DatabaseCommandModel;
+
 abstract class AbstractCommandController
 {
-    protected $commandModel;
+    protected DatabaseCommandModel $commandModel;
 
     public function __construct($commandModel)
     {

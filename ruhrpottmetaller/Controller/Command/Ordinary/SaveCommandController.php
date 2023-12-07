@@ -6,6 +6,6 @@ class SaveCommandController extends AbstractOrdinaryCommandController
 {
     public function execute(): void
     {
-        $this->commandModel->replaceData($this->highLevelData);
+        $this->commandModel->replaceData($this->data);
     }
 }

@@ -4,24 +4,25 @@ namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
+use ruhrpottmetaller\Data\IData;
 
 abstract class AbstractOrdinaryCommandController extends AbstractCommandController
 {
-    protected ?AbstractNamedHighLevelData $highLevelData;
+    protected ?IData $data;
 
     public function __construct(
         $commandModel,
-        ?AbstractNamedHighLevelData $highLevelData
+        ?IData $data
     ) {
         parent::__construct($commandModel);
-        $this->highLevelData = $highLevelData;
+        $this->data = $data;
     }
 
     public static function new(
         $commandModel,
-        ?AbstractNamedHighLevelData $highLevelData
+        ?AbstractNamedHighLevelData $data
     ): AbstractCommandController {
-        return new static($commandModel, $highLevelData);
+        return new static($commandModel, $data);
     }
 
     abstract public function execute(): void;
