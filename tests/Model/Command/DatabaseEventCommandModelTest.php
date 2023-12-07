@@ -85,7 +85,7 @@ final class DatabaseEventCommandModelTest extends TestCase
         $this->commandModel->setSoldOut(RmInt::new(1));
         $this->assertTrue(
             $this->queryModel
-                ->getEventsByMonth(RmDate::new("2022-01-01"))
+                ->getEventsByMonth(RmDate::new('2022-01-01'))
                 ->getCurrent()
                 ->getIsSoldOut()
                 ->get()
