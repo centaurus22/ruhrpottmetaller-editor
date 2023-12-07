@@ -3,7 +3,7 @@
 namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\Ordinary\GeneralCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController;
 use ruhrpottmetaller\Controller\Command\Ordinary\NullCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\HighLevel\Band;
@@ -26,7 +26,7 @@ class CommandFactory extends AbstractFactory
         if (isset($input['save']) and array_key_exists($input['save'], $dataTypes)) {
             $modelClass = 'ruhrpottmetaller\\Model\\' . $dataTypes[$input['save']] . 'CommandModel';
 
-            return GeneralCommandController::new(
+            return SaveCommandController::new(
                 new $modelClass($this->connection),
                 $this->getDataObject($input)
             );
