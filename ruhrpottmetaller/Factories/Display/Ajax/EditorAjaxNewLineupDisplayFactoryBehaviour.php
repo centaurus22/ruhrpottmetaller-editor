@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories\AjaxDisplayFactoryBehaviour;
+namespace ruhrpottmetaller\Factories\Display\Ajax;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\Ajax\EditorAjaxNewLineupDisplayController;

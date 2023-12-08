@@ -4,9 +4,9 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, BaseDisplayController};
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
-use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\EditorHeadDisplayFactoryBehaviour;
-use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\GeneralHeadDisplayFactoryBehaviour;
-use ruhrpottmetaller\Factories\HeadDisplayFactoryBehaviour\IHeadDisplayFactoryBehaviour;
+use ruhrpottmetaller\Factories\Display\Head\EditorHeadDisplayFactoryBehaviour;
+use ruhrpottmetaller\Factories\Display\Head\GeneralHeadDisplayFactoryBehaviour;
+use ruhrpottmetaller\Factories\Display\Head\IHeadDisplayFactoryBehaviour;
 use ruhrpottmetaller\View\View;
 
 class DisplayFactory extends AbstractFactory
@@ -45,7 +45,7 @@ class DisplayFactory extends AbstractFactory
         }
 
         $mainBehaviourClass = __NAMESPACE__
-            . '\\MainDisplayFactoryBehaviour\\'
+            . '\\Display\\Main\\'
             . $this->generalBehaviour . 'MainDisplayFactoryBehaviour';
         $this->mainDisplayFactoryBehaviour = new $mainBehaviourClass();
 
@@ -105,7 +105,7 @@ class DisplayFactory extends AbstractFactory
         }
 
         $navSecondaryBehaviourClass = __NAMESPACE__
-            . '\\NavSecondaryDisplayFactoryBehaviour\\'
+            . '\\Display\\NavSecondary\\'
             . $this->generalBehaviour . 'NavSecondaryDisplayFactoryBehaviour';
         $this->navSecondaryDisplayFactoryBehaviour = new $navSecondaryBehaviourClass();
 

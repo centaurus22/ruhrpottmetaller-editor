@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories\NavSecondaryDisplayFactoryBehaviour;
+namespace ruhrpottmetaller\Factories\Display\NavSecondary;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Display\{AbstractDisplayController, NavSecondary\CityNavSecondaryDisplayController};

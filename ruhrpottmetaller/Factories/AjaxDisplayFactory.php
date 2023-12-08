@@ -45,7 +45,7 @@ class AjaxDisplayFactory extends AbstractFactory
         }
 
         $behaviourClass = __NAMESPACE__
-            . '\\AjaxFactoryBehaviour\\'
+            . '\\Display\\Ajax\\'
             . 'EditorAjax' . $behaviour . 'DisplayFactoryBehaviour';
         $this->displayFactoryBehaviour = new $behaviourClass();
 

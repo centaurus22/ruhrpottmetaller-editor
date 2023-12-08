@@ -34,7 +34,7 @@ class AjaxCommandFactory extends AbstractFactory
         }
 
         $behaviourClass = __NAMESPACE__
-            . '\\AjaxFactoryBehaviour\\'
+            . '\\Command\\Ajax\\'
             . 'EditorAjax' . $behaviour . 'CommandFactoryBehaviour';
         $this->factoryBehaviour = new $behaviourClass($this->connection);
 
