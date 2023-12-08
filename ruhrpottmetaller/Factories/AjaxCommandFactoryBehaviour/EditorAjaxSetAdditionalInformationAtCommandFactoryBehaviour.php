@@ -1,6 +1,6 @@
 <?php
 
-namespace ruhrpottmetaller\Factories\AjaxFactoryBehaviour;
+namespace ruhrpottmetaller\Factories\AjaxCommandFactoryBehaviour;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
