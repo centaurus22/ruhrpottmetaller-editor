@@ -20,13 +20,12 @@ $databaseConnection = DatabaseConnection::new($pathToDatabaseConfig)
     ->getConnection();
 
 if (isset($input['ajax']) and isset($input['command'])) {
-    $commandFactory = AjaxCommandFactory::new($databaseConnection)
-        ->setFactoryBehaviour($input);
+    $commandFactory = AjaxCommandFactory::new($databaseConnection);
 } else {
     $commandFactory = CommandFactory::new($databaseConnection);
 }
 
-$commandFactory->getCommandController($input)->execute();
+$commandFactory->setFactoryBehaviour($input)->getCommandController($input)->execute();
 
 
 if (isset($input['ajax']) and isset($input['content'])) {
