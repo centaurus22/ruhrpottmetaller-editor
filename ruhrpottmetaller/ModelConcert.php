@@ -21,8 +21,9 @@ class ModelConcert
                 event.date_end,
                 event.name AS name,
                 event.url,
-                event_instagram.time_published_last as published,
+                event.published as published,
                 event.sold_out AS ausverkauft,
+                event.published AS published,
                 venue.name AS venue_name,
                 city.name AS city_name
             FROM
@@ -31,8 +32,6 @@ class ModelConcert
                 venue ON event.venue_id = venue.id
             LEFT JOIN
                 city ON venue.city_id = city.id
-            LEFT JOIN
-                event_instagram ON event.id = event_instagram.event_id
             WHERE
                 date_start LIKE ?
             ORDER BY
@@ -75,6 +74,7 @@ class ModelConcert
                 event.url,
                 event_instagram.time_published_last as published,
                 event.sold_out AS ausverkauft,
+                event.published AS published,
                 venue.name AS venue_name,
                 venue.id as venue_id,
                 city.name AS city_name,
@@ -85,8 +85,6 @@ class ModelConcert
                 venue ON event.venue_id = venue.id
             LEFT JOIN
                 city ON venue.city_id = city.id
-            LEFT JOIN
-                event_instagram ON event.id = event_instagram.event_id
             WHERE
                 event.id = ?
             ORDER BY
@@ -220,11 +218,21 @@ class ModelConcert
         return $result;
     }
 
-
     public function setSoldOut(int $id): int
     {
         $mysqli = $this->mysqli;
         $stmt = $mysqli->prepare('UPDATE event SET sold_out=1 WHERE id = ?');
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->affected_rows;
+        $stmt->close();
+        return $result;
+    }
+
+    public function setPublished(int $id): int
+    {
+        $mysqli = $this->mysqli;
+        $stmt = $mysqli->prepare('UPDATE `event` SET published = 1 WHERE id = ?');
         $stmt->bind_param('i', $id);
         $stmt->execute();
         $result = $stmt->affected_rows;

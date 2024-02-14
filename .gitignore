@@ -2,6 +2,9 @@ db_preferences.inc.php
 /vendor/
 /composer.lock
 
+.htpasswd
+.htaccess
+
 *.swp
 *.swo
 .phpunit.cache/
