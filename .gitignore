@@ -1,4 +1,6 @@
 #Passwords etc
+.htpasswd
+.htaccess
 db_preferences.inc.php
 
 #Automatically downloaded files

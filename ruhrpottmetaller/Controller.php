@@ -649,7 +649,7 @@ class Controller
 
     private function getFirstSign(?string $band_name): string
     {
-        $first_char = mb_substr($band_name, 0, 1);
+        $first_char = mb_substr($band_name ?? '', 0, 1);
         $first_char = mb_strtoupper($first_char);
         if (in_array($first_char, range('A', 'Z'))) {
             return $first_char;
@@ -740,7 +740,7 @@ class Controller
     private function prefillConcertEditor(ModelSession $Session_Model)
     {
         $model_involved = (isset($this->request['edit_id']) and is_numeric($this->request['edit_id']));
-        if ($model_involved == true) {
+        if ($model_involved) {
             $Concert_Model = new ModelConcert($this->mysqli);
             $concert = $Concert_Model->getConcert($this->request['edit_id']);
         } else {
@@ -753,7 +753,7 @@ class Controller
         $this->setRequestEditor($concert, 'url', $model_involved);
 
         if (!isset($this->request['length'])) {
-            if ($model_involved == true and $concert[0]['date_end'] != '') {
+            if ($model_involved and $concert[0]['date_end'] != '') {
                 $date_start = strtotime($concert[0]['date_start']);
                 $date_end = strtotime($concert[0]['date_end']);
                 $seconds_per_day = 3600 * 24;
@@ -805,7 +805,7 @@ class Controller
                     'band_id',
                     $this->request['band_id'][$band_index]
                 );
-                if ($band_new_name_check_result['include_array'] == true) :
+                if ($band_new_name_check_result['include_array']) :
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'band_new_name',
@@ -813,7 +813,7 @@ class Controller
                     );
                 endif;
 
-                if ($addition_check_result['include_array'] == true) :
+                if ($addition_check_result['include_array']) :
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'addition',
@@ -821,7 +821,7 @@ class Controller
                     );
                 endif;
 
-                if ($first_sign_check_result['include_array'] == true) :
+                if ($first_sign_check_result['include_array']) :
                     $Session_Model->updateBandLineUp(
                         $band_index,
                         'first_sign',
@@ -841,14 +841,14 @@ class Controller
             endfor;
 
             if (
-                 ($band_new_name_check_result['error'] == true
-                 or $addition_check_result['error'] == true
-                 or $first_sign_check_result['error'] == true)
+                 ($band_new_name_check_result['error']
+                 or $addition_check_result['error']
+                 or $first_sign_check_result['error'])
                  and !isset($this->request['save_id'])
             ) :
                  $this->errorText = 'Array lengths in URL parameters does not match! Some data is ignored.';
             endif;
-        elseif ($model_involved == true) :
+        elseif ($model_involved) :
             $Session_Model->delLineUp();
             for (
                 $band_index = 0;
@@ -877,10 +877,10 @@ class Controller
         endif;
     }
 
-    private function setRequestEditor(array $data_array, string $parameter, bool $model_involved)
+    private function setRequestEditor(array $data_array, string $parameter, bool $model_involved): void
     {
         if (!isset($this->request[$parameter])) {
-            if ($model_involved == true) {
+            if ($model_involved) {
                 $this->request[$parameter] = $data_array[0][$parameter];
             } else {
                 $this->request[$parameter] = null;
@@ -1091,7 +1091,7 @@ class Controller
             }
         endif;
 
-        if ($error == true) {
+        if ($error) {
             $error_text .= 'Saving of concert data has gone wrong! ';
             $this->rewriteSaveEdit();
         } else {
@@ -1103,8 +1103,8 @@ class Controller
             isset($this->request['published'])
             and $this->request['published'] == 1
         ) {
-            $ModelInstagramExport = new ModelExportInstagram($this->mysqli);
-            $result = $ModelInstagramExport->setPublished($this->request['save_id']);
+            $ModelConcert = new ModelConcert($this->mysqli);
+            $result = $ModelConcert->setPublished($this->request['save_id']);
         }
         if (
             isset($this->request['sold_out'])
@@ -1119,7 +1119,7 @@ class Controller
         return $error_text;
     }
 
-    private function rewriteSaveEdit()
+    private function rewriteSaveEdit(): void
     {
         if (isset($this->request['save_id'])) {
             $this->request['edit_id'] = $this->request['save_id'];
@@ -1197,10 +1197,10 @@ class Controller
                 if (
                     ($time_start - time() < $two_weeks and is_null($concerts[$concert_index]['date_end'])
                     or ($time_start - time() < $two_months and !is_null($concerts[$concert_index]['date_end'])))
-                    and $concerts[$concert_index]['published'] == ''
+                    and $concerts[$concert_index]['published'] === 0
                 ) {
                     $concerts[$concert_index]['status'] = 'urgent';
-                } elseif ($concerts[$concert_index]['published'] != '') {
+                } elseif ($concerts[$concert_index]['published'] === 1) {
                     $concerts[$concert_index]['status'] = 'published';
                 } else {
                     $concerts[$concert_index]['status'] = 'unpublished';
@@ -1215,7 +1215,8 @@ class Controller
                         IntlDateFormatter::GREGORIAN,
                         $time_format_with_month
                     );
-                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
+                    $date_human = datefmt_format($format, $time_start);
+                    $concerts[$concert_index]['date_human'] = $this->removeDotAfterDayOfWeek($date_human);
                     $template = 'concert_export';
                 } elseif ($type == 'export') {
                     $format = datefmt_create(
@@ -1226,7 +1227,8 @@ class Controller
                         IntlDateFormatter::GREGORIAN,
                         $time_format_with_month
                     );
-                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
+                    $date_human = datefmt_format($format, $time_start);
+                    $concerts[$concert_index]['date_human'] = $this->removeDotAfterDayOfWeek($date_human);
                     $template = 'concert_export';
                 } else {
                     $format = datefmt_create(
@@ -1237,7 +1239,8 @@ class Controller
                         IntlDateFormatter::GREGORIAN,
                         $time_format_without_month
                     );
-                    $concerts[$concert_index]['date_human'] = datefmt_format($format, $time_start);
+                    $date_human = datefmt_format($format, $time_start);
+                    $concerts[$concert_index]['date_human'] = $this->removeDotAfterDayOfWeek($date_human);
                     $template = 'default';
                 }
                 if ($concerts[$concert_index]['date_end'] != '') {
@@ -1265,6 +1268,7 @@ class Controller
                         $format,
                         $time_end
                     );
+                    $date_end_human = $this->removeDotAfterDayOfWeek($date_end_human);
                     $date_human = $concerts[$concert_index]['date_human'];
                     $date_human = $date_human . ' – ' . $date_end_human;
                     $concerts[$concert_index]['date_human'] = $date_human;
@@ -1297,6 +1301,11 @@ class Controller
         $result['concerts'] = $concerts;
         $result['template'] = $template;
         return $result;
+    }
+
+    private function removeDotAfterDayOfWeek($date): string
+    {
+        return substr($date, 0, 2) . substr($date, 3);
     }
 
     private function getMonth(?string $date = null): string
