@@ -14,4 +14,4 @@ db_preferences.inc.php
 #Development environments
 /tags
 .project.vim
-./.idea
+/.idea/
