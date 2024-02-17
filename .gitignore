@@ -1,14 +1,17 @@
-db_preferences.inc.php
-/vendor/
-/composer.lock
-
+#Passwords etc
 .htpasswd
 .htaccess
+db_preferences.inc.php
 
+#Automatically downloaded files
+/vendor/
+
+#Caches and temporary files
 *.swp
 *.swo
 .phpunit.cache/
-.idea
 
+#Development environments
 /tags
 .project.vim
+./.idea
