@@ -24,7 +24,7 @@ class GeneralCommandFactoryBehaviour
 
     public function getCommandController(array $input): AbstractCommandController
     {
-        $modelClass = 'ruhrpottmetaller\\Model\\' . $input['save'] . 'CommandModel';
+        $modelClass = 'ruhrpottmetaller\\Model\\Command\\Database' . ucfirst($input['save']) . 'CommandModel';
 
         return SaveCommandController::new(
             new $modelClass($this->connection),
