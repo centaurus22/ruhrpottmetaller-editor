@@ -72,7 +72,6 @@ class ModelConcert
                 event.date_end,
                 event.name,
                 event.url,
-                event_instagram.time_published_last as published,
                 event.sold_out AS ausverkauft,
                 event.published AS published,
                 venue.name AS venue_name,
