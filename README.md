@@ -156,4 +156,4 @@ If you want to support the development, you can send money via PayPal to https:/
 13TTodytvT7GebEAfHusb3ug87Sos3W3nk.
 
 ## Contact
-If you have any question, just drop a message at ruhrpottmetaller [at] freenet [dot] de.
+If you have any question, just drop a message at halloechen@ruhrpottmetaller.de.
