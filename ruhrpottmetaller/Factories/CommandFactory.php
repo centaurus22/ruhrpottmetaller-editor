@@ -2,6 +2,7 @@
 
 namespace ruhrpottmetaller\Factories;
 
+use ruhrpottmetaller\Factories\Command\Ordinary\DeleteCommandFactoryBehaviour;
 use ruhrpottmetaller\Factories\Command\Ordinary\GeneralCommandFactoryBehaviour;
 use ruhrpottmetaller\Factories\Command\Ordinary\NullCommandFactoryBehaviour;
 use ruhrpottmetaller\Factories\Command\Ordinary\SetCanceledCommandFactoryBehaviour;
@@ -21,9 +22,11 @@ class CommandFactory extends AbstractFactory
         if (isset($input['save'])) {
             $this->factoryBehaviour = new GeneralCommandFactoryBehaviour($this->connection);
         } elseif (isset($input['action']) and $input['action'] == 'set-canceled') {
-            $this->factoryBehaviour = new SetCanceledCommandFactoryBehaviour($this->connection);}
-        elseif (isset($input['action']) and $input['action'] == 'set-sold-out') {
+            $this->factoryBehaviour = new SetCanceledCommandFactoryBehaviour($this->connection);
+        } elseif (isset($input['action']) and $input['action'] == 'set-sold-out') {
             $this->factoryBehaviour = new SetSoldOutCommandFactoryBehaviour($this->connection);
+        } elseif (isset($input['action']) and $input['action'] == 'delete') {
+            $this->factoryBehaviour = new DeleteCommandFactoryBehaviour($this->connection);
         } else {
             $this->factoryBehaviour =  new NullCommandFactoryBehaviour();
         }
