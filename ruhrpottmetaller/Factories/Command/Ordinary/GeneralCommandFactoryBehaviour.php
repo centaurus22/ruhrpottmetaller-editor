@@ -53,7 +53,7 @@ class GeneralCommandFactoryBehaviour
                 if ($input['city_id'] == 1) {
                     $city = City::new();
                 } else {
-                    
+
                 }
 
                 if ($input['venue_id'] == 1) {
