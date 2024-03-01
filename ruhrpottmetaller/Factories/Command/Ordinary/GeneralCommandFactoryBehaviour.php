@@ -8,10 +8,15 @@ use ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Data\HighLevel\Concert;
+use ruhrpottmetaller\Data\HighLevel\Festival;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
+use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\Model\Query\DatabaseCityQueryModel;
+use ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel;
 
 class GeneralCommandFactoryBehaviour
 {
@@ -35,6 +40,34 @@ class GeneralCommandFactoryBehaviour
     private function getDataObject(array $input): AbstractNamedHighLevelData
     {
         switch ($input['save']) {
+            case 'concert':
+                if ($input['length'] === 1) {
+                    $event = Concert::new()
+                        ->setDate(RmDate::new($input['date_start']));
+                } else {
+                    $event = Festival::new()
+                        ->setDateStart(RmDate::new($input['date_start']))
+                        ->setNumberOfDays(RmInt::new($input['length']));
+                }
+
+                if ($input['city_id'] == 1) {
+                    $city = City::new();
+                } else {
+                    
+                }
+
+                if ($input['venue_id'] == 1) {
+                    $venue = Venue::new();
+                } else {
+                    $venue = DatabaseVenueQueryModel::new(
+                        $this->connection,
+                        DatabaseCityQueryModel::new($this->connection)
+                    )->getVenueById(RmInt::new($input['venue_id']));
+                }
+
+                return $event
+                    ->setName(RmString::new($input['name']))
+                    ->setUrl(RmString::new($input['url']));
             case 'city':
                 return City::new()
                     ->setId(RmInt::new($input['id']))
