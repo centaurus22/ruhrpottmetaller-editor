@@ -1,8 +1,0 @@
-queries:
- - uses: security-and-quality
-   
-paths-ignore:
- - database
- - docs
- - src/images
- - src/vendor
