@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Factories;
 
 use ruhrpottmetaller\Factories\Command\Ordinary\GeneralCommandFactoryBehaviour;
 use ruhrpottmetaller\Factories\Command\Ordinary\NullCommandFactoryBehaviour;
+use ruhrpottmetaller\Factories\Command\Ordinary\SetCanceledCommandFactoryBehaviour;
 
 class CommandFactory extends AbstractFactory
 {
@@ -18,6 +19,8 @@ class CommandFactory extends AbstractFactory
     {
         if (isset($input['save'])) {
             $this->factoryBehaviour = new GeneralCommandFactoryBehaviour($this->connection);
+        } elseif (isset($input['action']) and $input['action'] == 'set-canceled') {
+            $this->factoryBehaviour = new SetCanceledCommandFactoryBehaviour($this->connection);
         } else {
             $this->factoryBehaviour =  new NullCommandFactoryBehaviour();
         }
@@ -28,10 +31,5 @@ class CommandFactory extends AbstractFactory
     public function getCommandController(array $input)
     {
         return $this->factoryBehaviour->getCommandController($input);
-    }
-
-    private function getDataTypes(): array
-    {
-        return ['band' => 'Band', 'venue' => 'Venue', 'city' => 'City'];
     }
 }
