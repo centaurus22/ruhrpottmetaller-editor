@@ -2,7 +2,11 @@
 
 namespace ruhrpottmetaller\Data\LowLevel\String;
 
-use ruhrpottmetaller\Data\LowLevel\{AbstractLowLevelData, Int\RmInt, INullBehaviour, IsNullBehaviour, NotNullBehaviour};
+use ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
+use ruhrpottmetaller\Data\LowLevel\INullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\IsNullBehaviour;
+use ruhrpottmetaller\Data\LowLevel\NotNullBehaviour;
 
 abstract class AbstractRmString extends AbstractLowLevelData
 {
@@ -42,16 +46,8 @@ abstract class AbstractRmString extends AbstractLowLevelData
 
     public function asWwwUrl(): AbstractRmString
     {
+        $this->filter();
         return RmString::new('<a href="' . $this->value . '">www</a>');
-    }
-
-    protected static function createObject($value)
-    {
-        if (is_null($value)) {
-            return new RmNullString(null, new IsNullBehaviour());
-        }
-
-        return new RmString($value, new NotNullBehaviour());
     }
 
     public function asTableInput(
@@ -59,6 +55,7 @@ abstract class AbstractRmString extends AbstractLowLevelData
         RmString $description,
         RmInt $rowId
     ): RmString {
+        $this->filter();
         $format = '<label for="%1$s_%2$u" class="visually-hidden">%4$s</label>
             <input id="%1$s_%2$u" name="%1$s" value="%3$s" placeholder="%4$s">';
         $primitive = sprintf(
@@ -69,5 +66,14 @@ abstract class AbstractRmString extends AbstractLowLevelData
             $description
         );
         return RmString::new($primitive);
+    }
+
+    protected static function createObject($value)
+    {
+        if (is_null($value)) {
+            return new RmNullString(null, new IsNullBehaviour());
+        }
+
+        return new RmString($value, new NotNullBehaviour());
     }
 }
