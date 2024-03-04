@@ -17,4 +17,9 @@ class RmNullString extends AbstractRmString
     {
         return true;
     }
+
+    protected function filter(): RmNullString
+    {
+        return $this;
+    }
 }

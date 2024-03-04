@@ -18,4 +18,10 @@ class RmString extends AbstractRmString
     {
         return RmString::new('<button type="submit">' . $this->value . '</button>');
     }
+
+    public function filter(): RmString
+    {
+        $this->value = htmlentities($this->value);
+        return $this;
+    }
 }
