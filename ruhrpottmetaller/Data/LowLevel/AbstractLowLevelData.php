@@ -3,8 +3,6 @@
 namespace ruhrpottmetaller\Data\LowLevel;
 
 use ruhrpottmetaller\Data\IData;
-use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
-use ruhrpottmetaller\Data\LowLevel\String\RmNullString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 abstract class AbstractLowLevelData implements IData
