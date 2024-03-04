@@ -10,6 +10,8 @@ use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\HighLevel\NullCity;
+use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
@@ -50,23 +52,30 @@ class GeneralCommandFactoryBehaviour
                         ->setNumberOfDays(RmInt::new($input['length']));
                 }
 
-                if ($input['city_id'] == 1) {
-                    $city = City::new();
+                if ($input['city_id'] === 1) {
+                    $city = City::new()->setName(RmString::new($input['city_new_name']));
                 } else {
-
+                    $city = NullCity::new();
                 }
 
-                if ($input['venue_id'] == 1) {
-                    $venue = Venue::new();
-                } else {
+                if ($input['venue_id'] === 1) {
+                    $venue = Venue::new()
+                        ->setName(RmString::new($input['venue_new_name']))
+                        ->setUrlDefault(RmString::new($input['url_default']))
+                        ->setCity($city);
+                } elseif ($input['venue_id'] > 1) {
                     $venue = DatabaseVenueQueryModel::new(
                         $this->connection,
                         DatabaseCityQueryModel::new($this->connection)
                     )->getVenueById(RmInt::new($input['venue_id']));
+                } else {
+                    $venue = NullVenue::new();
                 }
 
                 return $event
+                    ->setId(RmInt::new($input['id']))
                     ->setName(RmString::new($input['name']))
+                    ->setVenue($venue)
                     ->setUrl(RmString::new($input['url']));
             case 'city':
                 return City::new()
