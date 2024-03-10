@@ -1,0 +1,73 @@
+.screen_reader_only {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    width: 1px;
+    overflow: hidden;
+    position: absolute !important;
+    word-wrap:normal !important;
+}
+
+form {
+    min-width: 80%;
+    text-align: center;
+}
+
+legend {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fieldset_general {
+    margin: 20px 0;
+}
+
+.fieldset_general > div, #ajax_city_venue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fieldset_general > div {
+    text-align: left;
+    width: 391px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#ajax_lineup  {
+    margin-bottom: 20px;
+}
+
+.fieldset_band {
+    border: 0;
+    color: royalblue;
+}
+
+label {
+    width: 101px;
+    display: inline-block;
+}
+
+input {
+    width: 253px;
+}
+
+select {
+    width: 261px;
+}
+
+#date_start {
+    width: 125px;
+}
+
+#length {
+    width: 40px;
+}
+
+.edit_band_id, .edit_field {
+    width: 250px;
+}

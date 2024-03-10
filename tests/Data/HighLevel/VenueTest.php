@@ -201,4 +201,24 @@ final class VenueTest extends TestCase
             $this->DataSet->getFormattedVenueAndCity()
         );
     }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Bool\RmBool
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\RmInt
+     */
+    public function testShouldGetCityId(): void
+    {
+        $city = City::new()
+            ->setId(RmInt::new(12));
+        $this->DataSet = Venue::new()->setCity($city);
+        $this->assertEquals(
+            12,
+            $this->DataSet->getCityId()->get()
+        );
+    }
 }

@@ -19,9 +19,12 @@ abstract class AbstractLowLevelData implements IData
         return (string) $this->value;
     }
 
-    public function asTableCell(): RmString
+    public function asTableCell(?RmString $cssClass = null): RmString
     {
-        return RmString::new('<div class="rm_table_cell">' . $this->value . '</div>');
+        if (is_null($cssClass)) {
+            return RmString::new('<div class="rm_table_cell">' . $this->value . '</div>');
+        }
+        return RmString::new('<div class="rm_table_cell ' . $cssClass . '">' . $this->value . '</div>');
     }
 
     public function asHiddenInput(RmString $fieldName): RmString

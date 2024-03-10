@@ -3,6 +3,7 @@
 namespace ruhrpottmetaller\Data;
 
 use ruhrpottmetaller\AbstractRmObject;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 class RmArray extends AbstractRmObject implements IData
 {
@@ -12,6 +13,44 @@ class RmArray extends AbstractRmObject implements IData
     public function add($value): RmArray
     {
         $this->array[] = $value;
+        return $this;
+    }
+
+    public function set(RmInt $position, $value): RmArray
+    {
+        $this->array[$position->get()] = $value;
+        return $this;
+    }
+
+    public function get(RmInt $position)
+    {
+        return $this->array[$position->get()];
+    }
+
+    public function addAfter(RmInt $position, $value): RmArray
+    {
+        $firstElements = array_slice($this->array, 0, 1 + $position->get());
+        $lastElements = array_slice($this->array, 1 + $position->get());
+        $this->array = array_merge($firstElements, [$value], $lastElements);
+        return $this;
+    }
+
+    public function delete(RmInt $position): RmArray
+    {
+        unset($this->array[$position->get()]);
+        $this->array = array_values($this->array);
+        return $this;
+    }
+
+    public function switch(RmInt $position1, RmInt $position2): RmArray
+    {
+        if (!isset($this->array[$position1->get()]) or !isset($this->array[$position2->get()])) {
+            return $this;
+        }
+
+        $element = $this->array[$position1->get()];
+        $this->array[$position1->get()] = $this->array[$position2->get()];
+        $this->array[$position2->get()] = $element;
         return $this;
     }
 
@@ -37,5 +76,11 @@ class RmArray extends AbstractRmObject implements IData
     public function isFirst(): bool
     {
         return $this->pointer === 0;
+    }
+
+    public function resetPointer(): RmArray
+    {
+        $this->pointer = 0;
+        return $this;
     }
 }

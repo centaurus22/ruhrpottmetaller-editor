@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Data\HighLevel\{Band, City, Concert, Venue, Gig};
 use ruhrpottmetaller\Data\LowLevel\{Bool\RmBool, Date\RmDate, Int\RmInt, String\RmNullString, String\RmString};
 use ruhrpottmetaller\Data\RmArray;
+use function PHPUnit\Framework\assertEquals;
 
 final class ConcertTest extends TestCase
 {
@@ -16,7 +17,7 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
@@ -35,7 +36,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
@@ -52,7 +53,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
      * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
@@ -70,7 +71,7 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -89,7 +90,7 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -105,7 +106,7 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -122,7 +123,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
      * @uses   \ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool
@@ -170,7 +171,7 @@ final class ConcertTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @covers  \ruhrpottmetaller\Data\HighLevel\Concert
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\Date\RmDate
@@ -190,7 +191,7 @@ final class ConcertTest extends TestCase
     * @covers \ruhrpottmetaller\AbstractRmObject
     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
-    * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+    * @covers \ruhrpottmetaller\Data\HighLevel\Event
     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
     * @uses   \ruhrpottmetaller\Data\LowLevel\Int\RmInt
@@ -229,7 +230,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -256,7 +257,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -289,7 +290,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -308,7 +309,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -342,7 +343,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -376,7 +377,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -411,7 +412,7 @@ final class ConcertTest extends TestCase
      * @covers \ruhrpottmetaller\Data\HighLevel\Concert
      * @covers \ruhrpottmetaller\Data\HighLevel\Gig
      * @covers \ruhrpottmetaller\Data\HighLevel\Band
-     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractEvent
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
      * @uses \ruhrpottmetaller\Data\RmArray
      * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
@@ -438,5 +439,39 @@ final class ConcertTest extends TestCase
             '<span class="invisible">Dipsomania</span>, Darkness (Acoustic Set)',
             $this->dataSet->getBandList()
         );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+
+    public function testMethodsShouldGetVenueId(): void
+    {
+        $venue = Venue::new()->setId(RmInt::new(12));
+        $this->dataSet = Concert::new()->setVenue($venue);
+        assertEquals(12, $this->dataSet->getVenueId()->get());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\AbstractRmObject
+     * @covers \ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData
+     * @covers \ruhrpottmetaller\Data\HighLevel\Concert
+     * @covers \ruhrpottmetaller\Data\HighLevel\Venue
+     * @covers \ruhrpottmetaller\Data\HighLevel\Event
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt
+     */
+
+    public function testMethodsShouldGetCityId(): void
+    {
+        $city = City::new()->setId(RmInt::new(42));
+        $venue = Venue::new()->setCity($city);
+        $this->dataSet = Concert::new()->setVenue($venue);
+        assertEquals(42, $this->dataSet->getCityId()->get());
     }
 }

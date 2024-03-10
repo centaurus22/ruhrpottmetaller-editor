@@ -65,7 +65,6 @@ nav li:first-letter {
 }
 
 #nav_secondary > div {
-    width: 90px;
     padding-left: 5px;
 }
 
@@ -123,6 +122,15 @@ footer {
     vertical-align: middle;
 }
 
+.rm_table_cell.venue_name > input {
+    width: 200px;
+}
+
+.rm_table_cell.venue_url > input {
+    width: 300px;
+}
+
+
 .rm_table_cell:first-child {
     padding-left: 0;
     min-width: 72px;
@@ -131,7 +139,10 @@ footer {
 .rm_table_cell:last-child {
     text-align: right;
     padding-right: 0;
-    min-width: 154px;
+}
+
+.rm_table_cell.event:last-child {
+    min-width: 160px;
 }
 
 .rm_table_cell > input {
@@ -147,7 +158,7 @@ footer {
     text-decoration: line-through;
 }
 
-.invisible {
+.invisible, .warning {
     color: red;
 }
 

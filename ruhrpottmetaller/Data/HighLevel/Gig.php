@@ -5,17 +5,22 @@ namespace ruhrpottmetaller\Data\HighLevel;
 use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
-use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
+use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Gig extends AbstractRmObject implements IData
 {
     private AbstractRmString $additionalInformation;
-    private Band $band;
+    private IBand $band;
+    private AbstractRmString $bandNewName;
 
-    public function setBand(Band $band): Gig
+    public function __construct()
+    {
+        $this->bandNewName = AbstractRmString::new(null);
+    }
+
+    public function setBand(IBand $band): Gig
     {
         $this->band = $band;
         return $this;
@@ -26,10 +31,15 @@ class Gig extends AbstractRmObject implements IData
         return $this->additionalInformation;
     }
 
-    public function setAdditionalInformation(AbstractRmString $additional_information): Gig
+    public function setAdditionalInformation(AbstractRmString $additionalInformation): Gig
     {
-        $this->additionalInformation = $additional_information;
+        $this->additionalInformation = $additionalInformation;
         return $this;
+    }
+
+    public function getBandId(): AbstractRmInt
+    {
+        return $this->band->getId();
     }
 
     public function getBandName(): AbstractRmString
@@ -37,8 +47,31 @@ class Gig extends AbstractRmObject implements IData
         return $this->band->getName();
     }
 
+    public function getBandFirstChar(): RmString
+    {
+        $bandName = $this->getBandName();
+        if ($bandName->isNull()) {
+            return RmString::new(' ');
+        } elseif ($bandName->hasSpecialFirstChar()) {
+            return RmString::new('%');
+        } else {
+            return $bandName->getFirstChar()->asFirstUppercase();
+        }
+    }
+
     public function isBandVisible(): AbstractRmBool
     {
         return $this->band->getIsVisible();
+    }
+
+    public function setBandNewName(AbstractRmString $bandNewName): Gig
+    {
+        $this->bandNewName = $bandNewName;
+        return $this;
+    }
+
+    public function getBandNewName(): AbstractRmString
+    {
+        return $this->bandNewName;
     }
 }

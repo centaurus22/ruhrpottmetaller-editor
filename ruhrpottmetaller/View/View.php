@@ -17,7 +17,7 @@ class View
     ) {
         $this->TemplatePath = $TemplatePath;
         $this->Template = $StandardTemplate;
-        $this->data['imagePath'] = AbstractRmString::new('web/assets/images/');
+        $this->data['imagePath'] = AbstractRmString::new('assets/images/');
     }
 
     public static function new(
@@ -33,14 +33,14 @@ class View
         return $this;
     }
 
-    public function set(string $key, IData $value)
+    public function set(string $key, IData $value): void
     {
         $this->data[$key] = $value;
     }
 
     private function get(string $key)
     {
-        return $this->data[$key];
+        return $this->data[$key] ?? null;
     }
 
     public function getOutput(): AbstractRmString

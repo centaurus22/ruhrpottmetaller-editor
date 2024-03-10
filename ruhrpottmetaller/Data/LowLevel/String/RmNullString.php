@@ -22,4 +22,9 @@ class RmNullString extends AbstractRmString
     {
         return $this;
     }
+
+    public function hasSpecialFirstChar(): bool
+    {
+        return false;
+    }
 }

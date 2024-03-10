@@ -24,8 +24,7 @@ while ($this->get('menu')->hasCurrent()) {
             </ul>
         </nav>
         <div id="nav_secondary">
-            <?=$this->get('navSecondaryDisplayControllerOutput') ?
-                $this->get('navSecondaryDisplayControllerOutput') : '&nbsp;' ?>
+            <?=$this->get('navSecondaryDisplayControllerOutput') ?? $this->get('navSecondaryDisplayControllerOutput')?>
         </div>
         <main id="main">
             <?=$this->get('mainDisplayControllerOutput')?>
