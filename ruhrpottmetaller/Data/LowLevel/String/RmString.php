@@ -36,7 +36,7 @@ class RmString extends AbstractRmString
 
     public function filter(): RmString
     {
-        $this->value = htmlentities($this->value);
+        $this->value = htmlentities($this->value, ENT_QUOTES);
         return $this;
     }
 }
