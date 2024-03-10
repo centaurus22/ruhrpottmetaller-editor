@@ -11,7 +11,7 @@ class RmString extends AbstractRmString
 
     public function getFirstChar(): RmString
     {
-        return RmString::new(substr( $this->value, 0, 1));
+        return RmString::new(substr($this->value, 0, 1));
     }
 
     public function asPrefixedWidth(RmString $prefix): RmString
