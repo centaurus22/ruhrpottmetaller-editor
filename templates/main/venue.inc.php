@@ -15,14 +15,16 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $data = $this->get('venues')->getCurrent(); ?>
         <form action="" class="rm_table_row">
             <?=$data->getName()
+                ->filter()
                 ->asTableInput(
                     RmString::new('name'),
                     RmString::new('Name'),
                     $data->getId()
                 )->asTableCell(RmString::new('venue_name'))
             ?>
-            <?=$data->getCityName()->asTableCell() ?>
+            <?=$data->getCityName()->filter()->asTableCell() ?>
             <?=$data->getUrlDefault()
+                ->filter()
                 ->asTableInput(
                     RmString::new('url_default'),
                     RmString::new('Default Url'),

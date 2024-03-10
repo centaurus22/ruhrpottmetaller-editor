@@ -2,9 +2,9 @@
 <?php while ($bands->hasCurrent()) : ?>
     <?php $band = $bands->getCurrent(); ?>
     <?php if ($this->get('bandId')->get() == $band->getId()->get()) : ?>
-        <option value="<?=$band->getId()?>" selected><?=$band->getName()?></option>
+        <option value="<?=$band->getId()?>" selected><?=$band->getName()->filter()?></option>
     <?php else : ?>
-        <option value="<?=$band->getId()?>"><?=$band->getName()?></option>
+        <option value="<?=$band->getId()?>"><?=$band->getName()->filter()?></option>
     <?php endif; ?>
     <?php $bands->pointAtNext(); ?>
 <?php endwhile; ?>

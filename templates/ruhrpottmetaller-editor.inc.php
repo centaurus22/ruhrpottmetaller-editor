@@ -31,7 +31,7 @@ while ($this->get('menu')->hasCurrent()) {
         </main>
         <div id="spacer"></div>
         <footer>
-            Ruhrpottmetaller-Editor (c) Klaus Thorres 2023.
+            Ruhrpottmetaller-Editor (c) Klaus Thorres 2024.
             This Software is provided under the <a href="?show=license">MIT License</a>.
         </footer>
     </body>

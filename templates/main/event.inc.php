@@ -16,10 +16,10 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $event = $this->get('events')->getCurrent(); ?>
         <form action="" class="rm_table_row<?=$event->getIsCanceled()->get() ? ' canceled' : ''?>">
             <?=$event->getFormattedDate()->asTableCell() ?>
-            <?=$event->getName()->asTableCell() ?>
-            <?=$event->getFormattedVenueAndCityName()->asTableCell()?>
-            <?=$event->getBandList()->asTableCell()?>
-            <?=$event->getUrl()->asWwwUrl()->asTableCell()?>
+            <?=$event->getName()->filter()->asTableCell() ?>
+            <?=$event->getFormattedVenueAndCityName()->filter()->asTableCell()?>
+            <?=$event->getBandList()->filter()->asTableCell()?>
+            <?=$event->getUrl()->filter()->asWwwUrl()->asTableCell()?>
             <?=$event->getId()->asHiddenInput(RmString::new('id'))?>
             <?=$event->getDate()->getFormatted()->asHiddenInput(RmString::new('date'))?>
             <?=RmString::new('events')

@@ -10,7 +10,7 @@
                 <input type="text"
                     name="name"
                     id="name"
-                    value="<?=$this->get('event')->getName()?>"
+                    value="<?=$this->get('event')->getName()->filter()?>"
                     class="edit_text"
                     placeholder="Name of the concert">
             </div>
@@ -42,7 +42,7 @@
                     name="url"
                     id="url"
                     class="edit_text"
-                    value="<?=$this->get('event')->getUrl()?>"
+                    value="<?=$this->get('event')->getUrl()->filter()?>"
                     placeholder="Link to more information"
                     required>
             </div>

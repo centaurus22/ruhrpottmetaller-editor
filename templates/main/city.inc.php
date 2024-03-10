@@ -13,6 +13,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
         <?php $data = $this->get('cities')->getCurrent(); ?>
         <form action="" class="rm_table_row">
             <?=$data->getName()
+                ->filter()
                 ->asTableInput(
                     RmString::new('name'),
                     RmString::new('Name'),

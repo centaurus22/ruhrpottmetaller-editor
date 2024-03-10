@@ -5,7 +5,7 @@
         <option value="0"></option>
         <?php while ($cities->hasCurrent()) : ?>
             <?php $cityId = $cities->getCurrent()->getId()->get(); ?>
-            <?php $cityName = $cities->getCurrent()->getName()->get(); ?>
+            <?php $cityName = $cities->getCurrent()->getName()->filter()->get(); ?>
             <?php if ($this->get('cityId')->get() == $cities->getCurrent()->getId()->get()) : ?>
                 <?=printf(
                     '<option value="%1$u" selected="selected">%2$s</option>',
@@ -26,7 +26,7 @@
         <select id="venue_id" name="venue_id">
             <?php while ($venues->hasCurrent()) : ?>
                 <?php $venueId = $venues->getCurrent()->getId()->get(); ?>
-                <?php $venueName = $venues->getCurrent()->getName()->get(); ?>
+                <?php $venueName = $venues->getCurrent()->getName()->filter()->get(); ?>
                 <?php if ($this->get('venueId')->get() == $venues->getCurrent()->getId()->get()) : ?>
                     <?=printf(
                         '<option value="%1$u" selected="selected">%2$s</option>',

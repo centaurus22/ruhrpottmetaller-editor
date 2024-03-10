@@ -10,7 +10,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
     <label for="filter_by">City:</label> <select id="filter_by" name="filter_by">
         <option value="">&nbsp;</option>
         <?php while ($this->get('cities')->hasCurrent()) : ?>
-            <?php $currentCity = $this->get('cities')->getCurrent()->getName()->get() ?>
+            <?php $currentCity = $this->get('cities')->getCurrent()->getName()->filter()->get() ?>
             <?php if ($currentCity == $this->get('filterByParameter')) : ?>
                 <option value="<?=$currentCity?>" selected="selected"><?=$currentCity?></option>
             <?php else : ?>
