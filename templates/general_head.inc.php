@@ -1,0 +1,1 @@
+<title>Ruhrpottmetaller-Editor – <?=$this->get('pageName')->asFirstUppercase()?></title>

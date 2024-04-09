@@ -83,7 +83,7 @@ Bands written in light brown are marked as not visible.
 
 #### Concert editor
 This is the tool for adding or editing concerts. The only necessary input fields for saving the concert are the date and
-the url.
+the URL.
 
 ##### General concert data
 In the first part of the editor general information of the concert are entered.

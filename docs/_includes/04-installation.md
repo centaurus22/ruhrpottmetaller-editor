@@ -2,8 +2,8 @@
 To install the software the following steps are necessary:
 * Install and configure PHP, the Webserver and MariaDB or MySQL.
 * Download the project by cloning it or fetching one of these files:
-  * zip: https://github.com/klaus-thorres/rpmetaller-editor/zipball/main
-  * tar.gz: https://github.com/klaus-thorres/rpmetaller-editor/tarball/main
+  * zip: https://github.com/klaus-thorres/ruhrpottmetaller-editor/zipball/main
+  * tar.gz: https://github.com/klaus-thorres/ruhrpottmetaller-editor/tarball/main
 * Make the content of the folder “web/” accessible for the web server.
 * Install the project dependencies via `composer install`.
 * Import the database from the file “databases_rpm.sql” in the “database” folder

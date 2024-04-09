@@ -1,6 +1,7 @@
 #Passwords etc
 .htpasswd
 .htaccess
+databaseConfig.inc.php
 db_preferences.inc.php
 
 #Automatically downloaded files
@@ -9,9 +10,9 @@ db_preferences.inc.php
 #Caches and temporary files
 *.swp
 *.swo
-.phpunit.cache/
+/.phpunit.cache/
 
 #Development environments
 /tags
-.project.vim
 /.idea/
+.project.vim

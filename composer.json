@@ -1,6 +1,6 @@
 {
 	"name" : "klaus-thorres/ruhrpottmetaller-editor",
-	"description" : "A web-based tool to store, manage and export information about concerts and festivals including bands. venues and cities.",
+	"description" : "A web tool to store information about concerts and festivals including bands, venues and cities.",
 	"type" : "library",
 	"keywords" : [
 		"events",
@@ -45,9 +45,19 @@
 		"squizlabs/php_codesniffer": "^3.7.2",
 		"phpunit/phpunit": "9.6.19"
 	},
+    "require-dev" : {
+        "ext-xdebug" : "*",
+        "phpunit/phpunit" : "^9.5",
+		"squizlabs/php_codesniffer": "3.*"
+    },
 	"autoload" : {
 		"psr-4" : {
 			"ruhrpottmetaller\\" : "ruhrpottmetaller"
 		}
-	}
+	},
+    "autoload-dev" : {
+        "psr-4" : {
+            "tests\\ruhrpottmetaller\\" : "tests"
+        }
+    }
 }
