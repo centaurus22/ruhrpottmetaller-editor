@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title><?= $this->_['pagetitle'] . $this->_['subtitle'] ?></title>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" />
-        <script  type="text/javascript" src="assets/js/script.js" ></script>
+        <?=$this->get('headDisplayControllerOutput')?>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="assets/css/base_style.css">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     </head>
     <body>
         <a class="skip-link" href="#main">Skip to content</a>
-        <div class="leiste_top">
-            <nav>
+        <nav>
+            <ul>
 <?php
 
-foreach ($this->_['menu_entrys'] as $menu_entry) {
+while ($this->get('menu')->hasCurrent()) {
     printf(
-        "\t\t\t\t<a href='?display=%s&amp;month=%s'>%s</a>\n",
-        $menu_entry[1],
-        $this->_['month'],
-        $menu_entry[0]
+        '<li><a href="?show=%1$s">%1$s</a></li>',
+        $this->get('menu')->getCurrent()->get()
     );
+    $this->get('menu')->pointAtNext();
 }
 
 ?>
-            </nav>
-            <div class="noscript">
-                <noscript>Please activate JavaScript!</noscript>
-            </div>
+            </ul>
+        </nav>
+        <div id="nav_secondary">
+            <?=$this->get('navSecondaryDisplayControllerOutput') ?
+                $this->get('navSecondaryDisplayControllerOutput') : '&nbsp;' ?>
         </div>
-<?= $this->_['content']; ?>
+        <main id="main">
+            <?=$this->get('mainDisplayControllerOutput')?>
+        </main>
+        <div id="spacer"></div>
         <footer>
-            (c) Klaus Thorres 2020. This Software is provided under the <a href="?display=license">MIT License</a>.
+            Ruhrpottmetaller-Editor (c) Klaus Thorres 2023.
+            This Software is provided under the <a href="?show=license">MIT License</a>.
         </footer>
     </body>
 </html>

@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0 10px 0 10px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: whitesmoke;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #000000;
+    color: white;
+    padding: 8px;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+nav, footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: royalblue;
+    padding: 7px;
+}
+
+nav a, footer a {
+    color: whitesmoke;
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    list-style-type: none;
+    margin: 0 3px 0 3px;
+}
+
+nav li:first-letter {
+    text-transform: uppercase;
+}
+
+#nav_secondary {
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-weight: bold;
+    color: whitesmoke;
+    background-color: cornflowerblue;
+    padding: 7px;
+    border-radius: 0 0 20px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#nav_secondary > div {
+    width: 90px;
+    padding-left: 5px;
+}
+
+main {
+    padding: 5px 10px 5px 10px;
+    overflow: scroll;
+    display: flex;
+    justify-content: center;
+}
+
+#text_content {
+    padding-top: 20px;
+}
+
+#spacer {
+    flex-grow: 2;
+}
+
+footer {
+    border-radius: 20px 20px 0 0;
+    text-align: center;
+}
+
+.rm_table {
+    display: table;
+    min-width: 80%;
+}
+
+.rm_table_row {
+    display: table-row;
+}
+
+.rm_table_row:nth-child(even) {
+    background: lightblue;
+}
+
+.rm_table_row:nth-child(odd) {
+    background: aliceblue;
+}
+
+.rm_table_header {
+    display: table-header-group;
+    background: darkgray;
+}
+
+.rm_table_header > .rm_table_cell {
+    font-weight: bold;
+    border-top-style: none;
+}
+
+.rm_table_cell {
+    display: table-cell;
+    padding: 1px 5px;
+    border-top-width: 1px;
+    vertical-align: middle;
+}
+
+.rm_table_cell:first-child {
+    padding-left: 0;
+    min-width: 72px;
+}
+
+.rm_table_cell:last-child {
+    text-align: right;
+    padding-right: 0;
+    min-width: 154px;
+}
+
+.rm_table_cell > input {
+    background: gainsboro;
+    width: 400px;
+}
+
+.rm_table_cell > select {
+    background: lightgray;
+}
+
+.canceled div {
+    text-decoration: line-through;
+}
+
+.invisible {
+    color: red;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0,0,0,0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
