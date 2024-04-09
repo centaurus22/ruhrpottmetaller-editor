@@ -7,7 +7,7 @@ use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
-class Festival extends AbstractEvent
+class Festival extends Event
 {
     protected AbstractRmInt $numberOfDays;
     protected RmDate $dateStart;

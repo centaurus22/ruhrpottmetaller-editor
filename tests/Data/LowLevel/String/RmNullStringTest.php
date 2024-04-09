@@ -49,11 +49,26 @@ final class RmNullStringTest extends TestCase
      * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
      * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
      */
-    public function testShouldPassTrue(): void
+    public function testShouldReturnTrue(): void
     {
         $this->value = RmNullString::new(null);
         $this->assertTrue(
             $this->value->isEmpty()
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @covers \ruhrpottmetaller\Data\LowLevel\String\RmNullString
+     * @covers \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\NotNullBehaviour
+     */
+    public function testShouldReturnFalse(): void
+    {
+        $this->value = RmNullString::new(null);
+        $this->assertFalse(
+            $this->value->hasSpecialFirstChar()
         );
     }
 }

@@ -1,0 +1,156 @@
+<?php
+
+declare(strict_types=1);
+
+namespace tests\ruhrpottmetaller\Controller\Display;
+
+use PHPUnit\Framework\TestCase;
+use ruhrpottmetaller\Controller\Display\BaseDisplayController;
+use ruhrpottmetaller\Data\LowLevel\String\RmString;
+use ruhrpottmetaller\View\View;
+
+final class BaseDisplayControllerTest extends TestCase
+{
+    private BaseDisplayController $Controller;
+
+   /**
+    * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+    * @covers \ruhrpottmetaller\Controller\Display\BaseDisplayController
+    * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+    * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+    */
+    public function testShouldAddSubController()
+    {
+        $View = View::new(RmString::new(null), RmString::new(null));
+        $this->expectNotToPerformAssertions();
+        $this->Controller = BaseDisplayController::new($View);
+        $SubController = BaseDisplayController::new($View);
+        $this->Controller->addSubController(
+            'subController',
+            $SubController
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\BaseDisplayController
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\View\View
+     */
+    public function testShouldRender()
+    {
+        $View = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+        $this->Controller = BaseDisplayController::new($View);
+        $this->assertEquals('This is a concert.', $this->Controller->render()->get());
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\BaseDisplayController
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\View\View
+     */
+    public function testShouldRenderASubControllers()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testBaseTemplate1')
+        );
+        $SubView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+        $this->Controller = BaseDisplayController::new($BaseView)->addSubController(
+            'sub1',
+            BaseDisplayController::new($SubView)
+        );
+        $output = $this->Controller->render()->get();
+        $this->assertEquals(
+            'This is a concert. This is a concert.',
+            $output
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\BaseDisplayController
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\View\View
+     */
+    public function testShouldRenderTwoSubControllers()
+    {
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testBaseTemplate2')
+        );
+        $SubView1 = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+        $SubView2 = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+        $this->Controller = BaseDisplayController::new($BaseView)->addSubController(
+            'sub1',
+            BaseDisplayController::new($SubView1)
+        );
+        $this->Controller->addSubController(
+            'sub2',
+            BaseDisplayController::new($SubView2)
+        );
+        $output = $this->Controller->render()->get();
+        $this->assertEquals(
+            'This is a concert. This is a concert. This is a concert.',
+            $output
+        );
+    }
+
+    /**
+     * @covers \ruhrpottmetaller\Controller\Display\AbstractDisplayController
+     * @covers \ruhrpottmetaller\Controller\Display\BaseDisplayController
+     * @uses \ruhrpottmetaller\AbstractRmObject
+     * @uses \ruhrpottmetaller\Data\LowLevel\AbstractLowLevelData
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\AbstractRmString
+     * @uses \ruhrpottmetaller\Data\LowLevel\String\RmString
+     * @uses \ruhrpottmetaller\Data\RmArray
+     * @uses \ruhrpottmetaller\View\View
+     */
+    public function testShouldSetMenu()
+    {
+        $this->expectExceptionMessage('The Array does not contain data at this position.');
+        $BaseView = View::new(
+            RmString::new('./tests/Controller/templates/'),
+            RmString::new('testTemplate')
+        );
+
+        $this->Controller = BaseDisplayController::new($BaseView);
+        $this->Controller->render();
+        $menu = ($this->Controller->getViewData())['menu'];
+        $this->assertIsObject($menu);
+        $this->assertEquals('events', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('bands', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('venues', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $this->assertEquals('cities', $menu->getCurrent()->get());
+        $menu->pointAtNext();
+        $menu->getCurrent();
+    }
+}

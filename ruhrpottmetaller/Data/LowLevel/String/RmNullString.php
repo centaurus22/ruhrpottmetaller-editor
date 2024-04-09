@@ -17,4 +17,14 @@ class RmNullString extends AbstractRmString
     {
         return true;
     }
+
+    public function filter(): RmNullString
+    {
+        return $this;
+    }
+
+    public function hasSpecialFirstChar(): bool
+    {
+        return false;
+    }
 }

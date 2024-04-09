@@ -24,15 +24,14 @@ while ($this->get('menu')->hasCurrent()) {
             </ul>
         </nav>
         <div id="nav_secondary">
-            <?=$this->get('navSecondaryDisplayControllerOutput') ?
-                $this->get('navSecondaryDisplayControllerOutput') : '&nbsp;' ?>
+            <?=$this->get('navSecondaryDisplayControllerOutput') ?? $this->get('navSecondaryDisplayControllerOutput')?>
         </div>
         <main id="main">
             <?=$this->get('mainDisplayControllerOutput')?>
         </main>
         <div id="spacer"></div>
         <footer>
-            Ruhrpottmetaller-Editor (c) Klaus Thorres 2023.
+            Ruhrpottmetaller-Editor (c) Klaus Thorres 2024.
             This Software is provided under the <a href="?show=license">MIT License</a>.
         </footer>
     </body>
