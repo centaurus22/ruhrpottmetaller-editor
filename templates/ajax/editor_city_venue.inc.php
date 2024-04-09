@@ -51,10 +51,10 @@
              placeholder="Name of the new venue">
     </div>
     <div>
-        <label for="default_url" class="edit_label">Default URL</label>
+        <label for="url_default" class="edit_label">Default URL</label>
         <input type="text"
-         name="default_url"
-         id="default_url"
+         name="url_default"
+         id="url_default"
          class="edit_text"
          placeholder="Default URL of the venue">
     </div>

@@ -3,7 +3,6 @@
 namespace ruhrpottmetaller\Controller\Command\Ordinary;
 
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\IData;
 
 abstract class AbstractOrdinaryCommandController extends AbstractCommandController
@@ -20,7 +19,7 @@ abstract class AbstractOrdinaryCommandController extends AbstractCommandControll
 
     public static function new(
         $commandModel,
-        ?AbstractNamedHighLevelData $data
+        ?IData $data
     ): AbstractCommandController {
         return new static($commandModel, $data);
     }

@@ -3,7 +3,8 @@ A web-based tool to store, manage and export information about concerts and fest
 including bands. venues and cities.
 
 This software was created to support the Ruhrpottmetaller project
-(https://www.facebook.com/Ruhrpottmetaller/).
+(https://www.facebook.com/Ruhrpottmetaller/) and we encourage everyone to create his/her own
+*metaller project with this software.
 
 ## License
 This work is provided under the terms of the MIT license. Please take a look at the LICENSE file for the full text.
@@ -42,28 +43,6 @@ English requires building the associated localization files.
 
 Please note the UPDATING.md file for update instructions.
 
-## Expect the object orientated madness
-
-I have created high level data type objects which whose methods can be chained by
-object operators. Try this for example:
-
-```php
-
-<?php
-
-namespace ruhrpottmetaller\DataType;
-
-include ('vendor/autoload.php');
-
-$HighLevelDemoArray = DataTypeArray::new()->add(DataTypeString::new('Hello'))
-    ->add(DataTypeString::new(' World!'));
-$HighLevelDemoArray->get()->print();
-$HighLevelDemoArray->pointAtNext()->get()->print();
-
-//Prints 'Hello World!' to the terminal.
-
-```
-
 ## Using
 This section describes, how to use the software. Every link at the top has its own
 subsection.
@@ -92,7 +71,7 @@ Several commands can be applied to a concert using the drop-down menu at the rig
 * `Del` deletes the concert from the database. It is therefore irrevocably deleted from
   the system.
 * `Sold Out` marks the concert as sold out. As a result, the corresponding concert exports are generated containing the
-information that the concert is sold out. This affects this site and the Export site.
+   information that the concert is sold out. This affects this site and the Export site.
 
 A concert can be displayed in different colors:
 * black: The concert is already marked as published.
