@@ -228,10 +228,16 @@ class Controller
 
     private function passDataToBandsDisplay()
     {
-        $Band_Model = new ModelBand($this->mysqli);
         $filter_value = $this->getFilterValue();
-        $result = $Band_Model->getBands($filter_value);
-        $this->passGeneralDataToDisplay($result, $filter_value);
+
+        if ($filter_value == '') {
+            $result = [];
+        } else {
+            $modelBand = new ModelBand($this->mysqli);
+            $result = $modelBand->getBands($filter_value);
+        }
+
+        $this->passGeneralDataToDisplay($result, $filter_value, false);
         $this->View->assign('subtitle', 'bands');
     }
 
@@ -264,13 +270,19 @@ class Controller
         return $filter_value;
     }
 
-    private function passGeneralDataToDisplay(array $result, string $filter_value)
-    {
+    private function passGeneralDataToDisplay(
+        array $result,
+        string $filter_value,
+        bool $displayWithoutFilter = true
+    ): void {
         $this->Inner_View->assign(
             'filter_value_changer',
             $this->getFilterValueChanger($filter_value)
         );
-        if (count($result) > 0) {
+
+        if ($filter_value === '' and !$displayWithoutFilter) {
+            $this->Inner_View->setTemplate('general_display_add_filter');
+        } elseif (count($result) > 0) {
             $data = $this->getDataArray($this->request['display']);
             $this->Inner_View->assign('display', $this->request['display']);
             $this->Inner_View->assign('result', $result);
