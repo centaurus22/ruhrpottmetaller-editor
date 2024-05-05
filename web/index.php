@@ -6,5 +6,5 @@ ini_set('display_errors', 1);
 include '../vendor/autoload.php';
 
 $request = array_merge($_GET, $_POST);
-$Controller = new ruhrpottmetaller\Controller($request);
+$Controller = new RuhrpottMetaller\Controller($request);
 echo $Controller->getOutput();

@@ -1,15 +1,16 @@
 <?php
 
-namespace ruhrpottmetaller;
+namespace RuhrpottMetaller;
 
 use IntlDateFormatter;
+use mysqli;
 
 class Controller
 {
     private ?array $request;
     private ?View $View;
     private ?View $Inner_View;
-    private ?\mysqli $mysqli;
+    private ?mysqli $mysqli;
     private bool $isAjax = false;
     private string $errorText = '';
 
@@ -166,7 +167,7 @@ class Controller
 
     public function getOutput(): string
     {
-        if ($this->isAjax == true) {
+        if ($this->isAjax) {
             $this->View->setTemplate('ajax');
         } else {
             $this->View->setTemplate('ruhrpottmetaller-editor');
@@ -414,6 +415,7 @@ class Controller
     private function getFilterValueChanger($filter_value): string
     {
         $PropertyChanger = new View();
+        $result = [];
         switch ($this->request['display']) {
             case 'band':
             //no break
@@ -475,8 +477,7 @@ class Controller
         $Concert_Model = new ModelConcert($this->mysqli);
         $concerts = $Concert_Model->getConcerts($this->request['month']);
         $result = $this->processConcertData(
-            $concerts,
-            'concert'
+            $concerts
         );
 
         $Session_Model = new ModelSession();
@@ -529,7 +530,7 @@ class Controller
             $error = true;
         }
 
-        if ($error == true) {
+        if ($error) {
             $error_text = 'Something weird happened. The request could not be processed!';
         } else {
             $error_text = '';
@@ -936,6 +937,7 @@ class Controller
     {
         $type = $this->request['save'];
         $data = $this->getDataArray($type);
+        $values = [];
         $error = false;
 
         foreach ($data as $field) {
@@ -952,7 +954,7 @@ class Controller
             }
         }
         if ($error === false) {
-            $class = 'ruhrpottmetaller\\Model' . ucfirst($type);
+            $class = 'RuhrpottMetaller\\Model' . ucfirst($type);
             $method = 'update' . ucfirst($type);
             $Data_Model = new  $class($this->mysqli);
             $return = call_user_func(array($Data_Model, $method), ...$values);
@@ -960,7 +962,7 @@ class Controller
 
         $this->request['display'] = $type;
 
-        if ($error === true or $return === -1) {
+        if ($error === true or (isset($return) and $return === -1)) {
             return "Saving has gone wrong";
         }
         return "";
@@ -1184,9 +1186,9 @@ class Controller
 
     private function processConcertData($concerts, string $type = 'concert'): array
     {
-        if (count($concerts) == 0) :
-            $template = 'default_no_data';
-        else :
+        $template = 'default_no_data';
+
+        if (count($concerts) > 0):
             $Pref_Model = new ModelPreferences($this->mysqli);
             $pref_export = $Pref_Model->getPreferencesExportLang();
             switch ($pref_export[0]['export_lang']) {

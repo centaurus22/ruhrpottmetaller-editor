@@ -47,7 +47,7 @@
     },
 	"autoload" : {
 		"psr-4" : {
-			"ruhrpottmetaller\\" : "ruhrpottmetaller"
+			"RuhrpottMetaller\\" : "ruhrpottmetaller"
 		}
 	}
 }
