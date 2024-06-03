@@ -7,7 +7,7 @@
  * Attendtion: This deletes all data in the target database!
  * */
 
-namespace ruhrpottmetaller;
+namespace RuhrpottMetaller;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
