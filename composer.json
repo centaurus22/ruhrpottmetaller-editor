@@ -48,12 +48,12 @@
     },
 	"autoload" : {
 		"psr-4" : {
-			"RuhrpottMetaller\\" : "ruhrpottmetaller"
+			"ruhrpottmetaller\\" : "ruhrpottmetaller"
 		}
 	},
     "autoload-dev" : {
         "psr-4" : {
-            "Tests\\Ruhrpottmetaller\\" : "tests"
+            "tests\\ruhrpottmetaller\\" : "tests"
         }
     }
 }
