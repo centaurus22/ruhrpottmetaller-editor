@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Model\Command;
 
 use mysqli;
 use ruhrpottmetaller\Data\HighLevel\Band;
+use ruhrpottmetaller\Data\IData;
 
 class DatabaseBandCommandModel extends DatabaseCommandModel
 {
@@ -25,7 +26,7 @@ class DatabaseBandCommandModel extends DatabaseCommandModel
         );
     }
 
-    public function replaceData(Band $band): void
+    public function replaceData(IData $band): void
     {
         $query = 'UPDATE band SET name = ?, is_visible = ? WHERE id = ?';
         $this->query(
