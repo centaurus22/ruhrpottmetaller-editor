@@ -2,6 +2,9 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
+use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmFalse;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
@@ -30,5 +33,10 @@ class Concert extends Event
     public function getFormattedDate(): AbstractRmString
     {
         return $this->date->getFormatted('D, d.');
+    }
+
+    public function isFestival(): AbstractRmBool
+    {
+        return RmFalse::new(false);
     }
 }

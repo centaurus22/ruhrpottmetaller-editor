@@ -2,6 +2,8 @@
 
 namespace ruhrpottmetaller\Data\HighLevel;
 
+use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
+use ruhrpottmetaller\Data\LowLevel\Bool\RmTrue;
 use ruhrpottmetaller\Data\LowLevel\Date\RmDate;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
@@ -48,5 +50,10 @@ class Festival extends Event
         return $formattedDateStart
             ->concatWith(RmString::new(' – '))
             ->concatWith($formattedDateEnd);
+    }
+
+    public function isFestival(): AbstractRmBool
+    {
+        return RmTrue::new(true);
     }
 }
