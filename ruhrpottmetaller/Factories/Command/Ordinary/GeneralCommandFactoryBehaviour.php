@@ -10,6 +10,7 @@ use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;
 use ruhrpottmetaller\Data\HighLevel\Concert;
 use ruhrpottmetaller\Data\HighLevel\Festival;
+use ruhrpottmetaller\Data\HighLevel\NullCity;
 use ruhrpottmetaller\Data\HighLevel\NullVenue;
 use ruhrpottmetaller\Data\HighLevel\Venue;
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
@@ -62,14 +63,14 @@ class GeneralCommandFactoryBehaviour
                 }
 
                 if ($input['city_id'] == 1) {
-                    $city = City::new()->setId(RmInt::new(1))->setName(RmString::new($input['city_new_name']));
+                    $city = City::new()->setId(RmInt::new($input['city_id']))->setName(RmString::new($input['city_new_name']));
                 } elseif ($input['city_id'] > 1) {
                     $city = DatabaseCityQueryModel::new($this->connection)->getCityById(RmInt::new($input['city_id']));
                 } else {
-                    $city = City::new()->setId(RmInt::new($input['city_id']));
+                    $city = NullCity::new();
                 }
 
-                if ($input['venue_id'] == 1) {
+                if ($input['city_id'] == 1 or $input['venue_id'] == 1) {
                     $venue = Venue::new()
                         ->setId(RmInt::new(1))
                         ->setName(RmString::new($input['venue_new_name']))

@@ -32,16 +32,12 @@ class DatabaseCityQueryModel extends DatabaseQueryModel
 
     public function getCitiesWithSpecialChar(): RmArray
     {
-        $query = 'SELECT id, name, is_visible FROM city WHERE name NOT REGEXP "^[A-Z]" ORDER BY name';
+        $query = "SELECT id, name, is_visible FROM city WHERE name NOT REGEXP '^[A-Z]' ORDER BY name";
         return $this->query($query);
     }
 
     public function getCityById(AbstractRmInt $cityId): ICity
     {
-        if ($cityId->isNull()) {
-            return NullCity::new();
-        }
-
         $query = 'SELECT id, name, is_visible FROM city WHERE id = ?';
         return $this->queryOne($query, 'i', [$cityId->get()]);
     }

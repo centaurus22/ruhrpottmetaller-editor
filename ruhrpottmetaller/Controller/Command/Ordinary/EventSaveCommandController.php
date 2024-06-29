@@ -25,12 +25,22 @@ class EventSaveCommandController extends AbstractOrdinaryCommandController
     public function execute(): void
     {
         $venue = $this->data->getVenue();
+        $city = $venue->getCity();
+
+        if ($city->getId()->get() == 1) {
+            $newCityId = $this->cityCommandModel->addCity($city);
+            $city->setId($newCityId);
+        } elseif ($city->getId()->isNull()) {
+            throw new \Exception('A city must be provided');
+        }
+
         if ($venue->getId()->get() == 1) {
             $newVenueId = $this->venueCommandModel->addVenue($venue);
             $venue->setId($newVenueId);
         } elseif ($venue->getId()->isNull()) {
             throw new \Exception('A venue must be provided');
         }
+
         if ($this->data->getId()->get() === 0) {
             $this->commandModel->addEvent($this->data);
         } else {

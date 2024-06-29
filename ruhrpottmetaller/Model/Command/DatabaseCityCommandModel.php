@@ -4,6 +4,7 @@ namespace ruhrpottmetaller\Model\Command;
 
 use mysqli;
 use ruhrpottmetaller\Data\HighLevel\City;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 
 class DatabaseCityCommandModel extends DatabaseCommandModel
 {
@@ -12,14 +13,15 @@ class DatabaseCityCommandModel extends DatabaseCommandModel
         return new static($connection);
     }
 
-    public function addCity(City $city)
+    public function addCity(City $city): RmInt
     {
-        $query = 'INSERT INTO city SET name = ?, is_visible = ?';
+        $query = 'INSERT INTO city SET name = ?';
         $this->query(
             $query,
-            'si',
-            [$city->getName()->get(), $city->getIsVisible()->get()]
+            's',
+            [$city->getName()->get()]
         );
+        return $this->getLastInsertedId();
     }
 
     public function replaceData(City $city)

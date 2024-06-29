@@ -20,6 +20,11 @@ class Venue extends AbstractNamedHighLevelData implements IData, IVenue
         return $this;
     }
 
+    public function getCity(): ICity
+    {
+        return $this->city;
+    }
+
     public function getCityName(): AbstractRmString
     {
         return $this->city->getName();

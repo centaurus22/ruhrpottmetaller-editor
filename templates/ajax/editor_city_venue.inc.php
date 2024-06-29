@@ -40,6 +40,15 @@
             <?php endwhile; ?>
         </select>
     </div>
+<?php else: ?>
+    <div>
+        <label for="city_new_name" class="edit_label">New city</label>
+        <input type="text"
+               name="city_new_name"
+               id="city_new_name"
+               class="edit_text"
+               placeholder="Name of the new city">
+    </div>
 <?php endif; ?>
 <?php if ($this->get('getNewVenue')->isTrue()) : ?>
     <div>
