@@ -21,7 +21,7 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
             <?=$event->getName()->asTableCell() ?>
             <?=$event->getFormattedVenueAndCityName()->asTableCell()?>
             <?=$event->getBandList()->asTableCell()?>
-            <?=$event->getUrl()->asWwwUrl()->asTableCell()?>
+            <?=$event->getUrl()->asWwwUrl('external')->asTableCell()?>
             <?=$event->getId()->asHiddenInput(RmString::new('id'))?>
             <?=$event->getDate()->getFormatted()->asHiddenInput(RmString::new('date'))?>
             <?=RmString::new('events')

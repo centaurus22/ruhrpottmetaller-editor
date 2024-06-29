@@ -40,9 +40,10 @@ abstract class AbstractRmString extends AbstractLowLevelData
         return $this;
     }
 
-    public function asWwwUrl(): AbstractRmString
+    public function asWwwUrl(string $type = 'internal'): AbstractRmString
     {
-        return RmString::new('<a href="' . $this->value . '">www</a>');
+        $target = $type == 'external' ? ' target="_blank" ' : '';
+        return RmString::new('<a href="' . $this->value . '"' . $target . '>www</a>');
     }
 
     protected static function createObject($value)
