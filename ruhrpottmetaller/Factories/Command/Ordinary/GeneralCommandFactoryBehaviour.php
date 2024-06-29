@@ -4,7 +4,8 @@ namespace ruhrpottmetaller\Factories\Command\Ordinary;
 
 use mysqli;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\EventSaveCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\GeneralSaveCommandController;
 use ruhrpottmetaller\Data\HighLevel\AbstractNamedHighLevelData;
 use ruhrpottmetaller\Data\HighLevel\Band;
 use ruhrpottmetaller\Data\HighLevel\City;
@@ -33,7 +34,13 @@ class GeneralCommandFactoryBehaviour
     {
         $modelClass = 'ruhrpottmetaller\\Model\\Command\\Database' . ucfirst($input['save']) . 'CommandModel';
 
-        return SaveCommandController::new(
+        if ($input['save'] === 'event') {
+            return EventSaveCommandController::new(
+                new $modelClass($this->connection),
+                $this->getDataObject($input)
+            );
+        }
+        return GeneralSaveCommandController::new(
             new $modelClass($this->connection),
             $this->getDataObject($input)
         );
@@ -42,8 +49,8 @@ class GeneralCommandFactoryBehaviour
     private function getDataObject(array $input): AbstractNamedHighLevelData
     {
         switch ($input['save']) {
-            case 'concert':
-                if ($input['length'] === 1) {
+            case 'event':
+                if ($input['length'] === '1') {
                     $event = Concert::new()
                         ->setDate(RmDate::new($input['date_start']));
                 } else {

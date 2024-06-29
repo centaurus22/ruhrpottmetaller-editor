@@ -7,7 +7,7 @@ namespace tests\ruhrpottmetaller\Controller\Command;
 use mysqli;
 use PHPUnit\Framework\TestCase;
 use ruhrpottmetaller\Controller\Command\AbstractCommandController;
-use ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController;
+use ruhrpottmetaller\Controller\Command\Ordinary\GeneralSaveCommandController;
 use ruhrpottmetaller\Data\HighLevel\{Band, City, Venue};
 use ruhrpottmetaller\Data\LowLevel\Bool\RmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
@@ -34,7 +34,7 @@ final class SaveCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralSaveCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
@@ -52,7 +52,7 @@ final class SaveCommandControllerTest extends TestCase
 
     public function testShouldUpdateCityName(): void
     {
-        $query = 'INSERT INTO city SET name = "Dortmund"';
+        $query = "INSERT INTO city SET name = 'Dortmund'";
         $this->connection->query($query);
         $commandModel = DatabaseCityCommandModel::new($this->connection);
         $queryModel = DatabaseCityQueryModel::new($this->connection);
@@ -60,7 +60,7 @@ final class SaveCommandControllerTest extends TestCase
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Lünen'))
             ->setIsVisible(RmBool::new(true));
-        $this->commandController = SaveCommandController::new(
+        $this->commandController = GeneralSaveCommandController::new(
             $commandModel,
             $city
         );
@@ -79,7 +79,7 @@ final class SaveCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralSaveCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseBandCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseQueryModel
@@ -97,7 +97,7 @@ final class SaveCommandControllerTest extends TestCase
 
     public function testShouldUpdateBandName(): void
     {
-        $query = 'INSERT INTO band SET name = "Mad Butcher"';
+        $query = "INSERT INTO band SET name = 'Mad Butcher'";
         $this->connection->query($query);
         $queryModel = DatabaseBandQueryModel::new($this->connection);
         $commandModel = DatabaseBandCommandModel::new($this->connection);
@@ -105,7 +105,7 @@ final class SaveCommandControllerTest extends TestCase
             ->setId(RmInt::new(1))
             ->setName(RmString::new('Kreator'))
             ->setIsVisible(RmBool::new(true));
-        $commandController = SaveCommandController::new(
+        $commandController = GeneralSaveCommandController::new(
             $commandModel,
             $data
         );
@@ -124,7 +124,7 @@ final class SaveCommandControllerTest extends TestCase
     /**
      * @covers \ruhrpottmetaller\AbstractRmObject
      * @covers \ruhrpottmetaller\Controller\Command\AbstractCommandController
-     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\SaveCommandController
+     * @covers \ruhrpottmetaller\Controller\Command\Ordinary\GeneralSaveCommandController
      * @uses \ruhrpottmetaller\Model\Command\DatabaseVenueCommandModel
      * @uses \ruhrpottmetaller\Model\Command\DatabaseCityCommandModel
      * @uses \ruhrpottmetaller\Model\Query\DatabaseVenueQueryModel
@@ -146,9 +146,9 @@ final class SaveCommandControllerTest extends TestCase
 
     public function testShouldUpdateVenueName(): void
     {
-        $query = 'INSERT INTO venue SET name = "Parkhaus", city_id = 1';
+        $query = "INSERT INTO venue SET name = 'Parkhaus', city_id = 1";
         $this->connection->query($query);
-        $query = 'INSERT INTO city SET name = "Duisburg"';
+        $query = "INSERT INTO city SET name = 'Duisburg'";
         $this->connection->query($query);
         $queryModel = DatabaseVenueQueryModel::new(
             $this->connection,
@@ -162,7 +162,7 @@ final class SaveCommandControllerTest extends TestCase
             ->setCity($city)
             ->setUrlDefault(RmString::new(''))
             ->setIsVisible(RmBool::new(true));
-        $commandController = SaveCommandController::new(
+        $commandController = GeneralSaveCommandController::new(
             $commandModel,
             $data
         );

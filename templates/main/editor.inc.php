@@ -1,6 +1,6 @@
 <form action="" method="get">
     <input type="hidden" name="show" value="events">
-    <input type="hidden" name="save" value="concert">
+    <input type="hidden" name="save" value="event">
     <input type="hidden" name="id" value="<?=$this->get('event')->getId()?>">
     <fieldset class="fieldset_general">
         <legend>General concert data</legend>
