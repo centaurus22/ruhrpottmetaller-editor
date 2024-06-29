@@ -158,6 +158,10 @@ footer {
     text-decoration: line-through;
 }
 
+.sold_out div {
+    color: green;
+}
+
 .invisible, .warning {
     color: red;
 }

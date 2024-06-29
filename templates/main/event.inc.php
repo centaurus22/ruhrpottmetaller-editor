@@ -14,7 +14,9 @@ use ruhrpottmetaller\Data\LowLevel\String\RmString;
     </div>
     <?php while ($this->get('events')->hasCurrent()) : ?>
         <?php $event = $this->get('events')->getCurrent(); ?>
-        <form action="" class="rm_table_row<?=$event->getIsCanceled()->get() ? ' canceled' : ''?>">
+        <form action="" class="rm_table_row
+                <?=$event->getIsCanceled()->get() ? 'canceled' : ''?>
+                <?=$event->getIsSoldOut()->get() ? 'sold_out' : ''?>">
             <?=$event->getFormattedDate()->asTableCell() ?>
             <?=$event->getName()->asTableCell() ?>
             <?=$event->getFormattedVenueAndCityName()->asTableCell()?>
