@@ -122,6 +122,10 @@ footer {
     vertical-align: middle;
 }
 
+.rm_table_cell a {
+    color: blue;
+}
+
 .rm_table_cell.venue_name > input {
     width: 200px;
 }
