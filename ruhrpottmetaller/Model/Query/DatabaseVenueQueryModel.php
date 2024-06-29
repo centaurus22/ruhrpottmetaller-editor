@@ -67,10 +67,6 @@ class DatabaseVenueQueryModel extends DatabaseQueryModel
 
     public function getVenueById(AbstractRmInt $venueId): IVenue
     {
-        if ($venueId->isNull()) {
-            return NullVenue::new();
-        }
-
         $query = 'SELECT id, name, city_id, url_default, is_visible FROM venue WHERE id = ?';
         return $this->queryOne($query, 'i', [$venueId->get()]);
     }

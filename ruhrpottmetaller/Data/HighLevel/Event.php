@@ -66,6 +66,11 @@ abstract class Event extends AbstractNamedHighLevelData implements IEvent
         return $this->venue->getId();
     }
 
+    public function getVenue(): IVenue
+    {
+        return $this->venue;
+    }
+
     public function getCityId(): AbstractRmInt
     {
         return $this->venue->getCityId();

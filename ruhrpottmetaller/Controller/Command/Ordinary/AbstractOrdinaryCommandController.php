@@ -7,11 +7,11 @@ use ruhrpottmetaller\Data\IData;
 
 abstract class AbstractOrdinaryCommandController extends AbstractCommandController
 {
-    protected ?IData $data;
+    protected $data;
 
     public function __construct(
         $commandModel,
-        ?IData $data
+        $data
     ) {
         parent::__construct($commandModel);
         $this->data = $data;
