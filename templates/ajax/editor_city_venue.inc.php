@@ -28,7 +28,7 @@
                 <?php $venueId = $venues->getCurrent()->getId()->get(); ?>
                 <?php $venueName = $venues->getCurrent()->getName()->get(); ?>
                 <?php if ($this->get('venueId')->get() == $venues->getCurrent()->getId()->get()) : ?>
-                    <?=printf(
+                    <?php printf(
                         '<option value="%1$u" selected="selected">%2$s</option>',
                         $venueId,
                         $venueName
