@@ -6,18 +6,31 @@ use ruhrpottmetaller\AbstractRmObject;
 use ruhrpottmetaller\Data\IData;
 use ruhrpottmetaller\Data\LowLevel\Bool\AbstractRmBool;
 use ruhrpottmetaller\Data\LowLevel\Int\AbstractRmInt;
+use ruhrpottmetaller\Data\LowLevel\Int\RmInt;
 use ruhrpottmetaller\Data\LowLevel\String\AbstractRmString;
 use ruhrpottmetaller\Data\LowLevel\String\RmString;
 
 class Gig extends AbstractRmObject implements IData
 {
-    private AbstractRmString $additionalInformation;
     private IBand $band;
+    private IEvent $event;
+    private AbstractRmString $additionalInformation;
     private AbstractRmString $bandNewName;
 
     public function __construct()
     {
         $this->bandNewName = AbstractRmString::new(null);
+    }
+
+    public function setEvent(IEvent $event): Gig
+    {
+        $this->event = $event;
+        return $this;
+    }
+
+    public function getEventId(): AbstractRmInt
+    {
+        return $this->event->getId();
     }
 
     public function setBand(IBand $band): Gig
